@@ -1,6 +1,12 @@
 \chapter{Case Study Conclusion -- Implementing \ishtar{} End-to-End}
 \label{ch:case-study}
 \newrefsegment
+
+% ----------------------------
+% Chapter 12 — Abstract (online)
+% ----------------------------
+\abstract*{This chapter synthesizes the book's methods through an end-to-end implementation of the Ishtar AI system, from requirements to production operations. We begin with problem framing and a threat model suitable for conflict-zone journalism, then restate functional and non-functional requirements such as timeliness, citation-backed factuality, privacy, and resilience under bursty demand. We recap the reference architecture (ingestion, vector index, RAG, multi-agent orchestration, serving, and observability) and provide concrete implementation steps: platform and infrastructure setup, ingestion and embedding pipelines, index versioning, retrieval and prompt contracts with citations and uncertainty, and a controller pattern that composes retrieval, synthesis, verification, safety, and optional translation agents. We then specify CI/CD and evaluation gates that treat prompts, agent graphs, retrieval configuration, serving parameters, and index snapshots as versioned release units with canary rollouts and rollback automation. Operational practices—SLOs, dashboards, incident response, drift management, periodic re-indexing, and knowledge-base curation—are tied to measurable outcomes in latency, quality, and cost. The chapter concludes with an Ishtar-derived end-to-end checklist and future directions for multimodal inputs, adaptive planning, and standardized evaluation.}
+
 \epigraph{\emph{``A system is only as strong as its weakest operational link.''}}{David Stroud}
 
 This chapter synthesizes the methods developed throughout the book into a single, end-to-end implementation narrative for \ishtar{}: an LLM-driven assistant built for journalists operating in conflict and crisis zones.

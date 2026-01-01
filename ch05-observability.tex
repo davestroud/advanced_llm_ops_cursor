@@ -2,6 +2,11 @@
 \label{ch:monitoring}
 \newrefsegment
 
+% ----------------------------
+% Chapter 5 — Abstract (online)
+% ----------------------------
+\abstract*{This chapter positions observability as the operational manifestation of LLM product quality. We explain why monitoring differs for LLM applications, requiring instrumentation across three layers: system telemetry (GPU/CPU, latency, throughput), model telemetry (token usage, refusals, safety triggers), and pipeline telemetry (retrieval lineage, tool calls, and multi-agent handoffs). We introduce RAG-specific metrics—retrieval quality, context utilization, groundedness/faithfulness, citation fidelity, and drift signals for embeddings and indices—and show how these are operationalized through traces, dashboards, and continuous evaluation on canary and golden queries. We then provide practical guidance for tracing complex prompt flows and agent graphs, standardizing telemetry schemas, and enforcing privacy-preserving logging and retention. Finally, we connect observability to action: alerting is tied to SLOs and pre-authorized playbooks (fallback retrieval, safe-mode decoding, rollback), enabling faster incident response and continuous improvement. Ishtar AI is used throughout as a reference architecture for evidence-centric monitoring in high-stakes deployments.}
+
 \epigraph{\emph{``You can't fix what you can't see.''}}{David Stroud}
 
 \section{Introduction}

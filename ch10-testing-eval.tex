@@ -2,7 +2,12 @@
 \label{ch:testing}
 \newrefsegment
 
-\epigraph{\emph{"If you can’t measure it, you can’t trust it."}}{David Stroud}
+% ----------------------------
+% Chapter 10 — Abstract (online)
+% ----------------------------
+\abstract*{This chapter develops a rigorous testing and evaluation discipline for LLM-powered systems, motivated by non-deterministic outputs, context dependence, and adversarial exposure. We present a layered testing taxonomy—unit tests for prompts and schemas, integration tests for multi-component chains, end-to-end tests for user workflows, and adversarial testing for injection and jailbreak scenarios—then connect these tests to measurable quality criteria. We survey quantitative and qualitative evaluation metrics, including task accuracy where references exist, semantic similarity measures, and rubric-based LLM-as-judge approaches, and we discuss how RAG-specific evaluators quantify faithfulness and attribution. Human-in-the-loop evaluation is positioned as essential for high-stakes workflows, providing calibration for automated judges and surfacing domain-specific failure modes. Robustness is treated as reliability under stress: load testing, fault injection, dependency failures, and security probes. Finally, we show how regression testing is operationalized in CI/CD with baseline comparisons and release gates, and we ground the approach in an Ishtar AI case study and a production-oriented best-practices checklist.}
+
+\epigraph{\emph{"If you can't measure it, you can't trust it."}}{David Stroud}
 
 Testing and evaluation are essential to building trust in LLM systems. For mission-critical applications such as \ishtar{}, quality cannot be assumed—it must be continuously validated against well-defined criteria. This chapter covers the methodologies, metrics, and practices needed to evaluate LLM applications and ensure robustness against failures, regressions, and adversarial inputs.
 
