@@ -101,12 +101,40 @@ In classic production systems, engineers debug failures through logs, traces, an
 \end{itemize}
 
 \subsection{Security, Privacy, and New Threat Models}
-LLM deployments introduce attack vectors that do not exist in conventional software. Prompt injection can override instructions; tool misuse can trigger unintended actions; and data leakage can occur through retrieval or generated output. Operational hardening must therefore include:
+LLM deployments introduce attack vectors that are uncommon in conventional software because
+the model functions as a \emph{natural-language interpreter} that can be influenced by untrusted
+inputs, retrieved documents, and tool outputs. Two properties drive the new threat model:
+(i) \emph{instruction following} (which makes prompt injection viable), and (ii) \emph{tool use and retrieval}
+(which expands the blast radius from ``bad text'' to ``bad actions'' and ``data exposure'').
+Critically, many failures are \emph{silent}: the service returns HTTP 200 while producing unsafe,
+unauthorized, or privacy-violating content.
+
+Three high-leverage risk categories dominate production hardening:
 \begin{itemize}
-  \item \textbf{Prompt-injection defenses:} strict instruction hierarchies, input sanitization, and constrained tool schemas.
-  \item \textbf{Data protections:} access controls, redaction, audit logs, and secure handling of user-provided content.
-  \item \textbf{Policy enforcement:} consistent guardrails across prompts, retrieval sources, and tools to satisfy legal, regulatory, and brand-safety requirements.
+  \item \textbf{Prompt-injection defenses:} treat user content and retrieved content as untrusted.
+  Enforce an instruction hierarchy (system > developer > user), sanitize inputs, and constrain
+  tool schemas/outputs so that untrusted text cannot escalate privileges or override policy.
+  \item \textbf{Data protections:} assume sensitive data may appear in prompts, retrieved passages,
+  and logs. Apply least-privilege access controls at retrieval time, redact PII/secrets in inputs and
+  outputs, and maintain auditable traces for forensics and incident response.
+  \item \textbf{Policy enforcement:} implement consistent guardrails across prompts, retrieval sources,
+  and tools to satisfy legal, regulatory, and brand-safety requirements. In practice this implies
+  policy-as-code gates in CI/CD and runtime enforcement (filters, allow-lists, rate limits, and
+  human escalation for high-stakes workflows).
 \end{itemize}
+
+Figure~\ref{fig:llm-threat-model} summarizes the main attack surfaces and a defense-in-depth
+control stack spanning input handling, retrieval governance, tool security, and output controls.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\textwidth]{images/ch01-security-threat-model}
+  \caption{Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass,
+  retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization,
+  instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing
+  as a cross-cutting requirement for incident response and rollback.}
+  \label{fig:llm-threat-model}
+\end{figure}
 
 \subsection{Change Management and Release Discipline}
 Finally, LLM systems change frequently: prompts evolve, models are upgraded, retrieval corpora update, and tool schemas shift. Without disciplined release processes, teams risk unintentional regressions. Mature LLMOps introduces:
