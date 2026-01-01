@@ -945,3 +945,9 @@ OUTPUT ch10-testing-eval.aux
 INPUT ./ch10-testing-eval.tex
 INPUT ./ch10-testing-eval.tex
 INPUT ch10-testing-eval.tex
+INPUT ./ch11-ethics.tex
+INPUT ./ch11-ethics.tex
+OUTPUT ch11-ethics.aux
+INPUT ./ch11-ethics.tex
+INPUT ./ch11-ethics.tex
+INPUT ch11-ethics.tex
