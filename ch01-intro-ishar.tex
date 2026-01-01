@@ -210,12 +210,12 @@ production-critical workflows: (i) incident response (rapid attribution and roll
 (turning production failures into regression tests), and (iii) governance (audit trails for safety, privacy, and policy compliance).
 
 \begin{table}[t]
-\centering
+\centering\small
 \caption{LLMOps observability: what to capture beyond traditional monitoring, why it matters, and common failure signals.}
 \label{tab:llm_observability}
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.15}
-\begin{tabularx}{\linewidth}{p{2.7cm} p{4.2cm} p{4.2cm} p{3.3cm}}
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
 \toprule
 \textbf{Layer} & \textbf{What to capture} & \textbf{Why it matters} & \textbf{Typical failure signals} \\
 \midrule
@@ -223,27 +223,27 @@ System telemetry &
 Latency (p50/p95/p99), error rate, GPU/CPU/memory utilization, queue depth, cost per request &
 Detect performance regressions and capacity collapse; bound tail latency and spend &
 TTFT spikes, token/s drops, saturation, retry storms \\
-
+\addlinespace[0.5em]
 Prompt \& policy telemetry &
 Prompt template ID/version, system/developer messages, guardrail settings, decoding params (temperature/top-$p$), routing decision &
 Prompts and policies function as executable logic; small changes can create large behavioral shifts &
 Refusal rate drift, verbosity inflation, format/schema violations \\
-
+\addlinespace[0.5em]
 Retrieval (RAG) telemetry &
 Retriever config (K, filters, recency window), retrieved doc IDs, scores, index version, chunk IDs &
 RAG errors are often silent; evidence quality determines groundedness and citation fidelity &
 Recall@K degradation, citation coverage drop, stale/unauthorized docs retrieved \\
-
+\addlinespace[0.5em]
 Tooling telemetry &
 Tool name/version, arguments, outputs, error codes, latency per tool call, side-effect flags &
 Tool misuse turns ``bad text'' into ``bad actions''; tool failures can masquerade as model failures &
 Tool-call loops, timeouts, invalid arguments, unsafe side effects \\
-
+\addlinespace[0.5em]
 Model output telemetry &
 Output text hash, token counts, stop reasons, safety classifier outcomes, citation spans/links &
 Quality and safety must be measured directly; infra metrics cannot detect hallucinations or bias &
 Hallucination flags, toxicity triggers, missing citations, policy violations \\
-
+\addlinespace[0.5em]
 Trace \& audit artifacts (cross-cutting) &
 End-to-end trace/span IDs, replay bundle (prompt+evidence+tools), redaction status, retention metadata &
 Enables root-cause isolation, reproducibility, postmortems, and compliance evidence &

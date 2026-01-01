@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 17:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 17:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1977,38 +1977,8 @@ Package pdftex.def Info: images/ch01-cost-latency-throughput.png  used on input 
 [12 <./images/ch01-cost-latency-throughput.png>]
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 252--252
-\OT1/ntxtlf/m/n/8.5 (+20) GPU/CPU/mem-ory uti-liza-tion,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 252--252
-[]|\OT1/ntxtlf/m/n/8.5 (+20) Prompt & pol-icy
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 252--252
-[]|\OT1/ntxtlf/m/n/8.5 (+20) Prompt tem-plate ID/ver-sion,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 252--252
-\OT1/ntxtlf/m/n/8.5 (+20) sys-tem/de-vel-oper mes-sages,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 252--252
-[]|\OT1/ntxtlf/m/n/8.5 (+20) Retrieval (RAG)
- []
-
-
-Underfull \hbox (badness 1983) in paragraph at lines 252--252
-\OT1/ntxtlf/m/n/8.5 (+20) bun-dle (prompt+evidence+tools),
- []
-
-
-Overfull \hbox (104.71948pt too wide) in alignment at lines 252--252
-[][][][] 
+Overfull \hbox (10.0535pt too wide) in paragraph at lines 252--252
+\OT1/ntxtlf/m/n/8.5 (-20) (prompt+evidence+tools), 
  []
 
 
@@ -2069,6 +2039,8 @@ Overfull \hbox (142.19658pt too wide) in paragraph at lines 768--769
 [30]
 
 [31]
+
+[32]
 Underfull \hbox (badness 4144) in paragraph at lines 1079--1079
 []|\OT1/ntxtlf/b/n/8.5 (+20) Failure mode (or
  []
@@ -2180,13 +2152,13 @@ Underfull \hbox (badness 4479) in paragraph at lines 1079--1079
 
 
 
-[32]
-
 [33]
 
 [34]
 
 [35]
+
+[36]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
 (Font)              scaled to size 10.0pt on input line 1186.
 Package microtype Info: Character `013' is missing
@@ -2197,14 +2169,22 @@ LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 1
 File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
-[36{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}]
+[37{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}]
 
-[37])
+[38])
 
-[38]
+[39]
 \openout2 = `ch02-llmops-fundamentals.aux'.
 
  (./ch02-llmops-fundamentals.tex
+
+[40
+
+
+
+
+
+]
 Chapter 2.
 Package biblatex Info: Reference segment=4 on input line 1.
 Package biblatex Info: Setting label 'refsegment:04' on input line 1.
@@ -2212,30 +2192,24 @@ Package biblatex Info: Reference segment=5 on input line 3.
 Package biblatex Info: Setting label 'refsegment:05' on input line 3.
 
 
-[39
-
-
-
-
-
-]
-
-[40]
-
 [41]
 
 [42]
+
+[43]
+
+[44]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 7.3pt on input line 71.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 5.5pt on input line 71.
 
 
-[43]
-
-[44]
-
 [45]
+
+[46]
+
+[47]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Package pgfplots info on input line 209: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
@@ -2252,11 +2226,11 @@ LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 (Font)              scaled to size 5.5pt on input line 272.
 
 
-[46]
-
-[47]
-
 [48]
+
+[49]
+
+[50]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -2268,10 +2242,6 @@ LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 (Font)              scaled to size 4.67502pt on input line 305.
 
-
-[49]
-
-[50]
 
 [51]
 
@@ -2292,15 +2262,15 @@ LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 [59]
 
 [60]
+
+[61]
+
+[62]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 6.20496pt on input line 591.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 4.67502pt on input line 591.
 
-
-[61]
-
-[62]
 
 [63]
 
@@ -2308,14 +2278,18 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 
 [65]
 
-[66])
+[66]
 
 [67]
+
+[68])
+
+[69]
 \openout2 = `ch03-infra-env.aux'.
 
  (./ch03-infra-env.tex
 
-[68
+[70
 
 
 
@@ -2329,20 +2303,16 @@ Package biblatex Info: Reference segment=7 on input line 3.
 Package biblatex Info: Setting label 'refsegment:07' on input line 3.
 
 
-[69]
-
-[70]
-
 [71]
+
+[72]
+
+[73]
 Overfull \hbox (17.2671pt too wide) in paragraph at lines 87--97
  [][] 
  []
 
 
-
-[72]
-
-[73]
 
 [74]
 
@@ -2353,22 +2323,22 @@ Overfull \hbox (17.2671pt too wide) in paragraph at lines 87--97
 [77]
 
 [78]
+
+[79]
+
+[80]
 Overfull \hbox (3.98167pt too wide) in paragraph at lines 273--278
 []\OT1/ntxtlf/b/n/10 (-20) Terraform (HashiCorp). \OT1/ntxtlf/m/n/10 (-20) Declar-a-tive, cloud-agnostic IaC tool us-ing HCL (HashiCorp
  []
 
 
 
-[79]
+[81]
 Overfull \hbox (92.10152pt too wide) in paragraph at lines 302--312
  [][] 
  []
 
 
-
-[80]
-
-[81]
 
 [82]
 
@@ -2383,6 +2353,10 @@ Overfull \hbox (92.10152pt too wide) in paragraph at lines 302--312
 [87]
 
 [88]
+
+[89]
+
+[90]
 Underfull \hbox (badness 1092) in paragraph at lines 541--541
 \OT1/ntxtlf/m/n/8.5 (+20) tion; ef-fi-cient KV cache reuse;
  []
@@ -2404,23 +2378,14 @@ Overfull \hbox (59.07527pt too wide) in paragraph at lines 531--557
 
 
 
-[89]
-
-[90]
-
 [91]
 
 [92]
-Overfull \hbox (5.16875pt too wide) in paragraph at lines 794--795
- [][] 
- []
-
-
 
 [93]
 
 [94]
-Overfull \hbox (181.70961pt too wide) in paragraph at lines 912--913
+Overfull \hbox (5.16875pt too wide) in paragraph at lines 794--795
  [][] 
  []
 
@@ -2429,53 +2394,62 @@ Overfull \hbox (181.70961pt too wide) in paragraph at lines 912--913
 [95]
 
 [96]
+Overfull \hbox (181.70961pt too wide) in paragraph at lines 912--913
+ [][] 
+ []
+
+
 
 [97]
 
 [98]
+
+[99]
+
+[100]
 Overfull \hbox (3.95467pt too wide) in paragraph at lines 985--985
 []\OT1/ntxtlf/m/it/10 (-20) Learn Ter-raform Rec-om-mended Prac-tices\OT1/ntxtlf/m/n/10 (-20) . HashiCorp. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / developer .
  []
 
 
 
-[99]
+[101]
 Overfull \hbox (6.67911pt too wide) in paragraph at lines 985--985
 []\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
  []
 
 
 
-[100]
-
-[101]
-
-[102])
+[102]
 
 [103]
 
-[104
+[104])
+
+[105]
+
+[106
 
 
 
 
 ]
 
-[105]
+[107]
 
-[106]
+[108]
 \openout2 = `author/part2-delivery.aux'.
 
  (./author/part2-delivery.tex)
 
-[107
+[109
 
 ]
 \openout2 = `ch04-cicd.aux'.
 
  (./ch04-cicd.tex
 
-[108
+[110
 
 
 
@@ -2489,10 +2463,6 @@ Package biblatex Info: Reference segment=9 on input line 3.
 Package biblatex Info: Setting label 'refsegment:09' on input line 3.
 
 
-[109]
-
-[110]
-
 [111]
 
 [112]
@@ -2500,6 +2470,10 @@ Package biblatex Info: Setting label 'refsegment:09' on input line 3.
 [113]
 
 [114]
+
+[115]
+
+[116]
 Underfull \hbox (badness 2326) in paragraph at lines 130--130
 []|\OT1/ntxtlf/m/n/8.5 (+20) Nightly/Batch (cost-
  []
@@ -2510,10 +2484,6 @@ Overfull \hbox (316.43091pt too wide) in paragraph at lines 197--198
  []
 
 
-
-[115]
-
-[116]
 
 [117]
 
@@ -2537,14 +2507,18 @@ Overfull \hbox (316.43091pt too wide) in paragraph at lines 197--198
 
 [127]
 
-[128])
+[128]
 
 [129]
+
+[130])
+
+[131]
 \openout2 = `ch05-observability.aux'.
 
  (./ch05-observability.tex
 
-[130
+[132
 
 
 
@@ -2558,22 +2532,22 @@ Package biblatex Info: Reference segment=11 on input line 3.
 Package biblatex Info: Setting label 'refsegment:011' on input line 3.
 
 
-[131]
+[133]
 
-[132]
+[134]
 Overfull \hbox (12.25851pt too wide) in paragraph at lines 78--80
  [][] 
  []
 
 
 
-[133]
-
-[134]
-
 [135]
 
 [136]
+
+[137]
+
+[138]
 Overfull \hbox (7.07446pt too wide) in paragraph at lines 178--180
 \OT1/lmtt/m/n/10 retrieval[]metadata \OT1/ntxtlf/m/n/10 (-20) (doc IDs, in-dex ver-sion, top-$k$, re-ranker scores); \OT1/lmtt/m/n/10 token[]counts
  []
@@ -2585,9 +2559,9 @@ Overfull \hbox (38.40677pt too wide) in paragraph at lines 178--180
 
 
 
-[137]
+[139]
 
-[138]
+[140]
 LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <8.5> not available
 (Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 262.
 
@@ -2597,9 +2571,9 @@ Overfull \hbox (583.99873pt too wide) in paragraph at lines 305--309
 
 
 
-[139]
+[141]
 
-[140]
+[142]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
             Default family used instead on input line 350.
@@ -2611,18 +2585,14 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 350.
 
 
-[141{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+[143{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
-[142]
+[144]
 Overfull \hbox (37.4113pt too wide) in paragraph at lines 411--412
 []\OT1/ntxtlf/b/n/10 (-20) Cohort and route lenses. \OT1/ntxtlf/m/n/10 (-20) Pro-vide con-sis-tent la-bels|\OT1/lmtt/m/n/10 model[]version\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 retriever[]version\OT1/ntxtlf/m/n/10 (-20) ,
  []
 
 
-
-[143]
-
-[144]
 
 [145]
 
@@ -2633,20 +2603,24 @@ Overfull \hbox (37.4113pt too wide) in paragraph at lines 411--412
 [148]
 
 [149]
+
+[150]
+
+[151]
 Overfull \hbox (15.38861pt too wide) in paragraph at lines 591--591
 []\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
 
 
-[150])
+[152])
 
-[151]
+[153]
 \openout2 = `ch06-scaling.aux'.
 
  (./ch06-scaling.tex
 
-[152
+[154
 
 
 
@@ -2660,22 +2634,22 @@ Package biblatex Info: Reference segment=13 on input line 3.
 Package biblatex Info: Setting label 'refsegment:013' on input line 3.
 
 
-[153]
-
-[154]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 10.0pt on input line 46.
-
-
 [155]
 
 [156]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
+(Font)              scaled to size 10.0pt on input line 46.
+
 
 [157]
 
 [158]
 
 [159]
+
+[160]
+
+[161]
 Underfull \hbox (badness 1163) in paragraph at lines 158--159
 []|\OT1/ntxtlf/m/n/8.5 (+20) Lowest per-instance la-tency; well-
  []
@@ -2686,10 +2660,6 @@ Overfull \hbox (59.17903pt too wide) in paragraph at lines 226--227
  []
 
 
-
-[160]
-
-[161]
 
 [162]
 
@@ -2726,60 +2696,64 @@ Overfull \hbox (59.17903pt too wide) in paragraph at lines 226--227
 [178]
 
 [179]
+
+[180]
+
+[181]
 Overfull \hbox (47.1687pt too wide) in paragraph at lines 838--839
  [][] 
  []
 
 
 
-[180]
-
-[181]
-
 [182]
 
 [183]
 
 [184]
+
+[185]
+
+[186]
 Overfull \hbox (101.8156pt too wide) in paragraph at lines 999--1000
  [][] 
  []
 
 
 
-[185]
+[187]
 
-[186]
+[188]
 Overfull \hbox (8.36198pt too wide) in paragraph at lines 1032--1032
 []\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
  []
 
 
 
-[187])
+[189])
 
-[188]
+[190]
 
-[189
+[191
 
 
 
 
 ]
 
-[190]
+[192]
 \openout2 = `author/part3-optimization.aux'.
 
  (./author/part3-optimization.tex)
 
-[191
+[193
 
 ]
 \openout2 = `ch07-performance.aux'.
 
  (./ch07-performance.tex
 
-[192
+[194
 
 
 
@@ -2793,15 +2767,15 @@ Package biblatex Info: Reference segment=15 on input line 3.
 Package biblatex Info: Setting label 'refsegment:015' on input line 3.
 
 
-[193]
+[195]
 Package pgfplots info on input line 71: Using 'lua backend=false' for axis: x coord trafo unsupported.
 
 
-[194]
-
-[195]
-
 [196]
+
+[197]
+
+[198]
 Overfull \hbox (13.91396pt too wide) in paragraph at lines 148--148
 []|\OT1/ntxtlf/b/n/8.5 (-20) Hardware
  []
@@ -2838,9 +2812,9 @@ Overfull \hbox (164.84637pt too wide) in paragraph at lines 148--148
 
 
 
-[197]
+[199]
 
-[198]
+[200]
 Underfull \hbox (badness 10000) in paragraph at lines 248--248
 []|\OT1/ntxtlf/b/n/8.5 (+20) Quantization
  []
@@ -3012,24 +2986,20 @@ Overfull \hbox (25.47447pt too wide) in alignment at lines 303--303
 
 
 
-[199]
-
-[200]
-
 [201]
 
 [202]
 
 [203]
+
+[204]
+
+[205]
 Overfull \hbox (49.54013pt too wide) in alignment at lines 381--381
 [][][][][][]
  []
 
 
-
-[204]
-
-[205]
 
 [206]
 
@@ -3044,6 +3014,10 @@ Overfull \hbox (49.54013pt too wide) in alignment at lines 381--381
 [211]
 
 [212]
+
+[213]
+
+[214]
 Underfull \hbox (badness 10000) in paragraph at lines 563--563
 []|\OT1/ntxtlf/m/n/8.5 (+20) Fused at-ten-tion
  []
@@ -3075,28 +3049,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 563--563
 
 
 
-[213]
-
-[214]
-Package pgfplots info on input line 652: Using 'lua backend=false' for axis: x coord trafo unsupported.
-
-
 [215]
 
 [216]
+Package pgfplots info on input line 652: Using 'lua backend=false' for axis: x coord trafo unsupported.
+
 
 [217]
 
 [218]
+
+[219]
+
+[220]
 Overfull \hbox (13.91086pt too wide) in alignment at lines 751--751
 [][][][][]
  []
 
 
-
-[219]
-
-[220]
 
 [221]
 
@@ -3105,6 +3075,10 @@ Overfull \hbox (13.91086pt too wide) in alignment at lines 751--751
 [223]
 
 [224]
+
+[225]
+
+[226]
 Underfull \hbox (badness 10000) in paragraph at lines 918--918
 []|\OT1/ntxtlf/b/n/8.5 (+20) Encoder-Only
  []
@@ -3266,9 +3240,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 918--918
 
 
 
-[225]
+[227]
 
-[226]
+[228]
 Underfull \hbox (badness 2452) in paragraph at lines 947--947
 \OT1/ntxtlf/m/n/8.5 (+20) multi-GPU clus-ters; re-quires high-
  []
@@ -3280,7 +3254,7 @@ Overfull \hbox (27.50168pt too wide) in paragraph at lines 947--948
 
 
 
-[227
+[229
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 970--971
@@ -3309,21 +3283,21 @@ Overfull \hbox (115.56535pt too wide) in paragraph at lines 964--999
 
 
 
-[228
+[230
 
 ]
-
-[229]
-
-[230]
 
 [231]
 
 [232]
 
-[233])
+[233]
 
 [234]
+
+[235])
+
+[236]
 \openout2 = `ch08-rag.aux'.
 
  (./ch08-rag.tex
@@ -3334,17 +3308,13 @@ Package biblatex Info: Reference segment=17 on input line 3.
 Package biblatex Info: Setting label 'refsegment:017' on input line 3.
 
 
-[235
+[237
 
 
 
 
 
 ]
-
-[236]
-
-[237]
 
 [238]
 
@@ -3365,6 +3335,10 @@ Package biblatex Info: Setting label 'refsegment:017' on input line 3.
 [246]
 
 [247]
+
+[248]
+
+[249]
 Underfull \hbox (badness 1052) in paragraph at lines 493--493
 \OT1/ntxtlf/m/n/8.5 (+20) Tun-ables: \OT1/lmtt/m/n/8.5 M\OT1/ntxtlf/m/n/8.5 (+20) , \OT1/lmtt/m/n/8.5 efConstruction\OT1/ntxtlf/m/n/8.5 (+20) ,
  []
@@ -3381,11 +3355,11 @@ Underfull \hbox (badness 1259) in paragraph at lines 493--493
 
 
 
-[248]
-
-[249]
-
 [250]
+
+[251]
+
+[252]
 Underfull \hbox (badness 1917) in paragraph at lines 607--607
 \OT1/ntxtlf/m/n/8.5 (+20) tics, syn-onyms,
  []
@@ -3557,10 +3531,6 @@ Underfull \hbox (badness 6575) in paragraph at lines 607--607
 
 
 
-[251]
-
-[252]
-
 [253]
 
 [254]
@@ -3588,6 +3558,10 @@ Underfull \hbox (badness 6575) in paragraph at lines 607--607
 [265]
 
 [266]
+
+[267]
+
+[268]
 LaTeX Font Info:    Trying to load font information for OMS+lmtt on input line 882.
 LaTeX Font Info:    No file OMSlmtt.fd. on input line 882.
 
@@ -3598,10 +3572,6 @@ LaTeX Font Warning: Font shape `OMS/lmtt/m/n' undefined
 
 
 
-[267]
-
-[268]
-
 [269]
 
 [270]
@@ -3611,18 +3581,22 @@ LaTeX Font Warning: Font shape `OMS/lmtt/m/n' undefined
 [272]
 
 [273]
+
+[274]
+
+[275]
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/it' will be
 (Font)              scaled to size 10.0pt on input line 957.
 
 
-[274])
+[276])
 
-[275]
+[277]
 \openout2 = `ch09-agents-orchestration.aux'.
 
  (./ch09-agents-orchestration.tex
 
-[276
+[278
 
 
 
@@ -3645,10 +3619,6 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 13.
 
 
-[277]
-
-[278]
-
 [279]
 
 [280]
@@ -3660,46 +3630,50 @@ LaTeX Info: Symbol \textrightarrow not provided by
 [283]
 
 [284]
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 209.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 209.
-
 
 [285]
 
 [286]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 250.
+            Default family used instead on input line 209.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 250.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 250.
+            Default family used instead on input line 209.
 
 
 [287]
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 270.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 270.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 270.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 270.
-
 
 [288]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 250.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 250.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 250.
+
 
 [289]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 270.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 270.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 270.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 270.
+
+
+[290]
+
+[291]
 Overfull \hbox (358.72319pt too wide) in paragraph at lines 408--409
  [][] 
  []
@@ -3728,11 +3702,11 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 414.
 
 
-[290]
-
-[291]
-
 [292]
+
+[293]
+
+[294]
 Overfull \hbox (101.2487pt too wide) in paragraph at lines 453--453
 []    \OT1/lmtt/m/n/10 result_analysis = call(AnalysisAgent, query, params={"brief": True}, timeout=10s)[] 
  []
@@ -3754,10 +3728,6 @@ Overfull \hbox (27.74892pt too wide) in paragraph at lines 462--462
 
 
 
-[293]
-
-[294]
-
 [295]
 
 [296]
@@ -3769,6 +3739,10 @@ Overfull \hbox (27.74892pt too wide) in paragraph at lines 462--462
 [299]
 
 [300]
+
+[301]
+
+[302]
 LaTeX Font Info:    Trying to load font information for OMS+ntxtlf on input line 579.
 LaTeX Font Info:    No file OMSntxtlf.fd. on input line 579.
 
@@ -3779,51 +3753,51 @@ LaTeX Font Warning: Font shape `OMS/ntxtlf/m/n' undefined
 
 
 
-[301]
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 608.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 608.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 608.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 608.
-
-
-[302]
-
 [303]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 608.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 608.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 608.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 608.
+
 
 [304]
 
-[305])
+[305]
 
 [306]
 
-[307
+[307])
+
+[308]
+
+[309
 
 
 
 
 ]
 
-[308]
+[310]
 \openout2 = `author/part4-governance.aux'.
 
  (./author/part4-governance.tex)
 
-[309
+[311
 
 ]
 \openout2 = `ch10-testing-eval.aux'.
 
  (./ch10-testing-eval.tex
 
-[310
+[312
 
 
 
@@ -3836,10 +3810,6 @@ Package biblatex Info: Setting label 'refsegment:020' on input line 1.
 Package biblatex Info: Reference segment=21 on input line 3.
 Package biblatex Info: Setting label 'refsegment:021' on input line 3.
 
-
-[311]
-
-[312]
 
 [313]
 
@@ -3854,15 +3824,15 @@ Package biblatex Info: Setting label 'refsegment:021' on input line 3.
 [318]
 
 [319]
+
+[320]
+
+[321]
 Overfull \hbox (9.85628pt too wide) in paragraph at lines 183--184
 []\OT1/ntxtlf/b/n/10 (-20) Other Met-rics: \OT1/ntxtlf/m/n/10 (-20) Pre-ci-sion/Re-cal-l/F1 are es-sen-tial for re-trieval eval-u-a-tion. BLEU/ROUGE
  []
 
 
-
-[320]
-
-[321]
 
 [322]
 
@@ -3879,14 +3849,14 @@ Overfull \hbox (9.85628pt too wide) in paragraph at lines 183--184
 [328]
 
 [329]
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 434.
-
 
 [330]
 
 [331]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 434.
+
 
 [332]
 
@@ -3897,15 +3867,19 @@ LaTeX Info: Symbol \textrightarrow not provided by
 [335]
 
 [336]
+
+[337]
+
+[338]
 Overfull \hbox (5.4307pt too wide) in paragraph at lines 543--543
 []\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
  []
 
 
 
-[337])
+[339])
 
-[338]
+[340]
 \openout2 = `ch11-ethics.aux'.
 
  (./ch11-ethics.tex
@@ -3916,17 +3890,13 @@ Package biblatex Info: Reference segment=23 on input line 3.
 Package biblatex Info: Setting label 'refsegment:023' on input line 3.
 
 
-[339
+[341
 
 
 
 
 
 ]
-
-[340]
-
-[341]
 
 [342]
 
@@ -3961,6 +3931,10 @@ Package biblatex Info: Setting label 'refsegment:023' on input line 3.
 [357]
 
 [358]
+
+[359]
+
+[360]
 Overfull \hbox (81.1274pt too wide) in paragraph at lines 479--479
 []\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
@@ -3972,16 +3946,16 @@ Overfull \hbox (73.91864pt too wide) in paragraph at lines 479--479
 
 
 
-[359]
-
-[360])
-
 [361]
+
+[362])
+
+[363]
 \openout2 = `ch12-ishtar-end-to-end.aux'.
 
  (./ch12-ishtar-end-to-end.tex
 
-[362
+[364
 
 
 
@@ -3995,9 +3969,9 @@ Package biblatex Info: Reference segment=25 on input line 3.
 Package biblatex Info: Setting label 'refsegment:025' on input line 3.
 
 
-[363]
+[365]
 
-[364]
+[366]
 Underfull \hbox (badness 4779) in paragraph at lines 92--92
 []|\OT1/ntxtlf/m/n/8.5 (+20) Poll/stream sources
  []
@@ -4059,37 +4033,37 @@ Overfull \hbox (145.91408pt too wide) in paragraph at lines 172--173
 
 
 
-[365]
-
-[366]
-
-LaTeX Warning: Reference `ch:infra-env' on page 367 undefined on input line 187.
-
-
-
 [367]
+
+[368]
+
+LaTeX Warning: Reference `ch:infra-env' on page 369 undefined on input line 187.
+
+
+
+[369]
 Overfull \hbox (17.24895pt too wide) in paragraph at lines 219--219
 []  \OT1/lmtt/m/n/10 enable_oidc   = true             # enables workload identity / OIDC[] 
  []
 
 
 
-[368]
-
-[369]
-
 [370]
 
 [371]
 
 [372]
+
+[373]
+
+[374]
 Overfull \hbox (22.49893pt too wide) in paragraph at lines 399--399
 []    \OT1/lmtt/m/n/10 safe = TranslationAgent(safe, target_lang=state.user_context.lang)[] 
  []
 
 
 
-[373]
+[375]
 Overfull \hbox (32.9989pt too wide) in paragraph at lines 461--461
 []      \OT1/lmtt/m/n/10 - run: python eval/run_offline_eval.py --index_version v2025.12.01[] 
  []
@@ -4100,10 +4074,6 @@ Overfull \hbox (6.74898pt too wide) in paragraph at lines 462--462
  []
 
 
-
-[374]
-
-[375]
 
 [376]
 
@@ -4118,6 +4088,10 @@ Overfull \hbox (6.74898pt too wide) in paragraph at lines 462--462
 [381]
 
 [382]
+
+[383]
+
+[384]
 Overfull \hbox (3.95467pt too wide) in paragraph at lines 756--756
 []\OT1/ntxtlf/m/it/10 (-20) Learn Ter-raform Rec-om-mended Prac-tices\OT1/ntxtlf/m/n/10 (-20) . HashiCorp. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / developer .
  []
@@ -4134,9 +4108,9 @@ Overfull \hbox (15.38861pt too wide) in paragraph at lines 756--756
 
 
 
-[383])
+[385])
 
-[384]
+[386]
 \openout2 = `author/glossary.aux'.
 
  (./author/glossary.tex) (./book.ind) (./book.aux (./author/dedication.aux) (./author/foreword.aux) (./author/preface.aux) (./author/acknowledgement.aux) (./author/acronym.aux) (./author/part1-foundations.aux) (./ch01-intro-ishar.aux) (./ch02-llmops-fundamentals.aux) (./ch03-infra-env.aux) (./author/part2-delivery.aux) (./ch04-cicd.aux) (./ch05-observability.aux) (./ch06-scaling.aux) (./author/part3-optimization.aux) (./ch07-performance.aux) (./ch08-rag.aux) (./ch09-agents-orchestration.aux) (./author/part4-governance.aux) (./ch10-testing-eval.aux) (./ch11-ethics.aux) (./ch12-ishtar-end-to-end.aux) (./author/glossary.aux))
@@ -4160,9 +4134,9 @@ Package logreq Info: Writing requests to 'book.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 67450 strings out of 467800
- 1544197 string characters out of 5431882
- 2769359 words of memory out of 5000000
+ 67452 strings out of 467800
+ 1544213 string characters out of 5431882
+ 2768302 words of memory out of 5000000
  92086 multiletter control sequences out of 15000+600000
  773560 words of font info for 977 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -4171,10 +4145,10 @@ Here is how much of TeX's memory you used:
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on book.pdf (398 pages, 3001292 bytes).
+Output written on book.pdf (400 pages, 3001278 bytes).
 PDF statistics:
- 7133 PDF objects out of 7423 (max. 8388607)
- 6505 compressed objects within 66 object streams
- 1766 named destinations out of 2073 (max. 500000)
+ 7139 PDF objects out of 7423 (max. 8388607)
+ 6509 compressed objects within 66 object streams
+ 1768 named destinations out of 2073 (max. 500000)
  160670 words of extra memory for PDF output out of 184870 (max. 10000000)
 
