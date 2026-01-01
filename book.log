@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 18:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 18:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1918,72 +1918,71 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 Package biblatex Info: Reference segment=3 on input line 3.
 Package biblatex Info: Setting label 'refsegment:03' on input line 3.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 15.
+(Font)              scaled to size 12.0pt on input line 12.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.0pt on input line 20.
+(Font)              scaled to size 10.0pt on input line 17.
 
 
 [5]
-<images/ch01-llmops-lifecycle.png, id=1002, 997.7275pt x 433.62pt>
+<images/ch01-llmops-lifecycle.png, id=992, 997.7275pt x 433.62pt>
 File: images/ch01-llmops-lifecycle.png Graphic file (type png)
 <use images/ch01-llmops-lifecycle.png>
-Package pdftex.def Info: images/ch01-llmops-lifecycle.png  used on input line 29.
+Package pdftex.def Info: images/ch01-llmops-lifecycle.png  used on input line 26.
 (pdftex.def)             Requested size: 345.0pt x 149.9365pt.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 11.0pt on input line 34.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 11.0pt on input line 34.
 
 
 [6]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 11.0pt on input line 37.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 11.0pt on input line 37.
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 40.
-
-
-[7 <./images/ch01-llmops-lifecycle.png (PNG copy)>]
-<images/ch01-llm-architecture.png, id=1021, 555.07375pt x 418.56375pt>
-File: images/ch01-llm-architecture.png Graphic file (type png)
-<use images/ch01-llm-architecture.png>
-Package pdftex.def Info: images/ch01-llm-architecture.png  used on input line 50.
-(pdftex.def)             Requested size: 345.0pt x 260.15828pt.
-
-
-[8 <./images/ch01-llm-architecture.png (PNG copy)>]
-<images/ch01-rag-drift-control.png, id=1028, 905.784pt x 544.434pt>
-File: images/ch01-rag-drift-control.png Graphic file (type png)
-<use images/ch01-rag-drift-control.png>
-Package pdftex.def Info: images/ch01-rag-drift-control.png  used on input line 82.
-(pdftex.def)             Requested size: 338.09853pt x 203.2152pt.
-
-
-[9 <./images/ch01-rag-drift-control.png>]
-
-[10]
-<images/ch01-security-threat-model.png, id=1041, 960.2274pt x 541.0614pt>
-File: images/ch01-security-threat-model.png Graphic file (type png)
-<use images/ch01-security-threat-model.png>
-Package pdftex.def Info: images/ch01-security-threat-model.png  used on input line 131.
-(pdftex.def)             Requested size: 338.09853pt x 190.50539pt.
-
-
-[11 <./images/ch01-security-threat-model.png>]
-<images/ch01-cost-latency-throughput.png, id=1049, 981.9084pt x 555.5154pt>
+(Font)              scaled to size 10.0pt on input line 41.
+<images/ch01-cost-latency-throughput.png, id=1002, 981.9084pt x 555.5154pt>
 File: images/ch01-cost-latency-throughput.png Graphic file (type png)
 <use images/ch01-cost-latency-throughput.png>
-Package pdftex.def Info: images/ch01-cost-latency-throughput.png  used on input line 164.
+Package pdftex.def Info: images/ch01-cost-latency-throughput.png  used on input line 48.
 (pdftex.def)             Requested size: 338.09853pt x 191.28004pt.
 
 
-[12 <./images/ch01-cost-latency-throughput.png>]
-Overfull \hbox (10.0535pt too wide) in paragraph at lines 237--237
+[7 <./images/ch01-llmops-lifecycle.png (PNG copy)>]
+<images/ch01-llm-architecture.png, id=1011, 555.07375pt x 418.56375pt>
+File: images/ch01-llm-architecture.png Graphic file (type png)
+<use images/ch01-llm-architecture.png>
+Package pdftex.def Info: images/ch01-llm-architecture.png  used on input line 66.
+(pdftex.def)             Requested size: 345.0pt x 260.15828pt.
+
+
+[8 <./images/ch01-cost-latency-throughput.png>]
+
+[9 <./images/ch01-llm-architecture.png (PNG copy)>]
+<images/ch01-rag-drift-control.png, id=1024, 905.784pt x 544.434pt>
+File: images/ch01-rag-drift-control.png Graphic file (type png)
+<use images/ch01-rag-drift-control.png>
+Package pdftex.def Info: images/ch01-rag-drift-control.png  used on input line 114.
+(pdftex.def)             Requested size: 338.09853pt x 203.2152pt.
+
+
+[10 <./images/ch01-rag-drift-control.png>]
+
+[11]
+Overfull \hbox (10.0535pt too wide) in paragraph at lines 184--184
 \OT1/ntxtlf/m/n/8.5 (-20) (prompt+evidence+tools), 
  []
 
 
 
+[12]
+<images/ch01-security-threat-model.png, id=1042, 960.2274pt x 541.0614pt>
+File: images/ch01-security-threat-model.png Graphic file (type png)
+<use images/ch01-security-threat-model.png>
+Package pdftex.def Info: images/ch01-security-threat-model.png  used on input line 218.
+(pdftex.def)             Requested size: 338.09853pt x 190.50539pt.
+
+
 [13]
 
-[14]
+[14 <./images/ch01-security-threat-model.png>]
 
 [15]
 
@@ -1991,13 +1990,13 @@ Overfull \hbox (10.0535pt too wide) in paragraph at lines 237--237
 
 [17]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.0pt on input line 410.
+(Font)              scaled to size 7.0pt on input line 378.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 7.0pt on input line 410.
+(Font)              scaled to size 7.0pt on input line 378.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 7.0pt on input line 435.
+(Font)              scaled to size 7.0pt on input line 403.
 
-Overfull \hbox (121.57011pt too wide) in paragraph at lines 439--440
+Overfull \hbox (121.57011pt too wide) in paragraph at lines 407--408
  [][] 
  []
 
@@ -2005,19 +2004,23 @@ Overfull \hbox (121.57011pt too wide) in paragraph at lines 439--440
 
 [18]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 466.
+(Font)              scaled to size 7.3pt on input line 436.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 466.
-<images/ch01-scale-constraints.png, id=1104, 981.9084pt x 548.2884pt>
+(Font)              scaled to size 5.5pt on input line 436.
+<images/ch01-scale-constraints.png, id=1097, 981.9084pt x 548.2884pt>
 File: images/ch01-scale-constraints.png Graphic file (type png)
 <use images/ch01-scale-constraints.png>
-Package pdftex.def Info: images/ch01-scale-constraints.png  used on input line 485.
+Package pdftex.def Info: images/ch01-scale-constraints.png  used on input line 455.
 (pdftex.def)             Requested size: 338.09853pt x 188.79158pt.
 
 
 [19]
 
 [20 <./images/ch01-scale-constraints.png>]
+
+LaTeX Warning: Reference `sec:operational-challenges' on page 21 undefined on input line 474.
+
+
 
 [21]
 
@@ -2030,7 +2033,7 @@ File: tikzlibraryfit.code.tex 2025-08-14 v3.1.11 (3.1.11)
 [23]
 
 [24]
-Overfull \hbox (142.19658pt too wide) in paragraph at lines 815--816
+Overfull \hbox (142.19658pt too wide) in paragraph at lines 785--786
  [][] 
  []
 
@@ -2051,112 +2054,112 @@ Overfull \hbox (142.19658pt too wide) in paragraph at lines 815--816
 [31]
 
 [32]
-Underfull \hbox (badness 4144) in paragraph at lines 1126--1126
+Underfull \hbox (badness 4144) in paragraph at lines 1098--1098
 []|\OT1/ntxtlf/b/n/8.5 (+20) Failure mode (or
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1126
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1098
 \OT1/ntxtlf/b/n/8.5 (+20) (what should/was
  []
 
 
-Underfull \hbox (badness 1178) in paragraph at lines 1126--1126
+Underfull \hbox (badness 1178) in paragraph at lines 1098--1098
 []|[][][] \OT1/ntxtlf/b/n/8.5 (+20) Galac-tica (Meta,
  []
 
 
-Underfull \hbox (badness 3407) in paragraph at lines 1126--1126
+Underfull \hbox (badness 3407) in paragraph at lines 1098--1098
 []|\OT1/ntxtlf/m/n/8.5 (+20) Public demo with-
  []
 
 
-Underfull \hbox (badness 1642) in paragraph at lines 1126--1126
+Underfull \hbox (badness 1642) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) drawn within days;
  []
 
 
-Underfull \hbox (badness 1565) in paragraph at lines 1126--1126
+Underfull \hbox (badness 1565) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) ac-cept-able for pub-
  []
 
 
-Underfull \hbox (badness 1762) in paragraph at lines 1126--1126
+Underfull \hbox (badness 1762) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) system-prompt leak-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1126
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1098
 []|\OT1/ntxtlf/m/n/8.5 (+20) Prompt iso-la-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1126
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) and in-struc-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1126
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) hard-en-ing; con-ver-
  []
 
 
-Underfull \hbox (badness 2426) in paragraph at lines 1126--1126
+Underfull \hbox (badness 2426) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) sa-tion length caps;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1126
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) adversarial/prompt-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1126
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) injection evals in
  []
 
 
-Underfull \hbox (badness 8075) in paragraph at lines 1126--1126
+Underfull \hbox (badness 8075) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) CI; tool sand-box-
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 1126--1126
+Underfull \hbox (badness 1590) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) ing and allow-lists;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1126
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) in-ci-dent re-sponse
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1126
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1098
 []|[][][] \OT1/ntxtlf/b/n/8.5 (+20) Char-ac-ter.AI
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1126
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) bal-ance; promp-t/-
  []
 
 
-Underfull \hbox (badness 4518) in paragraph at lines 1126--1126
+Underfull \hbox (badness 4518) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) con-text bloat over
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1126
+Underfull \hbox (badness 10000) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) mod-els; ag-gres-sive
  []
 
 
-Underfull \hbox (badness 1648) in paragraph at lines 1126--1126
+Underfull \hbox (badness 1648) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) plates with prompt
  []
 
 
-Underfull \hbox (badness 4479) in paragraph at lines 1126--1126
+Underfull \hbox (badness 4479) in paragraph at lines 1098--1098
 \OT1/ntxtlf/m/n/8.5 (+20) bud-gets; sys-tem-atic
  []
 
@@ -2172,11 +2175,11 @@ Underfull \hbox (badness 4479) in paragraph at lines 1126--1126
 
 [37]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 1233.
+(Font)              scaled to size 10.0pt on input line 1205.
 Package microtype Info: Character `013' is missing
 (microtype)             in font `OT1/ntxtlf/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
-LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 1233.
+LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 1205.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -4139,10 +4142,10 @@ Package logreq Info: Writing requests to 'book.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 67459 strings out of 467800
- 1544402 string characters out of 5431882
- 2768636 words of memory out of 5000000
- 92093 multiletter control sequences out of 15000+600000
+ 67448 strings out of 467800
+ 1544287 string characters out of 5431882
+ 2767616 words of memory out of 5000000
+ 92088 multiletter control sequences out of 15000+600000
  773560 words of font info for 977 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,21n,101p,2661b,2395s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -4150,10 +4153,10 @@ Here is how much of TeX's memory you used:
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on book.pdf (400 pages, 3393746 bytes).
+Output written on book.pdf (400 pages, 3395265 bytes).
 PDF statistics:
- 7135 PDF objects out of 7423 (max. 8388607)
- 6503 compressed objects within 66 object streams
- 1768 named destinations out of 2073 (max. 500000)
- 160675 words of extra memory for PDF output out of 184870 (max. 10000000)
+ 7107 PDF objects out of 7423 (max. 8388607)
+ 6476 compressed objects within 65 object streams
+ 1762 named destinations out of 2073 (max. 500000)
+ 160627 words of extra memory for PDF output out of 184870 (max. 10000000)
 

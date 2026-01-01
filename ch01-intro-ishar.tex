@@ -9,9 +9,6 @@
 
 \epigraph{\emph{``The future of AI isn't just in building powerful models---it's in running them responsibly at scale.''}}{David Stroud}
 
-% --- Reader-visible abstract (PDF) ---
-\textbf{Abstract} This chapter introduces Large Language Model Operations (LLMOps) as the operational discipline required to run LLM-powered systems reliably at scale. We motivate LLMOps by analyzing production failure modes that arise from scale (GPU memory and throughput constraints), pipeline complexity (retrieval, tools, and multi-step chains), output variability (stochastic decoding), and heightened risk (hallucination, security, and governance). The chapter frames quality as multidimensional—groundedness, safety, usefulness, and cost/latency—and argues that continuous evaluation and semantic observability are necessary complements to traditional reliability engineering. To ground the discussion, we introduce the Ishtar AI case study: a conflict-zone journalism assistant that integrates ingestion, retrieval-augmented generation (RAG), multi-agent orchestration, and GPU-backed serving under strict citation and safety constraints. We use early deployment case studies (failures and successes) to extract operational lessons and preview the book's lifecycle structure, emphasizing reproducible infrastructure, disciplined change management, staged releases, and auditability. The chapter concludes with a roadmap that maps each subsequent chapter to the end-to-end Ishtar AI lifecycle.
-
 \section{Introduction}
 \label{sec:intro}
 
@@ -35,15 +32,34 @@ The remainder of this chapter introduces the foundational principles, workflows,
 Taking these massive models from demo to production introduces a host of operational hurdles that go far beyond those of traditional software or even classical machine learning systems. Smaller ML models can often be deployed on a single server with straightforward CI/CD and basic monitoring practices. In contrast, LLM deployments demand specialized infrastructure, rigorous orchestration, and new approaches to observability. The challenges span multiple dimensions:
 
 \subsection{Compute Economics: Cost, Latency, and Capacity}
-LLM inference is compute-intensive and highly sensitive to request shape (prompt length, output length, and concurrency). In practice, teams must manage a three-way tradeoff between \emph{latency}, \emph{throughput}, and \emph{cost}. A small increase in average tokens per request can materially change GPU utilization, queueing delay, and ultimately unit economics. Production systems therefore require:
+LLM inference is fundamentally more expensive than most classical ML workloads because each request consumes substantial compute and memory bandwidth, and because request \emph{shape} (prompt length, output length, and concurrency) drives non-linear resource usage (e.g., KV-cache pressure under long contexts). In production, the binding question is rarely ``can we run the model?'' but rather ``can we run it \emph{reliably}, \emph{quickly}, and \emph{affordably} under peak load?''
+
+In practice, teams must manage a three-way tradeoff between \emph{latency}, \emph{throughput}, and \emph{cost}. A practical way to operationalize this is to manage a \emph{latency budget} and an \emph{economics budget} simultaneously. End-to-end latency should be decomposed by stage (tokenization/policy checks, retrieval, model prefill/decoding, post-processing), and reported by tail percentiles (p95/p99), not only averages. In interactive systems, \emph{time-to-first-token (TTFT)} is often the dominant user-perceived metric, while \emph{tokens-per-second (TPOT)} determines how quickly the response completes. Tail latency matters because a small fraction of slow requests can degrade user experience disproportionately, and because burst traffic patterns can cause queue buildup that pushes p99 latency far beyond p50.
+
+Production systems therefore require:
 \begin{itemize}
   \item \textbf{Explicit latency budgets:} decomposing end-to-end response time into retrieval, prompt assembly, model compute, and post-processing.
   \item \textbf{Capacity planning:} forecasting peak concurrency, long-tail requests, and burst behavior; sizing GPU fleets or managed endpoints accordingly.
   \item \textbf{Cost controls:} caching, batching, quantization, and model routing (e.g., small/fast model for routine tasks; larger model for complex reasoning) to maintain sustainable cost per successful outcome.
 \end{itemize}
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\textwidth]{images/ch01-cost-latency-throughput}
+  \caption{Latency decomposition and scale levers for LLM serving. End-to-end latency is the sum of stage latencies (tokenization/policy checks, retrieval, LLM prefill+decode, post-processing). Sustaining throughput and cost efficiency requires coordinated controls: batching and scheduling for throughput, caching/quantization/routing for unit economics, and explicit capacity planning (peak demand, tail latency, and autoscaling on queue depth).}
+  \label{fig:cost-latency-throughput}
+\end{figure}
+
 \subsection{Serving Infrastructure and Systems Engineering}
-Even with managed APIs, LLM-powered applications behave like distributed systems. A single user query may traverse multiple components—retrieval, reranking, tool calls, safety checks, and the model itself—each introducing failure modes and latency variance \cite{edge2025llmops}. Common issues include maximizing GPU utilization (e.g., via batching or async streams) and managing the limited context window (prompts can exceed model limits as instructions, history, and retrieved documents accumulate). Systems must implement truncation or segmentation strategies for long contexts \cite{liu2023promptSurvey}. Reliability is also a concern: when a subcomponent fails (retriever times out, a tool API is down, or the model hits a rate limit), the overall system should gracefully degrade (e.g., use cached or partial results, fall back to a simpler response) rather than fail catastrophically.
+Even with managed APIs, LLM-powered applications behave like distributed systems. Deploying an LLM is closer to operating a distributed system than deploying a single model artifact. A single user query may traverse multiple components—retrieval, reranking, tool calls, safety checks, and the model itself—each introducing failure modes and latency variance \cite{edge2025llmops}. Even when using managed endpoints, production systems require careful design across multiple layers:
+
+\begin{itemize}
+  \item \textbf{GPU scheduling and utilization:} maximizing utilization often demands batching, quantization, and careful selection of serving runtimes.
+  \item \textbf{Context window constraints:} prompt length, retrieved context, and tool outputs must be managed to avoid truncation, runaway costs, or degraded quality. Systems must implement truncation or segmentation strategies for long contexts \cite{liu2023promptSurvey}.
+  \item \textbf{Multi-region resilience:} high availability frequently requires regional redundancy, intelligent routing, and graceful degradation when capacity is constrained.
+\end{itemize}
+
+Reliability is also a concern: when a subcomponent fails (retriever times out, a tool API is down, or the model hits a rate limit), the overall system should gracefully degrade (e.g., use cached or partial results, fall back to a simpler response) rather than fail catastrophically.
 
 \begin{figure}[t]
 \centering
@@ -60,6 +76,18 @@ the system's effective knowledge is an evolving composite of (i) the underlying 
 and (iii) the retrieval and filtering policies that determine what evidence is eligible.
 As these layers change, drift can \emph{silently} degrade answer quality: the system may
 continue returning fluent responses while groundedness, citation fidelity, and trustworthiness erode.
+Critically, retrieval failures are often silent: the system may return HTTP 200 and appear healthy
+while producing ungrounded or outdated answers, making drift detection a semantic rather than
+infrastructure problem.
+
+Unlike static software logic, LLM applications are highly sensitive to shifting data distributions,
+evolving user behavior, and changing external knowledge sources. Production robustness requires
+explicit mechanisms for drift detection and remediation. Three distinct drift modes require
+different monitoring and remediation strategies: \emph{index drift} occurs when embeddings and
+vector indices become stale as corpora evolve; \emph{embedding drift} happens when the embedding
+model itself changes or when the semantic representation shifts; and \emph{permission drift} occurs
+when authorization and provenance rules evolve, requiring the retriever to enforce updated access
+controls at retrieval time.
 
 Common drift modes include:
 \begin{itemize}
@@ -71,6 +99,10 @@ Common drift modes include:
   \item \textbf{Content governance drift:} authorization and provenance rules evolve (ACL changes,
   source trust updates, deprecations). The retriever must surface \emph{only} authorized and current documents,
   enforcing permissions and lineage at retrieval time.
+  \item \textbf{Prompt and policy drift:} small changes to system prompts, safety instructions, or tool schemas
+  can cause substantial behavior changes that must be regression-tested.
+  \item \textbf{Human feedback at scale:} user corrections and preference signals can be invaluable, but must
+  be captured, triaged, and incorporated through controlled iteration cycles.
 \end{itemize}
 
 Operationally, treat drift as a control problem: define a staleness SLO for the index,
@@ -85,115 +117,30 @@ canary evaluations, and auditable index snapshots (Fig.~\ref{fig:rag-drift-contr
 \end{figure}
 
 \subsection{Evaluation: From Single Metrics to Behavioral Guarantees}
-Traditional ML systems often rely on offline metrics (AUC, RMSE) and periodic monitoring. LLM systems require a richer notion of quality that includes correctness, groundedness, safety, and style. Because outputs are open-ended, evaluation becomes an ongoing engineering discipline:
+Traditional ML systems often rely on offline metrics (AUC, RMSE) and periodic monitoring. Classical ML systems can often be validated with offline metrics and periodic retraining. LLM systems require a richer notion of quality that includes correctness, groundedness, safety, and style. Because outputs are open-ended, evaluation becomes an ongoing engineering discipline. LLM systems demand continuous evaluation because behavior depends on prompts, retrieved context, decoding parameters, and tool availability. The operational challenge is to make evaluation \emph{systematic}:
+
 \begin{itemize}
-  \item \textbf{Regression suites:} ``golden'' prompts and expected properties (e.g., includes citations, refuses unsafe requests, follows schema) to catch behavioral regressions.
-  \item \textbf{LLM-as-judge scoring:} scalable rubric-based evaluation, calibrated with human review to manage judge instability and bias.
-  \item \textbf{Production telemetry:} online signals such as user correction rates, citation click-through, escalation to human review, and ``helpfulness'' ratings.
+  \item \textbf{Regression suites:} ``golden'' prompts and expected properties (e.g., includes citations, refuses unsafe requests, follows schema) to catch behavioral regressions. Golden sets and regression suites provide curated test prompts and expected properties (groundedness, citation correctness, refusal behavior) for repeatable checks.
+  \item \textbf{LLM-as-judge scoring:} scalable rubric-based evaluation, calibrated with human review to manage judge instability and bias. Scalable evaluation is often necessary, but introduces new risks (judge bias, instability) requiring calibration and spot-checking.
+  \item \textbf{Production telemetry:} online signals such as user correction rates, citation click-through, escalation to human review, and ``helpfulness'' ratings. In addition to offline tests, production systems need telemetry such as rerank scores, citation click-through, and user satisfaction proxies.
 \end{itemize}
 
+Effective evaluation requires \emph{slice-based} analysis: measuring performance across domain slices (e.g., technical vs. general knowledge), temporal slices (recent vs. historical queries), and risk slices (high-stakes vs. low-stakes interactions). This slice-aware approach helps identify regressions that aggregate metrics might mask.
+
 \subsection{Observability and Debuggability}
-In classic production systems, engineers debug failures through logs, traces, and metrics. In LLM systems, you must additionally observe the \emph{semantic path} of a request: what context was retrieved, what instructions were applied, what tools were invoked, and how the model responded. Effective LLM observability includes:
+Traditional monitoring focuses on uptime, CPU, and error rates. LLM systems require observability that captures \emph{semantic} and \emph{behavioral} properties, because a generative system can return HTTP~200 while producing an ungrounded, unsafe, or policy-violating answer. In classic production systems, engineers debug failures through logs, traces, and metrics. In LLM systems, you must additionally observe the \emph{semantic path} of a request: what context was retrieved, what instructions were applied, what tools were invoked, and how the model responded.
+
+In practice, LLM applications behave like composed systems: a single user request may traverse routing logic, retrieval, reranking, multi-step prompting, tool calls, and post-processing. Failures are therefore frequently \emph{cross-layer} (e.g., a retrieval miss causing hallucination, or a tool timeout causing a partial answer that still looks fluent). The operational goal is not merely to detect that an error occurred, but to explain \emph{why} an output was produced and \emph{which component} (prompt, retriever, tool, model version, or safety layer) drove the observed behavior.
+
+A useful mental model is to treat observability as an \emph{evidence ledger} for each response: record the exact prompt template and parameters, the evidence retrieved (with identifiers and timestamps), the tool calls performed, and the model configuration (provider, version, temperature/top-$p$, context length). These traces support three production-critical workflows: (i) incident response (rapid attribution and rollback), (ii) continuous evaluation (turning production failures into regression tests), and (iii) governance (audit trails for safety, privacy, and policy compliance).
+
+Effective LLM observability includes:
 \begin{itemize}
   \item \textbf{Structured tracing:} capturing prompt versions, retrieved passages, tool-call inputs/outputs, and model parameters for reproducibility.
   \item \textbf{Behavioral monitoring:} hallucination indicators, refusal rates, toxicity filter triggers, and citation coverage.
   \item \textbf{Root-cause isolation:} distinguishing whether a failure arose from retrieval, prompt assembly, tool output, or the model itself.
 \end{itemize}
 
-\subsection{Security, Privacy, and New Threat Models}
-LLM deployments introduce attack vectors that are uncommon in conventional software because
-the model functions as a \emph{natural-language interpreter} that can be influenced by untrusted
-inputs, retrieved documents, and tool outputs. Two properties drive the new threat model:
-(i) \emph{instruction following} (which makes prompt injection viable), and (ii) \emph{tool use and retrieval}
-(which expands the blast radius from ``bad text'' to ``bad actions'' and ``data exposure'').
-Critically, many failures are \emph{silent}: the service returns HTTP 200 while producing unsafe,
-unauthorized, or privacy-violating content.
-
-Three high-leverage risk categories dominate production hardening:
-\begin{itemize}
-  \item \textbf{Prompt-injection defenses:} treat user content and retrieved content as untrusted.
-  Enforce an instruction hierarchy (system > developer > user), sanitize inputs, and constrain
-  tool schemas/outputs so that untrusted text cannot escalate privileges or override policy.
-  \item \textbf{Data protections:} assume sensitive data may appear in prompts, retrieved passages,
-  and logs. Apply least-privilege access controls at retrieval time, redact PII/secrets in inputs and
-  outputs, and maintain auditable traces for forensics and incident response.
-  \item \textbf{Policy enforcement:} implement consistent guardrails across prompts, retrieval sources,
-  and tools to satisfy legal, regulatory, and brand-safety requirements. In practice this implies
-  policy-as-code gates in CI/CD and runtime enforcement (filters, allow-lists, rate limits, and
-  human escalation for high-stakes workflows).
-\end{itemize}
-
-Figure~\ref{fig:llm-threat-model} summarizes the main attack surfaces and a defense-in-depth
-control stack spanning input handling, retrieval governance, tool security, and output controls.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=0.98\textwidth]{images/ch01-security-threat-model}
-  \caption{Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass,
-  retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization,
-  instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing
-  as a cross-cutting requirement for incident response and rollback.}
-  \label{fig:llm-threat-model}
-\end{figure}
-
-\subsection{Change Management and Release Discipline}
-Finally, LLM systems change frequently: prompts evolve, models are upgraded, retrieval corpora update, and tool schemas shift. Without disciplined release processes, teams risk unintentional regressions. Mature LLMOps introduces:
-\begin{itemize}
-  \item \textbf{Versioning of prompts and policies:} treating prompts like code, with reviews, diffs, and rollback.
-  \item \textbf{Release gates:} automated evaluation thresholds that must pass before deployment.
-  \item \textbf{Incident response:} playbooks for model regressions, safety failures, or external dependency outages.
-\end{itemize}
-
-Together, these dimensions explain why LLM deployments require a distinct operational mindset. LLMOps is the set of practices that makes these systems reliable in the real world: controlling cost and latency, continuously measuring quality, defending against new threats, and enabling rapid iteration without sacrificing safety or trust.
-
-\subsection{Cost, Latency, and Throughput at Scale}
-LLM inference is fundamentally more expensive than most classical ML workloads because each request
-consumes substantial compute and memory bandwidth, and because request \emph{shape} (prompt length,
-output length, and concurrency) drives non-linear resource usage (e.g., KV-cache pressure under long
-contexts). In production, the binding question is rarely ``can we run the model?'' but rather ``can we run it
-\emph{reliably}, \emph{quickly}, and \emph{affordably} under peak load?''
-
-A practical way to operationalize this is to manage a \emph{latency budget} and an \emph{economics budget}
-simultaneously. End-to-end latency should be decomposed by stage (tokenization/policy checks, retrieval,
-model prefill/decoding, post-processing), and reported by tail percentiles (p95/p99), not only averages.
-In interactive systems, \emph{time-to-first-token (TTFT)} is often the dominant user-perceived metric, while
-\emph{tokens-per-second} determines how quickly the response completes.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=0.98\textwidth]{images/ch01-cost-latency-throughput}
-  \caption{Latency decomposition and scale levers for LLM serving. End-to-end latency is the sum of stage latencies
-  (tokenization/policy checks, retrieval, LLM prefill+decode, post-processing). Sustaining throughput and cost efficiency
-  requires coordinated controls: batching and scheduling for throughput, caching/quantization/routing for unit economics,
-  and explicit capacity planning (peak demand, tail latency, and autoscaling on queue depth).}
-  \label{fig:cost-latency-throughput}
-\end{figure}
-
-\subsection{Infrastructure and Serving Complexity}
-Deploying an LLM is closer to operating a distributed system than deploying a single model artifact. Even when using managed endpoints, production systems require careful design across multiple layers:
-\begin{itemize}
-  \item \textbf{GPU scheduling and utilization:} maximizing utilization often demands batching, quantization, and careful selection of serving runtimes.
-  \item \textbf{Context window constraints:} prompt length, retrieved context, and tool outputs must be managed to avoid truncation, runaway costs, or degraded quality.
-  \item \textbf{Multi-region resilience:} high availability frequently requires regional redundancy, intelligent routing, and graceful degradation when capacity is constrained.
-\end{itemize}
-
-\subsection{Data, Drift, and Feedback Loops}
-Unlike static software logic, LLM applications are highly sensitive to shifting data distributions, evolving user behavior, and changing external knowledge sources. Production robustness requires explicit mechanisms for:
-\begin{itemize}
-  \item \textbf{Prompt and policy drift:} small changes to system prompts, safety instructions, or tool schemas can cause substantial behavior changes that must be regression-tested.
-  \item \textbf{Knowledge drift (RAG):} the underlying corpus evolves; indices age; retrieval quality shifts. Without monitoring, the system degrades silently.
-  \item \textbf{Human feedback at scale:} user corrections and preference signals can be invaluable, but must be captured, triaged, and incorporated through controlled iteration cycles.
-\end{itemize}
-
-\subsection{Evaluation and Quality Assurance}
-Classical ML systems can often be validated with offline metrics and periodic retraining. LLM systems demand continuous evaluation because behavior depends on prompts, retrieved context, decoding parameters, and tool availability. The operational challenge is to make evaluation \emph{systematic}:
-\begin{itemize}
-  \item \textbf{Golden sets and regression suites:} curated test prompts and expected properties (groundedness, citation correctness, refusal behavior) provide repeatable checks.
-  \item \textbf{LLM-as-judge and rubric scoring:} scalable evaluation is often necessary, but introduces new risks (judge bias, instability) requiring calibration and spot-checking.
-  \item \textbf{Online quality signals:} in addition to offline tests, production systems need telemetry such as rerank scores, citation click-through, and user satisfaction proxies.
-\end{itemize}
-
-\subsection{Observability Beyond Traditional Monitoring}
 \begin{table}[t]
 \centering\small
 \caption{LLMOps observability: what to capture beyond traditional monitoring, why it matters, and common failure signals.}
@@ -237,33 +184,61 @@ Inability to reproduce incidents; incomplete lineage for audits \\
 \end{tabularx}
 \end{table}
 
-Traditional monitoring focuses on uptime, CPU, and error rates. LLMOps requires observability that captures
-\emph{semantic} and \emph{behavioral} properties, because a generative system can return HTTP~200 while producing
-an ungrounded, unsafe, or policy-violating answer. In practice, LLM applications behave like composed systems:
-a single user request may traverse routing logic, retrieval, reranking, multi-step prompting, tool calls, and
-post-processing. Failures are therefore frequently \emph{cross-layer} (e.g., a retrieval miss causing hallucination,
-or a tool timeout causing a partial answer that still looks fluent). The operational goal is not merely to detect that
-an error occurred, but to explain \emph{why} an output was produced and \emph{which component} (prompt, retriever,
-tool, model version, or safety layer) drove the observed behavior.
+\subsection{Security, Privacy, and New Threat Models}
+LLM deployments introduce attack vectors that are uncommon in conventional software because
+the model functions as a \emph{natural-language interpreter} that can be influenced by untrusted
+inputs, retrieved documents, and tool outputs. Two properties drive the new threat model:
+(i) \emph{instruction following} (which makes prompt injection viable), and (ii) \emph{tool use and retrieval}
+(which expands the blast radius from ``bad text'' to ``bad actions'' and ``data exposure'').
+Critically, many failures are \emph{silent}: the service returns HTTP 200 while producing unsafe,
+unauthorized, or privacy-violating content.
 
-A useful mental model is to treat observability as an \emph{evidence ledger} for each response: record the exact
-prompt template and parameters, the evidence retrieved (with identifiers and timestamps), the tool calls performed,
-and the model configuration (provider, version, temperature/top-$p$, context length). These traces support three
-production-critical workflows: (i) incident response (rapid attribution and rollback), (ii) continuous evaluation
-(turning production failures into regression tests), and (iii) governance (audit trails for safety, privacy, and policy compliance).
+LLM applications introduce novel attack surfaces. Prompt injection, data exfiltration, and tool misuse are now first-class threats. Tool calls introduce a \emph{confused-deputy} problem: the LLM acts as an intermediary that can invoke tools with privileges the user does not possess, creating a risk that malicious prompts could escalate privileges or perform unauthorized actions. This blast radius expansion means that tool-augmented systems require careful sandboxing, input validation, and output filtering to prevent untrusted text from triggering dangerous operations.
 
-\subsection{Security, Privacy, and Policy Enforcement}
-LLM applications introduce novel attack surfaces. Prompt injection, data exfiltration, and tool misuse are now first-class threats. Operational hardening must include:
+Three high-leverage risk categories dominate production hardening:
 \begin{itemize}
-  \item \textbf{Prompt injection defenses:} sanitization, instruction hierarchy, and strict tool schemas reduce the model's ability to be socially engineered.
-  \item \textbf{Data governance:} access controls and audit logs become critical when the model can retrieve or generate sensitive information.
-  \item \textbf{Policy compliance:} organizations must enforce guardrails consistently across prompts, tools, and retrieval sources to satisfy legal, regulatory, and brand-safety constraints.
+  \item \textbf{Prompt-injection defenses:} treat user content and retrieved content as untrusted.
+  Enforce an instruction hierarchy (system > developer > user), sanitize inputs, and constrain
+  tool schemas/outputs so that untrusted text cannot escalate privileges or override policy.
+  Sanitization, instruction hierarchy, and strict tool schemas reduce the model's ability to be socially engineered.
+  \item \textbf{Data protections:} assume sensitive data may appear in prompts, retrieved passages,
+  and logs. Apply least-privilege access controls at retrieval time, redact PII/secrets in inputs and
+  outputs, and maintain auditable traces for forensics and incident response. Access controls and audit logs become critical when the model can retrieve or generate sensitive information.
+  \item \textbf{Policy enforcement:} implement consistent guardrails across prompts, retrieval sources,
+  and tools to satisfy legal, regulatory, and brand-safety requirements. In practice this implies
+  policy-as-code gates in CI/CD and runtime enforcement (filters, allow-lists, rate limits, and
+  human escalation for high-stakes workflows). Organizations must enforce guardrails consistently across prompts, tools, and retrieval sources to satisfy legal, regulatory, and brand-safety constraints.
 \end{itemize}
 
-\subsection{Why This Motivates LLMOps}
-These challenges converge into a single conclusion: LLM deployments are not merely ``models in production,'' but \emph{living socio-technical systems} operating under hard economic constraints, shifting data and knowledge, and increasingly adversarial conditions. In practice, quality and reliability emerge from the interaction of many moving parts: the base model, prompts and policies, retrieval corpora, tool schemas, orchestration logic, and downstream user workflows. A small change in any one layer can create disproportionate effects elsewhere, producing regressions that are difficult to detect with traditional unit tests or offline ML metrics.
+Figure~\ref{fig:llm-threat-model} summarizes the main attack surfaces and a defense-in-depth
+control stack spanning input handling, retrieval governance, tool security, and output controls.
 
-LLMOps therefore formalizes the practices required to run these systems with reliability and accountability: disciplined change management, continuous evaluation, semantic observability, and governance over data and tool access. It extends classical MLOps by treating prompts and policies as first-class, versioned artifacts; by monitoring behavioral and safety properties alongside infrastructure metrics; and by introducing release gates and incident response tailored to generative systems. In the remainder of this chapter, we use the \ishtar{} case study to ground these concepts in a concrete end-to-end system.
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\textwidth]{images/ch01-security-threat-model}
+  \caption{Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass,
+  retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization,
+  instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing
+  as a cross-cutting requirement for incident response and rollback.}
+  \label{fig:llm-threat-model}
+\end{figure}
+
+\subsection{Change Management and Release Discipline}
+Finally, LLM systems change frequently: prompts evolve, models are upgraded, retrieval corpora update, and tool schemas shift. Without disciplined release processes, teams risk unintentional regressions. Mature LLMOps introduces:
+\begin{itemize}
+  \item \textbf{Versioning of prompts and policies:} treating prompts like code, with reviews, diffs, and rollback.
+  \item \textbf{Release gates:} automated evaluation thresholds that must pass before deployment.
+  \item \textbf{Incident response:} playbooks for model regressions, safety failures, or external dependency outages.
+\end{itemize}
+
+Change management in LLMOps requires \emph{bundle versioning}: promoting model versions, prompt templates, retrieval indices, and tool schemas together as atomic units. This ensures that a deployment includes all compatible components and enables clean rollback when regressions occur. For example, a new model version may require updated prompt templates and a refreshed retrieval index; bundling these changes together prevents partial deployments that could cause silent failures.
+
+Together, these dimensions explain why LLM deployments require a distinct operational mindset. LLMOps is the set of practices that makes these systems reliable in the real world: controlling cost and latency, continuously measuring quality, defending against new threats, and enabling rapid iteration without sacrificing safety or trust.
+
+\subsection{Why This Motivates LLMOps}
+These challenges converge into a single conclusion: LLM deployments are not merely ``models in production,'' but \emph{living socio-technical systems} operating under hard economic constraints, shifting data and knowledge, and increasingly adversarial conditions. Quality and reliability emerge from the interaction of many moving parts: the base model, prompts and policies, retrieval corpora, tool schemas, orchestration logic, and downstream user workflows. A small change in any one layer can create disproportionate effects elsewhere, producing regressions that are difficult to detect with traditional unit tests or offline ML metrics.
+
+LLMOps therefore formalizes the practices required to run these systems with reliability and accountability. It extends classical MLOps by treating prompts and policies as first-class, versioned artifacts; by monitoring behavioral and safety properties alongside infrastructure metrics; and by introducing release gates and incident response tailored to generative systems. The remainder of this book develops these practices systematically: Chapter~\ref{ch:llmops-fundamentals} establishes core concepts; Chapter~\ref{ch:infra} covers infrastructure design; Chapter~\ref{ch:cicd} presents CI/CD patterns; and subsequent chapters address scaling, optimization, governance, and end-to-end deployment. We use the \ishtar{} case study throughout to ground these concepts in a concrete end-to-end system.
 
 % Requires in preamble (once): \usepackage{tabularx,booktabs,threeparttable}
 \begin{table}[t]
@@ -312,22 +287,15 @@ To ground these abstract principles in a real-world context, we will return thro
 
 \section{Infrastructure and Environment Design}
 
-\section{The Emergence of LLMOps}
-To address these issues, a new discipline has emerged: \textbf{LLMOps (Large Language Model Operations)}. Building upon the principles of MLOps, LLMOps introduces specialized tools, practices, and governance frameworks for managing the full lifecycle of LLMs in production \cite{mdpi}. It encompasses:
-\begin{itemize}
-    \item Prompt engineering, testing, and versioning.
-    \item Integration of retrieval-augmented generation (RAG) pipelines.
-    \item Robust evaluation frameworks and safety checks.
-    \item Scalable inference infrastructure for low-latency, high-throughput applications.
-    \item Continuous monitoring of ethical, social, and legal risks.
-\end{itemize}
+LLM workloads impose unique infrastructure requirements that differ from classical ML serving. GPU memory constraints drive model parallelism and quantization strategies, while throughput demands require careful batching, streaming, and KV-cache management. Serving runtimes must balance latency (TTFT) and throughput (tokens/s) under variable request shapes. Orchestration layers must coordinate retrieval, tool calls, and multi-step chains while maintaining observability and graceful degradation. Chapter~\ref{ch:infra} develops these infrastructure concerns in detail, covering accelerator selection, containerization, Kubernetes orchestration, and infrastructure-as-code patterns for reproducible deployments.
 
-In essence, LLMOps is about ensuring that powerful language models can be run not only efficiently, but also responsibly, at scale.
+\section{The Emergence of LLMOps}
+To address these issues, a new discipline has emerged: \textbf{LLMOps (Large Language Model Operations)}. Building upon the principles of MLOps, LLMOps introduces specialized tools, practices, and governance frameworks for managing the full lifecycle of LLMs in production \cite{mdpi}. LLMOps encompasses prompt management and versioning, retrieval-augmented generation pipelines, continuous evaluation of behavioral properties, semantic observability, security controls for tool-augmented systems, and disciplined release processes. The scope extends beyond traditional MLOps to treat prompts and policies as first-class artifacts, monitor quality through semantic signals, and manage composed systems where retrieval, tools, and multi-step chains introduce new failure modes. In essence, LLMOps ensures that powerful language models can be run not only efficiently, but also responsibly, at scale.
 
 \section{This Book and the Ishtar AI Case Study}
-This book, \emph{Advanced Large Language Model Operations: Best Practices and Innovative Strategies}, fills a crucial gap by providing a comprehensive guide for advanced practitioners---engineers, data scientists, researchers, and architects---who are building, deploying, and operating LLM-based systems. It blends theoretical foundations with hands-on guidance, offering a holistic approach to LLMOps. 
+This book, \emph{Advanced Large Language Model Operations: Best Practices and Innovative Strategies}, provides a comprehensive guide for advanced practitioners---engineers, data scientists, researchers, and architects---who are building, deploying, and operating LLM-based systems. It blends theoretical foundations with hands-on guidance, offering a holistic approach to LLMOps that addresses the unique challenges of generative AI systems in production.
 
-Throughout the chapters, we will use the \ishtar{} AI case study as a running example. \ishtar{} is a journalism-focused system designed to support reporters in conflict zones with real-time information retrieval, summarization, translation, and ethical safeguards. By grounding abstract principles in this concrete scenario, the book demonstrates how LLMOps practices can be applied to mission-critical applications where accuracy, trust, and safety are paramount.
+Throughout the chapters, we use the \ishtar{} AI case study as a running example. \ishtar{} is a journalism-focused system designed to support reporters in conflict zones with real-time information retrieval, summarization, translation, and ethical safeguards. This case study anchors the book's practical guidance, demonstrating how LLMOps practices apply to mission-critical applications where accuracy, trust, and safety are paramount. By grounding abstract principles in this concrete scenario, the book bridges theory and practice, providing reusable patterns that can be adapted across domains and operational contexts.
 
 
 \section{From MLOps to LLMOps: Evolution and Key Differences}
@@ -459,6 +427,8 @@ Today, LLMOps is emerging as a vital sub-discipline of MLOps, focused on lifecyc
 LLMOps is not simply a buzzword; it reflects substantive differences between LLM-powered systems and traditional machine learning deployments. These differences appear along four dimensions: model scale, pipeline complexity, output variability, and heightened risks spanning safety, bias, hallucination, and security.
 
 \subsubsection{Scale}\label{sec:llmops-scale}
+The scale of modern LLMs fundamentally changes the deployment problem. While classical ML models typically fit on a single GPU or CPU, frontier LLMs require distributed infrastructure from the start. This scale context means that deployment decisions (model selection, quantization strategy, parallelism configuration) are infrastructure decisions, not just model choices. Teams must reason about GPU memory budgets, inter-device communication overhead, and the trade-offs between model capability and deployment feasibility.
+
 Modern LLMs consist of tens to hundreds of billions of parameters, which fundamentally changes the deployment
 problem. At these scales, \emph{weights alone} become a first-order infrastructure constraint: the memory required
 to load parameters grows linearly with parameter count $P$ and bytes-per-weight $b$,
@@ -491,19 +461,19 @@ systems engineering, where memory, latency, and cost must be co-optimized (Fig.~
 \end{figure}
 
 \subsubsection{Complexity}\label{sec:llmops-complexity}
-LLM applications rarely follow a simple ``input-to-output'' pattern. Instead, they typically involve multi-stage pipelines that include document retrieval, prompt composition, model inference, tool or function calls, and output post-processing. Prompts, templates, and chains must be treated as first-class artifacts requiring versioning, testing, and monitoring across releases.
+LLM applications rarely follow a simple ``input-to-output'' pattern. Instead, they typically involve multi-stage pipelines that include document retrieval, prompt composition, model inference, tool or function calls, and output post-processing. This complexity introduces interface and versioning challenges: prompts, templates, and chains must be treated as first-class artifacts requiring versioning, testing, and monitoring across releases. Unlike classical ML where model versioning suffices, LLMOps must version and coordinate model versions, prompt templates, retrieval indices, tool schemas, and orchestration logic as interdependent components.
 
 Frameworks such as LangChain and LangGraph \cite{ibm} have emerged to coordinate these workflows and to orchestrate multi-agent systems. For instance, separate ``researcher,'' ``writer,'' and ``validator'' agents may collaborate on a task, introducing orchestration dependencies and new failure modes. Integration with external tools (APIs, calculators, search, internal services) further expands the attack surface and the observability requirements. As a result, LLMOps places strong emphasis on end-to-end tracing and structured logging of prompts, retrieved context, tool calls, and model outputs.
 
 \subsubsection{Variability}\label{sec:llmops-variability}
-Unlike many classical ML models, LLMs produce outputs stochastically. The same prompt may yield different completions depending on sampling parameters and runtime conditions. This variability can be beneficial for creativity and ideation, but it can be problematic for consistency, correctness, and compliance.
+Unlike many classical ML models, LLMs produce outputs stochastically. The same prompt may yield different completions depending on sampling parameters and runtime conditions. This variability can be beneficial for creativity and ideation, but it can be problematic for consistency, correctness, and compliance. The nondeterministic nature of LLM outputs has test design implications: teams must design regression suites that account for acceptable variance, use statistical rather than exact matching for evaluation, and implement controlled decoding strategies to bound variability in production.
 
 LLMOps addresses this through controlled decoding strategies (e.g., low temperature or greedy decoding), multi-sample generation with filtering or reranking, and alignment techniques such as reinforcement learning with human feedback (RLHF) \cite{pluralsight}. Continuous evaluation on fixed prompt suites, alongside statistical monitoring of production outputs, helps detect regressions and distributional shifts that are not visible through infrastructure metrics alone.
 
 \subsubsection{Risk and Alignment}\label{sec:llmops-risk-alignment}
-LLM systems introduce heightened ethical, safety, and security risks. Models may generate biased or toxic content \cite{vice}, hallucinate plausible but incorrect facts \cite{vice}, or expose sensitive information under certain conditions. Prompt injection illustrates a distinct vulnerability class, where adversarial inputs attempt to override system instructions or induce unsafe tool use \cite{ibm}. Mitigations often combine alignment (e.g., RLHF), output filtering, sandboxed tool execution, retrieval governance, and human review for high-stakes tasks.
+LLM systems introduce heightened ethical, safety, and security risks that differ from classical ML systems. Models may generate biased or toxic content \cite{vice}, hallucinate plausible but incorrect facts \cite{vice}, or expose sensitive information under certain conditions. Prompt injection illustrates a distinct vulnerability class, where adversarial inputs attempt to override system instructions or induce unsafe tool use \cite{ibm}. The key difference from traditional software security is that LLMs function as natural-language interpreters, making them susceptible to semantic attacks that bypass conventional input validation. Mitigations often combine alignment (e.g., RLHF), output filtering, sandboxed tool execution, retrieval governance, and human review for high-stakes tasks. For detailed coverage of security controls and threat models, see the earlier discussion in Section~\ref{sec:operational-challenges} and Chapter~\ref{ch:ethics}.
 
-The operational impact of such failures can be immediate and material. Google’s Bard produced an error in a public demo about the James Webb Space Telescope, contributing to an estimated \$100B market value drop for Alphabet \cite{reuters}. These incidents highlight why LLMOps requires rigorous testing, red-teaming, and governance mechanisms that extend beyond traditional MLOps playbooks.
+The operational impact of such failures can be immediate and material. Google's Bard produced an error in a public demo about the James Webb Space Telescope, contributing to an estimated \$100B market value drop for Alphabet \cite{reuters}. These incidents highlight why LLMOps requires rigorous testing, red-teaming, and governance mechanisms that extend beyond traditional MLOps playbooks.
 
 \subsection{Summary}\label{sec:why-llmops-summary}
 LLM-driven systems differ from traditional ML systems in four key dimensions: scale, complexity, variability, and risk. These differences necessitate specialized practices, including prompt and policy versioning, retrieval augmentation and index governance, multi-step workflow orchestration, hallucination and bias testing, and fine-grained monitoring that spans both system and semantic metrics. In short, applying standard MLOps alone is insufficient; LLMOps extends the discipline to meet the unique operational demands of large language models. The following chapters develop these themes in detail, with the \ishtar{} AI case study serving as a continuous reference implementation.
@@ -855,11 +825,12 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
 
 % ----------------------------------------------------------------------
 % FIGURE: Inputs taxonomy (cleaned; removed trailing comma; simplified arrows)
-% Preamble requirements (once): \usepackage{tikz} and
+% Preamble requirements (once): \usepackage{tikz,adjustbox} and
 % \usetikzlibrary{arrows.meta,positioning,fit,calc}
 % ----------------------------------------------------------------------
 \begin{figure}[t]
 \centering
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[
   font=\small,
   cNews/.style  ={fill=blue!18,  draw=blue!55!black},
@@ -903,6 +874,7 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
 \textbf{Flow:} sources $\rightarrow$ retrieval $\rightarrow$ journalist-facing answers.};
 
 \end{tikzpicture}
+\end{adjustbox}
 \caption{Evidence sources powering \ishtar{}. Curated inputs (news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds) are routed through retrieval to support journalist queries.}
 \label{fig:ishtar-inputs-taxonomy}
 \end{figure}
