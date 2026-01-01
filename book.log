@@ -3252,3 +3252,4694 @@ LaTeX Warning: Citation 'lambda-gpt3-cost' on page 88 undefined on input line 81
 
 
 LaTeX Warning: Citation 'terraform-docs' on page 88 undefined on input line 819.
+
+
+LaTeX Warning: Citation 'pulumi-docs' on page 88 undefined on input line 819.
+
+
+
+[88]
+
+LaTeX Warning: Citation 'tgi-github' on page 89 undefined on input line 825.
+
+
+LaTeX Warning: Citation 'tgi_docs' on page 89 undefined on input line 825.
+
+
+LaTeX Warning: Citation 'vllm-pagedattention' on page 89 undefined on input line 825.
+
+
+LaTeX Warning: Citation 'pagedattention_paper' on page 89 undefined on input line 825.
+
+
+
+[89]
+
+LaTeX Warning: Citation 'srivatsa2024-iac-llm' on page 90 undefined on input line 842.
+
+
+LaTeX Warning: Citation 'terraform-docs' on page 90 undefined on input line 842.
+
+
+Overfull \hbox (181.70961pt too wide) in paragraph at lines 916--917
+ [][] 
+ []
+
+
+
+[90]
+
+LaTeX Warning: Citation 'vllm-pagedattention' on page 91 undefined on input line 932.
+
+
+LaTeX Warning: Citation 'pagedattention_paper' on page 91 undefined on input line 932.
+
+
+LaTeX Warning: Citation 'fabricated-knowledge-costs' on page 91 undefined on input line 933.
+
+
+LaTeX Warning: Citation 'lambda-gpt3-cost' on page 91 undefined on input line 933.
+
+
+LaTeX Warning: Citation 'tgi-github' on page 91 undefined on input line 935.
+
+
+LaTeX Warning: Citation 'tgi_docs' on page 91 undefined on input line 935.
+
+
+LaTeX Warning: Citation 'smoothie-routing' on page 91 undefined on input line 939.
+
+
+LaTeX Warning: Citation 'terraform-docs' on page 91 undefined on input line 948.
+
+
+LaTeX Warning: Citation 'pulumi-docs' on page 91 undefined on input line 948.
+
+
+
+[91]
+
+LaTeX Warning: Citation 'opa-docs' on page 92 undefined on input line 951.
+
+
+LaTeX Warning: Citation 'sentinel-docs' on page 92 undefined on input line 951.
+
+
+LaTeX Warning: Citation 'nvidia-k8s-device-plugin' on page 92 undefined on input line 964.
+
+
+LaTeX Warning: Citation 'tgi-github' on page 92 undefined on input line 966.
+
+
+LaTeX Warning: Citation 'vllm-pagedattention' on page 92 undefined on input line 966.
+
+
+
+[92]
+
+LaTeX Warning: Empty bibliography on input line 985.
+
+
+
+[93]
+
+[94]
+
+[95])
+
+[96]
+
+[97
+
+
+
+
+]
+
+[98]
+\openout2 = `author/part2-delivery.aux'.
+
+ (./author/part2-delivery.tex
+
+LaTeX Warning: Reference `ch:cicd' on page 99 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 99 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 99 undefined on input line 5.
+
+)
+
+[99
+
+]
+\openout2 = `ch04-cicd.aux'.
+
+ (./ch04-cicd.tex
+
+[100
+
+
+
+
+
+]
+Chapter 4.
+Package biblatex Info: Reference segment=8 on input line 1.
+Package biblatex Info: Setting label 'refsegment:08' on input line 1.
+Package biblatex Info: Reference segment=9 on input line 3.
+Package biblatex Info: Setting label 'refsegment:09' on input line 3.
+
+
+[101]
+
+LaTeX Warning: Reference `ch:infra' on page 102 undefined on input line 24.
+
+
+LaTeX Warning: Reference `ch:testing' on page 102 undefined on input line 36.
+
+
+LaTeX Warning: Citation 'helm2022' on page 102 undefined on input line 44.
+
+
+LaTeX Warning: Reference `ch:testing' on page 102 undefined on input line 44.
+
+
+
+[102]
+
+LaTeX Warning: Citation 'zheng2023judge' on page 103 undefined on input line 47.
+
+
+LaTeX Warning: Citation 'arenaHard2024' on page 103 undefined on input line 47.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 103 undefined on input line 51.
+
+
+LaTeX Warning: Citation 'nist_genai_profile' on page 103 undefined on input line 51.
+
+
+LaTeX Warning: Citation 'zheng2023judge' on page 103 undefined on input line 56.
+
+
+LaTeX Warning: Citation 'chen2024humansJudge' on page 103 undefined on input line 56.
+
+
+LaTeX Warning: Citation 'positionBias2024' on page 103 undefined on input line 56.
+
+
+
+[103]
+
+LaTeX Warning: Citation 'ragas' on page 104 undefined on input line 59.
+
+
+LaTeX Warning: Citation 'ares' on page 104 undefined on input line 59.
+
+
+LaTeX Warning: Citation 'ragtruth' on page 104 undefined on input line 59.
+
+
+LaTeX Warning: Citation 'gehman2020realtoxicity' on page 104 undefined on input line 62.
+
+
+LaTeX Warning: Citation 'crowsPairs2020' on page 104 undefined on input line 62.
+
+
+LaTeX Warning: Citation 'bbq2022' on page 104 undefined on input line 62.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 104 undefined on input line 62.
+
+
+LaTeX Warning: Citation 'mitre_atlas' on page 104 undefined on input line 62.
+
+
+LaTeX Warning: Citation 'mcnemar1947' on page 104 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'koehn2004' on page 104 undefined on input line 65.
+
+
+LaTeX Warning: Reference `ch:testing' on page 104 undefined on input line 65.
+
+
+
+[104]
+
+LaTeX Warning: Citation 'openai_evals' on page 105 undefined on input line 69.
+
+
+LaTeX Warning: Citation 'openai_evals_cookbook' on page 105 undefined on input line 69.
+
+
+LaTeX Warning: Citation 'langsmith_evaluation' on page 105 undefined on input line 69.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 105 undefined on input line 73.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 105 undefined on input line 73.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 105 undefined on input line 73.
+
+
+LaTeX Warning: Citation 'trulens' on page 105 undefined on input line 73.
+
+
+LaTeX Warning: Citation 'aws_bedrock_eval' on page 105 undefined on input line 76.
+
+
+LaTeX Warning: Citation 'azure_promptflow_eval' on page 105 undefined on input line 76.
+
+
+LaTeX Warning: Citation 'vertex_eval' on page 105 undefined on input line 76.
+
+
+
+[105]
+
+LaTeX Warning: Citation 'evidently_llm_metrics' on page 106 undefined on input line 79.
+
+
+LaTeX Warning: Citation 'nannyml_drift' on page 106 undefined on input line 79.
+
+
+LaTeX Warning: Citation 'mcnemar1947' on page 106 undefined on input line 82.
+
+
+LaTeX Warning: Citation 'koehn2004' on page 106 undefined on input line 82.
+
+
+LaTeX Warning: Reference `ch:testing' on page 106 undefined on input line 82.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 106 undefined on input line 88.
+
+
+LaTeX Warning: Citation 'nist_genai_profile' on page 106 undefined on input line 88.
+
+
+
+[106]
+
+LaTeX Warning: Citation 'openaievals' on page 107 undefined on input line 91.
+
+
+LaTeX Warning: Reference `tab:eval_stages' on page 107 undefined on input line 96.
+
+
+Underfull \hbox (badness 2326) in paragraph at lines 130--130
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Nightly/Batch (cost-
+ []
+
+
+LaTeX Warning: Reference `fig:eval_stages_pipeline' on page 107 undefined on input line 133.
+
+
+Overfull \hbox (316.43091pt too wide) in paragraph at lines 197--198
+ [][] 
+ []
+
+
+LaTeX Warning: Citation 'mlflow_model_registry' on page 107 undefined on input line 207.
+
+
+LaTeX Warning: Citation 'mlflow_model_registry_workflow' on page 107 undefined on input line 207.
+
+
+
+[107]
+
+LaTeX Warning: Citation 'llyd_finetuning' on page 108 undefined on input line 211.
+
+
+
+[108]
+
+LaTeX Warning: Citation 'argo_rollouts_overview' on page 109 undefined on input line 223.
+
+
+LaTeX Warning: Citation 'argo_rollouts_canary' on page 109 undefined on input line 223.
+
+
+LaTeX Warning: Citation 'argo_rollouts_bluegreen' on page 109 undefined on input line 223.
+
+
+
+[109]
+
+LaTeX Warning: Citation 'rohan_llmops' on page 110 undefined on input line 235.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 110 undefined on input line 238.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 110 undefined on input line 238.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 110 undefined on input line 238.
+
+
+LaTeX Warning: Citation 'trulens' on page 110 undefined on input line 238.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 110 undefined on input line 244.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 110 undefined on input line 244.
+
+
+LaTeX Warning: Citation 'trulens' on page 110 undefined on input line 244.
+
+
+
+[110]
+
+LaTeX Warning: Citation 'rohan_llmops' on page 111 undefined on input line 246.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 111 undefined on input line 258.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 111 undefined on input line 258.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 111 undefined on input line 258.
+
+
+LaTeX Warning: Citation 'trulens' on page 111 undefined on input line 258.
+
+
+LaTeX Warning: Citation 'rohan_llmops' on page 111 undefined on input line 260.
+
+
+
+[111]
+
+LaTeX Warning: Citation 'rohan_llmops' on page 112 undefined on input line 272.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 112 undefined on input line 272.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 112 undefined on input line 272.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 112 undefined on input line 272.
+
+
+LaTeX Warning: Citation 'trulens' on page 112 undefined on input line 272.
+
+
+LaTeX Warning: Citation 'slsa_about' on page 112 undefined on input line 278.
+
+
+LaTeX Warning: Citation 'slsa_levels' on page 112 undefined on input line 278.
+
+
+LaTeX Warning: Citation 'sigstore_cosign' on page 112 undefined on input line 278.
+
+
+LaTeX Warning: Citation 'cosign_attestations' on page 112 undefined on input line 278.
+
+
+LaTeX Warning: Citation 'gha_secure_use' on page 112 undefined on input line 281.
+
+
+LaTeX Warning: Citation 'gha_security' on page 112 undefined on input line 281.
+
+
+LaTeX Warning: Citation 'gha_oidc_concepts' on page 112 undefined on input line 281.
+
+
+LaTeX Warning: Citation 'gha_oidc_cloud' on page 112 undefined on input line 281.
+
+
+
+[112]
+
+LaTeX Warning: Citation 'langsmith_eval' on page 113 undefined on input line 312.
+
+
+LaTeX Warning: Citation 'trulens' on page 113 undefined on input line 312.
+
+
+LaTeX Warning: Citation 'ragas' on page 113 undefined on input line 312.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 113 undefined on input line 312.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 113 undefined on input line 312.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 113 undefined on input line 315.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 113 undefined on input line 315.
+
+
+LaTeX Warning: Citation 'ragas' on page 113 undefined on input line 318.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 113 undefined on input line 318.
+
+
+
+[113]
+
+LaTeX Warning: Citation 'promptfoo' on page 114 undefined on input line 339.
+
+
+LaTeX Warning: Citation 'openaievals' on page 114 undefined on input line 339.
+
+
+LaTeX Warning: Citation 'lm_harness' on page 114 undefined on input line 339.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 114 undefined on input line 339.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 114 undefined on input line 339.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 114 undefined on input line 342.
+
+
+
+[114]
+
+LaTeX Warning: Citation 'zheng2023judge' on page 115 undefined on input line 345.
+
+
+LaTeX Warning: Citation 'helm2022' on page 115 undefined on input line 345.
+
+
+LaTeX Warning: Citation 'koehn2004' on page 115 undefined on input line 345.
+
+
+LaTeX Warning: Citation 'mcnemar1947' on page 115 undefined on input line 345.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 115 undefined on input line 348.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 115 undefined on input line 348.
+
+
+LaTeX Warning: Citation 'trulens' on page 115 undefined on input line 348.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 115 undefined on input line 348.
+
+
+LaTeX Warning: Citation 'gehman2020realtoxicity' on page 115 undefined on input line 351.
+
+
+LaTeX Warning: Citation 'crowsPairs2020' on page 115 undefined on input line 351.
+
+
+LaTeX Warning: Citation 'bbq2022' on page 115 undefined on input line 351.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 115 undefined on input line 351.
+
+
+LaTeX Warning: Citation 'mitre_atlas' on page 115 undefined on input line 351.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 115 undefined on input line 354.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 115 undefined on input line 354.
+
+
+LaTeX Warning: Citation 'trulens' on page 115 undefined on input line 354.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 115 undefined on input line 354.
+
+
+LaTeX Warning: Citation 'promptfoo' on page 115 undefined on input line 358.
+
+
+
+[115]
+
+LaTeX Warning: Citation 'koehn2004' on page 116 undefined on input line 359.
+
+
+LaTeX Warning: Citation 'gehman2020realtoxicity' on page 116 undefined on input line 360.
+
+
+LaTeX Warning: Citation 'crowsPairs2020' on page 116 undefined on input line 360.
+
+
+LaTeX Warning: Citation 'bbq2022' on page 116 undefined on input line 360.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 116 undefined on input line 360.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 116 undefined on input line 361.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 116 undefined on input line 361.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 116 undefined on input line 366.
+
+
+LaTeX Warning: Citation 'zheng2023judge' on page 116 undefined on input line 367.
+
+
+LaTeX Warning: Citation 'mcnemar1947' on page 116 undefined on input line 368.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 116 undefined on input line 369.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 116 undefined on input line 369.
+
+
+LaTeX Warning: Citation 'promptfoo' on page 116 undefined on input line 372.
+
+
+LaTeX Warning: Citation 'openaievals' on page 116 undefined on input line 372.
+
+
+LaTeX Warning: Citation 'lm_harness' on page 116 undefined on input line 372.
+
+
+LaTeX Warning: Citation 'zheng2023judge' on page 116 undefined on input line 372.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 116 undefined on input line 372.
+
+
+LaTeX Warning: Citation 'helm2022' on page 116 undefined on input line 386.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 116 undefined on input line 386.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 116 undefined on input line 386.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 116 undefined on input line 389.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 116 undefined on input line 389.
+
+
+LaTeX Warning: Citation 'trulens' on page 116 undefined on input line 389.
+
+
+
+[116]
+
+LaTeX Warning: Citation 'ragas' on page 117 undefined on input line 392.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 117 undefined on input line 392.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 117 undefined on input line 392.
+
+
+LaTeX Warning: Citation 'mitre_atlas' on page 117 undefined on input line 392.
+
+
+LaTeX Warning: Citation 'helm2022' on page 117 undefined on input line 395.
+
+
+LaTeX Warning: Citation 'koehn2004' on page 117 undefined on input line 395.
+
+
+LaTeX Warning: Citation 'mcnemar1947' on page 117 undefined on input line 395.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 117 undefined on input line 401.
+
+
+LaTeX Warning: Citation 'mlflow_llm_eval' on page 117 undefined on input line 401.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 117 undefined on input line 406.
+
+
+LaTeX Warning: Citation 'mitre_atlas' on page 117 undefined on input line 406.
+
+
+
+[117]
+
+LaTeX Warning: Citation 'trulens' on page 118 undefined on input line 407.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 118 undefined on input line 407.
+
+
+LaTeX Warning: Citation 'ragas' on page 118 undefined on input line 407.
+
+
+LaTeX Warning: Citation 'koehn2004' on page 118 undefined on input line 408.
+
+
+LaTeX Warning: Citation 'mcnemar1947' on page 118 undefined on input line 408.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 118 undefined on input line 415.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 118 undefined on input line 416.
+
+
+LaTeX Warning: Citation 'mitre_atlas' on page 118 undefined on input line 416.
+
+
+LaTeX Warning: Citation 'langsmith_eval' on page 118 undefined on input line 420.
+
+
+LaTeX Warning: Citation 'phoenix_rag' on page 118 undefined on input line 420.
+
+
+LaTeX Warning: Citation 'trulens' on page 118 undefined on input line 420.
+
+
+LaTeX Warning: Citation 'owasp_llm' on page 118 undefined on input line 420.
+
+
+LaTeX Warning: Citation 'mitre_atlas' on page 118 undefined on input line 420.
+
+
+LaTeX Warning: Empty bibliography on input line 424.
+
+
+
+[118])
+
+[119]
+\openout2 = `ch05-observability.aux'.
+
+ (./ch05-observability.tex
+
+[120
+
+
+
+
+
+]
+Chapter 5.
+Package biblatex Info: Reference segment=10 on input line 1.
+Package biblatex Info: Setting label 'refsegment:010' on input line 1.
+Package biblatex Info: Reference segment=11 on input line 3.
+Package biblatex Info: Setting label 'refsegment:011' on input line 3.
+
+
+[121]
+
+LaTeX Warning: Citation 'udasi2025last9' on page 122 undefined on input line 36.
+
+
+LaTeX Warning: Citation 'udasi2025last9' on page 122 undefined on input line 45.
+
+
+LaTeX Warning: Citation 'udasi2025last9' on page 122 undefined on input line 47.
+
+
+
+[122]
+
+LaTeX Warning: Citation 'udasi2025last9' on page 123 undefined on input line 49.
+
+
+LaTeX Warning: Citation 'udasi2025last9' on page 123 undefined on input line 51.
+
+
+Overfull \hbox (12.25851pt too wide) in paragraph at lines 80--82
+ [][] 
+ []
+
+
+
+[123]
+
+LaTeX Warning: Citation 'arize_phoenix_docs' on page 124 undefined on input line 98.
+
+
+LaTeX Warning: Citation 'langfuse_obs_overview' on page 124 undefined on input line 98.
+
+
+LaTeX Warning: Citation 'grafana_dashboards' on page 124 undefined on input line 98.
+
+
+LaTeX Warning: Citation 'phoenix2025' on page 124 undefined on input line 98.
+
+
+
+[124]
+
+LaTeX Warning: Citation 'phoenix2025' on page 125 undefined on input line 133.
+
+
+
+[125]
+
+LaTeX Warning: Citation 'langsmith_home' on page 126 undefined on input line 159.
+
+
+LaTeX Warning: Citation 'otel_spec' on page 126 undefined on input line 159.
+
+
+LaTeX Warning: Citation 'prometheus_instrumentation' on page 126 undefined on input line 159.
+
+
+LaTeX Warning: Citation 'grafana_dashboards' on page 126 undefined on input line 159.
+
+
+LaTeX Warning: Citation 'otel_traces' on page 126 undefined on input line 176.
+
+
+LaTeX Warning: Citation 'otel_spec' on page 126 undefined on input line 176.
+
+
+LaTeX Warning: Citation 'otel_logs_concepts' on page 126 undefined on input line 176.
+
+
+LaTeX Warning: Citation 'openmetrics_spec' on page 126 undefined on input line 178.
+
+
+LaTeX Warning: Citation 'prometheus_instrumentation' on page 126 undefined on input line 178.
+
+
+LaTeX Warning: Citation 'prometheus_clientlibs' on page 126 undefined on input line 178.
+
+
+LaTeX Warning: Citation 'otel_collector' on page 126 undefined on input line 178.
+
+
+LaTeX Warning: Citation 'otel_spec' on page 126 undefined on input line 178.
+
+
+Overfull \hbox (13.18436pt too wide) in paragraph at lines 178--179
+[]\OT1/ntxtlf/m/n/10 (-20) ]. In many ar-chi-tec-tures, an Open-Teleme-try Col-lec-tor [[]]
+ []
+
+
+
+[126]
+
+LaTeX Warning: Citation 'prometheus_instrumentation' on page 127 undefined on input line 183.
+
+
+LaTeX Warning: Citation 'grafana_dashboards' on page 127 undefined on input line 183.
+
+
+LaTeX Warning: Citation 'jaeger_tracing' on page 127 undefined on input line 183.
+
+
+LaTeX Warning: Citation 'otel_spec' on page 127 undefined on input line 183.
+
+
+Overfull \hbox (2.19357pt too wide) in paragraph at lines 183--184
+[]\OT1/ntxtlf/m/n/10 (-20) Open-source ob-serv-abil-ity stacks such as Prometheus [[]]
+ []
+
+
+Overfull \hbox (7.07446pt too wide) in paragraph at lines 186--188
+\OT1/lmtt/m/n/10 retrieval[]metadata \OT1/ntxtlf/m/n/10 (-20) (doc IDs, in-dex ver-sion, top-$k$, re-ranker scores); \OT1/lmtt/m/n/10 token[]counts
+ []
+
+
+Overfull \hbox (38.40677pt too wide) in paragraph at lines 186--188
+\OT1/ntxtlf/m/n/10 (-20) tax-on-omy (e.g., \OT1/lmtt/m/n/10 provider[]timeout\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 rate[]limit\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 tool[]schema[]mismatch\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 parser[]failure\OT1/ntxtlf/m/n/10 (-20) )
+ []
+
+
+
+[127]
+
+LaTeX Warning: Citation 'otel_spec' on page 128 undefined on input line 233.
+
+
+LaTeX Warning: Citation 'jaeger_tracing' on page 128 undefined on input line 233.
+
+
+
+[128]
+LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <8.5> not available
+(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 276.
+
+Overfull \hbox (583.99873pt too wide) in paragraph at lines 319--323
+ [][] 
+ []
+
+
+
+[129]
+
+LaTeX Warning: Citation 'otel_spec' on page 130 undefined on input line 336.
+
+
+LaTeX Warning: Citation 'grafana_dashboards' on page 130 undefined on input line 336.
+
+
+LaTeX Warning: Reference `ch:rag' on page 130 undefined on input line 350.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 130 undefined on input line 350.
+
+
+
+[130]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 366.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 366.
+
+
+LaTeX Warning: Reference `ch:rag' on page 131 undefined on input line 370.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 131 undefined on input line 370.
+
+
+
+[131{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+LaTeX Warning: Citation 'grafana_dashboards' on page 132 undefined on input line 398.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 132 undefined on input line 398.
+
+
+LaTeX Warning: Reference `ch:testing' on page 132 undefined on input line 398.
+
+
+
+[132]
+
+LaTeX Warning: Citation 'otel_spec' on page 133 undefined on input line 419.
+
+
+Overfull \hbox (37.4113pt too wide) in paragraph at lines 430--431
+[]\OT1/ntxtlf/b/n/10 (-20) Cohort and route lenses. \OT1/ntxtlf/m/n/10 (-20) Pro-vide con-sis-tent la-bels|\OT1/lmtt/m/n/10 model[]version\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 retriever[]version\OT1/ntxtlf/m/n/10 (-20) ,
+ []
+
+
+
+[133]
+
+[134]
+
+LaTeX Warning: Reference `ch:cicd' on page 135 undefined on input line 473.
+
+
+LaTeX Warning: Reference `ch:testing' on page 135 undefined on input line 473.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 135 undefined on input line 473.
+
+
+LaTeX Warning: Reference `ch:testing' on page 135 undefined on input line 473.
+
+
+
+[135]
+
+LaTeX Warning: Reference `ch:cicd' on page 136 undefined on input line 495.
+
+
+LaTeX Warning: Reference `ch:testing' on page 136 undefined on input line 495.
+
+
+
+[136]
+
+LaTeX Warning: Reference `ch:cicd' on page 137 undefined on input line 521.
+
+
+LaTeX Warning: Reference `ch:testing' on page 137 undefined on input line 521.
+
+
+
+[137]
+
+LaTeX Warning: Reference `ch:cicd' on page 138 undefined on input line 550.
+
+
+LaTeX Warning: Reference `ch:testing' on page 138 undefined on input line 550.
+
+
+
+[138]
+
+[139]
+
+LaTeX Warning: Empty bibliography on input line 627.
+
+)
+
+[140]
+\openout2 = `ch06-scaling.aux'.
+
+ (./ch06-scaling.tex
+Chapter 6.
+Package biblatex Info: Reference segment=12 on input line 1.
+Package biblatex Info: Setting label 'refsegment:012' on input line 1.
+Package biblatex Info: Reference segment=13 on input line 3.
+Package biblatex Info: Setting label 'refsegment:013' on input line 3.
+
+
+[141
+
+
+
+
+
+]
+
+LaTeX Warning: Citation 'vllm2023' on page 142 undefined on input line 24.
+
+
+LaTeX Warning: Citation 'vllm2023' on page 142 undefined on input line 24.
+
+
+LaTeX Warning: Citation 'google2022_chip' on page 142 undefined on input line 24.
+
+
+LaTeX Warning: Citation 'vllm_pagedattention' on page 142 undefined on input line 24.
+
+
+LaTeX Warning: Citation 'vaswani2017_attention' on page 142 undefined on input line 32.
+
+
+LaTeX Warning: Citation 'vllm_pagedattention' on page 142 undefined on input line 32.
+
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
+(Font)              scaled to size 10.0pt on input line 36.
+Package microtype Info: Character `013' is missing
+(microtype)             in font `OT1/ntxtlf/m/sc/10'.
+(microtype)             Ignoring protrusion settings for this character.
+
+
+[142{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
+(Font)              scaled to size 10.0pt on input line 46.
+
+
+LaTeX Warning: Citation 'frugalgpt_2023' on page 143 undefined on input line 51.
+
+
+
+[143]
+
+LaTeX Warning: Citation 'vllm2023' on page 144 undefined on input line 60.
+
+
+LaTeX Warning: Citation 'vllm_pagedattention' on page 144 undefined on input line 60.
+
+
+LaTeX Warning: Citation 'tensorrt_llm_docs' on page 144 undefined on input line 60.
+
+
+LaTeX Warning: Citation 'tgi_docs' on page 144 undefined on input line 60.
+
+
+LaTeX Warning: Citation 'nvidia_mig_guide' on page 144 undefined on input line 66.
+
+
+LaTeX Warning: Reference `fig:scaling-dimensions' on page 144 undefined on input line 68.
+
+
+LaTeX Warning: Reference `tab:scaling-matrix' on page 144 undefined on input line 68.
+
+
+
+[144]
+
+LaTeX Warning: Citation 'supermicro.com' on page 145 undefined on input line 85.
+
+
+
+[145]
+
+[146]
+
+[147]
+Underfull \hbox (badness 1163) in paragraph at lines 159--160
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Lowest per-instance la-tency; well-
+ []
+
+
+Overfull \hbox (59.17903pt too wide) in paragraph at lines 227--228
+ [][] 
+ []
+
+
+
+[148]
+
+[149]
+
+LaTeX Warning: Citation 'vllm_pagedattention' on page 150 undefined on input line 241.
+
+
+LaTeX Warning: Citation 'tgi_docs' on page 150 undefined on input line 241.
+
+
+LaTeX Warning: Citation 'tensorrt_llm_docs' on page 150 undefined on input line 241.
+
+
+LaTeX Warning: Citation 'tensorrt_llm_docs' on page 150 undefined on input line 241.
+
+
+LaTeX Warning: Citation 'vllm_pagedattention' on page 150 undefined on input line 243.
+
+
+
+[150]
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 151 undefined on input line 252.
+
+
+LaTeX Warning: Citation 'helix2023' on page 151 undefined on input line 252.
+
+
+
+[151]
+
+LaTeX Warning: Citation 'vaswani2017_attention' on page 152 undefined on input line 259.
+
+
+LaTeX Warning: Citation 'vllm_pagedattention' on page 152 undefined on input line 259.
+
+
+LaTeX Warning: Citation 'tetriinfer2023' on page 152 undefined on input line 266.
+
+
+LaTeX Warning: Citation 'frugalgpt_2023' on page 152 undefined on input line 268.
+
+
+LaTeX Warning: Citation 'google2022_chip' on page 152 undefined on input line 304.
+
+
+
+[152]
+
+[153]
+
+LaTeX Warning: Citation 'vllm_pagedattention' on page 154 undefined on input line 314.
+
+
+LaTeX Warning: Citation 'tensorrt_llm_docs' on page 154 undefined on input line 314.
+
+
+LaTeX Warning: Citation 'tgi_docs' on page 154 undefined on input line 314.
+
+
+LaTeX Warning: Citation 'reda2023redrafter' on page 154 undefined on input line 316.
+
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 154 undefined on input line 316.
+
+
+LaTeX Warning: Citation 'google2022_chip' on page 154 undefined on input line 316.
+
+
+LaTeX Warning: Citation 'speculative_decoding' on page 154 undefined on input line 318.
+
+
+
+[154]
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 155 undefined on input line 337.
+
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 155 undefined on input line 347.
+
+
+
+[155]
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 156 undefined on input line 355.
+
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 156 undefined on input line 355.
+
+
+LaTeX Warning: Citation 'helix2023' on page 156 undefined on input line 358.
+
+
+LaTeX Warning: Citation 'tetriinfer2023' on page 156 undefined on input line 358.
+
+
+LaTeX Warning: Citation 'vllm_pagedattention' on page 156 undefined on input line 362.
+
+
+LaTeX Warning: Citation 'vattention_2024' on page 156 undefined on input line 362.
+
+
+
+[156]
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 157 undefined on input line 366.
+
+
+Overfull \hbox (24.00858pt too wide) in paragraph at lines 366--367
+[]\OT1/ntxtlf/b/n/10 (-20) Paged KV (vLLM-style): \OT1/ntxtlf/m/n/10 (-20) al-lo-cate KV in pages to re-duce frag-men-ta-tion [[]]. 
+ []
+
+
+LaTeX Warning: Citation 'scalingintelligence.stanford.edu' on page 157 undefined on input line 375.
+
+
+LaTeX Warning: Citation 'vllm_pagedattention' on page 157 undefined on input line 381.
+
+
+
+[157]
+
+LaTeX Warning: Citation 'k8s_hpa_docs' on page 158 undefined on input line 397.
+
+
+LaTeX Warning: Citation 'keda_docs' on page 158 undefined on input line 397.
+
+
+LaTeX Warning: Citation 'keda_docs' on page 158 undefined on input line 397.
+
+
+
+[158]
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 159 undefined on input line 446.
+
+
+
+[159]
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 160 undefined on input line 483.
+
+
+LaTeX Warning: Citation 'helix2023' on page 160 undefined on input line 483.
+
+
+
+[160]
+
+./ch06-scaling.tex:583: LaTeX Error: Not allowed in LR mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.583 \end{axis}
+                
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./ch06-scaling.tex:583: LaTeX Error: Not allowed in LR mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.583 \end{axis}
+                
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+
+[161]
+
+[162]
+
+LaTeX Warning: Citation 'rise.cs.berkeley.edu' on page 163 undefined on input line 616.
+
+
+
+[163]
+
+[164]
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 165 undefined on input line 736.
+
+
+
+[165]
+
+LaTeX Warning: Reference `ch:performance' on page 166 undefined on input line 748.
+
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 166 undefined on input line 754.
+
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 166 undefined on input line 754.
+
+
+
+[166]
+
+[167]
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 168 undefined on input line 783.
+
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 168 undefined on input line 783.
+
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 168 undefined on input line 783.
+
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 168 undefined on input line 783.
+
+
+Overfull \hbox (47.1687pt too wide) in paragraph at lines 854--855
+ [][] 
+ []
+
+
+
+[168]
+
+[169]
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 170 undefined on input line 892.
+
+
+LaTeX Warning: Citation 'helix2023' on page 170 undefined on input line 892.
+
+
+LaTeX Warning: Citation 'pope2023exegpt' on page 170 undefined on input line 892.
+
+
+
+[170]
+
+[171]
+
+[172]
+Overfull \hbox (101.8156pt too wide) in paragraph at lines 1020--1021
+ [][] 
+ []
+
+
+
+[173]
+
+LaTeX Warning: Reference `ch:performance' on page 174 undefined on input line 1050.
+
+
+LaTeX Warning: Empty bibliography on input line 1054.
+
+
+LaTeX Warning: Reference `ch:performance' on page 174 undefined on input line 1060.
+
+
+
+[174])
+
+[175]
+
+[176
+
+
+
+
+]
+
+[177]
+
+[178]
+\openout2 = `author/part3-optimization.aux'.
+
+ (./author/part3-optimization.tex
+
+LaTeX Warning: Reference `ch:performance' on page 179 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:rag' on page 179 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 179 undefined on input line 5.
+
+)
+
+[179
+
+]
+\openout2 = `ch07-performance.aux'.
+
+ (./ch07-performance.tex
+
+[180
+
+
+
+
+
+]
+Chapter 7.
+Package biblatex Info: Reference segment=14 on input line 1.
+Package biblatex Info: Setting label 'refsegment:014' on input line 1.
+Package biblatex Info: Reference segment=15 on input line 3.
+Package biblatex Info: Setting label 'refsegment:015' on input line 3.
+
+
+[181]
+Package pgfplots info on input line 74: Using 'lua backend=false' for axis: x coord trafo unsupported.
+
+
+[182]
+
+[183]
+
+LaTeX Warning: Citation 'Dettmers2022LLMint8' on page 184 undefined on input line 96.
+
+
+LaTeX Warning: Citation 'Xiao2023SmoothQuant' on page 184 undefined on input line 96.
+
+
+LaTeX Warning: Citation 'Frantar2023GPTQ' on page 184 undefined on input line 96.
+
+
+LaTeX Warning: Citation 'Xiao2023SmoothQuant' on page 184 undefined on input line 112.
+
+
+LaTeX Warning: Citation 'Lin2023AWQ' on page 184 undefined on input line 112.
+
+
+LaTeX Warning: Citation 'Frantar2023GPTQ' on page 184 undefined on input line 112.
+
+
+LaTeX Warning: Citation 'NVIDIA2023Hopper' on page 184 undefined on input line 112.
+
+
+
+[184]
+Overfull \hbox (13.91396pt too wide) in paragraph at lines 153--153
+[]|\OT1/ntxtlf/b/n/8.5 (-20) Hardware
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--153
+\OT1/ntxtlf/b/n/8.5 (+20) Com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--153
+\OT1/ntxtlf/b/n/8.5 (+20) pat-i-
+ []
+
+
+Overfull \hbox (149.68228pt too wide) in paragraph at lines 153--153
+|[][]
+ []
+
+
+Overfull \hbox (156.62679pt too wide) in paragraph at lines 153--153
+|[][]
+ []
+
+
+Overfull \hbox (177.26477pt too wide) in paragraph at lines 153--153
+|[][]
+ []
+
+
+Overfull \hbox (164.84637pt too wide) in paragraph at lines 153--153
+|[][]
+ []
+
+
+LaTeX Warning: Citation 'Frantar2023SparseGPT' on page 185 undefined on input line 165.
+
+
+
+[185]
+
+LaTeX Warning: Citation 'Hinton2015Distillation' on page 186 undefined on input line 168.
+
+
+LaTeX Warning: Citation 'Sanh2019DistilBERT' on page 186 undefined on input line 170.
+
+
+LaTeX Warning: Citation 'Hu2022LoRA' on page 186 undefined on input line 177.
+
+
+LaTeX Warning: Citation 'Dettmers2023QLoRA' on page 186 undefined on input line 177.
+
+
+
+[186]
+
+LaTeX Warning: Citation 'Hu2022LoRA' on page 187 undefined on input line 179.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Quantization
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Numeric pre-ci-sion of
+ []
+
+
+Underfull \hbox (badness 1248) in paragraph at lines 253--253
+\OT1/ntxtlf/m/n/8.5 (+20) weights (and some-times
+ []
+
+
+Overfull \hbox (195.77458pt too wide) in paragraph at lines 253--253
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
+[]|\OT1/ntxtlf/m/n/8.5 (+20) 20--50% com-monly
+ []
+
+
+Underfull \hbox (badness 3547) in paragraph at lines 253--253
+\OT1/ntxtlf/m/n/8.5 (+20) (higher with care-ful
+ []
+
+
+Overfull \hbox (92.26546pt too wide) in paragraph at lines 253--253
+|[][]
+ []
+
+
+Overfull \hbox (207.9465pt too wide) in paragraph at lines 253--253
+|[][]
+ []
+
+
+Underfull \hbox (badness 1810) in paragraph at lines 253--253
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Low to mod-er-ate if
+ []
+
+
+Overfull \hbox (260.91855pt too wide) in paragraph at lines 253--253
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Efficient Fine-Tuning
+ []
+
+
+Underfull \hbox (badness 1014) in paragraph at lines 253--253
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Adds low-rank adapters;
+ []
+
+
+Underfull \hbox (badness 1112) in paragraph at lines 253--253
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Training-time VRAM
+ []
+
+
+Underfull \hbox (badness 5288) in paragraph at lines 253--253
+\OT1/ntxtlf/m/n/8.5 (+20) (adapters add tiny
+ []
+
+
+Underfull \hbox (badness 1221) in paragraph at lines 253--253
+\OT1/ntxtlf/m/n/8.5 (+20) for many tasks with
+ []
+
+
+Overfull \hbox (249.10347pt too wide) in paragraph at lines 253--253
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Low to mod-er-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
+\OT1/ntxtlf/m/n/8.5 (+20) ate; architecture-
+ []
+
+
+Overfull \hbox (175.79105pt too wide) in paragraph at lines 253--253
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Mixture-of-Experts
+ []
+
+
+Underfull \hbox (badness 1708) in paragraph at lines 253--253
+\OT1/ntxtlf/m/n/8.5 (+20) to-ken re-duced for a
+ []
+
+
+Overfull \hbox (261.063pt too wide) in paragraph at lines 253--253
+|[][]
+ []
+
+
+Underfull \hbox (badness 3240) in paragraph at lines 253--253
+\OT1/ntxtlf/m/n/8.5 (+20) cut typ-i-cal (method-
+ []
+
+
+Underfull \hbox (badness 4403) in paragraph at lines 253--253
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Lower la-tency via
+ []
+
+
+Overfull \hbox (214.27057pt too wide) in paragraph at lines 253--253
+|[][]
+ []
+
+Package pgfplots info on input line 273: Using 'lua backend=false' for axis: x coord trafo unsupported.
+
+Package tabularx Warning: X Columns too narrow (table too wide)
+(tabularx)                 on input line 311.
+
+
+Overfull \hbox (17.45506pt too wide) in paragraph at lines 311--311
+[]|\OT1/ntxtlf/b/n/8.5 (-20) Typical
+ []
+
+
+Overfull \hbox (9.08461pt too wide) in paragraph at lines 311--311
+\OT1/ntxtlf/b/n/8.5 (-20) GPU
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 311--311
+\OT1/ntxtlf/b/n/8.5 (+20) fit
+ []
+
+
+Overfull \hbox (21.89798pt too wide) in paragraph at lines 311--311
+\OT1/ntxtlf/b/n/8.5 (-20) (weights-
+ []
+
+
+Overfull \hbox (9.38107pt too wide) in paragraph at lines 311--311
+\OT1/ntxtlf/b/n/8.5 (-20) only)| 
+ []
+
+
+Overfull \hbox (143.5538pt too wide) in paragraph at lines 311--311
+|[][]
+ []
+
+
+Overfull \hbox (213.97874pt too wide) in paragraph at lines 311--311
+|[][]
+ []
+
+
+Overfull \hbox (25.47447pt too wide) in alignment at lines 311--311
+[][][][][][] 
+ []
+
+
+LaTeX Warning: Reference `tab:quantization-comparison' on page 187 undefined on input line 330.
+
+
+LaTeX Warning: Reference `tab:quantization-comparison' on page 187 undefined on input line 330.
+
+
+
+[187]
+
+[188]
+
+LaTeX Warning: Citation 'Kwon2023vLLM' on page 189 undefined on input line 343.
+
+
+
+[189]
+
+LaTeX Warning: Citation 'Kwon2023vLLM' on page 190 undefined on input line 345.
+
+
+LaTeX Warning: Citation 'NVIDIA2023Hopper' on page 190 undefined on input line 345.
+
+
+LaTeX Warning: Citation 'Dao2022FlashAttention' on page 190 undefined on input line 352.
+
+
+LaTeX Warning: Citation 'NVIDIA2023Hopper' on page 190 undefined on input line 354.
+
+
+LaTeX Warning: Citation 'Dao2022FlashAttention' on page 190 undefined on input line 354.
+
+
+LaTeX Warning: Citation 'Dao2023FlashAttention2' on page 190 undefined on input line 354.
+
+
+
+[190]
+
+LaTeX Warning: Citation 'Kwon2023vLLM' on page 191 undefined on input line 361.
+
+
+LaTeX Warning: Citation 'Kwon2023vLLM' on page 191 undefined on input line 363.
+
+
+
+[191]
+Overfull \hbox (49.54013pt too wide) in alignment at lines 392--392
+[][][][][][]
+ []
+
+
+LaTeX Warning: Citation 'Kwon2023vLLM' on page 192 undefined on input line 395.
+
+
+LaTeX Warning: Citation 'NVIDIA2023Hopper' on page 192 undefined on input line 395.
+
+
+
+[192]
+
+LaTeX Warning: Citation 'Kwon2023vLLM' on page 193 undefined on input line 411.
+
+
+
+[193]
+
+[194]
+
+[195]
+
+[196]
+
+[197]
+
+[198]
+
+LaTeX Warning: Citation 'Chen2023SpeculativeSampling' on page 199 undefined on input line 510.
+
+
+
+[199]
+
+LaTeX Warning: Citation 'Dao2022FlashAttention' on page 200 undefined on input line 526.
+
+
+
+[200]
+
+[201]
+Underfull \hbox (badness 10000) in paragraph at lines 581--581
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Fused at-ten-tion
+ []
+
+
+Underfull \hbox (badness 1552) in paragraph at lines 581--581
+\OT1/ntxtlf/m/n/8.5 (+20) (FlashAt-ten-tion) and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 581--581
+\OT1/ntxtlf/m/n/8.5 (+20) bet-ter tensor-core
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 581--581
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Larger dy-namic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 581--581
+\OT1/ntxtlf/m/n/8.5 (+20) batches; async
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 581--581
+\OT1/ntxtlf/m/n/8.5 (+20) schedul-ing be-tween
+ []
+
+
+LaTeX Warning: Citation 'Dean2013Tail' on page 202 undefined on input line 597.
+
+
+
+[202]
+Package pgfplots info on input line 673: Using 'lua backend=false' for axis: x coord trafo unsupported.
+
+
+[203]
+
+[204]
+
+LaTeX Warning: Citation 'Lin2023AWQ' on page 205 undefined on input line 709.
+
+
+LaTeX Warning: Citation 'Kwon2023vLLM' on page 205 undefined on input line 712.
+
+
+
+[205]
+
+[206]
+
+LaTeX Warning: Citation 'NVIDIA2023Hopper' on page 207 undefined on input line 736.
+
+
+LaTeX Warning: Citation 'Lin2023AWQ' on page 207 undefined on input line 737.
+
+
+LaTeX Warning: Citation 'Frantar2023GPTQ' on page 207 undefined on input line 737.
+
+
+
+[207]
+Overfull \hbox (13.91086pt too wide) in alignment at lines 775--775
+[][][][][]
+ []
+
+
+
+[208]
+
+LaTeX Warning: Citation 'bert-original' on page 209 undefined on input line 816.
+
+
+LaTeX Warning: Citation 'encoder-ops' on page 209 undefined on input line 816.
+
+
+LaTeX Warning: Citation 'bert-original' on page 209 undefined on input line 818.
+
+
+
+[209]
+
+LaTeX Warning: Citation 'int8-quantization' on page 210 undefined on input line 820.
+
+
+LaTeX Warning: Citation 'fp8-training' on page 210 undefined on input line 820.
+
+
+LaTeX Warning: Citation 'gpt-inference' on page 210 undefined on input line 825.
+
+
+LaTeX Warning: Citation 'flashattention-v2' on page 210 undefined on input line 825.
+
+
+LaTeX Warning: Citation 'vllm-paper' on page 210 undefined on input line 830.
+
+
+LaTeX Warning: Citation 'fused-kernels' on page 210 undefined on input line 830.
+
+
+LaTeX Warning: Citation 'attention-kv-cache' on page 210 undefined on input line 840.
+
+
+LaTeX Warning: Citation 'kv-quant' on page 210 undefined on input line 840.
+
+
+LaTeX Warning: Reference `sec:inference-engines' on page 210 undefined on input line 840.
+
+
+LaTeX Warning: Citation 'paged-attention' on page 210 undefined on input line 840.
+
+
+LaTeX Warning: Citation 'vllm-paper' on page 210 undefined on input line 842.
+
+
+LaTeX Warning: Citation 'tgi-whitepaper' on page 210 undefined on input line 842.
+
+
+LaTeX Warning: Citation 'tensorrt-llm' on page 210 undefined on input line 842.
+
+
+
+[210]
+
+LaTeX Warning: Citation 'switch-transformers' on page 211 undefined on input line 851.
+
+
+LaTeX Warning: Citation 'moe-inference' on page 211 undefined on input line 851.
+
+
+LaTeX Warning: Citation 'expert-parallel' on page 211 undefined on input line 855.
+
+
+LaTeX Warning: Citation 'flashattention-v2' on page 211 undefined on input line 875.
+
+
+
+[211]
+
+LaTeX Warning: Reference `sec:inference-engines' on page 212 undefined on input line 888.
+
+
+LaTeX Warning: Citation 'kv-quant' on page 212 undefined on input line 888.
+
+
+LaTeX Warning: Citation 'paged-attention' on page 212 undefined on input line 888.
+
+
+LaTeX Warning: Reference `eq:kv-total' on page 212 undefined on input line 891.
+
+
+
+[212]
+
+LaTeX Warning: Citation 'vllm-paper' on page 213 undefined on input line 908.
+
+
+LaTeX Warning: Citation 'fused-kernels' on page 213 undefined on input line 908.
+
+
+LaTeX Warning: Reference `eq:throughput-main' on page 213 undefined on input line 908.
+
+
+LaTeX Warning: Citation 'cloud-economics' on page 213 undefined on input line 922.
+
+
+LaTeX Warning: Reference `eq:kv-total' on page 213 undefined on input line 924.
+
+
+LaTeX Warning: Reference `eq:throughput-main' on page 213 undefined on input line 924.
+
+
+LaTeX Warning: Reference `eq:cost-k' on page 213 undefined on input line 924.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Encoder-Only
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Decoder-Only
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Mixture-of-
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 951--951
+[]|\OT1/ntxtlf/m/n/8.5 (+20) TTFT grows with
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) prompt length;
+ []
+
+
+Underfull \hbox (badness 6063) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) put gov-erned by
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Sparsity low-ers
+ []
+
+
+Underfull \hbox (badness 1590) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) FLOPs per to-ken,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Fixed per in-put
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) (dom-i-nated by
+ []
+
+
+Underfull \hbox (badness 1728) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) ceeds weights for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Experts sharded
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) across de-vices;
+ []
+
+
+Underfull \hbox (badness 2671) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) per-token mem-ory
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) large ag-gre-gate
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Cost-effective on
+ []
+
+
+Underfull \hbox (badness 4416) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) CPUs or mod-est
+ []
+
+
+Underfull \hbox (badness 7030) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) GPUs; ag-gres-sive
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) ti-za-tion im-prove
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) run-times (vLLM,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) TGI, TensorRT-
+ []
+
+
+Underfull \hbox (badness 2351) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) LLM); con-tin-u-ous
+ []
+
+
+Underfull \hbox (badness 2012) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) batch-ing; trade-off
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) be-tween la-tency
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) and through-put;
+ []
+
+
+Underfull \hbox (badness 2359) in paragraph at lines 951--951
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Benefits from ex-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) pert par-al-lelism
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) in multi-GPU
+ []
+
+
+Underfull \hbox (badness 6775) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) clus-ters; de-mands
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) high-bandwidth
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) in-ter-con-nects
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 951--951
+\OT1/ntxtlf/m/n/8.5 (+20) and router-aware
+ []
+
+
+
+[213]
+
+[214]
+Underfull \hbox (badness 2452) in paragraph at lines 981--981
+\OT1/ntxtlf/m/n/8.5 (+20) multi-GPU clus-ters; re-quires high-
+ []
+
+
+Overfull \hbox (27.50168pt too wide) in paragraph at lines 981--982
+ [][] 
+ []
+
+
+
+[215
+
+]
+
+LaTeX Warning: Reference `tab:runtimes' on page 216 undefined on input line 993.
+
+
+LaTeX Warning: Citation 'vllm-paper' on page 216 undefined on input line 1003.
+
+
+LaTeX Warning: Citation 'tgi-whitepaper' on page 216 undefined on input line 1003.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1003--1003
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Hugging Face TGI
+ []
+
+
+LaTeX Warning: Citation 'tensorrt-llm' on page 216 undefined on input line 1003.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1003--1004
+[]|\OT1/ntxtlf/b/n/8.5 (+20) TensorRT-LLM
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1007--1008
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Static/dynamic batch-
+ []
+
+
+Underfull \hbox (badness 5893) in paragraph at lines 1007--1008
+\OT1/ntxtlf/m/n/8.5 (+20) ing; turnkey server with
+ []
+
+
+Underfull \hbox (badness 1571) in paragraph at lines 1016--1017
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Flash-style at-ten-tion; cus-tom
+ []
+
+
+Underfull \hbox (badness 2753) in paragraph at lines 1023--1024
+[]|\OT1/ntxtlf/m/n/8.5 (+20) NVIDIA-distributed; tightly
+ []
+
+
+Overfull \hbox (115.56535pt too wide) in paragraph at lines 1001--1036
+ [][] 
+ []
+
+
+LaTeX Warning: Citation 'vllm-paper' on page 216 undefined on input line 1042.
+
+
+LaTeX Warning: Citation 'tgi-whitepaper' on page 216 undefined on input line 1042.
+
+
+LaTeX Warning: Citation 'tensorrt-llm' on page 216 undefined on input line 1042.
+
+
+
+[216
+
+]
+
+LaTeX Warning: Citation 'cloud-rightsizing' on page 217 undefined on input line 1055.
+
+
+LaTeX Warning: Citation 'spot-capacity' on page 217 undefined on input line 1055.
+
+
+LaTeX Warning: Citation 'parallelism-survey' on page 217 undefined on input line 1061.
+
+
+
+[217]
+
+LaTeX Warning: Citation 'langsmith' on page 218 undefined on input line 1075.
+
+
+LaTeX Warning: Citation 'langchain-cache' on page 218 undefined on input line 1078.
+
+
+LaTeX Warning: Citation 'model-cascade' on page 218 undefined on input line 1081.
+
+
+
+[218]
+
+LaTeX Warning: Citation 'gptq' on page 219 undefined on input line 1094.
+
+
+LaTeX Warning: Citation 'awq' on page 219 undefined on input line 1094.
+
+
+LaTeX Warning: Citation 'vllm-paper' on page 219 undefined on input line 1095.
+
+
+
+[219]
+
+LaTeX Warning: Empty bibliography on input line 1119.
+
+
+LaTeX Warning: Reference `ch:rag' on page 220 undefined on input line 1126.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 220 undefined on input line 1126.
+
+)
+
+[220]
+\openout2 = `ch08-rag.aux'.
+
+ (./ch08-rag.tex
+Chapter 8.
+Package biblatex Info: Reference segment=16 on input line 1.
+Package biblatex Info: Setting label 'refsegment:016' on input line 1.
+Package biblatex Info: Reference segment=17 on input line 3.
+Package biblatex Info: Setting label 'refsegment:017' on input line 3.
+
+LaTeX Warning: Citation 'Lewis2020RAG' on page 221 undefined on input line 15.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 221 undefined on input line 15.
+
+
+LaTeX Warning: Citation 'Guu2020REALM' on page 221 undefined on input line 17.
+
+
+LaTeX Warning: Citation 'Izacard2020Fusion' on page 221 undefined on input line 17.
+
+
+LaTeX Warning: Citation 'Borgeaud2022RETRO' on page 221 undefined on input line 19.
+
+
+LaTeX Warning: Citation 'Thakur2021BEIR' on page 221 undefined on input line 19.
+
+
+LaTeX Warning: Citation 'RAGAS2023' on page 221 undefined on input line 19.
+
+
+
+[221
+
+
+
+
+
+]
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 222 undefined on input line 41.
+
+
+LaTeX Warning: Citation 'Lewis2020RAG' on page 222 undefined on input line 41.
+
+
+LaTeX Warning: Citation 'Borgeaud2022RETRO' on page 222 undefined on input line 41.
+
+
+
+[222]
+
+LaTeX Warning: Citation 'Lewis2020RAG' on page 223 undefined on input line 44.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 223 undefined on input line 44.
+
+
+LaTeX Warning: Citation 'RAGAS2023' on page 223 undefined on input line 44.
+
+
+LaTeX Warning: Citation 'Nakano2021WebGPT' on page 223 undefined on input line 47.
+
+
+LaTeX Warning: Citation 'Asai2020MultiHop' on page 223 undefined on input line 47.
+
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 223 undefined on input line 50.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 223 undefined on input line 50.
+
+
+
+[223]
+
+LaTeX Warning: Citation 'Lewis2020RAG' on page 224 undefined on input line 53.
+
+
+LaTeX Warning: Citation 'Guu2020REALM' on page 224 undefined on input line 53.
+
+
+LaTeX Warning: Citation 'Borgeaud2022RETRO' on page 224 undefined on input line 53.
+
+
+LaTeX Warning: Citation 'Lewis2020RAG' on page 224 undefined on input line 58.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 224 undefined on input line 58.
+
+
+LaTeX Warning: Citation 'Pryon2023' on page 224 undefined on input line 61.
+
+
+LaTeX Warning: Citation 'Devto2023' on page 224 undefined on input line 72.
+
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 224 undefined on input line 79.
+
+
+
+[224]
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 225 undefined on input line 88.
+
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 225 undefined on input line 88.
+
+
+LaTeX Warning: Citation 'Jegou2011PQ' on page 225 undefined on input line 88.
+
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 225 undefined on input line 100.
+
+
+LaTeX Warning: Citation 'Jegou2011PQ' on page 225 undefined on input line 101.
+
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 225 undefined on input line 110.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 225 undefined on input line 110.
+
+
+LaTeX Warning: Citation 'Karpukhin2020DPR' on page 225 undefined on input line 115.
+
+
+LaTeX Warning: Citation 'Thakur2021BEIR' on page 225 undefined on input line 115.
+
+
+
+[225]
+
+LaTeX Warning: Citation 'Zhan2021ColBERTv2' on page 226 undefined on input line 119.
+
+
+LaTeX Warning: Citation 'Lin2021SPLADE' on page 226 undefined on input line 119.
+
+
+Overfull \hbox (7.41077pt too wide) in paragraph at lines 119--120
+[]\OT1/ntxtlf/b/n/10 (-20) Hybrid re-trieval\OT1/ntxtlf/m/n/10 (-20) : com-bin-ing dense + sparse for best cov-er-age [[],
+ []
+
+
+LaTeX Warning: Citation 'Izacard2020Fusion' on page 226 undefined on input line 140.
+
+
+LaTeX Warning: Citation 'Guu2020REALM' on page 226 undefined on input line 140.
+
+
+LaTeX Warning: Citation 'RAGAS2023' on page 226 undefined on input line 146.
+
+
+
+[226]
+
+LaTeX Warning: Citation 'Borgeaud2022RETRO' on page 227 undefined on input line 159.
+
+
+LaTeX Warning: Citation 'Lewis2020RAG' on page 227 undefined on input line 167.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 227 undefined on input line 167.
+
+
+LaTeX Warning: Citation 'Asai2020MultiHop' on page 227 undefined on input line 193.
+
+
+LaTeX Warning: Citation 'Nakano2021WebGPT' on page 227 undefined on input line 193.
+
+
+Overfull \hbox (35.2191pt too wide) in paragraph at lines 193--194
+\OT1/ntxtlf/m/n/10 (-20) Multi-stage RAG in-tro-duces it-er-a-tion into the re-trieval and rea-son-ing pro-cess [[],
+ []
+
+
+
+[227]
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 228 undefined on input line 226.
+
+
+LaTeX Warning: Citation 'Borgeaud2022RETRO' on page 228 undefined on input line 226.
+
+
+
+[228]
+
+LaTeX Warning: Citation 'Pryon2023' on page 229 undefined on input line 270.
+
+
+
+[229]
+
+LaTeX Warning: Citation 'Pryon2023' on page 230 undefined on input line 289.
+
+
+LaTeX Warning: Citation 'Pryon2023' on page 230 undefined on input line 300.
+
+
+LaTeX Warning: Citation 'Devto2023' on page 230 undefined on input line 315.
+
+
+
+[230]
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 231 undefined on input line 339.
+
+
+LaTeX Warning: Citation 'Pryon2023' on page 231 undefined on input line 352.
+
+
+
+[231]
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 232 undefined on input line 386.
+
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 232 undefined on input line 386.
+
+
+LaTeX Warning: Citation 'Jegou2011PQ' on page 232 undefined on input line 386.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 232 undefined on input line 386.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 232 undefined on input line 389.
+
+
+
+[232]
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 233 undefined on input line 392.
+
+
+LaTeX Warning: Citation 'Jegou2011PQ' on page 233 undefined on input line 394.
+
+
+LaTeX Warning: Citation 'Zilliz2023' on page 233 undefined on input line 404.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 233 undefined on input line 416.
+
+
+
+[233]
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 234 undefined on input line 431.
+
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 234 undefined on input line 445.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 234 undefined on input line 445.
+
+
+
+[234]
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 235 undefined on input line 505.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 235 undefined on input line 505.
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) for eval. Cons: poor scal-ing.
+ []
+
+
+Underfull \hbox (badness 3209) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) Use for small cor-pora, eval
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) tasks. Tun-ables: batch size,
+ []
+
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 235 undefined on input line 505.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 235 undefined on input line 505.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--505
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Pros: ex-cel-lent speed/re-call
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) trade-off; ro-bust de-fault in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) many DBs. Cons: mem-ory
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--505
+\OT1/lmtt/m/n/8.5 efConstruction\OT1/ntxtlf/m/n/8.5 (+20) , \OT1/lmtt/m/n/8.5 efSearch\OT1/ntxtlf/m/n/8.5 (+20) .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) Great general-purpose ANN
+ []
+
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 235 undefined on input line 505.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 235 undefined on input line 505.
+
+
+Underfull \hbox (badness 1776) in paragraph at lines 505--505
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Pros: tun-able speed/re-call via
+ []
+
+
+Underfull \hbox (badness 1259) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) NNs in other cells. Tun-ables:
+ []
+
+
+Underfull \hbox (badness 1337) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) cells). Good for tens of mil-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) lions+. [[],
+ []
+
+
+LaTeX Warning: Citation 'Jegou2011PQ' on page 235 undefined on input line 505.
+
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 235 undefined on input line 505.
+
+
+Underfull \hbox (badness 1092) in paragraph at lines 505--505
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Pros: dras-tic mem-ory sav-ings;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) sub-quan-tiz-ers. [[],
+ []
+
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 235 undefined on input line 505.
+
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 235 undefined on input line 505.
+
+
+LaTeX Warning: Citation 'Jegou2011PQ' on page 235 undefined on input line 505.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 235 undefined on input line 505.
+
+
+Underfull \hbox (badness 2020) in paragraph at lines 505--505
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Compose strengths: e.g., IVF
+ []
+
+
+Underfull \hbox (badness 2318) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) nar-rows can-di-dates; PQ com-
+ []
+
+
+Underfull \hbox (badness 3769) in paragraph at lines 505--505
+\OT1/ntxtlf/m/n/8.5 (+20) presses; HNSW re-fines. Use
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--505
+[]\OT1/ntxtlf/m/n/8.5 (+20) ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--505
+[]\OT1/ntxtlf/m/n/8.5 (+20) ,
+ []
+
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 235 undefined on input line 508.
+
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 235 undefined on input line 508.
+
+
+LaTeX Warning: Citation 'Jegou2011PQ' on page 235 undefined on input line 508.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 235 undefined on input line 508.
+
+
+LaTeX Warning: Citation 'Lewis2020RAG' on page 235 undefined on input line 521.
+
+
+LaTeX Warning: Citation 'Karpukhin2020DPR' on page 235 undefined on input line 521.
+
+
+LaTeX Warning: Citation 'Thakur2021BEIR' on page 235 undefined on input line 521.
+
+
+LaTeX Warning: Citation 'Karpukhin2020DPR' on page 235 undefined on input line 524.
+
+
+LaTeX Warning: Citation 'Karpukhin2020DPR' on page 235 undefined on input line 524.
+
+
+LaTeX Warning: Citation 'Milvus2023' on page 235 undefined on input line 528.
+
+
+LaTeX Warning: Citation 'AWS2023NeuralSparse' on page 235 undefined on input line 535.
+
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 235 undefined on input line 541.
+
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 235 undefined on input line 541.
+
+
+LaTeX Warning: Citation 'robertson2009bm25' on page 235 undefined on input line 544.
+
+
+
+[235]
+
+[236]
+
+LaTeX Warning: Citation 'Lin2021SPLADE' on page 237 undefined on input line 562.
+
+
+LaTeX Warning: Citation 'AWS2023NeuralSparse' on page 237 undefined on input line 562.
+
+
+LaTeX Warning: Citation 'AICOM2023' on page 237 undefined on input line 571.
+
+
+LaTeX Warning: Citation 'AWS2023NeuralSparse' on page 237 undefined on input line 579.
+
+
+Overfull \hbox (35.7917pt too wide) in paragraph at lines 579--580
+[]\OT1/ntxtlf/m/n/10 (-20) Often achieves higher re-call and pre-ci-sion than ei-ther method alone [[]]. 
+ []
+
+
+
+[237]
+
+LaTeX Warning: Citation 'Zhan2021ColBERTv2' on page 238 undefined on input line 591.
+
+
+LaTeX Warning: Citation 'Karpukhin2020DPR' on page 238 undefined on input line 624.
+
+
+LaTeX Warning: Citation 'Milvus2023' on page 238 undefined on input line 624.
+
+
+Underfull \hbox (badness 1917) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) tics, syn-onyms,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) para-phrases;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) language-
+ []
+
+
+Underfull \hbox (badness 3148) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) agnostic; ef-fec-
+ []
+
+
+Overfull \hbox (21.98584pt too wide) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (-20) [[],
+ []
+
+
+LaTeX Warning: Citation 'AWS2023NeuralSparse' on page 238 undefined on input line 624.
+
+
+Underfull \hbox (badness 5862) in paragraph at lines 624--624
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Struggles with
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) rare terms,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) num-bers, and
+ []
+
+
+Underfull \hbox (badness 2600) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) do-main jar-gon;
+ []
+
+
+Overfull \hbox (33.26819pt too wide) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (-20) [[]]| 
+ []
+
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 238 undefined on input line 624.
+
+
+LaTeX Warning: Citation 'Johnson2019FAISS' on page 238 undefined on input line 624.
+
+
+Underfull \hbox (badness 3333) in paragraph at lines 624--624
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Requires ANN
+ []
+
+
+Underfull \hbox (badness 7685) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) in-dex (HNSW,
+ []
+
+
+Underfull \hbox (badness 6063) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) IVF, PQ) for
+ []
+
+
+Overfull \hbox (17.04733pt too wide) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (-20) [[],
+ []
+
+
+Overfull \hbox (16.29933pt too wide) in paragraph at lines 624--624
+[]\OT1/ntxtlf/m/n/8.5 (-20) ]| 
+ []
+
+
+Underfull \hbox (badness 1303) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) i-lar-ity and con-cep-
+ []
+
+
+LaTeX Warning: Citation 'Lin2021SPLADE' on page 238 undefined on input line 624.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Precise for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) key-words,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) dates, codes;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) in-ter-pretable;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) no model
+ []
+
+
+Overfull \hbox (11.93321pt too wide) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (-20) [[]]| 
+ []
+
+
+LaTeX Warning: Citation 'AWS2023NeuralSparse' on page 238 undefined on input line 624.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Vocabulary
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) mis-match; fails
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) on syn-onyms
+ []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) vs. ``in-fluenza'')
+ []
+
+
+Overfull \hbox (33.26819pt too wide) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (-20) [[]]| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Efficient up-
+ []
+
+
+Underfull \hbox (badness 5533) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) dates; in-verted
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) in-dexes scale
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) well, though
+ []
+
+
+Underfull \hbox (badness 1127) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) mains where ex-act
+ []
+
+
+LaTeX Warning: Citation 'AICOM2023' on page 238 undefined on input line 624.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 238 undefined on input line 624.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Leverages
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) both se-man-tic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) cov-er-age and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) ex-act match-
+ []
+
+
+Underfull \hbox (badness 3260) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) ing; ro-bust to
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) [[],
+ []
+
+
+Overfull \hbox (13.74084pt too wide) in paragraph at lines 624--624
+[]\OT1/ntxtlf/m/n/8.5 (-20) ]| 
+ []
+
+
+Underfull \hbox (badness 8189) in paragraph at lines 624--624
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Complexity in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) tun-ing score
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) fu-sion; higher
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Supported na-
+ []
+
+
+Underfull \hbox (badness 1484) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) tively in some
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) Pinecone) or
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) via two-phase
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Strongest per-for-
+ []
+
+
+Underfull \hbox (badness 7504) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) and het-ero-ge-neous
+ []
+
+
+Underfull \hbox (badness 8189) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) data. E.g., ``SLA
+ []
+
+
+Underfull \hbox (badness 1721) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) for prod-uct X for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) { sparse en-sures
+ []
+
+
+Underfull \hbox (badness 6575) in paragraph at lines 624--624
+\OT1/ntxtlf/m/n/8.5 (+20) mium''). Used in
+ []
+
+
+LaTeX Warning: Citation 'Zhan2021ColBERTv2' on page 238 undefined on input line 626.
+
+
+LaTeX Warning: Citation 'pinecone_hybrid_docs' on page 238 undefined on input line 637.
+
+
+LaTeX Warning: Citation 'weaviate_hybrid_docs' on page 238 undefined on input line 637.
+
+
+LaTeX Warning: Citation 'cormack2009rrf' on page 238 undefined on input line 638.
+
+
+LaTeX Warning: Citation 'khattab2020colbert' on page 238 undefined on input line 639.
+
+
+LaTeX Warning: Citation 'gao2023hyde' on page 238 undefined on input line 640.
+
+
+
+[238]
+
+[239]
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 240 undefined on input line 659.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 240 undefined on input line 676.
+
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 240 undefined on input line 679.
+
+
+
+[240]
+
+LaTeX Warning: Citation 'Pinecone2023RAG' on page 241 undefined on input line 687.
+
+
+
+[241]
+
+[242]
+
+[243]
+
+LaTeX Warning: Citation 'cloud2023eval' on page 244 undefined on input line 767.
+
+
+LaTeX Warning: Citation 'cloud2023ragas' on page 244 undefined on input line 767.
+
+
+
+[244]
+
+LaTeX Warning: Citation 'neptune2023rag' on page 245 undefined on input line 805.
+
+
+
+[245]
+
+[246]
+
+[247]
+
+[248]
+
+[249]
+
+[250]
+
+[251]
+
+[252]
+LaTeX Font Info:    Trying to load font information for OMS+lmtt on input line 913.
+LaTeX Font Info:    No file OMSlmtt.fd. on input line 913.
+
+
+LaTeX Font Warning: Font shape `OMS/lmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 913.
+
+
+
+[253]
+
+[254]
+
+[255]
+
+[256]
+
+[257]
+
+[258]
+
+LaTeX Warning: Empty bibliography on input line 991.
+
+
+LaTeX Warning: Reference `ch:testing' on page 259 undefined on input line 998.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 259 undefined on input line 998.
+
+
+
+[259])
+
+[260]
+\openout2 = `ch09-agents-orchestration.aux'.
+
+ (./ch09-agents-orchestration.tex
+Chapter 9.
+Package biblatex Info: Reference segment=18 on input line 1.
+Package biblatex Info: Setting label 'refsegment:018' on input line 1.
+Package biblatex Info: Reference segment=19 on input line 3.
+Package biblatex Info: Setting label 'refsegment:019' on input line 3.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 13.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 13.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 13.
+
+LaTeX Warning: Citation 'blogLangChain' on page 261 undefined on input line 20.
+
+
+LaTeX Warning: Citation 'learnMicrosoft' on page 261 undefined on input line 20.
+
+
+
+[261
+
+
+
+
+
+]
+
+LaTeX Warning: Citation 'v7labs' on page 262 undefined on input line 29.
+
+
+LaTeX Warning: Citation 'anthropic' on page 262 undefined on input line 29.
+
+
+LaTeX Warning: Citation 'learnMicrosoft' on page 262 undefined on input line 29.
+
+
+LaTeX Warning: Citation 'blogLangChain' on page 262 undefined on input line 34.
+
+
+LaTeX Warning: Citation 'learnMicrosoft' on page 262 undefined on input line 34.
+
+
+LaTeX Warning: Citation 'blogLangChain' on page 262 undefined on input line 36.
+
+
+LaTeX Warning: Citation 'anthropic' on page 262 undefined on input line 36.
+
+
+LaTeX Warning: Citation 'theDecoder' on page 262 undefined on input line 36.
+
+
+
+[262]
+
+LaTeX Warning: Citation 'v7labs' on page 263 undefined on input line 38.
+
+
+LaTeX Warning: Citation 'learnMicrosoft' on page 263 undefined on input line 38.
+
+
+LaTeX Warning: Citation 'v7labs' on page 263 undefined on input line 40.
+
+
+LaTeX Warning: Reference `sec:errorhandling' on page 263 undefined on input line 40.
+
+
+LaTeX Warning: Citation 'learnMicrosoft' on page 263 undefined on input line 43.
+
+
+LaTeX Warning: Citation 'langchain' on page 263 undefined on input line 50.
+
+
+
+[263]
+
+LaTeX Warning: Citation 'huggingfaceAgents' on page 264 undefined on input line 55.
+
+
+LaTeX Warning: Citation 'huggingfaceAgents2' on page 264 undefined on input line 55.
+
+
+LaTeX Warning: Citation 'blogLangChain' on page 264 undefined on input line 55.
+
+
+LaTeX Warning: Citation 'huggingfaceTransformers' on page 264 undefined on input line 55.
+
+
+LaTeX Warning: Citation 'huggingfaceAgents3' on page 264 undefined on input line 55.
+
+
+LaTeX Warning: Citation 'blogLangChain' on page 264 undefined on input line 55.
+
+
+LaTeX Warning: Citation 'langchain' on page 264 undefined on input line 55.
+
+
+LaTeX Warning: Citation 'anthropic' on page 264 undefined on input line 67.
+
+
+LaTeX Warning: Citation 'theDecoder' on page 264 undefined on input line 67.
+
+
+LaTeX Warning: Citation 'langchain' on page 264 undefined on input line 78.
+
+
+
+[264]
+
+LaTeX Warning: Citation 'emergentmind' on page 265 undefined on input line 84.
+
+
+LaTeX Warning: Citation 'emergentmind2' on page 265 undefined on input line 84.
+
+
+LaTeX Warning: Citation 'huggingfaceAgents' on page 265 undefined on input line 91.
+
+
+LaTeX Warning: Citation 'huggingfaceAgents2' on page 265 undefined on input line 91.
+
+
+LaTeX Warning: Citation 'huggingfaceAgents3' on page 265 undefined on input line 100.
+
+
+LaTeX Warning: Citation 'huggingfaceAgents4' on page 265 undefined on input line 100.
+
+
+LaTeX Warning: Reference `ch:intro' on page 265 undefined on input line 108.
+
+
+
+[265]
+
+[266]
+
+[267]
+
+[268]
+
+LaTeX Warning: Reference `ch:case-study' on page 269 undefined on input line 204.
+
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 216.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 216.
+
+
+[269]
+
+LaTeX Warning: Citation 'emergentmind' on page 270 undefined on input line 236.
+
+
+LaTeX Warning: Citation 'emergentmind2' on page 270 undefined on input line 236.
+
+
+
+[270]
+
+LaTeX Warning: Citation 'emergentmind' on page 271 undefined on input line 255.
+
+
+LaTeX Warning: Citation 'emergentmind2' on page 271 undefined on input line 255.
+
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 257.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 257.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 257.
+
+LaTeX Warning: Citation 'langchain' on page 271 undefined on input line 259.
+
+
+
+[271]
+
+LaTeX Warning: Citation 'langchain' on page 272 undefined on input line 274.
+
+
+LaTeX Warning: Citation 'blogLangChain' on page 272 undefined on input line 274.
+
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 280.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 280.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 280.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 280.
+
+LaTeX Warning: Citation 'awsOrchestration' on page 272 undefined on input line 285.
+
+
+
+[272]
+
+LaTeX Warning: Citation 'blogLangChain' on page 273 undefined on input line 293.
+
+
+LaTeX Warning: Citation 'langchain' on page 273 undefined on input line 293.
+
+
+LaTeX Warning: Citation 'blogLangChain2' on page 273 undefined on input line 296.
+
+
+LaTeX Warning: Citation 'anthropic' on page 273 undefined on input line 305.
+
+
+LaTeX Warning: Citation 'sprinklr' on page 273 undefined on input line 306.
+
+
+
+[273]
+
+LaTeX Warning: Citation 'langchain' on page 274 undefined on input line 319.
+
+
+LaTeX Warning: Reference `ch:testing' on page 274 undefined on input line 327.
+
+
+LaTeX Warning: Reference `sec:errorhandling' on page 274 undefined on input line 327.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 274 undefined on input line 327.
+
+
+Overfull \hbox (358.72319pt too wide) in paragraph at lines 418--419
+ [][] 
+ []
+
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 424.
+
+LaTeX Font Warning: Font shape `TS1/cmr/m/n' in size <8.5> not available
+(Font)              size <8> substituted on input line 424.
+
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 424.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 424.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 424.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 424.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 424.
+
+
+[274]
+
+[275]
+
+[276]
+Overfull \hbox (101.2487pt too wide) in paragraph at lines 466--466
+[]    \OT1/lmtt/m/n/10 result_analysis = call(AnalysisAgent, query, params={"brief": True}, timeout=10s)[] 
+ []
+
+
+Overfull \hbox (206.2484pt too wide) in paragraph at lines 468--468
+[]        \OT1/lmtt/m/n/10 return ConversationAgent("I'm sorry, I'm having trouble analyzing this request.", tone="apology")[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 470--470
+[]\OT1/lmtt/m/n/10 result_verif = call(VerificationAgent, result_analysis, timeout=5s)[] 
+ []
+
+
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 475--475
+[]\OT1/lmtt/m/n/10 final_answer = format_answer(result_verif or result_analysis) + warning[] 
+ []
+
+
+
+[277]
+
+LaTeX Warning: Citation 'anthropic' on page 278 undefined on input line 501.
+
+
+LaTeX Warning: Citation 'anthropic' on page 278 undefined on input line 501.
+
+
+
+[278]
+
+LaTeX Warning: Citation 'blogLangChain' on page 279 undefined on input line 510.
+
+
+
+[279]
+
+[280]
+
+[281]
+
+[282]
+
+[283]
+
+LaTeX Warning: Citation 'langchain' on page 284 undefined on input line 584.
+
+
+
+[284]
+LaTeX Font Info:    Trying to load font information for OMS+ntxtlf on input line 597.
+LaTeX Font Info:    No file OMSntxtlf.fd. on input line 597.
+
+
+LaTeX Font Warning: Font shape `OMS/ntxtlf/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbackslash' on input line 597.
+
+
+
+[285]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 626.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 626.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 626.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 626.
+
+
+[286]
+
+LaTeX Warning: Citation 'langchain' on page 287 undefined on input line 628.
+
+
+
+[287]
+
+[288]
+
+LaTeX Warning: Citation 'langchain' on page 289 undefined on input line 664.
+
+
+LaTeX Warning: Citation 'blogLangChain' on page 289 undefined on input line 668.
+
+
+LaTeX Warning: Empty bibliography on input line 673.
+
+)
+
+[289]
+
+[290
+
+
+
+
+]
+
+[291]
+
+[292]
+\openout2 = `author/part4-governance.aux'.
+
+ (./author/part4-governance.tex
+
+LaTeX Warning: Reference `ch:testing' on page 293 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 293 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:case-study' on page 293 undefined on input line 5.
+
+)
+
+[293
+
+]
+\openout2 = `ch10-testing-eval.aux'.
+
+ (./ch10-testing-eval.tex
+
+[294
+
+
+
+
+
+]
+Chapter 10.
+Package biblatex Info: Reference segment=20 on input line 1.
+Package biblatex Info: Setting label 'refsegment:020' on input line 1.
+Package biblatex Info: Reference segment=21 on input line 3.
+Package biblatex Info: Setting label 'refsegment:021' on input line 3.
+
+LaTeX Warning: Citation 'arxivEval' on page 295 undefined on input line 18.
+
+
+LaTeX Warning: Citation 'bytexEval' on page 295 undefined on input line 18.
+
+
+
+[295]
+
+LaTeX Warning: Citation 'arxivEval' on page 296 undefined on input line 41.
+
+
+LaTeX Warning: Citation 'dkaarthick1' on page 296 undefined on input line 44.
+
+
+LaTeX Warning: Citation 'dkaarthick2' on page 296 undefined on input line 44.
+
+
+
+[296]
+
+LaTeX Warning: Citation 'arize' on page 297 undefined on input line 47.
+
+
+LaTeX Warning: Citation 'lakera1' on page 297 undefined on input line 50.
+
+
+LaTeX Warning: Citation 'lakera2' on page 297 undefined on input line 50.
+
+
+LaTeX Warning: Citation 'posta1' on page 297 undefined on input line 53.
+
+
+LaTeX Warning: Citation 'posta2' on page 297 undefined on input line 53.
+
+
+
+[297]
+
+LaTeX Warning: Citation 'arxivEval' on page 298 undefined on input line 74.
+
+
+LaTeX Warning: Citation 'arxivEval2' on page 298 undefined on input line 74.
+
+
+
+[298]
+
+LaTeX Warning: Citation 'apxml' on page 299 undefined on input line 81.
+
+
+LaTeX Warning: Citation 'arxivEval2' on page 299 undefined on input line 81.
+
+
+LaTeX Warning: Citation 'promptfoo1' on page 299 undefined on input line 85.
+
+
+LaTeX Warning: Citation 'promptfoo2' on page 299 undefined on input line 85.
+
+
+LaTeX Warning: Citation 'arxivEval' on page 299 undefined on input line 87.
+
+
+LaTeX Warning: Citation 'promptfoo1' on page 299 undefined on input line 89.
+
+
+LaTeX Warning: Citation 'promptfoo2' on page 299 undefined on input line 89.
+
+
+LaTeX Warning: Citation 'dkaarthick1' on page 299 undefined on input line 96.
+
+
+LaTeX Warning: Citation 'dkaarthick2' on page 299 undefined on input line 96.
+
+
+
+[299]
+
+LaTeX Warning: Citation 'arxivEval2' on page 300 undefined on input line 100.
+
+
+LaTeX Warning: Citation 'arxivEval2' on page 300 undefined on input line 100.
+
+
+LaTeX Warning: Citation 'langchainPython' on page 300 undefined on input line 106.
+
+
+LaTeX Warning: Citation 'arxivEval' on page 300 undefined on input line 106.
+
+
+
+[300]
+
+LaTeX Warning: Citation 'promptfoo1' on page 301 undefined on input line 123.
+
+
+LaTeX Warning: Citation 'promptfoo2' on page 301 undefined on input line 123.
+
+
+LaTeX Warning: Citation 'langsmithDocs1' on page 301 undefined on input line 123.
+
+
+LaTeX Warning: Citation 'langsmithDocs2' on page 301 undefined on input line 123.
+
+
+
+[301]
+
+LaTeX Warning: Citation 'lakera1' on page 302 undefined on input line 132.
+
+
+LaTeX Warning: Citation 'lakera2' on page 302 undefined on input line 132.
+
+
+LaTeX Warning: Citation 'lakera1' on page 302 undefined on input line 132.
+
+
+LaTeX Warning: Citation 'lakera2' on page 302 undefined on input line 132.
+
+
+LaTeX Warning: Citation 'lakera1' on page 302 undefined on input line 134.
+
+
+LaTeX Warning: Citation 'lakera2' on page 302 undefined on input line 134.
+
+
+LaTeX Warning: Citation 'techrxiv' on page 302 undefined on input line 140.
+
+
+
+[302]
+
+LaTeX Warning: Citation 'aimultipleEval' on page 303 undefined on input line 164.
+
+
+LaTeX Warning: Citation 'arize' on page 303 undefined on input line 166.
+
+
+
+[303]
+
+LaTeX Warning: Citation 'aimultipleEval' on page 304 undefined on input line 171.
+
+
+LaTeX Warning: Citation 'aimultipleEval' on page 304 undefined on input line 173.
+
+
+LaTeX Warning: Citation 'dkaarthick1' on page 304 undefined on input line 175.
+
+
+LaTeX Warning: Citation 'dkaarthick2' on page 304 undefined on input line 175.
+
+
+LaTeX Warning: Citation 'dkaarthick1' on page 304 undefined on input line 177.
+
+
+LaTeX Warning: Citation 'posta1' on page 304 undefined on input line 179.
+
+
+LaTeX Warning: Citation 'bytexEval' on page 304 undefined on input line 179.
+
+
+LaTeX Warning: Citation 'symblAI' on page 304 undefined on input line 181.
+
+
+LaTeX Warning: Citation 'gatling' on page 304 undefined on input line 181.
+
+
+LaTeX Warning: Citation 'ragasDocs' on page 304 undefined on input line 183.
+
+
+
+[304]
+
+LaTeX Warning: Citation 'dkaarthick1' on page 305 undefined on input line 185.
+
+
+LaTeX Warning: Citation 'aclanthology1' on page 305 undefined on input line 185.
+
+
+LaTeX Warning: Citation 'aimultipleEval' on page 305 undefined on input line 185.
+
+
+LaTeX Warning: Citation 'aimultipleEval' on page 305 undefined on input line 185.
+
+
+Overfull \hbox (9.85628pt too wide) in paragraph at lines 185--186
+[]\OT1/ntxtlf/b/n/10 (-20) Other Met-rics: \OT1/ntxtlf/m/n/10 (-20) Pre-ci-sion/Re-cal-l/F1 are es-sen-tial for re-trieval eval-u-a-tion. BLEU/ROUGE
+ []
+
+
+LaTeX Warning: Citation 'aimultipleEval' on page 305 undefined on input line 190.
+
+
+LaTeX Warning: Citation 'arize' on page 305 undefined on input line 190.
+
+
+LaTeX Warning: Citation 'aimultipleEval' on page 305 undefined on input line 192.
+
+
+LaTeX Warning: Citation 'arize' on page 305 undefined on input line 194.
+
+
+LaTeX Warning: Citation 'langsmithDocs1' on page 305 undefined on input line 196.
+
+
+LaTeX Warning: Citation 'langsmithDocs2' on page 305 undefined on input line 196.
+
+
+LaTeX Warning: Citation 'aclanthology1' on page 305 undefined on input line 200.
+
+
+
+[305]
+
+LaTeX Warning: Citation 'arize' on page 306 undefined on input line 220.
+
+
+
+[306]
+
+LaTeX Warning: Citation 'dkaarthick1' on page 307 undefined on input line 232.
+
+
+LaTeX Warning: Citation 'dkaarthick2' on page 307 undefined on input line 232.
+
+
+LaTeX Warning: Citation 'langsmithDocs1' on page 307 undefined on input line 234.
+
+
+LaTeX Warning: Citation 'seifbassem' on page 307 undefined on input line 237.
+
+
+LaTeX Warning: Citation 'arize' on page 307 undefined on input line 237.
+
+
+LaTeX Warning: Citation 'langsmithDocs2' on page 307 undefined on input line 239.
+
+
+LaTeX Warning: Citation 'cookbookOpenAI' on page 307 undefined on input line 239.
+
+
+LaTeX Warning: Citation 'langsmithDocs1' on page 307 undefined on input line 244.
+
+
+LaTeX Warning: Citation 'langsmithDocs2' on page 307 undefined on input line 244.
+
+
+LaTeX Warning: Citation 'aclanthology1' on page 307 undefined on input line 248.
+
+
+LaTeX Warning: Citation 'aclanthology1' on page 307 undefined on input line 248.
+
+
+LaTeX Warning: Citation 'aclanthology2' on page 307 undefined on input line 248.
+
+
+LaTeX Warning: Citation 'aclanthology2' on page 307 undefined on input line 251.
+
+
+LaTeX Warning: Citation 'langsmithDocs1' on page 307 undefined on input line 257.
+
+
+
+[307]
+
+LaTeX Warning: Citation 'changelogLangchain' on page 308 undefined on input line 258.
+
+
+LaTeX Warning: Citation 'langsmithDocs1' on page 308 undefined on input line 261.
+
+
+LaTeX Warning: Citation 'githubBERT' on page 308 undefined on input line 266.
+
+
+LaTeX Warning: Citation 'openreviewBERT' on page 308 undefined on input line 266.
+
+
+LaTeX Warning: Citation 'aclanthology3' on page 308 undefined on input line 266.
+
+
+LaTeX Warning: Citation 'dkaarthick1' on page 308 undefined on input line 272.
+
+
+LaTeX Warning: Citation 'dkaarthick2' on page 308 undefined on input line 272.
+
+
+LaTeX Warning: Citation 'huggingfaceEval' on page 308 undefined on input line 277.
+
+
+LaTeX Warning: Citation 'dkaarthick2' on page 308 undefined on input line 277.
+
+
+LaTeX Warning: Citation 'zilliz' on page 308 undefined on input line 283.
+
+
+LaTeX Warning: Citation 'arize' on page 308 undefined on input line 283.
+
+
+LaTeX Warning: Citation 'langsmithDocs1' on page 308 undefined on input line 283.
+
+
+LaTeX Warning: Citation 'openai_evals' on page 308 undefined on input line 292.
+
+
+LaTeX Warning: Citation 'openai_evals_cookbook' on page 308 undefined on input line 292.
+
+
+
+[308]
+
+LaTeX Warning: Citation 'helm_arxiv' on page 309 undefined on input line 297.
+
+
+LaTeX Warning: Citation 'helm_site' on page 309 undefined on input line 297.
+
+
+LaTeX Warning: Citation 'ragas_arxiv' on page 309 undefined on input line 303.
+
+
+LaTeX Warning: Citation 'ragas_eacl2024' on page 309 undefined on input line 303.
+
+
+LaTeX Warning: Citation 'ares_naacl2024' on page 309 undefined on input line 303.
+
+
+LaTeX Warning: Citation 'owasp_llm_top10' on page 309 undefined on input line 309.
+
+
+
+[309]
+
+LaTeX Warning: Citation 'aimultipleEval' on page 310 undefined on input line 332.
+
+
+LaTeX Warning: Citation 'aimultipleEval' on page 310 undefined on input line 332.
+
+
+
+[310]
+
+LaTeX Warning: Citation 'langsmithDocs1' on page 311 undefined on input line 345.
+
+
+LaTeX Warning: Citation 'langsmithDocs2' on page 311 undefined on input line 345.
+
+
+
+[311]
+
+[312]
+
+LaTeX Warning: Citation 'posta1' on page 313 undefined on input line 385.
+
+
+LaTeX Warning: Citation 'posta1' on page 313 undefined on input line 386.
+
+
+LaTeX Warning: Citation 'posta1' on page 313 undefined on input line 387.
+
+
+LaTeX Warning: Citation 'posta1' on page 313 undefined on input line 388.
+
+
+LaTeX Warning: Citation 'posta1' on page 313 undefined on input line 390.
+
+
+LaTeX Warning: Citation 'pagerduty1' on page 313 undefined on input line 396.
+
+
+LaTeX Warning: Citation 'qase' on page 313 undefined on input line 403.
+
+
+LaTeX Warning: Citation 'bytexEval' on page 313 undefined on input line 403.
+
+
+
+[313]
+
+LaTeX Warning: Citation 'githubPromptInj' on page 314 undefined on input line 414.
+
+
+LaTeX Warning: Citation 'arxivPromptDefense' on page 314 undefined on input line 415.
+
+
+LaTeX Warning: Citation 'lakera1' on page 314 undefined on input line 420.
+
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 440.
+
+
+[314]
+
+LaTeX Warning: Citation 'langsmithDocs1' on page 315 undefined on input line 446.
+
+
+LaTeX Warning: Citation 'langsmithDocs2' on page 315 undefined on input line 446.
+
+
+LaTeX Warning: Citation 'datanorth' on page 315 undefined on input line 449.
+
+
+LaTeX Warning: Citation 'openaiPlatform' on page 315 undefined on input line 449.
+
+
+LaTeX Warning: Citation 'arize' on page 315 undefined on input line 452.
+
+
+
+[315]
+
+LaTeX Warning: Citation 'arize' on page 316 undefined on input line 461.
+
+
+LaTeX Warning: Citation 'langsmithDocs1' on page 316 undefined on input line 461.
+
+
+LaTeX Warning: Citation 'openaiPlatform' on page 316 undefined on input line 464.
+
+
+
+[316]
+
+LaTeX Warning: Citation 'bytexEval' on page 317 undefined on input line 482.
+
+
+LaTeX Warning: Citation 'mediumResilience' on page 317 undefined on input line 484.
+
+
+LaTeX Warning: Citation 'mediumResilience' on page 317 undefined on input line 484.
+
+
+LaTeX Warning: Citation 'bytexEval' on page 317 undefined on input line 489.
+
+
+LaTeX Warning: Citation 'bytexEval' on page 317 undefined on input line 491.
+
+
+LaTeX Warning: Citation 'bytexEval' on page 317 undefined on input line 494.
+
+
+
+[317]
+
+[318]
+
+LaTeX Warning: Reference `sec:ch10-regression-testing-in-ci-cd' on page 319 undefined on input line 546.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 319 undefined on input line 546.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 319 undefined on input line 546.
+
+
+
+[319]
+
+LaTeX Warning: Empty bibliography on input line 548.
+
+)
+
+[320]
+\openout2 = `ch11-ethics.aux'.
+
+ (./ch11-ethics.tex
+Chapter 11.
+Package biblatex Info: Reference segment=22 on input line 1.
+Package biblatex Info: Setting label 'refsegment:022' on input line 1.
+Package biblatex Info: Reference segment=23 on input line 3.
+Package biblatex Info: Setting label 'refsegment:023' on input line 3.
+
+
+[321
+
+
+
+
+
+]
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 322 undefined on input line 35.
+
+
+LaTeX Warning: Citation 'bcg2023' on page 322 undefined on input line 35.
+
+
+LaTeX Warning: Citation 'bcg2023' on page 322 undefined on input line 35.
+
+
+LaTeX Warning: Citation 'bcg2023' on page 322 undefined on input line 37.
+
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 322 undefined on input line 37.
+
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 322 undefined on input line 39.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 322 undefined on input line 39.
+
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 322 undefined on input line 41.
+
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 322 undefined on input line 44.
+
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 322 undefined on input line 44.
+
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 322 undefined on input line 44.
+
+
+
+[322]
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 323 undefined on input line 46.
+
+
+LaTeX Warning: Citation 'bcg2023' on page 323 undefined on input line 51.
+
+
+LaTeX Warning: Citation 'iapp2023' on page 323 undefined on input line 51.
+
+
+LaTeX Warning: Citation 'iapp2023' on page 323 undefined on input line 57.
+
+
+LaTeX Warning: Citation 'iapp2023' on page 323 undefined on input line 57.
+
+
+LaTeX Warning: Reference `ch:rag' on page 323 undefined on input line 59.
+
+
+
+[323]
+
+LaTeX Warning: Citation 'niemanlab2023' on page 324 undefined on input line 61.
+
+
+LaTeX Warning: Citation 'openai2023' on page 324 undefined on input line 63.
+
+
+LaTeX Warning: Citation 'iapp2023' on page 324 undefined on input line 67.
+
+
+LaTeX Warning: Citation 'ap2023' on page 324 undefined on input line 69.
+
+
+LaTeX Warning: Citation 'euai2025' on page 324 undefined on input line 75.
+
+
+LaTeX Warning: Citation 'eu_ai_act_policy_page' on page 324 undefined on input line 75.
+
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 324 undefined on input line 79.
+
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 324 undefined on input line 81.
+
+
+LaTeX Warning: Citation 'aclanthology2023' on page 324 undefined on input line 81.
+
+
+
+[324]
+
+LaTeX Warning: Citation 'aclanthology2023' on page 325 undefined on input line 88.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 325 undefined on input line 101.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 325 undefined on input line 101.
+
+
+LaTeX Warning: Citation 'iapp2023' on page 325 undefined on input line 103.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 325 undefined on input line 105.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 325 undefined on input line 105.
+
+
+
+[325]
+
+LaTeX Warning: Citation 'arxiv2023' on page 326 undefined on input line 113.
+
+
+LaTeX Warning: Citation 'openai2023' on page 326 undefined on input line 115.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 326 undefined on input line 117.
+
+
+LaTeX Warning: Citation 'bcg2023' on page 326 undefined on input line 123.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 326 undefined on input line 123.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 326 undefined on input line 123.
+
+
+LaTeX Warning: Reference `ch:testing' on page 326 undefined on input line 123.
+
+
+LaTeX Warning: Citation 'nist_ai_rmf_100_1' on page 326 undefined on input line 136.
+
+
+LaTeX Warning: Citation 'nist_ai_rmf_site' on page 326 undefined on input line 136.
+
+
+LaTeX Warning: Reference `ch:rag' on page 326 undefined on input line 137.
+
+
+LaTeX Warning: Citation 'nist_ai_600_1_genai' on page 326 undefined on input line 138.
+
+
+
+[326]
+
+LaTeX Warning: Citation 'owasp_llm_top10' on page 327 undefined on input line 144.
+
+
+LaTeX Warning: Citation 'eu_ai_act_policy_page' on page 327 undefined on input line 150.
+
+
+LaTeX Warning: Citation 'mitchell_model_cards' on page 327 undefined on input line 156.
+
+
+LaTeX Warning: Citation 'gebru_datasheets' on page 327 undefined on input line 157.
+
+
+LaTeX Warning: Citation 'iso_42001' on page 327 undefined on input line 163.
+
+
+
+[327]
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 328 undefined on input line 175.
+
+
+LaTeX Warning: Citation 'ar5iv_labs' on page 328 undefined on input line 178.
+
+
+LaTeX Warning: Citation 'euai2025' on page 328 undefined on input line 186.
+
+
+
+[328]
+
+LaTeX Warning: Citation 'bcg2023' on page 329 undefined on input line 194.
+
+
+LaTeX Warning: Citation 'aclanthology2023' on page 329 undefined on input line 196.
+
+
+LaTeX Warning: Citation 'holisticai2025' on page 329 undefined on input line 202.
+
+
+
+[329]
+
+LaTeX Warning: Citation 'edpb2022' on page 330 undefined on input line 225.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 330 undefined on input line 227.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 330 undefined on input line 227.
+
+
+LaTeX Warning: Citation 'euai2025' on page 330 undefined on input line 231.
+
+
+LaTeX Warning: Citation 'eu_ai_act_policy_page' on page 330 undefined on input line 231.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 330 undefined on input line 231.
+
+
+
+[330]
+
+LaTeX Warning: Citation 'edpb2022' on page 331 undefined on input line 233.
+
+
+LaTeX Warning: Citation 'altexsoft2023' on page 331 undefined on input line 235.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 331 undefined on input line 243.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 331 undefined on input line 249.
+
+
+
+[331]
+
+LaTeX Warning: Citation 'arxiv2023' on page 332 undefined on input line 261.
+
+
+LaTeX Warning: Citation 'openai2023' on page 332 undefined on input line 261.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 332 undefined on input line 261.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 332 undefined on input line 261.
+
+
+LaTeX Warning: Reference `ch:testing' on page 332 undefined on input line 261.
+
+
+LaTeX Warning: Citation 'ojsaaai2023' on page 332 undefined on input line 263.
+
+
+LaTeX Warning: Citation 'medium2023' on page 332 undefined on input line 263.
+
+
+LaTeX Warning: Citation 'bcg2023' on page 332 undefined on input line 263.
+
+
+LaTeX Warning: Citation 'openai2023' on page 332 undefined on input line 263.
+
+
+LaTeX Warning: Citation 'openai2023' on page 332 undefined on input line 271.
+
+
+LaTeX Warning: Citation 'dlacm2023' on page 332 undefined on input line 273.
+
+
+
+[332]
+
+LaTeX Warning: Citation 'arxiv2024' on page 333 undefined on input line 277.
+
+
+LaTeX Warning: Citation 'bcg2023' on page 333 undefined on input line 283.
+
+
+LaTeX Warning: Reference `ch:rag' on page 333 undefined on input line 283.
+
+
+LaTeX Warning: Citation 'pmc2024' on page 333 undefined on input line 293.
+
+
+LaTeX Warning: Citation 'bcg2023' on page 333 undefined on input line 295.
+
+
+
+[333]
+
+LaTeX Warning: Citation 'altexsoft2023' on page 334 undefined on input line 307.
+
+
+
+[334]
+
+LaTeX Warning: Citation 'iapp2023' on page 335 undefined on input line 340.
+
+
+LaTeX Warning: Citation 'nature2023' on page 335 undefined on input line 348.
+
+
+LaTeX Warning: Citation 'eu_ai_act_policy_page' on page 335 undefined on input line 350.
+
+
+
+[335]
+
+LaTeX Warning: Citation 'altexsoft2023' on page 336 undefined on input line 370.
+
+
+LaTeX Warning: Citation 'euai2025' on page 336 undefined on input line 374.
+
+
+
+[336]
+
+LaTeX Warning: Citation 'euai2025' on page 337 undefined on input line 400.
+
+
+
+[337]
+
+LaTeX Warning: Citation 'edpb2022' on page 338 undefined on input line 419.
+
+
+LaTeX Warning: Citation 'ap2023' on page 338 undefined on input line 425.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 338 undefined on input line 429.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 338 undefined on input line 429.
+
+
+LaTeX Warning: Citation 'edpb2022' on page 338 undefined on input line 431.
+
+
+
+[338]
+
+LaTeX Warning: Citation 'ap2023' on page 339 undefined on input line 433.
+
+
+LaTeX Warning: Citation 'iapp' on page 339 undefined on input line 458.
+
+
+
+[339]
+
+LaTeX Warning: Citation 'aclanthology' on page 340 undefined on input line 462.
+
+
+LaTeX Warning: Citation 'edpb' on page 340 undefined on input line 464.
+
+
+LaTeX Warning: Citation 'arxiv' on page 340 undefined on input line 466.
+
+
+LaTeX Warning: Citation 'openai' on page 340 undefined on input line 466.
+
+
+LaTeX Warning: Citation 'aiact' on page 340 undefined on input line 468.
+
+
+
+[340]
+
+LaTeX Warning: Empty bibliography on input line 491.
+
+)
+
+[341]
+\openout2 = `ch12-ishtar-end-to-end.aux'.
+
+ (./ch12-ishtar-end-to-end.tex
+
+[342
+
+
+
+
+
+]
+Chapter 12.
+Package biblatex Info: Reference segment=24 on input line 1.
+Package biblatex Info: Setting label 'refsegment:024' on input line 1.
+Package biblatex Info: Reference segment=25 on input line 3.
+Package biblatex Info: Setting label 'refsegment:025' on input line 3.
+
+
+[343]
+
+LaTeX Warning: Reference `ch:infra' on page 344 undefined on input line 29.
+
+
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page 344 undefined on input line 29.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 344 undefined on input line 30.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 344 undefined on input line 30.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 344 undefined on input line 30.
+
+
+LaTeX Warning: Reference `ch:performance' on page 344 undefined on input line 31.
+
+
+LaTeX Warning: Reference `ch:rag' on page 344 undefined on input line 31.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 344 undefined on input line 31.
+
+
+LaTeX Warning: Reference `ch:testing' on page 344 undefined on input line 32.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 344 undefined on input line 32.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-infra' on page 344 undefined on input line 38.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-ingestion' on page 344 undefined on input line 39.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-kb' on page 344 undefined on input line 40.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-rag' on page 344 undefined on input line 41.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-agents' on page 344 undefined on input line 42.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-cicd' on page 344 undefined on input line 43.
+
+
+LaTeX Warning: Reference `sec:ishtar-ops' on page 344 undefined on input line 44.
+
+
+LaTeX Warning: Reference `sec:ishtar-ethics' on page 344 undefined on input line 44.
+
+
+LaTeX Warning: Reference `ch:rag' on page 344 undefined on input line 53.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 344 undefined on input line 53.
+
+
+
+[344]
+
+LaTeX Warning: Reference `ch:testing' on page 345 undefined on input line 64.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 345 undefined on input line 64.
+
+
+LaTeX Warning: Reference `tab:ishtar-requirements' on page 345 undefined on input line 73.
+
+
+Underfull \hbox (badness 4779) in paragraph at lines 92--92
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Poll/stream sources
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) log alert-ing if lag
+ []
+
+
+Underfull \hbox (badness 1859) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) for typ-i-cal queries;
+ []
+
+
+Underfull \hbox (badness 2318) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) fer ab-sten-tion over
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) fab-ri-ca-tion; ver-i-fi-ca-
+ []
+
+
+Underfull \hbox (badness 5064) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) out-put redac-tion/re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) ob-jec-tive; grace-ful
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) degra-da-tion and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+[]|\OT1/ntxtlf/m/n/8.5 (+20) GPU au-toscal-ing;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Track cost/-query;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) critical work-loads;
+ []
+
+
+LaTeX Warning: Citation 'johnson2019billion' on page 345 undefined on input line 108.
+
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 345 undefined on input line 108.
+
+
+LaTeX Warning: Citation 'Lewis2020RAG' on page 345 undefined on input line 109.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 345 undefined on input line 110.
+
+
+LaTeX Warning: Reference `ch:infra' on page 345 undefined on input line 111.
+
+
+LaTeX Warning: Reference `ch:performance' on page 345 undefined on input line 111.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 345 undefined on input line 112.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 345 undefined on input line 112.
+
+
+LaTeX Warning: Reference `fig:ishtar-architecture-ch12' on page 345 undefined on input line 115.
+
+
+Overfull \hbox (145.91408pt too wide) in paragraph at lines 172--173
+ [][] 
+ []
+
+
+
+[345]
+
+[346]
+
+LaTeX Warning: Reference `ch:infra-env' on page 347 undefined on input line 187.
+
+
+LaTeX Warning: Citation 'k8s_architecture' on page 347 undefined on input line 190.
+
+
+LaTeX Warning: Citation 'k8s_components' on page 347 undefined on input line 190.
+
+
+
+[347]
+
+LaTeX Warning: Citation 'prometheus' on page 348 undefined on input line 197.
+
+
+LaTeX Warning: Citation 'grafana' on page 348 undefined on input line 197.
+
+
+LaTeX Warning: Citation 'otel_spec' on page 348 undefined on input line 197.
+
+
+LaTeX Warning: Citation 'Kwon2023vLLM' on page 348 undefined on input line 203.
+
+
+LaTeX Warning: Citation 'tgi_docs' on page 348 undefined on input line 203.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 348 undefined on input line 204.
+
+
+LaTeX Warning: Citation 'terraform-docs' on page 348 undefined on input line 208.
+
+
+LaTeX Warning: Citation 'terraform_recommended_practices' on page 348 undefined on input line 208.
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 220--220
+[]  \OT1/lmtt/m/n/10 enable_oidc   = true             # enables workload identity / OIDC[] 
+ []
+
+
+LaTeX Warning: Reference `ch:scaling' on page 348 undefined on input line 226.
+
+
+
+[348]
+
+[349]
+
+LaTeX Warning: Reference `ch:rag' on page 350 undefined on input line 287.
+
+
+LaTeX Warning: Citation 'johnson2019billion' on page 350 undefined on input line 301.
+
+
+LaTeX Warning: Citation 'Malkov2018HNSW' on page 350 undefined on input line 302.
+
+
+
+[350]
+
+[351]
+
+LaTeX Warning: Reference `ch:multiagent' on page 352 undefined on input line 374.
+
+
+
+[352]
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 400--400
+[]    \OT1/lmtt/m/n/10 safe = TranslationAgent(safe, target_lang=state.user_context.lang)[] 
+ []
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 353 undefined on input line 415.
+
+
+
+[353]
+
+LaTeX Warning: Reference `ch:ethics' on page 354 undefined on input line 433.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 354 undefined on input line 438.
+
+
+LaTeX Warning: Citation 'argo_rollouts_overview' on page 354 undefined on input line 452.
+
+
+LaTeX Warning: Citation 'argo_rollouts_canary' on page 354 undefined on input line 452.
+
+
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 463--463
+[]      \OT1/lmtt/m/n/10 - run: python eval/run_offline_eval.py --index_version v2025.12.01[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 464--464
+[]      \OT1/lmtt/m/n/10 - run: python eval/check_gates.py  # fails if metrics regress[] 
+ []
+
+
+
+[354]
+
+LaTeX Warning: Citation 'ragas' on page 355 undefined on input line 475.
+
+
+LaTeX Warning: Citation 'ragas_eacl2024' on page 355 undefined on input line 475.
+
+
+LaTeX Warning: Citation 'owasp_llm_top10' on page 355 undefined on input line 476.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 355 undefined on input line 485.
+
+
+LaTeX Warning: Citation 'otel_spec' on page 355 undefined on input line 495.
+
+
+
+[355]
+
+LaTeX Warning: Citation 'otel_spec' on page 356 undefined on input line 524.
+
+
+LaTeX Warning: Citation 'prometheus' on page 356 undefined on input line 525.
+
+
+LaTeX Warning: Citation 'grafana' on page 356 undefined on input line 528.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 356 undefined on input line 530.
+
+
+
+[356]
+
+LaTeX Warning: Reference `ch:ethics' on page 357 undefined on input line 574.
+
+
+
+[357]
+
+LaTeX Warning: Reference `tab:ishtar-outcomes' on page 358 undefined on input line 620.
+
+
+LaTeX Warning: Reference `ch:performance' on page 358 undefined on input line 649.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 358 undefined on input line 649.
+
+
+
+[358]
+
+[359]
+
+[360]
+
+[361]
+
+LaTeX Warning: Citation 'react' on page 362 undefined on input line 743.
+
+
+LaTeX Warning: Citation 'ragas' on page 362 undefined on input line 749.
+
+
+LaTeX Warning: Citation 'ragas_eacl2024' on page 362 undefined on input line 749.
+
+
+
+[362]
+
+LaTeX Warning: Empty bibliography on input line 757.
+
+)
+
+[363]
+
+[364
+
+
+
+
+]
+\openout2 = `author/glossary.aux'.
+
+ (./author/glossary.tex)
+No file book.ind.
+(./book.aux (./author/dedication.aux) (./author/foreword.aux) (./author/preface.aux) (./author/acknowledgement.aux) (./author/acronym.aux) (./author/part1-foundations.aux) (./ch01-intro-ishar.aux) (./ch02-llmops-fundamentals.aux) (./ch03-infra-env.aux) (./author/part2-delivery.aux) (./ch04-cicd.aux) (./ch05-observability.aux) (./ch06-scaling.aux) (./author/part3-optimization.aux) (./ch07-performance.aux) (./ch08-rag.aux) (./ch09-agents-orchestration.aux) (./author/part4-governance.aux) (./ch10-testing-eval.aux) (./ch11-ethics.aux) (./ch12-ishtar-end-to-end.aux) (./author/glossary.aux))
+ ***********
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2020/03/25>
+ ***********
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.5pt have occurred.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                book
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'book.run.xml'.
+\openout1 = `book.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 65198 strings out of 467800
+ 1452881 string characters out of 5431882
+ 2378707 words of memory out of 5000000
+ 90338 multiletter control sequences out of 15000+600000
+ 769668 words of font info for 932 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 98i,21n,101p,2661b,2323s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
+
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on book.pdf (370 pages, 1512488 bytes).
+PDF statistics:
+ 4350 PDF objects out of 5155 (max. 8388607)
+ 3876 compressed objects within 39 object streams
+ 1396 named destinations out of 1440 (max. 500000)
+ 158589 words of extra memory for PDF output out of 184870 (max. 10000000)
+
