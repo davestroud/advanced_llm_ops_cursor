@@ -2186,4 +2186,963 @@ File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 [39])
 
 [40]
-\openout2 = `ch02-llmops-fundamentals
+\openout2 = `ch02-llmops-fundamentals.aux'.
+
+ (./ch02-llmops-fundamentals.tex
+Chapter 2.
+Package biblatex Info: Reference segment=4 on input line 1.
+Package biblatex Info: Setting label 'refsegment:04' on input line 1.
+Package biblatex Info: Reference segment=5 on input line 3.
+Package biblatex Info: Setting label 'refsegment:05' on input line 3.
+
+
+[41
+
+
+
+
+
+]
+
+[42]
+
+[43]
+
+[44]
+
+[45]
+
+[46]
+
+[47]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Package pgfplots info on input line 209: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+
+Underfull \hbox (badness 1253) in paragraph at lines 265--266
+[]\OT1/ntxtlf/b/n/10 (+20) A100-40GB: \OT1/ntxtlf/m/n/10 (+20) 7B fits with mod-er-ate $\OML/ntxmi/m/it/10 B[]T$ \OT1/ntxtlf/m/n/10 (+20) (e.g., $\OML/ntxmi/m/it/10 B[]\OT1/minntx/m/n/10 8\OML/ntxmi/m/it/10 ; T[]\OT1/minntx/m/n/10 2048$ $\LMS/ntxsy/m/n/10 )$
+ []
+
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 10.0pt on input line 272.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 7.3pt on input line 272.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 5.5pt on input line 272.
+
+
+[48]
+
+[49]
+
+[50]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 8.5pt on input line 305.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 6.20496pt on input line 305.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 4.67502pt on input line 305.
+
+
+[51]
+
+[52]
+
+[53]
+
+[54]
+
+[55]
+
+[56]
+
+[57]
+
+[58]
+
+[59]
+
+[60]
+
+[61]
+
+[62]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.20496pt on input line 591.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 4.67502pt on input line 591.
+
+
+[63]
+
+[64]
+
+[65]
+
+[66]
+
+[67]
+
+[68])
+
+[69]
+\openout2 = `ch03-infra-env.aux'.
+
+ (./ch03-infra-env.tex
+
+[70
+
+
+
+
+
+]
+Chapter 3.
+Package biblatex Info: Reference segment=6 on input line 1.
+Package biblatex Info: Setting label 'refsegment:06' on input line 1.
+Package biblatex Info: Reference segment=7 on input line 3.
+Package biblatex Info: Setting label 'refsegment:07' on input line 3.
+
+
+[71]
+
+[72]
+
+[73]
+Overfull \hbox (17.2671pt too wide) in paragraph at lines 87--97
+ [][] 
+ []
+
+
+
+[74]
+
+[75]
+
+[76]
+
+[77]
+
+[78]
+
+[79]
+
+[80]
+Overfull \hbox (3.98167pt too wide) in paragraph at lines 273--278
+[]\OT1/ntxtlf/b/n/10 (-20) Terraform (HashiCorp). \OT1/ntxtlf/m/n/10 (-20) Declar-a-tive, cloud-agnostic IaC tool us-ing HCL (HashiCorp
+ []
+
+
+
+[81]
+Overfull \hbox (92.10152pt too wide) in paragraph at lines 302--312
+ [][] 
+ []
+
+
+
+[82]
+
+[83]
+
+[84]
+
+[85]
+
+[86]
+
+[87]
+
+[88]
+
+[89]
+
+[90]
+Underfull \hbox (badness 1092) in paragraph at lines 541--541
+\OT1/ntxtlf/m/n/8.5 (+20) tion; ef-fi-cient KV cache reuse;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--545
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Maximum per-for-mance on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--545
+\OT1/ntxtlf/m/n/8.5 (+20) enterprise-grade multi-model
+ []
+
+
+Overfull \hbox (59.07527pt too wide) in paragraph at lines 531--557
+ [][] 
+ []
+
+
+
+[91]
+
+[92]
+
+[93]
+
+[94]
+Overfull \hbox (5.16875pt too wide) in paragraph at lines 794--795
+ [][] 
+ []
+
+
+
+[95]
+
+[96]
+Overfull \hbox (181.70961pt too wide) in paragraph at lines 912--913
+ [][] 
+ []
+
+
+
+[97]
+
+[98]
+
+[99]
+
+[100]
+Overfull \hbox (3.95467pt too wide) in paragraph at lines 985--985
+[]\OT1/ntxtlf/m/it/10 (-20) Learn Ter-raform Rec-om-mended Prac-tices\OT1/ntxtlf/m/n/10 (-20) . HashiCorp. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / developer .
+ []
+
+
+
+[101]
+Overfull \hbox (6.67911pt too wide) in paragraph at lines 985--985
+[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
+ []
+
+
+
+[102]
+
+[103]
+
+[104])
+
+[105]
+
+[106
+
+
+
+
+]
+
+[107]
+
+[108]
+\openout2 = `author/part2-delivery.aux'.
+
+ (./author/part2-delivery.tex)
+
+[109
+
+]
+\openout2 = `ch04-cicd.aux'.
+
+ (./ch04-cicd.tex
+
+[110
+
+
+
+
+
+]
+Chapter 4.
+Package biblatex Info: Reference segment=8 on input line 1.
+Package biblatex Info: Setting label 'refsegment:08' on input line 1.
+Package biblatex Info: Reference segment=9 on input line 3.
+Package biblatex Info: Setting label 'refsegment:09' on input line 3.
+
+
+[111]
+
+[112]
+
+[113]
+
+[114]
+
+[115]
+
+[116]
+Underfull \hbox (badness 2326) in paragraph at lines 130--130
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Nightly/Batch (cost-
+ []
+
+
+Overfull \hbox (316.43091pt too wide) in paragraph at lines 197--198
+ [][] 
+ []
+
+
+
+[117]
+
+[118]
+
+[119]
+
+[120]
+
+[121]
+
+[122]
+
+[123]
+
+[124]
+
+[125]
+
+[126]
+
+[127]
+
+[128]
+
+[129]
+
+[130])
+
+[131]
+\openout2 = `ch05-observability.aux'.
+
+ (./ch05-observability.tex
+
+[132
+
+
+
+
+
+]
+Chapter 5.
+Package biblatex Info: Reference segment=10 on input line 1.
+Package biblatex Info: Setting label 'refsegment:010' on input line 1.
+Package biblatex Info: Reference segment=11 on input line 3.
+Package biblatex Info: Setting label 'refsegment:011' on input line 3.
+
+
+[133]
+
+[134]
+Overfull \hbox (12.25851pt too wide) in paragraph at lines 78--80
+ [][] 
+ []
+
+
+
+[135]
+
+[136]
+
+[137]
+
+[138]
+Overfull \hbox (7.07446pt too wide) in paragraph at lines 178--180
+\OT1/lmtt/m/n/10 retrieval[]metadata \OT1/ntxtlf/m/n/10 (-20) (doc IDs, in-dex ver-sion, top-$k$, re-ranker scores); \OT1/lmtt/m/n/10 token[]counts
+ []
+
+
+Overfull \hbox (38.40677pt too wide) in paragraph at lines 178--180
+\OT1/ntxtlf/m/n/10 (-20) tax-on-omy (e.g., \OT1/lmtt/m/n/10 provider[]timeout\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 rate[]limit\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 tool[]schema[]mismatch\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 parser[]failure\OT1/ntxtlf/m/n/10 (-20) )
+ []
+
+
+
+[139]
+
+[140]
+LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <8.5> not available
+(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 262.
+
+Overfull \hbox (583.99873pt too wide) in paragraph at lines 305--309
+ [][] 
+ []
+
+
+
+[141]
+
+[142]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 350.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 350.
+
+
+[143{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+[144]
+Overfull \hbox (37.4113pt too wide) in paragraph at lines 411--412
+[]\OT1/ntxtlf/b/n/10 (-20) Cohort and route lenses. \OT1/ntxtlf/m/n/10 (-20) Pro-vide con-sis-tent la-bels|\OT1/lmtt/m/n/10 model[]version\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 retriever[]version\OT1/ntxtlf/m/n/10 (-20) ,
+ []
+
+
+
+[145]
+
+[146]
+
+[147]
+
+[148]
+
+[149]
+
+[150]
+
+[151]
+Overfull \hbox (15.38861pt too wide) in paragraph at lines 591--591
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
+
+[152])
+
+[153]
+\openout2 = `ch06-scaling.aux'.
+
+ (./ch06-scaling.tex
+
+[154
+
+
+
+
+
+]
+Chapter 6.
+Package biblatex Info: Reference segment=12 on input line 1.
+Package biblatex Info: Setting label 'refsegment:012' on input line 1.
+Package biblatex Info: Reference segment=13 on input line 3.
+Package biblatex Info: Setting label 'refsegment:013' on input line 3.
+
+
+[155]
+
+[156]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
+(Font)              scaled to size 10.0pt on input line 46.
+
+
+[157]
+
+[158]
+
+[159]
+
+[160]
+
+[161]
+Underfull \hbox (badness 1163) in paragraph at lines 158--159
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Lowest per-instance la-tency; well-
+ []
+
+
+Overfull \hbox (59.17903pt too wide) in paragraph at lines 226--227
+ [][] 
+ []
+
+
+
+[162]
+
+[163]
+
+[164]
+
+[165]
+
+[166]
+
+[167]
+
+[168]
+
+[169]
+
+[170]
+
+[171]
+
+[172]
+
+[173]
+
+[174]
+
+[175]
+
+[176]
+
+[177]
+
+[178]
+
+[179]
+
+[180]
+
+[181]
+Overfull \hbox (47.1687pt too wide) in paragraph at lines 838--839
+ [][] 
+ []
+
+
+
+[182]
+
+[183]
+
+[184]
+
+[185]
+
+[186]
+Overfull \hbox (101.8156pt too wide) in paragraph at lines 999--1000
+ [][] 
+ []
+
+
+
+[187]
+
+[188]
+Overfull \hbox (8.36198pt too wide) in paragraph at lines 1032--1032
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
+ []
+
+
+
+[189])
+
+[190]
+
+[191
+
+
+
+
+]
+
+[192]
+\openout2 = `author/part3-optimization.aux'.
+
+ (./author/part3-optimization.tex)
+
+[193
+
+]
+\openout2 = `ch07-performance.aux'.
+
+ (./ch07-performance.tex
+
+[194
+
+
+
+
+
+]
+Chapter 7.
+Package biblatex Info: Reference segment=14 on input line 1.
+Package biblatex Info: Setting label 'refsegment:014' on input line 1.
+Package biblatex Info: Reference segment=15 on input line 3.
+Package biblatex Info: Setting label 'refsegment:015' on input line 3.
+
+
+[195]
+Package pgfplots info on input line 71: Using 'lua backend=false' for axis: x coord trafo unsupported.
+
+
+[196]
+
+[197]
+
+[198]
+Overfull \hbox (13.91396pt too wide) in paragraph at lines 148--148
+[]|\OT1/ntxtlf/b/n/8.5 (-20) Hardware
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
+\OT1/ntxtlf/b/n/8.5 (+20) Com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
+\OT1/ntxtlf/b/n/8.5 (+20) pat-i-
+ []
+
+
+Overfull \hbox (149.68228pt too wide) in paragraph at lines 148--148
+|[][]
+ []
+
+
+Overfull \hbox (156.62679pt too wide) in paragraph at lines 148--148
+|[][]
+ []
+
+
+Overfull \hbox (177.26477pt too wide) in paragraph at lines 148--148
+|[][]
+ []
+
+
+Overfull \hbox (164.84637pt too wide) in paragraph at lines 148--148
+|[][]
+ []
+
+
+
+[199]
+
+[200]
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Quantization
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Numeric pre-ci-sion of
+ []
+
+
+Underfull \hbox (badness 1248) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) weights (and some-times
+ []
+
+
+Overfull \hbox (195.77458pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) 20--50% com-monly
+ []
+
+
+Underfull \hbox (badness 3547) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) (higher with care-ful
+ []
+
+
+Overfull \hbox (92.26546pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Overfull \hbox (207.9465pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Underfull \hbox (badness 1810) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Low to mod-er-ate if
+ []
+
+
+Overfull \hbox (260.91855pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Efficient Fine-Tuning
+ []
+
+
+Underfull \hbox (badness 1014) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Adds low-rank adapters;
+ []
+
+
+Underfull \hbox (badness 1112) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Training-time VRAM
+ []
+
+
+Underfull \hbox (badness 5288) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) (adapters add tiny
+ []
+
+
+Underfull \hbox (badness 1221) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) for many tasks with
+ []
+
+
+Overfull \hbox (249.10347pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Low to mod-er-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) ate; architecture-
+ []
+
+
+Overfull \hbox (175.79105pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Mixture-of-Experts
+ []
+
+
+Underfull \hbox (badness 1708) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) to-ken re-duced for a
+ []
+
+
+Overfull \hbox (261.063pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Underfull \hbox (badness 3240) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) cut typ-i-cal (method-
+ []
+
+
+Underfull \hbox (badness 4403) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Lower la-tency via
+ []
+
+
+Overfull \hbox (214.27057pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+Package pgfplots info on input line 266: Using 'lua backend=false' for axis: x coord trafo unsupported.
+
+Package tabularx Warning: X Columns too narrow (table too wide)
+(tabularx)                 on input line 303.
+
+
+Overfull \hbox (17.45506pt too wide) in paragraph at lines 303--303
+[]|\OT1/ntxtlf/b/n/8.5 (-20) Typical
+ []
+
+
+Overfull \hbox (9.08461pt too wide) in paragraph at lines 303--303
+\OT1/ntxtlf/b/n/8.5 (-20) GPU
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 303--303
+\OT1/ntxtlf/b/n/8.5 (+20) fit
+ []
+
+
+Overfull \hbox (21.89798pt too wide) in paragraph at lines 303--303
+\OT1/ntxtlf/b/n/8.5 (-20) (weights-
+ []
+
+
+Overfull \hbox (9.38107pt too wide) in paragraph at lines 303--303
+\OT1/ntxtlf/b/n/8.5 (-20) only)| 
+ []
+
+
+Overfull \hbox (143.5538pt too wide) in paragraph at lines 303--303
+|[][]
+ []
+
+
+Overfull \hbox (213.97874pt too wide) in paragraph at lines 303--303
+|[][]
+ []
+
+
+Overfull \hbox (25.47447pt too wide) in alignment at lines 303--303
+[][][][][][] 
+ []
+
+
+
+[201]
+
+[202]
+
+[203]
+
+[204]
+
+[205]
+Overfull \hbox (49.54013pt too wide) in alignment at lines 381--381
+[][][][][][]
+ []
+
+
+
+[206]
+
+[207]
+
+[208]
+
+[209]
+
+[210]
+
+[211]
+
+[212]
+
+[213]
+
+[214]
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Fused at-ten-tion
+ []
+
+
+Underfull \hbox (badness 1552) in paragraph at lines 563--563
+\OT1/ntxtlf/m/n/8.5 (+20) (FlashAt-ten-tion) and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
+\OT1/ntxtlf/m/n/8.5 (+20) bet-ter tensor-core
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Larger dy-namic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
+\OT1/ntxtlf/m/n/8.5 (+20) batches; async
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
+\OT1/ntxtlf/m/n/8.5 (+20) schedul-ing be-tween
+ []
+
+
+
+[215]
+
+[216]
+Package pgfplots info on input line 652: Using 'lua backend=false' for axis: x coord trafo unsupported.
+
+
+[217]
+
+[218]
+
+[219]
+
+[220]
+Overfull \hbox (13.91086pt too wide) in alignment at lines 751--751
+[][][][][]
+ []
+
+
+
+[221]
+
+[222]
+
+[223]
+
+[224]
+
+[225]
+
+[226]
+Underfull \hbox (badness 10000) in paragraph at lines 918--918
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Encoder-Only
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--918
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Decoder-Only
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--918
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Mixture-of-
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 918--918
+[]|\OT1/ntxtlf/m/n/8.5 (+20) TTFT grows with
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--918
+\OT1/ntxtlf/m/n/8.5 (+20) prompt length;
+ []
+
+
+Underfull \hbox (badness 6063) in paragraph at lines 918--918
+\OT1/ntxtlf/m/n/8.5 (+20) put gov-erned by
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--918
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Sparsity low-ers
+ []
+
+
+Underfull \hbox (badness 1590) in paragraph at lines 918--918
+\OT1/ntxtlf/m/n/8.5 (+20) FLOPs per to-ken,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--918
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Fixed per in-put
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--918
+\OT1/ntxtlf/m/n/8.5 (+20) (dom-i-nated by
+ []
+
+
+Underfull \hbox (badness 1728) in paragraph at lines 918--918
+\OT1/ntxtlf/m/n/8.5 (+20) ceeds weights for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--918
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Experts sharded
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--918
+\OT1/ntxtlf/m/n/8.5 (+20) across 
