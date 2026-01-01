@@ -159,6 +159,16 @@ model prefill/decoding, post-processing), and reported by tail percentiles (p95/
 In interactive systems, \emph{time-to-first-token (TTFT)} is often the dominant user-perceived metric, while
 \emph{tokens-per-second} determines how quickly the response completes.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\textwidth]{images/ch01-cost-latency-throughput}
+  \caption{Latency decomposition and scale levers for LLM serving. End-to-end latency is the sum of stage latencies
+  (tokenization/policy checks, retrieval, LLM prefill+decode, post-processing). Sustaining throughput and cost efficiency
+  requires coordinated controls: batching and scheduling for throughput, caching/quantization/routing for unit economics,
+  and explicit capacity planning (peak demand, tail latency, and autoscaling on queue depth).}
+  \label{fig:cost-latency-throughput}
+\end{figure}
+
 \subsection{Infrastructure and Serving Complexity}
 Deploying an LLM is closer to operating a distributed system than deploying a single model artifact. Even when using managed endpoints, production systems require careful design across multiple layers:
 \begin{itemize}
