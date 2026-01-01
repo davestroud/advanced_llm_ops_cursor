@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 14:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 14:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1617,13 +1617,16 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 96.
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
+ (./book.aux (./author/dedication.aux) (./author/foreword.aux) (./author/preface.aux) (./author/acknowledgement.aux) (./author/acronym.aux) (./author/part1-foundations.aux) (./ch01-intro-ishar.aux) (./ch02-llmops-fundamentals.aux) (./ch03-infra-env.aux) (./author/part2-delivery.aux) (./ch04-cicd.aux) (./ch05-observability.aux) (./ch06-scaling.aux
 
-No file book.aux.
+LaTeX Warning: Label `sec:serving-runtimes' multiply defined.
+
+) (./author/part3-optimization.aux) (./ch07-performance.aux) (./ch08-rag.aux) (./ch09-agents-orchestration.aux) (./author/part4-governance.aux) (./ch10-testing-eval.aux) (./ch11-ethics.aux) (./ch12-ishtar-end-to-end.aux) (./author/glossary.aux))
 \openout1 = `book.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 96.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 96.
-(/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
 LaTeX Font Info:    ... okay on input line 96.
@@ -1733,6 +1736,42 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
+
+Package biblatex Warning: citation 'Vaswani2017attention'
+(biblatex)                was not found at all in the .bbl file,
+(biblatex)                bibliography labels cannot be generated,
+(biblatex)                please correct the citation.
+
+
+Package biblatex Warning: citation 'liu2023promptSurvey'
+(biblatex)                was not found at all in the .bbl file,
+(biblatex)                bibliography labels cannot be generated,
+(biblatex)                please correct the citation.
+
+
+Package biblatex Warning: citation 'holtzman2020curious'
+(biblatex)                was not found at all in the .bbl file,
+(biblatex)                bibliography labels cannot be generated,
+(biblatex)                please correct the citation.
+
+
+Package biblatex Warning: citation 'edge2025llmops'
+(biblatex)                was not found at all in the .bbl file,
+(biblatex)                bibliography labels cannot be generated,
+(biblatex)                please correct the citation.
+
+
+Package biblatex Warning: citation 'assemblyAI2023decoding'
+(biblatex)                was not found at all in the .bbl file,
+(biblatex)                bibliography labels cannot be generated,
+(biblatex)                please correct the citation.
+
+
+Package biblatex Warning: citation 'jaeger_tracing'
+(biblatex)                was not found at all in the .bbl file,
+(biblatex)                bibliography labels cannot be generated,
+(biblatex)                please correct the citation.
+
 Package biblatex Info: Reference section=0 on input line 96.
 Package biblatex Info: Reference segment=0 on input line 96.
 Package hyperref Info: Link coloring OFF on input line 96.
@@ -1769,41 +1808,8 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.5pt on input line 110.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/ot1minntx.fd) (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/untxmia.fd) (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/untxsym.fd) (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/untxsyc.fd) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg) (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd)
-
-LaTeX Warning: Reference `ch:llmops-fundamentals' on page v undefined on input line 144.
-
-
-LaTeX Warning: Reference `ch:infra' on page v undefined on input line 144.
-
-
-LaTeX Warning: Reference `ch:cicd' on page v undefined on input line 144.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page v undefined on input line 144.
-
-
-LaTeX Warning: Reference `ch:performance' on page v undefined on input line 144.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page v undefined on input line 144.
-
-
-LaTeX Warning: Reference `ch:testing' on page v undefined on input line 144.
-
-
-LaTeX Warning: Reference `ch:ethics' on page v undefined on input line 144.
-
-
-LaTeX Warning: Reference `ch:case-study' on page v undefined on input line 144.
-
-
-LaTeX Warning: Reference `fig:llmops-lifecycle' on page v undefined on input line 146.
-
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
 (Font)              scaled to size 8.5pt on input line 146.
-
-LaTeX Warning: Reference `fig:llmops-lifecycle' on page v undefined on input line 146.
-
 
 
 [5{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
@@ -1878,25 +1884,37 @@ LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 7.3pt on input line 150.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 5.5pt on input line 150.
+ (./book.toc
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.0pt on input line 1.
 
-No file book.toc.
+
+[7]
+
+[8]
+
+[9]
+
+[10]
+
+[11]
+
+[12]
+
+[13]
+
+[14]
+
+[15])
 \tf@toc=\write8
 \openout8 = `book.toc'.
 
 
 
-[7]
+[16]
 \openout2 = `author/acronym.aux'.
 
  (./author/acronym.tex)
-
-[8
-
-
-
-
-
-]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 18.0pt on input line 158.
 
@@ -1909,6 +1927,11 @@ l.158 \part{Foundations of LLMOps}
                                    [1
 
 
+
+
+
+
+
 ]
 
 
@@ -1919,20 +1942,7 @@ l.158 \part{Foundations of LLMOps}
                                    [2]
 \openout2 = `author/part1-foundations.aux'.
 
- (./author/part1-foundations.tex
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 3.
-
-
-LaTeX Warning: Reference `ch:intro' on page 3 undefined on input line 5.
-
-
-LaTeX Warning: Reference `ch:llmops-fundamentals' on page 3 undefined on input line 5.
-
-
-LaTeX Warning: Reference `ch:infra' on page 3 undefined on input line 5.
-
-)
+ (./author/part1-foundations.tex)
 
 [3
 
@@ -1979,7 +1989,7 @@ LaTeX Warning: Citation 'assemblyAI2023decoding' on page 5 undefined on input li
 [5]
 
 [6]
-<images/ch01-llmops-lifecycle.png, id=106, 997.7275pt x 433.62pt>
+<images/ch01-llmops-lifecycle.png, id=1003, 997.7275pt x 433.62pt>
 File: images/ch01-llmops-lifecycle.png Graphic file (type png)
 <use images/ch01-llmops-lifecycle.png>
 Package pdftex.def Info: images/ch01-llmops-lifecycle.png  used on input line 29.
@@ -1999,15 +2009,12 @@ LaTeX Warning: Citation 'edge2025llmops' on page 8 undefined on input line 46.
 
 LaTeX Warning: Citation 'liu2023promptSurvey' on page 8 undefined on input line 46.
 
-<images/ch01-llm-architecture.png, id=115, 555.07375pt x 418.56375pt>
+<images/ch01-llm-architecture.png, id=1009, 555.07375pt x 418.56375pt>
 File: images/ch01-llm-architecture.png Graphic file (type png)
 <use images/ch01-llm-architecture.png>
 Package pdftex.def Info: images/ch01-llm-architecture.png  used on input line 50.
 (pdftex.def)             Requested size: 345.0pt x 260.15828pt.
-
-LaTeX Warning: Reference `fig:rag-drift-control' on page 8 undefined on input line 78.
-
-<images/ch01-rag-drift-control.png, id=116, 905.784pt x 544.434pt>
+<images/ch01-rag-drift-control.png, id=1011, 905.784pt x 544.434pt>
 File: images/ch01-rag-drift-control.png Graphic file (type png)
 <use images/ch01-rag-drift-control.png>
 Package pdftex.def Info: images/ch01-rag-drift-control.png  used on input line 82.
@@ -2019,10 +2026,7 @@ Package pdftex.def Info: images/ch01-rag-drift-control.png  used on input line 8
 [9 <./images/ch01-llm-architecture.png (PNG copy)>]
 
 [10 <./images/ch01-rag-drift-control.png>]
-
-LaTeX Warning: Reference `fig:llm-threat-model' on page 11 undefined on input line 126.
-
-<images/ch01-security-threat-model.png, id=138, 960.2274pt x 541.0614pt>
+<images/ch01-security-threat-model.png, id=1029, 960.2274pt x 541.0614pt>
 File: images/ch01-security-threat-model.png Graphic file (type png)
 <use images/ch01-security-threat-model.png>
 Package pdftex.def Info: images/ch01-security-threat-model.png  used on input line 131.
@@ -2030,7 +2034,7 @@ Package pdftex.def Info: images/ch01-security-threat-model.png  used on input li
 
 
 [11 <./images/ch01-security-threat-model.png>]
-<images/ch01-cost-latency-throughput.png, id=146, 981.9084pt x 555.5154pt>
+<images/ch01-cost-latency-throughput.png, id=1037, 981.9084pt x 555.5154pt>
 File: images/ch01-cost-latency-throughput.png Graphic file (type png)
 <use images/ch01-cost-latency-throughput.png>
 Package pdftex.def Info: images/ch01-cost-latency-throughput.png  used on input line 164.
@@ -2065,196 +2069,18 @@ Overfull \hbox (121.57011pt too wide) in paragraph at lines 388--389
 
 [19]
 
-LaTeX Warning: Reference `ch:llmops-fundamentals' on page 20 undefined on input line 440.
-
-
-LaTeX Warning: Reference `ch:infra' on page 20 undefined on input line 441.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 20 undefined on input line 446.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 20 undefined on input line 447.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 20 undefined on input line 448.
-
-
-
-[20]
-
-LaTeX Warning: Reference `ch:performance' on page 21 undefined on input line 453.
-
-
-LaTeX Warning: Reference `ch:rag' on page 21 undefined on input line 454.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 21 undefined on input line 455.
-
-
-LaTeX Warning: Reference `ch:testing' on page 21 undefined on input line 460.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 21 undefined on input line 461.
-
-
-LaTeX Warning: Reference `ch:case-study' on page 21 undefined on input line 462.
-
-
-LaTeX Warning: Reference `ch:infra' on page 21 undefined on input line 472.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 21 undefined on input line 472.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 21 undefined on input line 472.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 21 undefined on input line 472.
-
-
-LaTeX Warning: Reference `ch:llmops-fundamentals' on page 21 undefined on input line 474.
-
-
-LaTeX Warning: Reference `ch:performance' on page 21 undefined on input line 474.
-
-
-LaTeX Warning: Reference `ch:rag' on page 21 undefined on input line 474.
-
-
-LaTeX Warning: Reference `ch:case-study' on page 21 undefined on input line 474.
-
-
-LaTeX Warning: Reference `ch:testing' on page 21 undefined on input line 476.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 21 undefined on input line 476.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 21 undefined on input line 476.
-
-(/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
+[20] (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
 File: tikzlibrarymatrix.code.tex 2025-08-14 v3.1.11 (3.1.11)
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
 File: tikzlibraryfit.code.tex 2025-08-14 v3.1.11 (3.1.11)
 )
 
-LaTeX Warning: Reference `ch:llmops-fundamentals' on page 21 undefined on input line 506.
-
-
-LaTeX Warning: Reference `ch:infra' on page 21 undefined on input line 507.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 21 undefined on input line 508.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 21 undefined on input line 509.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 21 undefined on input line 510.
-
-
-LaTeX Warning: Reference `ch:performance' on page 21 undefined on input line 511.
-
-
-LaTeX Warning: Reference `ch:rag' on page 21 undefined on input line 515.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 21 undefined on input line 516.
-
-
-LaTeX Warning: Reference `ch:testing' on page 21 undefined on input line 519.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 21 undefined on input line 520.
-
-
-LaTeX Warning: Reference `ch:case-study' on page 21 undefined on input line 521.
-
-
-LaTeX Warning: Reference `ch:llmops-fundamentals' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `ch:infra' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `ch:performance' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `ch:rag' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `ch:testing' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `ch:case-study' on page 21 undefined on input line 625.
-
-
-LaTeX Warning: Reference `fig:llmops-lifecycle' on page 21 undefined on input line 627.
-
-
-LaTeX Warning: Reference `fig:llmops-lifecycle' on page 21 undefined on input line 627.
-
-
-
 [21]
 
 [22]
-
-LaTeX Warning: Reference `ch:infra' on page 23 undefined on input line 697.
-
-
-LaTeX Warning: Reference `ch:performance' on page 23 undefined on input line 697.
-
-
-LaTeX Warning: Reference `ch:rag' on page 23 undefined on input line 698.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 23 undefined on input line 699.
-
-
-LaTeX Warning: Reference `ch:infra' on page 23 undefined on input line 700.
-
-
-LaTeX Warning: Reference `ch:performance' on page 23 undefined on input line 700.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 23 undefined on input line 701.
-
-
-LaTeX Warning: Reference `ch:testing' on page 23 undefined on input line 702.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 23 undefined on input line 703.
-
-
-LaTeX Warning: Reference `ch:case-study' on page 23 undefined on input line 711.
-
-
-LaTeX Warning: Reference `fig:ishtar-arch-main' on page 23 undefined on input line 714.
-
-
 Overfull \hbox (142.19658pt too wide) in paragraph at lines 717--718
  [][] 
  []
-
-
-LaTeX Warning: Reference `fig:ishtar-arch-main' on page 23 undefined on input line 723.
 
 
 
@@ -2265,10 +2091,6 @@ LaTeX Warning: Reference `fig:ishtar-arch-main' on page 23 undefined on input li
 [25]
 
 [26]
-
-LaTeX Warning: Reference `sec:rag-metrics' on page 27 undefined on input line 857.
-
-
 
 [27]
 
@@ -2394,42 +2216,7 @@ Underfull \hbox (badness 4479) in paragraph at lines 1028--1028
 
 [33]
 
-LaTeX Warning: Reference `ch:llmops-fundamentals' on page 34 undefined on input line 1058.
-
-
-LaTeX Warning: Reference `ch:infra' on page 34 undefined on input line 1061.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 34 undefined on input line 1064.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 34 undefined on input line 1067.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 34 undefined on input line 1070.
-
-
-LaTeX Warning: Reference `ch:performance' on page 34 undefined on input line 1073.
-
-
-
 [34]
-
-LaTeX Warning: Reference `ch:rag' on page 35 undefined on input line 1076.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 35 undefined on input line 1079.
-
-
-LaTeX Warning: Reference `ch:testing' on page 35 undefined on input line 1082.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 35 undefined on input line 1085.
-
-
-LaTeX Warning: Reference `ch:case-study' on page 35 undefined on input line 1088.
-
-
 
 [35]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
@@ -2461,18 +2248,6 @@ Package biblatex Info: Setting label 'refsegment:04' on input line 1.
 Package biblatex Info: Reference segment=5 on input line 3.
 Package biblatex Info: Setting label 'refsegment:05' on input line 3.
 
-LaTeX Warning: Reference `ch:infra' on page 39 undefined on input line 17.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 39 undefined on input line 17.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 39 undefined on input line 17.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 39 undefined on input line 17.
-
-
 
 [39
 
@@ -2493,42 +2268,14 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 5.5pt on input line 71.
 
 
-LaTeX Warning: Reference `eq:kv-cache' on page 43 undefined on input line 87.
-
-
-
 [43]
 
 [44]
 
 [45]
-
-LaTeX Warning: Reference `eq:param-mem' on page 46 undefined on input line 161.
-
-
-LaTeX Warning: Reference `eq:kv-cache' on page 46 undefined on input line 161.
-
-
-LaTeX Warning: Reference `eq:flops-layer' on page 46 undefined on input line 161.
-
-
-LaTeX Warning: Reference `eq:param-mem' on page 46 undefined on input line 161.
-
-
-LaTeX Warning: Reference `eq:kv-cache' on page 46 undefined on input line 161.
-
-
-LaTeX Warning: Reference `eq:flops-layer' on page 46 undefined on input line 161.
-
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-
-LaTeX Warning: Reference `eq:attn-complexity' on page 46 undefined on input line 190.
-
 Package pgfplots info on input line 209: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
-
-LaTeX Warning: Reference `eq:kv-cache' on page 46 undefined on input line 252.
-
 
 Underfull \hbox (badness 1253) in paragraph at lines 265--266
 []\OT1/ntxtlf/b/n/10 (+20) A100-40GB: \OT1/ntxtlf/m/n/10 (+20) 7B fits with mod-er-ate $\OML/ntxmi/m/it/10 B[]T$ \OT1/ntxtlf/m/n/10 (+20) (e.g., $\OML/ntxmi/m/it/10 B[]\OT1/minntx/m/n/10 8\OML/ntxmi/m/it/10 ; T[]\OT1/minntx/m/n/10 2048$ $\LMS/ntxsy/m/n/10 )$
@@ -2540,9 +2287,6 @@ LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 (Font)              scaled to size 7.3pt on input line 272.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 (Font)              scaled to size 5.5pt on input line 272.
-
-LaTeX Warning: Reference `eq:kv-cache' on page 46 undefined on input line 274.
-
 
 
 [46]
@@ -2561,12 +2305,6 @@ LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 (Font)              scaled to size 4.67502pt on input line 305.
 
-LaTeX Warning: Reference `eq:throughput' on page 49 undefined on input line 307.
-
-
-LaTeX Warning: Reference `eq:throughput' on page 49 undefined on input line 307.
-
-
 
 [49]
 
@@ -2584,37 +2322,13 @@ LaTeX Warning: Reference `eq:throughput' on page 49 undefined on input line 307.
 
 [56]
 
-LaTeX Warning: Reference `eq:kv-cache' on page 57 undefined on input line 447.
-
-
-LaTeX Warning: Reference `eq:flops-layer' on page 57 undefined on input line 447.
-
-
-LaTeX Warning: Reference `eq:flops-layer' on page 57 undefined on input line 447.
-
-
-
 [57]
-
-LaTeX Warning: Reference `eq:flops-layer' on page 58 undefined on input line 482.
-
-
 
 [58]
 
 [59]
 
-LaTeX Warning: Reference `eq:kv-cache' on page 60 undefined on input line 539.
-
-
-LaTeX Warning: Reference `eq:kv-cache' on page 60 undefined on input line 551.
-
-
-
 [60]
-
-LaTeX Warning: Reference `eq:param-mem' on page 61 undefined on input line 585.
-
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 6.20496pt on input line 591.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
@@ -2630,19 +2344,6 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 [64]
 
 [65]
-
-LaTeX Warning: Reference `ch:infra' on page 66 undefined on input line 758.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 66 undefined on input line 758.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 66 undefined on input line 758.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 66 undefined on input line 758.
-
-
 
 [66])
 
@@ -2669,16 +2370,6 @@ Package biblatex Info: Setting label 'refsegment:07' on input line 3.
 
 [70]
 
-LaTeX Warning: Reference `ch:cicd' on page 71 undefined on input line 67.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 71 undefined on input line 67.
-
-
-LaTeX Warning: Reference `sec:infra-hardware-bench' on page 71 undefined on input line 76.
-
-
-
 [71]
 Overfull \hbox (17.2671pt too wide) in paragraph at lines 87--97
  [][] 
@@ -2688,31 +2379,13 @@ Overfull \hbox (17.2671pt too wide) in paragraph at lines 87--97
 
 [72]
 
-LaTeX Warning: Reference `eq:costptok' on page 73 undefined on input line 121.
-
-
-
 [73]
-
-LaTeX Warning: Reference `ch:scaling' on page 74 undefined on input line 131.
-
-
 
 [74]
 
 [75]
 
 [76]
-
-LaTeX Warning: Reference `tab:costcompare' on page 77 undefined on input line 183.
-
-
-LaTeX Warning: Reference `eq:costptok' on page 77 undefined on input line 185.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 77 undefined on input line 207.
-
-
 
 [77]
 
@@ -2724,10 +2397,6 @@ Overfull \hbox (3.98167pt too wide) in paragraph at lines 273--278
 
 
 [79]
-
-LaTeX Warning: Reference `tab:iaccompare' on page 80 undefined on input line 296.
-
-
 Overfull \hbox (92.10152pt too wide) in paragraph at lines 302--312
  [][] 
  []
@@ -2739,10 +2408,6 @@ Overfull \hbox (92.10152pt too wide) in paragraph at lines 302--312
 [81]
 
 [82]
-
-LaTeX Warning: Reference `ch:cicd' on page 83 undefined on input line 419.
-
-
 
 [83]
 
@@ -2782,16 +2447,6 @@ Overfull \hbox (59.07527pt too wide) in paragraph at lines 531--557
 
 [91]
 
-LaTeX Warning: Reference `ch:cicd' on page 92 undefined on input line 697.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 92 undefined on input line 697.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 92 undefined on input line 697.
-
-
-
 [92]
 Overfull \hbox (5.16875pt too wide) in paragraph at lines 794--795
  [][] 
@@ -2822,33 +2477,23 @@ Overfull \hbox (181.70961pt too wide) in paragraph at lines 912--913
 
 [101]
 
-[102]
+[102])
 
-[103])
+[103]
 
-[104]
-
-[105
+[104
 
 
 
 
 ]
 
+[105]
+
 [106]
 \openout2 = `author/part2-delivery.aux'.
 
- (./author/part2-delivery.tex
-
-LaTeX Warning: Reference `ch:cicd' on page 107 undefined on input line 5.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 107 undefined on input line 5.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 107 undefined on input line 5.
-
-)
+ (./author/part2-delivery.tex)
 
 [107
 
@@ -2873,43 +2518,18 @@ Package biblatex Info: Setting label 'refsegment:09' on input line 3.
 
 [109]
 
-LaTeX Warning: Reference `ch:infra' on page 110 undefined on input line 24.
-
-
-LaTeX Warning: Reference `ch:testing' on page 110 undefined on input line 36.
-
-
-LaTeX Warning: Reference `ch:testing' on page 110 undefined on input line 44.
-
-
-
 [110]
 
 [111]
-
-LaTeX Warning: Reference `ch:testing' on page 112 undefined on input line 65.
-
-
 
 [112]
 
 [113]
 
-LaTeX Warning: Reference `ch:testing' on page 114 undefined on input line 82.
-
-
-
 [114]
-
-LaTeX Warning: Reference `tab:eval_stages' on page 115 undefined on input line 96.
-
-
 Underfull \hbox (badness 2326) in paragraph at lines 130--130
 []|\OT1/ntxtlf/m/n/8.5 (+20) Nightly/Batch (cost-
  []
-
-
-LaTeX Warning: Reference `fig:eval_stages_pipeline' on page 115 undefined on input line 133.
 
 
 Overfull \hbox (316.43091pt too wide) in paragraph at lines 197--198
@@ -3014,13 +2634,6 @@ Overfull \hbox (583.99873pt too wide) in paragraph at lines 305--309
 
 [139]
 
-LaTeX Warning: Reference `ch:rag' on page 140 undefined on input line 334.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 140 undefined on input line 334.
-
-
-
 [140]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
@@ -3033,21 +2646,7 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 350.
 
 
-LaTeX Warning: Reference `ch:rag' on page 141 undefined on input line 354.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 141 undefined on input line 354.
-
-
-
 [141{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-
-LaTeX Warning: Reference `ch:cicd' on page 142 undefined on input line 379.
-
-
-LaTeX Warning: Reference `ch:testing' on page 142 undefined on input line 379.
-
-
 
 [142]
 Overfull \hbox (37.4113pt too wide) in paragraph at lines 411--412
@@ -3060,45 +2659,11 @@ Overfull \hbox (37.4113pt too wide) in paragraph at lines 411--412
 
 [144]
 
-LaTeX Warning: Reference `ch:cicd' on page 145 undefined on input line 452.
-
-
-LaTeX Warning: Reference `ch:testing' on page 145 undefined on input line 452.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 145 undefined on input line 452.
-
-
-LaTeX Warning: Reference `ch:testing' on page 145 undefined on input line 452.
-
-
-
 [145]
-
-LaTeX Warning: Reference `ch:cicd' on page 146 undefined on input line 471.
-
-
-LaTeX Warning: Reference `ch:testing' on page 146 undefined on input line 471.
-
-
 
 [146]
 
-LaTeX Warning: Reference `ch:cicd' on page 147 undefined on input line 497.
-
-
-LaTeX Warning: Reference `ch:testing' on page 147 undefined on input line 497.
-
-
-
 [147]
-
-LaTeX Warning: Reference `ch:cicd' on page 148 undefined on input line 523.
-
-
-LaTeX Warning: Reference `ch:testing' on page 148 undefined on input line 523.
-
-
 
 [148]
 
@@ -3138,13 +2703,6 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
 
 
 [155]
-
-LaTeX Warning: Reference `fig:scaling-dimensions' on page 156 undefined on input line 67.
-
-
-LaTeX Warning: Reference `tab:scaling-matrix' on page 156 undefined on input line 67.
-
-
 
 [156]
 
@@ -3190,31 +2748,6 @@ Overfull \hbox (59.17903pt too wide) in paragraph at lines 226--227
 
 [172]
 
-./ch06-scaling.tex:574: LaTeX Error: Not allowed in LR mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.574 \end{axis}
-                
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./ch06-scaling.tex:574: LaTeX Error: Not allowed in LR mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.574 \end{axis}
-                
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-
 [173]
 
 [174]
@@ -3224,10 +2757,6 @@ If that doesn't work, type  X <return>  to quit.
 [176]
 
 [177]
-
-LaTeX Warning: Reference `ch:performance' on page 178 undefined on input line 734.
-
-
 
 [178]
 
@@ -3255,10 +2784,6 @@ Overfull \hbox (101.8156pt too wide) in paragraph at lines 999--1000
 
 [185]
 
-LaTeX Warning: Reference `ch:performance' on page 186 undefined on input line 1026.
-
-
-
 [186]
 Overfull \hbox (3.36198pt too wide) in paragraph at lines 1032--1032
 []\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
@@ -3266,11 +2791,7 @@ Overfull \hbox (3.36198pt too wide) in paragraph at lines 1032--1032
 
 
 
-[187]
-
-LaTeX Warning: Reference `ch:performance' on page 188 undefined on input line 1034.
-
-)
+[187])
 
 [188]
 
@@ -3284,17 +2805,7 @@ LaTeX Warning: Reference `ch:performance' on page 188 undefined on input line 10
 [190]
 \openout2 = `author/part3-optimization.aux'.
 
- (./author/part3-optimization.tex
-
-LaTeX Warning: Reference `ch:performance' on page 191 undefined on input line 5.
-
-
-LaTeX Warning: Reference `ch:rag' on page 191 undefined on input line 5.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 191 undefined on input line 5.
-
-)
+ (./author/part3-optimization.tex)
 
 [191
 
@@ -3535,12 +3046,6 @@ Overfull \hbox (25.47447pt too wide) in alignment at lines 303--303
  []
 
 
-LaTeX Warning: Reference `tab:quantization-comparison' on page 199 undefined on input line 321.
-
-
-LaTeX Warning: Reference `tab:quantization-comparison' on page 199 undefined on input line 321.
-
-
 
 [199]
 
@@ -3630,36 +3135,11 @@ Overfull \hbox (13.91086pt too wide) in alignment at lines 751--751
 
 [221]
 
-LaTeX Warning: Reference `sec:inference-engines' on page 222 undefined on input line 807.
-
-
-
 [222]
-
-LaTeX Warning: Reference `sec:inference-engines' on page 223 undefined on input line 855.
-
-
 
 [223]
 
-LaTeX Warning: Reference `eq:kv-total' on page 224 undefined on input line 858.
-
-
-LaTeX Warning: Reference `eq:throughput-main' on page 224 undefined on input line 875.
-
-
-
 [224]
-
-LaTeX Warning: Reference `eq:kv-total' on page 225 undefined on input line 891.
-
-
-LaTeX Warning: Reference `eq:throughput-main' on page 225 undefined on input line 891.
-
-
-LaTeX Warning: Reference `eq:cost-k' on page 225 undefined on input line 891.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 918--918
 []|\OT1/ntxtlf/b/n/8.5 (+20) Encoder-Only
  []
@@ -3838,10 +3318,6 @@ Overfull \hbox (27.50168pt too wide) in paragraph at lines 947--948
 [227
 
 ]
-
-LaTeX Warning: Reference `tab:runtimes' on page 228 undefined on input line 956.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 970--971
 []|\OT1/ntxtlf/m/n/8.5 (+20) Static/dynamic batch-
  []
@@ -3880,14 +3356,7 @@ Overfull \hbox (115.56535pt too wide) in paragraph at lines 964--999
 
 [232]
 
-[233]
-
-LaTeX Warning: Reference `ch:rag' on page 234 undefined on input line 1084.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 234 undefined on input line 1084.
-
-)
+[233])
 
 [234]
 \openout2 = `ch08-rag.aux'.
@@ -4181,13 +3650,6 @@ LaTeX Font Info:    Font shape `TS1/ntxtlf/m/it' will be
 (Font)              scaled to size 10.0pt on input line 957.
 
 
-LaTeX Warning: Reference `ch:testing' on page 274 undefined on input line 964.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 274 undefined on input line 964.
-
-
-
 [274])
 
 [275]
@@ -4222,17 +3684,9 @@ LaTeX Info: Symbol \textrightarrow not provided by
 
 [278]
 
-LaTeX Warning: Reference `sec:errorhandling' on page 279 undefined on input line 39.
-
-
-
 [279]
 
 [280]
-
-LaTeX Warning: Reference `ch:intro' on page 281 undefined on input line 104.
-
-
 
 [281]
 
@@ -4241,9 +3695,6 @@ LaTeX Warning: Reference `ch:intro' on page 281 undefined on input line 104.
 [283]
 
 [284]
-
-LaTeX Warning: Reference `ch:case-study' on page 285 undefined on input line 200.
-
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
             Default family used instead on input line 209.
@@ -4284,16 +3735,6 @@ LaTeX Info: Symbol \textrightarrow not provided by
 [288]
 
 [289]
-
-LaTeX Warning: Reference `ch:testing' on page 290 undefined on input line 317.
-
-
-LaTeX Warning: Reference `sec:errorhandling' on page 290 undefined on input line 317.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 290 undefined on input line 317.
-
-
 Overfull \hbox (358.72319pt too wide) in paragraph at lines 408--409
  [][] 
  []
@@ -4413,17 +3854,7 @@ Overfull \hbox (5.16664pt too wide) in paragraph at lines 658--658
 [308]
 \openout2 = `author/part4-governance.aux'.
 
- (./author/part4-governance.tex
-
-LaTeX Warning: Reference `ch:testing' on page 309 undefined on input line 5.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 309 undefined on input line 5.
-
-
-LaTeX Warning: Reference `ch:case-study' on page 309 undefined on input line 5.
-
-)
+ (./author/part4-governance.tex)
 
 [309
 
@@ -4503,16 +3934,6 @@ LaTeX Info: Symbol \textrightarrow not provided by
 
 [334]
 
-LaTeX Warning: Reference `sec:ch10-regression-testing-in-ci-cd' on page 335 undefined on input line 537.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 335 undefined on input line 537.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 335 undefined on input line 537.
-
-
-
 [335]
 
 [336]
@@ -4540,35 +3961,11 @@ Package biblatex Info: Setting label 'refsegment:023' on input line 3.
 
 [340]
 
-LaTeX Warning: Reference `ch:rag' on page 341 undefined on input line 56.
-
-
-
 [341]
 
 [342]
 
-LaTeX Warning: Reference `ch:monitoring' on page 343 undefined on input line 98.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 343 undefined on input line 102.
-
-
-
 [343]
-
-LaTeX Warning: Reference `ch:cicd' on page 344 undefined on input line 120.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 344 undefined on input line 120.
-
-
-LaTeX Warning: Reference `ch:testing' on page 344 undefined on input line 120.
-
-
-LaTeX Warning: Reference `ch:rag' on page 344 undefined on input line 131.
-
-
 
 [344]
 
@@ -4580,27 +3977,9 @@ LaTeX Warning: Reference `ch:rag' on page 344 undefined on input line 131.
 
 [348]
 
-LaTeX Warning: Reference `ch:monitoring' on page 349 undefined on input line 235.
-
-
-
 [349]
 
-LaTeX Warning: Reference `ch:cicd' on page 350 undefined on input line 251.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 350 undefined on input line 251.
-
-
-LaTeX Warning: Reference `ch:testing' on page 350 undefined on input line 251.
-
-
-
 [350]
-
-LaTeX Warning: Reference `ch:rag' on page 351 undefined on input line 273.
-
-
 
 [351]
 
@@ -4653,78 +4032,7 @@ Package biblatex Info: Setting label 'refsegment:025' on input line 3.
 
 [363]
 
-LaTeX Warning: Reference `ch:infra' on page 364 undefined on input line 29.
-
-
-LaTeX Warning: Reference `ch:llmops-fundamentals' on page 364 undefined on input line 29.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 364 undefined on input line 30.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 364 undefined on input line 30.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 364 undefined on input line 30.
-
-
-LaTeX Warning: Reference `ch:performance' on page 364 undefined on input line 31.
-
-
-LaTeX Warning: Reference `ch:rag' on page 364 undefined on input line 31.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 364 undefined on input line 31.
-
-
-LaTeX Warning: Reference `ch:testing' on page 364 undefined on input line 32.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 364 undefined on input line 32.
-
-
-LaTeX Warning: Reference `sec:ishtar-step-infra' on page 364 undefined on input line 38.
-
-
-LaTeX Warning: Reference `sec:ishtar-step-ingestion' on page 364 undefined on input line 39.
-
-
-LaTeX Warning: Reference `sec:ishtar-step-kb' on page 364 undefined on input line 40.
-
-
-LaTeX Warning: Reference `sec:ishtar-step-rag' on page 364 undefined on input line 41.
-
-
-LaTeX Warning: Reference `sec:ishtar-step-agents' on page 364 undefined on input line 42.
-
-
-LaTeX Warning: Reference `sec:ishtar-step-cicd' on page 364 undefined on input line 43.
-
-
-LaTeX Warning: Reference `sec:ishtar-ops' on page 364 undefined on input line 44.
-
-
-LaTeX Warning: Reference `sec:ishtar-ethics' on page 364 undefined on input line 44.
-
-
-LaTeX Warning: Reference `ch:rag' on page 364 undefined on input line 53.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 364 undefined on input line 53.
-
-
-
 [364]
-
-LaTeX Warning: Reference `ch:testing' on page 365 undefined on input line 64.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 365 undefined on input line 64.
-
-
-LaTeX Warning: Reference `tab:ishtar-requirements' on page 365 undefined on input line 73.
-
-
 Underfull \hbox (badness 4779) in paragraph at lines 92--92
 []|\OT1/ntxtlf/m/n/8.5 (+20) Poll/stream sources
  []
@@ -4780,24 +4088,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 92--92
  []
 
 
-LaTeX Warning: Reference `ch:multiagent' on page 365 undefined on input line 110.
-
-
-LaTeX Warning: Reference `ch:infra' on page 365 undefined on input line 111.
-
-
-LaTeX Warning: Reference `ch:performance' on page 365 undefined on input line 111.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 365 undefined on input line 112.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 365 undefined on input line 112.
-
-
-LaTeX Warning: Reference `fig:ishtar-architecture-ch12' on page 365 undefined on input line 115.
-
-
 Overfull \hbox (145.91408pt too wide) in paragraph at lines 172--173
  [][] 
  []
@@ -4813,16 +4103,9 @@ LaTeX Warning: Reference `ch:infra-env' on page 367 undefined on input line 187.
 
 
 [367]
-
-LaTeX Warning: Reference `ch:scaling' on page 368 undefined on input line 204.
-
-
 Overfull \hbox (17.24895pt too wide) in paragraph at lines 219--219
 []  \OT1/lmtt/m/n/10 enable_oidc   = true             # enables workload identity / OIDC[] 
  []
-
-
-LaTeX Warning: Reference `ch:scaling' on page 368 undefined on input line 225.
 
 
 
@@ -4830,17 +4113,9 @@ LaTeX Warning: Reference `ch:scaling' on page 368 undefined on input line 225.
 
 [369]
 
-LaTeX Warning: Reference `ch:rag' on page 370 undefined on input line 286.
-
-
-
 [370]
 
 [371]
-
-LaTeX Warning: Reference `ch:multiagent' on page 372 undefined on input line 373.
-
-
 
 [372]
 Overfull \hbox (22.49893pt too wide) in paragraph at lines 399--399
@@ -4848,18 +4123,8 @@ Overfull \hbox (22.49893pt too wide) in paragraph at lines 399--399
  []
 
 
-LaTeX Warning: Reference `ch:monitoring' on page 373 undefined on input line 413.
-
-
 
 [373]
-
-LaTeX Warning: Reference `ch:ethics' on page 374 undefined on input line 431.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 374 undefined on input line 436.
-
-
 Overfull \hbox (32.9989pt too wide) in paragraph at lines 461--461
 []      \OT1/lmtt/m/n/10 - run: python eval/run_offline_eval.py --index_version v2025.12.01[] 
  []
@@ -4873,33 +4138,11 @@ Overfull \hbox (6.74898pt too wide) in paragraph at lines 462--462
 
 [374]
 
-LaTeX Warning: Reference `ch:monitoring' on page 375 undefined on input line 483.
-
-
-
 [375]
-
-LaTeX Warning: Reference `ch:monitoring' on page 376 undefined on input line 527.
-
-
 
 [376]
 
-LaTeX Warning: Reference `ch:ethics' on page 377 undefined on input line 571.
-
-
-
 [377]
-
-LaTeX Warning: Reference `tab:ishtar-outcomes' on page 378 undefined on input line 617.
-
-
-LaTeX Warning: Reference `ch:performance' on page 378 undefined on input line 646.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 378 undefined on input line 646.
-
-
 
 [378]
 
@@ -4921,9 +4164,7 @@ Overfull \hbox (10.38861pt too wide) in paragraph at lines 756--756
 [384]
 \openout2 = `author/glossary.aux'.
 
- (./author/glossary.tex)
-No file book.ind.
-(./book.aux (./author/dedication.aux) (./author/foreword.aux) (./author/preface.aux) (./author/acknowledgement.aux) (./author/acronym.aux) (./author/part1-foundations.aux) (./ch01-intro-ishar.aux) (./ch02-llmops-fundamentals.aux) (./ch03-infra-env.aux) (./author/part2-delivery.aux) (./ch04-cicd.aux) (./ch05-observability.aux) (./ch06-scaling.aux) (./author/part3-optimization.aux) (./ch07-performance.aux) (./ch08-rag.aux) (./ch09-agents-orchestration.aux) (./author/part4-governance.aux) (./ch10-testing-eval.aux) (./ch11-ethics.aux) (./ch12-ishtar-end-to-end.aux) (./author/glossary.aux))
+ (./author/glossary.tex) (./book.ind) (./book.aux (./author/dedication.aux) (./author/foreword.aux) (./author/preface.aux) (./author/acknowledgement.aux) (./author/acronym.aux) (./author/part1-foundations.aux) (./ch01-intro-ishar.aux) (./ch02-llmops-fundamentals.aux) (./ch03-infra-env.aux) (./author/part2-delivery.aux) (./ch04-cicd.aux) (./ch05-observability.aux) (./ch06-scaling.aux) (./author/part3-optimization.aux) (./ch07-performance.aux) (./ch08-rag.aux) (./ch09-agents-orchestration.aux) (./author/part4-governance.aux) (./ch10-testing-eval.aux) (./ch11-ethics.aux) (./ch12-ishtar-end-to-end.aux) (./author/glossary.aux))
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2020/03/25>
@@ -4940,7 +4181,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
 
 Package biblatex Warning: Please (re)run Biber on the file:
@@ -4952,21 +4193,21 @@ Package logreq Info: Writing requests to 'book.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 67006 strings out of 467800
- 1530574 string characters out of 5431882
- 2632335 words of memory out of 5000000
- 91712 multiletter control sequences out of 15000+600000
- 773541 words of font info for 976 fonts, out of 8000000 for 9000
+ 67092 strings out of 467800
+ 1532209 string characters out of 5431882
+ 2752338 words of memory out of 5000000
+ 91737 multiletter control sequences out of 15000+600000
+ 773615 words of font info for 977 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,21n,101p,2661b,2389s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on book.pdf (390 pages, 2956380 bytes).
+Output written on book.pdf (398 pages, 2994008 bytes).
 PDF statistics:
- 6360 PDF objects out of 7423 (max. 8388607)
- 5795 compressed objects within 58 object streams
- 1751 named destinations out of 2073 (max. 500000)
+ 7099 PDF objects out of 7423 (max. 8388607)
+ 6472 compressed objects within 65 object streams
+ 1759 named destinations out of 2073 (max. 500000)
  160670 words of extra memory for PDF output out of 184870 (max. 10000000)
 
