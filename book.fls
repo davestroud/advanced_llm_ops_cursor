@@ -486,6 +486,9 @@ INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
+INPUT ./book.aux
+INPUT ./book.aux
+INPUT book.aux
 OUTPUT book.aux
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd
@@ -743,10 +746,6 @@ INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/lm/rm-lmtt10.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1r.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/tex-gyre/ts1-qtmri.tfm
 INPUT ./ch02-llmops-fundamentals.tex
 INPUT ./ch02-llmops-fundamentals.tex
 OUTPUT ch02-llmops-fundamentals.aux
@@ -756,6 +755,9 @@ INPUT ch02-llmops-fundamentals.tex
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxmia.vf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1r.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxmi07.vf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
@@ -853,6 +855,7 @@ OUTPUT ch08-rag.aux
 INPUT ./ch08-rag.tex
 INPUT ./ch08-rag.tex
 INPUT ch08-rag.tex
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/tex-gyre/ts1-qtmri.tfm
 INPUT ./ch09-agents-orchestration.tex
 INPUT ./ch09-agents-orchestration.tex
 OUTPUT ch09-agents-orchestration.aux

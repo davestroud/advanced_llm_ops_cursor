@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 12:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 12:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1617,13 +1617,12 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 96.
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
-
-No file book.aux.
+ (./book.aux)
 \openout1 = `book.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 96.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 96.
-(/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
 LaTeX Font Info:    ... okay on input line 96.
@@ -2373,38 +2372,13 @@ LaTeX Warning: Reference `ch:case-study' on page 32 undefined on input line 1037
 
 
 [32]
-./ch01-intro-ishar.tex:1091: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.1091 ]
-        
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ch01-intro-ishar.tex:1091: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.1091 ]
-        
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Package biblatex Warning: Segment '' not found in section '0' on input line 1087.
-
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
 (Font)              scaled to size 10.0pt on input line 1087.
 Package microtype Info: Character `013' is missing
 (microtype)             in font `OT1/ntxtlf/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 1087.
-(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
@@ -2413,69 +2387,9 @@ Overfull \hbox (3.44734pt too wide) in paragraph at lines 1091--1091
 \OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
  []
 
-
+)
 
 [34]
-
-[35]
-
-[36]
-
-[37]
-
-[38]
-
-[39]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 1091--1091
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[40]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 1091--1091
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
-
-
-
-[41]
-
-[42]
-
-[43]
-LaTeX Font Info:    Font shape `TS1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.0pt on input line 1087.
-
-
-[44]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 1091--1091
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[45]
-
-[46]
-
-[47]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 1091--1091
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 1091--1091
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[48]
-
-[49])
-
-[50]
 \openout2 = `ch02-llmops-fundamentals.aux'.
 
  (./ch02-llmops-fundamentals.tex
@@ -2486,7 +2400,7 @@ Package biblatex Info: Reference segment=5 on input line 3.
 Package biblatex Info: Setting label 'refsegment:05' on input line 3.
 
 
-[51
+[35
 
 
 
@@ -2494,65 +2408,65 @@ Package biblatex Info: Setting label 'refsegment:05' on input line 3.
 
 ]
 
-LaTeX Warning: Reference `ch:infra' on page 52 undefined on input line 19.
+LaTeX Warning: Reference `ch:infra' on page 36 undefined on input line 19.
 
 
-LaTeX Warning: Reference `ch:cicd' on page 52 undefined on input line 19.
+LaTeX Warning: Reference `ch:cicd' on page 36 undefined on input line 19.
 
 
-LaTeX Warning: Reference `ch:monitoring' on page 52 undefined on input line 19.
+LaTeX Warning: Reference `ch:monitoring' on page 36 undefined on input line 19.
 
 
-LaTeX Warning: Reference `ch:scaling' on page 52 undefined on input line 19.
+LaTeX Warning: Reference `ch:scaling' on page 36 undefined on input line 19.
 
 
 
-[52]
+[36]
 
-[53]
+[37]
 
-[54]
+[38]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 7.3pt on input line 74.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 5.5pt on input line 74.
 
 
-LaTeX Warning: Reference `eq:kv-cache' on page 55 undefined on input line 91.
+LaTeX Warning: Reference `eq:kv-cache' on page 39 undefined on input line 91.
 
 
 
-[55]
+[39]
 
-[56]
+[40]
 
-[57]
+[41]
 
-LaTeX Warning: Reference `eq:param-mem' on page 58 undefined on input line 165.
-
-
-LaTeX Warning: Reference `eq:kv-cache' on page 58 undefined on input line 165.
+LaTeX Warning: Reference `eq:param-mem' on page 42 undefined on input line 165.
 
 
-LaTeX Warning: Reference `eq:flops-layer' on page 58 undefined on input line 165.
+LaTeX Warning: Reference `eq:kv-cache' on page 42 undefined on input line 165.
 
 
-LaTeX Warning: Reference `eq:param-mem' on page 58 undefined on input line 165.
+LaTeX Warning: Reference `eq:flops-layer' on page 42 undefined on input line 165.
 
 
-LaTeX Warning: Reference `eq:kv-cache' on page 58 undefined on input line 165.
+LaTeX Warning: Reference `eq:param-mem' on page 42 undefined on input line 165.
 
 
-LaTeX Warning: Reference `eq:flops-layer' on page 58 undefined on input line 165.
+LaTeX Warning: Reference `eq:kv-cache' on page 42 undefined on input line 165.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 42 undefined on input line 165.
 
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-LaTeX Warning: Reference `eq:attn-complexity' on page 58 undefined on input line 194.
+LaTeX Warning: Reference `eq:attn-complexity' on page 42 undefined on input line 194.
 
 Package pgfplots info on input line 213: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
 
-LaTeX Warning: Reference `eq:kv-cache' on page 58 undefined on input line 256.
+LaTeX Warning: Reference `eq:kv-cache' on page 42 undefined on input line 256.
 
 
 Underfull \hbox (badness 1253) in paragraph at lines 269--270
@@ -2566,15 +2480,15 @@ LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 (Font)              scaled to size 5.5pt on input line 276.
 
-LaTeX Warning: Reference `eq:kv-cache' on page 58 undefined on input line 278.
+LaTeX Warning: Reference `eq:kv-cache' on page 42 undefined on input line 278.
 
 
 
-[58]
+[42]
 
-[59]
+[43]
 
-[60]
+[44]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -2586,59 +2500,59 @@ LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 (Font)              scaled to size 4.67502pt on input line 309.
 
-LaTeX Warning: Reference `eq:throughput' on page 61 undefined on input line 311.
+LaTeX Warning: Reference `eq:throughput' on page 45 undefined on input line 311.
 
 
-LaTeX Warning: Reference `eq:throughput' on page 61 undefined on input line 311.
-
-
-
-[61]
-
-[62]
-
-[63]
-
-[64]
-
-[65]
-
-[66]
-
-[67]
-
-[68]
-
-LaTeX Warning: Reference `eq:kv-cache' on page 69 undefined on input line 451.
-
-
-LaTeX Warning: Reference `eq:flops-layer' on page 69 undefined on input line 451.
-
-
-LaTeX Warning: Reference `eq:flops-layer' on page 69 undefined on input line 451.
+LaTeX Warning: Reference `eq:throughput' on page 45 undefined on input line 311.
 
 
 
-[69]
+[45]
 
-LaTeX Warning: Reference `eq:flops-layer' on page 70 undefined on input line 486.
+[46]
+
+[47]
+
+[48]
+
+[49]
+
+[50]
+
+[51]
+
+[52]
+
+LaTeX Warning: Reference `eq:kv-cache' on page 53 undefined on input line 451.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 53 undefined on input line 451.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 53 undefined on input line 451.
 
 
 
-[70]
+[53]
 
-[71]
-
-LaTeX Warning: Reference `eq:kv-cache' on page 72 undefined on input line 543.
-
-
-LaTeX Warning: Reference `eq:kv-cache' on page 72 undefined on input line 555.
+LaTeX Warning: Reference `eq:flops-layer' on page 54 undefined on input line 486.
 
 
 
-[72]
+[54]
 
-LaTeX Warning: Reference `eq:param-mem' on page 73 undefined on input line 589.
+[55]
+
+LaTeX Warning: Reference `eq:kv-cache' on page 56 undefined on input line 543.
+
+
+LaTeX Warning: Reference `eq:kv-cache' on page 56 undefined on input line 555.
+
+
+
+[56]
+
+LaTeX Warning: Reference `eq:param-mem' on page 57 undefined on input line 589.
 
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 6.20496pt on input line 595.
@@ -2646,58 +2560,126 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 4.67502pt on input line 595.
 
 
+[57]
+
+[58]
+
+[59]
+
+[60]
+
+[61]
+
+LaTeX Warning: Reference `ch:infra' on page 62 undefined on input line 762.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 62 undefined on input line 762.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 62 undefined on input line 762.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 62 undefined on input line 762.
+
+
+
+[62])
+
+[63]
+\openout2 = `ch03-infra-env.aux'.
+
+ (./ch03-infra-env.tex
+
+[64
+
+
+
+
+
+]
+Chapter 3.
+Package biblatex Info: Reference segment=6 on input line 1.
+Package biblatex Info: Setting label 'refsegment:06' on input line 1.
+Package biblatex Info: Reference segment=7 on input line 3.
+Package biblatex Info: Setting label 'refsegment:07' on input line 3.
+
+
+[65]
+
+[66]
+
+LaTeX Warning: Reference `ch:cicd' on page 67 undefined on input line 71.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 67 undefined on input line 71.
+
+
+LaTeX Warning: Reference `sec:infra-hardware-bench' on page 67 undefined on input line 80.
+
+
+
+[67]
+Overfull \hbox (17.2671pt too wide) in paragraph at lines 91--101
+ [][] 
+ []
+
+
+
+[68]
+
+LaTeX Warning: Reference `eq:costptok' on page 69 undefined on input line 125.
+
+
+
+[69]
+
+LaTeX Warning: Reference `ch:scaling' on page 70 undefined on input line 135.
+
+
+
+[70]
+
+[71]
+
+[72]
+
+LaTeX Warning: Reference `tab:costcompare' on page 73 undefined on input line 187.
+
+
+LaTeX Warning: Reference `eq:costptok' on page 73 undefined on input line 189.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 73 undefined on input line 211.
+
+
+
 [73]
 
 [74]
+Overfull \hbox (3.98167pt too wide) in paragraph at lines 277--282
+[]\OT1/ntxtlf/b/n/10 (-20) Terraform (HashiCorp). \OT1/ntxtlf/m/n/10 (-20) Declar-a-tive, cloud-agnostic IaC tool us-ing HCL (HashiCorp
+ []
+
+
 
 [75]
+
+LaTeX Warning: Reference `tab:iaccompare' on page 76 undefined on input line 300.
+
+
+Overfull \hbox (92.10152pt too wide) in paragraph at lines 306--316
+ [][] 
+ []
+
+
 
 [76]
 
 [77]
 
-LaTeX Warning: Reference `ch:infra' on page 78 undefined on input line 762.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 78 undefined on input line 762.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 78 undefined on input line 762.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 78 undefined on input line 762.
-
-./ch02-llmops-fundamentals.tex:772: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.772 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ch02-llmops-fundamentals.tex:772: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.772 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Package biblatex Warning: Segment '' not found in section '0' on input line 768.
-
-
-
 [78]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 772--772
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
+
+LaTeX Warning: Reference `ch:cicd' on page 79 undefined on input line 423.
 
 
 
@@ -2712,161 +2694,6 @@ Overfull \hbox (3.44734pt too wide) in paragraph at lines 772--772
 [83]
 
 [84]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 772--772
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[85]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 772--772
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
-
-
-
-[86]
-
-[87]
-
-[88]
-
-[89]
-
-[90]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 772--772
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[91]
-
-[92]
-
-[93]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 772--772
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 772--772
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[94]
-
-[95])
-
-[96]
-\openout2 = `ch03-infra-env.aux'.
-
- (./ch03-infra-env.tex
-Chapter 3.
-Package biblatex Info: Reference segment=6 on input line 1.
-Package biblatex Info: Setting label 'refsegment:06' on input line 1.
-Package biblatex Info: Reference segment=7 on input line 3.
-Package biblatex Info: Setting label 'refsegment:07' on input line 3.
-
-
-[97
-
-
-
-
-
-]
-
-[98]
-
-LaTeX Warning: Reference `ch:cicd' on page 99 undefined on input line 71.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 99 undefined on input line 71.
-
-
-LaTeX Warning: Reference `sec:infra-hardware-bench' on page 99 undefined on input line 80.
-
-
-
-[99]
-Overfull \hbox (17.2671pt too wide) in paragraph at lines 91--101
- [][] 
- []
-
-
-
-[100]
-
-LaTeX Warning: Reference `eq:costptok' on page 101 undefined on input line 125.
-
-
-
-[101]
-
-LaTeX Warning: Reference `ch:scaling' on page 102 undefined on input line 135.
-
-
-
-[102]
-
-[103]
-
-[104]
-
-LaTeX Warning: Reference `tab:costcompare' on page 105 undefined on input line 187.
-
-
-LaTeX Warning: Reference `eq:costptok' on page 105 undefined on input line 189.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 105 undefined on input line 211.
-
-
-
-[105]
-
-[106]
-Overfull \hbox (3.98167pt too wide) in paragraph at lines 277--282
-[]\OT1/ntxtlf/b/n/10 (-20) Terraform (HashiCorp). \OT1/ntxtlf/m/n/10 (-20) Declar-a-tive, cloud-agnostic IaC tool us-ing HCL (HashiCorp
- []
-
-
-
-[107]
-
-LaTeX Warning: Reference `tab:iaccompare' on page 108 undefined on input line 300.
-
-
-Overfull \hbox (92.10152pt too wide) in paragraph at lines 306--316
- [][] 
- []
-
-
-
-[108]
-
-[109]
-
-[110]
-
-LaTeX Warning: Reference `ch:cicd' on page 111 undefined on input line 423.
-
-
-
-[111]
-
-[112]
-
-[113]
-
-[114]
-
-[115]
-
-[116]
 Underfull \hbox (badness 1092) in paragraph at lines 545--545
 \OT1/ntxtlf/m/n/8.5 (+20) tion; ef-fi-cient KV cache reuse;
  []
@@ -2888,176 +2715,88 @@ Overfull \hbox (59.07527pt too wide) in paragraph at lines 535--561
 
 
 
-[117]
+[85]
 
-[118]
+[86]
 
-[119]
+[87]
 
-LaTeX Warning: Reference `ch:cicd' on page 120 undefined on input line 701.
-
-
-LaTeX Warning: Reference `ch:monitoring' on page 120 undefined on input line 701.
+LaTeX Warning: Reference `ch:cicd' on page 88 undefined on input line 701.
 
 
-LaTeX Warning: Reference `ch:scaling' on page 120 undefined on input line 701.
+LaTeX Warning: Reference `ch:monitoring' on page 88 undefined on input line 701.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 88 undefined on input line 701.
 
 
 
-[120]
+[88]
 Overfull \hbox (5.16875pt too wide) in paragraph at lines 798--799
  [][] 
  []
 
 
 
-[121]
+[89]
 
-[122]
+[90]
 Overfull \hbox (181.70961pt too wide) in paragraph at lines 916--917
  [][] 
  []
 
 
 
-[123]
+[91]
 
-[124]
+[92]
 
-[125]
+[93]
 
-[126]
-./ch03-infra-env.tex:989: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.989 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[94]
 
-./ch03-infra-env.tex:989: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.989 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[95]
 
+[96]
 
-Package biblatex Warning: Segment '' not found in section '0' on input line 985.
+[97]
 
+[98]
 
+[99])
 
-[127]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 989--989
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
+[100]
 
-
-
-[128]
-
-[129]
-
-[130]
-
-[131]
-
-[132]
-
-[133]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 989--989
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[134]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 989--989
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
-
-
-
-[135]
-
-[136]
-
-[137]
-
-[138]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 989--989
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[139]
-
-[140]
-
-[141]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 989--989
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 989--989
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[142]
-
-[143]
-
-[144]
-
-[145]
-
-[146])
-
-[147]
-
-[148
+[101
 
 
 
 
 ]
 
-[149]
-
-[150]
+[102]
 \openout2 = `author/part2-delivery.aux'.
 
  (./author/part2-delivery.tex
 
-LaTeX Warning: Reference `ch:cicd' on page 151 undefined on input line 5.
+LaTeX Warning: Reference `ch:cicd' on page 103 undefined on input line 5.
 
 
-LaTeX Warning: Reference `ch:monitoring' on page 151 undefined on input line 5.
+LaTeX Warning: Reference `ch:monitoring' on page 103 undefined on input line 5.
 
 
-LaTeX Warning: Reference `ch:scaling' on page 151 undefined on input line 5.
+LaTeX Warning: Reference `ch:scaling' on page 103 undefined on input line 5.
 
 )
 
-[151
+[103
 
 ]
 \openout2 = `ch04-cicd.aux'.
 
  (./ch04-cicd.tex
 
-[152
+[104
 
 
 
@@ -3071,37 +2810,37 @@ Package biblatex Info: Reference segment=9 on input line 3.
 Package biblatex Info: Setting label 'refsegment:09' on input line 3.
 
 
-[153]
+[105]
 
-LaTeX Warning: Reference `ch:infra' on page 154 undefined on input line 24.
-
-
-LaTeX Warning: Reference `ch:testing' on page 154 undefined on input line 36.
+LaTeX Warning: Reference `ch:infra' on page 106 undefined on input line 24.
 
 
-LaTeX Warning: Reference `ch:testing' on page 154 undefined on input line 44.
+LaTeX Warning: Reference `ch:testing' on page 106 undefined on input line 36.
 
 
-
-[154]
-
-[155]
-
-LaTeX Warning: Reference `ch:testing' on page 156 undefined on input line 65.
+LaTeX Warning: Reference `ch:testing' on page 106 undefined on input line 44.
 
 
 
-[156]
+[106]
 
-[157]
+[107]
 
-LaTeX Warning: Reference `ch:testing' on page 158 undefined on input line 82.
+LaTeX Warning: Reference `ch:testing' on page 108 undefined on input line 65.
 
 
 
-[158]
+[108]
 
-LaTeX Warning: Reference `tab:eval_stages' on page 159 undefined on input line 96.
+[109]
+
+LaTeX Warning: Reference `ch:testing' on page 110 undefined on input line 82.
+
+
+
+[110]
+
+LaTeX Warning: Reference `tab:eval_stages' on page 111 undefined on input line 96.
 
 
 Underfull \hbox (badness 2326) in paragraph at lines 130--130
@@ -3109,7 +2848,7 @@ Underfull \hbox (badness 2326) in paragraph at lines 130--130
  []
 
 
-LaTeX Warning: Reference `fig:eval_stages_pipeline' on page 159 undefined on input line 133.
+LaTeX Warning: Reference `fig:eval_stages_pipeline' on page 111 undefined on input line 133.
 
 
 Overfull \hbox (316.43091pt too wide) in paragraph at lines 197--198
@@ -3117,6 +2856,258 @@ Overfull \hbox (316.43091pt too wide) in paragraph at lines 197--198
  []
 
 
+
+[111]
+
+[112]
+
+[113]
+
+[114]
+
+[115]
+
+[116]
+
+[117]
+
+[118]
+
+[119]
+
+[120]
+
+[121]
+
+[122]
+
+[123]
+
+[124])
+
+[125]
+\openout2 = `ch05-observability.aux'.
+
+ (./ch05-observability.tex
+
+[126
+
+
+
+
+
+]
+Chapter 5.
+Package biblatex Info: Reference segment=10 on input line 1.
+Package biblatex Info: Setting label 'refsegment:010' on input line 1.
+Package biblatex Info: Reference segment=11 on input line 3.
+Package biblatex Info: Setting label 'refsegment:011' on input line 3.
+
+
+[127]
+
+[128]
+Overfull \hbox (12.25851pt too wide) in paragraph at lines 80--82
+ [][] 
+ []
+
+
+
+[129]
+
+[130]
+
+[131]
+
+[132]
+
+LaTeX Warning: Citation 'jaeger_tracing' on page 133 undefined on input line 183.
+
+
+Overfull \hbox (7.07446pt too wide) in paragraph at lines 186--188
+\OT1/lmtt/m/n/10 retrieval[]metadata \OT1/ntxtlf/m/n/10 (-20) (doc IDs, in-dex ver-sion, top-$k$, re-ranker scores); \OT1/lmtt/m/n/10 token[]counts
+ []
+
+
+Overfull \hbox (38.40677pt too wide) in paragraph at lines 186--188
+\OT1/ntxtlf/m/n/10 (-20) tax-on-omy (e.g., \OT1/lmtt/m/n/10 provider[]timeout\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 rate[]limit\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 tool[]schema[]mismatch\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 parser[]failure\OT1/ntxtlf/m/n/10 (-20) )
+ []
+
+
+
+[133]
+
+LaTeX Warning: Citation 'jaeger_tracing' on page 134 undefined on input line 233.
+
+
+
+[134]
+LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <8.5> not available
+(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 276.
+
+Overfull \hbox (583.99873pt too wide) in paragraph at lines 319--323
+ [][] 
+ []
+
+
+
+[135]
+
+LaTeX Warning: Reference `ch:rag' on page 136 undefined on input line 350.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 136 undefined on input line 350.
+
+
+
+[136]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 366.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 366.
+
+
+LaTeX Warning: Reference `ch:rag' on page 137 undefined on input line 370.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 137 undefined on input line 370.
+
+
+
+[137{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+LaTeX Warning: Reference `ch:cicd' on page 138 undefined on input line 398.
+
+
+LaTeX Warning: Reference `ch:testing' on page 138 undefined on input line 398.
+
+
+
+[138]
+Overfull \hbox (37.4113pt too wide) in paragraph at lines 430--431
+[]\OT1/ntxtlf/b/n/10 (-20) Cohort and route lenses. \OT1/ntxtlf/m/n/10 (-20) Pro-vide con-sis-tent la-bels|\OT1/lmtt/m/n/10 model[]version\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 retriever[]version\OT1/ntxtlf/m/n/10 (-20) ,
+ []
+
+
+
+[139]
+
+[140]
+
+LaTeX Warning: Reference `ch:cicd' on page 141 undefined on input line 473.
+
+
+LaTeX Warning: Reference `ch:testing' on page 141 undefined on input line 473.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 141 undefined on input line 473.
+
+
+LaTeX Warning: Reference `ch:testing' on page 141 undefined on input line 473.
+
+
+
+[141]
+
+LaTeX Warning: Reference `ch:cicd' on page 142 undefined on input line 495.
+
+
+LaTeX Warning: Reference `ch:testing' on page 142 undefined on input line 495.
+
+
+
+[142]
+
+LaTeX Warning: Reference `ch:cicd' on page 143 undefined on input line 521.
+
+
+LaTeX Warning: Reference `ch:testing' on page 143 undefined on input line 521.
+
+
+
+[143]
+
+LaTeX Warning: Reference `ch:cicd' on page 144 undefined on input line 550.
+
+
+LaTeX Warning: Reference `ch:testing' on page 144 undefined on input line 550.
+
+
+
+[144]
+
+[145]
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 631--631
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
+
+[146])
+
+[147]
+\openout2 = `ch06-scaling.aux'.
+
+ (./ch06-scaling.tex
+
+[148
+
+
+
+
+
+]
+Chapter 6.
+Package biblatex Info: Reference segment=12 on input line 1.
+Package biblatex Info: Setting label 'refsegment:012' on input line 1.
+Package biblatex Info: Reference segment=13 on input line 3.
+Package biblatex Info: Setting label 'refsegment:013' on input line 3.
+
+
+[149]
+
+[150]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
+(Font)              scaled to size 10.0pt on input line 46.
+
+
+[151]
+
+LaTeX Warning: Reference `fig:scaling-dimensions' on page 152 undefined on input line 68.
+
+
+LaTeX Warning: Reference `tab:scaling-matrix' on page 152 undefined on input line 68.
+
+
+
+[152]
+
+[153]
+
+[154]
+
+[155]
+Underfull \hbox (badness 1163) in paragraph at lines 159--160
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Lowest per-instance la-tency; well-
+ []
+
+
+Overfull \hbox (59.17903pt too wide) in paragraph at lines 227--228
+ [][] 
+ []
+
+
+
+[156]
+
+[157]
+
+[158]
 
 [159]
 
@@ -3138,40 +3129,34 @@ Overfull \hbox (316.43091pt too wide) in paragraph at lines 197--198
 
 [168]
 
-[169]
-./ch04-cicd.tex:428: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
+./ch06-scaling.tex:583: LaTeX Error: Not allowed in LR mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
                                                   
-l.428 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ch04-cicd.tex:428: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.428 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+l.583 \end{axis}
+                
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
-Package biblatex Warning: Segment '' not found in section '0' on input line 424.
+./ch06-scaling.tex:583: LaTeX Error: Not allowed in LR mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.583 \end{axis}
+                
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
+
+[169]
 
 [170]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 428--428
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
-
-
 
 [171]
 
@@ -3179,580 +3164,85 @@ Overfull \hbox (3.44734pt too wide) in paragraph at lines 428--428
 
 [173]
 
+LaTeX Warning: Reference `ch:performance' on page 174 undefined on input line 748.
+
+
+
 [174]
 
 [175]
-
-[176]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 428--428
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[177]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 428--428
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
-
-
-
-[178]
-
-[179]
-
-[180]
-
-[181]
-
-[182]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 428--428
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[183]
-
-[184]
-
-[185]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 428--428
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 428--428
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[186]
-
-[187])
-
-[188]
-\openout2 = `ch05-observability.aux'.
-
- (./ch05-observability.tex
-Chapter 5.
-Package biblatex Info: Reference segment=10 on input line 1.
-Package biblatex Info: Setting label 'refsegment:010' on input line 1.
-Package biblatex Info: Reference segment=11 on input line 3.
-Package biblatex Info: Setting label 'refsegment:011' on input line 3.
-
-
-[189
-
-
-
-
-
-]
-
-[190]
-Overfull \hbox (12.25851pt too wide) in paragraph at lines 80--82
- [][] 
- []
-
-
-
-[191]
-
-[192]
-
-[193]
-
-[194]
-
-LaTeX Warning: Citation 'jaeger_tracing' on page 195 undefined on input line 183.
-
-
-Overfull \hbox (7.07446pt too wide) in paragraph at lines 186--188
-\OT1/lmtt/m/n/10 retrieval[]metadata \OT1/ntxtlf/m/n/10 (-20) (doc IDs, in-dex ver-sion, top-$k$, re-ranker scores); \OT1/lmtt/m/n/10 token[]counts
- []
-
-
-Overfull \hbox (38.40677pt too wide) in paragraph at lines 186--188
-\OT1/ntxtlf/m/n/10 (-20) tax-on-omy (e.g., \OT1/lmtt/m/n/10 provider[]timeout\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 rate[]limit\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 tool[]schema[]mismatch\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 parser[]failure\OT1/ntxtlf/m/n/10 (-20) )
- []
-
-
-
-[195]
-
-LaTeX Warning: Citation 'jaeger_tracing' on page 196 undefined on input line 233.
-
-
-
-[196]
-LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <8.5> not available
-(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 276.
-
-Overfull \hbox (583.99873pt too wide) in paragraph at lines 319--323
- [][] 
- []
-
-
-
-[197]
-
-LaTeX Warning: Reference `ch:rag' on page 198 undefined on input line 350.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 198 undefined on input line 350.
-
-
-
-[198]
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 366.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
-File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
-)
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 366.
-
-
-LaTeX Warning: Reference `ch:rag' on page 199 undefined on input line 370.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 199 undefined on input line 370.
-
-
-
-[199{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-
-LaTeX Warning: Reference `ch:cicd' on page 200 undefined on input line 398.
-
-
-LaTeX Warning: Reference `ch:testing' on page 200 undefined on input line 398.
-
-
-
-[200]
-Overfull \hbox (37.4113pt too wide) in paragraph at lines 430--431
-[]\OT1/ntxtlf/b/n/10 (-20) Cohort and route lenses. \OT1/ntxtlf/m/n/10 (-20) Pro-vide con-sis-tent la-bels|\OT1/lmtt/m/n/10 model[]version\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 retriever[]version\OT1/ntxtlf/m/n/10 (-20) ,
- []
-
-
-
-[201]
-
-[202]
-
-LaTeX Warning: Reference `ch:cicd' on page 203 undefined on input line 473.
-
-
-LaTeX Warning: Reference `ch:testing' on page 203 undefined on input line 473.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 203 undefined on input line 473.
-
-
-LaTeX Warning: Reference `ch:testing' on page 203 undefined on input line 473.
-
-
-
-[203]
-
-LaTeX Warning: Reference `ch:cicd' on page 204 undefined on input line 495.
-
-
-LaTeX Warning: Reference `ch:testing' on page 204 undefined on input line 495.
-
-
-
-[204]
-
-LaTeX Warning: Reference `ch:cicd' on page 205 undefined on input line 521.
-
-
-LaTeX Warning: Reference `ch:testing' on page 205 undefined on input line 521.
-
-
-
-[205]
-
-LaTeX Warning: Reference `ch:cicd' on page 206 undefined on input line 550.
-
-
-LaTeX Warning: Reference `ch:testing' on page 206 undefined on input line 550.
-
-
-
-[206]
-
-[207]
-./ch05-observability.tex:631: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.631 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ch05-observability.tex:631: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.631 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Package biblatex Warning: Segment '' not found in section '0' on input line 627.
-
-
-
-[208]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 631--631
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
-
-
-
-[209]
-
-[210]
-
-[211]
-
-[212]
-
-[213]
-
-[214]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 631--631
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[215]
-
-[216]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 631--631
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
-
-
-
-[217]
-
-[218]
-
-[219]
-
-[220]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 631--631
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[221]
-
-[222]
-
-[223]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 631--631
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 631--631
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[224]
-
-[225])
-
-[226]
-\openout2 = `ch06-scaling.aux'.
-
- (./ch06-scaling.tex
-Chapter 6.
-Package biblatex Info: Reference segment=12 on input line 1.
-Package biblatex Info: Setting label 'refsegment:012' on input line 1.
-Package biblatex Info: Reference segment=13 on input line 3.
-Package biblatex Info: Setting label 'refsegment:013' on input line 3.
-
-
-[227
-
-
-
-
-
-]
-
-[228]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 10.0pt on input line 46.
-
-
-[229]
-
-LaTeX Warning: Reference `fig:scaling-dimensions' on page 230 undefined on input line 68.
-
-
-LaTeX Warning: Reference `tab:scaling-matrix' on page 230 undefined on input line 68.
-
-
-
-[230]
-
-[231]
-
-[232]
-
-[233]
-Underfull \hbox (badness 1163) in paragraph at lines 159--160
-[]|\OT1/ntxtlf/m/n/8.5 (+20) Lowest per-instance la-tency; well-
- []
-
-
-Overfull \hbox (59.17903pt too wide) in paragraph at lines 227--228
- [][] 
- []
-
-
-
-[234]
-
-[235]
-
-[236]
-
-[237]
-
-[238]
-
-[239]
-
-[240]
-
-[241]
-
-[242]
-
-[243]
-
-[244]
-
-[245]
-
-[246]
-
-./ch06-scaling.tex:583: LaTeX Error: Not allowed in LR mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.583 \end{axis}
-                
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./ch06-scaling.tex:583: LaTeX Error: Not allowed in LR mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.583 \end{axis}
-                
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-
-[247]
-
-[248]
-
-[249]
-
-[250]
-
-[251]
-
-LaTeX Warning: Reference `ch:performance' on page 252 undefined on input line 748.
-
-
-
-[252]
-
-[253]
 Overfull \hbox (47.1687pt too wide) in paragraph at lines 854--855
  [][] 
  []
 
 
 
-[254]
+[176]
 
-[255]
+[177]
 
-[256]
+[178]
 
-[257]
+[179]
 
-[258]
+[180]
 Overfull \hbox (101.8156pt too wide) in paragraph at lines 1020--1021
  [][] 
  []
 
 
 
-[259]
+[181]
 
-LaTeX Warning: Reference `ch:performance' on page 260 undefined on input line 1050.
-
-./ch06-scaling.tex:1058: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.1058 ]
-        
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ch06-scaling.tex:1058: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.1058 ]
-        
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Package biblatex Warning: Segment '' not found in section '0' on input line 1054.
+LaTeX Warning: Reference `ch:performance' on page 182 undefined on input line 1050.
 
 
 
-[260]
-
-[261]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 1058--1058
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
-
-
-
-[262]
-
-[263]
-
-[264]
-
-[265]
-
-[266]
-
-[267]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 1058--1058
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[268]
+[182]
 Overfull \hbox (3.36198pt too wide) in paragraph at lines 1058--1058
 []\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
  []
 
 
 
-[269]
+[183]
 
-[270]
-
-[271]
-
-[272]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 1058--1058
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[273]
-
-[274]
-
-[275]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 1058--1058
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 1058--1058
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[276]
-
-[277]
-
-LaTeX Warning: Reference `ch:performance' on page 278 undefined on input line 1060.
+LaTeX Warning: Reference `ch:performance' on page 184 undefined on input line 1060.
 
 )
 
-[278]
+[184]
 
-[279
+[185
 
 
 
 
 ]
 
-[280]
+[186]
 \openout2 = `author/part3-optimization.aux'.
 
  (./author/part3-optimization.tex
 
-LaTeX Warning: Reference `ch:performance' on page 281 undefined on input line 5.
+LaTeX Warning: Reference `ch:performance' on page 187 undefined on input line 5.
 
 
-LaTeX Warning: Reference `ch:rag' on page 281 undefined on input line 5.
+LaTeX Warning: Reference `ch:rag' on page 187 undefined on input line 5.
 
 
-LaTeX Warning: Reference `ch:multiagent' on page 281 undefined on input line 5.
+LaTeX Warning: Reference `ch:multiagent' on page 187 undefined on input line 5.
 
 )
 
-[281
+[187
 
 ]
 \openout2 = `ch07-performance.aux'.
 
  (./ch07-performance.tex
 
-[282
+[188
 
 
 
@@ -3766,15 +3256,15 @@ Package biblatex Info: Reference segment=15 on input line 3.
 Package biblatex Info: Setting label 'refsegment:015' on input line 3.
 
 
-[283]
+[189]
 Package pgfplots info on input line 74: Using 'lua backend=false' for axis: x coord trafo unsupported.
 
 
-[284]
+[190]
 
-[285]
+[191]
 
-[286]
+[192]
 Overfull \hbox (13.91396pt too wide) in paragraph at lines 153--153
 []|\OT1/ntxtlf/b/n/8.5 (-20) Hardware
  []
@@ -3811,9 +3301,9 @@ Overfull \hbox (164.84637pt too wide) in paragraph at lines 153--153
 
 
 
-[287]
+[193]
 
-[288]
+[194]
 Underfull \hbox (badness 10000) in paragraph at lines 253--253
 []|\OT1/ntxtlf/b/n/8.5 (+20) Quantization
  []
@@ -3984,45 +3474,45 @@ Overfull \hbox (25.47447pt too wide) in alignment at lines 311--311
  []
 
 
-LaTeX Warning: Reference `tab:quantization-comparison' on page 289 undefined on input line 330.
+LaTeX Warning: Reference `tab:quantization-comparison' on page 195 undefined on input line 330.
 
 
-LaTeX Warning: Reference `tab:quantization-comparison' on page 289 undefined on input line 330.
+LaTeX Warning: Reference `tab:quantization-comparison' on page 195 undefined on input line 330.
 
 
 
-[289]
+[195]
 
-[290]
+[196]
 
-[291]
+[197]
 
-[292]
+[198]
 
-[293]
+[199]
 Overfull \hbox (49.54013pt too wide) in alignment at lines 392--392
 [][][][][][]
  []
 
 
 
-[294]
+[200]
 
-[295]
+[201]
 
-[296]
+[202]
 
-[297]
+[203]
 
-[298]
+[204]
 
-[299]
+[205]
 
-[300]
+[206]
 
-[301]
+[207]
 
-[302]
+[208]
 Underfull \hbox (badness 10000) in paragraph at lines 581--581
 []|\OT1/ntxtlf/m/n/8.5 (+20) Fused at-ten-tion
  []
@@ -4054,59 +3544,59 @@ Underfull \hbox (badness 10000) in paragraph at lines 581--581
 
 
 
-[303]
+[209]
 
-[304]
+[210]
 Package pgfplots info on input line 673: Using 'lua backend=false' for axis: x coord trafo unsupported.
 
 
-[305]
+[211]
 
-[306]
+[212]
 
-[307]
+[213]
 
-[308]
+[214]
 Overfull \hbox (13.91086pt too wide) in alignment at lines 775--775
 [][][][][]
  []
 
 
 
-[309]
+[215]
 
-[310]
+[216]
 
-[311]
+[217]
 
-LaTeX Warning: Reference `sec:inference-engines' on page 312 undefined on input line 840.
-
-
-
-[312]
-
-LaTeX Warning: Reference `sec:inference-engines' on page 313 undefined on input line 888.
+LaTeX Warning: Reference `sec:inference-engines' on page 218 undefined on input line 840.
 
 
 
-[313]
+[218]
 
-LaTeX Warning: Reference `eq:kv-total' on page 314 undefined on input line 891.
-
-
-LaTeX Warning: Reference `eq:throughput-main' on page 314 undefined on input line 908.
+LaTeX Warning: Reference `sec:inference-engines' on page 219 undefined on input line 888.
 
 
 
-[314]
+[219]
 
-LaTeX Warning: Reference `eq:kv-total' on page 315 undefined on input line 924.
-
-
-LaTeX Warning: Reference `eq:throughput-main' on page 315 undefined on input line 924.
+LaTeX Warning: Reference `eq:kv-total' on page 220 undefined on input line 891.
 
 
-LaTeX Warning: Reference `eq:cost-k' on page 315 undefined on input line 924.
+LaTeX Warning: Reference `eq:throughput-main' on page 220 undefined on input line 908.
+
+
+
+[220]
+
+LaTeX Warning: Reference `eq:kv-total' on page 221 undefined on input line 924.
+
+
+LaTeX Warning: Reference `eq:throughput-main' on page 221 undefined on input line 924.
+
+
+LaTeX Warning: Reference `eq:cost-k' on page 221 undefined on input line 924.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 951--951
@@ -4270,9 +3760,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 951--951
 
 
 
-[315]
+[221]
 
-[316]
+[222]
 Underfull \hbox (badness 2452) in paragraph at lines 981--981
 \OT1/ntxtlf/m/n/8.5 (+20) multi-GPU clus-ters; re-quires high-
  []
@@ -4284,11 +3774,11 @@ Overfull \hbox (27.50168pt too wide) in paragraph at lines 981--982
 
 
 
-[317
+[223
 
 ]
 
-LaTeX Warning: Reference `tab:runtimes' on page 318 undefined on input line 993.
+LaTeX Warning: Reference `tab:runtimes' on page 224 undefined on input line 993.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1007--1008
@@ -4317,116 +3807,28 @@ Overfull \hbox (115.56535pt too wide) in paragraph at lines 1001--1036
 
 
 
-[318
+[224
 
 ]
 
-[319]
+[225]
 
-[320]
+[226]
 
-[321]
-./ch07-performance.tex:1123: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.1123 ]
-        
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[227]
 
-./ch07-performance.tex:1123: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.1123 ]
-        
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[228]
+
+[229]
+
+LaTeX Warning: Reference `ch:rag' on page 230 undefined on input line 1126.
 
 
-Package biblatex Warning: Segment '' not found in section '0' on input line 1119.
+LaTeX Warning: Reference `ch:multiagent' on page 230 undefined on input line 1126.
 
+)
 
-
-[322]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 1123--1123
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
-
-
-
-[323]
-
-[324]
-
-[325]
-
-[326]
-
-[327]
-
-[328]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 1123--1123
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[329]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 1123--1123
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
-
-
-
-[330]
-
-[331]
-
-[332]
-
-[333]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 1123--1123
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[334]
-
-[335]
-
-[336]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 1123--1123
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 1123--1123
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[337]
-
-[338]
-
-LaTeX Warning: Reference `ch:rag' on page 339 undefined on input line 1126.
-
-
-LaTeX Warning: Reference `ch:multiagent' on page 339 undefined on input line 1126.
-
-
-
-[339])
-
-[340]
+[230]
 \openout2 = `ch08-rag.aux'.
 
  (./ch08-rag.tex
@@ -4437,7 +3839,7 @@ Package biblatex Info: Reference segment=17 on input line 3.
 Package biblatex Info: Setting label 'refsegment:017' on input line 3.
 
 
-[341
+[231
 
 
 
@@ -4445,29 +3847,29 @@ Package biblatex Info: Setting label 'refsegment:017' on input line 3.
 
 ]
 
-[342]
+[232]
 
-[343]
+[233]
 
-[344]
+[234]
 
-[345]
+[235]
 
-[346]
+[236]
 
-[347]
+[237]
 
-[348]
+[238]
 
-[349]
+[239]
 
-[350]
+[240]
 
-[351]
+[241]
 
-[352]
+[242]
 
-[353]
+[243]
 Underfull \hbox (badness 1052) in paragraph at lines 505--505
 \OT1/ntxtlf/m/n/8.5 (+20) Tun-ables: \OT1/lmtt/m/n/8.5 M\OT1/ntxtlf/m/n/8.5 (+20) , \OT1/lmtt/m/n/8.5 efConstruction\OT1/ntxtlf/m/n/8.5 (+20) ,
  []
@@ -4484,11 +3886,11 @@ Underfull \hbox (badness 1259) in paragraph at lines 505--505
 
 
 
-[354]
+[244]
 
-[355]
+[245]
 
-[356]
+[246]
 Underfull \hbox (badness 1917) in paragraph at lines 624--624
 \OT1/ntxtlf/m/n/8.5 (+20) tics, syn-onyms,
  []
@@ -4660,37 +4062,37 @@ Underfull \hbox (badness 6575) in paragraph at lines 624--624
 
 
 
-[357]
+[247]
 
-[358]
+[248]
 
-[359]
+[249]
 
-[360]
+[250]
 
-[361]
+[251]
 
-[362]
+[252]
 
-[363]
+[253]
 
-[364]
+[254]
 
-[365]
+[255]
 
-[366]
+[256]
 
-[367]
+[257]
 
-[368]
+[258]
 
-[369]
+[259]
 
-[370]
+[260]
 
-[371]
+[261]
 
-[372]
+[262]
 LaTeX Font Info:    Trying to load font information for OMS+lmtt on input line 913.
 LaTeX Font Info:    No file OMSlmtt.fd. on input line 913.
 
@@ -4701,123 +4103,38 @@ LaTeX Font Warning: Font shape `OMS/lmtt/m/n' undefined
 
 
 
-[373]
+[263]
 
-[374]
+[264]
 
-[375]
+[265]
 
-[376]
+[266]
 
-[377]
+[267]
 
-[378]
-./ch08-rag.tex:995: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.995 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[268]
 
-./ch08-rag.tex:995: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.995 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[269]
+LaTeX Font Info:    Font shape `TS1/ntxtlf/m/it' will be
+(Font)              scaled to size 10.0pt on input line 991.
 
 
-Package biblatex Warning: Segment '' not found in section '0' on input line 991.
+LaTeX Warning: Reference `ch:testing' on page 270 undefined on input line 998.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 270 undefined on input line 998.
 
 
 
-[379]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 995--995
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
+[270])
 
-
-
-[380]
-
-[381]
-
-[382]
-
-[383]
-
-[384]
-
-[385]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 995--995
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[386]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 995--995
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
-
-
-
-[387]
-
-[388]
-
-[389]
-
-[390]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 995--995
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[391]
-
-[392]
-
-[393]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 995--995
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 995--995
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[394]
-
-[395]
-
-LaTeX Warning: Reference `ch:testing' on page 396 undefined on input line 998.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 396 undefined on input line 998.
-
-
-
-[396])
-
-[397]
+[271]
 \openout2 = `ch09-agents-orchestration.aux'.
 
  (./ch09-agents-orchestration.tex
 
-[398
+[272
 
 
 
@@ -4840,31 +4157,31 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 13.
 
 
-[399]
+[273]
 
-[400]
+[274]
 
-LaTeX Warning: Reference `sec:errorhandling' on page 401 undefined on input line 40.
-
-
-
-[401]
-
-[402]
-
-LaTeX Warning: Reference `ch:intro' on page 403 undefined on input line 108.
+LaTeX Warning: Reference `sec:errorhandling' on page 275 undefined on input line 40.
 
 
 
-[403]
+[275]
 
-[404]
+[276]
 
-[405]
+LaTeX Warning: Reference `ch:intro' on page 277 undefined on input line 108.
 
-[406]
 
-LaTeX Warning: Reference `ch:case-study' on page 407 undefined on input line 204.
+
+[277]
+
+[278]
+
+[279]
+
+[280]
+
+LaTeX Warning: Reference `ch:case-study' on page 281 undefined on input line 204.
 
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
@@ -4874,9 +4191,9 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 216.
 
 
-[407]
+[281]
 
-[408]
+[282]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
             Default family used instead on input line 257.
@@ -4888,7 +4205,7 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 257.
 
 
-[409]
+[283]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
             Default family used instead on input line 280.
@@ -4903,17 +4220,17 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 280.
 
 
-[410]
+[284]
 
-[411]
+[285]
 
-LaTeX Warning: Reference `ch:testing' on page 412 undefined on input line 327.
-
-
-LaTeX Warning: Reference `sec:errorhandling' on page 412 undefined on input line 327.
+LaTeX Warning: Reference `ch:testing' on page 286 undefined on input line 327.
 
 
-LaTeX Warning: Reference `ch:ethics' on page 412 undefined on input line 327.
+LaTeX Warning: Reference `sec:errorhandling' on page 286 undefined on input line 327.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 286 undefined on input line 327.
 
 
 Overfull \hbox (358.72319pt too wide) in paragraph at lines 418--419
@@ -4944,11 +4261,11 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 424.
 
 
-[412]
+[286]
 
-[413]
+[287]
 
-[414]
+[288]
 Overfull \hbox (101.2487pt too wide) in paragraph at lines 466--466
 []    \OT1/lmtt/m/n/10 result_analysis = call(AnalysisAgent, query, params={"brief": True}, timeout=10s)[] 
  []
@@ -4970,21 +4287,21 @@ Overfull \hbox (27.74892pt too wide) in paragraph at lines 475--475
 
 
 
-[415]
+[289]
 
-[416]
+[290]
 
-[417]
+[291]
 
-[418]
+[292]
 
-[419]
+[293]
 
-[420]
+[294]
 
-[421]
+[295]
 
-[422]
+[296]
 LaTeX Font Info:    Trying to load font information for OMS+ntxtlf on input line 597.
 LaTeX Font Info:    No file OMSntxtlf.fd. on input line 597.
 
@@ -4995,7 +4312,7 @@ LaTeX Font Warning: Font shape `OMS/ntxtlf/m/n' undefined
 
 
 
-[423]
+[297]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
             Default family used instead on input line 626.
@@ -5010,138 +4327,51 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 626.
 
 
-[424]
+[298]
 
-[425]
+[299]
 
-[426]
-./ch09-agents-orchestration.tex:677: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.677 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[300]
 
-./ch09-agents-orchestration.tex:677: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.677 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Package biblatex Warning: Segment '' not found in section '0' on input line 673.
-
-
-
-[427]
-
-[428]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 677--677
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
-
-
-
-[429]
-
-[430]
-
-[431]
-
-[432]
-
-[433]
-
-[434]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 677--677
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[435]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 677--677
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
-
-
-
-[436]
-
-[437]
-
-[438]
-
-[439]
+[301]
 Overfull \hbox (5.16664pt too wide) in paragraph at lines 677--677
 []\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
  []
 
+)
 
+[302]
 
-[440]
-
-[441]
-
-[442]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 677--677
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 677--677
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[443]
-
-[444])
-
-[445]
-
-[446
+[303
 
 
 
 
 ]
 
-[447]
-
-[448]
+[304]
 \openout2 = `author/part4-governance.aux'.
 
  (./author/part4-governance.tex
 
-LaTeX Warning: Reference `ch:testing' on page 449 undefined on input line 5.
+LaTeX Warning: Reference `ch:testing' on page 305 undefined on input line 5.
 
 
-LaTeX Warning: Reference `ch:ethics' on page 449 undefined on input line 5.
+LaTeX Warning: Reference `ch:ethics' on page 305 undefined on input line 5.
 
 
-LaTeX Warning: Reference `ch:case-study' on page 449 undefined on input line 5.
+LaTeX Warning: Reference `ch:case-study' on page 305 undefined on input line 5.
 
 )
 
-[449
+[305
 
 ]
 \openout2 = `ch10-testing-eval.aux'.
 
  (./ch10-testing-eval.tex
 
-[450
+[306
 
 
 
@@ -5155,176 +4385,83 @@ Package biblatex Info: Reference segment=21 on input line 3.
 Package biblatex Info: Setting label 'refsegment:021' on input line 3.
 
 
-[451]
+[307]
 
-[452]
+[308]
 
-[453]
+[309]
 
-[454]
+[310]
 
-[455]
+[311]
 
-[456]
+[312]
 
-[457]
+[313]
 
-[458]
+[314]
 
-[459]
+[315]
 Overfull \hbox (9.85628pt too wide) in paragraph at lines 185--186
 []\OT1/ntxtlf/b/n/10 (-20) Other Met-rics: \OT1/ntxtlf/m/n/10 (-20) Pre-ci-sion/Re-cal-l/F1 are es-sen-tial for re-trieval eval-u-a-tion. BLEU/ROUGE
  []
 
 
 
-[460]
+[316]
 
-[461]
+[317]
 
-[462]
+[318]
 
-[463]
+[319]
 
-[464]
+[320]
 
-[465]
+[321]
 
-[466]
+[322]
 
-[467]
+[323]
 
-[468]
+[324]
 
-[469]
+[325]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
             Default family used instead on input line 440.
 
 
-[470]
+[326]
 
-[471]
+[327]
 
-[472]
+[328]
 
-[473]
+[329]
 
-[474]
+[330]
 
-LaTeX Warning: Reference `sec:ch10-regression-testing-in-ci-cd' on page 475 undefined on input line 546.
-
-
-LaTeX Warning: Reference `ch:cicd' on page 475 undefined on input line 546.
+LaTeX Warning: Reference `sec:ch10-regression-testing-in-ci-cd' on page 331 undefined on input line 546.
 
 
-LaTeX Warning: Reference `ch:monitoring' on page 475 undefined on input line 546.
-
-./ch10-testing-eval.tex:552: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.552 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ch10-testing-eval.tex:552: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.552 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Reference `ch:cicd' on page 331 undefined on input line 546.
 
 
-Package biblatex Warning: Segment '' not found in section '0' on input line 548.
+LaTeX Warning: Reference `ch:monitoring' on page 331 undefined on input line 546.
 
 
 
-[475]
+[331]
 
-[476]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 552--552
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
+[332]
 
+[333])
 
-
-[477]
-
-[478]
-
-[479]
-
-[480]
-
-[481]
-
-[482]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 552--552
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[483]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 552--552
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
-
-
-
-[484]
-
-[485]
-
-[486]
-
-[487]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 552--552
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[488]
-
-[489]
-
-[490]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 552--552
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 552--552
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[491]
-
-[492])
-
-[493]
+[334]
 \openout2 = `ch11-ethics.aux'.
 
  (./ch11-ethics.tex
-
-[494
-
-
-
-
-
-]
 Chapter 11.
 Package biblatex Info: Reference segment=22 on input line 1.
 Package biblatex Info: Setting label 'refsegment:022' on input line 1.
@@ -5332,163 +4469,93 @@ Package biblatex Info: Reference segment=23 on input line 3.
 Package biblatex Info: Setting label 'refsegment:023' on input line 3.
 
 
-[495]
+[335
 
-[496]
 
-LaTeX Warning: Reference `ch:rag' on page 497 undefined on input line 59.
 
 
 
-[497]
+]
 
-[498]
+[336]
 
-LaTeX Warning: Reference `ch:monitoring' on page 499 undefined on input line 101.
+LaTeX Warning: Reference `ch:rag' on page 337 undefined on input line 59.
 
 
-LaTeX Warning: Reference `ch:monitoring' on page 499 undefined on input line 105.
 
+[337]
 
+[338]
 
-[499]
+LaTeX Warning: Reference `ch:monitoring' on page 339 undefined on input line 101.
 
-LaTeX Warning: Reference `ch:cicd' on page 500 undefined on input line 123.
 
+LaTeX Warning: Reference `ch:monitoring' on page 339 undefined on input line 105.
 
-LaTeX Warning: Reference `ch:multiagent' on page 500 undefined on input line 123.
 
 
-LaTeX Warning: Reference `ch:testing' on page 500 undefined on input line 123.
+[339]
 
+LaTeX Warning: Reference `ch:cicd' on page 340 undefined on input line 123.
 
-LaTeX Warning: Reference `ch:rag' on page 500 undefined on input line 137.
 
+LaTeX Warning: Reference `ch:multiagent' on page 340 undefined on input line 123.
 
 
-[500]
+LaTeX Warning: Reference `ch:testing' on page 340 undefined on input line 123.
 
-[501]
 
-[502]
+LaTeX Warning: Reference `ch:rag' on page 340 undefined on input line 137.
 
-[503]
 
-[504]
 
-LaTeX Warning: Reference `ch:monitoring' on page 505 undefined on input line 243.
+[340]
 
+[341]
 
+[342]
 
-[505]
+[343]
 
-LaTeX Warning: Reference `ch:cicd' on page 506 undefined on input line 261.
+[344]
 
+LaTeX Warning: Reference `ch:monitoring' on page 345 undefined on input line 243.
 
-LaTeX Warning: Reference `ch:multiagent' on page 506 undefined on input line 261.
 
 
-LaTeX Warning: Reference `ch:testing' on page 506 undefined on input line 261.
+[345]
 
+LaTeX Warning: Reference `ch:cicd' on page 346 undefined on input line 261.
 
 
-[506]
+LaTeX Warning: Reference `ch:multiagent' on page 346 undefined on input line 261.
 
-LaTeX Warning: Reference `ch:rag' on page 507 undefined on input line 283.
 
+LaTeX Warning: Reference `ch:testing' on page 346 undefined on input line 261.
 
 
-[507]
 
-[508]
+[346]
 
-[509]
+LaTeX Warning: Reference `ch:rag' on page 347 undefined on input line 283.
 
-[510]
 
-[511]
 
-[512]
+[347]
 
-[513]
-./ch11-ethics.tex:495: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.495 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[348]
 
-./ch11-ethics.tex:495: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.495 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[349]
 
+[350]
 
-Package biblatex Warning: Segment '' not found in section '0' on input line 491.
+[351]
 
+[352]
 
+[353]
 
-[514]
-
-[515]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 495--495
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
-
-
-
-[516]
-
-[517]
-
-[518]
-
-[519]
-
-[520]
-
-[521]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 495--495
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-
-[522]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 495--495
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
-
-
-
-[523]
-
-[524]
-
-[525]
-
-[526]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 495--495
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[527]
-
-[528]
-
-[529]
+[354]
 Overfull \hbox (76.1274pt too wide) in paragraph at lines 495--495
 []\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
@@ -5500,18 +4567,16 @@ Overfull \hbox (68.91864pt too wide) in paragraph at lines 495--495
 
 
 
-[530]
+[355]
 
-[531]
+[356])
 
-[532])
-
-[533]
+[357]
 \openout2 = `ch12-ishtar-end-to-end.aux'.
 
  (./ch12-ishtar-end-to-end.tex
 
-[534
+[358
 
 
 
@@ -5525,78 +4590,78 @@ Package biblatex Info: Reference segment=25 on input line 3.
 Package biblatex Info: Setting label 'refsegment:025' on input line 3.
 
 
-[535]
+[359]
 
-LaTeX Warning: Reference `ch:infra' on page 536 undefined on input line 29.
-
-
-LaTeX Warning: Reference `ch:llmops-fundamentals' on page 536 undefined on input line 29.
+LaTeX Warning: Reference `ch:infra' on page 360 undefined on input line 29.
 
 
-LaTeX Warning: Reference `ch:cicd' on page 536 undefined on input line 30.
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page 360 undefined on input line 29.
 
 
-LaTeX Warning: Reference `ch:monitoring' on page 536 undefined on input line 30.
+LaTeX Warning: Reference `ch:cicd' on page 360 undefined on input line 30.
 
 
-LaTeX Warning: Reference `ch:scaling' on page 536 undefined on input line 30.
+LaTeX Warning: Reference `ch:monitoring' on page 360 undefined on input line 30.
 
 
-LaTeX Warning: Reference `ch:performance' on page 536 undefined on input line 31.
+LaTeX Warning: Reference `ch:scaling' on page 360 undefined on input line 30.
 
 
-LaTeX Warning: Reference `ch:rag' on page 536 undefined on input line 31.
+LaTeX Warning: Reference `ch:performance' on page 360 undefined on input line 31.
 
 
-LaTeX Warning: Reference `ch:multiagent' on page 536 undefined on input line 31.
+LaTeX Warning: Reference `ch:rag' on page 360 undefined on input line 31.
 
 
-LaTeX Warning: Reference `ch:testing' on page 536 undefined on input line 32.
+LaTeX Warning: Reference `ch:multiagent' on page 360 undefined on input line 31.
 
 
-LaTeX Warning: Reference `ch:ethics' on page 536 undefined on input line 32.
+LaTeX Warning: Reference `ch:testing' on page 360 undefined on input line 32.
 
 
-LaTeX Warning: Reference `sec:ishtar-step-infra' on page 536 undefined on input line 38.
+LaTeX Warning: Reference `ch:ethics' on page 360 undefined on input line 32.
 
 
-LaTeX Warning: Reference `sec:ishtar-step-ingestion' on page 536 undefined on input line 39.
+LaTeX Warning: Reference `sec:ishtar-step-infra' on page 360 undefined on input line 38.
 
 
-LaTeX Warning: Reference `sec:ishtar-step-kb' on page 536 undefined on input line 40.
+LaTeX Warning: Reference `sec:ishtar-step-ingestion' on page 360 undefined on input line 39.
 
 
-LaTeX Warning: Reference `sec:ishtar-step-rag' on page 536 undefined on input line 41.
+LaTeX Warning: Reference `sec:ishtar-step-kb' on page 360 undefined on input line 40.
 
 
-LaTeX Warning: Reference `sec:ishtar-step-agents' on page 536 undefined on input line 42.
+LaTeX Warning: Reference `sec:ishtar-step-rag' on page 360 undefined on input line 41.
 
 
-LaTeX Warning: Reference `sec:ishtar-step-cicd' on page 536 undefined on input line 43.
+LaTeX Warning: Reference `sec:ishtar-step-agents' on page 360 undefined on input line 42.
 
 
-LaTeX Warning: Reference `sec:ishtar-ops' on page 536 undefined on input line 44.
+LaTeX Warning: Reference `sec:ishtar-step-cicd' on page 360 undefined on input line 43.
 
 
-LaTeX Warning: Reference `sec:ishtar-ethics' on page 536 undefined on input line 44.
+LaTeX Warning: Reference `sec:ishtar-ops' on page 360 undefined on input line 44.
 
 
-LaTeX Warning: Reference `ch:rag' on page 536 undefined on input line 53.
+LaTeX Warning: Reference `sec:ishtar-ethics' on page 360 undefined on input line 44.
 
 
-LaTeX Warning: Reference `ch:multiagent' on page 536 undefined on input line 53.
+LaTeX Warning: Reference `ch:rag' on page 360 undefined on input line 53.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 360 undefined on input line 53.
 
 
 
-[536]
+[360]
 
-LaTeX Warning: Reference `ch:testing' on page 537 undefined on input line 64.
-
-
-LaTeX Warning: Reference `ch:ethics' on page 537 undefined on input line 64.
+LaTeX Warning: Reference `ch:testing' on page 361 undefined on input line 64.
 
 
-LaTeX Warning: Reference `tab:ishtar-requirements' on page 537 undefined on input line 73.
+LaTeX Warning: Reference `ch:ethics' on page 361 undefined on input line 64.
+
+
+LaTeX Warning: Reference `tab:ishtar-requirements' on page 361 undefined on input line 73.
 
 
 Underfull \hbox (badness 4779) in paragraph at lines 92--92
@@ -5654,22 +4719,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 92--92
  []
 
 
-LaTeX Warning: Reference `ch:multiagent' on page 537 undefined on input line 110.
+LaTeX Warning: Reference `ch:multiagent' on page 361 undefined on input line 110.
 
 
-LaTeX Warning: Reference `ch:infra' on page 537 undefined on input line 111.
+LaTeX Warning: Reference `ch:infra' on page 361 undefined on input line 111.
 
 
-LaTeX Warning: Reference `ch:performance' on page 537 undefined on input line 111.
+LaTeX Warning: Reference `ch:performance' on page 361 undefined on input line 111.
 
 
-LaTeX Warning: Reference `ch:monitoring' on page 537 undefined on input line 112.
+LaTeX Warning: Reference `ch:monitoring' on page 361 undefined on input line 112.
 
 
-LaTeX Warning: Reference `ch:ethics' on page 537 undefined on input line 112.
+LaTeX Warning: Reference `ch:ethics' on page 361 undefined on input line 112.
 
 
-LaTeX Warning: Reference `fig:ishtar-architecture-ch12' on page 537 undefined on input line 115.
+LaTeX Warning: Reference `fig:ishtar-architecture-ch12' on page 361 undefined on input line 115.
 
 
 Overfull \hbox (145.91408pt too wide) in paragraph at lines 172--173
@@ -5678,17 +4743,17 @@ Overfull \hbox (145.91408pt too wide) in paragraph at lines 172--173
 
 
 
-[537]
+[361]
 
-[538]
+[362]
 
-LaTeX Warning: Reference `ch:infra-env' on page 539 undefined on input line 187.
+LaTeX Warning: Reference `ch:infra-env' on page 363 undefined on input line 187.
 
 
 
-[539]
+[363]
 
-LaTeX Warning: Reference `ch:scaling' on page 540 undefined on input line 204.
+LaTeX Warning: Reference `ch:scaling' on page 364 undefined on input line 204.
 
 
 Overfull \hbox (17.24895pt too wide) in paragraph at lines 220--220
@@ -5696,42 +4761,42 @@ Overfull \hbox (17.24895pt too wide) in paragraph at lines 220--220
  []
 
 
-LaTeX Warning: Reference `ch:scaling' on page 540 undefined on input line 226.
+LaTeX Warning: Reference `ch:scaling' on page 364 undefined on input line 226.
 
 
 
-[540]
+[364]
 
-[541]
+[365]
 
-LaTeX Warning: Reference `ch:rag' on page 542 undefined on input line 287.
-
-
-
-[542]
-
-[543]
-
-LaTeX Warning: Reference `ch:multiagent' on page 544 undefined on input line 374.
+LaTeX Warning: Reference `ch:rag' on page 366 undefined on input line 287.
 
 
 
-[544]
+[366]
+
+[367]
+
+LaTeX Warning: Reference `ch:multiagent' on page 368 undefined on input line 374.
+
+
+
+[368]
 Overfull \hbox (22.49893pt too wide) in paragraph at lines 400--400
 []    \OT1/lmtt/m/n/10 safe = TranslationAgent(safe, target_lang=state.user_context.lang)[] 
  []
 
 
-LaTeX Warning: Reference `ch:monitoring' on page 545 undefined on input line 415.
+LaTeX Warning: Reference `ch:monitoring' on page 369 undefined on input line 415.
 
 
 
-[545]
+[369]
 
-LaTeX Warning: Reference `ch:ethics' on page 546 undefined on input line 433.
+LaTeX Warning: Reference `ch:ethics' on page 370 undefined on input line 433.
 
 
-LaTeX Warning: Reference `ch:cicd' on page 546 undefined on input line 438.
+LaTeX Warning: Reference `ch:cicd' on page 370 undefined on input line 438.
 
 
 Overfull \hbox (32.9989pt too wide) in paragraph at lines 463--463
@@ -5745,146 +4810,54 @@ Overfull \hbox (6.74898pt too wide) in paragraph at lines 464--464
 
 
 
-[546]
+[370]
 
-LaTeX Warning: Reference `ch:monitoring' on page 547 undefined on input line 485.
-
-
-
-[547]
-
-LaTeX Warning: Reference `ch:monitoring' on page 548 undefined on input line 530.
+LaTeX Warning: Reference `ch:monitoring' on page 371 undefined on input line 485.
 
 
 
-[548]
+[371]
 
-LaTeX Warning: Reference `ch:ethics' on page 549 undefined on input line 574.
-
-
-
-[549]
-
-LaTeX Warning: Reference `tab:ishtar-outcomes' on page 550 undefined on input line 620.
-
-
-LaTeX Warning: Reference `ch:performance' on page 550 undefined on input line 649.
-
-
-LaTeX Warning: Reference `ch:scaling' on page 550 undefined on input line 649.
+LaTeX Warning: Reference `ch:monitoring' on page 372 undefined on input line 530.
 
 
 
-[550]
+[372]
 
-[551]
-
-[552]
-
-[553]
-
-[554]
-./ch12-ishtar-end-to-end.tex:761: Undefined control sequence.
-<argument> ...e \c@refsection @\currentrefsegment 
-                                                  
-l.761 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./ch12-ishtar-end-to-end.tex:761: Undefined control sequence.
-<write> ...x Warning: Segment '\currentrefsegment 
-                                                  ' not found in section '\t...
-l.761 ]
-       
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Package biblatex Warning: Segment '' not found in section '0' on input line 757.
+LaTeX Warning: Reference `ch:ethics' on page 373 undefined on input line 574.
 
 
 
-[555]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 761--761
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
+[373]
+
+LaTeX Warning: Reference `tab:ishtar-outcomes' on page 374 undefined on input line 620.
+
+
+LaTeX Warning: Reference `ch:performance' on page 374 undefined on input line 649.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 374 undefined on input line 649.
 
 
 
-[556]
+[374]
 
-[557]
+[375]
 
-[558]
+[376]
 
-[559]
+[377]
 
-[560]
-
-[561]
+[378]
 Overfull \hbox (10.38861pt too wide) in paragraph at lines 761--761
 []\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
 
 
-[562]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 761--761
-[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
- []
+[379])
 
-
-
-[563]
-
-[564]
-
-[565]
-
-[566]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 761--761
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-
-
-[567]
-
-[568]
-
-[569]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 761--761
-[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 761--761
-\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
- []
-
-
-
-[570]
-
-[571]
-
-[572])
-
-[573]
-
-[574
-
-
-
-
-]
+[380]
 \openout2 = `author/glossary.aux'.
 
  (./author/glossary.tex)
@@ -5918,21 +4891,21 @@ Package logreq Info: Writing requests to 'book.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 67117 strings out of 467800
- 1529484 string characters out of 5431882
- 2841053 words of memory out of 5000000
+ 66925 strings out of 467800
+ 1527954 string characters out of 5431882
+ 2630790 words of memory out of 5000000
  91651 multiletter control sequences out of 15000+600000
  772851 words of font info for 967 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,21n,101p,2661b,2392s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,21n,101p,2661b,2389s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on book.pdf (580 pages, 2456764 bytes).
+Output written on book.pdf (386 pages, 1640431 bytes).
 PDF statistics:
- 12770 PDF objects out of 12825 (max. 8388607)
- 11961 compressed objects within 120 object streams
- 1935 named destinations out of 2073 (max. 500000)
+ 6325 PDF objects out of 7423 (max. 8388607)
+ 5772 compressed objects within 58 object streams
+ 1741 named destinations out of 2073 (max. 500000)
  160637 words of extra memory for PDF output out of 184870 (max. 10000000)
 
