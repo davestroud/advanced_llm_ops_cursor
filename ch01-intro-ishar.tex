@@ -163,23 +163,25 @@ LLMOps therefore formalizes the practices required to run these systems with rel
 \centering\small
 \caption{Four dimensions where LLMOps extends MLOps.}
 \label{tab:llmops-extends-mlops}
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.4}
 \begin{threeparttable}
-\begin{tabularx}{\linewidth}{@{}lXX@{}}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{20mm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
 \toprule
 \textbf{Dimension} & \textbf{What changes} & \textbf{Ops implications} \\
 \midrule
 \textbf{Scale} &
 100B\,+ parameters; longer contexts; tight GPU memory/throughput budgets &
 Model/tensor parallelism; quantization; KV-cache policy; batching \& streaming; SLOs on TTFT \& tokens/s; cost right-sizing \\
-\addlinespace[0.4em]
+\addlinespace[0.6em]
 \textbf{Complexity} &
 RAG pipelines; tool/function calling; multi-agent chains; external APIs &
 Prompt/template versioning; index/data versioning; orchestrators (graphs/agents); end-to-end tracing across components \\
-\addlinespace[0.4em]
+\addlinespace[0.6em]
 \textbf{Variability} &
 Stochastic decoding; output inconsistency across runs/prompts &
 Constrained decoding when needed; multi-sample + rerank; curated eval suites; canary releases; fast rollback to last-known-good \\
-\addlinespace[0.4em]
+\addlinespace[0.6em]
 \textbf{Risk} &
 Hallucinations; bias/toxicity; prompt injection \& data leakage &
 Guardrails (classifiers, rules); sandboxed tool use; red-teaming/adversarial tests; human-in-the-loop for high stakes; auditability \& policy-as-code \\
