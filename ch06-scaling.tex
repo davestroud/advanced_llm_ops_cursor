@@ -568,19 +568,14 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 \addplot+[domain=0:100, samples=2, gray!60, dashdotted, ultra thick] {430};
 \node[gray!60] at (axis cs:6,455) {\small $\gamma\,\hat{C}$ per replica};
 
-% Event trigger annotation
+\end{axis}
+% Annotations moved outside axis
 \node[anchor=south west] at (axis cs:18,620) {\small \textbf{Event trigger}\\(calendar/schedule)};
 \draw[->,>=stealth,thick, green!70] (axis cs:18,600) -- (axis cs:22,600);
-
-% Pre-warm annotation
 \node[anchor=east] at (axis cs:23,800) {\small Pre-warm\\ahead of spike};
 \draw[->,>=stealth,thick, green!70] (axis cs:23,780) -- (axis cs:25,860);
-
-% Spike annotation
 \node[anchor=west] at (axis cs:31,660) {\small spike};
 \draw[->,>=stealth,thick] (axis cs:28,640) -- (axis cs:32,600);
-
-\end{axis}
 \end{tikzpicture}
 \caption{Event-based autoscaling with predictive pre-warming. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph{before} demand spikes arrive, leveraging calendar events or scheduled triggers. This eliminates cold-start latency and ensures capacity is ready when needed.}
 \label{fig:autoscale-event-based}

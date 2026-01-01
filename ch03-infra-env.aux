@@ -1,137 +1,137 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Infrastructure and Environment for LLMOps}{65}{chapter.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Infrastructure and Environment for LLMOps}{63}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{refsegment:06}{{3}{65}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
-\newlabel{ch:infra}{{3}{65}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
-\newlabel{refsegment:07}{{3}{65}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Introduction}{65}{section.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Hardware Selection for LLM Workloads}{66}{section.3.2}\protected@file@percent }
-\newlabel{sec:infra-hardware-bench}{{3.2}{66}{Hardware Selection for LLM Workloads}{section.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Compute Profiles and Workload Types}{67}{subsection.3.2.1}\protected@file@percent }
-\newlabel{sec:infra-hardware-profiles}{{3.2.1}{67}{Compute Profiles and Workload Types}{subsection.3.2.1}{}}
-\newlabel{eq:latency-infra}{{3.1}{67}{Compute Profiles and Workload Types}{equation.3.1}{}}
-\newlabel{eq:throughput-env}{{3.2}{67}{Compute Profiles and Workload Types}{equation.3.2}{}}
-\newlabel{eq:kv-memory}{{3.3}{67}{Compute Profiles and Workload Types}{equation.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}GPU Architectures and Choices}{68}{subsection.3.2.2}\protected@file@percent }
-\newlabel{sec:infra-hardware-gpu}{{3.2.2}{68}{GPU Architectures and Choices}{subsection.3.2.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Representative GPU accelerators for LLM workloads (throughput approximate for OPT-13B inference).}}{68}{table.3.1}\protected@file@percent }
-\newlabel{tab:gpucompare}{{3.1}{68}{Representative GPU accelerators for LLM workloads (throughput approximate for OPT-13B inference)}{table.3.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}TPU Architectures and Considerations}{69}{subsection.3.2.3}\protected@file@percent }
-\newlabel{sec:infra-hardware-tpu}{{3.2.3}{69}{TPU Architectures and Considerations}{subsection.3.2.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Cost Modeling and Economics}{69}{section.3.3}\protected@file@percent }
-\newlabel{sec:infra-cost}{{3.3}{69}{Cost Modeling and Economics}{section.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Token Economics and Cost per Query}{69}{subsection.3.3.1}\protected@file@percent }
-\newlabel{sec:infra-cost-tokens}{{3.3.1}{69}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
-\newlabel{eq:costptok}{{3.3.1}{70}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Batch Size vs Throughput Trade-offs}{71}{subsection.3.3.2}\protected@file@percent }
-\newlabel{sec:infra-cost-batch}{{3.3.2}{71}{Batch Size vs Throughput Trade-offs}{subsection.3.3.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Throughput vs.\ batch size (schematic).}}{71}{figure.3.1}\protected@file@percent }
-\newlabel{fig:batchtradeoff}{{3.1}{71}{Throughput vs.\ batch size (schematic)}{figure.3.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Caching and Quantization Effects}{72}{subsection.3.3.3}\protected@file@percent }
-\newlabel{sec:infra-cost-quant}{{3.3.3}{72}{Caching and Quantization Effects}{subsection.3.3.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.1}KV Cache and Prompt Caching}{72}{subsubsection.3.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.2}Quantization}{72}{subsubsection.3.3.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.3}Ishtar Case}{73}{subsubsection.3.3.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Worked Example: Cost per Million Tokens Across Accelerators}{73}{subsection.3.3.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Approximate cost per million tokens across representative accelerators. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing. Lower is better.}}{73}{table.3.2}\protected@file@percent }
-\newlabel{tab:costcompare}{{3.2}{73}{Approximate cost per million tokens across representative accelerators. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing. Lower is better}{table.3.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Infrastructure-as-Code (IaC) for LLMOps}{74}{section.3.4}\protected@file@percent }
-\newlabel{sec:iac}{{3.4}{74}{Infrastructure-as-Code (IaC) for LLMOps}{section.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Why IaC Matters}{74}{subsection.3.4.1}\protected@file@percent }
-\newlabel{sec:iac-why}{{3.4.1}{74}{Why IaC Matters}{subsection.3.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Tooling Comparison}{75}{subsection.3.4.2}\protected@file@percent }
-\newlabel{sec:iac-tools}{{3.4.2}{75}{Tooling Comparison}{subsection.3.4.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Comparison of Infrastructure-as-Code tools (selected for LLMOps).}}{76}{table.3.3}\protected@file@percent }
-\newlabel{tab:iaccompare}{{3.3}{76}{Comparison of Infrastructure-as-Code tools (selected for LLMOps)}{table.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Reusable Modules and Patterns}{76}{subsection.3.4.3}\protected@file@percent }
-\newlabel{sec:iac-modules}{{3.4.3}{76}{Reusable Modules and Patterns}{subsection.3.4.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Compliance, Security, and Auditing}{76}{subsection.3.4.4}\protected@file@percent }
-\newlabel{sec:iac-compliance}{{3.4.4}{76}{Compliance, Security, and Auditing}{subsection.3.4.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.5}Infrastructure Deployment Pipelines}{77}{subsection.3.4.5}\protected@file@percent }
-\newlabel{sec:iac-pipelines}{{3.4.5}{77}{Infrastructure Deployment Pipelines}{subsection.3.4.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.6}Documentation as Code}{77}{subsection.3.4.6}\protected@file@percent }
-\newlabel{sec:iac-docs}{{3.4.6}{77}{Documentation as Code}{subsection.3.4.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.7}Code Example}{77}{subsection.3.4.7}\protected@file@percent }
-\newlabel{sec:iac-example}{{3.4.7}{77}{Code Example}{subsection.3.4.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.8}Checklist: Best Practices for IaC in LLMOps}{77}{subsection.3.4.8}\protected@file@percent }
-\newlabel{sec:iac-checklist}{{3.4.8}{77}{Checklist: Best Practices for IaC in LLMOps}{subsection.3.4.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Containerization and Orchestration}{78}{section.3.5}\protected@file@percent }
-\newlabel{sec:orchestration}{{3.5}{78}{Containerization and Orchestration}{section.3.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Kubernetes for LLMs}{79}{subsection.3.5.1}\protected@file@percent }
-\newlabel{sec:orchestration-k8s}{{3.5.1}{79}{Kubernetes for LLMs}{subsection.3.5.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1.1}Cluster Architecture, Networking, and Hardening}{80}{subsubsection.3.5.1.1}\protected@file@percent }
-\newlabel{sec:k8s-arch-hardening}{{3.5.1.1}{80}{Cluster Architecture, Networking, and Hardening}{subsubsection.3.5.1.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Advanced Scheduling Strategies}{80}{subsection.3.5.2}\protected@file@percent }
-\newlabel{sec:orchestration-advanced}{{3.5.2}{80}{Advanced Scheduling Strategies}{subsection.3.5.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Model Serving Infrastructure}{81}{section.3.6}\protected@file@percent }
-\newlabel{sec:serving}{{3.6}{81}{Model Serving Infrastructure}{section.3.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Serving Frameworks and Engines}{81}{subsection.3.6.1}\protected@file@percent }
-\newlabel{sec:serving-fw}{{3.6.1}{81}{Serving Frameworks and Engines}{subsection.3.6.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.1}Hugging Face Text Generation Inference (TGI)}{82}{subsubsection.3.6.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.2}vLLM}{82}{subsubsection.3.6.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.3}NVIDIA TensorRT-LLM (with Triton)}{82}{subsubsection.3.6.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.4}LMDeploy}{82}{subsubsection.3.6.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.5}SGLang}{83}{subsubsection.3.6.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.6}Other frameworks}{83}{subsubsection.3.6.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Novel Methods for Serving Efficiency}{83}{subsection.3.6.2}\protected@file@percent }
-\newlabel{sec:serving-novel}{{3.6.2}{83}{Novel Methods for Serving Efficiency}{subsection.3.6.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.1}Smoothie Routing (Ensemble Routing)}{83}{subsubsection.3.6.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.2}KV Cache Compression and Offloading}{84}{subsubsection.3.6.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.3}Speculative Decoding}{84}{subsubsection.3.6.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.4}Beyond Beam Search}{84}{subsubsection.3.6.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.5}Augmented Retrieval Integration}{84}{subsubsection.3.6.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.6}Distributed Serving for Ultra-Large Models}{84}{subsubsection.3.6.2.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Summary}{85}{subsection.3.6.3}\protected@file@percent }
-\newlabel{sec:serving-summary}{{3.6.3}{85}{Summary}{subsection.3.6.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Comparison of selected LLM serving frameworks. Strengths and limitations reflect typical deployments in 2024--2025.}}{85}{table.3.4}\protected@file@percent }
-\newlabel{tab:servingcompare}{{3.4}{85}{Comparison of selected LLM serving frameworks. Strengths and limitations reflect typical deployments in 2024--2025}{table.3.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3.1}Inference Runtimes as Managed Artifacts}{85}{subsubsection.3.6.3.1}\protected@file@percent }
-\newlabel{sec:serving-runtimes}{{3.6.3.1}{85}{Inference Runtimes as Managed Artifacts}{subsubsection.3.6.3.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Deployment Patterns}{86}{section.3.7}\protected@file@percent }
-\newlabel{sec:deploy}{{3.7}{86}{Deployment Patterns}{section.3.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Cloud-Native Deployments}{86}{subsection.3.7.1}\protected@file@percent }
-\newlabel{sec:deploy-cloud}{{3.7.1}{86}{Cloud-Native Deployments}{subsection.3.7.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Hybrid Deployments}{87}{subsection.3.7.2}\protected@file@percent }
-\newlabel{sec:deploy-hybrid}{{3.7.2}{87}{Hybrid Deployments}{subsection.3.7.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Multi-Cluster and Multi-Region Topologies}{88}{subsection.3.7.3}\protected@file@percent }
-\newlabel{sec:deploy-multicluster}{{3.7.3}{88}{Multi-Cluster and Multi-Region Topologies}{subsection.3.7.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.4}Summary}{88}{subsection.3.7.4}\protected@file@percent }
-\newlabel{sec:deploy-summary}{{3.7.4}{88}{Summary}{subsection.3.7.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Balanced schematic of deployment patterns: \textbf  {Cloud-Native} (left), \textbf  {Hybrid} (middle), and \textbf  {Multi-Cluster} (right).}}{89}{figure.3.2}\protected@file@percent }
-\newlabel{fig:deploy-patterns-balanced}{{3.2}{89}{Balanced schematic of deployment patterns: \textbf {Cloud-Native} (left), \textbf {Hybrid} (middle), and \textbf {Multi-Cluster} (right)}{figure.3.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.8}Case Study: Ishtar AI Infrastructure}{89}{section.3.8}\protected@file@percent }
-\newlabel{sec:ishtar-case}{{3.8}{89}{Case Study: Ishtar AI Infrastructure}{section.3.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}Hardware Mix}{89}{subsection.3.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}IaC and Automation}{90}{subsection.3.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.3}Kubernetes Configuration}{90}{subsection.3.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.4}Serving Stack}{90}{subsection.3.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.5}Cost and Performance}{90}{subsection.3.8.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.6}Hybrid Integration}{91}{subsection.3.8.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.7}Lessons Learned}{91}{subsection.3.8.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling.}}{92}{figure.3.3}\protected@file@percent }
-\newlabel{fig:ishtar-infra}{{3.3}{92}{Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling}{figure.3.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.9}Best Practices and Checklists}{92}{section.3.9}\protected@file@percent }
-\newlabel{sec:bestpractices}{{3.9}{92}{Best Practices and Checklists}{section.3.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.1}Hardware \& Performance Checklist}{92}{subsection.3.9.1}\protected@file@percent }
-\newlabel{sec:bp-hw}{{3.9.1}{92}{Hardware \& Performance Checklist}{subsection.3.9.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.2}IaC \& DevOps Checklist}{93}{subsection.3.9.2}\protected@file@percent }
-\newlabel{sec:bp-iac}{{3.9.2}{93}{IaC \& DevOps Checklist}{subsection.3.9.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.3}Serving \& Scaling Checklist}{94}{subsection.3.9.3}\protected@file@percent }
-\newlabel{sec:bp-serving}{{3.9.3}{94}{Serving \& Scaling Checklist}{subsection.3.9.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.4}Summary}{94}{subsection.3.9.4}\protected@file@percent }
-\newlabel{sec:checklists-summary}{{3.9.4}{94}{Summary}{subsection.3.9.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.10}Conclusion}{97}{section.3.10}\protected@file@percent }
-\newlabel{sec:infra-conclusion}{{3.10}{97}{Conclusion}{section.3.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.1}Bridging to Part II: Infrastructure as Operational Contracts}{98}{subsection.3.10.1}\protected@file@percent }
-\newlabel{sec:infra-part2-bridge}{{3.10.1}{98}{Bridging to Part II: Infrastructure as Operational Contracts}{subsection.3.10.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.1}Infrastructure Choices Define Operational Contracts}{98}{subsubsection.3.10.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.2}How Infrastructure Contracts Constrain CI/CD}{98}{subsubsection.3.10.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.3}How Infrastructure Choices Affect Observability}{99}{subsubsection.3.10.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.4}How Infrastructure Decisions Impact Scaling}{99}{subsubsection.3.10.1.4}\protected@file@percent }
+\newlabel{refsegment:06}{{3}{63}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
+\newlabel{ch:infra}{{3}{63}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
+\newlabel{refsegment:07}{{3}{63}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Introduction}{63}{section.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Hardware Selection for LLM Workloads}{64}{section.3.2}\protected@file@percent }
+\newlabel{sec:infra-hardware-bench}{{3.2}{64}{Hardware Selection for LLM Workloads}{section.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Compute Profiles and Workload Types}{65}{subsection.3.2.1}\protected@file@percent }
+\newlabel{sec:infra-hardware-profiles}{{3.2.1}{65}{Compute Profiles and Workload Types}{subsection.3.2.1}{}}
+\newlabel{eq:latency-infra}{{3.1}{65}{Compute Profiles and Workload Types}{equation.3.1}{}}
+\newlabel{eq:throughput-env}{{3.2}{65}{Compute Profiles and Workload Types}{equation.3.2}{}}
+\newlabel{eq:kv-memory}{{3.3}{65}{Compute Profiles and Workload Types}{equation.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}GPU Architectures and Choices}{66}{subsection.3.2.2}\protected@file@percent }
+\newlabel{sec:infra-hardware-gpu}{{3.2.2}{66}{GPU Architectures and Choices}{subsection.3.2.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Representative GPU accelerators for LLM workloads (throughput approximate for OPT-13B inference).}}{66}{table.3.1}\protected@file@percent }
+\newlabel{tab:gpucompare}{{3.1}{66}{Representative GPU accelerators for LLM workloads (throughput approximate for OPT-13B inference)}{table.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}TPU Architectures and Considerations}{67}{subsection.3.2.3}\protected@file@percent }
+\newlabel{sec:infra-hardware-tpu}{{3.2.3}{67}{TPU Architectures and Considerations}{subsection.3.2.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Cost Modeling and Economics}{67}{section.3.3}\protected@file@percent }
+\newlabel{sec:infra-cost}{{3.3}{67}{Cost Modeling and Economics}{section.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Token Economics and Cost per Query}{67}{subsection.3.3.1}\protected@file@percent }
+\newlabel{sec:infra-cost-tokens}{{3.3.1}{67}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
+\newlabel{eq:costptok}{{3.3.1}{68}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Batch Size vs Throughput Trade-offs}{69}{subsection.3.3.2}\protected@file@percent }
+\newlabel{sec:infra-cost-batch}{{3.3.2}{69}{Batch Size vs Throughput Trade-offs}{subsection.3.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Throughput vs.\ batch size (schematic).}}{69}{figure.3.1}\protected@file@percent }
+\newlabel{fig:batchtradeoff}{{3.1}{69}{Throughput vs.\ batch size (schematic)}{figure.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Caching and Quantization Effects}{70}{subsection.3.3.3}\protected@file@percent }
+\newlabel{sec:infra-cost-quant}{{3.3.3}{70}{Caching and Quantization Effects}{subsection.3.3.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.1}KV Cache and Prompt Caching}{70}{subsubsection.3.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.2}Quantization}{70}{subsubsection.3.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.3}Ishtar Case}{71}{subsubsection.3.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Worked Example: Cost per Million Tokens Across Accelerators}{71}{subsection.3.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Approximate cost per million tokens across representative accelerators. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing. Lower is better.}}{71}{table.3.2}\protected@file@percent }
+\newlabel{tab:costcompare}{{3.2}{71}{Approximate cost per million tokens across representative accelerators. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing. Lower is better}{table.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Infrastructure-as-Code (IaC) for LLMOps}{72}{section.3.4}\protected@file@percent }
+\newlabel{sec:iac}{{3.4}{72}{Infrastructure-as-Code (IaC) for LLMOps}{section.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Why IaC Matters}{72}{subsection.3.4.1}\protected@file@percent }
+\newlabel{sec:iac-why}{{3.4.1}{72}{Why IaC Matters}{subsection.3.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Tooling Comparison}{73}{subsection.3.4.2}\protected@file@percent }
+\newlabel{sec:iac-tools}{{3.4.2}{73}{Tooling Comparison}{subsection.3.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Comparison of Infrastructure-as-Code tools (selected for LLMOps).}}{74}{table.3.3}\protected@file@percent }
+\newlabel{tab:iaccompare}{{3.3}{74}{Comparison of Infrastructure-as-Code tools (selected for LLMOps)}{table.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Reusable Modules and Patterns}{74}{subsection.3.4.3}\protected@file@percent }
+\newlabel{sec:iac-modules}{{3.4.3}{74}{Reusable Modules and Patterns}{subsection.3.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Compliance, Security, and Auditing}{74}{subsection.3.4.4}\protected@file@percent }
+\newlabel{sec:iac-compliance}{{3.4.4}{74}{Compliance, Security, and Auditing}{subsection.3.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.5}Infrastructure Deployment Pipelines}{75}{subsection.3.4.5}\protected@file@percent }
+\newlabel{sec:iac-pipelines}{{3.4.5}{75}{Infrastructure Deployment Pipelines}{subsection.3.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.6}Documentation as Code}{75}{subsection.3.4.6}\protected@file@percent }
+\newlabel{sec:iac-docs}{{3.4.6}{75}{Documentation as Code}{subsection.3.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.7}Code Example}{75}{subsection.3.4.7}\protected@file@percent }
+\newlabel{sec:iac-example}{{3.4.7}{75}{Code Example}{subsection.3.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.8}Checklist: Best Practices for IaC in LLMOps}{76}{subsection.3.4.8}\protected@file@percent }
+\newlabel{sec:iac-checklist}{{3.4.8}{76}{Checklist: Best Practices for IaC in LLMOps}{subsection.3.4.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Containerization and Orchestration}{77}{section.3.5}\protected@file@percent }
+\newlabel{sec:orchestration}{{3.5}{77}{Containerization and Orchestration}{section.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Kubernetes for LLMs}{77}{subsection.3.5.1}\protected@file@percent }
+\newlabel{sec:orchestration-k8s}{{3.5.1}{77}{Kubernetes for LLMs}{subsection.3.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1.1}Cluster Architecture, Networking, and Hardening}{78}{subsubsection.3.5.1.1}\protected@file@percent }
+\newlabel{sec:k8s-arch-hardening}{{3.5.1.1}{78}{Cluster Architecture, Networking, and Hardening}{subsubsection.3.5.1.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Advanced Scheduling Strategies}{79}{subsection.3.5.2}\protected@file@percent }
+\newlabel{sec:orchestration-advanced}{{3.5.2}{79}{Advanced Scheduling Strategies}{subsection.3.5.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Model Serving Infrastructure}{80}{section.3.6}\protected@file@percent }
+\newlabel{sec:serving}{{3.6}{80}{Model Serving Infrastructure}{section.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Serving Frameworks and Engines}{80}{subsection.3.6.1}\protected@file@percent }
+\newlabel{sec:serving-fw}{{3.6.1}{80}{Serving Frameworks and Engines}{subsection.3.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.1}Hugging Face Text Generation Inference (TGI)}{80}{subsubsection.3.6.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.2}vLLM}{80}{subsubsection.3.6.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.3}NVIDIA TensorRT-LLM (with Triton)}{81}{subsubsection.3.6.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.4}LMDeploy}{81}{subsubsection.3.6.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.5}SGLang}{81}{subsubsection.3.6.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.6}Other frameworks}{81}{subsubsection.3.6.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Novel Methods for Serving Efficiency}{82}{subsection.3.6.2}\protected@file@percent }
+\newlabel{sec:serving-novel}{{3.6.2}{82}{Novel Methods for Serving Efficiency}{subsection.3.6.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.1}Smoothie Routing (Ensemble Routing)}{82}{subsubsection.3.6.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.2}KV Cache Compression and Offloading}{82}{subsubsection.3.6.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.3}Speculative Decoding}{82}{subsubsection.3.6.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.4}Beyond Beam Search}{82}{subsubsection.3.6.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.5}Augmented Retrieval Integration}{83}{subsubsection.3.6.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.6}Distributed Serving for Ultra-Large Models}{83}{subsubsection.3.6.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Summary}{83}{subsection.3.6.3}\protected@file@percent }
+\newlabel{sec:serving-summary}{{3.6.3}{83}{Summary}{subsection.3.6.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Comparison of selected LLM serving frameworks. Strengths and limitations reflect typical deployments in 2024--2025.}}{84}{table.3.4}\protected@file@percent }
+\newlabel{tab:servingcompare}{{3.4}{84}{Comparison of selected LLM serving frameworks. Strengths and limitations reflect typical deployments in 2024--2025}{table.3.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3.1}Inference Runtimes as Managed Artifacts}{84}{subsubsection.3.6.3.1}\protected@file@percent }
+\newlabel{sec:serving-runtimes}{{3.6.3.1}{84}{Inference Runtimes as Managed Artifacts}{subsubsection.3.6.3.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Deployment Patterns}{84}{section.3.7}\protected@file@percent }
+\newlabel{sec:deploy}{{3.7}{84}{Deployment Patterns}{section.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Cloud-Native Deployments}{85}{subsection.3.7.1}\protected@file@percent }
+\newlabel{sec:deploy-cloud}{{3.7.1}{85}{Cloud-Native Deployments}{subsection.3.7.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Hybrid Deployments}{86}{subsection.3.7.2}\protected@file@percent }
+\newlabel{sec:deploy-hybrid}{{3.7.2}{86}{Hybrid Deployments}{subsection.3.7.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Multi-Cluster and Multi-Region Topologies}{86}{subsection.3.7.3}\protected@file@percent }
+\newlabel{sec:deploy-multicluster}{{3.7.3}{86}{Multi-Cluster and Multi-Region Topologies}{subsection.3.7.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.4}Summary}{87}{subsection.3.7.4}\protected@file@percent }
+\newlabel{sec:deploy-summary}{{3.7.4}{87}{Summary}{subsection.3.7.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Balanced schematic of deployment patterns: \textbf  {Cloud-Native} (left), \textbf  {Hybrid} (middle), and \textbf  {Multi-Cluster} (right).}}{88}{figure.3.2}\protected@file@percent }
+\newlabel{fig:deploy-patterns-balanced}{{3.2}{88}{Balanced schematic of deployment patterns: \textbf {Cloud-Native} (left), \textbf {Hybrid} (middle), and \textbf {Multi-Cluster} (right)}{figure.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.8}Case Study: Ishtar AI Infrastructure}{88}{section.3.8}\protected@file@percent }
+\newlabel{sec:ishtar-case}{{3.8}{88}{Case Study: Ishtar AI Infrastructure}{section.3.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}Hardware Mix}{88}{subsection.3.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}IaC and Automation}{89}{subsection.3.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.3}Kubernetes Configuration}{89}{subsection.3.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.4}Serving Stack}{89}{subsection.3.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.5}Cost and Performance}{89}{subsection.3.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.6}Hybrid Integration}{90}{subsection.3.8.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.7}Lessons Learned}{90}{subsection.3.8.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling.}}{90}{figure.3.3}\protected@file@percent }
+\newlabel{fig:ishtar-infra}{{3.3}{90}{Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling}{figure.3.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.9}Best Practices and Checklists}{91}{section.3.9}\protected@file@percent }
+\newlabel{sec:bestpractices}{{3.9}{91}{Best Practices and Checklists}{section.3.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.1}Hardware \& Performance Checklist}{91}{subsection.3.9.1}\protected@file@percent }
+\newlabel{sec:bp-hw}{{3.9.1}{91}{Hardware \& Performance Checklist}{subsection.3.9.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.2}IaC \& DevOps Checklist}{92}{subsection.3.9.2}\protected@file@percent }
+\newlabel{sec:bp-iac}{{3.9.2}{92}{IaC \& DevOps Checklist}{subsection.3.9.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.3}Serving \& Scaling Checklist}{92}{subsection.3.9.3}\protected@file@percent }
+\newlabel{sec:bp-serving}{{3.9.3}{92}{Serving \& Scaling Checklist}{subsection.3.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.4}Summary}{93}{subsection.3.9.4}\protected@file@percent }
+\newlabel{sec:checklists-summary}{{3.9.4}{93}{Summary}{subsection.3.9.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.10}Conclusion}{94}{section.3.10}\protected@file@percent }
+\newlabel{sec:infra-conclusion}{{3.10}{94}{Conclusion}{section.3.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.1}Bridging to Part II: Infrastructure as Operational Contracts}{94}{subsection.3.10.1}\protected@file@percent }
+\newlabel{sec:infra-part2-bridge}{{3.10.1}{94}{Bridging to Part II: Infrastructure as Operational Contracts}{subsection.3.10.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.1}Infrastructure Choices Define Operational Contracts}{94}{subsubsection.3.10.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.2}How Infrastructure Contracts Constrain CI/CD}{95}{subsubsection.3.10.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.3}How Infrastructure Choices Affect Observability}{95}{subsubsection.3.10.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.4}How Infrastructure Decisions Impact Scaling}{96}{subsubsection.3.10.1.4}\protected@file@percent }
 \@setckpt{ch03-infra-env}{
-\setcounter{page}{101}
+\setcounter{page}{97}
 \setcounter{equation}{3}
 \setcounter{enumi}{5}
 \setcounter{enumii}{0}
@@ -195,7 +195,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{259}
+\setcounter{instcount}{0}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}
@@ -209,7 +209,7 @@
 \setcounter{refsegment}{7}
 \setcounter{maxextratitle}{0}
 \setcounter{maxextratitleyear}{0}
-\setcounter{maxextraname}{10}
+\setcounter{maxextraname}{0}
 \setcounter{maxextradate}{0}
 \setcounter{maxextraalpha}{0}
 \setcounter{abbrvpenalty}{50}
