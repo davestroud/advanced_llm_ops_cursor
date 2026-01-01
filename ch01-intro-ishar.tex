@@ -53,12 +53,36 @@ Even with managed APIs, LLM-powered applications behave like distributed systems
 \end{figure}
 
 \subsection{Data and Knowledge Drift (Especially in RAG)}
-LLM behavior depends not only on the base model but also on the information it is conditioned on at inference time. In Retrieval-Augmented Generation (RAG), the underlying corpus evolves continuously: policies change, documents are updated, and new sources are added. This introduces drift that can silently degrade quality:
+LLM behavior in production depends not only on the base model but also on the
+\emph{inference-time evidence} it is conditioned on. In Retrieval-Augmented Generation (RAG),
+the system's effective knowledge is an evolving composite of (i) the underlying corpus,
+(ii) the embedding model and indexing configuration used to represent that corpus,
+and (iii) the retrieval and filtering policies that determine what evidence is eligible.
+As these layers change, drift can \emph{silently} degrade answer quality: the system may
+continue returning fluent responses while groundedness, citation fidelity, and trustworthiness erode.
+
+Common drift modes include:
 \begin{itemize}
-  \item \textbf{Index drift:} embeddings and vector indices become stale as corpora change; re-embedding and re-indexing must be scheduled and verified.
-  \item \textbf{Distribution shift:} user queries evolve with product changes and external events, requiring monitoring of query clusters and failure patterns.
-  \item \textbf{Content governance:} ensuring the retriever only surfaces authorized and current documents, with correct permissions and provenance.
+  \item \textbf{Index drift:} embeddings and vector indices become stale as corpora evolve; re-embedding,
+  re-indexing, and \emph{post-refresh validation} must be scheduled and verified (e.g., via canary queries
+  with expected evidence).
+  \item \textbf{Distribution shift:} user queries change with product evolution and external events,
+  requiring monitoring of query clusters, long-tail intents, and slice-level failure patterns.
+  \item \textbf{Content governance drift:} authorization and provenance rules evolve (ACL changes,
+  source trust updates, deprecations). The retriever must surface \emph{only} authorized and current documents,
+  enforcing permissions and lineage at retrieval time.
 \end{itemize}
+
+Operationally, treat drift as a control problem: define a staleness SLO for the index,
+monitor retrieval quality and groundedness signals, and close the loop with automated refresh pipelines,
+canary evaluations, and auditable index snapshots (Fig.~\ref{fig:rag-drift-control}).
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\textwidth]{images/ch01-rag-drift-control}
+  \caption{RAG drift management as a closed-loop operational process: detect drift signals, diagnose the cause, remediate via index/retriever/governance changes, and validate with canary evaluation plus index/config snapshots for auditability and rollback.}
+  \label{fig:rag-drift-control}
+\end{figure}
 
 \subsection{Evaluation: From Single Metrics to Behavioral Guarantees}
 Traditional ML systems often rely on offline metrics (AUC, RMSE) and periodic monitoring. LLM systems require a richer notion of quality that includes correctness, groundedness, safety, and style. Because outputs are open-ended, evaluation becomes an ongoing engineering discipline:
