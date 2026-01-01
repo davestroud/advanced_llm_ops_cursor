@@ -147,12 +147,17 @@ Finally, LLM systems change frequently: prompts evolve, models are upgraded, ret
 Together, these dimensions explain why LLM deployments require a distinct operational mindset. LLMOps is the set of practices that makes these systems reliable in the real world: controlling cost and latency, continuously measuring quality, defending against new threats, and enabling rapid iteration without sacrificing safety or trust.
 
 \subsection{Cost, Latency, and Throughput at Scale}
-LLM inference is fundamentally more expensive than most classical ML workloads because each request consumes substantial compute and memory bandwidth. In production, the primary constraint is rarely ``can we run the model?'' but rather ``can we run it \emph{reliably}, \emph{quickly}, and \emph{affordably} under peak load?'' This requires explicit capacity planning and performance engineering:
-\begin{itemize}
-  \item \textbf{Latency budgets:} user-facing applications typically need predictable end-to-end response times. Latency must be decomposed into tokenization, network overhead, retrieval (for RAG), model compute, and post-processing.
-  \item \textbf{Throughput management:} serving systems must handle bursts, concurrency, and long-tail requests (e.g., very long contexts) without degrading the entire service.
-  \item \textbf{Cost controls:} organizations must manage per-token costs, caching strategies, batching, and model routing (e.g., smaller model for easy queries, larger model for hard ones) to keep unit economics sustainable.
-\end{itemize}
+LLM inference is fundamentally more expensive than most classical ML workloads because each request
+consumes substantial compute and memory bandwidth, and because request \emph{shape} (prompt length,
+output length, and concurrency) drives non-linear resource usage (e.g., KV-cache pressure under long
+contexts). In production, the binding question is rarely ``can we run the model?'' but rather ``can we run it
+\emph{reliably}, \emph{quickly}, and \emph{affordably} under peak load?''
+
+A practical way to operationalize this is to manage a \emph{latency budget} and an \emph{economics budget}
+simultaneously. End-to-end latency should be decomposed by stage (tokenization/policy checks, retrieval,
+model prefill/decoding, post-processing), and reported by tail percentiles (p95/p99), not only averages.
+In interactive systems, \emph{time-to-first-token (TTFT)} is often the dominant user-perceived metric, while
+\emph{tokens-per-second} determines how quickly the response completes.
 
 \subsection{Infrastructure and Serving Complexity}
 Deploying an LLM is closer to operating a distributed system than deploying a single model artifact. Even when using managed endpoints, production systems require careful design across multiple layers:
