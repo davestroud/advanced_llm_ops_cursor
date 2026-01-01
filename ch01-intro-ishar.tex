@@ -459,9 +459,36 @@ Today, LLMOps is emerging as a vital sub-discipline of MLOps, focused on lifecyc
 LLMOps is not simply a buzzword; it reflects substantive differences between LLM-powered systems and traditional machine learning deployments. These differences appear along four dimensions: model scale, pipeline complexity, output variability, and heightened risks spanning safety, bias, hallucination, and security.
 
 \subsubsection{Scale}\label{sec:llmops-scale}
-Modern LLMs consist of tens to hundreds of billions of parameters, which fundamentally changes the deployment problem. GPT-3's 175B parameter model alone requires $\geq$300~GB of memory at FP16 precision simply to load, exceeding the RAM capacity of GPUs commonly available in 2020 \cite{ai.stackexchange}. At the frontier, trillion-parameter models behave as distributed systems by necessity \cite{explodingtopics,fabricatedknowledge}. Consequently, LLMOps engineers must master model- and tensor-parallel serving, quantization, and optimized inference kernels to make these models practical in production.
+Modern LLMs consist of tens to hundreds of billions of parameters, which fundamentally changes the deployment
+problem. At these scales, \emph{weights alone} become a first-order infrastructure constraint: the memory required
+to load parameters grows linearly with parameter count $P$ and bytes-per-weight $b$,
+\[
+M_{\text{params}} \approx P \cdot b.
+\]
+This immediately pushes large models beyond a single device, motivating tensor/model parallelism, quantization
+(e.g., INT8/4-bit), and optimized inference kernels to make deployment practical.
 
-Scale also intensifies performance constraints. Transformer self-attention has quadratic time and memory complexity with respect to input length, making context growth a first-order systems concern. Production teams therefore manage time-to-first-token (TTFT), tokens-per-second throughput, and cost efficiency as operational objectives. For example, ChatGPT operating expenses have been estimated at \$100{,}000--700{,}000 per day \cite{stylefactory}, and per-query costs have been reported on the order of $\sim$0.0002 per 1k tokens \cite{fabricatedknowledge}. At this magnitude, even small efficiency improvements can translate into meaningful cost savings.
+Scale also intensifies \emph{context} and \emph{serving} constraints. Transformer self-attention has quadratic time and
+memory complexity in input length, making context growth a systems problem rather than a UX feature.
+In addition, long-context serving increases KV-cache memory roughly linearly in sequence length and batch size,
+creating tight coupling between concurrency targets and GPU memory headroom. Operationally, this is why teams
+separate and track \emph{TTFT} (time-to-first-token) versus \emph{tokens-per-second} throughput and treat tail latency
+(p95/p99) as a primary SLO.
+
+The economic consequences follow directly: once workloads reach millions to billions of tokens per day, small
+efficiency gains (better batching, improved cache policy, routing ``easy'' requests to smaller models) produce large
+cost deltas. Thus, \emph{scale forces an operational shift}: from single-model deployment to distributed, budgeted
+systems engineering, where memory, latency, and cost must be co-optimized (Fig.~\ref{fig:scale-constraints}).
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\textwidth]{images/ch01-scale-constraints}
+  \caption{Why scale changes LLM deployment. Large parameter counts make weight memory a first-order constraint,
+  while longer contexts introduce $\Theta(T^2)$ attention cost and KV-cache pressure. Together these drive LLM-specific
+  SLOs (TTFT, tokens/s, \$/1K tokens) and engineering levers (parallelism, quantization, batching/scheduling,
+  KV-cache policy, and model routing).}
+  \label{fig:scale-constraints}
+\end{figure}
 
 \subsubsection{Complexity}\label{sec:llmops-complexity}
 LLM applications rarely follow a simple ``input-to-output'' pattern. Instead, they typically involve multi-stage pipelines that include document retrieval, prompt composition, model inference, tool or function calls, and output post-processing. Prompts, templates, and chains must be treated as first-class artifacts requiring versioning, testing, and monitoring across releases.
