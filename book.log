@@ -1617,16 +1617,13 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 96.
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
- (./book.aux (./author/dedication.aux) (./author/foreword.aux) (./author/preface.aux) (./author/acknowledgement.aux) (./author/acronym.aux) (./author/part1-foundations.aux) (./ch01-intro-ishar.aux) (./ch02-llmops-fundamentals.aux) (./ch03-infra-env.aux) (./author/part2-delivery.aux) (./ch04-cicd.aux) (./ch05-observability.aux) (./ch06-scaling.aux
 
-LaTeX Warning: Label `sec:serving-runtimes' multiply defined.
-
-) (./author/part3-optimization.aux) (./ch07-performance.aux) (./ch08-rag.aux) (./ch09-agents-orchestration.aux) (./author/part4-governance.aux) (./ch10-testing-eval.aux) (./ch11-ethics.aux) (./ch12-ishtar-end-to-end.aux) (./author/glossary.aux))
+No file book.aux.
 \openout1 = `book.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 96.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 96.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd
+(/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
 LaTeX Font Info:    ... okay on input line 96.
@@ -1736,12 +1733,6 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
-
-Package biblatex Warning: citation 'jaeger_tracing'
-(biblatex)                was not found at all in the .bbl file,
-(biblatex)                bibliography labels cannot be generated,
-(biblatex)                please correct the citation.
-
 Package biblatex Info: Reference section=0 on input line 96.
 Package biblatex Info: Reference segment=0 on input line 96.
 Package hyperref Info: Link coloring OFF on input line 96.
@@ -1778,8 +1769,41 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.5pt on input line 110.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/ot1minntx.fd) (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/untxmia.fd) (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/untxsym.fd) (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/untxsyc.fd) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg) (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd)
+
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page v undefined on input line 144.
+
+
+LaTeX Warning: Reference `ch:infra' on page v undefined on input line 144.
+
+
+LaTeX Warning: Reference `ch:cicd' on page v undefined on input line 144.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page v undefined on input line 144.
+
+
+LaTeX Warning: Reference `ch:performance' on page v undefined on input line 144.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page v undefined on input line 144.
+
+
+LaTeX Warning: Reference `ch:testing' on page v undefined on input line 144.
+
+
+LaTeX Warning: Reference `ch:ethics' on page v undefined on input line 144.
+
+
+LaTeX Warning: Reference `ch:case-study' on page v undefined on input line 144.
+
+
+LaTeX Warning: Reference `fig:llmops-lifecycle' on page v undefined on input line 146.
+
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
 (Font)              scaled to size 8.5pt on input line 146.
+
+LaTeX Warning: Reference `fig:llmops-lifecycle' on page v undefined on input line 146.
+
 
 
 [5{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
@@ -1854,37 +1878,25 @@ LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 7.3pt on input line 150.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 5.5pt on input line 150.
- (./book.toc
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 1.
 
-
-[7]
-
-[8]
-
-[9]
-
-[10]
-
-[11]
-
-[12]
-
-[13]
-
-[14]
-
-[15])
+No file book.toc.
 \tf@toc=\write8
 \openout8 = `book.toc'.
 
 
 
-[16]
+[7]
 \openout2 = `author/acronym.aux'.
 
  (./author/acronym.tex)
+
+[8
+
+
+
+
+
+]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 18.0pt on input line 158.
 
@@ -1897,11 +1909,6 @@ l.158 \part{Foundations of LLMOps}
                                    [1
 
 
-
-
-
-
-
 ]
 
 
@@ -1912,7 +1919,20 @@ l.158 \part{Foundations of LLMOps}
                                    [2]
 \openout2 = `author/part1-foundations.aux'.
 
- (./author/part1-foundations.tex)
+ (./author/part1-foundations.tex
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.0pt on input line 3.
+
+
+LaTeX Warning: Reference `ch:intro' on page 3 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page 3 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:infra' on page 3 undefined on input line 5.
+
+)
 
 [3
 
@@ -1985,18 +2005,196 @@ Overfull \hbox (121.57011pt too wide) in paragraph at lines 325--326
 
 [16]
 
-[17] (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page 17 undefined on input line 383.
+
+
+LaTeX Warning: Reference `ch:infra' on page 17 undefined on input line 384.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 17 undefined on input line 389.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 17 undefined on input line 390.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 17 undefined on input line 391.
+
+
+LaTeX Warning: Reference `ch:performance' on page 17 undefined on input line 396.
+
+
+LaTeX Warning: Reference `ch:rag' on page 17 undefined on input line 397.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 17 undefined on input line 398.
+
+
+
+[17]
+
+LaTeX Warning: Reference `ch:testing' on page 18 undefined on input line 403.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 18 undefined on input line 404.
+
+
+LaTeX Warning: Reference `ch:case-study' on page 18 undefined on input line 405.
+
+
+LaTeX Warning: Reference `ch:infra' on page 18 undefined on input line 415.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 18 undefined on input line 415.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 18 undefined on input line 415.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 18 undefined on input line 415.
+
+
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page 18 undefined on input line 417.
+
+
+LaTeX Warning: Reference `ch:performance' on page 18 undefined on input line 417.
+
+
+LaTeX Warning: Reference `ch:rag' on page 18 undefined on input line 417.
+
+
+LaTeX Warning: Reference `ch:case-study' on page 18 undefined on input line 417.
+
+
+LaTeX Warning: Reference `ch:testing' on page 18 undefined on input line 419.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 18 undefined on input line 419.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 18 undefined on input line 419.
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
 File: tikzlibrarymatrix.code.tex 2025-08-14 v3.1.11 (3.1.11)
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
 File: tikzlibraryfit.code.tex 2025-08-14 v3.1.11 (3.1.11)
 )
 
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page 18 undefined on input line 449.
+
+
+LaTeX Warning: Reference `ch:infra' on page 18 undefined on input line 450.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 18 undefined on input line 451.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 18 undefined on input line 452.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 18 undefined on input line 453.
+
+
+LaTeX Warning: Reference `ch:performance' on page 18 undefined on input line 454.
+
+
+LaTeX Warning: Reference `ch:rag' on page 18 undefined on input line 458.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 18 undefined on input line 459.
+
+
+LaTeX Warning: Reference `ch:testing' on page 18 undefined on input line 462.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 18 undefined on input line 463.
+
+
+LaTeX Warning: Reference `ch:case-study' on page 18 undefined on input line 464.
+
+
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `ch:infra' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `ch:performance' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `ch:rag' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `ch:testing' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `ch:case-study' on page 18 undefined on input line 570.
+
+
+LaTeX Warning: Reference `fig:llmops-lifecycle' on page 18 undefined on input line 572.
+
+
+LaTeX Warning: Reference `fig:llmops-lifecycle' on page 18 undefined on input line 572.
+
+
+
 [18]
 
 [19]
+
+LaTeX Warning: Reference `ch:infra' on page 20 undefined on input line 642.
+
+
+LaTeX Warning: Reference `ch:performance' on page 20 undefined on input line 642.
+
+
+LaTeX Warning: Reference `ch:rag' on page 20 undefined on input line 643.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 20 undefined on input line 644.
+
+
+LaTeX Warning: Reference `ch:infra' on page 20 undefined on input line 645.
+
+
+LaTeX Warning: Reference `ch:performance' on page 20 undefined on input line 645.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 20 undefined on input line 646.
+
+
+LaTeX Warning: Reference `ch:testing' on page 20 undefined on input line 647.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 20 undefined on input line 648.
+
+
+LaTeX Warning: Reference `ch:case-study' on page 20 undefined on input line 656.
+
+
+LaTeX Warning: Reference `fig:ishtar-arch-main' on page 20 undefined on input line 659.
+
+
 Overfull \hbox (142.19658pt too wide) in paragraph at lines 662--663
  [][] 
  []
+
+
+LaTeX Warning: Reference `fig:ishtar-arch-main' on page 20 undefined on input line 668.
 
 
 
@@ -2007,6 +2205,10 @@ Overfull \hbox (142.19658pt too wide) in paragraph at lines 662--663
 [22]
 
 [23]
+
+LaTeX Warning: Reference `sec:rag-metrics' on page 24 undefined on input line 802.
+
+
 
 [24]
 
@@ -2128,11 +2330,47 @@ Underfull \hbox (badness 4479) in paragraph at lines 974--974
 
 [28]
 
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page 29 undefined on input line 1009.
+
+
+LaTeX Warning: Reference `ch:infra' on page 29 undefined on input line 1012.
+
+
+
 [29]
 
 [30]
 
+LaTeX Warning: Reference `ch:cicd' on page 31 undefined on input line 1015.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 31 undefined on input line 1018.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 31 undefined on input line 1021.
+
+
+LaTeX Warning: Reference `ch:performance' on page 31 undefined on input line 1024.
+
+
+LaTeX Warning: Reference `ch:rag' on page 31 undefined on input line 1027.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 31 undefined on input line 1030.
+
+
+LaTeX Warning: Reference `ch:testing' on page 31 undefined on input line 1033.
+
+
+
 [31]
+
+LaTeX Warning: Reference `ch:ethics' on page 32 undefined on input line 1036.
+
+
+LaTeX Warning: Reference `ch:case-study' on page 32 undefined on input line 1039.
+
+
 
 [32]
 ./ch01-intro-ishar.tex:1093: Undefined control sequence.
@@ -2171,52 +2409,32 @@ File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
 [33{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 1093--1093
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
 
 [34]
 
 [35]
-Overfull \hbox (2.14844pt too wide) in paragraph at lines 1093--1093
-[]\OT1/ntxtlf/m/n/10 (-20) Divyanshu Garg et al. \  Infra-Centric Eval-u-a-tion of LLM-Generated Infrastructure-
- []
-
-
 
 [36]
-Overfull \hbox (11.67911pt too wide) in paragraph at lines 1093--1093
-[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
- []
-
-
 
 [37]
 
 [38]
-Overfull \hbox (4.25333pt too wide) in paragraph at lines 1093--1093
-[]\OT1/ntxtlf/m/n/10 (-20) Evidently AI. \OT1/ntxtlf/m/it/10 (-20) LLM Eval-u-a-tion Met-rics\OT1/ntxtlf/m/n/10 (-20) . 2023. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / www . evidentlyai .
- []
-
-
 
 [39]
-Overfull \hbox (2.54126pt too wide) in paragraph at lines 1093--1093
-[]\OT1/ntxtlf/m/it/10 (-20) LangSmith Doc-u-men-ta-tion\OT1/ntxtlf/m/n/10 (-20) . LangChain. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / docs . langchain .
- []
-
-
-Overfull \hbox (20.38861pt too wide) in paragraph at lines 1093--1093
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 1093--1093
 []\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-Overfull \hbox (6.68623pt too wide) in paragraph at lines 1093--1093
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Col-lec-tor\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
 
 
 [40]
-Overfull \hbox (4.78407pt too wide) in paragraph at lines 1093--1093
-\OT1/lmtt/m/n/10 kubernetes . io / docs / concepts / workloads / autoscaling / horizontal -[]
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 1093--1093
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
  []
 
 
@@ -2224,48 +2442,43 @@ Overfull \hbox (4.78407pt too wide) in paragraph at lines 1093--1093
 [41]
 
 [42]
-Overfull \hbox (5.76863pt too wide) in paragraph at lines 1093--1093
-[]\OT1/ntxtlf/m/n/10 (-20) A. Au-thor. \OT1/ntxtlf/m/it/10 (-20) FlashAttention-v2\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/Dao-AILab/flash-attention.
- []
-
-
 
 [43]
-
-[44]
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/it' will be
 (Font)              scaled to size 10.0pt on input line 1089.
+
+
+[44]
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 1093--1093
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
+ []
+
 
 
 [45]
 
 [46]
-Overfull \hbox (10.4307pt too wide) in paragraph at lines 1093--1093
-[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
+
+[47]
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 1093--1093
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 1093--1093
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
 
-[47]
-
 [48]
 
-[49]
+[49])
 
-[50])
-
-[51]
+[50]
 \openout2 = `ch02-llmops-fundamentals.aux'.
 
  (./ch02-llmops-fundamentals.tex
-
-[52
-
-
-
-
-
-]
 Chapter 2.
 Package biblatex Info: Reference segment=4 on input line 1.
 Package biblatex Info: Setting label 'refsegment:04' on input line 1.
@@ -2273,29 +2486,77 @@ Package biblatex Info: Reference segment=5 on input line 3.
 Package biblatex Info: Setting label 'refsegment:05' on input line 3.
 
 
+[51
+
+
+
+
+
+]
+
+LaTeX Warning: Reference `ch:infra' on page 52 undefined on input line 21.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 52 undefined on input line 21.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 52 undefined on input line 21.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 52 undefined on input line 21.
+
+
+
+[52]
+
 [53]
 
 [54]
-
-[55]
-
-[56]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 7.3pt on input line 76.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 5.5pt on input line 76.
 
 
+LaTeX Warning: Reference `eq:kv-cache' on page 55 undefined on input line 93.
+
+
+
+[55]
+
+[56]
+
 [57]
 
+LaTeX Warning: Reference `eq:param-mem' on page 58 undefined on input line 167.
+
+
+LaTeX Warning: Reference `eq:kv-cache' on page 58 undefined on input line 167.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 58 undefined on input line 167.
+
+
+LaTeX Warning: Reference `eq:param-mem' on page 58 undefined on input line 167.
+
+
+LaTeX Warning: Reference `eq:kv-cache' on page 58 undefined on input line 167.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 58 undefined on input line 167.
+
+
+
 [58]
-
-[59]
-
-[60]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+
+LaTeX Warning: Reference `eq:attn-complexity' on page 59 undefined on input line 196.
+
 Package pgfplots info on input line 215: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+
+LaTeX Warning: Reference `eq:kv-cache' on page 59 undefined on input line 258.
+
 
 Underfull \hbox (badness 1253) in paragraph at lines 271--272
 []\OT1/ntxtlf/b/n/10 (+20) A100-40GB: \OT1/ntxtlf/m/n/10 (+20) 7B fits with mod-er-ate $\OML/ntxmi/m/it/10 B[]T$ \OT1/ntxtlf/m/n/10 (+20) (e.g., $\OML/ntxmi/m/it/10 B[]\OT1/minntx/m/n/10 8\OML/ntxmi/m/it/10 ; T[]\OT1/minntx/m/n/10 2048$ $\LMS/ntxsy/m/n/10 )$
@@ -2308,10 +2569,13 @@ LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 (Font)              scaled to size 5.5pt on input line 278.
 
+LaTeX Warning: Reference `eq:kv-cache' on page 59 undefined on input line 280.
 
-[61]
 
-[62]
+
+[59]
+
+[60]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -2323,6 +2587,16 @@ LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 (Font)              scaled to size 4.67502pt on input line 311.
 
+LaTeX Warning: Reference `eq:throughput' on page 61 undefined on input line 313.
+
+
+LaTeX Warning: Reference `eq:throughput' on page 61 undefined on input line 313.
+
+
+
+[61]
+
+[62]
 
 [63]
 
@@ -2336,22 +2610,46 @@ LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
 
 [68]
 
+LaTeX Warning: Reference `eq:kv-cache' on page 69 undefined on input line 453.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 69 undefined on input line 453.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 69 undefined on input line 453.
+
+
+
 [69]
+
+LaTeX Warning: Reference `eq:flops-layer' on page 70 undefined on input line 488.
+
+
 
 [70]
 
 [71]
 
+LaTeX Warning: Reference `eq:kv-cache' on page 72 undefined on input line 545.
+
+
+LaTeX Warning: Reference `eq:kv-cache' on page 72 undefined on input line 557.
+
+
+
 [72]
 
-[73]
+LaTeX Warning: Reference `eq:param-mem' on page 73 undefined on input line 591.
 
-[74]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 6.20496pt on input line 597.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 4.67502pt on input line 597.
 
+
+[73]
+
+[74]
 
 [75]
 
@@ -2359,9 +2657,17 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 
 [77]
 
-[78]
+LaTeX Warning: Reference `ch:infra' on page 78 undefined on input line 764.
 
-[79]
+
+LaTeX Warning: Reference `ch:cicd' on page 78 undefined on input line 764.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 78 undefined on input line 764.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 78 undefined on input line 764.
+
 ./ch02-llmops-fundamentals.tex:774: Undefined control sequence.
 <argument> ...e \c@refsection @\currentrefsegment 
                                                   
@@ -2389,88 +2695,73 @@ Package biblatex Warning: Segment '' not found in section '0' on input line 770.
 
 
 
+[78]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 774--774
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
+[79]
+
 [80]
 
 [81]
 
 [82]
-Overfull \hbox (2.14844pt too wide) in paragraph at lines 774--774
-[]\OT1/ntxtlf/m/n/10 (-20) Divyanshu Garg et al. \  Infra-Centric Eval-u-a-tion of LLM-Generated Infrastructure-
- []
-
-
 
 [83]
-Overfull \hbox (11.67911pt too wide) in paragraph at lines 774--774
-[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
- []
-
-
 
 [84]
-
-[85]
-Overfull \hbox (4.25333pt too wide) in paragraph at lines 774--774
-[]\OT1/ntxtlf/m/n/10 (-20) Evidently AI. \OT1/ntxtlf/m/it/10 (-20) LLM Eval-u-a-tion Met-rics\OT1/ntxtlf/m/n/10 (-20) . 2023. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / www . evidentlyai .
- []
-
-
-
-[86]
-Overfull \hbox (2.54126pt too wide) in paragraph at lines 774--774
-[]\OT1/ntxtlf/m/it/10 (-20) LangSmith Doc-u-men-ta-tion\OT1/ntxtlf/m/n/10 (-20) . LangChain. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / docs . langchain .
- []
-
-
-Overfull \hbox (20.38861pt too wide) in paragraph at lines 774--774
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 774--774
 []\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
 
 
-[87]
-Overfull \hbox (6.68623pt too wide) in paragraph at lines 774--774
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Col-lec-tor\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+[85]
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 774--774
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
  []
 
 
+
+[86]
+
+[87]
 
 [88]
-Overfull \hbox (4.78407pt too wide) in paragraph at lines 774--774
-\OT1/lmtt/m/n/10 kubernetes . io / docs / concepts / workloads / autoscaling / horizontal -[]
- []
-
-
 
 [89]
-Overfull \hbox (5.76863pt too wide) in paragraph at lines 774--774
-[]\OT1/ntxtlf/m/n/10 (-20) A. Au-thor. \OT1/ntxtlf/m/it/10 (-20) FlashAttention-v2\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/Dao-AILab/flash-attention.
+
+[90]
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 774--774
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
  []
 
 
-
-[90]
 
 [91]
 
 [92]
 
 [93]
-Overfull \hbox (10.4307pt too wide) in paragraph at lines 774--774
-[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 774--774
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 774--774
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
 
 [94]
 
-[95]
+[95])
 
 [96]
-
-[97])
-
-[98]
 \openout2 = `ch03-infra-env.aux'.
 
  (./ch03-infra-env.tex
@@ -2481,7 +2772,7 @@ Package biblatex Info: Reference segment=7 on input line 3.
 Package biblatex Info: Setting label 'refsegment:07' on input line 3.
 
 
-[99
+[97
 
 
 
@@ -2489,12 +2780,34 @@ Package biblatex Info: Setting label 'refsegment:07' on input line 3.
 
 ]
 
-[100]
+[98]
 
-[101]
+LaTeX Warning: Reference `ch:cicd' on page 99 undefined on input line 73.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 99 undefined on input line 73.
+
+
+LaTeX Warning: Reference `sec:infra-hardware-bench' on page 99 undefined on input line 82.
+
+
+
+[99]
 Overfull \hbox (17.2671pt too wide) in paragraph at lines 93--103
  [][] 
  []
+
+
+
+[100]
+
+LaTeX Warning: Reference `eq:costptok' on page 101 undefined on input line 127.
+
+
+
+[101]
+
+LaTeX Warning: Reference `ch:scaling' on page 102 undefined on input line 137.
 
 
 
@@ -2504,27 +2817,45 @@ Overfull \hbox (17.2671pt too wide) in paragraph at lines 93--103
 
 [104]
 
+LaTeX Warning: Reference `tab:costcompare' on page 105 undefined on input line 189.
+
+
+LaTeX Warning: Reference `eq:costptok' on page 105 undefined on input line 191.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 105 undefined on input line 213.
+
+
+
 [105]
 
 [106]
-
-[107]
-
-[108]
 Overfull \hbox (3.98167pt too wide) in paragraph at lines 279--284
 []\OT1/ntxtlf/b/n/10 (-20) Terraform (HashiCorp). \OT1/ntxtlf/m/n/10 (-20) Declar-a-tive, cloud-agnostic IaC tool us-ing HCL (HashiCorp
  []
 
 
 
-[109]
+[107]
+
+LaTeX Warning: Reference `tab:iaccompare' on page 108 undefined on input line 302.
+
+
 Overfull \hbox (92.10152pt too wide) in paragraph at lines 308--318
  [][] 
  []
 
 
 
+[108]
+
+[109]
+
 [110]
+
+LaTeX Warning: Reference `ch:cicd' on page 111 undefined on input line 425.
+
+
 
 [111]
 
@@ -2537,10 +2868,6 @@ Overfull \hbox (92.10152pt too wide) in paragraph at lines 308--318
 [115]
 
 [116]
-
-[117]
-
-[118]
 Underfull \hbox (badness 1092) in paragraph at lines 547--547
 \OT1/ntxtlf/m/n/8.5 (+20) tion; ef-fi-cient KV cache reuse;
  []
@@ -2562,14 +2889,33 @@ Overfull \hbox (59.07527pt too wide) in paragraph at lines 537--563
 
 
 
+[117]
+
+[118]
+
 [119]
 
+LaTeX Warning: Reference `ch:cicd' on page 120 undefined on input line 703.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 120 undefined on input line 703.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 120 undefined on input line 703.
+
+
+
 [120]
+Overfull \hbox (5.16875pt too wide) in paragraph at lines 800--801
+ [][] 
+ []
+
+
 
 [121]
 
 [122]
-Overfull \hbox (5.16875pt too wide) in paragraph at lines 800--801
+Overfull \hbox (181.70961pt too wide) in paragraph at lines 918--919
  [][] 
  []
 
@@ -2578,17 +2924,10 @@ Overfull \hbox (5.16875pt too wide) in paragraph at lines 800--801
 [123]
 
 [124]
-Overfull \hbox (181.70961pt too wide) in paragraph at lines 918--919
- [][] 
- []
-
-
 
 [125]
 
 [126]
-
-[127]
 ./ch03-infra-env.tex:991: Undefined control sequence.
 <argument> ...e \c@refsection @\currentrefsegment 
                                                   
@@ -2616,80 +2955,67 @@ Package biblatex Warning: Segment '' not found in section '0' on input line 987.
 
 
 
+[127]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 991--991
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
 [128]
 
 [129]
 
 [130]
-Overfull \hbox (2.14844pt too wide) in paragraph at lines 991--991
-[]\OT1/ntxtlf/m/n/10 (-20) Divyanshu Garg et al. \  Infra-Centric Eval-u-a-tion of LLM-Generated Infrastructure-
- []
-
-
 
 [131]
 
 [132]
-Overfull \hbox (11.67911pt too wide) in paragraph at lines 991--991
-[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
- []
-
-
 
 [133]
-Overfull \hbox (4.25333pt too wide) in paragraph at lines 991--991
-[]\OT1/ntxtlf/m/n/10 (-20) Evidently AI. \OT1/ntxtlf/m/it/10 (-20) LLM Eval-u-a-tion Met-rics\OT1/ntxtlf/m/n/10 (-20) . 2023. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / www . evidentlyai .
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 991--991
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
 
 
 [134]
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 991--991
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
+ []
+
+
 
 [135]
-Overfull \hbox (2.54126pt too wide) in paragraph at lines 991--991
-[]\OT1/ntxtlf/m/it/10 (-20) LangSmith Doc-u-men-ta-tion\OT1/ntxtlf/m/n/10 (-20) . LangChain. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / docs . langchain .
- []
-
-
-Overfull \hbox (20.38861pt too wide) in paragraph at lines 991--991
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-Overfull \hbox (6.68623pt too wide) in paragraph at lines 991--991
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Col-lec-tor\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
 
 [136]
-Overfull \hbox (4.78407pt too wide) in paragraph at lines 991--991
-\OT1/lmtt/m/n/10 kubernetes . io / docs / concepts / workloads / autoscaling / horizontal -[]
- []
-
-
 
 [137]
-Overfull \hbox (5.76863pt too wide) in paragraph at lines 991--991
-[]\OT1/ntxtlf/m/n/10 (-20) A. Au-thor. \OT1/ntxtlf/m/it/10 (-20) FlashAttention-v2\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/Dao-AILab/flash-attention.
+
+[138]
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 991--991
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
  []
 
 
-
-[138]
 
 [139]
 
 [140]
 
 [141]
-
-[142]
-Overfull \hbox (10.4307pt too wide) in paragraph at lines 991--991
-[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 991--991
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 991--991
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+
+[142]
 
 [143]
 
@@ -2697,36 +3023,42 @@ Overfull \hbox (10.4307pt too wide) in paragraph at lines 991--991
 
 [145]
 
-[146]
+[146])
 
 [147]
 
-[148])
-
-[149]
-
-[150
+[148
 
 
 
 
 ]
 
-[151]
+[149]
 
-[152]
+[150]
 \openout2 = `author/part2-delivery.aux'.
 
- (./author/part2-delivery.tex)
+ (./author/part2-delivery.tex
 
-[153
+LaTeX Warning: Reference `ch:cicd' on page 151 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 151 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 151 undefined on input line 5.
+
+)
+
+[151
 
 ]
 \openout2 = `ch04-cicd.aux'.
 
  (./ch04-cicd.tex
 
-[154
+[152
 
 
 
@@ -2740,20 +3072,46 @@ Package biblatex Info: Reference segment=9 on input line 3.
 Package biblatex Info: Setting label 'refsegment:09' on input line 3.
 
 
+[153]
+
+LaTeX Warning: Reference `ch:infra' on page 154 undefined on input line 26.
+
+
+LaTeX Warning: Reference `ch:testing' on page 154 undefined on input line 38.
+
+
+
+[154]
+
+LaTeX Warning: Reference `ch:testing' on page 155 undefined on input line 46.
+
+
+
 [155]
 
 [156]
 
+LaTeX Warning: Reference `ch:testing' on page 157 undefined on input line 67.
+
+
+
 [157]
+
+LaTeX Warning: Reference `ch:testing' on page 158 undefined on input line 84.
+
+
 
 [158]
 
-[159]
+LaTeX Warning: Reference `tab:eval_stages' on page 159 undefined on input line 98.
 
-[160]
+
 Underfull \hbox (badness 2326) in paragraph at lines 132--132
 []|\OT1/ntxtlf/m/n/8.5 (+20) Nightly/Batch (cost-
  []
+
+
+LaTeX Warning: Reference `fig:eval_stages_pipeline' on page 159 undefined on input line 135.
 
 
 Overfull \hbox (316.43091pt too wide) in paragraph at lines 199--200
@@ -2761,6 +3119,10 @@ Overfull \hbox (316.43091pt too wide) in paragraph at lines 199--200
  []
 
 
+
+[159]
+
+[160]
 
 [161]
 
@@ -2779,10 +3141,6 @@ Overfull \hbox (316.43091pt too wide) in paragraph at lines 199--200
 [168]
 
 [169]
-
-[170]
-
-[171]
 ./ch04-cicd.tex:430: Undefined control sequence.
 <argument> ...e \c@refsection @\currentrefsegment 
                                                   
@@ -2810,101 +3168,76 @@ Package biblatex Warning: Segment '' not found in section '0' on input line 426.
 
 
 
+[170]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 430--430
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
+[171]
+
 [172]
 
 [173]
 
 [174]
-Overfull \hbox (2.14844pt too wide) in paragraph at lines 430--430
-[]\OT1/ntxtlf/m/n/10 (-20) Divyanshu Garg et al. \  Infra-Centric Eval-u-a-tion of LLM-Generated Infrastructure-
- []
-
-
 
 [175]
 
 [176]
-Overfull \hbox (11.67911pt too wide) in paragraph at lines 430--430
-[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 430--430
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
 
 
 [177]
-Overfull \hbox (4.25333pt too wide) in paragraph at lines 430--430
-[]\OT1/ntxtlf/m/n/10 (-20) Evidently AI. \OT1/ntxtlf/m/it/10 (-20) LLM Eval-u-a-tion Met-rics\OT1/ntxtlf/m/n/10 (-20) . 2023. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / www . evidentlyai .
- []
-
-
 
 [178]
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 430--430
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
+ []
+
+
 
 [179]
-Overfull \hbox (2.54126pt too wide) in paragraph at lines 430--430
-[]\OT1/ntxtlf/m/it/10 (-20) LangSmith Doc-u-men-ta-tion\OT1/ntxtlf/m/n/10 (-20) . LangChain. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / docs . langchain .
- []
-
-
-Overfull \hbox (20.38861pt too wide) in paragraph at lines 430--430
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-Overfull \hbox (6.68623pt too wide) in paragraph at lines 430--430
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Col-lec-tor\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
 
 [180]
-Overfull \hbox (4.78407pt too wide) in paragraph at lines 430--430
-\OT1/lmtt/m/n/10 kubernetes . io / docs / concepts / workloads / autoscaling / horizontal -[]
- []
-
-
 
 [181]
-Overfull \hbox (5.76863pt too wide) in paragraph at lines 430--430
-[]\OT1/ntxtlf/m/n/10 (-20) A. Au-thor. \OT1/ntxtlf/m/it/10 (-20) FlashAttention-v2\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/Dao-AILab/flash-attention.
+
+[182]
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 430--430
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
  []
 
 
-
-[182]
 
 [183]
 
 [184]
 
 [185]
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 430--430
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
 
-[186]
-Overfull \hbox (10.4307pt too wide) in paragraph at lines 430--430
-[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
+
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 430--430
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
 
-[187]
+[186]
+
+[187])
 
 [188]
-
-[189]
-
-[190])
-
-[191]
 \openout2 = `ch05-observability.aux'.
 
  (./ch05-observability.tex
-
-[192
-
-
-
-
-
-]
 Chapter 5.
 Package biblatex Info: Reference segment=10 on input line 1.
 Package biblatex Info: Setting label 'refsegment:010' on input line 1.
@@ -2912,24 +3245,30 @@ Package biblatex Info: Reference segment=11 on input line 3.
 Package biblatex Info: Setting label 'refsegment:011' on input line 3.
 
 
-[193]
+[189
 
-[194]
+
+
+
+
+]
+
+[190]
 Overfull \hbox (12.25851pt too wide) in paragraph at lines 82--84
  [][] 
  []
 
 
 
-[195]
+[191]
 
-[196]
+[192]
 
-[197]
+[193]
 
-[198]
+[194]
 
-LaTeX Warning: Citation 'jaeger_tracing' on page 199 undefined on input line 185.
+LaTeX Warning: Citation 'jaeger_tracing' on page 195 undefined on input line 185.
 
 
 Overfull \hbox (7.07446pt too wide) in paragraph at lines 188--190
@@ -2943,13 +3282,13 @@ Overfull \hbox (38.40677pt too wide) in paragraph at lines 188--190
 
 
 
-[199]
+[195]
 
-LaTeX Warning: Citation 'jaeger_tracing' on page 200 undefined on input line 235.
+LaTeX Warning: Citation 'jaeger_tracing' on page 196 undefined on input line 235.
 
 
 
-[200]
+[196]
 LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <8.5> not available
 (Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 278.
 
@@ -2959,9 +3298,16 @@ Overfull \hbox (583.99873pt too wide) in paragraph at lines 321--325
 
 
 
-[201]
+[197]
 
-[202]
+LaTeX Warning: Reference `ch:rag' on page 198 undefined on input line 352.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 198 undefined on input line 352.
+
+
+
+[198]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
             Default family used instead on input line 368.
@@ -2973,28 +3319,76 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 368.
 
 
-[203{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+LaTeX Warning: Reference `ch:rag' on page 199 undefined on input line 372.
 
-[204]
+
+LaTeX Warning: Reference `ch:multiagent' on page 199 undefined on input line 372.
+
+
+
+[199{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+LaTeX Warning: Reference `ch:cicd' on page 200 undefined on input line 400.
+
+
+LaTeX Warning: Reference `ch:testing' on page 200 undefined on input line 400.
+
+
+
+[200]
 Overfull \hbox (37.4113pt too wide) in paragraph at lines 432--433
 []\OT1/ntxtlf/b/n/10 (-20) Cohort and route lenses. \OT1/ntxtlf/m/n/10 (-20) Pro-vide con-sis-tent la-bels|\OT1/lmtt/m/n/10 model[]version\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 retriever[]version\OT1/ntxtlf/m/n/10 (-20) ,
  []
 
 
 
+[201]
+
+[202]
+
+LaTeX Warning: Reference `ch:cicd' on page 203 undefined on input line 475.
+
+
+LaTeX Warning: Reference `ch:testing' on page 203 undefined on input line 475.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 203 undefined on input line 475.
+
+
+LaTeX Warning: Reference `ch:testing' on page 203 undefined on input line 475.
+
+
+
+[203]
+
+LaTeX Warning: Reference `ch:cicd' on page 204 undefined on input line 497.
+
+
+LaTeX Warning: Reference `ch:testing' on page 204 undefined on input line 497.
+
+
+
+[204]
+
+LaTeX Warning: Reference `ch:cicd' on page 205 undefined on input line 523.
+
+
+LaTeX Warning: Reference `ch:testing' on page 205 undefined on input line 523.
+
+
+
 [205]
+
+LaTeX Warning: Reference `ch:cicd' on page 206 undefined on input line 552.
+
+
+LaTeX Warning: Reference `ch:testing' on page 206 undefined on input line 552.
+
+
 
 [206]
 
 [207]
-
-[208]
-
-[209]
-
-[210]
-
-[211]
 ./ch05-observability.tex:633: Undefined control sequence.
 <argument> ...e \c@refsection @\currentrefsegment 
                                                   
@@ -3022,13 +3416,26 @@ Package biblatex Warning: Segment '' not found in section '0' on input line 629.
 
 
 
+[208]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 633--633
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
+[209]
+
+[210]
+
+[211]
+
 [212]
 
 [213]
 
 [214]
-Overfull \hbox (2.14844pt too wide) in paragraph at lines 633--633
-[]\OT1/ntxtlf/m/n/10 (-20) Divyanshu Garg et al. \  Infra-Centric Eval-u-a-tion of LLM-Generated Infrastructure-
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 633--633
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
 
@@ -3036,74 +3443,46 @@ Overfull \hbox (2.14844pt too wide) in paragraph at lines 633--633
 [215]
 
 [216]
-Overfull \hbox (11.67911pt too wide) in paragraph at lines 633--633
-[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 633--633
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
  []
 
 
 
 [217]
-Overfull \hbox (4.25333pt too wide) in paragraph at lines 633--633
-[]\OT1/ntxtlf/m/n/10 (-20) Evidently AI. \OT1/ntxtlf/m/it/10 (-20) LLM Eval-u-a-tion Met-rics\OT1/ntxtlf/m/n/10 (-20) . 2023. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / www . evidentlyai .
- []
-
-
 
 [218]
-Overfull \hbox (2.54126pt too wide) in paragraph at lines 633--633
-[]\OT1/ntxtlf/m/it/10 (-20) LangSmith Doc-u-men-ta-tion\OT1/ntxtlf/m/n/10 (-20) . LangChain. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / docs . langchain .
- []
-
-
 
 [219]
-Overfull \hbox (20.38861pt too wide) in paragraph at lines 633--633
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-Overfull \hbox (6.68623pt too wide) in paragraph at lines 633--633
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Col-lec-tor\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
 
 [220]
-Overfull \hbox (4.78407pt too wide) in paragraph at lines 633--633
-\OT1/lmtt/m/n/10 kubernetes . io / docs / concepts / workloads / autoscaling / horizontal -[]
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 633--633
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
  []
 
 
 
 [221]
-Overfull \hbox (5.76863pt too wide) in paragraph at lines 633--633
-[]\OT1/ntxtlf/m/n/10 (-20) A. Au-thor. \OT1/ntxtlf/m/it/10 (-20) FlashAttention-v2\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/Dao-AILab/flash-attention.
- []
-
-
 
 [222]
 
 [223]
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 633--633
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
 
-[224]
 
-[225]
-
-[226]
-Overfull \hbox (10.4307pt too wide) in paragraph at lines 633--633
-[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 633--633
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
 
-[227]
+[224]
 
-[228]
+[225])
 
-[229])
-
-[230]
+[226]
 \openout2 = `ch06-scaling.aux'.
 
  (./ch06-scaling.tex
@@ -3114,7 +3493,7 @@ Package biblatex Info: Reference segment=13 on input line 3.
 Package biblatex Info: Setting label 'refsegment:013' on input line 3.
 
 
-[231
+[227
 
 
 
@@ -3122,20 +3501,27 @@ Package biblatex Info: Setting label 'refsegment:013' on input line 3.
 
 ]
 
-[232]
+[228]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
 (Font)              scaled to size 10.0pt on input line 48.
 
 
+[229]
+
+LaTeX Warning: Reference `fig:scaling-dimensions' on page 230 undefined on input line 70.
+
+
+LaTeX Warning: Reference `tab:scaling-matrix' on page 230 undefined on input line 70.
+
+
+
+[230]
+
+[231]
+
+[232]
+
 [233]
-
-[234]
-
-[235]
-
-[236]
-
-[237]
 Underfull \hbox (badness 1163) in paragraph at lines 161--162
 []|\OT1/ntxtlf/m/n/8.5 (+20) Lowest per-instance la-tency; well-
  []
@@ -3146,6 +3532,14 @@ Overfull \hbox (59.17903pt too wide) in paragraph at lines 229--230
  []
 
 
+
+[234]
+
+[235]
+
+[236]
+
+[237]
 
 [238]
 
@@ -3165,6 +3559,31 @@ Overfull \hbox (59.17903pt too wide) in paragraph at lines 229--230
 
 [246]
 
+./ch06-scaling.tex:585: LaTeX Error: Not allowed in LR mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.585 \end{axis}
+                
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./ch06-scaling.tex:585: LaTeX Error: Not allowed in LR mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.585 \end{axis}
+                
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+
 [247]
 
 [248]
@@ -3173,36 +3592,20 @@ Overfull \hbox (59.17903pt too wide) in paragraph at lines 229--230
 
 [250]
 
-./ch06-scaling.tex:585: LaTeX Error: Not allowed in LR mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.585 \end{axis}
-                
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./ch06-scaling.tex:585: LaTeX Error: Not allowed in LR mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.585 \end{axis}
-                
-You've lost some text.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-
 [251]
+
+LaTeX Warning: Reference `ch:performance' on page 252 undefined on input line 750.
+
+
 
 [252]
 
 [253]
+Overfull \hbox (47.1687pt too wide) in paragraph at lines 856--857
+ [][] 
+ []
+
+
 
 [254]
 
@@ -3211,28 +3614,18 @@ If that doesn't work, type  X <return>  to quit.
 [256]
 
 [257]
-Overfull \hbox (47.1687pt too wide) in paragraph at lines 856--857
- [][] 
- []
-
-
 
 [258]
-
-[259]
-
-[260]
-
-[261]
-
-[262]
 Overfull \hbox (101.8156pt too wide) in paragraph at lines 1022--1023
  [][] 
  []
 
 
 
-[263]
+[259]
+
+LaTeX Warning: Reference `ch:performance' on page 260 undefined on input line 1052.
+
 ./ch06-scaling.tex:1060: Undefined control sequence.
 <argument> ...e \c@refsection @\currentrefsegment 
                                                   
@@ -3260,22 +3653,35 @@ Package biblatex Warning: Segment '' not found in section '0' on input line 1056
 
 
 
+[260]
+
+[261]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 1060--1060
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
+[262]
+
+[263]
+
 [264]
 
 [265]
 
 [266]
-Overfull \hbox (2.14844pt too wide) in paragraph at lines 1060--1060
-[]\OT1/ntxtlf/m/n/10 (-20) Divyanshu Garg et al. \  Infra-Centric Eval-u-a-tion of LLM-Generated Infrastructure-
+
+[267]
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 1060--1060
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
 
 
-[267]
-
 [268]
-Overfull \hbox (11.67911pt too wide) in paragraph at lines 1060--1060
-[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 1060--1060
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
  []
 
 
@@ -3283,32 +3689,12 @@ Overfull \hbox (11.67911pt too wide) in paragraph at lines 1060--1060
 [269]
 
 [270]
-Overfull \hbox (4.25333pt too wide) in paragraph at lines 1060--1060
-[]\OT1/ntxtlf/m/n/10 (-20) Evidently AI. \OT1/ntxtlf/m/it/10 (-20) LLM Eval-u-a-tion Met-rics\OT1/ntxtlf/m/n/10 (-20) . 2023. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / www . evidentlyai .
- []
-
-
 
 [271]
-Overfull \hbox (2.54126pt too wide) in paragraph at lines 1060--1060
-[]\OT1/ntxtlf/m/it/10 (-20) LangSmith Doc-u-men-ta-tion\OT1/ntxtlf/m/n/10 (-20) . LangChain. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / docs . langchain .
- []
-
-
-Overfull \hbox (20.38861pt too wide) in paragraph at lines 1060--1060
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-Overfull \hbox (6.68623pt too wide) in paragraph at lines 1060--1060
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Col-lec-tor\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
 
 [272]
-Overfull \hbox (4.78407pt too wide) in paragraph at lines 1060--1060
-\OT1/lmtt/m/n/10 kubernetes . io / docs / concepts / workloads / autoscaling / horizontal -[]
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 1060--1060
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
  []
 
 
@@ -3316,57 +3702,59 @@ Overfull \hbox (4.78407pt too wide) in paragraph at lines 1060--1060
 [273]
 
 [274]
-Overfull \hbox (5.76863pt too wide) in paragraph at lines 1060--1060
-[]\OT1/ntxtlf/m/n/10 (-20) A. Au-thor. \OT1/ntxtlf/m/it/10 (-20) FlashAttention-v2\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/Dao-AILab/flash-attention.
+
+[275]
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 1060--1060
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 1060--1060
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
 
-[275]
+
 
 [276]
 
 [277]
 
+LaTeX Warning: Reference `ch:performance' on page 278 undefined on input line 1062.
+
+)
+
 [278]
-Overfull \hbox (10.4307pt too wide) in paragraph at lines 1060--1060
-[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
- []
 
-
-
-[279]
-
-[280]
-
-[281]
-
-[282])
-
-[283]
-
-[284
+[279
 
 
 
 
 ]
 
-[285]
-
-[286]
+[280]
 \openout2 = `author/part3-optimization.aux'.
 
- (./author/part3-optimization.tex)
+ (./author/part3-optimization.tex
 
-[287
+LaTeX Warning: Reference `ch:performance' on page 281 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:rag' on page 281 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 281 undefined on input line 5.
+
+)
+
+[281
 
 ]
 \openout2 = `ch07-performance.aux'.
 
  (./ch07-performance.tex
 
-[288
+[282
 
 
 
@@ -3380,15 +3768,15 @@ Package biblatex Info: Reference segment=15 on input line 3.
 Package biblatex Info: Setting label 'refsegment:015' on input line 3.
 
 
-[289]
+[283]
 Package pgfplots info on input line 76: Using 'lua backend=false' for axis: x coord trafo unsupported.
 
 
-[290]
+[284]
 
-[291]
+[285]
 
-[292]
+[286]
 Overfull \hbox (13.91396pt too wide) in paragraph at lines 155--155
 []|\OT1/ntxtlf/b/n/8.5 (-20) Hardware
  []
@@ -3425,9 +3813,9 @@ Overfull \hbox (164.84637pt too wide) in paragraph at lines 155--155
 
 
 
-[293]
+[287]
 
-[294]
+[288]
 Underfull \hbox (badness 10000) in paragraph at lines 255--255
 []|\OT1/ntxtlf/b/n/8.5 (+20) Quantization
  []
@@ -3598,6 +3986,29 @@ Overfull \hbox (25.47447pt too wide) in alignment at lines 313--313
  []
 
 
+LaTeX Warning: Reference `tab:quantization-comparison' on page 289 undefined on input line 332.
+
+
+LaTeX Warning: Reference `tab:quantization-comparison' on page 289 undefined on input line 332.
+
+
+
+[289]
+
+[290]
+
+[291]
+
+[292]
+
+[293]
+Overfull \hbox (49.54013pt too wide) in alignment at lines 394--394
+[][][][][][]
+ []
+
+
+
+[294]
 
 [295]
 
@@ -3608,31 +4019,12 @@ Overfull \hbox (25.47447pt too wide) in alignment at lines 313--313
 [298]
 
 [299]
-Overfull \hbox (49.54013pt too wide) in alignment at lines 394--394
-[][][][][][]
- []
-
-
 
 [300]
 
 [301]
 
 [302]
-
-[303]
-
-[304]
-
-[305]
-
-[306]
-
-[307]
-
-[308]
-
-[309]
 Underfull \hbox (badness 10000) in paragraph at lines 583--583
 []|\OT1/ntxtlf/m/n/8.5 (+20) Fused at-ten-tion
  []
@@ -3664,34 +4056,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 583--583
 
 
 
-[310]
+[303]
+
+[304]
 Package pgfplots info on input line 675: Using 'lua backend=false' for axis: x coord trafo unsupported.
 
 
-[311]
+[305]
 
-[312]
+[306]
 
-[313]
+[307]
 
-[314]
-
-[315]
+[308]
 Overfull \hbox (13.91086pt too wide) in alignment at lines 777--777
 [][][][][]
  []
 
 
 
-[316]
+[309]
 
-[317]
+[310]
 
-[318]
+[311]
 
-[319]
+LaTeX Warning: Reference `sec:inference-engines' on page 312 undefined on input line 842.
 
-[320]
+
+
+[312]
+
+LaTeX Warning: Reference `sec:inference-engines' on page 313 undefined on input line 890.
+
+
+
+[313]
+
+LaTeX Warning: Reference `eq:kv-total' on page 314 undefined on input line 893.
+
+
+LaTeX Warning: Reference `eq:throughput-main' on page 314 undefined on input line 910.
+
+
+
+[314]
+
+LaTeX Warning: Reference `eq:kv-total' on page 315 undefined on input line 926.
+
+
+LaTeX Warning: Reference `eq:throughput-main' on page 315 undefined on input line 926.
+
+
+LaTeX Warning: Reference `eq:cost-k' on page 315 undefined on input line 926.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 953--953
 []|\OT1/ntxtlf/b/n/8.5 (+20) Encoder-Only
  []
@@ -3853,9 +4272,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 953--953
 
 
 
-[321]
+[315]
 
-[322]
+[316]
 Underfull \hbox (badness 2452) in paragraph at lines 983--983
 \OT1/ntxtlf/m/n/8.5 (+20) multi-GPU clus-ters; re-quires high-
  []
@@ -3867,9 +4286,13 @@ Overfull \hbox (27.50168pt too wide) in paragraph at lines 983--984
 
 
 
-[323
+[317
 
 ]
+
+LaTeX Warning: Reference `tab:runtimes' on page 318 undefined on input line 995.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1009--1010
 []|\OT1/ntxtlf/m/n/8.5 (+20) Static/dynamic batch-
  []
@@ -3896,15 +4319,15 @@ Overfull \hbox (115.56535pt too wide) in paragraph at lines 1003--1038
 
 
 
-[324
+[318
 
 ]
 
-[325]
+[319]
 
-[326]
+[320]
 
-[327]
+[321]
 ./ch07-performance.tex:1125: Undefined control sequence.
 <argument> ...e \c@refsection @\currentrefsegment 
                                                   
@@ -3932,88 +4355,80 @@ Package biblatex Warning: Segment '' not found in section '0' on input line 1121
 
 
 
+[322]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 1125--1125
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
+[323]
+
+[324]
+
+[325]
+
+[326]
+
+[327]
+
 [328]
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 1125--1125
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
 
 [329]
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 1125--1125
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
+ []
+
+
 
 [330]
-Overfull \hbox (2.14844pt too wide) in paragraph at lines 1125--1125
-[]\OT1/ntxtlf/m/n/10 (-20) Divyanshu Garg et al. \  Infra-Centric Eval-u-a-tion of LLM-Generated Infrastructure-
- []
-
-
 
 [331]
-Overfull \hbox (11.67911pt too wide) in paragraph at lines 1125--1125
-[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
- []
-
-
 
 [332]
 
 [333]
-Overfull \hbox (4.25333pt too wide) in paragraph at lines 1125--1125
-[]\OT1/ntxtlf/m/n/10 (-20) Evidently AI. \OT1/ntxtlf/m/it/10 (-20) LLM Eval-u-a-tion Met-rics\OT1/ntxtlf/m/n/10 (-20) . 2023. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / www . evidentlyai .
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 1125--1125
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
  []
 
 
 
 [334]
-Overfull \hbox (2.54126pt too wide) in paragraph at lines 1125--1125
-[]\OT1/ntxtlf/m/it/10 (-20) LangSmith Doc-u-men-ta-tion\OT1/ntxtlf/m/n/10 (-20) . LangChain. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / docs . langchain .
- []
-
-
-Overfull \hbox (20.38861pt too wide) in paragraph at lines 1125--1125
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-Overfull \hbox (6.68623pt too wide) in paragraph at lines 1125--1125
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Col-lec-tor\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
 
 [335]
-Overfull \hbox (4.78407pt too wide) in paragraph at lines 1125--1125
-\OT1/lmtt/m/n/10 kubernetes . io / docs / concepts / workloads / autoscaling / horizontal -[]
- []
-
-
 
 [336]
-
-[337]
-Overfull \hbox (5.76863pt too wide) in paragraph at lines 1125--1125
-[]\OT1/ntxtlf/m/n/10 (-20) A. Au-thor. \OT1/ntxtlf/m/it/10 (-20) FlashAttention-v2\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/Dao-AILab/flash-attention.
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 1125--1125
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 1125--1125
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+
+[337]
 
 [338]
 
-[339]
+LaTeX Warning: Reference `ch:rag' on page 339 undefined on input line 1128.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 339 undefined on input line 1128.
+
+
+
+[339])
 
 [340]
-
-[341]
-Overfull \hbox (10.4307pt too wide) in paragraph at lines 1125--1125
-[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
- []
-
-
-
-[342]
-
-[343]
-
-[344]
-
-[345])
-
-[346]
 \openout2 = `ch08-rag.aux'.
 
  (./ch08-rag.tex
@@ -4024,13 +4439,25 @@ Package biblatex Info: Reference segment=17 on input line 3.
 Package biblatex Info: Setting label 'refsegment:017' on input line 3.
 
 
-[347
+[341
 
 
 
 
 
 ]
+
+[342]
+
+[343]
+
+[344]
+
+[345]
+
+[346]
+
+[347]
 
 [348]
 
@@ -4043,20 +4470,6 @@ Package biblatex Info: Setting label 'refsegment:017' on input line 3.
 [352]
 
 [353]
-
-[354]
-
-[355]
-
-[356]
-
-[357]
-
-[358]
-
-[359]
-
-[360]
 Underfull \hbox (badness 1052) in paragraph at lines 507--507
 \OT1/ntxtlf/m/n/8.5 (+20) Tun-ables: \OT1/lmtt/m/n/8.5 M\OT1/ntxtlf/m/n/8.5 (+20) , \OT1/lmtt/m/n/8.5 efConstruction\OT1/ntxtlf/m/n/8.5 (+20) ,
  []
@@ -4073,9 +4486,11 @@ Underfull \hbox (badness 1259) in paragraph at lines 507--507
 
 
 
-[361]
+[354]
 
-[362]
+[355]
+
+[356]
 Underfull \hbox (badness 1917) in paragraph at lines 626--626
 \OT1/ntxtlf/m/n/8.5 (+20) tics, syn-onyms,
  []
@@ -4247,6 +4662,18 @@ Underfull \hbox (badness 6575) in paragraph at lines 626--626
 
 
 
+[357]
+
+[358]
+
+[359]
+
+[360]
+
+[361]
+
+[362]
+
 [363]
 
 [364]
@@ -4266,6 +4693,15 @@ Underfull \hbox (badness 6575) in paragraph at lines 626--626
 [371]
 
 [372]
+LaTeX Font Info:    Trying to load font information for OMS+lmtt on input line 915.
+LaTeX Font Info:    No file OMSlmtt.fd. on input line 915.
+
+
+LaTeX Font Warning: Font shape `OMS/lmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 915.
+
+
 
 [373]
 
@@ -4278,27 +4714,6 @@ Underfull \hbox (badness 6575) in paragraph at lines 626--626
 [377]
 
 [378]
-LaTeX Font Info:    Trying to load font information for OMS+lmtt on input line 915.
-LaTeX Font Info:    No file OMSlmtt.fd. on input line 915.
-
-
-LaTeX Font Warning: Font shape `OMS/lmtt/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 915.
-
-
-
-[379]
-
-[380]
-
-[381]
-
-[382]
-
-[383]
-
-[384]
 ./ch08-rag.tex:997: Undefined control sequence.
 <argument> ...e \c@refsection @\currentrefsegment 
                                                   
@@ -4326,93 +4741,85 @@ Package biblatex Warning: Segment '' not found in section '0' on input line 993.
 
 
 
+[379]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 997--997
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
+[380]
+
+[381]
+
+[382]
+
+[383]
+
+[384]
+
 [385]
-
-[386]
-
-[387]
-Overfull \hbox (2.14844pt too wide) in paragraph at lines 997--997
-[]\OT1/ntxtlf/m/n/10 (-20) Divyanshu Garg et al. \  Infra-Centric Eval-u-a-tion of LLM-Generated Infrastructure-
- []
-
-
-
-[388]
-Overfull \hbox (11.67911pt too wide) in paragraph at lines 997--997
-[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
- []
-
-
-
-[389]
-
-[390]
-Overfull \hbox (4.25333pt too wide) in paragraph at lines 997--997
-[]\OT1/ntxtlf/m/n/10 (-20) Evidently AI. \OT1/ntxtlf/m/it/10 (-20) LLM Eval-u-a-tion Met-rics\OT1/ntxtlf/m/n/10 (-20) . 2023. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / www . evidentlyai .
- []
-
-
-
-[391]
-Overfull \hbox (2.54126pt too wide) in paragraph at lines 997--997
-[]\OT1/ntxtlf/m/it/10 (-20) LangSmith Doc-u-men-ta-tion\OT1/ntxtlf/m/n/10 (-20) . LangChain. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / docs . langchain .
- []
-
-
-Overfull \hbox (20.38861pt too wide) in paragraph at lines 997--997
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 997--997
 []\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
 
 
-[392]
-Overfull \hbox (6.68623pt too wide) in paragraph at lines 997--997
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Col-lec-tor\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+[386]
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 997--997
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
  []
 
 
 
+[387]
+
+[388]
+
+[389]
+
+[390]
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 997--997
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
+ []
+
+
+
+[391]
+
+[392]
+
 [393]
-Overfull \hbox (4.78407pt too wide) in paragraph at lines 997--997
-\OT1/lmtt/m/n/10 kubernetes . io / docs / concepts / workloads / autoscaling / horizontal -[]
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 997--997
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 997--997
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
 
 [394]
-Overfull \hbox (5.76863pt too wide) in paragraph at lines 997--997
-[]\OT1/ntxtlf/m/n/10 (-20) A. Au-thor. \OT1/ntxtlf/m/it/10 (-20) FlashAttention-v2\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/Dao-AILab/flash-attention.
- []
-
-
 
 [395]
 
-[396]
+LaTeX Warning: Reference `ch:testing' on page 396 undefined on input line 1000.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 396 undefined on input line 1000.
+
+
+
+[396])
 
 [397]
-
-[398]
-Overfull \hbox (10.4307pt too wide) in paragraph at lines 997--997
-[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
- []
-
-
-
-[399]
-
-[400]
-
-[401]
-
-[402])
-
-[403]
 \openout2 = `ch09-agents-orchestration.aux'.
 
  (./ch09-agents-orchestration.tex
 
-[404
+[398
 
 
 
@@ -4435,61 +4842,82 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 13.
 
 
+[399]
+
+[400]
+
+LaTeX Warning: Reference `sec:errorhandling' on page 401 undefined on input line 42.
+
+
+
+[401]
+
+[402]
+
+LaTeX Warning: Reference `ch:intro' on page 403 undefined on input line 110.
+
+
+
+[403]
+
+[404]
+
 [405]
 
 [406]
 
+LaTeX Warning: Reference `ch:case-study' on page 407 undefined on input line 206.
+
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 218.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 218.
+
+
 [407]
 
 [408]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 259.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 259.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 259.
+
 
 [409]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 282.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 282.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 282.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 282.
+
 
 [410]
 
 [411]
 
-[412]
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 218.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 218.
+LaTeX Warning: Reference `ch:testing' on page 412 undefined on input line 329.
 
 
-[413]
-
-[414]
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 259.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 259.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 259.
+LaTeX Warning: Reference `sec:errorhandling' on page 412 undefined on input line 329.
 
 
-[415]
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 282.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 282.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 282.
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 282.
+LaTeX Warning: Reference `ch:ethics' on page 412 undefined on input line 329.
 
 
-[416]
-
-[417]
 Overfull \hbox (358.72319pt too wide) in paragraph at lines 420--421
  [][] 
  []
@@ -4518,11 +4946,11 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 426.
 
 
-[418]
+[412]
 
-[419]
+[413]
 
-[420]
+[414]
 Overfull \hbox (101.2487pt too wide) in paragraph at lines 468--468
 []    \OT1/lmtt/m/n/10 result_analysis = call(AnalysisAgent, query, params={"brief": True}, timeout=10s)[] 
  []
@@ -4544,21 +4972,21 @@ Overfull \hbox (27.74892pt too wide) in paragraph at lines 477--477
 
 
 
+[415]
+
+[416]
+
+[417]
+
+[418]
+
+[419]
+
+[420]
+
 [421]
 
 [422]
-
-[423]
-
-[424]
-
-[425]
-
-[426]
-
-[427]
-
-[428]
 LaTeX Font Info:    Trying to load font information for OMS+ntxtlf on input line 599.
 LaTeX Font Info:    No file OMSntxtlf.fd. on input line 599.
 
@@ -4569,7 +4997,7 @@ LaTeX Font Warning: Font shape `OMS/ntxtlf/m/n' undefined
 
 
 
-[429]
+[423]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
             Default family used instead on input line 628.
@@ -4584,11 +5012,11 @@ LaTeX Info: Symbol \textrightarrow not provided by
             Default family used instead on input line 628.
 
 
-[430]
+[424]
 
-[431]
+[425]
 
-[432]
+[426]
 ./ch09-agents-orchestration.tex:679: Undefined control sequence.
 <argument> ...e \c@refsection @\currentrefsegment 
                                                   
@@ -4616,13 +5044,35 @@ Package biblatex Warning: Segment '' not found in section '0' on input line 675.
 
 
 
+[427]
+
+[428]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 679--679
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
+[429]
+
+[430]
+
+[431]
+
+[432]
+
 [433]
 
 [434]
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 679--679
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
 
 [435]
-Overfull \hbox (2.14844pt too wide) in paragraph at lines 679--679
-[]\OT1/ntxtlf/m/n/10 (-20) Divyanshu Garg et al. \  Infra-Centric Eval-u-a-tion of LLM-Generated Infrastructure-
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 679--679
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
  []
 
 
@@ -4630,97 +5080,70 @@ Overfull \hbox (2.14844pt too wide) in paragraph at lines 679--679
 [436]
 
 [437]
-Overfull \hbox (11.67911pt too wide) in paragraph at lines 679--679
-[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
- []
-
-
 
 [438]
 
 [439]
-Overfull \hbox (4.25333pt too wide) in paragraph at lines 679--679
-[]\OT1/ntxtlf/m/n/10 (-20) Evidently AI. \OT1/ntxtlf/m/it/10 (-20) LLM Eval-u-a-tion Met-rics\OT1/ntxtlf/m/n/10 (-20) . 2023. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / www . evidentlyai .
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 679--679
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
  []
 
 
 
 [440]
-Overfull \hbox (2.54126pt too wide) in paragraph at lines 679--679
-[]\OT1/ntxtlf/m/it/10 (-20) LangSmith Doc-u-men-ta-tion\OT1/ntxtlf/m/n/10 (-20) . LangChain. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / docs . langchain .
- []
-
-
-Overfull \hbox (20.38861pt too wide) in paragraph at lines 679--679
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
-Overfull \hbox (6.68623pt too wide) in paragraph at lines 679--679
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Col-lec-tor\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
- []
-
-
 
 [441]
-Overfull \hbox (4.78407pt too wide) in paragraph at lines 679--679
-\OT1/lmtt/m/n/10 kubernetes . io / docs / concepts / workloads / autoscaling / horizontal -[]
- []
-
-
 
 [442]
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 679--679
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
 
-[443]
-Overfull \hbox (5.76863pt too wide) in paragraph at lines 679--679
-[]\OT1/ntxtlf/m/n/10 (-20) A. Au-thor. \OT1/ntxtlf/m/it/10 (-20) FlashAttention-v2\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/Dao-AILab/flash-attention.
+
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 679--679
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
 
-[444]
+[443]
+
+[444])
 
 [445]
 
-[446]
-
-[447]
-Overfull \hbox (10.4307pt too wide) in paragraph at lines 679--679
-[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
- []
-
-
-
-[448]
-
-[449]
-
-[450]
-
-[451])
-
-[452]
-
-[453
+[446
 
 
 
 
 ]
 
-[454]
+[447]
+
+[448]
 \openout2 = `author/part4-governance.aux'.
 
- (./author/part4-governance.tex)
+ (./author/part4-governance.tex
 
-[455
+LaTeX Warning: Reference `ch:testing' on page 449 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 449 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:case-study' on page 449 undefined on input line 5.
+
+)
+
+[449
 
 ]
 \openout2 = `ch10-testing-eval.aux'.
 
  (./ch10-testing-eval.tex
 
-[456
+[450
 
 
 
@@ -4734,6 +5157,18 @@ Package biblatex Info: Reference segment=21 on input line 3.
 Package biblatex Info: Setting label 'refsegment:021' on input line 3.
 
 
+[451]
+
+[452]
+
+[453]
+
+[454]
+
+[455]
+
+[456]
+
 [457]
 
 [458]
@@ -4741,6 +5176,11 @@ Package biblatex Info: Setting label 'refsegment:021' on input line 3.
 [459]
 
 [460]
+Overfull \hbox (9.85628pt too wide) in paragraph at lines 187--188
+[]\OT1/ntxtlf/b/n/10 (-20) Other Met-rics: \OT1/ntxtlf/m/n/10 (-20) Pre-ci-sion/Re-cal-l/F1 are es-sen-tial for re-trieval eval-u-a-tion. BLEU/ROUGE
+ []
+
+
 
 [461]
 
@@ -4753,17 +5193,16 @@ Package biblatex Info: Setting label 'refsegment:021' on input line 3.
 [465]
 
 [466]
-Overfull \hbox (9.85628pt too wide) in paragraph at lines 187--188
-[]\OT1/ntxtlf/b/n/10 (-20) Other Met-rics: \OT1/ntxtlf/m/n/10 (-20) Pre-ci-sion/Re-cal-l/F1 are es-sen-tial for re-trieval eval-u-a-tion. BLEU/ROUGE
- []
-
-
 
 [467]
 
 [468]
 
 [469]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 442.
+
 
 [470]
 
@@ -4775,21 +5214,14 @@ Overfull \hbox (9.85628pt too wide) in paragraph at lines 187--188
 
 [474]
 
-[475]
-LaTeX Info: Symbol \textrightarrow not provided by
-            font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 442.
+LaTeX Warning: Reference `sec:ch10-regression-testing-in-ci-cd' on page 475 undefined on input line 548.
 
 
-[476]
+LaTeX Warning: Reference `ch:cicd' on page 475 undefined on input line 548.
 
-[477]
 
-[478]
+LaTeX Warning: Reference `ch:monitoring' on page 475 undefined on input line 548.
 
-[479]
-
-[480]
 ./ch10-testing-eval.tex:554: Undefined control sequence.
 <argument> ...e \c@refsection @\currentrefsegment 
                                                   
@@ -4817,13 +5249,35 @@ Package biblatex Warning: Segment '' not found in section '0' on input line 550.
 
 
 
+[475]
+
+[476]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 554--554
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
+[477]
+
+[478]
+
+[479]
+
+[480]
+
 [481]
 
 [482]
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 554--554
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
 
 [483]
-Overfull \hbox (2.14844pt too wide) in paragraph at lines 554--554
-[]\OT1/ntxtlf/m/n/10 (-20) Divyanshu Garg et al. \  Infra-Centric Eval-u-a-tion of LLM-Generated Infrastructure-
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 554--554
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
  []
 
 
@@ -4831,26 +5285,657 @@ Overfull \hbox (2.14844pt too wide) in paragraph at lines 554--554
 [484]
 
 [485]
-Overfull \hbox (11.67911pt too wide) in paragraph at lines 554--554
-[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
- []
-
-
 
 [486]
 
 [487]
-Overfull \hbox (4.25333pt too wide) in paragraph at lines 554--554
-[]\OT1/ntxtlf/m/n/10 (-20) Evidently AI. \OT1/ntxtlf/m/it/10 (-20) LLM Eval-u-a-tion Met-rics\OT1/ntxtlf/m/n/10 (-20) . 2023. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / www . evidentlyai .
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 554--554
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
  []
 
 
 
 [488]
-Overfull \hbox (2.54126pt too wide) in paragraph at lines 554--554
-[]\OT1/ntxtlf/m/it/10 (-20) LangSmith Doc-u-men-ta-tion\OT1/ntxtlf/m/n/10 (-20) . LangChain. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / docs . langchain .
+
+[489]
+
+[490]
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 554--554
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
-Overfull \hbox (20.38861pt too wide) in paragraph at lines 554--554
-[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 554--554
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+
+[491]
+
+[492])
+
+[493]
+\openout2 = `ch11-ethics.aux'.
+
+ (./ch11-ethics.tex
+
+[494
+
+
+
+
+
+]
+Chapter 11.
+Package biblatex Info: Reference segment=22 on input line 1.
+Package biblatex Info: Setting label 'refsegment:022' on input line 1.
+Package biblatex Info: Reference segment=23 on input line 3.
+Package biblatex Info: Setting label 'refsegment:023' on input line 3.
+
+
+[495]
+
+[496]
+
+LaTeX Warning: Reference `ch:rag' on page 497 undefined on input line 61.
+
+
+
+[497]
+
+[498]
+
+LaTeX Warning: Reference `ch:monitoring' on page 499 undefined on input line 103.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 499 undefined on input line 107.
+
+
+
+[499]
+
+LaTeX Warning: Reference `ch:cicd' on page 500 undefined on input line 125.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 500 undefined on input line 125.
+
+
+LaTeX Warning: Reference `ch:testing' on page 500 undefined on input line 125.
+
+
+LaTeX Warning: Reference `ch:rag' on page 500 undefined on input line 139.
+
+
+
+[500]
+
+[501]
+
+[502]
+
+[503]
+
+[504]
+
+LaTeX Warning: Reference `ch:monitoring' on page 505 undefined on input line 245.
+
+
+
+[505]
+
+LaTeX Warning: Reference `ch:cicd' on page 506 undefined on input line 263.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 506 undefined on input line 263.
+
+
+LaTeX Warning: Reference `ch:testing' on page 506 undefined on input line 263.
+
+
+
+[506]
+
+LaTeX Warning: Reference `ch:rag' on page 507 undefined on input line 285.
+
+
+
+[507]
+
+[508]
+
+[509]
+
+[510]
+
+[511]
+
+[512]
+
+[513]
+
+[514]
+./ch11-ethics.tex:497: Undefined control sequence.
+<argument> ...e \c@refsection @\currentrefsegment 
+                                                  
+l.497 ]
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ch11-ethics.tex:497: Undefined control sequence.
+<write> ...x Warning: Segment '\currentrefsegment 
+                                                  ' not found in section '\t...
+l.497 ]
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Package biblatex Warning: Segment '' not found in section '0' on input line 493.
+
+
+
+[515]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 497--497
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
+[516]
+
+[517]
+
+[518]
+
+[519]
+
+[520]
+
+[521]
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 497--497
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
+
+[522]
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 497--497
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
+ []
+
+
+
+[523]
+
+[524]
+
+[525]
+
+[526]
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 497--497
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
+ []
+
+
+
+[527]
+
+[528]
+
+[529]
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 497--497
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 497--497
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+
+[530]
+
+[531]
+
+[532])
+
+[533]
+\openout2 = `ch12-ishtar-end-to-end.aux'.
+
+ (./ch12-ishtar-end-to-end.tex
+
+[534
+
+
+
+
+
+]
+Chapter 12.
+Package biblatex Info: Reference segment=24 on input line 1.
+Package biblatex Info: Setting label 'refsegment:024' on input line 1.
+Package biblatex Info: Reference segment=25 on input line 3.
+Package biblatex Info: Setting label 'refsegment:025' on input line 3.
+
+
+[535]
+
+LaTeX Warning: Reference `ch:infra' on page 536 undefined on input line 31.
+
+
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page 536 undefined on input line 31.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 536 undefined on input line 32.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 536 undefined on input line 32.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 536 undefined on input line 32.
+
+
+LaTeX Warning: Reference `ch:performance' on page 536 undefined on input line 33.
+
+
+LaTeX Warning: Reference `ch:rag' on page 536 undefined on input line 33.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 536 undefined on input line 33.
+
+
+LaTeX Warning: Reference `ch:testing' on page 536 undefined on input line 34.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 536 undefined on input line 34.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-infra' on page 536 undefined on input line 40.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-ingestion' on page 536 undefined on input line 41.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-kb' on page 536 undefined on input line 42.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-rag' on page 536 undefined on input line 43.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-agents' on page 536 undefined on input line 44.
+
+
+LaTeX Warning: Reference `sec:ishtar-step-cicd' on page 536 undefined on input line 45.
+
+
+LaTeX Warning: Reference `sec:ishtar-ops' on page 536 undefined on input line 46.
+
+
+LaTeX Warning: Reference `sec:ishtar-ethics' on page 536 undefined on input line 46.
+
+
+LaTeX Warning: Reference `ch:rag' on page 536 undefined on input line 55.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 536 undefined on input line 55.
+
+
+
+[536]
+
+LaTeX Warning: Reference `ch:testing' on page 537 undefined on input line 66.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 537 undefined on input line 66.
+
+
+LaTeX Warning: Reference `tab:ishtar-requirements' on page 537 undefined on input line 75.
+
+
+Underfull \hbox (badness 4779) in paragraph at lines 94--94
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Poll/stream sources
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 94--94
+\OT1/ntxtlf/m/n/8.5 (+20) log alert-ing if lag
+ []
+
+
+Underfull \hbox (badness 1859) in paragraph at lines 94--94
+\OT1/ntxtlf/m/n/8.5 (+20) for typ-i-cal queries;
+ []
+
+
+Underfull \hbox (badness 2318) in paragraph at lines 94--94
+\OT1/ntxtlf/m/n/8.5 (+20) fer ab-sten-tion over
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 94--94
+\OT1/ntxtlf/m/n/8.5 (+20) fab-ri-ca-tion; ver-i-fi-ca-
+ []
+
+
+Underfull \hbox (badness 5064) in paragraph at lines 94--94
+\OT1/ntxtlf/m/n/8.5 (+20) out-put redac-tion/re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+\OT1/ntxtlf/m/n/8.5 (+20) ob-jec-tive; grace-ful
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+\OT1/ntxtlf/m/n/8.5 (+20) degra-da-tion and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+[]|\OT1/ntxtlf/m/n/8.5 (+20) GPU au-toscal-ing;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Track cost/-query;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+\OT1/ntxtlf/m/n/8.5 (+20) critical work-loads;
+ []
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 537 undefined on input line 112.
+
+
+
+[537]
+
+LaTeX Warning: Reference `ch:infra' on page 538 undefined on input line 113.
+
+
+LaTeX Warning: Reference `ch:performance' on page 538 undefined on input line 113.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 538 undefined on input line 114.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 538 undefined on input line 114.
+
+
+LaTeX Warning: Reference `fig:ishtar-architecture-ch12' on page 538 undefined on input line 117.
+
+
+Overfull \hbox (145.91408pt too wide) in paragraph at lines 174--175
+ [][] 
+ []
+
+
+
+[538]
+
+LaTeX Warning: Reference `ch:infra-env' on page 539 undefined on input line 189.
+
+
+
+[539]
+
+LaTeX Warning: Reference `ch:scaling' on page 540 undefined on input line 206.
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 222--222
+[]  \OT1/lmtt/m/n/10 enable_oidc   = true             # enables workload identity / OIDC[] 
+ []
+
+
+LaTeX Warning: Reference `ch:scaling' on page 540 undefined on input line 228.
+
+
+
+[540]
+
+[541]
+
+LaTeX Warning: Reference `ch:rag' on page 542 undefined on input line 289.
+
+
+
+[542]
+
+[543]
+
+LaTeX Warning: Reference `ch:multiagent' on page 544 undefined on input line 376.
+
+
+
+[544]
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 402--402
+[]    \OT1/lmtt/m/n/10 safe = TranslationAgent(safe, target_lang=state.user_context.lang)[] 
+ []
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 545 undefined on input line 417.
+
+
+
+[545]
+
+LaTeX Warning: Reference `ch:ethics' on page 546 undefined on input line 435.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 546 undefined on input line 440.
+
+
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 465--465
+[]      \OT1/lmtt/m/n/10 - run: python eval/run_offline_eval.py --index_version v2025.12.01[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 466--466
+[]      \OT1/lmtt/m/n/10 - run: python eval/check_gates.py  # fails if metrics regress[] 
+ []
+
+
+
+[546]
+
+LaTeX Warning: Reference `ch:monitoring' on page 547 undefined on input line 487.
+
+
+
+[547]
+
+LaTeX Warning: Reference `ch:monitoring' on page 548 undefined on input line 532.
+
+
+
+[548]
+
+LaTeX Warning: Reference `ch:ethics' on page 549 undefined on input line 576.
+
+
+
+[549]
+
+LaTeX Warning: Reference `tab:ishtar-outcomes' on page 550 undefined on input line 622.
+
+
+LaTeX Warning: Reference `ch:performance' on page 550 undefined on input line 651.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 550 undefined on input line 651.
+
+
+
+[550]
+
+[551]
+
+[552]
+
+[553]
+
+[554]
+./ch12-ishtar-end-to-end.tex:763: Undefined control sequence.
+<argument> ...e \c@refsection @\currentrefsegment 
+                                                  
+l.763 ]
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ch12-ishtar-end-to-end.tex:763: Undefined control sequence.
+<write> ...x Warning: Segment '\currentrefsegment 
+                                                  ' not found in section '\t...
+l.763 ]
+       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Package biblatex Warning: Segment '' not found in section '0' on input line 759.
+
+
+
+[555]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 763--763
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+
+
+[556]
+
+[557]
+
+[558]
+
+[559]
+
+[560]
+
+[561]
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 763--763
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
+
+[562]
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 763--763
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
+ []
+
+
+
+[563]
+
+[564]
+
+[565]
+
+[566]
+Overfull \hbox (5.16664pt too wide) in paragraph at lines 763--763
+[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
+ []
+
+
+
+[567]
+
+[568]
+
+[569]
+Overfull \hbox (76.1274pt too wide) in paragraph at lines 763--763
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+Overfull \hbox (68.91864pt too wide) in paragraph at lines 763--763
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+
+[570]
+
+[571]
+
+[572])
+
+[573]
+
+[574
+
+
+
+
+]
+\openout2 = `author/glossary.aux'.
+
+ (./author/glossary.tex)
+No file book.ind.
+(./book.aux (./author/dedication.aux) (./author/foreword.aux) (./author/preface.aux) (./author/acknowledgement.aux) (./author/acronym.aux) (./author/part1-foundations.aux) (./ch01-intro-ishar.aux) (./ch02-llmops-fundamentals.aux) (./ch03-infra-env.aux) (./author/part2-delivery.aux) (./ch04-cicd.aux) (./ch05-observability.aux) (./ch06-scaling.aux) (./author/part3-optimization.aux) (./ch07-performance.aux) (./ch08-rag.aux) (./ch09-agents-orchestration.aux) (./author/part4-governance.aux) (./ch10-testing-eval.aux) (./ch11-ethics.aux) (./ch12-ishtar-end-to-end.aux) (./author/glossary.aux))
+ ***********
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2020/03/25>
+ ***********
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.5pt have occurred.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                book
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'book.run.xml'.
+\openout1 = `book.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 67141 strings out of 467800
+ 1529712 string characters out of 5431882
+ 2840072 words of memory out of 5000000
+ 91663 multiletter control sequences out of 15000+600000
+ 772851 words of font info for 967 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 98i,21n,101p,2661b,2392s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
+
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on book.pdf (580 pages, 2458431 bytes).
+PDF statistics:
+ 12821 PDF objects out of 12825 (max. 8388607)
+ 12011 compressed objects within 121 object streams
+ 1947 named destinations out of 2073 (max. 500000)
+ 160733 words of extra memory for PDF output out of 184870 (max. 10000000)
+
