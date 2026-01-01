@@ -804,6 +804,11 @@ INPUT ./images/ch01-cost-latency-throughput.png
 INPUT ./images/ch01-cost-latency-throughput.png
 INPUT ./images/ch01-cost-latency-throughput.png
 INPUT ./images/ch01-cost-latency-throughput.png
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxmi07.vf
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxmi0.vf
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Italic-tlf-ot1.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
@@ -826,8 +831,6 @@ INPUT /usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxsy7.vf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxmi0.vf
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-sc-ot1.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
 INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
@@ -853,9 +856,6 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-ot1.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxmi07.vf
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/NewTXMI7.tfm
-INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxsy7.vf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm

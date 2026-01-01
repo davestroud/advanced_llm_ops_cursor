@@ -194,12 +194,63 @@ Classical ML systems can often be validated with offline metrics and periodic re
 \end{itemize}
 
 \subsection{Observability Beyond Traditional Monitoring}
-Traditional monitoring focuses on uptime, CPU, and error rates. LLMOps requires observability that captures \emph{semantic} and \emph{behavioral} properties:
-\begin{itemize}
-  \item \textbf{Tracing:} end-to-end traces should include the prompt template version, retrieved documents, tool calls, model parameters, and output.
-  \item \textbf{Behavioral metrics:} hallucination indicators, refusal rates, toxicity filters triggered, and citation coverage provide signals that basic infrastructure metrics cannot.
-  \item \textbf{Debuggability:} when an LLM fails, the root cause may lie in retrieval, prompt composition, tool output, or model regression; observability must isolate which layer failed.
-\end{itemize}
+Traditional monitoring focuses on uptime, CPU, and error rates. LLMOps requires observability that captures
+\emph{semantic} and \emph{behavioral} properties, because a generative system can return HTTP~200 while producing
+an ungrounded, unsafe, or policy-violating answer. In practice, LLM applications behave like composed systems:
+a single user request may traverse routing logic, retrieval, reranking, multi-step prompting, tool calls, and
+post-processing. Failures are therefore frequently \emph{cross-layer} (e.g., a retrieval miss causing hallucination,
+or a tool timeout causing a partial answer that still looks fluent). The operational goal is not merely to detect that
+an error occurred, but to explain \emph{why} an output was produced and \emph{which component} (prompt, retriever,
+tool, model version, or safety layer) drove the observed behavior.
+
+A useful mental model is to treat observability as an \emph{evidence ledger} for each response: record the exact
+prompt template and parameters, the evidence retrieved (with identifiers and timestamps), the tool calls performed,
+and the model configuration (provider, version, temperature/top-$p$, context length). These traces support three
+production-critical workflows: (i) incident response (rapid attribution and rollback), (ii) continuous evaluation
+(turning production failures into regression tests), and (iii) governance (audit trails for safety, privacy, and policy compliance).
+
+\begin{table}[t]
+\centering
+\caption{LLMOps observability: what to capture beyond traditional monitoring, why it matters, and common failure signals.}
+\label{tab:llm_observability}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{p{2.7cm} p{4.2cm} p{4.2cm} p{3.3cm}}
+\toprule
+\textbf{Layer} & \textbf{What to capture} & \textbf{Why it matters} & \textbf{Typical failure signals} \\
+\midrule
+System telemetry &
+Latency (p50/p95/p99), error rate, GPU/CPU/memory utilization, queue depth, cost per request &
+Detect performance regressions and capacity collapse; bound tail latency and spend &
+TTFT spikes, token/s drops, saturation, retry storms \\
+
+Prompt \& policy telemetry &
+Prompt template ID/version, system/developer messages, guardrail settings, decoding params (temperature/top-$p$), routing decision &
+Prompts and policies function as executable logic; small changes can create large behavioral shifts &
+Refusal rate drift, verbosity inflation, format/schema violations \\
+
+Retrieval (RAG) telemetry &
+Retriever config (K, filters, recency window), retrieved doc IDs, scores, index version, chunk IDs &
+RAG errors are often silent; evidence quality determines groundedness and citation fidelity &
+Recall@K degradation, citation coverage drop, stale/unauthorized docs retrieved \\
+
+Tooling telemetry &
+Tool name/version, arguments, outputs, error codes, latency per tool call, side-effect flags &
+Tool misuse turns ``bad text'' into ``bad actions''; tool failures can masquerade as model failures &
+Tool-call loops, timeouts, invalid arguments, unsafe side effects \\
+
+Model output telemetry &
+Output text hash, token counts, stop reasons, safety classifier outcomes, citation spans/links &
+Quality and safety must be measured directly; infra metrics cannot detect hallucinations or bias &
+Hallucination flags, toxicity triggers, missing citations, policy violations \\
+
+Trace \& audit artifacts (cross-cutting) &
+End-to-end trace/span IDs, replay bundle (prompt+evidence+tools), redaction status, retention metadata &
+Enables root-cause isolation, reproducibility, postmortems, and compliance evidence &
+Inability to reproduce incidents; incomplete lineage for audits \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \subsection{Security, Privacy, and Policy Enforcement}
 LLM applications introduce novel attack surfaces. Prompt injection, data exfiltration, and tool misuse are now first-class threats. Operational hardening must include:

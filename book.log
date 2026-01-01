@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 15:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 17:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1977,47 +1977,82 @@ Package pdftex.def Info: images/ch01-cost-latency-throughput.png  used on input 
 [12 <./images/ch01-cost-latency-throughput.png>]
 
 [13]
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
+\OT1/ntxtlf/m/n/8.5 (+20) GPU/CPU/mem-ory uti-liza-tion,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Prompt & pol-icy
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Prompt tem-plate ID/ver-sion,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
+\OT1/ntxtlf/m/n/8.5 (+20) sys-tem/de-vel-oper mes-sages,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Retrieval (RAG)
+ []
+
+
+Underfull \hbox (badness 1983) in paragraph at lines 252--252
+\OT1/ntxtlf/m/n/8.5 (+20) bun-dle (prompt+evidence+tools),
+ []
+
+
+Overfull \hbox (104.71948pt too wide) in alignment at lines 252--252
+[][][][] 
+ []
+
+
 
 [14]
 
 [15]
 
 [16]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.0pt on input line 359.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 7.0pt on input line 359.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 7.0pt on input line 384.
 
-Overfull \hbox (121.57011pt too wide) in paragraph at lines 388--389
+[17]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.0pt on input line 410.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
+(Font)              scaled to size 7.0pt on input line 410.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 7.0pt on input line 435.
+
+Overfull \hbox (121.57011pt too wide) in paragraph at lines 439--440
  [][] 
  []
 
 
-
-[17]
 
 [18]
 
 [19]
 
-[20] (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
+[20]
+
+[21] (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
 File: tikzlibrarymatrix.code.tex 2025-08-14 v3.1.11 (3.1.11)
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
 File: tikzlibraryfit.code.tex 2025-08-14 v3.1.11 (3.1.11)
 )
 
-[21]
-
 [22]
-Overfull \hbox (142.19658pt too wide) in paragraph at lines 717--718
+
+[23]
+Overfull \hbox (142.19658pt too wide) in paragraph at lines 768--769
  [][] 
  []
 
 
-
-[23]
 
 [24]
 
@@ -2032,118 +2067,118 @@ Overfull \hbox (142.19658pt too wide) in paragraph at lines 717--718
 [29]
 
 [30]
-Underfull \hbox (badness 4144) in paragraph at lines 1028--1028
+
+[31]
+Underfull \hbox (badness 4144) in paragraph at lines 1079--1079
 []|\OT1/ntxtlf/b/n/8.5 (+20) Failure mode (or
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1079
 \OT1/ntxtlf/b/n/8.5 (+20) (what should/was
  []
 
 
-Underfull \hbox (badness 1178) in paragraph at lines 1028--1028
+Underfull \hbox (badness 1178) in paragraph at lines 1079--1079
 []|[][][] \OT1/ntxtlf/b/n/8.5 (+20) Galac-tica (Meta,
  []
 
 
-Underfull \hbox (badness 3407) in paragraph at lines 1028--1028
+Underfull \hbox (badness 3407) in paragraph at lines 1079--1079
 []|\OT1/ntxtlf/m/n/8.5 (+20) Public demo with-
  []
 
 
-Underfull \hbox (badness 1642) in paragraph at lines 1028--1028
+Underfull \hbox (badness 1642) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) drawn within days;
  []
 
 
-Underfull \hbox (badness 1565) in paragraph at lines 1028--1028
+Underfull \hbox (badness 1565) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) ac-cept-able for pub-
  []
 
 
-Underfull \hbox (badness 1762) in paragraph at lines 1028--1028
+Underfull \hbox (badness 1762) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) system-prompt leak-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1079
 []|\OT1/ntxtlf/m/n/8.5 (+20) Prompt iso-la-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) and in-struc-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) hard-en-ing; con-ver-
  []
 
 
-Underfull \hbox (badness 2426) in paragraph at lines 1028--1028
+Underfull \hbox (badness 2426) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) sa-tion length caps;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) adversarial/prompt-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) injection evals in
  []
 
 
-Underfull \hbox (badness 8075) in paragraph at lines 1028--1028
+Underfull \hbox (badness 8075) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) CI; tool sand-box-
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 1028--1028
+Underfull \hbox (badness 1590) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) ing and allow-lists;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) in-ci-dent re-sponse
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1079
 []|[][][] \OT1/ntxtlf/b/n/8.5 (+20) Char-ac-ter.AI
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) bal-ance; promp-t/-
  []
 
 
-Underfull \hbox (badness 4518) in paragraph at lines 1028--1028
+Underfull \hbox (badness 4518) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) con-text bloat over
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1028--1028
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) mod-els; ag-gres-sive
  []
 
 
-Underfull \hbox (badness 1648) in paragraph at lines 1028--1028
+Underfull \hbox (badness 1648) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) plates with prompt
  []
 
 
-Underfull \hbox (badness 4479) in paragraph at lines 1028--1028
+Underfull \hbox (badness 4479) in paragraph at lines 1079--1079
 \OT1/ntxtlf/m/n/8.5 (+20) bud-gets; sys-tem-atic
  []
 
 
-
-[31]
 
 [32]
 
@@ -2153,11 +2188,11 @@ Underfull \hbox (badness 4479) in paragraph at lines 1028--1028
 
 [35]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 1135.
+(Font)              scaled to size 10.0pt on input line 1186.
 Package microtype Info: Character `013' is missing
 (microtype)             in font `OT1/ntxtlf/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
-LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 1135.
+LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 1186.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -4125,10 +4160,10 @@ Package logreq Info: Writing requests to 'book.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 67448 strings out of 467800
- 1544165 string characters out of 5431882
- 2768164 words of memory out of 5000000
- 92085 multiletter control sequences out of 15000+600000
+ 67450 strings out of 467800
+ 1544197 string characters out of 5431882
+ 2769359 words of memory out of 5000000
+ 92086 multiletter control sequences out of 15000+600000
  773560 words of font info for 977 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,21n,101p,2661b,2395s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -4136,10 +4171,10 @@ Here is how much of TeX's memory you used:
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on book.pdf (398 pages, 2998178 bytes).
+Output written on book.pdf (398 pages, 3001292 bytes).
 PDF statistics:
- 7130 PDF objects out of 7423 (max. 8388607)
- 6502 compressed objects within 66 object streams
- 1765 named destinations out of 2073 (max. 500000)
+ 7133 PDF objects out of 7423 (max. 8388607)
+ 6505 compressed objects within 66 object streams
+ 1766 named destinations out of 2073 (max. 500000)
  160670 words of extra memory for PDF output out of 184870 (max. 10000000)
 
