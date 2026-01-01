@@ -3978,4 +3978,182 @@ Package biblatex Info: Setting label 'refsegment:025' on input line 3.
 
 [366]
 Underfull \hbox (badness 4779) in paragraph at lines 92--92
-[]|\OT1/ntxtlf/m/n/8.5 (+20) Poll/stre
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Poll/stream sources
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) log alert-ing if lag
+ []
+
+
+Underfull \hbox (badness 1859) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) for typ-i-cal queries;
+ []
+
+
+Underfull \hbox (badness 2318) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) fer ab-sten-tion over
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) fab-ri-ca-tion; ver-i-fi-ca-
+ []
+
+
+Underfull \hbox (badness 5064) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) out-put redac-tion/re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) ob-jec-tive; grace-ful
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) degra-da-tion and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+[]|\OT1/ntxtlf/m/n/8.5 (+20) GPU au-toscal-ing;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Track cost/-query;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) critical work-loads;
+ []
+
+
+Overfull \hbox (145.91408pt too wide) in paragraph at lines 172--173
+ [][] 
+ []
+
+
+
+[367]
+
+[368]
+
+LaTeX Warning: Reference `ch:infra-env' on page 369 undefined on input line 187.
+
+
+
+[369]
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 219--219
+[]  \OT1/lmtt/m/n/10 enable_oidc   = true             # enables workload identity / OIDC[] 
+ []
+
+
+
+[370]
+
+[371]
+
+[372]
+
+[373]
+
+[374]
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 399--399
+[]    \OT1/lmtt/m/n/10 safe = TranslationAgent(safe, target_lang=state.user_context.lang)[] 
+ []
+
+
+
+[375]
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 461--461
+[]      \OT1/lmtt/m/n/10 - run: python eval/run_offline_eval.py --index_version v2025.12.01[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 462--462
+[]      \OT1/lmtt/m/n/10 - run: python eval/check_gates.py  # fails if metrics regress[] 
+ []
+
+
+
+[376]
+
+[377]
+
+[378]
+
+[379]
+
+[380]
+
+[381]
+
+[382]
+
+[383]
+
+[384]
+Overfull \hbox (3.95467pt too wide) in paragraph at lines 756--756
+[]\OT1/ntxtlf/m/it/10 (-20) Learn Ter-raform Rec-om-mended Prac-tices\OT1/ntxtlf/m/n/10 (-20) . HashiCorp. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / developer .
+ []
+
+
+Overfull \hbox (6.67911pt too wide) in paragraph at lines 756--756
+[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
+ []
+
+
+Overfull \hbox (15.38861pt too wide) in paragraph at lines 756--756
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
+
+[385])
+
+[386]
+\openout2 = `author/glossary.aux'.
+
+ (./author/glossary.tex) (./book.ind) (./book.aux (./author/dedication.aux) (./author/foreword.aux) (./author/preface.aux) (./author/acknowledgement.aux) (./author/acronym.aux) (./author/part1-foundations.aux) (./ch01-intro-ishar.aux) (./ch02-llmops-fundamentals.aux) (./ch03-infra-env.aux) (./author/part2-delivery.aux) (./ch04-cicd.aux) (./ch05-observability.aux) (./ch06-scaling.aux) (./author/part3-optimization.aux) (./ch07-performance.aux) (./ch08-rag.aux) (./ch09-agents-orchestration.aux) (./author/part4-governance.aux) (./ch10-testing-eval.aux) (./ch11-ethics.aux) (./ch12-ishtar-end-to-end.aux) (./author/glossary.aux))
+ ***********
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2020/03/25>
+ ***********
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.5pt have occurred.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+Package logreq Info: Writing requests to 'book.run.xml'.
+\openout1 = `book.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 67459 strings out of 467800
+ 1544402 string characters out of 5431882
+ 2768636 words of memory out of 5000000
+ 92093 multiletter control sequences out of 15000+600000
+ 773560 words of font info for 977 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 98i,21n,101p,2661b,2395s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
+
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on book.pdf (400 pages, 3393746 bytes).
+PDF statistics:
+ 7135 PDF objects out of 7423 (max. 8388607)
+ 6503 compressed objects within 66 object streams
+ 1768 named destinations out of 2073 (max. 500000)
+ 160675 words of extra memory for PDF output out of 184870 (max. 10000000)
+
