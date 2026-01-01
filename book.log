@@ -2734,3 +2734,521 @@ LaTeX Warning: Reference `eq:flops-layer' on page 54 undefined on input line 486
 [54]
 
 [55]
+
+LaTeX Warning: Reference `eq:kv-cache' on page 56 undefined on input line 543.
+
+
+LaTeX Warning: Reference `eq:kv-cache' on page 56 undefined on input line 555.
+
+
+
+[56]
+
+LaTeX Warning: Reference `eq:param-mem' on page 57 undefined on input line 589.
+
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.20496pt on input line 595.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 4.67502pt on input line 595.
+
+
+[57]
+
+LaTeX Warning: Citation 'nist_ai_rmf' on page 58 undefined on input line 632.
+
+
+LaTeX Warning: Citation 'nist_genai_profile' on page 58 undefined on input line 633.
+
+
+
+[58]
+
+[59]
+LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 712.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
+File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+[60{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}]
+
+[61]
+
+LaTeX Warning: Reference `ch:infra' on page 62 undefined on input line 762.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 62 undefined on input line 762.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 62 undefined on input line 762.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 62 undefined on input line 762.
+
+
+LaTeX Warning: Empty bibliography on input line 768.
+
+)
+
+[62]
+\openout2 = `ch03-infra-env.aux'.
+
+ (./ch03-infra-env.tex
+Chapter 3.
+Package biblatex Info: Reference segment=6 on input line 1.
+Package biblatex Info: Setting label 'refsegment:06' on input line 1.
+Package biblatex Info: Reference segment=7 on input line 3.
+Package biblatex Info: Setting label 'refsegment:07' on input line 3.
+
+
+[63
+
+
+
+
+
+]
+
+LaTeX Warning: Citation 'garg2024infra-centric-iac' on page 64 undefined on input line 37.
+
+
+LaTeX Warning: Citation 'srivatsa2024-iac-llm' on page 64 undefined on input line 37.
+
+
+LaTeX Warning: Citation 'nvidia-h100-arch' on page 64 undefined on input line 49.
+
+
+LaTeX Warning: Citation 'nvidia-a100-arch' on page 64 undefined on input line 49.
+
+
+LaTeX Warning: Citation 'jouppi2023-tpuv4' on page 64 undefined on input line 49.
+
+
+
+[64]
+
+LaTeX Warning: Reference `ch:cicd' on page 65 undefined on input line 71.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 65 undefined on input line 71.
+
+
+LaTeX Warning: Reference `sec:infra-hardware-bench' on page 65 undefined on input line 80.
+
+
+
+[65]
+Overfull \hbox (17.2671pt too wide) in paragraph at lines 91--101
+ [][] 
+ []
+
+
+LaTeX Warning: Citation 'nvidia-h100-arch' on page 66 undefined on input line 103.
+
+
+LaTeX Warning: Citation 'nvidia-a100-arch' on page 66 undefined on input line 103.
+
+
+LaTeX Warning: Citation 'tgi-github' on page 66 undefined on input line 103.
+
+
+LaTeX Warning: Citation 'vllm-pagedattention' on page 66 undefined on input line 103.
+
+
+LaTeX Warning: Citation 'aws_trainium2_arch' on page 66 undefined on input line 111.
+
+
+LaTeX Warning: Citation 'aws_inferentia_overview' on page 66 undefined on input line 111.
+
+
+LaTeX Warning: Citation 'aws_neuron_arch_guide' on page 66 undefined on input line 111.
+
+
+LaTeX Warning: Citation 'jouppi2023-tpuv4' on page 66 undefined on input line 112.
+
+
+
+[66]
+
+LaTeX Warning: Reference `eq:costptok' on page 67 undefined on input line 125.
+
+
+
+[67]
+
+LaTeX Warning: Citation 'fabricated-knowledge-costs' on page 68 undefined on input line 133.
+
+
+LaTeX Warning: Citation 'lambda-gpt3-cost' on page 68 undefined on input line 133.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 68 undefined on input line 135.
+
+
+LaTeX Warning: Citation 'jouppi2023-tpuv4' on page 68 undefined on input line 138.
+
+
+LaTeX Warning: Citation 'tgi-github' on page 68 undefined on input line 148.
+
+
+LaTeX Warning: Citation 'tgi_docs' on page 68 undefined on input line 148.
+
+
+
+[68]
+
+LaTeX Warning: Citation 'tgi-github' on page 69 undefined on input line 154.
+
+
+LaTeX Warning: Citation 'tgi_docs' on page 69 undefined on input line 154.
+
+
+
+[69]
+
+LaTeX Warning: Citation 'vllm-pagedattention' on page 70 undefined on input line 173.
+
+
+LaTeX Warning: Citation 'pagedattention_paper' on page 70 undefined on input line 173.
+
+
+LaTeX Warning: Citation 'vllm-pagedattention' on page 70 undefined on input line 173.
+
+
+LaTeX Warning: Citation 'pagedattention_paper' on page 70 undefined on input line 173.
+
+
+LaTeX Warning: Citation 'jouppi2023-tpuv4' on page 70 undefined on input line 178.
+
+
+LaTeX Warning: Citation 'tensorrtllm-github' on page 70 undefined on input line 178.
+
+
+LaTeX Warning: Citation 'tensorrtllm_docs' on page 70 undefined on input line 178.
+
+
+
+[70]
+
+LaTeX Warning: Reference `tab:costcompare' on page 71 undefined on input line 187.
+
+
+LaTeX Warning: Reference `eq:costptok' on page 71 undefined on input line 189.
+
+
+LaTeX Warning: Citation 'nvidia-h100-arch' on page 71 undefined on input line 209.
+
+
+LaTeX Warning: Citation 'jouppi2023-tpuv4' on page 71 undefined on input line 210.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 71 undefined on input line 211.
+
+
+
+[71]
+
+LaTeX Warning: Citation 'terraform-docs' on page 72 undefined on input line 223.
+
+
+LaTeX Warning: Citation 'pulumi-docs' on page 72 undefined on input line 223.
+
+
+LaTeX Warning: Citation 'terraform-docs' on page 72 undefined on input line 235.
+
+
+LaTeX Warning: Citation 'terraform-docs' on page 72 undefined on input line 246.
+
+
+LaTeX Warning: Citation 'opa-docs' on page 72 undefined on input line 252.
+
+
+
+[72]
+
+LaTeX Warning: Citation 'sentinel-docs' on page 73 undefined on input line 257.
+
+
+LaTeX Warning: Citation 'opa-docs' on page 73 undefined on input line 257.
+
+
+LaTeX Warning: Citation 'srivatsa2024-iac-llm' on page 73 undefined on input line 267.
+
+
+LaTeX Warning: Citation 'terraform_modules' on page 73 undefined on input line 273.
+
+
+LaTeX Warning: Citation 'terraform_recommended_practices' on page 73 undefined on input line 273.
+
+
+LaTeX Warning: Citation 'aws_terraform_structure' on page 73 undefined on input line 273.
+
+
+Overfull \hbox (23.75131pt too wide) in paragraph at lines 273--275
+\OT1/ntxtlf/m/n/10 (-20) en-force re-views and pol-icy checks [[], [],
+ []
+
+
+LaTeX Warning: Citation 'terraform-docs' on page 73 undefined on input line 281.
+
+
+Overfull \hbox (3.98167pt too wide) in paragraph at lines 277--282
+[]\OT1/ntxtlf/b/n/10 (-20) Terraform (HashiCorp). \OT1/ntxtlf/m/n/10 (-20) Declar-a-tive, cloud-agnostic IaC tool us-ing HCL (HashiCorp
+ []
+
+
+LaTeX Warning: Citation 'pulumi-docs' on page 73 undefined on input line 287.
+
+
+LaTeX Warning: Citation 'awscdk-docs' on page 73 undefined on input line 292.
+
+
+
+[73]
+
+LaTeX Warning: Citation 'nvidia-k8s-device-plugin' on page 74 undefined on input line 297.
+
+
+LaTeX Warning: Reference `tab:iaccompare' on page 74 undefined on input line 300.
+
+
+Overfull \hbox (92.10152pt too wide) in paragraph at lines 306--316
+ [][] 
+ []
+
+
+LaTeX Warning: Citation 'nvidia-k8s-device-plugin' on page 74 undefined on input line 324.
+
+
+LaTeX Warning: Citation 'opa-docs' on page 74 undefined on input line 328.
+
+
+LaTeX Warning: Citation 'sentinel-docs' on page 74 undefined on input line 328.
+
+
+LaTeX Warning: Citation 'opa-docs' on page 74 undefined on input line 336.
+
+
+LaTeX Warning: Citation 'sentinel-docs' on page 74 undefined on input line 336.
+
+
+
+[74]
+
+[75]
+
+LaTeX Warning: Citation 'terraform-docs' on page 76 undefined on input line 379.
+
+
+LaTeX Warning: Citation 'opa-docs' on page 76 undefined on input line 385.
+
+
+LaTeX Warning: Citation 'sentinel-docs' on page 76 undefined on input line 385.
+
+
+
+[76]
+
+LaTeX Warning: Citation 'nvidia-k8s-device-plugin' on page 77 undefined on input line 416.
+
+
+LaTeX Warning: Citation 'nvidia_gpu_operator_docs' on page 77 undefined on input line 419.
+
+
+LaTeX Warning: Citation 'gke_gpu_operator_guide' on page 77 undefined on input line 419.
+
+
+Overfull \hbox (35.55122pt too wide) in paragraph at lines 415--420
+\OT1/ntxtlf/m/n/10 (-20) stalling the NVIDIA De-vice Plu-gin Dae-mon-Set on all GPU nodes [[]],
+ []
+
+
+LaTeX Warning: Citation 'nvidia-k8s-device-plugin' on page 77 undefined on input line 423.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 77 undefined on input line 423.
+
+
+
+[77]
+
+LaTeX Warning: Citation 'k8s_architecture' on page 78 undefined on input line 440.
+
+
+LaTeX Warning: Citation 'k8s_components' on page 78 undefined on input line 440.
+
+
+LaTeX Warning: Citation 'k8s_control_plane_comm' on page 78 undefined on input line 441.
+
+
+
+[78]
+
+LaTeX Warning: Citation 'nvidia-mig-user-guide' on page 79 undefined on input line 460.
+
+
+LaTeX Warning: Citation 'nvidia-mig-user-guide' on page 79 undefined on input line 463.
+
+
+LaTeX Warning: Citation 'nvidia-k8s-device-plugin' on page 79 undefined on input line 469.
+
+
+LaTeX Warning: Citation 'nvidia-mig-user-guide' on page 79 undefined on input line 469.
+
+
+
+[79]
+
+LaTeX Warning: Citation 'tgi-github' on page 80 undefined on input line 484.
+
+
+LaTeX Warning: Citation 'tgi_docs' on page 80 undefined on input line 484.
+
+
+LaTeX Warning: Citation 'vllm-pagedattention' on page 80 undefined on input line 487.
+
+
+LaTeX Warning: Citation 'pagedattention_paper' on page 80 undefined on input line 487.
+
+
+LaTeX Warning: Citation 'tensorrtllm-github' on page 80 undefined on input line 490.
+
+
+LaTeX Warning: Citation 'tensorrtllm_docs' on page 80 undefined on input line 490.
+
+
+LaTeX Warning: Citation 'tensorrtllm_docs' on page 80 undefined on input line 490.
+
+
+LaTeX Warning: Citation 'triton_docs' on page 80 undefined on input line 490.
+
+
+
+[80]
+
+LaTeX Warning: Citation 'lmdeploy-github' on page 81 undefined on input line 493.
+
+
+LaTeX Warning: Citation 'sglang-github' on page 81 undefined on input line 496.
+
+
+
+[81]
+
+LaTeX Warning: Citation 'smoothie-routing' on page 82 undefined on input line 507.
+
+
+LaTeX Warning: Citation 'vllm-pagedattention' on page 82 undefined on input line 510.
+
+
+LaTeX Warning: Citation 'pagedattention_paper' on page 82 undefined on input line 510.
+
+
+LaTeX Warning: Citation 'leviathan2023speculative' on page 82 undefined on input line 513.
+
+
+
+[82]
+Underfull \hbox (badness 1092) in paragraph at lines 545--545
+\OT1/ntxtlf/m/n/8.5 (+20) tion; ef-fi-cient KV cache reuse;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 549--549
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Maximum per-for-mance on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 549--549
+\OT1/ntxtlf/m/n/8.5 (+20) enterprise-grade multi-model
+ []
+
+
+Overfull \hbox (59.07527pt too wide) in paragraph at lines 535--561
+ [][] 
+ []
+
+
+
+[83]
+
+LaTeX Warning: Citation 'triton_docs' on page 84 undefined on input line 566.
+
+
+LaTeX Warning: Citation 'tensorrtllm_docs' on page 84 undefined on input line 566.
+
+
+LaTeX Warning: Citation 'tgi_docs' on page 84 undefined on input line 566.
+
+
+LaTeX Warning: Citation 'pagedattention_paper' on page 84 undefined on input line 566.
+
+
+LaTeX Warning: Citation 'terraform-docs' on page 84 undefined on input line 583.
+
+
+LaTeX Warning: Citation 'awscdk-docs' on page 84 undefined on input line 583.
+
+
+
+[84]
+
+LaTeX Warning: Citation 'terraform-docs' on page 85 undefined on input line 590.
+
+
+LaTeX Warning: Citation 'pulumi-docs' on page 85 undefined on input line 597.
+
+
+LaTeX Warning: Citation 'opa-docs' on page 85 undefined on input line 607.
+
+
+
+[85]
+
+LaTeX Warning: Citation 'terraform-docs' on page 86 undefined on input line 629.
+
+
+LaTeX Warning: Citation 'pulumi-docs' on page 86 undefined on input line 634.
+
+
+LaTeX Warning: Citation 'awscdk-docs' on page 86 undefined on input line 643.
+
+
+LaTeX Warning: Citation 'terraform-docs' on page 86 undefined on input line 665.
+
+
+LaTeX Warning: Citation 'opa-docs' on page 86 undefined on input line 665.
+
+
+
+[86]
+
+LaTeX Warning: Citation 'pulumi-docs' on page 87 undefined on input line 674.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 87 undefined on input line 701.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 87 undefined on input line 701.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 87 undefined on input line 701.
+
+
+Overfull \hbox (5.16875pt too wide) in paragraph at lines 798--799
+ [][] 
+ []
+
+
+
+[87]
+
+LaTeX Warning: Citation 'srivatsa2024-iac-llm' on page 88 undefined on input line 808.
+
+
+LaTeX Warning: Citation 'fabricated-knowledge-costs' on page 88 undefined on input line 815.
+
+
+LaTeX Warning: Citation 'lambda-gpt3-cost' on page 88 undefined on input line 815.
+
+
+LaTeX Warning: Citation 'terraform-docs' on page 88 undefined on input line 819.

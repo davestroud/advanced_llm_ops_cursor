@@ -776,3 +776,14 @@ INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/NewTXMI5.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/vf/public/newtx/ntxexx.vf
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/newtx/txexs.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
+INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
+INPUT /usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/lm/rm-lmtt10.tfm
+INPUT /usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc
+INPUT ./ch03-infra-env.tex
+INPUT ./ch03-infra-env.tex
+OUTPUT ch03-infra-env.aux
+INPUT ./ch03-infra-env.tex
+INPUT ./ch03-infra-env.tex
+INPUT ch03-infra-env.tex
