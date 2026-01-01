@@ -1,0 +1,57 @@
+% =========================
+% macros.tex (hardened)
+% =========================
+
+\newcommand{\swatch}[1]{\fcolorbox{black}{#1}{\rule{1em}{1em}}}
+
+% --- Safe fallback if hyperref isn't loaded yet ---
+\providecommand{\texorpdfstring}[2]{#1}
+
+% --- Robust Ishtar macro (works in headings/TOC/PDF) ---
+\DeclareRobustCommand{\ishtar}{\texorpdfstring{\textbf{Ishtar\,AI}}{Ishtar AI}}
+
+% --- TikZ styles
+% NOTE: For the 'cylinder' shape, ensure in the preamble:
+%   \usetikzlibrary{shapes.symbols}
+% If not available, we fall back to a rounded rectangle.
+\makeatletter
+\@ifundefined{pgfdeclareshape}{%
+  % PGF/TikZ not loaded yet: define a minimal, safe placeholder
+  \newcommand{\pgfshapecylinderfallback}{}
+  \tikzset{db/.style={draw, rounded corners, minimum height=10mm, minimum width=12mm}}
+}{%
+  % PGF/TikZ present; try to use cylinder, otherwise fallback
+  \@ifundefined{pgfdeclareshape@cylinder}{%
+    \tikzset{db/.style={draw, rounded corners, minimum height=10mm, minimum width=12mm}}
+  }{%
+    \tikzset{db/.style={cylinder, draw, shape aspect=0.3, minimum height=10mm, minimum width=10mm}}
+  }%
+}
+\makeatother
+
+% --- Column type 'Y' only if array/tabularx is available ---
+\makeatletter
+\@ifundefined{newcolumntype}{%
+  % 'array' not loaded yet; defer defining Y to where array/tabularx is loaded
+}{%
+  \newcolumntype{Y}{>{\raggedright\arraybackslash}X}%
+}
+\makeatother
+
+% --- Inline/formatting helpers (use unique or guarded names) ---
+% If \header already exists, overwrite it; else define it.
+\makeatletter
+\@ifundefined{header}{%
+  \newcommand{\header}[1]{\textbf{#1}}%
+}{%
+  \renewcommand{\header}[1]{\textbf{#1}}%
+}
+\makeatother
+
+% Define \attr only if it's not defined elsewhere
+\providecommand{\attr}[1]{\texttt{#1}}
+
+% --- Optional product/term wrappers (kept commented if unused) ---
+% \newcommand{\product}[1]{\textsf{#1}}
+% \newcommand{\term}[1]{\textit{#1}}
+% \newcommand{\code}[1]{\texttt{#1}}
