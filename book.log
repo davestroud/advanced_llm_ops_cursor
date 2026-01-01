@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 14:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.22)  1 JAN 2026 15:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1727,51 +1727,7 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'book.bbl' found.
- (./book.bbl
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                jaeger_tracing
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-)
-
-Package biblatex Warning: citation 'Vaswani2017attention'
-(biblatex)                was not found at all in the .bbl file,
-(biblatex)                bibliography labels cannot be generated,
-(biblatex)                please correct the citation.
-
-
-Package biblatex Warning: citation 'liu2023promptSurvey'
-(biblatex)                was not found at all in the .bbl file,
-(biblatex)                bibliography labels cannot be generated,
-(biblatex)                please correct the citation.
-
-
-Package biblatex Warning: citation 'holtzman2020curious'
-(biblatex)                was not found at all in the .bbl file,
-(biblatex)                bibliography labels cannot be generated,
-(biblatex)                please correct the citation.
-
-
-Package biblatex Warning: citation 'edge2025llmops'
-(biblatex)                was not found at all in the .bbl file,
-(biblatex)                bibliography labels cannot be generated,
-(biblatex)                please correct the citation.
-
-
-Package biblatex Warning: citation 'assemblyAI2023decoding'
-(biblatex)                was not found at all in the .bbl file,
-(biblatex)                bibliography labels cannot be generated,
-(biblatex)                please correct the citation.
-
-
-Package biblatex Warning: citation 'jaeger_tracing'
-(biblatex)                was not found at all in the .bbl file,
-(biblatex)                bibliography labels cannot be generated,
-(biblatex)                please correct the citation.
-
+ (./book.bbl)
 Package biblatex Info: Reference section=0 on input line 96.
 Package biblatex Info: Reference segment=0 on input line 96.
 Package hyperref Info: Link coloring OFF on input line 96.
@@ -1967,33 +1923,19 @@ Package biblatex Info: Reference segment=3 on input line 3.
 Package biblatex Info: Setting label 'refsegment:03' on input line 3.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 (Font)              scaled to size 12.0pt on input line 15.
-
-LaTeX Warning: Citation 'Vaswani2017attention' on page 5 undefined on input line 18.
-
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
 (Font)              scaled to size 10.0pt on input line 20.
 
-LaTeX Warning: Citation 'liu2023promptSurvey' on page 5 undefined on input line 21.
-
-
-LaTeX Warning: Citation 'holtzman2020curious' on page 5 undefined on input line 21.
-
-
-LaTeX Warning: Citation 'edge2025llmops' on page 5 undefined on input line 22.
-
-
-LaTeX Warning: Citation 'assemblyAI2023decoding' on page 5 undefined on input line 23.
-
-
 
 [5]
-
-[6]
-<images/ch01-llmops-lifecycle.png, id=1003, 997.7275pt x 433.62pt>
+<images/ch01-llmops-lifecycle.png, id=1002, 997.7275pt x 433.62pt>
 File: images/ch01-llmops-lifecycle.png Graphic file (type png)
 <use images/ch01-llmops-lifecycle.png>
 Package pdftex.def Info: images/ch01-llmops-lifecycle.png  used on input line 29.
 (pdftex.def)             Requested size: 345.0pt x 149.9365pt.
+
+
+[6]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 11.0pt on input line 37.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
@@ -2003,30 +1945,25 @@ LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
 
 
 [7 <./images/ch01-llmops-lifecycle.png (PNG copy)>]
-
-LaTeX Warning: Citation 'edge2025llmops' on page 8 undefined on input line 46.
-
-
-LaTeX Warning: Citation 'liu2023promptSurvey' on page 8 undefined on input line 46.
-
-<images/ch01-llm-architecture.png, id=1009, 555.07375pt x 418.56375pt>
+<images/ch01-llm-architecture.png, id=1021, 555.07375pt x 418.56375pt>
 File: images/ch01-llm-architecture.png Graphic file (type png)
 <use images/ch01-llm-architecture.png>
 Package pdftex.def Info: images/ch01-llm-architecture.png  used on input line 50.
 (pdftex.def)             Requested size: 345.0pt x 260.15828pt.
-<images/ch01-rag-drift-control.png, id=1011, 905.784pt x 544.434pt>
+
+
+[8 <./images/ch01-llm-architecture.png (PNG copy)>]
+<images/ch01-rag-drift-control.png, id=1028, 905.784pt x 544.434pt>
 File: images/ch01-rag-drift-control.png Graphic file (type png)
 <use images/ch01-rag-drift-control.png>
 Package pdftex.def Info: images/ch01-rag-drift-control.png  used on input line 82.
 (pdftex.def)             Requested size: 338.09853pt x 203.2152pt.
 
 
-[8]
+[9 <./images/ch01-rag-drift-control.png>]
 
-[9 <./images/ch01-llm-architecture.png (PNG copy)>]
-
-[10 <./images/ch01-rag-drift-control.png>]
-<images/ch01-security-threat-model.png, id=1029, 960.2274pt x 541.0614pt>
+[10]
+<images/ch01-security-threat-model.png, id=1041, 960.2274pt x 541.0614pt>
 File: images/ch01-security-threat-model.png Graphic file (type png)
 <use images/ch01-security-threat-model.png>
 Package pdftex.def Info: images/ch01-security-threat-model.png  used on input line 131.
@@ -2034,16 +1971,16 @@ Package pdftex.def Info: images/ch01-security-threat-model.png  used on input li
 
 
 [11 <./images/ch01-security-threat-model.png>]
-<images/ch01-cost-latency-throughput.png, id=1037, 981.9084pt x 555.5154pt>
+<images/ch01-cost-latency-throughput.png, id=1049, 981.9084pt x 555.5154pt>
 File: images/ch01-cost-latency-throughput.png Graphic file (type png)
 <use images/ch01-cost-latency-throughput.png>
 Package pdftex.def Info: images/ch01-cost-latency-throughput.png  used on input line 164.
 (pdftex.def)             Requested size: 338.09853pt x 191.28004pt.
 
 
-[12]
+[12 <./images/ch01-cost-latency-throughput.png>]
 
-[13 <./images/ch01-cost-latency-throughput.png>]
+[13]
 
 [14]
 
@@ -2099,8 +2036,6 @@ Overfull \hbox (142.19658pt too wide) in paragraph at lines 717--718
 [29]
 
 [30]
-
-[31]
 Underfull \hbox (badness 4144) in paragraph at lines 1028--1028
 []|\OT1/ntxtlf/b/n/8.5 (+20) Failure mode (or
  []
@@ -2212,6 +2147,8 @@ Underfull \hbox (badness 4479) in paragraph at lines 1028--1028
 
 
 
+[31]
+
 [32]
 
 [33]
@@ -2230,11 +2167,6 @@ File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
 [36{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}]
-Overfull \hbox (3.44734pt too wide) in paragraph at lines 1139--1139
-\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
- []
-
-
 
 [37])
 
@@ -2470,8 +2402,18 @@ Overfull \hbox (181.70961pt too wide) in paragraph at lines 912--913
 [97]
 
 [98]
+Overfull \hbox (3.95467pt too wide) in paragraph at lines 985--985
+[]\OT1/ntxtlf/m/it/10 (-20) Learn Ter-raform Rec-om-mended Prac-tices\OT1/ntxtlf/m/n/10 (-20) . HashiCorp. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / developer .
+ []
+
+
 
 [99]
+Overfull \hbox (6.67911pt too wide) in paragraph at lines 985--985
+[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
+ []
+
+
 
 [100]
 
@@ -2601,10 +2543,6 @@ Overfull \hbox (12.25851pt too wide) in paragraph at lines 78--80
 [135]
 
 [136]
-
-LaTeX Warning: Citation 'jaeger_tracing' on page 137 undefined on input line 175.
-
-
 Overfull \hbox (7.07446pt too wide) in paragraph at lines 178--180
 \OT1/lmtt/m/n/10 retrieval[]metadata \OT1/ntxtlf/m/n/10 (-20) (doc IDs, in-dex ver-sion, top-$k$, re-ranker scores); \OT1/lmtt/m/n/10 token[]counts
  []
@@ -2617,10 +2555,6 @@ Overfull \hbox (38.40677pt too wide) in paragraph at lines 178--180
 
 
 [137]
-
-LaTeX Warning: Citation 'jaeger_tracing' on page 138 undefined on input line 220.
-
-
 
 [138]
 LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <8.5> not available
@@ -2668,7 +2602,7 @@ Overfull \hbox (37.4113pt too wide) in paragraph at lines 411--412
 [148]
 
 [149]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 591--591
+Overfull \hbox (15.38861pt too wide) in paragraph at lines 591--591
 []\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
@@ -2785,7 +2719,7 @@ Overfull \hbox (101.8156pt too wide) in paragraph at lines 999--1000
 [185]
 
 [186]
-Overfull \hbox (3.36198pt too wide) in paragraph at lines 1032--1032
+Overfull \hbox (8.36198pt too wide) in paragraph at lines 1032--1032
 []\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
  []
 
@@ -3835,12 +3769,7 @@ LaTeX Info: Symbol \textrightarrow not provided by
 
 [304]
 
-[305]
-Overfull \hbox (5.16664pt too wide) in paragraph at lines 658--658
-[]\OT1/ntxtlf/m/n/10 (-20) Hugging Face. \OT1/ntxtlf/m/it/10 (-20) Re-Act Agents with Trans-form-ers\OT1/ntxtlf/m/n/10 (-20) . 2024. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / huggingface .
- []
-
-)
+[305])
 
 [306]
 
@@ -3937,6 +3866,11 @@ LaTeX Info: Symbol \textrightarrow not provided by
 [335]
 
 [336]
+Overfull \hbox (5.4307pt too wide) in paragraph at lines 543--543
+[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
+ []
+
+
 
 [337])
 
@@ -3996,12 +3930,12 @@ Package biblatex Info: Setting label 'refsegment:023' on input line 3.
 [357]
 
 [358]
-Overfull \hbox (76.1274pt too wide) in paragraph at lines 479--479
+Overfull \hbox (81.1274pt too wide) in paragraph at lines 479--479
 []\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
 
-Overfull \hbox (68.91864pt too wide) in paragraph at lines 479--479
+Overfull \hbox (73.91864pt too wide) in paragraph at lines 479--479
 \OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
  []
 
@@ -4153,7 +4087,17 @@ Overfull \hbox (6.74898pt too wide) in paragraph at lines 462--462
 [381]
 
 [382]
-Overfull \hbox (10.38861pt too wide) in paragraph at lines 756--756
+Overfull \hbox (3.95467pt too wide) in paragraph at lines 756--756
+[]\OT1/ntxtlf/m/it/10 (-20) Learn Ter-raform Rec-om-mended Prac-tices\OT1/ntxtlf/m/n/10 (-20) . HashiCorp. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / developer .
+ []
+
+
+Overfull \hbox (6.67911pt too wide) in paragraph at lines 756--756
+[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
+ []
+
+
+Overfull \hbox (15.38861pt too wide) in paragraph at lines 756--756
 []\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
  []
 
@@ -4183,31 +4127,26 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                book
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'book.run.xml'.
 \openout1 = `book.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 67092 strings out of 467800
- 1532209 string characters out of 5431882
- 2752338 words of memory out of 5000000
- 91737 multiletter control sequences out of 15000+600000
- 773615 words of font info for 977 fonts, out of 8000000 for 9000
+ 67447 strings out of 467800
+ 1544135 string characters out of 5431882
+ 2768122 words of memory out of 5000000
+ 92084 multiletter control sequences out of 15000+600000
+ 773560 words of font info for 977 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,21n,101p,2661b,2389s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,21n,101p,2661b,2395s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on book.pdf (398 pages, 2994008 bytes).
+Output written on book.pdf (398 pages, 2998178 bytes).
 PDF statistics:
- 7099 PDF objects out of 7423 (max. 8388607)
- 6472 compressed objects within 65 object streams
- 1759 named destinations out of 2073 (max. 500000)
+ 7130 PDF objects out of 7423 (max. 8388607)
+ 6502 compressed objects within 66 object streams
+ 1765 named destinations out of 2073 (max. 500000)
  160670 words of extra memory for PDF output out of 184870 (max. 10000000)
 
