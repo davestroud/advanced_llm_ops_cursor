@@ -2185,4 +2185,1247 @@ LaTeX Warning: Reference `ch:testing' on page 20 undefined on input line 582.
 LaTeX Warning: Reference `ch:ethics' on page 20 undefined on input line 582.
 
 
-LaTeX Warni
+LaTeX Warning: Reference `ch:case-study' on page 20 undefined on input line 582.
+
+
+LaTeX Warning: Reference `fig:llmops-lifecycle' on page 20 undefined on input line 584.
+
+
+LaTeX Warning: Reference `fig:llmops-lifecycle' on page 20 undefined on input line 584.
+
+
+
+[20]
+
+[21]
+
+LaTeX Warning: Reference `ch:infra' on page 22 undefined on input line 654.
+
+
+LaTeX Warning: Reference `ch:performance' on page 22 undefined on input line 654.
+
+
+LaTeX Warning: Reference `ch:rag' on page 22 undefined on input line 655.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 22 undefined on input line 656.
+
+
+LaTeX Warning: Reference `ch:infra' on page 22 undefined on input line 657.
+
+
+LaTeX Warning: Reference `ch:performance' on page 22 undefined on input line 657.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 22 undefined on input line 658.
+
+
+LaTeX Warning: Reference `ch:testing' on page 22 undefined on input line 659.
+
+
+LaTeX Warning: Reference `ch:ethics' on page 22 undefined on input line 660.
+
+
+LaTeX Warning: Reference `ch:case-study' on page 22 undefined on input line 668.
+
+
+LaTeX Warning: Reference `fig:ishtar-arch-main' on page 22 undefined on input line 671.
+
+
+Overfull \hbox (142.19658pt too wide) in paragraph at lines 674--675
+ [][] 
+ []
+
+
+LaTeX Warning: Reference `fig:ishtar-arch-main' on page 22 undefined on input line 680.
+
+
+
+[22]
+
+[23]
+
+[24]
+
+[25]
+
+LaTeX Warning: Reference `sec:rag-metrics' on page 26 undefined on input line 814.
+
+
+
+[26]
+
+[27]
+
+[28]
+
+[29]
+Underfull \hbox (badness 4144) in paragraph at lines 985--985
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Failure mode (or
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--985
+\OT1/ntxtlf/b/n/8.5 (+20) (what should/was
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 985--985
+[]|[][][] \OT1/ntxtlf/b/n/8.5 (+20) Galac-tica (Meta,
+ []
+
+
+Underfull \hbox (badness 3407) in paragraph at lines 985--985
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Public demo with-
+ []
+
+
+Underfull \hbox (badness 1642) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) drawn within days;
+ []
+
+
+Underfull \hbox (badness 1565) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) ac-cept-able for pub-
+ []
+
+
+Underfull \hbox (badness 1762) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) system-prompt leak-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--985
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Prompt iso-la-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) and in-struc-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) hard-en-ing; con-ver-
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) sa-tion length caps;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) adversarial/prompt-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) injection evals in
+ []
+
+
+Underfull \hbox (badness 8075) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) CI; tool sand-box-
+ []
+
+
+Underfull \hbox (badness 1590) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) ing and allow-lists;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) in-ci-dent re-sponse
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--985
+[]|[][][] \OT1/ntxtlf/b/n/8.5 (+20) Char-ac-ter.AI
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) bal-ance; promp-t/-
+ []
+
+
+Underfull \hbox (badness 4518) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) con-text bloat over
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) mod-els; ag-gres-sive
+ []
+
+
+Underfull \hbox (badness 1648) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) plates with prompt
+ []
+
+
+Underfull \hbox (badness 4479) in paragraph at lines 985--985
+\OT1/ntxtlf/m/n/8.5 (+20) bud-gets; sys-tem-atic
+ []
+
+
+
+[30]
+
+LaTeX Warning: Reference `ch:llmops-fundamentals' on page 31 undefined on input line 1015.
+
+
+LaTeX Warning: Reference `ch:infra' on page 31 undefined on input line 1018.
+
+
+
+[31]
+
+[32]
+
+LaTeX Warning: Reference `ch:cicd' on page 33 undefined on input line 1021.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 33 undefined on input line 1024.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 33 undefined on input line 1027.
+
+
+LaTeX Warning: Reference `ch:performance' on page 33 undefined on input line 1030.
+
+
+LaTeX Warning: Reference `ch:rag' on page 33 undefined on input line 1033.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 33 undefined on input line 1036.
+
+
+LaTeX Warning: Reference `ch:testing' on page 33 undefined on input line 1039.
+
+
+
+[33]
+
+LaTeX Warning: Reference `ch:ethics' on page 34 undefined on input line 1042.
+
+
+LaTeX Warning: Reference `ch:case-study' on page 34 undefined on input line 1045.
+
+
+
+[34]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
+(Font)              scaled to size 10.0pt on input line 1092.
+Package microtype Info: Character `013' is missing
+(microtype)             in font `OT1/ntxtlf/m/sc/10'.
+(microtype)             Ignoring protrusion settings for this character.
+LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 1092.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
+File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+[35{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}]
+Overfull \hbox (3.44734pt too wide) in paragraph at lines 1096--1096
+\OT1/ntxtlf/m/it/10 (-20) dia Mag-a-zine \OT1/ntxtlf/m/n/10 (-20) (2022). Ac-cessed: 2025-08-23. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / analyticsindiamag .
+ []
+
+)
+
+[36]
+\openout2 = `ch02-llmops-fundamentals.aux'.
+
+ (./ch02-llmops-fundamentals.tex
+Chapter 2.
+Package biblatex Info: Reference segment=4 on input line 1.
+Package biblatex Info: Setting label 'refsegment:04' on input line 1.
+Package biblatex Info: Reference segment=5 on input line 3.
+Package biblatex Info: Setting label 'refsegment:05' on input line 3.
+
+LaTeX Warning: Reference `ch:infra' on page 37 undefined on input line 17.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 37 undefined on input line 17.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 37 undefined on input line 17.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 37 undefined on input line 17.
+
+
+
+[37
+
+
+
+
+
+]
+
+[38]
+
+[39]
+
+[40]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.3pt on input line 71.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 5.5pt on input line 71.
+
+
+LaTeX Warning: Reference `eq:kv-cache' on page 41 undefined on input line 87.
+
+
+
+[41]
+
+[42]
+
+[43]
+
+LaTeX Warning: Reference `eq:param-mem' on page 44 undefined on input line 161.
+
+
+LaTeX Warning: Reference `eq:kv-cache' on page 44 undefined on input line 161.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 44 undefined on input line 161.
+
+
+LaTeX Warning: Reference `eq:param-mem' on page 44 undefined on input line 161.
+
+
+LaTeX Warning: Reference `eq:kv-cache' on page 44 undefined on input line 161.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 44 undefined on input line 161.
+
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+
+LaTeX Warning: Reference `eq:attn-complexity' on page 44 undefined on input line 190.
+
+Package pgfplots info on input line 209: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+
+LaTeX Warning: Reference `eq:kv-cache' on page 44 undefined on input line 252.
+
+
+Underfull \hbox (badness 1253) in paragraph at lines 265--266
+[]\OT1/ntxtlf/b/n/10 (+20) A100-40GB: \OT1/ntxtlf/m/n/10 (+20) 7B fits with mod-er-ate $\OML/ntxmi/m/it/10 B[]T$ \OT1/ntxtlf/m/n/10 (+20) (e.g., $\OML/ntxmi/m/it/10 B[]\OT1/minntx/m/n/10 8\OML/ntxmi/m/it/10 ; T[]\OT1/minntx/m/n/10 2048$ $\LMS/ntxsy/m/n/10 )$
+ []
+
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 10.0pt on input line 272.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 7.3pt on input line 272.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 5.5pt on input line 272.
+
+LaTeX Warning: Reference `eq:kv-cache' on page 44 undefined on input line 274.
+
+
+
+[44]
+
+[45]
+
+[46]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 8.5pt on input line 305.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 6.20496pt on input line 305.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 4.67502pt on input line 305.
+
+LaTeX Warning: Reference `eq:throughput' on page 47 undefined on input line 307.
+
+
+LaTeX Warning: Reference `eq:throughput' on page 47 undefined on input line 307.
+
+
+
+[47]
+
+[48]
+
+[49]
+
+[50]
+
+[51]
+
+[52]
+
+[53]
+
+[54]
+
+LaTeX Warning: Reference `eq:kv-cache' on page 55 undefined on input line 447.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 55 undefined on input line 447.
+
+
+LaTeX Warning: Reference `eq:flops-layer' on page 55 undefined on input line 447.
+
+
+
+[55]
+
+LaTeX Warning: Reference `eq:flops-layer' on page 56 undefined on input line 482.
+
+
+
+[56]
+
+[57]
+
+LaTeX Warning: Reference `eq:kv-cache' on page 58 undefined on input line 539.
+
+
+LaTeX Warning: Reference `eq:kv-cache' on page 58 undefined on input line 551.
+
+
+
+[58]
+
+LaTeX Warning: Reference `eq:param-mem' on page 59 undefined on input line 585.
+
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.20496pt on input line 591.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 4.67502pt on input line 591.
+
+
+[59]
+
+[60]
+
+[61]
+
+[62]
+
+[63]
+
+LaTeX Warning: Reference `ch:infra' on page 64 undefined on input line 758.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 64 undefined on input line 758.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 64 undefined on input line 758.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 64 undefined on input line 758.
+
+
+
+[64])
+
+[65]
+\openout2 = `ch03-infra-env.aux'.
+
+ (./ch03-infra-env.tex
+
+[66
+
+
+
+
+
+]
+Chapter 3.
+Package biblatex Info: Reference segment=6 on input line 1.
+Package biblatex Info: Setting label 'refsegment:06' on input line 1.
+Package biblatex Info: Reference segment=7 on input line 3.
+Package biblatex Info: Setting label 'refsegment:07' on input line 3.
+
+
+[67]
+
+[68]
+
+LaTeX Warning: Reference `ch:cicd' on page 69 undefined on input line 67.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 69 undefined on input line 67.
+
+
+LaTeX Warning: Reference `sec:infra-hardware-bench' on page 69 undefined on input line 76.
+
+
+
+[69]
+Overfull \hbox (17.2671pt too wide) in paragraph at lines 87--97
+ [][] 
+ []
+
+
+
+[70]
+
+LaTeX Warning: Reference `eq:costptok' on page 71 undefined on input line 121.
+
+
+
+[71]
+
+LaTeX Warning: Reference `ch:scaling' on page 72 undefined on input line 131.
+
+
+
+[72]
+
+[73]
+
+[74]
+
+LaTeX Warning: Reference `tab:costcompare' on page 75 undefined on input line 183.
+
+
+LaTeX Warning: Reference `eq:costptok' on page 75 undefined on input line 185.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 75 undefined on input line 207.
+
+
+
+[75]
+
+[76]
+Overfull \hbox (3.98167pt too wide) in paragraph at lines 273--278
+[]\OT1/ntxtlf/b/n/10 (-20) Terraform (HashiCorp). \OT1/ntxtlf/m/n/10 (-20) Declar-a-tive, cloud-agnostic IaC tool us-ing HCL (HashiCorp
+ []
+
+
+
+[77]
+
+LaTeX Warning: Reference `tab:iaccompare' on page 78 undefined on input line 296.
+
+
+Overfull \hbox (92.10152pt too wide) in paragraph at lines 302--312
+ [][] 
+ []
+
+
+
+[78]
+
+[79]
+
+[80]
+
+LaTeX Warning: Reference `ch:cicd' on page 81 undefined on input line 419.
+
+
+
+[81]
+
+[82]
+
+[83]
+
+[84]
+
+[85]
+
+[86]
+Underfull \hbox (badness 1092) in paragraph at lines 541--541
+\OT1/ntxtlf/m/n/8.5 (+20) tion; ef-fi-cient KV cache reuse;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--545
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Maximum per-for-mance on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--545
+\OT1/ntxtlf/m/n/8.5 (+20) enterprise-grade multi-model
+ []
+
+
+Overfull \hbox (59.07527pt too wide) in paragraph at lines 531--557
+ [][] 
+ []
+
+
+
+[87]
+
+[88]
+
+[89]
+
+LaTeX Warning: Reference `ch:cicd' on page 90 undefined on input line 697.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 90 undefined on input line 697.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 90 undefined on input line 697.
+
+
+
+[90]
+Overfull \hbox (5.16875pt too wide) in paragraph at lines 794--795
+ [][] 
+ []
+
+
+
+[91]
+
+[92]
+Overfull \hbox (181.70961pt too wide) in paragraph at lines 912--913
+ [][] 
+ []
+
+
+
+[93]
+
+[94]
+
+[95]
+
+[96]
+
+[97]
+
+[98]
+
+[99]
+
+[100]
+
+[101])
+
+[102]
+
+[103
+
+
+
+
+]
+
+[104]
+\openout2 = `author/part2-delivery.aux'.
+
+ (./author/part2-delivery.tex
+
+LaTeX Warning: Reference `ch:cicd' on page 105 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:monitoring' on page 105 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:scaling' on page 105 undefined on input line 5.
+
+)
+
+[105
+
+]
+\openout2 = `ch04-cicd.aux'.
+
+ (./ch04-cicd.tex
+
+[106
+
+
+
+
+
+]
+Chapter 4.
+Package biblatex Info: Reference segment=8 on input line 1.
+Package biblatex Info: Setting label 'refsegment:08' on input line 1.
+Package biblatex Info: Reference segment=9 on input line 3.
+Package biblatex Info: Setting label 'refsegment:09' on input line 3.
+
+
+[107]
+
+LaTeX Warning: Reference `ch:infra' on page 108 undefined on input line 24.
+
+
+LaTeX Warning: Reference `ch:testing' on page 108 undefined on input line 36.
+
+
+LaTeX Warning: Reference `ch:testing' on page 108 undefined on input line 44.
+
+
+
+[108]
+
+[109]
+
+LaTeX Warning: Reference `ch:testing' on page 110 undefined on input line 65.
+
+
+
+[110]
+
+[111]
+
+LaTeX Warning: Reference `ch:testing' on page 112 undefined on input line 82.
+
+
+
+[112]
+
+LaTeX Warning: Reference `tab:eval_stages' on page 113 undefined on input line 96.
+
+
+Underfull \hbox (badness 2326) in paragraph at lines 130--130
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Nightly/Batch (cost-
+ []
+
+
+LaTeX Warning: Reference `fig:eval_stages_pipeline' on page 113 undefined on input line 133.
+
+
+Overfull \hbox (316.43091pt too wide) in paragraph at lines 197--198
+ [][] 
+ []
+
+
+
+[113]
+
+[114]
+
+[115]
+
+[116]
+
+[117]
+
+[118]
+
+[119]
+
+[120]
+
+[121]
+
+[122]
+
+[123]
+
+[124]
+
+[125]
+
+[126])
+
+[127]
+\openout2 = `ch05-observability.aux'.
+
+ (./ch05-observability.tex
+
+[128
+
+
+
+
+
+]
+Chapter 5.
+Package biblatex Info: Reference segment=10 on input line 1.
+Package biblatex Info: Setting label 'refsegment:010' on input line 1.
+Package biblatex Info: Reference segment=11 on input line 3.
+Package biblatex Info: Setting label 'refsegment:011' on input line 3.
+
+
+[129]
+
+[130]
+Overfull \hbox (12.25851pt too wide) in paragraph at lines 78--80
+ [][] 
+ []
+
+
+
+[131]
+
+[132]
+
+[133]
+
+[134]
+
+LaTeX Warning: Citation 'jaeger_tracing' on page 135 undefined on input line 175.
+
+
+Overfull \hbox (7.07446pt too wide) in paragraph at lines 178--180
+\OT1/lmtt/m/n/10 retrieval[]metadata \OT1/ntxtlf/m/n/10 (-20) (doc IDs, in-dex ver-sion, top-$k$, re-ranker scores); \OT1/lmtt/m/n/10 token[]counts
+ []
+
+
+Overfull \hbox (38.40677pt too wide) in paragraph at lines 178--180
+\OT1/ntxtlf/m/n/10 (-20) tax-on-omy (e.g., \OT1/lmtt/m/n/10 provider[]timeout\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 rate[]limit\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 tool[]schema[]mismatch\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 parser[]failure\OT1/ntxtlf/m/n/10 (-20) )
+ []
+
+
+
+[135]
+
+LaTeX Warning: Citation 'jaeger_tracing' on page 136 undefined on input line 220.
+
+
+
+[136]
+LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <8.5> not available
+(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 262.
+
+Overfull \hbox (583.99873pt too wide) in paragraph at lines 305--309
+ [][] 
+ []
+
+
+
+[137]
+
+LaTeX Warning: Reference `ch:rag' on page 138 undefined on input line 334.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 138 undefined on input line 334.
+
+
+
+[138]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 350.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 350.
+
+
+LaTeX Warning: Reference `ch:rag' on page 139 undefined on input line 354.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 139 undefined on input line 354.
+
+
+
+[139{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+LaTeX Warning: Reference `ch:cicd' on page 140 undefined on input line 379.
+
+
+LaTeX Warning: Reference `ch:testing' on page 140 undefined on input line 379.
+
+
+
+[140]
+Overfull \hbox (37.4113pt too wide) in paragraph at lines 411--412
+[]\OT1/ntxtlf/b/n/10 (-20) Cohort and route lenses. \OT1/ntxtlf/m/n/10 (-20) Pro-vide con-sis-tent la-bels|\OT1/lmtt/m/n/10 model[]version\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 retriever[]version\OT1/ntxtlf/m/n/10 (-20) ,
+ []
+
+
+
+[141]
+
+[142]
+
+LaTeX Warning: Reference `ch:cicd' on page 143 undefined on input line 452.
+
+
+LaTeX Warning: Reference `ch:testing' on page 143 undefined on input line 452.
+
+
+LaTeX Warning: Reference `ch:cicd' on page 143 undefined on input line 452.
+
+
+LaTeX Warning: Reference `ch:testing' on page 143 undefined on input line 452.
+
+
+
+[143]
+
+LaTeX Warning: Reference `ch:cicd' on page 144 undefined on input line 471.
+
+
+LaTeX Warning: Reference `ch:testing' on page 144 undefined on input line 471.
+
+
+
+[144]
+
+LaTeX Warning: Reference `ch:cicd' on page 145 undefined on input line 497.
+
+
+LaTeX Warning: Reference `ch:testing' on page 145 undefined on input line 497.
+
+
+
+[145]
+
+LaTeX Warning: Reference `ch:cicd' on page 146 undefined on input line 523.
+
+
+LaTeX Warning: Reference `ch:testing' on page 146 undefined on input line 523.
+
+
+
+[146]
+
+[147]
+Overfull \hbox (10.38861pt too wide) in paragraph at lines 591--591
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
+
+[148])
+
+[149]
+\openout2 = `ch06-scaling.aux'.
+
+ (./ch06-scaling.tex
+
+[150
+
+
+
+
+
+]
+Chapter 6.
+Package biblatex Info: Reference segment=12 on input line 1.
+Package biblatex Info: Setting label 'refsegment:012' on input line 1.
+Package biblatex Info: Reference segment=13 on input line 3.
+Package biblatex Info: Setting label 'refsegment:013' on input line 3.
+
+
+[151]
+
+[152]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
+(Font)              scaled to size 10.0pt on input line 46.
+
+
+[153]
+
+LaTeX Warning: Reference `fig:scaling-dimensions' on page 154 undefined on input line 67.
+
+
+LaTeX Warning: Reference `tab:scaling-matrix' on page 154 undefined on input line 67.
+
+
+
+[154]
+
+[155]
+
+[156]
+
+[157]
+Underfull \hbox (badness 1163) in paragraph at lines 158--159
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Lowest per-instance la-tency; well-
+ []
+
+
+Overfull \hbox (59.17903pt too wide) in paragraph at lines 226--227
+ [][] 
+ []
+
+
+
+[158]
+
+[159]
+
+[160]
+
+[161]
+
+[162]
+
+[163]
+
+[164]
+
+[165]
+
+[166]
+
+[167]
+
+[168]
+
+[169]
+
+[170]
+
+./ch06-scaling.tex:574: LaTeX Error: Not allowed in LR mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.574 \end{axis}
+                
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./ch06-scaling.tex:574: LaTeX Error: Not allowed in LR mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.574 \end{axis}
+                
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+
+[171]
+
+[172]
+
+[173]
+
+[174]
+
+[175]
+
+LaTeX Warning: Reference `ch:performance' on page 176 undefined on input line 734.
+
+
+
+[176]
+
+[177]
+Overfull \hbox (47.1687pt too wide) in paragraph at lines 838--839
+ [][] 
+ []
+
+
+
+[178]
+
+[179]
+
+[180]
+
+[181]
+
+[182]
+Overfull \hbox (101.8156pt too wide) in paragraph at lines 999--1000
+ [][] 
+ []
+
+
+
+[183]
+
+LaTeX Warning: Reference `ch:performance' on page 184 undefined on input line 1026.
+
+
+
+[184]
+Overfull \hbox (3.36198pt too wide) in paragraph at lines 1032--1032
+[]\OT1/ntxtlf/m/it/10 (-20) Scaling In-tel-li-gence: Stan-ford HAI\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / scalingintelligence . stanford .
+ []
+
+
+
+[185]
+
+LaTeX Warning: Reference `ch:performance' on page 186 undefined on input line 1034.
+
+)
+
+[186]
+
+[187
+
+
+
+
+]
+
+[188]
+\openout2 = `author/part3-optimization.aux'.
+
+ (./author/part3-optimization.tex
+
+LaTeX Warning: Reference `ch:performance' on page 189 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:rag' on page 189 undefined on input line 5.
+
+
+LaTeX Warning: Reference `ch:multiagent' on page 189 undefined on input line 5.
+
+)
+
+[189
+
+]
+\openout2 = `ch07-performance.aux'.
+
+ (./ch07-performance.tex
+
+[190
+
+
+
+
+
+]
+Chapter 7.
+Package biblatex Info: Reference segment=14 on input line 1.
+Package biblatex Info: Setting label 'refsegment:014' on input line 1.
+Package biblatex Info: Reference segment=15 on input line 3.
+Package biblatex Info: Setting label 'refsegment:015' on input line 3.
+
+
+[191]
+Package pgfplots info on input line 71: Using 'lua backend=false' for axis: x coord trafo unsupported.
+
+
+[192]
+
+[193]
+
+[194]
+Overfull \hbox (13.91396pt too wide) in paragraph at lines 148--148
+[]|\OT1/ntxtlf/b/n/8.5 (-20) Hardware
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
+\OT1/ntxtlf/b/n/8.5 (+20) Com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
+\OT1/ntxtlf/b/n/8.5 (+20) pat-i-
+ []
+
+
+Overfull \hbox (149.68228pt too wide) in paragraph at lines 148--148
+|[][]
+ []
+
+
+Overfull \hbox (156.62679pt too wide) in paragraph at lines 148--148
+|[][]
+ []
+
+
+Overfull \hbox (177.26477pt too wide) in paragraph at lines 148--148
+|[][]
+ []
+
+
+Overfull \hbox (164.84637pt too wide) in paragraph at lines 148--148
+|[][]
+ []
+
+
+
+[195]
+
+[196]
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Quantization
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Numeric pre-ci-sion of
+ []
+
+
+Underfull \hbox (badness 1248) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) weights (and some-times
+ []
+
+
+Overfull \hbox (195.77458pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) 20--50% com-monly
+ []
+
+
+Underfull \hbox (badness 3547) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) (higher with care-ful
+ []
+
+
+Overfull \hbox (92.26546pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Overfull \hbox (207.9465pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Underfull \hbox (badness 1810) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Low to mod-er-ate if
+ []
+
+
+Overfull \hbox (260.91855pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/b/n/8.5 (+20) Efficient Fine-Tuning
+ []
+
+
+Underfull \hbox (badness 1014) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Adds low-rank adapters;
+ []
+
+
+Underfull \hbox (badness 1112) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Training-time VRAM
+ []
+
+
+Underfull \hbox (badness 5288) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) (adapters add tiny
+ []
+
+
+Underfull \hbox (badness 1221) in paragraph at lines 248--248
+\OT1/ntxtlf/m/n/8.5 (+20) for many tasks with
+ []
+
+
+Overfull \hbox (249.10347pt too wide) in paragraph at lines 248--248
+|[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/ntxtlf/m/n/8.5 (+20
