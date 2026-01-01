@@ -22,7 +22,6 @@ In this chapter, we explore the principles, architecture, and practical techniqu
 We begin by explaining why LLM observability differs from traditional application monitoring, then introduce RAG-specific drift signals and instrumentation patterns for complex prompt chains and multi-agent workflows.
 We close with dashboards, automated quality checks, incident response playbooks, and an \ishtar{}-based reference stack that illustrates how to operationalize semantic quality, safety, and cost constraints.
 
-
 \section{Why Monitoring is Different for LLMs}
 \label{sec:why-monitoring-is-different-for-llms}
 Traditional application monitoring focuses on CPU, memory, request latency, and error rates. LLM applications require additional layers beyond these basics:
@@ -51,7 +50,6 @@ Third, non-determinism creates unique failure modes. Two requests with identical
 Pipeline telemetry must also reach \emph{across} service boundaries. Multi-agent and tool-augmented workflows require end-to-end tracing that preserves a single correlation ID from ingress through retrieval, planning, external API calls, and synthesis. This enables precise attribution (e.g., ``95\% of latency is in re-ranking,'' ``hallucinations correlate with missing evidence spans,'' ``safety escalations cluster in the translation agent''). Absent such tracing, organizations accumulate ``observability debt'': incidents are protracted, fixes are speculative, and improvements cannot be verified \cite{udasi2025last9}.
 
 Finally, LLM observability has a governance dimension. Logs often contain user text and retrieved content; monitoring must therefore integrate privacy controls (PII redaction, retention limits), safety auditing, and access boundaries by default. Runbooks should pair LLM-specific alerts (e.g., spike in ungrounded answers, KV-cache miss rate surge) with concrete mitigations (reduce retriever depth, cap context, roll back prompt versions, fail over to a constrained route). In short, ``keeping the lights on'' for LLM applications means measuring \emph{how} the answer was produced, \emph{what} it cost, and \emph{whether} it was acceptable---continuously and holistically---rather than merely whether an endpoint returned 200~OK.
-
 
 \begin{figure}[t]
 \centering
@@ -82,8 +80,6 @@ Finally, LLM observability has a governance dimension. Logs often contain user t
 model quality signals, and full pipeline tracing to explain regressions and prevent observability debt.}
 \label{fig:telemetry_layers}
 \end{figure}
-
-
 
 \section{RAG-Specific Metrics and Drift Monitoring}
 \label{sec:rag-specific-metrics-and-drift-monitoring}
@@ -158,10 +154,6 @@ Beyond live gates, replay evaluators on logged QA pairs to surface long-horizon 
 \noindent\textbf{Implementation note.}
 Integrate tracing (LangSmith \cite{langsmith_home}/Langfuse) with OpenTelemetry \cite{otel_spec} so retrieval spans, evaluator outputs, and groundedness scores co-live with infra metrics (Prometheus \cite{prometheus_instrumentation}/Grafana \cite{grafana_dashboards}), enabling a unified, drill-down workflow from a faithfulness alert to the exact retrieval and generation steps responsible. This "glass-box" approach turns RAG evaluation from an offline exercise into a first-class, real-time operational control.
 
-
-
-
-
 \section{Advanced Instrumentation and Logging for LLM Applications}
 \label{sec:advanced-instrumentation-and-logging-for-llm-applications}
 Instrumentation in LLMOps extends traditional logging. At minimum, logs must capture:
@@ -210,11 +202,6 @@ Treat the logging schema as a governed artifact. Maintain versioned schemas with
 \noindent\textbf{From signals to action.}
 Close the loop by wiring selected fields directly into alerting and automated guards. Examples include: throttling or switching to a safer model route when jailbreak signals trip; reducing context window or enabling passage de-duplication when token-cost surges are detected; or automatically rolling back a prompt version when golden-replay deltas exceed thresholds. By coupling structured logs, distributed traces, and evaluator outputs under a unified OpenTelemetry backbone, teams gain a principled path from raw signals to operational action.
 
-
-
-
-
-
 \section{Tracing Complex Prompt Flows and Multi-Agent Interactions}
 \label{sec:tracing-complex-prompt-flows-and-multi-agent-interactions}
 Tracing captures the \emph{execution waterfall} of an LLM application. Each span in a trace corresponds to a model call, retrieval step, or tool execution, and can be correlated back to the originating user query.
@@ -236,7 +223,6 @@ For multi-agent orchestration, tracing is critical: failures often occur in agen
 
 \subsubsection{End-to-end context propagation.}
 High-fidelity traces require stable correlation across boundaries. Every request should carry a \texttt{trace\_id} and \texttt{span\_id} from ingress (API gateway) through retrieval, planning, tool execution, and synthesis, with \emph{baggage} for tenant/user identifiers and privacy level. This guarantees that an incident surfaced in an API metric panel can be pivoted into the exact waterfall that explains the regression.
-
 
 \begin{figure}[t]
 \centering
@@ -324,8 +310,6 @@ readable in tracing UIs.}
 \label{fig:span_taxonomy}
 \end{figure}
 
-
-
 \subsubsection{Streaming-aware tracing.}
 Because decoding is streamed, record TTFT, token cadence (tokens/s series), and finalization time as span attributes or span events. Fine-grained events (e.g., “first citation emitted,” “tool decision chosen”) make it possible to link subjective user experience to specific inflection points in the waterfall.
 
@@ -381,9 +365,6 @@ Finally, treat traces as executable documentation. Runbooks should link symptom 
 \medskip
 % (Duplicate removed)
 
-
-
-
 \section{Real-Time Dashboards and Live Metrics}
 \label{sec:real-time-dashboards-and-live-metrics}
 High-value metrics for LLM observability include:
@@ -434,8 +415,6 @@ Two additional patterns improve operator effectiveness:
 \noindent\textbf{From detection to action.}
 Finally, treat real-time boards as \emph{operational control surfaces}, not just observatories. Panels should link to actionable playbooks (e.g., “TTFT P95 regression $\Rightarrow$ reduce context cap by 20\%, lower \texttt{topK}, enable constrained decoding; if unresolved, roll back prompt vN$\rightarrow$vN$-$1”). Embed on-call checklists and escalation buttons alongside the tiles to compress the loop from detection to mitigation. When combined with disciplined separation of concerns and trace-integrated drill-downs, such dashboards provide a reliable early-warning and response mechanism for LLM services at scale.
 
-
-
 \section{Automated Quality Checks and Feedback Loops}
 \label{sec:automated-quality-checks-and-feedback-loops}
 Observability is incomplete without continuous quality evaluation. Automated evaluators such as BLEU/ROUGE, cosine similarity, or LLM-as-a-judge can run asynchronously on sampled outputs. Integrating these signals into monitoring allows operators to detect regressions even when system metrics look normal.
@@ -479,9 +458,6 @@ Any metric can be gamed; rotate adversarial and stress tests to ensure genuine i
 Store evaluator prompts, versions, and seeds alongside results. Every dashboard point should be traceable to raw judgments, linked traces, and the exact evaluator configuration used. This provenance is essential for audits and for attributing observed gains to specific interventions rather than incidental traffic mix changes.
 
 In combination, these practices transform passive scoring into an \emph{engine of continuous improvement}: evaluations trigger targeted edits; edits are validated against controlled gates; and results feed back into both prompts and training data—establishing a virtuous cycle where quality trends are measurable, attributable, and, crucially, durable in production.
-
-
-
 
 \section{Alerts, Incident Response, and Resilience}
 \label{sec:alerts-incident-response-and-resilience}
@@ -540,15 +516,11 @@ Run \emph{game days} that simulate prompt injection, retriever outages, provider
 \medskip
 In sum, resilient LLM operations hinge on SLO-aligned alerts, trace-linked diagnosis, pre-approved mitigations, and engineered degradation paths. These practices compress the loop from detection to recovery and meaningfully limit the user-visible impact of failures—particularly the fast-moving safety and prompt-manipulation incidents emblematic of modern LLM applications.
 
-
-
-
 \section{Historical Analysis and Continuous Improvement}
 \label{sec:historical-analysis-and-continuous-improvement}
 Logs and traces serve as a longitudinal dataset for improvement. By clustering traces of failed outputs, teams can identify systematic weaknesses (e.g., persistent hallucinations on financial queries). Periodic analysis of token cost versus value delivered enables strategic model routing: cheap models for trivial queries, stronger models for complex tasks (cf.\ Smoothie routing).
 
 Continuous improvement depends on tying observability back into development: integrating regression traces into CI pipelines (Chapter~\ref{ch:cicd}), enriching prompt libraries, and adjusting retrieval strategies based on drift analysis. This creates a closed loop where observability data feeds into CI/CD gates and evaluation frameworks (Chapter~\ref{ch:testing}), ensuring that production insights translate into systematic improvements.
-
 
 % \section{Case Study: Enhanced Ishtar Monitoring Stack}
 \label{sec:case-study-enhanced-ishtar-monitoring-stack}
@@ -567,8 +539,6 @@ Continuous improvement depends on tying observability back into development: int
 % \end{figure}
 
 % Figure~\ref{fig:ishtar-observability} shows the enhanced stack: unified tracing (LangSmith + OTel), semantic logging (LangFuse \cite{langfuse_docs}), automated evaluators, and dashboards. This design provides both real-time monitoring and offline analysis, enabling fast incident response and long-term quality improvement.
-
-
 
 \section{Best Practices and Conclusion}
 \label{sec:best-practices-and-conclusion}
@@ -614,16 +584,6 @@ For teams bootstrapping LLM observability, the minimal viable backbone is: (1) s
 \noindent\textbf{Conclusion.}
 Observability for LLM systems is not a bolt-on---it is the operational manifestation of product quality. By making the evidence path observable, elevating quality to an SLO, engineering RAG metrics explicitly, and wiring dashboards and alerts to concrete, pre-authorized actions, teams reduce MTTR, control cost, and harden safety. Most importantly, they create a repeatable \emph{measure–explain–act} loop in which improvements are attributable and durable. This chapter has outlined the architectural patterns and operational playbooks needed to achieve that loop in practice, providing a foundation on which the rest of the book’s scaling, reliability, and governance strategies can confidently build.
 
-
-
-
-
-
-
-
-
-
-
 \printbibliography[
   heading=subbibliography,
   segment=\therefsegment,
@@ -631,5 +591,4 @@ Observability for LLM systems is not a bolt-on---it is the operational manifesta
 ]
 \section*{Chapter Summary}
 This chapter framed observability as a core LLMOps capability that spans both infrastructure reliability and \emph{semantic} quality. We explained why monitoring differs for LLM systems, introduced RAG-specific drift and attribution signals, and described instrumentation patterns for complex prompt flows and multi-agent interactions. We then connected these signals to dashboards, automated quality checks, and feedback loops, and we outlined alerting and incident response practices that translate telemetry into a coherent, continuously improving operational system.
-
 

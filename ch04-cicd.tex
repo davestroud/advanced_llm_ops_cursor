@@ -199,8 +199,6 @@ The staged evaluation approach creates a continuous loop that feeds production i
 \label{fig:eval_stages_pipeline}
 \end{figure}
 
-
-
 \section{Fine-Tuning-Aware Workflows}
 \label{sec:cicd-finetune}
 \subsubsection{Model and prompt promotion as first-class releases}
@@ -215,7 +213,6 @@ Another critical safeguard is the inclusion of \textbf{catastrophic forgetting c
 Prompt robustness evaluation extends beyond task prompts to system-level instructions and scaffolding prompts. System prompts often play an outsized role in shaping model behavior; testing multiple variants helps identify brittleness and improves resilience in production deployments. Relatedly, \textbf{general benchmark maintenance} ensures that fine-tuning does not inadvertently collapse performance on widely studied tasks such as summarization, QA, or reasoning—areas where end users may still expect strong performance even from a domain-specialized model.
 
 The overall workflow thus becomes a cycle of targeted adaptation balanced by systematic evaluation. Fine-tuning should not be treated as a one-off event but rather as an iterative process embedded within the CI/CD pipeline: data is curated, models are tuned with parameter-efficient methods when possible, evaluation suites are executed across multiple slices, and results are logged and compared against both domain and general baselines. This perspective reflects the growing consensus that fine-tuning is as much an operational discipline as it is a modeling technique, requiring careful instrumentation, governance, and continuous monitoring.
-
 
 \section{Deployment Strategies: Canary, Blue-Green, and Rollback}
 \label{sec:cicd-deploy-strategies}
@@ -271,7 +268,6 @@ Unlike conventional microservices, LLM behavior depends on a triad of artifacts�
 \medskip
 In summary, shadow, canary, blue–green, and automated rollback form a layered defense that localizes risk, supports statistically credible decisions, and preserves reversibility. Embedding LLM-specific observability and artifact versioning into these patterns turns progressive delivery into a practical safety system for generative applications \cite{rohan_llmops, mlflow_llm_eval, langsmith_eval, phoenix_rag, trulens}.
 
-
 \section{Observability and CI Tooling}
 \label{sec:cicd-observability-ci}
 \subsection{Supply-Chain Security, Provenance, and Trusted Releases}
@@ -319,8 +315,6 @@ Modern platforms support two complementary flows. First, \emph{manual curation}:
 
 \subsubsection{Integrating with CI/CD}
 A practical pattern is \emph{dataset replay as a first-class CI step}. Post--merge, the pipeline replays a fixed batch of recent high-signal traces (e.g., the last 24--72 hours of failing slices) against both the baseline and the candidate, producing paired metrics and significance tests that mirror offline evaluation (bootstrap for continuous rubrics; McNemar for binary safety flags). Nightly, a larger replay spans curated and mined datasets to estimate power on low-incidence harms. Promotion rules tie directly to slice-level SLOs (e.g., hallucination rate not worse; groundedness $+0.5$ with 95\% CI excluding zero).
-
-
 
 \section{Structured Prompt Testing}
 \label{sec:cicd-structured-prompt-testing}
@@ -371,7 +365,6 @@ Modern LLM applications often involve multi-step chains or agent graphs. A promp
 \medskip
 In sum, structured prompt testing elevates prompts from craft to engineering: versioned artifacts with unit and contract tests, evaluated by multi-metric suites and model judges, staged through canary rollouts, and hardened by safety and dependency checks. This approach makes prompt evolution auditable, reproducible, and safe at enterprise scale \cite{promptfoo, openaievals, lm_harness, zheng2023judge, owasp_llm}.
 
-
 Multi-agent systems require CI/CD extensions:
 
 \begin{itemize}
@@ -418,8 +411,6 @@ Multi-agent graphs risk \emph{runaway loops} (planner--retriever ping-pong), pro
 
 \medskip
 In summary, multi-agent CI/CD elevates testing and monitoring from \emph{calls} to \emph{paths}. By combining graph-aware tracing, contract validation, curated golden paths, modular rollouts, and strict performance/cost governance, teams can evolve individual agents without sacrificing global correctness, safety, or efficiency \cite{langsmith_eval, phoenix_rag, trulens, owasp_llm, mitre_atlas}.
-
-
 
 \printbibliography[
   heading=subbibliography,

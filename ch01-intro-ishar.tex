@@ -16,19 +16,12 @@
 \label{sec:intro}
 
 Large Language Models (LLMs) have rapidly evolved from research curiosities into production-grade tools that are transforming how we work. Once strictly experimental, these models now power applications ranging from document drafting and code generation to data analysis and creative content creation—effectively becoming critical infrastructure for knowledge work. This success owes much to the powerful Transformer architecture introduced in 2017 \cite{Vaswani2017attention}, which enabled unprecedented scaling of model capabilities.
-
 To give a sense of scale, OpenAI's ChatGPT reached one million users in just five days and 100 million users within two months of launch—the fastest-growing consumer application in history \cite{stylefactory, reuters}. By early 2025, 95\% of companies in the United States reported using generative AI in some form \cite{bain}, with daily queries to LLM-powered services numbering in the billions. This unprecedented adoption underscores that the central challenge is no longer merely building powerful models, but deploying and maintaining them effectively in production.
-
 What has changed is not simply the \emph{capability} of language models, but their \emph{position} in the software stack. LLMs increasingly function as a universal interface layer: they translate natural language intent into structured actions (queries, code, workflows), and they mediate access to organizational knowledge through retrieval and tool use. In this role, LLMs behave less like a single ``model artifact'' and more like an adaptive runtime component—one that interacts with external systems, evolves through prompt and policy updates, and must be governed like any other piece of critical infrastructure.
-
 This shift creates a new operational reality. In classical machine learning, production reliability often boils down to model versioning, data pipelines, and periodic retraining. In contrast, LLM-powered systems depend on a much larger surface area of evolving components: system prompts, few-shot examples, safety policies, decoding parameters, retrieval corpora, vector indices, and tool schemas \cite{liu2023promptSurvey, holtzman2020curious}. A change in any one of these layers can materially alter outputs—often in subtle ways not captured by standard unit tests. As a result, teams must treat LLM systems as \emph{composed systems} whose overall behavior emerges from the interaction of multiple components rather than from the base model alone.
-
 Moreover, the definition of ``quality'' for LLM applications is multi-dimensional. Traditional ML models can be evaluated against crisp labels or numeric metrics. LLM systems, however, must be assessed across criteria such as factual accuracy, groundedness, instruction adherence, safety, tone, and usefulness. These properties are highly context-dependent and can vary by user segment, domain, or even time of day. This complexity necessitates continuous evaluation frameworks (offline regression suites, LLM-as-judge rubrics, online telemetry) rather than one-time model validation \cite{edge2025llmops}.
-
 Finally, widespread deployment increases the stakes of failure. When an LLM is integrated into customer support, enterprise search, legal or compliance workflows, or newsroom operations, errors can propagate quickly: hallucinated claims may be mistaken for policy, incorrect citations can erode user trust, and prompt-injection vulnerabilities could expose sensitive data \cite{assemblyAI2023decoding}. The operational problem is therefore not only performance and cost, but also governance, security, and accountability. In practice, this means establishing careful release gates, observability pipelines, audit trails, and incident response playbooks tailored to LLM behavior.
-
 In short, the rapid adoption of LLMs marks a transition from treating ``models as features'' to treating ``models as platforms.'' The organizations that succeed with AI will not be those that merely plug in the most capable model, but those that develop the operational discipline to run LLM-powered systems reliably—controlling cost and latency, continuously measuring quality, defending against new threats, and iterating safely as models and knowledge sources evolve.
-
 The remainder of this chapter introduces the foundational principles, workflows, and terminology of LLMOps (Large Language Model Operations). We clarify not just the what of LLMOps, but also the why—why new approaches and tools are needed specifically for LLMs, and how they build on (or differ from) established MLOps practices. To make these concepts concrete, we will also introduce Ishtar AI as a running case study: a mission-critical LLM application for journalists in conflict zones, which will serve as a continuous reference throughout the book.
 
 \begin{figure}[t]
@@ -37,8 +30,6 @@ The remainder of this chapter introduces the foundational principles, workflows,
 \caption{The LLMOps continuous improvement lifecycle, showing how design, deployment, operation, and monitoring feed into iterative refinement.}
 \label{fig:ch01:lifecycle}
 \end{figure}
-
-
 
 \section{Operational Challenges}
 Taking these massive models from demo to production introduces a host of operational hurdles that go far beyond those of traditional software or even classical machine learning systems. Smaller ML models can often be deployed on a single server with straightforward CI/CD and basic monitoring practices. In contrast, LLM deployments demand specialized infrastructure, rigorous orchestration, and new approaches to observability. The challenges span multiple dimensions:
@@ -103,7 +94,6 @@ Finally, LLM systems change frequently: prompts evolve, models are upgraded, ret
 
 Together, these dimensions explain why LLM deployments require a distinct operational mindset. LLMOps is the set of practices that makes these systems reliable in the real world: controlling cost and latency, continuously measuring quality, defending against new threats, and enabling rapid iteration without sacrificing safety or trust.
 
-
 \subsection{Cost, Latency, and Throughput at Scale}
 LLM inference is fundamentally more expensive than most classical ML workloads because each request consumes substantial compute and memory bandwidth. In production, the primary constraint is rarely ``can we run the model?'' but rather ``can we run it \emph{reliably}, \emph{quickly}, and \emph{affordably} under peak load?'' This requires explicit capacity planning and performance engineering:
 \begin{itemize}
@@ -152,7 +142,6 @@ LLM applications introduce novel attack surfaces. Prompt injection, data exfiltr
   \item \textbf{Policy compliance:} organizations must enforce guardrails consistently across prompts, tools, and retrieval sources to satisfy legal, regulatory, and brand-safety constraints.
 \end{itemize}
 
-
 \subsection{Why This Motivates LLMOps}
 These challenges converge into a single conclusion: LLM deployments are not merely ``models in production,'' but \emph{living socio-technical systems} operating under hard economic constraints, shifting data and knowledge, and increasingly adversarial conditions. In practice, quality and reliability emerge from the interaction of many moving parts: the base model, prompts and policies, retrieval corpora, tool schemas, orchestration logic, and downstream user workflows. A small change in any one layer can create disproportionate effects elsewhere, producing regressions that are difficult to detect with traditional unit tests or offline ML metrics.
 
@@ -198,10 +187,7 @@ Operationally, this translates into a set of recurring requirements that are eas
     \item \textbf{Measure what matters:} monitor both systems metrics (latency, throughput, GPU utilization, cost) and \emph{semantic} metrics (groundedness, citation quality, refusal correctness, safety compliance, user feedback) continuously in production.
 \end{itemize}
 
-
 The implication is straightforward: building a capable LLM or integrating a powerful API is only the beginning. The harder problem is operating the resulting system responsibly over time---as models are upgraded, prompts evolve, corpora drift, tools change, and usage grows. This emerging discipline---\emph{Large Language Model Operations (LLMOps)}---provides the methods, tooling, and governance to ship LLM-powered products that remain reliable, secure, and cost-effective in the real world. It is the core focus of this book, and the lens through which we present the \ishtar{} case study.
-
-
 
 \section*{Roadmap and Case Study Integration}
 To ground these abstract principles in a real-world context, we will return throughout this book to the \ishtar{} case study: a large-scale, production-grade deployment of LLMs in the high-stakes environment of news and journalism. Each chapter uses \ishtar{} to illustrate practical applications of the concepts introduced---from scaling and quantization to routing, caching, observability, and cost modeling. By following \ishtar{} across the book, readers gain both a theoretical framework for LLMOps and a concrete narrative of how layered optimizations transform an LLM system from prototype into a resilient, cost-efficient production service.
@@ -232,10 +218,7 @@ Throughout the chapters, we will use the \ishtar{} AI case study as a running ex
 \subsection*{Historical Context}
 The term \textbf{MLOps} (Machine Learning Operations) rose to prominence in the late 2010s as organizations sought to apply DevOps principles to the machine learning lifecycle. By introducing practices such as dataset and model versioning, automated model testing, CI/CD pipelines for ML, and model performance monitoring, MLOps aimed to reliably move ML models from the lab into production. Early frameworks such as TensorFlow Extended, MLflow, and Kubeflow exemplified this movement, addressing the reality that only a small fraction of ML projects reached production \cite{mdpi}.
 
-By the early 2020s, however, the rise of \textbf{foundation models}—especially LLMs such as OpenAI’s GPT-3 (2020), Anthropic’s Claude, and Meta’s LLaMA (2023)—brought an explosion in model scale and complexity that strained the limits of standard MLOps. Model parameter counts increased by orders of magnitude: GPT-2’s 1.5B parameters to GPT-3’s 175B represented a 100$\times$ increase \cite{fiddler}. Training GPT-3 was estimated to consume 45 terabytes of text data and cost roughly \$4.6 million in compute \cite{lambda}, while inference became so resource-intensive that one analyst likened a single AI query to “using a whole CPU-core hour in a data center” \cite{fabricatedknowledge}. By 2023--2024, even larger models appeared: Google’s PaLM (540B parameters) and GPT-4, rumored to employ a mixture-of-experts architecture totaling $\sim$1.8 trillion parameters \cite{explodingtopics}. A model of that size would require $\sim$4 terabytes of GPU memory just to load its weights \cite{fabricatedknowledge}. Clearly, traditional ML pipelines were not designed for this scale.
-
-
-
+By the early 2020s, however, the rise of \textbf{foundation models}—especially LLMs such as OpenAI's GPT-3 (2020), Anthropic's Claude, and Meta's LLaMA (2023)—brought an explosion in model scale and complexity that strained the limits of standard MLOps. Model parameter counts increased by orders of magnitude: GPT-2's 1.5B parameters to GPT-3's 175B represented a 100$\times$ increase \cite{fiddler}. Training GPT-3 was estimated to consume 45 terabytes of text data and cost roughly \$4.6 million in compute \cite{lambda}, while inference became so resource-intensive that one analyst likened a single AI query to "using a whole CPU-core hour in a data center" \cite{fabricatedknowledge}. By 2023--2024, even larger models appeared: Google's PaLM (540B parameters) and GPT-4, rumored to employ a mixture-of-experts architecture totaling $\sim$1.8 trillion parameters \cite{explodingtopics}. A model of that size would require $\sim$4 terabytes of GPU memory just to load its weights \cite{fabricatedknowledge}. Clearly, traditional ML pipelines were not designed for this scale.
 
 % --- Requirements in your preamble (once) ---
 % \usepackage{tikz}
@@ -341,9 +324,6 @@ By the early 2020s, however, the rise of \textbf{foundation models}—especially
 \label{fig:mlops-llmops-timeline}
 \end{figure}
 
-
-
-
 The ML community therefore recognized the need for a refined operational discipline tailored to LLMs. The term \textbf{LLMOps} emerged in late 2022 and 2023 as generative AI captured global attention \cite{opendatascience}. Early pioneers had to solve problems such as distributing models across GPUs for inference, implementing prompt management systems, and integrating retrieval-augmented generation (RAG). Companies with large-scale LLM deployments began documenting best practices, and academic work started to formalize the distinctions between MLOps and LLMOps \cite{mdpi}. In short, LLMOps evolved because standard MLOps practices proved insufficient: the unprecedented scale, variability, and risks of LLMs required rethinking operations from the ground up.
 
 Today, LLMOps is emerging as a vital sub-discipline of MLOps, focused on lifecycle management of LLM-driven systems. Just as DevOps and MLOps were born from the practical need to bridge development and operations, LLMOps is being driven by the real-world challenges of deploying and maintaining LLMs at scale.
@@ -382,9 +362,6 @@ The operational impact of such failures can be immediate and material. Google’
 
 \subsection{Summary}\label{sec:why-llmops-summary}
 LLM-driven systems differ from traditional ML systems in four key dimensions: scale, complexity, variability, and risk. These differences necessitate specialized practices, including prompt and policy versioning, retrieval augmentation and index governance, multi-step workflow orchestration, hallucination and bias testing, and fine-grained monitoring that spans both system and semantic metrics. In short, applying standard MLOps alone is insufficient; LLMOps extends the discipline to meet the unique operational demands of large language models. The following chapters develop these themes in detail, with the \ishtar{} AI case study serving as a continuous reference implementation.
-
-
-
 
 \section{Structure of the Book}
 \label{sec:book-structure}
@@ -514,8 +491,6 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 \caption{LLMOps lifecycle mapped to the book's chapters. The flow progresses from foundations (Part I) through delivery operations (Part II: CI/CD, monitoring, scaling), optimization (Part III: performance, RAG, multi-agent), and governance (Part IV: testing, ethics, case study). A dashed feedback loop connects the case study back to foundational practices.}
 \label{fig:llmops-lifecycle}
 \end{figure}
-
-
 
 % --- Requirements in your preamble (once) ---
 % \usepackage{tikz}
@@ -892,7 +867,6 @@ These components---prompt management, retrieval pipelines, deployment, evaluatio
 
 In \ishtar{}, these pillars are integrated: prompt updates are versioned, retrieval ensures grounded outputs, serving delivers answers under load, evaluation gates releases, and monitoring ensures safety. Together, they enable reliable, scalable, and responsible LLM operations.
 
-
 \section{LLMOps in Practice: Successes, Failures, and Lessons Learned}
 \label{sec:llmops-practice}
 
@@ -993,9 +967,6 @@ Scaled from hundreds to tens of thousands of generations per second while mainta
 \end{threeparttable}
 \end{table}
 
-
-
-
 \subsection*{Lessons Learned}
 Across these cases, several themes emerge:  
 
@@ -1010,8 +981,6 @@ Across these cases, several themes emerge:
 In summary, early ventures into large-scale LLM deployment reinforced that powerful models alone are insufficient. Without responsible and innovative operations, they can falter. Conversely, with strong LLMOps practices, even modest models can excel.  
 
 Throughout this book, these episodes serve as reference points. We will often ask: \emph{How would the techniques discussed here have avoided failure X, or enabled success Y?} By studying both successes and failures, practitioners can better prepare to navigate the challenges of their own LLM projects.
-
-
 
 \section{Preview of Subsequent Chapters}
 \label{sec:preview}
@@ -1089,9 +1058,6 @@ This introductory chapter has sketched the landscape of LLMOps and introduced \i
 \caption{What to watch in LLMOps (quick reference).}
 \label{fig:llmops-quick-checklist}
 \end{figure}
-
-
-
 
 \subsection*{Closing Note}
 In conclusion, the emergence of LLMOps marks a pivotal moment in AI engineering. Training ever-larger language models yields impressive capabilities, but those capabilities mean little if we cannot harness them reliably in production environments. LLMOps is about building the ``power grid'' for AI---the infrastructure, safeguards, and practices that make large-scale language models usable, safe, and impactful.  

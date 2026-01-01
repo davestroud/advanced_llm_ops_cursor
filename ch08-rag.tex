@@ -26,7 +26,6 @@ We begin by motivating RAG in the context of LLMOps, then unpack the core compon
 We cover retriever strategies (dense, sparse, and hybrid), context construction, reranking and filtering, chunking, vector index choices, and query processing patterns (including multi-hop and agentic RAG).
 We then address scaling and performance considerations, evaluation of end-to-end RAG quality, and security and compliance, before concluding with an \ishtar{} case study and an operational best-practices checklist.
 
-
 \section{Why RAG is Essential for LLMOps}
 \label{sec:rag-why-rag-is-essential-for-llmops}
 Without retrieval, LLMs rely solely on internal parameters. This can result in:
@@ -51,7 +50,6 @@ Another limitation of base LLMs is their shallow coverage of niche domains and i
 
 \subsubsection*{Summary}
 In summary, RAG bridges the gap between an LLM’s fixed training knowledge and the vast, evolving world of external information. It is a critical capability for LLMOps in production systems, enabling accurate, real-time, and domain-aware intelligence \cite{Lewis2020RAG,Guu2020REALM,Borgeaud2022RETRO}.
-
 
 \section{Core Components of a RAG System}
 \label{sec:rag-core-components-of-a-rag-system}
@@ -158,10 +156,6 @@ In \ishtar{}, RAG reduced hallucinations and ensured real-time updates were refl
 
 A well-implemented RAG loop---ingestion, embeddings, vector storage, retrieval, augmented prompting, and generation---provides substantial gains in factual accuracy, reliability, and user trust \cite{Borgeaud2022RETRO}.
 
-
-
-
-
 \section{Architectural Patterns for RAG}
 \label{sec:rag-architectural-patterns-for-rag}
 There is more than one way to design a RAG system. Depending on the complexity of queries and the reliability required, architects have developed different patterns of retrieval and generation \cite{Lewis2020RAG,Pinecone2023RAG}. Below, we outline common approaches.
@@ -262,9 +256,6 @@ Action: AnswerFinal(“\ldots”)
 
 Agent-enhanced RAG is an emerging pattern that treats retrieval as one of many tools available to the LLM, enabling more adaptive, agentic information gathering and reasoning.
 
-
-
-
 \section{Designing the Ingestion Pipeline}
 \label{sec:rag-designing-the-ingestion-pipeline}
 A robust ingestion pipeline is the foundation of an effective RAG system—“garbage in, garbage out” applies strongly here \cite{Pryon2023}. To ensure the LLM always has the latest, relevant, and clean data, the ingestion process must be carefully designed.  
@@ -351,7 +342,6 @@ Building ingestion pipelines requires orchestrating crawlers, file processors, N
 \subsubsection*{Summary}
 In summary, a good ingestion pipeline keeps the vector store fresh, clean, and relevant. Industry experience suggests that 80\% of AI work is in data preparation—RAG is no exception. The quality and timeliness of what you ingest directly determine the factuality and reliability of the model’s outputs \cite{Pryon2023}. For RAG to shine, the ingestion pipeline must ensure the right knowledge is available, enriched with metadata, and continuously updated for retrieval.
 
-
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[node distance=1.8cm, auto,
@@ -378,8 +368,6 @@ In summary, a good ingestion pipeline keeps the vector store fresh, clean, and r
 \caption{Ingestion pipeline for RAG: data flows from raw sources through preprocessing, chunking, deduplication, and metadata enrichment before being stored as embeddings in a vector database.}
 \label{fig:ingestion-pipeline}
 \end{figure}
-
-
 
 \section{Vector Database Considerations}
 \label{sec:rag-vector-database-considerations}
@@ -511,11 +499,6 @@ Compose strengths: e.g., IVF narrows candidates; PQ compresses; HNSW refines. Us
 \end{threeparttable}
 \end{sidewaystable}
 
-
-
-
-
-
 \section{Retriever Strategies}
 \label{sec:rag-retriever-strategies}
 The retriever is the heart of RAG’s information-finding capability. Different retrieval strategies can significantly impact the relevance of context you provide to the LLM \cite{Lewis2020RAG,Karpukhin2020DPR,Thakur2021BEIR}. We outline three primary approaches: dense retrieval, sparse retrieval, and hybrid retrieval.
@@ -628,10 +611,6 @@ Dense retrieval excels at semantic understanding, sparse retrieval ensures exact
 \end{threeparttable}
 \end{table}
 
-
-
-
-
 \subsection{Modern Retrieval Patterns: Hybrid Fusion, Late Interaction, and HyDE}
 Beyond the canonical dense/sparse/hybrid taxonomy, modern RAG systems often combine multiple retrieval signals and re-ranking stages to improve top-$k$ quality.
 A common approach is \emph{hybrid search}, which fuses lexical ranking (e.g., BM25) with semantic similarity and then applies a reranker to unify the candidate set; many production vector databases document hybrid retrieval as a first-class pattern \cite{pinecone_hybrid_docs,weaviate_hybrid_docs}.
@@ -708,7 +687,6 @@ Including all relevant pieces is especially valuable because the model can combi
 \end{quote}
 From these two sources, the model may infer that the total need is \$7M. Too few or overly trimmed snippets, however, can force the model to guess or rely on incomplete context.
 
-
 \subsection{Multi-turn Conversations}
 
 If your system supports follow-up questions, you must decide how to handle conversation history along with new retrieval. Conversational RAG must handle these follow-ups carefully, since they often rely on prior exchanges for context.  
@@ -724,7 +702,6 @@ Options include:
 Some RAG systems re-run retrieval for each user turn, incorporating conversation memory. This can be complex, as it requires maintaining state across multiple turns. A simpler approach is to treat each turn independently, perhaps retaining only a short history memory.  
 
 The decision depends on whether follow-up queries need different context (requiring fresh retrieval) or simply elaborate on the same context (where a shorter history may suffice). Many systems, including \ishtar{}, re-retrieve per turn. This ensures that follow-up queries remain grounded while keeping prompts concise.
-
 
 \subsection{Formatting the Answer}
 Prompts can guide the style of the final output. For example:  
@@ -747,9 +724,6 @@ A further consideration is whether the model actually uses the provided informat
 ``Answer only with information from the context above. If you don’t find the answer in the context, do not use any outside knowledge.’’  
 \end{quote}
 While an LLM may still occasionally break this rule, it usually complies, particularly when the context clearly contains relevant information.
-
-
-
 
 \section{Evaluation of RAG Pipelines}\label{sec:rag-metrics}
 
@@ -806,9 +780,6 @@ As Neptune.ai notes, evaluation spans three dimensions—performance, cost, and 
 
 Regular evaluation is essential: without it, subtle errors, regressions, or inefficiencies may go unnoticed. Ultimately, user-centric evaluation—how well the system meets real-world needs—is the true measure of success.
 
-
-
-
 \section{Performance Optimization in RAG}
 \label{sec:rag-performance-optimization-in-rag}
 
@@ -844,7 +815,6 @@ The Reddit excerpt [51\textdagger L444--L452] nicely summarizes user-shared tips
 
 To sum up, performance tuning in RAG is about cutting unnecessary work (caching, filtering), parallelizing what can run concurrently, and using the right tools (fast indexes, batch processing, efficient hardware) to speed up each step. The end goal is to achieve a responsive system that still maintains the improved accuracy of RAG over a raw LLM. With careful optimization, RAG pipelines can often meet real-time needs – e.g., some production chatbots using RAG can respond in well under 1 second per question, which is quite acceptable. It requires engineering effort, but the reward is a scalable, efficient system.
 
-
 \section{Security and Compliance}
 \label{sec:rag-security-and-compliance}
 When handling sensitive data:
@@ -878,7 +848,6 @@ Building a RAG system also involves handling data securely and respecting privac
 \textbf{Testing for Safety.} RAG can actually help with safer answers (because it grounds in factual sources and is less likely to go off the rails), but it’s not foolproof. The model could misuse the context (maybe misinterpret a sarcastic or false statement in a document as true). Have some safety checks on outputs if needed: e.g., moderate the final answer for hate, bias, etc., just like you would with any LLM output. Additionally, verify that adding context doesn’t inadvertently introduce bias – if your knowledge base content is biased or incorrect, the model will propagate that. So curate your knowledge sources with some quality control.
 
 \textbf{Ishtar Case.} In \ishtar{}’s RAG pipeline for crisis intelligence, we ensure that only vetted, public information is ingested (no personal data beyond maybe public social media posts which themselves are public). We tag sources with trust levels; highly trusted sources (like official agencies) are used for critical facts. We also maintain an access log of who queries what topics, because the information, while public, can be sensitive in aggregate (e.g., lots of queries about a particular incident could indicate something). We have encryption in place since some sources might include not-yet-public situation reports. And our user-facing answers always cite sources, which inherently provides a layer of transparency (if the answer cites a source the user isn’t allowed to see, that’s a design issue – in our case, we only cite publicly viewable sources to avoid that scenario). To sum up, security in RAG is about protecting the data at all stages and ensuring your system’s usage of data complies with legal and ethical standards. The vector database should be as secure as any database containing valuable information.\footnote{\url{https://www.pryon.com}} By implementing strong access controls, encryption, audit trails, and data handling policies, you can deploy RAG in sensitive environments (like healthcare, finance) confidently. Many of these are general best practices for data systems, but a RAG pipeline might slip through cracks if one focuses only on the AI performance – so it’s crucial to bake these considerations in from the start.
-
 
 \section{Case Study: Ishtar AI’s RAG Pipeline}
 \label{sec:rag-case-study-ishtar-ai-s-rag-pipeline}
@@ -945,8 +914,6 @@ The answer (with citations) is returned to the user. The user interface allows t
 
 \textbf{Efficiency and Scale.} On the performance side, Ishtar handles concurrent queries well. By using Pinecone (which scales horizontally) and caching embeddings, etc., the system can field many requests. During a major crisis, we had a spike of queries and the pipeline sustained throughput with no major slowdowns – average answer time remained around 1.5 seconds, which is acceptable for our users. Without RAG, using GPT-4 alone might answer in say 10 seconds with possibly older knowledge – not acceptable in a live crisis. So we see RAG as both a quality booster and enabling faster responses by focusing the LLM on the right info (GPT-4 doesn’t have to “think” too long when the answer is right in context).
 
-
-
 \section{Best Practices Checklist}
 \label{sec:rag-best-practices-checklist}
 \begin{itemize}
@@ -986,7 +953,6 @@ To wrap up, here’s a summary checklist of best practices when implementing Ret
 \end{description}
 
 By following these best practices, you can build RAG systems that are accurate, efficient, and trustworthy. RAG truly transforms LLMs from static knowledge stores into dynamic, up-to-date information experts. It harnesses the strengths of both worlds: the reasoning and fluency of LLMs with the factual grounding of a knowledge base. In domains from crisis response (Ishtar) to customer support and beyond, RAG is rapidly becoming a cornerstone of practical and reliable AI deployments.
-
 
 \printbibliography[
   heading=subbibliography,

@@ -19,7 +19,6 @@ Testing and evaluation are essential to building trust in LLM systems. For missi
 
 This chapter provides a comprehensive treatment of methodologies, metrics, and practices for evaluating LLM-based applications and ensuring robustness against failures, regressions, and adversarial inputs. We cover multiple levels of testing (from unit prompts to full-system end-to-end tests), delve into quantitative and qualitative evaluation metrics (and how tools like RAGAS and LangSmith implement them), and discuss strategies for adversarial robustness and resilience. An expanded case study on \ishtar{} illustrates how these principles come together in practice, and a detailed best-practices checklist concludes the chapter, distilling lessons for advanced LLMOps practitioners.
 
-
 \noindent\textbf{Chapter roadmap.}
 This chapter introduces a practical testing and evaluation discipline for LLM-powered systems.
 We begin with the motivation for testing in LLMOps and review major testing types (unit, integration, end-to-end, and adversarial).
@@ -54,7 +53,6 @@ Beyond quality of outputs, an LLM system’s operational robustness must be vali
 
 \paragraph*{Summary:}
 In summary, testing in LLMOps builds a foundation of trust in system behavior. It provides the evidence base to answer the question: “Does the model really do what we expect – correctly, consistently, safely, and at scale?” Only with comprehensive testing can we integrate LLMs into mission-critical workflows (like \ishtar{}’s intelligence reports) with confidence that they will perform reliably and robustly under real-world conditions.
-
 
 \section{Types of Testing}
 \label{sec:ch10-types-of-testing}
@@ -203,7 +201,6 @@ Qualitative metrics assess aspects of model performance requiring human or nuanc
 
 In conclusion, qualitative metrics ensure outputs are judged by human standards, complementing quantitative measures. Advanced LLMOps pipelines must tightly couple automated metrics with human evaluation to guarantee that systems deliver both technically correct and user-satisfying results.
 
-
 \section{Automated Evaluation Techniques}
 \label{sec:ch10-automated-evaluation-techniques}
 
@@ -282,7 +279,6 @@ In practice, evaluation reports often combine metrics: BLEU = 0.25, ROUGE-L = 0.
 
 Automated evaluation thus balances precision (golden sets), nuance (LLM judges), and flexibility (semantic metrics). Frameworks like TruLens, Arize Phoenix, and LangSmith combine all three for comprehensive evaluation \cite{zilliz,arize,langsmithDocs1}.  
 
-
 \subsection{Modern Evaluation Tooling and Standards}\label{sec:ch10-modern-eval}
 While bespoke scripts can be effective early on, mature LLMOps benefits from reusable evaluation harnesses, benchmark taxonomies,
 and standardized protocols. Three complementary layers are especially useful in practice:
@@ -360,7 +356,6 @@ In journalism, healthcare, or other high-stakes domains, human-in-the-loop is in
 \subsection*{Conclusion}
 Human-in-the-loop evaluation ensures LLM systems remain robust, ethical, and aligned with user needs. While automated methods provide speed and scalability, humans bring nuance, context, and real-world alignment. The interplay of automated and human evaluation is essential: automated methods handle regression checks, while human experts validate nuance, uncover ethical risks, and guide improvements. For \ishtar{}, journalists providing direct feedback on accuracy and clarity exemplify how domain experts keep the system accountable and trustworthy.
 
-
 \section{Robustness Testing}
 \label{sec:ch10-robustness-testing}
 
@@ -421,7 +416,6 @@ Defenses include instruction shielding, structured function calling, and output 
 
 In summary, robustness testing ensures LLM systems remain resilient under stress, failure, and attack. It complements correctness testing by proving reliability in adverse conditions, a cornerstone of production-grade LLMOps.
 
-
 \section{Regression Testing in CI/CD}
 \label{sec:ch10-regression-testing-in-ci-cd}
 Integrate evaluation into CI/CD pipelines to:
@@ -465,7 +459,6 @@ Some teams run nightly evaluations even without new code, catching external chan
 
 \paragraph*{Summary.}  
 Embedding evaluation into CI/CD enforces a culture of quality assurance at every step, ensuring LLM systems do not silently degrade. This practice significantly de-risks continuous improvement by preventing regressions from reaching production and users.
-
 
 \section{Resilience Strategies}
 \label{sec:ch10-resilience-strategies}
@@ -514,7 +507,6 @@ In the \ishtar{} case study, resilience strategies mean that if the vector DB is
 
 Resilience is not a bolt-on but a core feature. Strategies often interact: a timeout may trigger a fallback, or a circuit breaker may initiate graceful degradation. Together, they ensure that even under failure, the user experience remains stable, transparent, and trustworthy.
 
-
 \section{Case Study: Testing Ishtar AI}
 \label{sec:ch10-case-study-testing-ishtar-ai}
 \subsection{Test Suite}
@@ -540,7 +532,6 @@ Resilience is not a bolt-on but a core feature. Strategies often interact: a tim
 \end{itemize}
 
 Testing and evaluation are the guardrails that keep LLM systems safe, reliable, and aligned with user expectations. In the high-stakes environment of \ishtar{}, rigorous validation ensures that the system delivers trustworthy intelligence every time.
-
 
 \medskip
 \noindent\textbf{Evaluation as a Production Control System.} The testing and evaluation methodologies presented in this chapter are not one-off validation exercises---they form the foundation of a continuous production control system. The regression testing practices discussed here (Section~\ref{sec:ch10-regression-testing-in-ci-cd}) directly integrate with CI/CD quality gates from Chapter~\ref{ch:cicd}: evaluation metrics become automated release criteria, blocking deployments when quality thresholds are not met. Similarly, evaluation metrics complement the observability frameworks from Chapter~\ref{ch:monitoring}: structured quality assessments feed into monitoring dashboards, enabling teams to track quality trends over time and alert on regressions detected in production. This integration ensures that evaluation is not a separate activity but an operational discipline that continuously validates system behavior, catching regressions before they impact users and providing the data needed for informed deployment decisions. The \ishtar{} case study demonstrates how evaluation, CI/CD gates, and observability work together to maintain system reliability and trust.

@@ -13,11 +13,10 @@
 \textbf{Abstract} This chapter develops infrastructure as a first-class component of LLMOps. We begin with workload-driven hardware selection, contrasting GPU and TPU options across training, fine-tuning, and inference regimes, and we introduce practical cost models that relate throughput to cost per token under varying utilization. We then show how Infrastructure-as-Code (IaC) and environment standardization enable reproducibility, compliance, and low mean-time-to-recovery, emphasizing modular provisioning, policy-as-code, and secure secret management. Next, we cover containerization and Kubernetes orchestration for GPU fleets, including node labeling/taints, health probes, autoscaling patterns, and advanced scheduling strategies (e.g., multi-tenancy and partitioning). We survey modern serving stacks (e.g., optimized inference engines and batching/caching strategies) and discuss deployment topologies spanning cloud-native, hybrid, and multi-region architectures. The chapter concludes with an Ishtar AI infrastructure blueprint that ties these decisions to concrete operational outcomes—latency, throughput, reliability, and cost—supported by checklists intended for production deployment.
 
 \section{Introduction}
-The infrastructure layer is the bedrock of any Large Language Model Operations (LLMOps) pipeline. 
-Without a carefully engineered environment, even state-of-the-art models will underperform, incur unnecessary costs, or introduce operational risks. 
-This chapter provides a comprehensive guide to designing, deploying, and managing the hardware, software, and network environments that power advanced LLM applications, illustrated through the lens of the \ishtar{} AI case study. 
-
-We dive into the practical realities of infrastructure for LLMOps—examining not only what each component does, but also why it matters, what trade-offs exist, and how decisions interact at scale. 
+The infrastructure layer is the bedrock of any Large Language Model Operations (LLMOps) pipeline.
+Without a carefully engineered environment, even state-of-the-art models will underperform, incur unnecessary costs, or introduce operational risks.
+This chapter provides a comprehensive guide to designing, deploying, and managing the hardware, software, and network environments that power advanced LLM applications, illustrated through the lens of the \ishtar{} AI case study.
+We dive into the practical realities of infrastructure for LLMOps—examining not only what each component does, but also why it matters, what trade-offs exist, and how decisions interact at scale.
 Readers will be equipped to:
 \begin{itemize}
     \item \textbf{Select and configure compute resources:} Understand GPU/TPU architectures and pick the right accelerators for training versus inference workloads.
@@ -32,12 +31,9 @@ We begin with workload-driven hardware selection (GPU/TPU and accelerator altern
 Next, we cover infrastructure-as-code patterns for reproducibility and compliance, followed by containerization and Kubernetes-based orchestration for GPU fleets.
 We close with serving-stack design (engines, scheduling, and memory management), deployment patterns (cloud, hybrid, multi-region), and a concrete \ishtar{} implementation blueprint.
 
-
-Recent research underscores the convergence of LLMs and IaC, highlighting their combined potential to automate and streamline infrastructure provisioning. 
-LLMs are increasingly able to generate deployable IaC templates directly from natural language descriptions, thereby reducing the steep learning curve traditionally associated with infrastructure automation~\cite{garg2024infra-centric-iac,srivatsa2024-iac-llm}. 
+Recent research underscores the convergence of LLMs and IaC, highlighting their combined potential to automate and streamline infrastructure provisioning.
+LLMs are increasingly able to generate deployable IaC templates directly from natural language descriptions, thereby reducing the steep learning curve traditionally associated with infrastructure automation~\cite{garg2024infra-centric-iac,srivatsa2024-iac-llm}.
 This informs our exploration of LLMOps infrastructure, positioning it not simply as a technical prerequisite but as a strategic enabler of scalability, cost-efficiency, and reliability—hinting at a future where LLMs may assist in managing their own infrastructure.
-
-
 
 % ==================================================================
 % ==================================================================

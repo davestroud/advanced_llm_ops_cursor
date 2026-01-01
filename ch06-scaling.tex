@@ -59,7 +59,6 @@ These optimizations allowed \ishtar{} to maintain a median latency below 800\,ms
 \subsection{Broader Perspective}\label{sec:scaling-broader-perspective}
 The challenges outlined above are driving intense research into LLM serving systems. A 2024 survey identified an explosion of system-level innovations published since 2023 aimed specifically at LLM inference scalability \cite{vllm2023}. Solving these issues is not just about adding hardware; it requires rethinking system design for LLMs. In the following sections, we explore how vertical, horizontal, and hybrid scaling approaches address these challenges, and we delve into advanced techniques—distributed inference, batching, speculative decoding, caching, and more—that enable LLM deployments to operate efficiently at scale:\cite{vllm_pagedattention,tensorrt_llm_docs,tgi_docs}.
 
-
 \section{Scaling Dimensions}
 \label{sec:scaling-dimensions}
 \subsection{GPU Partitioning and Multi-Tenancy}\label{sec:gpu-partitioning}
@@ -229,11 +228,8 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
 \label{fig:scaling-dimensions}
 \end{figure}
 
-
 \subsubsection{Lessons Learned}
 In practice, organizations rarely adopt one scaling mode in isolation. Early prototypes often begin with \emph{vertical scaling}, trading cost for simplicity and lower latency. As workloads grow, \emph{horizontal scaling} becomes essential for elasticity, geographic distribution, and cost control. Finally, mature deployments converge on \emph{hybrid strategies}, blending vertical and horizontal techniques to balance performance, resilience, and economics. The lesson is clear: scaling LLMs is not a one-time decision but an evolving journey, guided by cost constraints, operational maturity, and the application’s latency and throughput requirements.
-
-
 
 \section{Distributed Inference Techniques}
 \label{sec:distributed-inference}
@@ -379,10 +375,6 @@ Memory for the KV cache often limits batching. Optimizations include:
 
 \subsubsection{Case in \ishtar{}.}
 By employing continuous batching with $\Delta \in [8,20]$\,ms, WSRT scheduling, and paged KV caching, \ishtar{} achieved roughly $2\times$ higher effective decode throughput (measured via per-GPU token/s metrics before and after optimization) while maintaining p95 TTFT below 250\,ms. This allowed IshtarAI to handle twice as many tokens per second per GPU during peak demand without breaching latency SLOs:\cite{vllm_pagedattention}.
-
-
-
-
 
 % ------------------------------------------------------------
 
@@ -531,7 +523,6 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 \label{fig:autoscale-target-tracking}
 \end{figure}
 
-
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
@@ -585,8 +576,6 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 \caption{Event-based autoscaling with predictive pre-warming. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph{before} demand spikes arrive, leveraging calendar events or scheduled triggers. This eliminates cold-start latency and ensures capacity is ready when needed.}
 \label{fig:autoscale-event-based}
 \end{figure}
-
-
 
 % ------------------------------------------------------------
 
@@ -644,7 +633,6 @@ By hashing retrieved document chunks and caching embeddings in a pgvector-enable
 
 \medskip
 \noindent\textbf{Summary.} Caching at both the response level and the embedding level contributed to the overall scalability of \ishtar{}. By avoiding recomputation, we effectively obtained more throughput from each GPU and served more users with the same hardware. The trade-off is additional complexity (key design, invalidation, persistence), but with careful engineering the benefits far outweigh the overhead.
-
 
 \begin{figure}[htbp]
 \centering
@@ -716,8 +704,6 @@ By hashing retrieved document chunks and caching embeddings in a pgvector-enable
 \label{fig:caching-flow}
 \end{figure}
 
-
-
 \section{Cost-Aware Scaling}
 \label{sec:cost-aware-scaling}
 Beyond just technical performance, scaling strategies must account for cost efficiency. In practice, serving large models is expensive, so deploying them sustainably requires strategies to optimize the cost per query (or per token). Some guidelines and techniques for cost-aware scaling include:
@@ -755,8 +741,6 @@ Another research prototype called Melange takes cost-awareness further by automa
 
 \medskip
 \noindent\textbf{Summary.} Scaling up LLM deployments is not just about raw performance---it is about doing so economically. Cost-aware scaling techniques ensure that as we serve more users and more queries, the cloud bill scales sub-linearly or stays within budget. This often entails embracing complexity (hybrid models, spot markets, etc.) for significant savings.
-
-
 
 \section{Scaling Retrieval-Augmented Generation (RAG)}
 \label{sec:scaling-rag}
@@ -856,9 +840,6 @@ Scaling RAG in \ishtar{} meant scaling the vector search backend alongside the m
 \label{fig:rag-two-tier}
 \end{figure}
 
-
-
-
 \section{Geographic Scaling}
 \label{sec:geo-scaling}
 Geographic scaling refers to deploying LLM services across multiple distant regions or data centers to serve users around the globe with low latency and to meet data residency requirements. In essence, it is horizontal scaling across geography.
@@ -899,7 +880,6 @@ Private backbones and smart routing let providers forward requests to a near-opt
 
 \medskip
 \noindent\textbf{Summary.} Geographic scaling reduces user-perceived latency and meets local policies at the cost of added operational complexity. It is the outermost layer of scale: after optimizing single- and multi-node serving, the final frontier is scaling across continents.
-
 
 \begin{figure}[htbp]
 \centering
@@ -946,7 +926,6 @@ at ($(frame.south west)+(0.35,0.35)$) {\small
 \caption{Geographic scaling schematic. Users are routed to the nearest regional cluster (NA/EU/APAC) for latency and data residency; dashed links illustrate failover/overflow between regions.}
 \label{fig:geo-scaling-inset}
 \end{figure}
-
 
 \section{Case Study: Scaling Ishtar AI}
 To ground the above concepts, we reflect on how IshtarAI’s deployment evolved through several stages as demand grew. This progression illustrates the typical steps in scaling an LLM service from a small pilot to a global operation.
@@ -1022,9 +1001,6 @@ $\bullet$ Tiered models \& spot for cost-awareness
 \label{fig:ishtar-timeline}
 \end{figure}
 
-
-
-
 \section{Best Practices Checklist}
 In conclusion, scaling up LLM deployments involves a combination of strategic planning and tactical optimizations. The following checklist distills best practices:
 
@@ -1048,8 +1024,6 @@ Scaling LLM systems requires balancing performance, cost, and complexity. By des
 
 \medskip
 \noindent\textbf{Scaling vs.\ Performance Optimization.} It is important to distinguish scaling (adding capacity to handle more load) from performance optimization (improving efficiency per unit of capacity). While this chapter has focused on scaling mechanisms---adding replicas, distributing inference, and provisioning capacity---these strategies must still respect fundamental performance constraints: Time-To-First-Token (TTFT), throughput per GPU, and cost per token. Simply scaling out without optimizing individual node performance can lead to inefficient deployments that consume excessive resources. In Chapter~\ref{ch:performance}, we turn to performance optimization techniques---quantization, kernel optimization, model compression, and advanced inference strategies---that improve the efficiency of each GPU and reduce cost per query. The relationship is complementary: scaling provides capacity headroom, while performance optimization ensures that capacity is used efficiently. A well-scaled system that ignores performance optimization wastes resources; a highly optimized system that cannot scale fails under load. Together, scaling and performance optimization enable LLM deployments that are both efficient and elastic.
-
-
 
 \printbibliography[
   heading=subbibliography,

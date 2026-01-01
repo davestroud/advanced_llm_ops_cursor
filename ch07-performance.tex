@@ -19,7 +19,6 @@ This chapter outlines advanced techniques to optimize LLM performance across har
 \noindent\textbf{Chapter roadmap.}
 This chapter presents performance optimization techniques at four layers: (i) \emph{model-level} methods (quantization, pruning, and distillation), (ii) \emph{inference-engine} optimizations (kernel fusion, efficient attention implementations, and KV-cache management), (iii) \emph{system-level} techniques (batching, caching, asynchronous processing, request scheduling, and advanced decoding), and (iv) \emph{prompt-level} strategies that reduce token and retrieval overhead. The chapter closes with benchmarking guidance and \ishtar{} case studies that connect these methods to measurable outcomes such as TTFT, tokens/s, tail latency, and cost per request.
 
-
 \section{Why Optimization Matters}
 \label{sec:perf-why}
 Even the most advanced GPUs and cloud infrastructure have limits. Without optimization, a range of issues can emerge that impact performance, cost, and trust:
@@ -34,7 +33,6 @@ Even the most advanced GPUs and cloud infrastructure have limits. Without optimi
 For \ishtar{}, performance bottlenecks directly translate to reduced utility and diminished trust among journalists relying on timely insights. Optimization is not a matter of premature tuning or vanity; it is often a prerequisite for \emph{viability}---\textit{can we afford to serve this model?}---and \emph{scalability}---\textit{can we handle more users or larger inputs without degradation?} In high-stakes applications, these questions are not theoretical. The answers determine whether the system meets its mission requirements in production.
 
 The following sections explore concrete strategies for optimization across three layers: \textbf{model-level techniques} (such as quantization, pruning, and knowledge distillation), \textbf{inference engine tuning} (including specialized runtimes, operator fusion, and memory management), and \textbf{system-level approaches} (like batching, caching, and concurrency tuning). Each layer offers distinct levers for improving throughput, reducing latency, and lowering cost---and when combined, they can transform an LLM deployment from barely sustainable to highly performant at scale.
-
 
 \begin{figure}[htbp]
 \centering
@@ -54,7 +52,6 @@ The following sections explore concrete strategies for optimization across three
 \caption{Representative performance improvements from widely deployed techniques, based on published benchmarks and production deployments. Actual gains depend on model size, hardware, and traffic mix. See Sections 7.1--7.4 for detailed discussions and citations.}
 \label{fig:opt-gains-callout}
 \end{figure}
-
 
 \begin{figure}[htbp]
 \centering
@@ -83,8 +80,6 @@ The following sections explore concrete strategies for optimization across three
 \caption{Illustrative latency improvements after batching, KV-cache engineering, and quantization. Replace with your measured values to reflect your deployment.}
 \label{fig:latency-before-after}
 \end{figure}
-
-
 
 \section{Model-Level Optimization Techniques}
 \label{sec:perf-model}
@@ -253,8 +248,6 @@ Low to moderate; can affect long-context fidelity. &
 \end{tabularx}
 \end{sidewaystable}
 
-
-
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
@@ -285,7 +278,6 @@ Low to moderate; can affect long-context fidelity. &
 \label{fig:quant-throughput-bars}
 \end{figure}
 
-
 \begin{table}[htbp]
 \centering
 \caption{Approximate parameter memory vs.\ precision for 13B and 70B models (weights only).}
@@ -314,7 +306,6 @@ Low to moderate; can affect long-context fidelity. &
 \footnotesize\emph{Notes}: Values exclude activations, KV cache, and framework overheads. For inference with long contexts or high concurrency, KV memory can exceed weights; see Eq.~(2.2) and Section~7.11.1 for sizing guidelines.
 \end{table}
 
-
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
@@ -330,8 +321,6 @@ Low to moderate; can affect long-context fidelity. &
 \caption{Memory accounting at a glance. Use precision $b$ from Table~\ref{tab:quantization-comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets.}
 \label{fig:memory-cheatsheet}
 \end{figure}
-
-
 
 \section{Inference Engine Optimization}
 \label{sec:perf-engine}
@@ -395,8 +384,6 @@ TensorRT-LLM (INT8/FP8)  & 420  & 410 & 18  & Fused ops; Tensor Cores; engine bu
 \footnotesize\emph{Setup}: 30B model, context 4k, batch window 10\,ms. A100-80GB (left), H100-80GB (right) showed $\sim$1.3--1.8$\times$ speedup for TensorRT-LLM vs.\ FP16; vLLM excelled on long contexts due to PagedAttention \cite{Kwon2023vLLM,NVIDIA2023Hopper}.
 \end{table}
 
-
-
 \section{System-Level Optimization}
 \label{sec:perf-system}
 System-level optimizations improve the overall throughput and latency of the serving system by better handling how requests are scheduled and executed on the available hardware. These techniques treat the model as a black box and focus on orchestrating multiple inference calls efficiently. Key methods include batching, asynchronous request handling, and caching of results.
@@ -453,7 +440,6 @@ IshtarAI implemented a Redis-backed cache for prompt-to-summary results. We scop
 \noindent \textbf{Engineering Sidebar: Cache Invalidation.}
 One of the hardest parts of caching is invalidation---deciding when a cached entry should be discarded or refreshed. In LLMOps, this could mean invalidating when the model is updated (since a new model might produce a different answer), when the knowledge sources have changed (for instance, new articles have come in), or after a certain time to ensure freshness. A practical strategy is to include a version tag in the cache key that incorporates the model ID or data timestamp. For example, key by \verb|model_v3::[prompt hash]|. When you deploy model v4, it automatically does not hit v3’s cache. Another strategy is time-based: e.g., any summary older than 24 hours for a ``latest news'' query is probably stale. Ultimately, imperfect invalidation is tolerated; it might occasionally serve an answer that is a bit outdated, but in exchange for large performance gains. System designers should monitor for cache accuracy and have a mechanism (like a feature flag or admin API) to flush caches if a problem is discovered.
 
-
 \section{Prompt Optimization}
 \label{sec:perf-prompt}
 The content and format of prompts directly affect the amount of computation the model performs. By optimizing prompts, we can reduce unnecessary work per query. These are “software” optimizations that do not change the model or system, but rather how we use the model.
@@ -503,14 +489,10 @@ During \ishtar{}’s optimization, we implemented an intermediate step: after re
 
 One must monitor that the summarization does not introduce errors—there is a risk of propagating a mistaken summary into the final answer. Our mitigation was to ensure the summarizer was high-quality (fine-tuned on news summarization) and to keep summaries as neutral and fact-oriented as possible (avoiding adding new info). This way, prompt compression remained a safe optimization.
 
-
-
-
 \subsection{Speculative Decoding}
 Speculative decoding reduces end-to-end latency by generating multiple \emph{draft} tokens with a smaller, faster model and then verifying those draft tokens with the \emph{target} model. The key observation is that scoring a short continuation can cost roughly the same as sampling a single token from the target model, enabling the target model to accept several draft tokens per forward pass when the draft is accurate \cite{Chen2023SpeculativeSampling}. In favorable regimes (high acceptance), speculative decoding can increase tokens-per-second throughput and reduce tail latency without changing the target model's output distribution.
 
 Operationally, speculative decoding introduces new controls and failure modes. Teams must select a draft model that remains well-aligned with the target model (to preserve acceptance), monitor acceptance-rate drift as prompts and traffic evolve, and ensure graceful fallback when acceptance collapses (e.g., revert to standard decoding). As with other runtime changes, speculative decoding should be gated by regression evals and monitored in production using the same core SLOs (TTFT, tokens/s, p95/p99 latency) alongside task-level quality metrics.
-
 
 \section{Hardware Utilization Tuning}
 \label{sec:perf-hw}
@@ -581,7 +563,6 @@ Gaps / launch overhead             &  8 &  3 & Larger dynamic batches; async sch
 \end{tabularx}
 \end{table}
 
-
 \section{Performance Testing and Benchmarking}
 \label{sec:perf-benchmark}
 Establishing baselines and continuously monitoring:
@@ -608,7 +589,6 @@ Another aspect of performance testing is testing different model sizes or config
 Finally, benchmarking is not one-time. In CI/CD, having automated performance regression tests (e.g., run a standard set of requests through the system and measure latency/throughput) is extremely useful. It prevents inadvertent slowdowns from creeping in as the code evolves (such as a change that adds a logging call for each token and slows things down).
 
 In summary, rigorous performance testing gives confidence that optimizations are working and that the system will meet its SLOs (Service Level Objectives) under expected and peak loads. For \ishtar{}, this process ensured that when a sudden surge of traffic came (like a major news event), the system’s performance had already been vetted for that scenario.
-
 
 \begin{figure}[htbp]
 \centering
@@ -655,7 +635,6 @@ x   y
 \label{fig:latency-cdf}
 \end{figure}
 
-
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
@@ -680,8 +659,6 @@ x   y
 \caption{Illustrative cost per 1k tokens across engines. Replace values with your economics (Section~7.3).}
 \label{fig:cost-per-1k-by-engine}
 \end{figure}
-
-
 
 \section{Case Study: Optimizing Ishtar AI}
 \label{sec:perf-ishtar-case}
@@ -751,7 +728,6 @@ Overall, this case study underscores that combining model, system, and prompt op
 
 Performance optimization is not a one-time task—it is an ongoing process that must adapt to changing workloads, hardware, and user expectations. For \ishtar{}, the combination of model, system, and prompt optimizations delivers the speed and cost-effectiveness needed for real-time, high-impact journalism.
 
-
 \begin{table}[htbp]
 \centering
 \caption{IshtarAI optimization KPIs: before vs.\ after. Replace with exact measured values if available.}
@@ -775,10 +751,8 @@ Cost per 1k tokens (USD) & 1.00   & 0.70   & $\sim$30\% GPU-hour reduction at sa
 \end{tabularx}
 \end{table}
 
-
 \section{Best Practices Checklist}
 \label{sec:perf-checklist}
-
 
 By synthesizing the above strategies, we can outline a checklist of best practices for optimizing LLM performance, which we found invaluable in the IshtarAI project:
 
@@ -793,13 +767,6 @@ By synthesizing the above strategies, we can outline a checklist of best practic
 \end{itemize}
 
 Performance optimization must adapt to changing workloads, hardware, and user expectations. In summary, a holistic and iterative approach is needed: combine model tweaks, system engineering, and careful measurement to deliver the speed and cost-efficiency required for your specific application.
-
-
-
-
-
-
-
 
 % ----------- APPENDED MATERIAL FOR CHAPTER 7 (SEAMLESS CONTINUATION) -----------
 
@@ -951,7 +918,6 @@ These formulas link low-level engineering decisions (e.g., quantization, batchin
 \end{tabularx}
 \end{table}
 
-
 \begin{landscape}
 \begin{table}[htbp]
 \centering
@@ -981,9 +947,6 @@ These formulas link low-level engineering decisions (e.g., quantization, batchin
 \end{tabularx}
 \end{table}
 \end{landscape}
-
-
-
 
 \subsection{Inference Engines and Serving Runtimes}
 \label{sec:perf-runtimes}
@@ -1043,8 +1006,6 @@ In summary, vLLM \cite{vllm-paper} shines when maximum throughput and long conte
 
 In practice, organizations often adopt a staged approach: starting with TGI for simplicity, migrating to vLLM as throughput needs scale, and investing in TensorRT-LLM for latency-critical, cost-sensitive production environments. These runtimes also represent a broader pattern in LLMOps: turnkey systems that integrate optimizations like batching, kernel fusion, and memory-efficient attention into production-ready serving frameworks. They are often the first—and most impactful—optimizations to apply before considering deeper custom engineering.
 
-
-
 \subsection{Cloud-Native Optimization Patterns}
 \label{sec:perf-cloud-native}
 
@@ -1062,8 +1023,6 @@ Use tensor/pipeline parallelism only when models cannot fit on a single device; 
 
 \subsection{I/O and Storage}
 Place model weights on local NVMe; prefetch on scale-out; use image layers with checkpoint deltas to reduce pull times. Keep tokenizer/models co-located to avoid cross-AZ latency.
-
-
 
 \subsection{LangChain-Centric Performance Engineering}
 \label{sec:perf-langchain}
@@ -1114,7 +1073,6 @@ Median latency $\downarrow$ to $\sim1.1$\,s; P95 $\downarrow$ to $\sim2$\,s; thr
   \item \textbf{Scale on tokens:} autoscale by tokens/s and queue depth; keep warm capacity for spikes.
   \item \textbf{Harden chains:} trace with LangSmith; define degraded modes and retry budgets.
 \end{itemize}
-
 
 \printbibliography[
   heading=subbibliography,

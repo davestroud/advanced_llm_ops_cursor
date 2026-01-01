@@ -16,8 +16,6 @@ As large language models (LLMs) become integral to decision-making, communicatio
 
 For \ishtar{}, which supports journalists in conflict zones, ethical operations are not optional—they are foundational to maintaining trust and safety.
 
-
-
 \noindent\textbf{Chapter roadmap.}
 This chapter introduces the ethical and responsible practices required to operate LLM-powered systems in production.
 We begin by motivating why ethics is an operational concern (not only a philosophical one), then distill key principles
@@ -44,7 +42,6 @@ LLMs can influence perceptions, decisions, and even the course of events. They c
 These concerns are not hypothetical. Researchers have systematically mapped out the risk landscape of LLMs, identifying numerous areas of potential harm \cite{ar5iv_labs}. For example, a comprehensive study by Weidinger et al.\ outlines six risk categories: (1) Discrimination, Exclusion and Toxicity, (2) Information Hazards (e.g., privacy leaks), (3) Misinformation Harms, (4) Malicious Uses, (5) Human-Computer Interaction Harms, and (6) Automation and Environmental/Societal Harms \cite{ar5iv_labs}. In total, they catalog 21 specific risks ranging from hate speech to erosion of trust, from private data leakage to environmental impact \cite{ar5iv_labs}. 
 
 This taxonomy highlights that ethical risks come from many sources---the data, the model, the user interactions, and the deployment context---and mitigating one type of harm (say, toxic language) must be balanced against others (like fairness to all user groups) \cite{ar5iv_labs}. In essence, ethics in LLMOps matters because the decisions we make in building and running LLM systems directly affect real people. The more powerful and ubiquitous these models become, the greater the responsibility to ensure they do no harm (and ideally, actively do good). Neglecting ethical considerations can lead to public backlash, legal penalties, or worst of all, tangible harm to individuals and society. Conversely, robust ethical practices build trust---users and stakeholders can rely on systems like \ishtar{} knowing there are safeguards against the worst failures.
-
 
 \section{Key Ethical Principles}\label{sec:ethics-principles}
 
@@ -122,9 +119,6 @@ Safety refers to preventing harmful, toxic, or misleading outputs. While overlap
 
 In essence, safety is about layered defense: preventive measures (filters, policies, training) combined with responsive measures (incident monitoring, user reporting, rapid iteration). As industry reports emphasize, ensuring safety and compliance is as important as ensuring task proficiency \cite{bcg2023}. Safety gates are integrated into CI/CD pipelines (Chapter~\ref{ch:cicd}), agent security controls are enforced in multi-agent systems (Chapter~\ref{ch:multiagent}), and safety testing is validated through evaluation frameworks (Chapter~\ref{ch:testing}).
 
-
-
-
 \subsection{Frameworks, Standards, and Regulatory Baselines}\label{sec:ethics-frameworks}
 Ethical principles become operational only when they are translated into repeatable processes, measurable controls, and
 documented accountability. A pragmatic approach is to map your LLMOps controls to external baselines that are broadly
@@ -161,7 +155,6 @@ recommended uses \cite{gebru_datasheets}. In LLMOps, these artifacts naturally e
 Organizations seeking an auditable governance posture may also align with AI management-system standards (e.g.,
 ISO/IEC~42001) that formalize processes for risk assessment, accountability, and continuous improvement
 \cite{iso_42001}.
-
 
 \section{Bias and Fairness in LLMs}\label{sec:ethics-bias}
 
@@ -208,7 +201,6 @@ Addressing bias requires interventions across the LLMOps pipeline. The following
 
 Bias mitigation is thus not a one-time fix but an ongoing operational responsibility. It requires proactive dataset management, robust testing, responsive fine-tuning, and continuous oversight. Ultimately, fairness in LLMs extends beyond demographics to inclusivity in language, accessibility, and cultural representation, ensuring these systems serve all users equitably.  
 
-
 \section{Privacy and Data Protection}\label{sec:ethics-privacy}
 
 Privacy is such an important principle that it merits focused discussion in the context of LLMOps. Handling data in LLM workflows touches on consent, security, compliance, and the ethical duty of care.
@@ -247,8 +239,6 @@ Building on earlier points, secure infrastructure ensures privacy is upheld at t
 \textbf{Resilience and Backups:} Privacy also requires ensuring data is not lost unexpectedly. Maintain encrypted backups of critical data. Develop incident response protocols for breaches (e.g., GDPR requires notification within 72 hours). Logs and forensic readiness facilitate rapid investigation.  
 
 In summary, privacy and data protection in LLMOps means respecting user data at every stage: collecting minimally, protecting maximally, and giving users meaningful control. A 2025 report on LLM privacy emphasizes that privacy must be considered across the entire AI lifecycle—from data collection and model training to deployment and monitoring \cite{edpb2022}. Embedding privacy by design (e.g., anonymization upon ingestion, algorithms built with privacy safeguards) reduces risks of misuse or leakage. This is especially critical for high-stakes applications such as \ishtar{}, where journalists may input highly sensitive information about vulnerable sources or ongoing investigations. Strong privacy guarantees are not just compliance obligations but essential for user trust.  
-
-
 
 \section{Reducing Harmful Outputs}\label{sec:ethics-harm}
 
@@ -316,8 +306,6 @@ Ultimately, user feedback treats LLMs as living systems that co-evolve with thei
 
 \bigskip  
 In summary, reducing harmful outputs requires a multi-faceted approach: proactive content moderation, rigorous fact-checking, and robust feedback loops. Together, these mechanisms create a resilient safety net, ensuring LLMs like \ishtar{} serve users responsibly while adapting to evolving challenges.
-
-
 
 \section{Ethical Deployment Practices}\label{sec:ethics-deploy}
 
@@ -404,7 +392,6 @@ In \ishtar{}, human oversight could mean editors review all AI-generated content
 \bigskip
 In summary, human oversight—through HITL mechanisms and escalation procedures—provides the fail-safe of LLMOps. It acknowledges AI’s limitations and ensures ultimate accountability remains with humans, especially for sensitive or high-risk decisions.
 
-
 \section{Case Study: Ethics in Ishtar AI}\label{sec:ethics-ishtar}
 
 To concretize the discussion, let us examine how ethical principles and practices come together in the case of \ishtar{}, the hypothetical system supporting journalists in conflict zones. \ishtar{} is intended to assist with tasks such as summarizing reports, translating local news, highlighting important updates, and suggesting draft news stories. Operating in conflict zones introduces unique ethical challenges that \ishtar{} must navigate.
@@ -436,7 +423,6 @@ To concretize the discussion, let us examine how ethical principles and practice
 \end{itemize}
 
 Through these practices, \ishtar{} demonstrates how AI can be used responsibly in high-risk domains. Technical safeguards (multi-agent verification, redaction, encryption) combined with organizational measures (human oversight, guidelines, audits) create a layered safety net. One without the other may fail; together they provide robustness, ensuring that AI assistance enhances journalism while upholding its ethical foundations.
-
 
 \section{Best Practices Checklist}
 \label{sec:best_practices}
@@ -485,8 +471,6 @@ Bringing everything together, this section presents a checklist of best practice
     
     \item \textbf{Responsiveness to New Issues:} Adapt to evolving risks such as emergent deepfake trends or novel hate speech patterns. Update policies and models swiftly to address emerging harms.
 \end{enumerate}
-
-
 
 \printbibliography[
   heading=subbibliography,

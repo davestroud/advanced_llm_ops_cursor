@@ -203,7 +203,6 @@ The primary interactive route served a 70B-class open model (e.g., \texttt{Llama
 In practice, memory headroom was managed with quantization on selected routes and with serving-runtime techniques such as continuous batching and paged KV-cache allocation (vLLM/PagedAttention)~\cite{Kwon2023vLLM,tgi_docs}.
 These details matter operationally: they determine feasible batch sizes, tail latency behavior, and the degree to which bursty newsroom traffic can be absorbed without breaching SLOs (Chapter~\ref{ch:scaling}).
 
-
 \subsubsection{Infrastructure-as-code}
 All infrastructure is defined via IaC to ensure reproducibility, reviewability, and fast recovery~\cite{terraform-docs,terraform_recommended_practices}.
 The \emph{operational} objective is that a new region can be bootstrapped from source control with minimal manual steps.
@@ -408,7 +407,6 @@ Two operational principles are enforced:
     \item \textbf{Every agent validates its inputs/outputs} (schema checks, citation consistency).
 \end{enumerate}
 
-
 \subsubsection{Worked walkthrough: a single query trace}
 \label{sec:ishtar-query-trace}
 
@@ -507,7 +505,6 @@ Feedback enters the system through three channels:
     \item \textbf{Audit sampling:} periodic human review of high-impact queries, used as an anchor set for calibrating automated evaluators.
 \end{enumerate}
 Selected signals are connected directly to controls: e.g., a spike in citation failures can automatically reduce \texttt{topK}, enable passage de-duplication, or trigger rollback to the last-known-good prompt bundle.
-
 
 % ---------------------------------------------------------------------
 \section{Operational practices}
@@ -751,8 +748,6 @@ RAG-specific evaluation (citation precision, faithfulness, and evidence coverage
 \subsubsection{Conclusion.}
 The \ishtar{} case study demonstrates that reliable LLM applications require systems engineering: rigorous retrieval design, staged deployment, observability, and explicit governance.
 The primary contribution of LLMOps is not a new model architecture, but an operational discipline that turns fragile model behavior into dependable, auditable capabilities in production.
-
-
 
 \printbibliography[
   heading=subbibliography,

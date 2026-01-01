@@ -21,7 +21,6 @@ Large Language Model (LLM) applications can be made more robust and scalable by 
 
 This chapter provides a comprehensive exploration of designing, implementing, and operating multi-agent LLM systems, using the \ishtar{} AI case study as a running example. We will examine the motivations for multi-agent systems, the core components and roles of agents in \ishtar{}, communication patterns and orchestration strategies (including how to leverage frameworks like LangGraph and LangChain), error handling mechanisms, performance considerations, and security architecture. A detailed case study of \ishtar{}’s orchestration pipeline is presented with a diagram, and we conclude with a best practices checklist for practitioners.
 
-
 \section{Why Multi-Agent Systems?}
 A single LLM can handle many tasks, but multi-agent setups offer significant advantages over monolithic approaches.  
 
@@ -43,7 +42,6 @@ Key motivations include:
 In essence, multi-agent systems introduce internal checks and balances, reducing the chance that a single point of failure (one model’s mistake) will propagate directly to the user. By dividing responsibilities among specialized agents and orchestrating their collaboration, we achieve a system that is more robust, scalable, and easier to manage than any single large model alone \cite{learnMicrosoft}.  
 
 The following sections delve into how such systems are constructed and orchestrated in practice, with \ishtar{} AI as a guiding example.
-
 
 \section{Core Components of Multi-Agent Architectures}
 
@@ -100,8 +98,6 @@ Some agents primarily serve as tool wrappers—for example:
 In LangChain, agents invoke tools via structured actions (e.g., \texttt{Search(query)}). Hugging Face Transformers Agents provide predefined tools like calculators, search, and image generation \cite{huggingfaceAgents3,huggingfaceAgents4}.  
 
 In \ishtar{}, the ingestion agent connects to RSS feeds, APIs of relief agencies, and web scrapers. The verification agent queries fact databases or search engines. The communication agent applies formatting and translation tools for output delivery. Tool integration must follow principles of least privilege (each agent has only the tools it requires) and define clear API contracts. Robust error handling (e.g., retries for failed tool calls) and security checks are also vital.  
-
-
 
 \section{Agent Roles in Ishtar AI}
 
@@ -203,9 +199,6 @@ Together, these roles form a pipeline:
 
 The orchestrator ensures that these roles execute in the correct sequence and that information flows reliably between them. This decomposition matches the production-oriented configuration described in Chapter~\ref{ch:case-study}, where each agent has a well-defined responsibility and explicit handoffs enable observability and testing.  
 
-
-
-
 \section{Communication Patterns}
 
 Agents in a multi-agent system need to exchange information to cooperate on tasks. There are several communication patterns to consider, each with advantages and trade-offs in complexity, performance, and reliability. The main patterns are direct messaging, message bus (pub/sub), and blackboard (shared memory). A well-architected system may even combine these for different interactions.  
@@ -260,9 +253,6 @@ Frameworks like LangGraph \cite{langchain} provide abstractions that blend these
 
 \subsection*{Summary}
 Communication patterns must be matched to system scale and requirements. Direct messaging is ideal for small, fixed pipelines; message buses suit distributed, dynamic environments; blackboards enable collaborative reasoning. Many production systems, including \ishtar{}, blend these approaches under an orchestrator that manages complexity.  
-
-
-
 
 \section{Orchestration Strategies}
 
@@ -425,9 +415,6 @@ The next section will discuss error handling and exception management in orchest
 \label{fig:orchestration-strategies}
 \end{figure}
 
-
-
-
 \section{Error Handling and Fallbacks}\label{sec:errorhandling}
 \begin{itemize}
     \item Retry failed tasks with adjusted prompts.
@@ -478,7 +465,6 @@ return ConversationAgent(final_answer)
 
 In that sketch, we try analysis, retry with a simpler prompt if needed, and if verification fails, we still give the answer but with a warning. Human-in-loop could be inserted by, say, queuing the query in a dashboard if both attempts fail, but still returning an apology to the user immediately. The overall goal is graceful degradation: even when parts of the system break, the user either gets a useful partial result or at least a clear failure message (instead of silence or a crash). Multi-agent setups provide multiple opportunities to catch and fix issues – e.g., one agent’s role can be partly to check the previous agent’s work. Designing those checks and fallbacks is as important as designing the primary capabilities.
 
-
 \section{Performance Considerations}
 \begin{itemize}
     \item Minimize inter-agent communication overhead.
@@ -520,9 +506,6 @@ Recognizing bottlenecks is crucial. For example, if analysis (with retrieval + L
 
 In practice, a combination of these is used. For example, \ishtar{} uses caching of RAG results and dynamic batching via \texttt{vLLM} for model inference to improve throughput and latency. They also likely employ quantization or smaller model variants for certain agents to keep things snappy (e.g., the safety agent might use a slightly smaller model than synthesis, to reduce response time for the final answer without significant quality loss). Another angle is end-to-end optimization: sometimes you can skip an agent entirely to save time. If the synthesis agent already produced a fully correct answer with citations, maybe the verification agent just quickly scans it without heavy processing. This can be done by a confidence estimator – essentially, if synthesis has high confidence, skip verification to reduce latency, or do a lighter check. Finally, concurrency control: orchestrator needs to handle multiple simultaneous user requests. It should not serialize all users through one pipeline needlessly. Instead, each user query triggers an independent pipeline (with possibly shared agent pools). K8s or threading can handle running multiple requests. Ensuring thread safety in orchestrator (no global mutable state without locks) is important so that one user’s data doesn’t bleed into another’s. Performance tuning in multi-agent systems often requires an iterative approach: profile -> identify bottleneck -> optimize that (via code, model, or scaling) -> repeat. What’s unique here is the interplay between agents, which means sometimes optimizing the system means adjusting how agents communicate or the order they run, not just optimizing a single model.
 
-
-
-
 \section{Security in Multi-Agent Systems}
 \begin{itemize}
     \item Authenticate agent requests to the orchestrator.
@@ -562,7 +545,6 @@ In domains like journalism or enterprise, compliance with guidelines (like not l
 
 \paragraph*{Summary}
 In summary, multi-agent systems require careful governance: ensuring each agent does what it’s supposed to and nothing more, and that there’s end-to-end accountability. The system should be observable enough to investigate any incident (like a misinformation incident or a data leak). By implementing authentication, permission scopes, encryption, and thorough logging, Ishtar’s architects ensure that while agents collaborate freely, they do so in a controlled and auditable manner. The payoff is a system that stakeholders can trust, even as it autonomously coordinates complex tasks.
-
 
 \section{Case Study: Orchestrating Ishtar AI}
 
@@ -635,7 +617,6 @@ To conclude the case study, consider a scenario where verification finds a serio
     \item Higher factual accuracy due to dedicated verification.
     \item Modular upgrades possible without retraining the whole system.
 \end{itemize}
-
 
 \section{Best Practices Checklist}
 \begin{itemize}
