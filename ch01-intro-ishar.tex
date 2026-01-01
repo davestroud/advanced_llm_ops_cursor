@@ -511,36 +511,56 @@ LLM-driven systems differ from traditional ML systems in four key dimensions: sc
 \section{Structure of the Book}
 \label{sec:book-structure}
 
-This book is organized into four parts that follow the lifecycle of an LLM-based application, from foundational concepts through delivery, optimization, and governance. Each chapter builds on previous ones, blending theoretical foundations with practical guidance, and is anchored by the continuous case study of \ishtar{}.
+This book is organized into four parts that follow the lifecycle of an LLM-based application---from foundations and infrastructure, through delivery and operations, to optimization, governance, and an end-to-end capstone. Each chapter builds on prior material, balancing conceptual depth with implementation-oriented guidance, and is anchored by the continuous \ishtar{} case study.
 
-\textbf{Part I: Foundations of LLMOps} establishes the conceptual groundwork:
+\medskip
+\noindent\textbf{Part I: Foundations of LLMOps.}
+Part~I establishes the conceptual and infrastructural baseline required to reason about LLM systems in production.
 \begin{itemize}
-    \item \textbf{Chapter~\ref{ch:llmops-fundamentals}: LLMOps Fundamentals and Key Concepts} provides formal definitions of LLMOps and highlights how it diverges from traditional MLOps. Foundational concepts such as prompt engineering, retrieval-augmented generation (RAG), evaluation metrics, and alignment techniques are introduced.
-    \item \textbf{Chapter~\ref{ch:infra}: Infrastructure and Environment} covers hardware selection, cloud setups, GPU vs. TPU trade-offs, containerization, Kubernetes orchestration, and infrastructure-as-code for reproducible deployments.
+  \item \textbf{Chapter~\ref{ch:llmops-fundamentals}: LLMOps Fundamentals and Key Concepts.}
+  Defines LLMOps and distinguishes it from classical MLOps; introduces prompts, retrieval-augmented generation (RAG), evaluation, and alignment as first-class operational concerns.
+  \item \textbf{Chapter~\ref{ch:infra}: Infrastructure and Environment.}
+  Develops the infrastructure layer for LLM workloads, including accelerator selection, containerization, Kubernetes orchestration, and infrastructure-as-code patterns for reproducible deployments.
 \end{itemize}
 
-\textbf{Part II: Delivery and Production Operations} focuses on operational practices:
+\medskip
+\noindent\textbf{Part II: Delivery and Production Operations.}
+Part~II focuses on the practices that enable safe iteration and reliable operation under real traffic.
 \begin{itemize}
-    \item \textbf{Chapter~\ref{ch:cicd}: Continuous Integration and Deployment} presents best practices for reliably updating prompts and models in production, including automated testing pipelines and safe deployment strategies.
-    \item \textbf{Chapter~\ref{ch:monitoring}: Monitoring and Observability} introduces techniques for monitoring both infrastructure metrics and LLM-specific semantic signals in production.
-    \item \textbf{Chapter~\ref{ch:scaling}: Scaling Up LLM Deployments} covers autoscaling strategies, capacity planning, and cost optimization techniques.
+  \item \textbf{Chapter~\ref{ch:cicd}: Continuous Integration and Deployment.}
+  Presents CI/CD patterns tailored to LLM systems, including regression suites for prompts and retrieval behavior, deployment strategies (canary, shadow, rollback), and release gates for quality and safety.
+  \item \textbf{Chapter~\ref{ch:monitoring}: Monitoring and Observability.}
+  Introduces LLM observability as semantic instrumentation---tracing prompts, retrieval, and tool calls---alongside system telemetry to support debugging, governance, and continuous improvement.
+  \item \textbf{Chapter~\ref{ch:scaling}: Scaling Up LLM Deployments.}
+  Covers capacity planning, autoscaling strategies, latency/throughput trade-offs, and cost-aware operation under bursty workloads and long-context regimes.
 \end{itemize}
 
-\textbf{Part III: Optimization, Retrieval, and Agents} delves into advanced techniques:
+\medskip
+\noindent\textbf{Part III: Optimization, Retrieval, and Agents.}
+Part~III develops advanced techniques for efficiency and capability, with emphasis on retrieval and multi-step systems.
 \begin{itemize}
-    \item \textbf{Chapter~\ref{ch:performance}: Performance Optimization} covers model optimization techniques including quantization, distillation, and inference engine selection.
-    \item \textbf{Chapter~\ref{ch:rag}: Retrieval-Augmented Generation} provides comprehensive coverage of RAG techniques, from embedding models to vector databases and chunking strategies.
-    \item \textbf{Chapter~\ref{ch:multiagent}: Multi-Agent Architectures and Orchestration} explores multi-agent designs, coordination patterns, and orchestration frameworks.
+  \item \textbf{Chapter~\ref{ch:performance}: Performance Optimization.}
+  Surveys model- and system-level optimizations including quantization, distillation, inference-runtime selection, batching, and KV-cache management.
+  \item \textbf{Chapter~\ref{ch:rag}: Retrieval-Augmented Generation.}
+  Provides comprehensive coverage of RAG design---embedding models, vector databases, chunking, reranking, evaluation, and operational controls for freshness and drift.
+  \item \textbf{Chapter~\ref{ch:multiagent}: Multi-Agent Architectures and Orchestration.}
+  Explores agent design patterns, coordination mechanisms, orchestration frameworks, and failure handling for tool-augmented, multi-step workflows.
 \end{itemize}
 
-\textbf{Part IV: Quality, Governance, and Capstone} addresses quality assurance and brings everything together:
+\medskip
+\noindent\textbf{Part IV: Quality, Governance, and Capstone.}
+Part~IV addresses rigorous evaluation and responsible deployment, culminating in an end-to-end reference implementation.
 \begin{itemize}
-    \item \textbf{Chapter~\ref{ch:testing}: Testing, Evaluation, and Robustness} surveys evaluation frameworks, robustness testing, and regression control.
-    \item \textbf{Chapter~\ref{ch:ethics}: Ethics and Responsible Deployment} covers bias mitigation, transparency, privacy protection, and governance frameworks.
-    \item \textbf{Chapter~\ref{ch:case-study}: End-to-End Case Study} ties together all components through \ishtar{}'s complete lifecycle.
+  \item \textbf{Chapter~\ref{ch:testing}: Testing, Evaluation, and Robustness.}
+  Surveys evaluation methodologies (offline and online), adversarial testing, regression control, and reliability under distribution shift.
+  \item \textbf{Chapter~\ref{ch:ethics}: Ethics and Responsible Deployment.}
+  Covers privacy, safety, bias mitigation, transparency, and governance frameworks, emphasizing operational controls and auditability.
+  \item \textbf{Chapter~\ref{ch:case-study}: End-to-End Case Study.}
+  Integrates the preceding material through \ishtar{}'s complete lifecycle---from ingestion and retrieval through serving, monitoring, and release discipline.
 \end{itemize}
 
-By progressing through these chapters, readers will develop both a broad conceptual understanding of LLMOps and a practical toolkit for real-world projects. Checklists, best practices, and the running \ishtar{} case study provide concrete guidance that can be adapted to diverse domains and industries.
+\medskip
+\noindent By progressing through these parts, readers will develop both a conceptual framework for LLMOps and a practical toolkit for production deployment. Throughout, checklists, best-practice summaries, and the running \ishtar{} case study provide reusable guidance that can be adapted across domains and operational contexts.
 
 \subsection{How to Read This Book}
 \label{subsec:how-to-read}
