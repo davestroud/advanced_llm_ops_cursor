@@ -295,72 +295,74 @@ control stack spanning input handling, retrieval governance, tool security, and 
   \centering
   \begin{tikzpicture}[
     >=Stealth,
-    node distance=0.7cm and 0.4cm,
-    % Box styles
-    surface/.style={rectangle, draw=blue!70!black, fill=blue!8, thick, rounded corners=5pt, minimum width=2.1cm, minimum height=1.15cm, align=center, font=\footnotesize},
-    threat/.style={rectangle, draw=red!70!black, fill=red!10, thick, rounded corners=5pt, minimum width=2.1cm, minimum height=1cm, align=center, font=\footnotesize},
-    control/.style={rectangle, draw=green!70!black, fill=green!8, thick, rounded corners=5pt, minimum width=2.1cm, minimum height=1.15cm, align=center, font=\footnotesize},
-    crosscut/.style={rectangle, draw=purple!70!black, fill=purple!6, thick, rounded corners=4pt, minimum width=10.5cm, minimum height=0.75cm, align=center, font=\tiny},
-    arrow/.style={->, thick, color=black!60},
-    label/.style={font=\tiny, color=black!50}
+    scale=1.1,
+    transform shape,
+    node distance=0.8cm and 0.5cm,
+    % Box styles - larger and clearer
+    surface/.style={rectangle, draw=blue!70!black, fill=blue!10, very thick, rounded corners=6pt, minimum width=2.4cm, minimum height=1.3cm, align=center, font=\small},
+    threat/.style={rectangle, draw=red!70!black, fill=red!12, very thick, rounded corners=6pt, minimum width=2.4cm, minimum height=1.2cm, align=center, font=\small},
+    control/.style={rectangle, draw=green!70!black, fill=green!10, very thick, rounded corners=6pt, minimum width=2.4cm, minimum height=1.3cm, align=center, font=\small},
+    crosscut/.style={rectangle, draw=purple!70!black, fill=purple!8, very thick, rounded corners=5pt, minimum width=12cm, minimum height=0.9cm, align=center, font=\footnotesize},
+    arrow/.style={->, very thick, color=black!70},
+    label/.style={font=\footnotesize, color=black!60}
   ]
 
-  % Top layer: Threat surfaces
-  \node[surface] (input) at (0,4) {\begin{tabular}{c}\textbf{Untrusted input}\\\tiny User query\\Uploads\\Links\end{tabular}};
-  \node[surface, right=0.35cm of input] (prompt) {\begin{tabular}{c}\textbf{Prompt / policy}\\\tiny System rules\\Templates\\Routing\end{tabular}};
-  \node[surface, right=0.35cm of prompt] (retrieval) {\begin{tabular}{c}\textbf{Retrieval (RAG)}\\\tiny Search + filters\\Evidence bundle\\Citations\end{tabular}};
-  \node[surface, right=0.35cm of retrieval] (tools) {\begin{tabular}{c}\textbf{Tools / actions}\\\tiny APIs\\DB writes\\Workflows\end{tabular}};
-  \node[surface, right=0.35cm of tools] (output) {\begin{tabular}{c}\textbf{Model output}\\\tiny Answer text\\Citations\\Logs\end{tabular}};
+  % Top layer: Threat surfaces (larger spacing)
+  \node[surface] (input) at (0,5) {\begin{tabular}{c}\textbf{Untrusted input}\\\footnotesize User query\\Uploads\\Links\end{tabular}};
+  \node[surface, right=0.5cm of input] (prompt) {\begin{tabular}{c}\textbf{Prompt / policy}\\\footnotesize System rules\\Templates\\Routing\end{tabular}};
+  \node[surface, right=0.5cm of prompt] (retrieval) {\begin{tabular}{c}\textbf{Retrieval (RAG)}\\\footnotesize Search + filters\\Evidence bundle\\Citations\end{tabular}};
+  \node[surface, right=0.5cm of retrieval] (tools) {\begin{tabular}{c}\textbf{Tools / actions}\\\footnotesize APIs\\DB writes\\Workflows\end{tabular}};
+  \node[surface, right=0.5cm of tools] (output) {\begin{tabular}{c}\textbf{Model output}\\\footnotesize Answer text\\Citations\\Logs\end{tabular}};
 
   % Flow arrows between surfaces
-  \draw[->, thick, color=blue!50!black, line width=1pt] (input.east) -- (prompt.west);
-  \draw[->, thick, color=blue!50!black, line width=1pt] (prompt.east) -- (retrieval.west);
-  \draw[->, thick, color=blue!50!black, line width=1pt] (retrieval.east) -- (tools.west);
-  \draw[->, thick, color=blue!50!black, line width=1pt] (tools.east) -- (output.west);
+  \draw[->, very thick, color=blue!60!black, line width=1.5pt] (input.east) -- (prompt.west);
+  \draw[->, very thick, color=blue!60!black, line width=1.5pt] (prompt.east) -- (retrieval.west);
+  \draw[->, very thick, color=blue!60!black, line width=1.5pt] (retrieval.east) -- (tools.west);
+  \draw[->, very thick, color=blue!60!black, line width=1.5pt] (tools.east) -- (output.west);
 
-  % Middle layer: Threats
-  \node[threat, below=1.5cm of input] (inj) {\begin{tabular}{c}\textbf{Prompt injection}\\\tiny User text overrides\\instructions\end{tabular}};
-  \node[threat, below=1.5cm of prompt] (bypass) {\begin{tabular}{c}\textbf{Policy bypass}\\\tiny Hidden rules exposed\\or weakened\end{tabular}};
-  \node[threat, below=1.5cm of retrieval] (exfil) {\begin{tabular}{c}\textbf{Data exfiltration}\\\tiny Unauthorized docs\\retrieved\end{tabular}};
-  \node[threat, below=1.5cm of tools] (misuse) {\begin{tabular}{c}\textbf{Tool misuse}\\\tiny (confused deputy)\\\tiny Unsafe side effects\end{tabular}};
-  \node[threat, below=1.5cm of output] (leak) {\begin{tabular}{c}\textbf{Output leakage}\\\tiny (PII/secrets)\\\tiny Sensitive content\end{tabular}};
+  % Middle layer: Threats (larger spacing)
+  \node[threat, below=1.8cm of input] (inj) {\begin{tabular}{c}\textbf{Prompt injection}\\\footnotesize User text overrides\\instructions\end{tabular}};
+  \node[threat, below=1.8cm of prompt] (bypass) {\begin{tabular}{c}\textbf{Policy bypass}\\\footnotesize Hidden rules exposed\\or weakened\end{tabular}};
+  \node[threat, below=1.8cm of retrieval] (exfil) {\begin{tabular}{c}\textbf{Data exfiltration}\\\footnotesize Unauthorized docs\\retrieved\end{tabular}};
+  \node[threat, below=1.8cm of tools] (misuse) {\begin{tabular}{c}\textbf{Tool misuse}\\\footnotesize (confused deputy)\\\footnotesize Unsafe side effects\end{tabular}};
+  \node[threat, below=1.8cm of output] (leak) {\begin{tabular}{c}\textbf{Output leakage}\\\footnotesize (PII/secrets)\\\footnotesize Sensitive content\end{tabular}};
 
-  % Arrows from surfaces to threats (vertical, clean)
-  \draw[arrow, color=red!70!black, line width=1.3pt] (input.south) -- (inj.north);
-  \draw[arrow, color=red!70!black, line width=1.3pt] (prompt.south) -- (inj.north);
-  \draw[arrow, color=red!70!black, line width=1.3pt] (prompt.south) -- (bypass.north);
-  \draw[arrow, color=red!70!black, line width=1.3pt] (retrieval.south) -- (exfil.north);
-  \draw[arrow, color=red!70!black, line width=1.3pt] (tools.south) -- (misuse.north);
-  \draw[arrow, color=red!70!black, line width=1.3pt] (output.south) -- (leak.north);
+  % Arrows from surfaces to threats (vertical, clean, thicker)
+  \draw[arrow, color=red!70!black, line width=1.8pt] (input.south) -- (inj.north);
+  \draw[arrow, color=red!70!black, line width=1.8pt] (prompt.south) -- (inj.north);
+  \draw[arrow, color=red!70!black, line width=1.8pt] (prompt.south) -- (bypass.north);
+  \draw[arrow, color=red!70!black, line width=1.8pt] (retrieval.south) -- (exfil.north);
+  \draw[arrow, color=red!70!black, line width=1.8pt] (tools.south) -- (misuse.north);
+  \draw[arrow, color=red!70!black, line width=1.8pt] (output.south) -- (leak.north);
 
-  % Cross-cutting element (positioned between threats and controls)
-  \node[crosscut, below=1.15cm of inj, anchor=west, xshift=-1cm] (tracing) {\textbf{Cross-cutting:} structured tracing + audit logs (prompt IDs, retrieved doc IDs, tool calls, policy decisions) for incident response and rollback};
+  % Cross-cutting element (positioned between threats and controls, larger)
+  \node[crosscut, below=1.4cm of inj, anchor=west, xshift=-1.2cm] (tracing) {\textbf{Cross-cutting:} structured tracing + audit logs (prompt IDs, retrieved doc IDs, tool calls, policy decisions) for incident response and rollback};
 
-  % Bottom layer: Controls
-  \node[control, below=1.2cm of inj] (sanitize) {\begin{tabular}{c}\textbf{Input sanitization}\\\tiny Separate user vs\\system content\\Block known patterns\end{tabular}};
-  \node[control, below=1.2cm of bypass] (hierarchy) {\begin{tabular}{c}\textbf{Instruction hierarchy}\\\tiny System > developer > user\\Constrained formats\end{tabular}};
-  \node[control, below=1.2cm of exfil] (governance) {\begin{tabular}{c}\textbf{Retrieval governance}\\\tiny ACL checks\\Provenance + recency\\Trust allow-list\end{tabular}};
-  \node[control, below=1.2cm of misuse] (toolsec) {\begin{tabular}{c}\textbf{Tool security}\\\tiny Allow-list tools\\Argument validation\\Sandbox side effects\end{tabular}};
-  \node[control, below=1.2cm of leak] (outctrl) {\begin{tabular}{c}\textbf{Output controls}\\\tiny PII/secret redaction\\Citation requirements\\Rate limits \& HITL\end{tabular}};
+  % Bottom layer: Controls (larger spacing)
+  \node[control, below=1.4cm of inj] (sanitize) {\begin{tabular}{c}\textbf{Input sanitization}\\\footnotesize Separate user vs\\system content\\Block known patterns\end{tabular}};
+  \node[control, below=1.4cm of bypass] (hierarchy) {\begin{tabular}{c}\textbf{Instruction hierarchy}\\\footnotesize System > developer > user\\Constrained formats\end{tabular}};
+  \node[control, below=1.4cm of exfil] (governance) {\begin{tabular}{c}\textbf{Retrieval governance}\\\footnotesize ACL checks\\Provenance + recency\\Trust allow-list\end{tabular}};
+  \node[control, below=1.4cm of misuse] (toolsec) {\begin{tabular}{c}\textbf{Tool security}\\\footnotesize Allow-list tools\\Argument validation\\Sandbox side effects\end{tabular}};
+  \node[control, below=1.4cm of leak] (outctrl) {\begin{tabular}{c}\textbf{Output controls}\\\footnotesize PII/secret redaction\\Citation requirements\\Rate limits \& HITL\end{tabular}};
 
-  % Arrows from threats to controls (vertical, clean)
-  \draw[arrow, color=green!70!black, line width=1.3pt] (inj.south) -- (sanitize.north);
-  \draw[arrow, color=green!70!black, line width=1.3pt] (bypass.south) -- (hierarchy.north);
-  \draw[arrow, color=green!70!black, line width=1.3pt] (exfil.south) -- (governance.north);
-  \draw[arrow, color=green!70!black, line width=1.3pt] (misuse.south) -- (toolsec.north);
-  \draw[arrow, color=green!70!black, line width=1.3pt] (leak.south) -- (outctrl.north);
+  % Arrows from threats to controls (vertical, clean, thicker)
+  \draw[arrow, color=green!70!black, line width=1.8pt] (inj.south) -- (sanitize.north);
+  \draw[arrow, color=green!70!black, line width=1.8pt] (bypass.south) -- (hierarchy.north);
+  \draw[arrow, color=green!70!black, line width=1.8pt] (exfil.south) -- (governance.north);
+  \draw[arrow, color=green!70!black, line width=1.8pt] (misuse.south) -- (toolsec.north);
+  \draw[arrow, color=green!70!black, line width=1.8pt] (leak.south) -- (outctrl.north);
 
-  % Cross-cutting connections (dashed, cleaner routing)
-  \draw[->, dashed, thick, color=purple!70!black, line width=1pt] ($(tracing.north west)!0.1!(tracing.north east)$) to[out=90,in=-90, looseness=0.7] (inj);
-  \draw[->, dashed, thick, color=purple!70!black, line width=1pt] ($(tracing.north west)!0.3!(tracing.north east)$) to[out=90,in=-90, looseness=0.7] (bypass);
-  \draw[->, dashed, thick, color=purple!70!black, line width=1pt] ($(tracing.north west)!0.5!(tracing.north east)$) to[out=90,in=-90, looseness=0.7] (exfil);
-  \draw[->, dashed, thick, color=purple!70!black, line width=1pt] ($(tracing.north west)!0.7!(tracing.north east)$) to[out=90,in=-90, looseness=0.7] (misuse);
-  \draw[->, dashed, thick, color=purple!70!black, line width=1pt] ($(tracing.north east)$) to[out=90,in=-90, looseness=0.7] (leak);
+  % Cross-cutting connections (dashed, cleaner routing, thicker)
+  \draw[->, dashed, very thick, color=purple!70!black, line width=1.5pt] ($(tracing.north west)!0.1!(tracing.north east)$) to[out=90,in=-90, looseness=0.6] (inj);
+  \draw[->, dashed, very thick, color=purple!70!black, line width=1.5pt] ($(tracing.north west)!0.3!(tracing.north east)$) to[out=90,in=-90, looseness=0.6] (bypass);
+  \draw[->, dashed, very thick, color=purple!70!black, line width=1.5pt] ($(tracing.north west)!0.5!(tracing.north east)$) to[out=90,in=-90, looseness=0.6] (exfil);
+  \draw[->, dashed, very thick, color=purple!70!black, line width=1.5pt] ($(tracing.north west)!0.7!(tracing.north east)$) to[out=90,in=-90, looseness=0.6] (misuse);
+  \draw[->, dashed, very thick, color=purple!70!black, line width=1.5pt] ($(tracing.north east)$) to[out=90,in=-90, looseness=0.6] (leak);
 
-  % Layer labels (cleaner positioning)
-  \node[font=\small\bfseries, color=blue!70!black, above=0.35cm of input, anchor=west, xshift=-0.6cm] {Threat surfaces};
-  \node[font=\small\bfseries, color=red!70!black, above=0.25cm of inj, anchor=west, xshift=-0.6cm] {Threats (what can go wrong)};
-  \node[font=\small\bfseries, color=green!70!black, below=0.25cm of sanitize, anchor=west, xshift=-0.6cm] {Controls (what you implement)};
+  % Layer labels (larger, clearer)
+  \node[font=\normalsize\bfseries, color=blue!70!black, above=0.4cm of input, anchor=west, xshift=-0.7cm] {Threat surfaces};
+  \node[font=\normalsize\bfseries, color=red!70!black, above=0.3cm of inj, anchor=west, xshift=-0.7cm] {Threats (what can go wrong)};
+  \node[font=\normalsize\bfseries, color=green!70!black, below=0.3cm of sanitize, anchor=west, xshift=-0.7cm] {Controls (what you implement)};
 
   \end{tikzpicture}
   \caption{Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass,
