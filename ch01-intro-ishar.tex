@@ -25,14 +25,81 @@ Finally, widespread deployment increases the stakes of failure. When an LLM is i
 In short, the rapid adoption of LLMs marks a transition from treating ``models as features'' to treating ``models as platforms.'' The organizations that succeed with AI will not be those that merely plug in the most capable model, but those that develop the operational discipline to run LLM-powered systems reliably—controlling cost and latency, continuously measuring quality, defending against new threats, and iterating safely as models and knowledge sources evolve.
 The remainder of this chapter introduces the foundational principles, workflows, and terminology of LLMOps (Large Language Model Operations). We clarify not just the what of LLMOps, but also the why—why new approaches and tools are needed specifically for LLMs, and how they build on (or differ from) established MLOps practices. To make these concepts concrete, we will also introduce Ishtar AI as a running case study: a mission-critical LLM application for journalists in conflict zones, which will serve as a continuous reference throughout the book.
 
+% Preamble requirements: \usepackage{tikz} and \usetikzlibrary{arrows.meta,positioning}
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{images/ch01-llmops-lifecycle}
-\caption{The LLMOps continuous improvement lifecycle, showing how design, deployment, operation, and monitoring feed into iterative refinement.}
+\begin{tikzpicture}[
+  >=Stealth,
+  node distance=1.3cm and 2.8cm,
+  % Component styles
+  user/.style={ellipse, draw=blue!70!black, fill=blue!8, thick, minimum width=2.2cm, minimum height=1.1cm, align=center, font=\small\bfseries},
+  orchestrator/.style={rectangle, draw=purple!70!black, fill=purple!8, thick, rounded corners=6pt, minimum width=3.8cm, minimum height=1.3cm, align=center, font=\small\bfseries, text width=3.5cm},
+  retriever/.style={rectangle, draw=teal!70!black, fill=teal!8, thick, rounded corners=5pt, minimum width=3cm, minimum height=1.1cm, align=center, font=\small, text width=2.8cm},
+  knowledge/.style={rectangle, draw=green!70!black, fill=green!8, thick, rounded corners=5pt, minimum width=2.8cm, minimum height=1.4cm, align=center, font=\small, text width=2.6cm},
+  llm/.style={rectangle, draw=orange!70!black, fill=orange!8, thick, rounded corners=5pt, minimum width=2.8cm, minimum height=1.3cm, align=center, font=\small\bfseries, text width=2.6cm},
+  tool/.style={rectangle, draw=red!70!black, fill=red!8, thick, rounded corners=5pt, minimum width=2.5cm, minimum height=1.1cm, align=center, font=\small, text width=2.3cm},
+  response/.style={ellipse, draw=blue!70!black, fill=blue!8, thick, minimum width=2.2cm, minimum height=1.1cm, align=center, font=\small\bfseries},
+  failure/.style={circle, draw=red!70!black, fill=red!15, thick, minimum size=0.7cm, font=\large\bfseries},
+  % Arrow styles
+  mainflow/.style={->, thick, color=black!75},
+  fallback/.style={->, dashed, thick, color=red!70!black},
+  toolflow/.style={->, thick, color=orange!70!black},
+  retrieval/.style={->, thick, color=teal!70!black},
+  label/.style={font=\scriptsize, color=black!65, sloped}
+]
+
+% User and Response (top level)
+\node[user] (user) {User};
+\node[response, right=5cm of user] (response) {Response};
+
+% Orchestrator (center)
+\node[orchestrator, below=2.2cm of user] (orchestrator) {\begin{tabular}{c}Orchestrator\\\scriptsize LLM Application\end{tabular}};
+
+% Retriever and Knowledge Base (left side)
+\node[retriever, below left=1.8cm and 2.2cm of orchestrator] (retriever) {\begin{tabular}{c}Retriever\\\scriptsize (Vector DB)\end{tabular}};
+\node[knowledge, below=1.6cm of retriever] (knowledge) {\begin{tabular}{c}Knowledge Base\\\scriptsize (Documents)\end{tabular}};
+
+% LLM Model (right side)
+\node[llm, below right=1.8cm and 2.2cm of orchestrator] (llm) {LLM Model};
+
+% External Tool (below LLM)
+\node[tool, below=1.6cm of llm] (tool) {\begin{tabular}{c}External Tool\\\scriptsize / API\end{tabular}};
+
+% Failure indicator
+\node[failure, left=1cm of retriever] (failure) {\textcolor{red!70!black}{×}};
+
+% Main flow: User → Orchestrator → Response
+\draw[mainflow] (user) -- node[label, above] {User Query} (orchestrator);
+\draw[mainflow] (orchestrator) -- node[label, above] {Return answer} (response);
+
+% Retrieval flow: Orchestrator → Retriever → Knowledge Base
+\draw[retrieval] (orchestrator) -- node[label, left] {Retrieve docs} (retriever);
+\draw[retrieval] (retriever) -- node[label, right] {query index} (knowledge);
+\draw[retrieval] (knowledge) -- node[label, left] {docs} (retriever);
+\draw[retrieval] (retriever) -- node[label, right] {docs} (orchestrator);
+
+% Failure indicator connection
+\draw[->, dashed, thick, color=red!70!black] (retriever) -- (failure);
+\node[font=\scriptsize, color=black!65, left=0.3cm of failure] {Failure};
+
+% LLM flow: Orchestrator → LLM
+\draw[mainflow] (orchestrator) -- node[label, right] {Assemble prompt \& call model} (llm);
+\draw[mainflow] (llm) -- node[label, left] {LLM answer} (orchestrator);
+
+% Fallback: Orchestrator → LLM (skip retrieval)
+\draw[fallback] (orchestrator) to[out=0,in=180, looseness=1.2] node[label, above, pos=0.6] {Fallback: skip retrieval} (llm);
+
+% Tool flow: LLM → Tool
+\draw[toolflow] (llm) -- node[label, right] {Tool call (if needed)} (tool);
+\draw[toolflow] (tool) -- node[label, left] {Tool result} (llm);
+
+\end{tikzpicture}
+\caption{Architecture of an LLM-powered application showing retrieval-augmented generation (RAG) flow with fallback mechanisms. The orchestrator manages user queries, optionally retrieves relevant documents from a knowledge base via a vector database, constructs prompts for an LLM, allows the LLM to use external tools, and finally delivers a coherent response to the user.}
 \label{fig:ch01:lifecycle}
 \end{figure}
 
 \section{Operational Challenges}
+\label{sec:operational-challenges}
 Taking these massive models from demo to production introduces a host of operational hurdles that go far beyond those of traditional software or even classical machine learning systems. Smaller ML models can often be deployed on a single server with straightforward CI/CD and basic monitoring practices. In contrast, LLM deployments demand specialized infrastructure, rigorous orchestration, and new approaches to observability. The challenges span multiple dimensions:
 
 \subsection{Compute Economics: Cost, Latency, and Capacity}
