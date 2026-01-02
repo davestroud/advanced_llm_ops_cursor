@@ -454,16 +454,22 @@ In practice, LLMOps stacks often combine these tools. For instance, \ishtar{} us
   \centering
   \caption{Comparison of Infrastructure-as-Code tools (selected for LLMOps).}
   \label{tab:iaccompare}
-  \begin{tabular}{lccc}
-    \hline
-    Tool & Scope & Strength & Limitation \\
-    \hline
-    Terraform & Multi-cloud, K8s & Mature ecosystem; declarative workflow & DSL limits flexibility \\
-    Pulumi & Multi-cloud, K8s & Real languages (Python, etc.); dev-friendly & Smaller community; imperative pitfalls \\
-    CloudFormation/CDK & AWS-specific & Deep AWS integration; CDK abstractions & AWS-only; verbose templates \\
-    Helm & K8s app deployment & Reusable charts; easy upgrades & Not for base infra; YAML complexity \\
-    \hline
-  \end{tabular}
+  \small
+  \setlength{\tabcolsep}{8pt}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+    \toprule
+    \textbf{Tool} & \textbf{Scope} & \textbf{Strength} & \textbf{Limitation} \\
+    \midrule
+    \textbf{Terraform} & Multi-cloud, K8s & Mature ecosystem; declarative workflow & DSL limits flexibility \\
+    \addlinespace
+    \textbf{Pulumi} & Multi-cloud, K8s & Real languages (Python, etc.); dev-friendly & Smaller community; imperative pitfalls \\
+    \addlinespace
+    \textbf{CloudFormation/CDK} & AWS-specific & Deep AWS integration; CDK abstractions & AWS-only; verbose templates \\
+    \addlinespace
+    \textbf{Helm} & K8s app deployment & Reusable charts; easy upgrades & Not for base infra; YAML complexity \\
+    \bottomrule
+  \end{tabularx}
 \end{table}
 
 \subsection{Reusable Modules and Patterns}
@@ -521,19 +527,23 @@ This code defines an EKS cluster with a GPU-enabled node group. Labels and taint
 \begin{figure}[t]
   \centering
   \begin{tcolorbox}[
-    title={\textbf{Terraform: EKS Cluster with GPU Node Group}},
-    colback=blue!5,
-    colframe=blue!50!black,
-    colbacktitle=blue!20,
-    coltitle=black,
+    title={\textbf{\textcolor{white}{Terraform: EKS Cluster with GPU Node Group}}},
+    colback=blue!8,
+    colframe=blue!60!black,
+    colbacktitle=blue!60!black,
+    coltitle=white,
     fonttitle=\bfseries\small,
-    boxrule=0.8pt,
-    arc=4pt,
-    left=4mm, right=4mm, top=4mm, bottom=4mm
+    boxrule=1pt,
+    arc=5pt,
+    left=5mm, right=5mm, top=4mm, bottom=4mm,
+    drop shadow={0.5mm}{0.5mm}{0mm}{black!30},
+    enhanced
   ]
   \footnotesize
   \ttfamily
-  \begin{minipage}{\linewidth}
+  \setlength{\parindent}{0pt}
+  \setlength{\parskip}{2pt}
+  \begin{minipage}[t]{\linewidth}
 \begin{verbatim}
 # EKS Cluster with GPU-enabled node group
 # This module provisions an AWS EKS cluster optimized for LLM workloads
