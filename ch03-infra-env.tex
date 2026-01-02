@@ -763,7 +763,100 @@ Several specific considerations apply:
 \end{itemize}
 
 In summary, cloud-native deployments maximize flexibility and speed of iteration, making them attractive for startups and teams optimizing for time-to-market. 
-The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance on the cloud provider’s security and compliance posture. 
+The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance on the cloud provider's security and compliance posture.
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[
+    >=Stealth,
+    scale=0.95,
+    transform shape,
+    cloud/.style={ellipse, draw=blue!60!black, fill=blue!15, thick, minimum width=3cm, minimum height=1.5cm, align=center},
+    az/.style={rectangle, draw=green!60!black, fill=green!10, thick, rounded corners=5pt, minimum width=2.8cm, minimum height=3.5cm},
+    k8s/.style={rectangle, draw=purple!60!black, fill=purple!10, thick, rounded corners=3pt, minimum width=2.2cm, minimum height=1cm, align=center, font=\footnotesize},
+    gpu/.style={rectangle, draw=orange!70!black, fill=orange!15, thick, rounded corners=3pt, minimum width=1.8cm, minimum height=0.8cm, align=center, font=\tiny},
+    service/.style={rectangle, draw=teal!60!black, fill=teal!10, thick, rounded corners=3pt, minimum width=1.6cm, minimum height=0.7cm, align=center, font=\tiny},
+    security/.style={rectangle, draw=red!60!black, fill=red!10, thick, rounded corners=3pt, minimum width=1.5cm, minimum height=0.6cm, align=center, font=\tiny},
+    network/.style={rectangle, draw=cyan!60!black, fill=cyan!10, thick, rounded corners=3pt, minimum width=2cm, minimum height=0.7cm, align=center, font=\tiny},
+    arrow/.style={->, thick, color=black!60},
+    label/.style={font=\scriptsize, color=black!70}
+  ]
+    
+    % Cloud provider background
+    \node[cloud] (cloud) at (0, 5.5) {\textbf{Cloud Provider}\\(AWS/Azure/GCP)};
+    
+    % API Gateway / Load Balancer layer
+    \node[network] (gateway) at (0, 4.2) {API Gateway\\Load Balancer};
+    
+    % Security layer
+    \node[security, left=1.5cm of gateway] (iam) {IAM};
+    \node[security, right=1.5cm of gateway] (sg) {Security\\Groups};
+    
+    % Availability Zones
+    \node[az, left=2.5cm of gateway, anchor=north] (az1) at (0, 3) {};
+    \node[font=\small\bfseries, color=green!70!black, above=2pt] at (az1.north) {AZ-1};
+    
+    \node[az, right=2.5cm of gateway, anchor=north] (az2) at (0, 3) {};
+    \node[font=\small\bfseries, color=green!70!black, above=2pt] at (az2.north) {AZ-2};
+    
+    % Kubernetes clusters in each AZ
+    \node[k8s] (k8s1) at ($(az1.center) + (0, 0.3)$) {K8s Cluster};
+    \node[k8s] (k8s2) at ($(az2.center) + (0, 0.3)$) {K8s Cluster};
+    
+    % GPU nodes (showing scaling - more nodes in AZ-1)
+    \node[gpu] (gpu1a) at ($(k8s1.south) + (-0.6, -0.3)$) {GPU\\Node};
+    \node[gpu] (gpu1b) at ($(k8s1.south) + (0, -0.3)$) {GPU\\Node};
+    \node[gpu] (gpu1c) at ($(k8s1.south) + (0.6, -0.3)$) {GPU\\Node};
+    \node[gpu, opacity=0.5] (gpu1d) at ($(k8s1.south) + (-0.3, -0.6)$) {GPU\\Node};
+    \node[gpu, opacity=0.5] (gpu1e) at ($(k8s1.south) + (0.3, -0.6)$) {GPU\\Node};
+    
+    \node[gpu] (gpu2a) at ($(k8s2.south) + (-0.4, -0.3)$) {GPU\\Node};
+    \node[gpu] (gpu2b) at ($(k8s2.south) + (0.4, -0.3)$) {GPU\\Node};
+    
+    % Auto-scaling indicator
+    \draw[arrow, color=orange!70!black, line width=1.5pt, <->] ($(gpu1c.east) + (0.2, 0)$) -- ($(gpu1d.east) + (0.2, 0)$);
+    \node[font=\tiny\bfseries, color=orange!70!black, right=0.1cm of gpu1c] {Auto\\Scale};
+    
+    % Managed services (right side)
+    \node[service, above right=0.5cm and 1cm of az2.north east] (sqs) {SQS\\Pub/Sub};
+    \node[service, below=0.4cm of sqs] (vector) {Vector\\DB};
+    \node[service, below=0.4cm of vector] (storage) {Object\\Store};
+    \node[service, below=0.4cm of storage] (bedrock) {Bedrock\\OpenAI};
+    
+    % Private subnet indicator
+    \draw[dashed, color=cyan!60!black, line width=1pt, rounded corners=5pt] ($(az1.south west) + (-0.2, -0.2)$) rectangle ($(az2.north east) + (0.2, 0.2)$);
+    \node[font=\tiny\bfseries, color=cyan!70!black, below=0.1cm of az1.south] {Private Subnets};
+    
+    % Connections
+    \draw[arrow] (cloud.south) -- (gateway.north);
+    \draw[arrow] (gateway.south) -- (k8s1.north);
+    \draw[arrow] (gateway.south) -- (k8s2.north);
+    \draw[arrow] (iam) -- (gateway);
+    \draw[arrow] (sg) -- (gateway);
+    \draw[arrow, dashed] (k8s1.east) .. controls (2, 2.5) .. (sqs.west);
+    \draw[arrow, dashed] (k8s2.east) -- (sqs.west);
+    \draw[arrow, dashed] (k8s1.east) .. controls (2, 1.5) .. (vector.west);
+    \draw[arrow, dashed] (k8s2.east) -- (vector.west);
+    \draw[arrow, dashed] (k8s1.east) .. controls (2, 0.5) .. (storage.west);
+    \draw[arrow, dashed] (k8s2.east) -- (storage.west);
+    
+    % Disaster Recovery indicator (dotted box for DR region)
+    \draw[dotted, color=gray!60, line width=1.5pt, rounded corners=8pt] ($(az2.north east) + (1.5, 0.5)$) rectangle ($(az2.south east) + (3.5, -0.5)$);
+    \node[font=\tiny\bfseries, color=gray!70, right=2.5cm of az2.east] {DR Region\\via IaC};
+    
+    % Legend
+    \node[font=\footnotesize\bfseries, color=black!80, below=0.3cm of az1.south west, anchor=north west] at ($(az1.south west) + (-0.5, -1.2)$) {Key Features:};
+    \node[gpu, below=0.1cm of az1.south west, anchor=north west, minimum width=1.2cm] at ($(az1.south west) + (-0.5, -1.5)$) {};
+    \node[font=\tiny, right=0.1cm, anchor=west] at ($(az1.south west) + (-0.3, -1.5)$) {GPU Nodes (Auto-scaling)};
+    \node[service, below=0.1cm of az1.south west, anchor=north west, minimum width=1.2cm] at ($(az1.south west) + (-0.5, -1.8)$) {};
+    \node[font=\tiny, right=0.1cm, anchor=west] at ($(az1.south west) + (-0.3, -1.8)$) {Managed Services};
+    \node[security, below=0.1cm of az1.south west, anchor=north west, minimum width=1.2cm] at ($(az1.south west) + (-0.5, -2.1)$) {};
+    \node[font=\tiny, right=0.1cm, anchor=west] at ($(az1.south west) + (-0.3, -2.1)$) {Security \& IAM};
+    
+  \end{tikzpicture}
+  \caption{Cloud-native deployment architecture for LLMOps. The diagram illustrates elastic GPU scaling across multiple availability zones, integration with managed services (queues, vector databases, object storage), secure networking through API gateways and private subnets, and disaster recovery capabilities. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls.}
+  \label{fig:cloud-native-deployment}
+\end{figure}
 
 \subsection{Hybrid Deployments}
 \label{sec:deploy-hybrid}

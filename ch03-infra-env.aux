@@ -94,45 +94,47 @@
 \newlabel{sec:deploy}{{3.7}{95}{Deployment Patterns}{section.3.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Cloud-Native Deployments}{96}{subsection.3.7.1}\protected@file@percent }
 \newlabel{sec:deploy-cloud}{{3.7.1}{96}{Cloud-Native Deployments}{subsection.3.7.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Cloud-native deployment architecture for LLMOps. The diagram illustrates elastic GPU scaling across multiple availability zones, integration with managed services (queues, vector databases, object storage), secure networking through API gateways and private subnets, and disaster recovery capabilities. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls.}}{97}{figure.3.2}\protected@file@percent }
+\newlabel{fig:cloud-native-deployment}{{3.2}{97}{Cloud-native deployment architecture for LLMOps. The diagram illustrates elastic GPU scaling across multiple availability zones, integration with managed services (queues, vector databases, object storage), secure networking through API gateways and private subnets, and disaster recovery capabilities. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls}{figure.3.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Hybrid Deployments}{97}{subsection.3.7.2}\protected@file@percent }
 \newlabel{sec:deploy-hybrid}{{3.7.2}{97}{Hybrid Deployments}{subsection.3.7.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Multi-Cluster and Multi-Region Topologies}{97}{subsection.3.7.3}\protected@file@percent }
-\newlabel{sec:deploy-multicluster}{{3.7.3}{97}{Multi-Cluster and Multi-Region Topologies}{subsection.3.7.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.4}Summary}{98}{subsection.3.7.4}\protected@file@percent }
-\newlabel{sec:deploy-summary}{{3.7.4}{98}{Summary}{subsection.3.7.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Balanced schematic of deployment patterns: \textbf  {Cloud-Native} (left), \textbf  {Hybrid} (middle), and \textbf  {Multi-Cluster} (right).}}{99}{figure.3.2}\protected@file@percent }
-\newlabel{fig:deploy-patterns-balanced}{{3.2}{99}{Balanced schematic of deployment patterns: \textbf {Cloud-Native} (left), \textbf {Hybrid} (middle), and \textbf {Multi-Cluster} (right)}{figure.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Multi-Cluster and Multi-Region Topologies}{98}{subsection.3.7.3}\protected@file@percent }
+\newlabel{sec:deploy-multicluster}{{3.7.3}{98}{Multi-Cluster and Multi-Region Topologies}{subsection.3.7.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.4}Summary}{99}{subsection.3.7.4}\protected@file@percent }
+\newlabel{sec:deploy-summary}{{3.7.4}{99}{Summary}{subsection.3.7.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Balanced schematic of deployment patterns: \textbf  {Cloud-Native} (left), \textbf  {Hybrid} (middle), and \textbf  {Multi-Cluster} (right).}}{99}{figure.3.3}\protected@file@percent }
+\newlabel{fig:deploy-patterns-balanced}{{3.3}{99}{Balanced schematic of deployment patterns: \textbf {Cloud-Native} (left), \textbf {Hybrid} (middle), and \textbf {Multi-Cluster} (right)}{figure.3.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.8}Case Study: Ishtar AI Infrastructure}{99}{section.3.8}\protected@file@percent }
 \newlabel{sec:ishtar-case}{{3.8}{99}{Case Study: Ishtar AI Infrastructure}{section.3.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}Hardware Mix}{99}{subsection.3.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}Hardware Mix}{100}{subsection.3.8.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}IaC and Automation}{100}{subsection.3.8.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.8.3}Kubernetes Configuration}{100}{subsection.3.8.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.8.4}Serving Stack}{100}{subsection.3.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.5}Cost and Performance}{100}{subsection.3.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.5}Cost and Performance}{101}{subsection.3.8.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.8.6}Hybrid Integration}{101}{subsection.3.8.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.8.7}Lessons Learned}{101}{subsection.3.8.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling.}}{101}{figure.3.3}\protected@file@percent }
-\newlabel{fig:ishtar-infra}{{3.3}{101}{Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling}{figure.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling.}}{102}{figure.3.4}\protected@file@percent }
+\newlabel{fig:ishtar-infra}{{3.4}{102}{Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling}{figure.3.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.9}Best Practices and Checklists}{102}{section.3.9}\protected@file@percent }
 \newlabel{sec:bestpractices}{{3.9}{102}{Best Practices and Checklists}{section.3.9}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.9.1}Hardware \& Performance Checklist}{102}{subsection.3.9.1}\protected@file@percent }
 \newlabel{sec:bp-hw}{{3.9.1}{102}{Hardware \& Performance Checklist}{subsection.3.9.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.9.2}IaC \& DevOps Checklist}{103}{subsection.3.9.2}\protected@file@percent }
 \newlabel{sec:bp-iac}{{3.9.2}{103}{IaC \& DevOps Checklist}{subsection.3.9.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.3}Serving \& Scaling Checklist}{103}{subsection.3.9.3}\protected@file@percent }
-\newlabel{sec:bp-serving}{{3.9.3}{103}{Serving \& Scaling Checklist}{subsection.3.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.3}Serving \& Scaling Checklist}{104}{subsection.3.9.3}\protected@file@percent }
+\newlabel{sec:bp-serving}{{3.9.3}{104}{Serving \& Scaling Checklist}{subsection.3.9.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.9.4}Summary}{104}{subsection.3.9.4}\protected@file@percent }
 \newlabel{sec:checklists-summary}{{3.9.4}{104}{Summary}{subsection.3.9.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.10}Conclusion}{107}{section.3.10}\protected@file@percent }
 \newlabel{sec:infra-conclusion}{{3.10}{107}{Conclusion}{section.3.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.1}Bridging to Part II: Infrastructure as Operational Contracts}{107}{subsection.3.10.1}\protected@file@percent }
-\newlabel{sec:infra-part2-bridge}{{3.10.1}{107}{Bridging to Part II: Infrastructure as Operational Contracts}{subsection.3.10.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.1}Infrastructure Choices Define Operational Contracts}{107}{subsubsection.3.10.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.1}Bridging to Part II: Infrastructure as Operational Contracts}{108}{subsection.3.10.1}\protected@file@percent }
+\newlabel{sec:infra-part2-bridge}{{3.10.1}{108}{Bridging to Part II: Infrastructure as Operational Contracts}{subsection.3.10.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.1}Infrastructure Choices Define Operational Contracts}{108}{subsubsection.3.10.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.2}How Infrastructure Contracts Constrain CI/CD}{108}{subsubsection.3.10.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.3}How Infrastructure Choices Affect Observability}{108}{subsubsection.3.10.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.3}How Infrastructure Choices Affect Observability}{109}{subsubsection.3.10.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.4}How Infrastructure Decisions Impact Scaling}{109}{subsubsection.3.10.1.4}\protected@file@percent }
 \@setckpt{ch03-infra-env}{
-\setcounter{page}{110}
+\setcounter{page}{111}
 \setcounter{equation}{3}
 \setcounter{enumi}{5}
 \setcounter{enumii}{0}
@@ -146,7 +148,7 @@
 \setcounter{subsubsection}{4}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{3}
+\setcounter{figure}{4}
 \setcounter{table}{5}
 \setcounter{chapter}{3}
 \setcounter{theorem}{0}
