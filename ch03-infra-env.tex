@@ -221,8 +221,91 @@ In summary, it is best to operate GPUs at a batch size that still meets your lat
 
 \begin{figure}[htbp]
   \centering
-  % \includegraphics[width=0.7\textwidth]{figures/batch_tradeoff.pdf}
-  \caption{Throughput vs.\ batch size (schematic).}
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.88\textwidth,
+      height=8.5cm,
+      xlabel={Batch Size $B$},
+      ylabel={Throughput $\Theta$ (tokens/sec)},
+      xmin=0, xmax=140,
+      ymin=0, ymax=12000,
+      grid=major,
+      grid style={gray!20},
+      axis lines=left,
+      axis line style={thick, color=black!70},
+      tick style={thick, color=black!70},
+      xlabel style={font=\small\bfseries, color=black!80, yshift=3pt},
+      ylabel style={font=\small\bfseries, color=black!80, xshift=-3pt},
+      xtick={0,16,32,48,64,80,96,112,128},
+      ytick={0,2000,4000,6000,8000,10000,12000},
+      yticklabels={0,2k,4k,6k,8k,10k,12k},
+      every axis plot/.append style={smooth}
+    ]
+      
+      % Define the throughput function (diminishing returns curve)
+      \pgfmathdeclarefunction{throughput}{1}{%
+        \pgfmathparse{12000 * (1 - exp(-#1/15)) + 2000 * (1 - exp(-#1/50))}%
+      }
+      
+      % Add shaded regions for different phases (behind the curve)
+      \addplot[
+        fill=green!15,
+        draw=none,
+        domain=1:8,
+        area legend
+      ] {throughput(x)} \closedcycle;
+      
+      \addplot[
+        fill=orange!15,
+        draw=none,
+        domain=8:40,
+        area legend
+      ] {throughput(x)} \closedcycle;
+      
+      \addplot[
+        fill=red!15,
+        draw=none,
+        domain=40:140,
+        area legend
+      ] {throughput(x)} \closedcycle;
+      
+      % Main throughput curve (diminishing returns) - thick blue line
+      \addplot[
+        very thick,
+        color=blue!70!black,
+        smooth,
+        domain=1:140,
+        samples=150
+      ] {throughput(x)};
+      
+      % Add reference lines at key batch sizes (32, 64, 128)
+      \addplot[dashed, color=gray!50, thick, line width=0.8pt] coordinates {(32,0) (32,8500)};
+      \addplot[dashed, color=gray!50, thick, line width=0.8pt] coordinates {(64,0) (64,10500)};
+      \addplot[dashed, color=gray!50, thick, line width=0.8pt] coordinates {(128,0) (128,11000)};
+      
+      % Annotate key points with colored markers
+      \node[circle, fill=green!70!black, draw=white, line width=2pt, inner sep=3.5pt] at (axis cs:4,3500) {};
+      \node[font=\tiny\bfseries, text=green!70!black, above=4pt] at (axis cs:4,3500) {3$\times$ gain};
+      
+      \node[circle, fill=orange!70!black, draw=white, line width=2pt, inner sep=3.5pt] at (axis cs:32,8500) {};
+      \node[font=\tiny\bfseries, text=orange!70!black, above=4pt] at (axis cs:32,8500) {Diminishing};
+      
+      \node[circle, fill=red!70!black, draw=white, line width=2pt, inner sep=3.5pt] at (axis cs:64,10500) {};
+      \node[font=\tiny\bfseries, text=red!70!black, above=4pt] at (axis cs:64,10500) {Saturation};
+      
+      % Add phase labels in shaded regions
+      \node[font=\footnotesize\bfseries, text=green!70!black, align=center] at (axis cs:4,2000) {Rapid\\gain};
+      \node[font=\footnotesize\bfseries, text=orange!70!black, align=center] at (axis cs:24,6000) {Diminishing\\returns};
+      \node[font=\footnotesize\bfseries, text=red!70!black, align=center] at (axis cs:100,11000) {Saturation\\region};
+      
+      % Add batch size labels on x-axis for key points
+      \node[font=\tiny, text=gray!70, below=3pt] at (axis cs:32,0) {32};
+      \node[font=\tiny, text=gray!70, below=3pt] at (axis cs:64,0) {64};
+      \node[font=\tiny, text=gray!70, below=3pt] at (axis cs:128,0) {128};
+      
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Throughput vs.\ batch size (schematic). Increasing batch size initially yields large throughput gains (e.g., 3$\times$ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck.}
   \label{fig:batchtradeoff}
 \end{figure}
 
