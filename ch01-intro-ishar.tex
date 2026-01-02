@@ -91,7 +91,7 @@ The remainder of this chapter introduces the foundational principles, workflows,
 \draw[fallback] (orchestrator) to[out=0,in=180, looseness=1.0] node[label, above, pos=0.5] {\tiny Fallback: skip retrieval} (llm);
 
 % Tool flow: LLM → Tool
-\draw[toolflow] (llm) -- node[label, right, pos=0.5] {Tool call\\(if needed)} (tool);
+\draw[toolflow] (llm) -- node[label, right, pos=0.5] {Tool call (if needed)} (tool);
 \draw[toolflow] (tool) -- node[label, left, pos=0.5] {Tool result} (llm);
 
 \end{tikzpicture}
