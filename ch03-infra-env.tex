@@ -524,28 +524,46 @@ This ensures that infrastructure knowledge remains accurate, auditable, and acce
 
 A mature Infrastructure-as-Code (IaC) practice for LLMOps requires discipline across the entire lifecycle of infrastructure definition, testing, and deployment. The following checklist captures the essential best practices, each of which should be standard in any production-grade environment.
 
-\begin{itemize}
-  \item \textbf{Store all infrastructure code in source control.}  
-  IaC should be treated the same as application code: version-controlled in Git (or equivalent), with every change reviewed and traceable~\cite{terraform-docs}.
-  \item \textbf{Use remote state with locking (e.g., S3 + DynamoDB) to avoid conflicts.}  
-  Storing state remotely with distributed locking ensures that multiple engineers do not make conflicting changes, preventing state corruption.
-  \item \textbf{Modularize code for clusters, networking, and node groups.}  
-  Encapsulation into reusable modules reduces duplication and enforces consistency across environments.
-  \item \textbf{Integrate automated checks:} \texttt{terraform plan}, \texttt{tflint}, security scans, and policy-as-code.  
-  Automated validation pipelines catch misconfigurations and enforce organizational policies before changes are applied~\cite{opa-docs,sentinel-docs}.
-  \item \textbf{Manage secrets via secure stores (Vault, Secrets Manager).}  
-  Sensitive values must never be hardcoded in templates; instead, use secure vaults or cloud-native secret managers to inject values at runtime.
-  \item \textbf{Tag and name all resources for cost and ownership tracking.}  
-  Consistent tagging supports cost allocation, monitoring, and compliance audits across large-scale LLM deployments.
-  \item \textbf{Ensure idempotency and test rollbacks in sandbox environments.}  
-  Code should safely reapply without side effects. Rollback scenarios must be validated to guarantee disaster recovery capabilities.
-  \item \textbf{Use multiple environments (dev, staging, prod) with promotion gates.}  
-  Changes should flow progressively, with staging as a proving ground before reaching production. Promotion gates provide controlled approvals.
-  \item \textbf{Keep documentation co-located with code (README, diagrams).}  
-  Documentation must evolve with the code itself, ensuring that infrastructure knowledge remains accurate and accessible.
-  \item \textbf{Minimize manual console operations; backport emergency fixes into IaC immediately.}  
-  The console should never be the source of truth. If an emergency console change is required, it must be reflected back into the IaC repository at once to avoid drift.
-\end{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Best Practices for IaC in LLMOps}},
+  colback=purple!5,
+  colframe=purple!40!black,
+  colbacktitle=purple!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{purple!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{purple!8}
+\textbf{Store All Infrastructure Code in Source Control} & IaC should be treated the same as application code: version-controlled in Git (or equivalent), with every change reviewed and traceable~\cite{terraform-docs}. \\
+\rowcolor{purple!3}
+\textbf{Use Remote State with Locking} & Use remote state with locking (e.g., S3 + DynamoDB) to avoid conflicts. Storing state remotely with distributed locking ensures that multiple engineers do not make conflicting changes, preventing state corruption. \\
+\rowcolor{purple!8}
+\textbf{Modularize Code} & Modularize code for clusters, networking, and node groups. Encapsulation into reusable modules reduces duplication and enforces consistency across environments. \\
+\rowcolor{purple!3}
+\textbf{Integrate Automated Checks} & Integrate automated checks: \texttt{terraform plan}, \texttt{tflint}, security scans, and policy-as-code. Automated validation pipelines catch misconfigurations and enforce organizational policies before changes are applied~\cite{opa-docs,sentinel-docs}. \\
+\rowcolor{purple!8}
+\textbf{Manage Secrets via Secure Stores} & Manage secrets via secure stores (Vault, Secrets Manager). Sensitive values must never be hardcoded in templates; instead, use secure vaults or cloud-native secret managers to inject values at runtime. \\
+\rowcolor{purple!3}
+\textbf{Tag and Name All Resources} & Tag and name all resources for cost and ownership tracking. Consistent tagging supports cost allocation, monitoring, and compliance audits across large-scale LLM deployments. \\
+\rowcolor{purple!8}
+\textbf{Ensure Idempotency and Test Rollbacks} & Ensure idempotency and test rollbacks in sandbox environments. Code should safely reapply without side effects. Rollback scenarios must be validated to guarantee disaster recovery capabilities. \\
+\rowcolor{purple!3}
+\textbf{Use Multiple Environments} & Use multiple environments (dev, staging, prod) with promotion gates. Changes should flow progressively, with staging as a proving ground before reaching production. Promotion gates provide controlled approvals. \\
+\rowcolor{purple!8}
+\textbf{Keep Documentation Co-located} & Keep documentation co-located with code (README, diagrams). Documentation must evolve with the code itself, ensuring that infrastructure knowledge remains accurate and accessible. \\
+\rowcolor{purple!3}
+\textbf{Minimize Manual Console Operations} & Minimize manual console operations; backport emergency fixes into IaC immediately. The console should never be the source of truth. If an emergency console change is required, it must be reflected back into the IaC repository at once to avoid drift. \\
+\end{tabularx}
+\end{tcolorbox}
 
 Collectively, these practices ensure that IaC in LLMOps environments is reproducible, auditable, and secure. They enforce discipline not only at the level of code but also in operational behavior, reducing human error while enabling rapid, large-scale infrastructure changes with confidence.
 
