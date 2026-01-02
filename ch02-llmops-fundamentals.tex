@@ -12,6 +12,17 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter establishes the conceptual and quantitative foundations of LLMOps. We define LLMOps and explain why it extends classical MLOps to accommodate prompt and policy management, retrieval integration, tool calling, non-deterministic behavior, and new security and compliance requirements. We then formalize the primary systems constraints that dominate deployment decisions—parameter memory, KV-cache growth, attention complexity, and throughput/latency trade-offs—using lightweight equations that connect model architecture to operational metrics such as time-to-first-token (TTFT), tokens-per-second, and cost per request. Building on these foundations, we present the core stages of a production LLMOps pipeline: data curation, model selection and adaptation, prompt/chain development, evaluation and testing, serving and release engineering, and monitoring with feedback loops. Throughout, we use Ishtar AI as a running example to make the "observability contract" concrete: what must be logged, versioned, and gated so that behavior is reproducible, auditable, and improvable over time.
 
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
 \noindent\textbf{Chapter roadmap.} This chapter establishes the conceptual and quantitative foundations of LLMOps.
 We begin by defining LLMOps and explaining why it extends classical MLOps. We then
 introduce the main performance and cost drivers (parameter memory, KV cache, and attention
@@ -19,13 +30,15 @@ complexity), before outlining the core LLMOps pipeline spanning prompts, retriev
 evaluation, monitoring, and governance. Finally, we preview these ideas through the \ishtar{}
 running example, which will serve as a continuous reference implementation throughout the book.
 
+\medskip
 \noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
-\begin{itemize}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item Define LLMOps and distinguish it from traditional MLOps
     \item Understand core performance and cost drivers (parameter memory, KV cache, attention complexity)
     \item Identify the key components of an LLMOps pipeline
     \item Recognize the unique challenges of operationalizing LLM systems
 \end{itemize}
+\end{tcolorbox}
 
 \section{Introduction}
 \label{sec:ch2-introduction}
