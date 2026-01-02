@@ -142,7 +142,39 @@ N_{\text{in}} \times L \; + \; N_{\text{out}} \times L , \label{eq:costptok}
 \]
 where $L$ is the number of Transformer layers, and noting that each output token also involves attention over all prior tokens. Thus longer prompts or longer outputs linearly increase compute and latency, which linearly increases cost. This is why many LLM API providers charge separately for input tokens vs.\ output tokens—they both consume cycles.
 
-From an infrastructure owner’s perspective, tracking cost per 1k tokens is very useful. For instance, if using cloud on-demand instances: a single A100 at \$3.80/hour generating 8,000 tokens/sec costs about \$0.47 per second, which is $\sim$8,000 tokens, so $\sim$\$0.06 per thousand tokens. If that same A100 only runs at 50\% utilization, the effective cost doubles to $\sim$\$0.12 per thousand tokens. By comparison, a newer H100 at \$5.00/hour might generate 12,000 tokens/sec (under optimized settings), costing \$0.416 per second, i.e.\ $\sim$\$0.035 per thousand tokens---nearly half the cost of the underutilized A100~\cite{fabricated-knowledge-costs,lambda-gpt3-cost}. 
+From an infrastructure owner's perspective, tracking cost per 1k tokens is very useful. Table~\ref{tab:cost-per-token} illustrates this with concrete examples comparing GPU options under different utilization scenarios.
+
+\begin{table}[t]
+  \centering
+  \caption{Cost per thousand tokens comparison: A100 vs.\ H100 under different utilization scenarios.}
+  \label{tab:cost-per-token}
+  \small
+  \setlength{\tabcolsep}{10pt}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabularx}{\linewidth}{@{}lccX@{}}
+    \toprule
+    \rowcolor{blue!15}
+    \textbf{GPU Type} & \textbf{Utilization} & \textbf{Cost/hr} & \textbf{Cost per 1k tokens} \\
+    \midrule
+    \rowcolor{blue!8}
+    A100 (80GB) & \textcolor{green!70!black}{\textbf{100\%}} & \$3.80 & \textcolor{blue!70!black}{\textbf{\$0.06}} \\
+    & & & \footnotesize (8,000 tokens/sec) \\
+    \addlinespace[2pt]
+    \rowcolor{orange!12}
+    A100 (80GB) & \textcolor{orange!70!black}{\textbf{50\%}} & \$3.80 & \textcolor{red!70!black}{\textbf{\$0.12}} \\
+    & & & \footnotesize (4,000 tokens/sec effective) \\
+    \addlinespace[2pt]
+    \rowcolor{green!10}
+    H100 (80GB) & \textcolor{green!70!black}{\textbf{100\%}} & \$5.00 & \textcolor{green!70!black}{\textbf{\$0.035}} \\
+    & & & \footnotesize (12,000 tokens/sec) \\
+    \bottomrule
+  \end{tabularx}
+  \vspace{3pt}
+  \footnotesize
+  \textit{Note:} The H100 at full utilization achieves nearly half the cost per token compared to an underutilized A100, demonstrating the importance of both hardware selection and utilization optimization~\cite{fabricated-knowledge-costs,lambda-gpt3-cost}.
+\end{table}
+
+The calculations show that a single A100 at \$3.80/hour generating 8,000 tokens/sec costs about \$0.47 per second, yielding $\sim$\$0.06 per thousand tokens at full utilization. However, if that same A100 only runs at 50\% utilization, the effective cost doubles to $\sim$\$0.12 per thousand tokens. By comparison, a newer H100 at \$5.00/hour generating 12,000 tokens/sec (under optimized settings) costs \$0.416 per second, i.e.\ $\sim$\$0.035 per thousand tokens---nearly half the cost of the underutilized A100~\cite{fabricated-knowledge-costs,lambda-gpt3-cost}. 
 
 This simple math underscores two things: (1) newer hardware can indeed reduce marginal costs if fully utilized, and (2) utilization (keeping devices busy) is critical. Paying for an expensive GPU that is idle half the time is wasteful. Solutions such as auto-scaling and multi-tenancy are aimed precisely at keeping utilization high. Critically, these cost models become \emph{operational constraints} that define the economic boundaries within which the system must operate. These constraints form part of the operational contract: if infrastructure costs exceed budget thresholds, scaling strategies (Chapter~\ref{ch:scaling}) must respond by throttling or cost-aware capacity management.
 
