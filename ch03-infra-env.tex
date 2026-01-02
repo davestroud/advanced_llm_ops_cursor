@@ -1201,18 +1201,46 @@ To conclude the chapter, we present condensed best practices and checklists for 
 \subsection{Hardware \& Performance Checklist}
 \label{sec:bp-hw}
 
-\begin{itemize}
-  \item \textbf{Ensure Sufficient GPU Memory.} Calculate or empirically measure memory usage (including KV cache) at target sequence lengths. Avoid contexts that trigger out-of-memory errors. For longer contexts, employ higher-memory GPUs (80GB A100/H100) or KV compression. As a rule of thumb, a 13B model consumes $\sim$1.6 GB per 2048 tokens~\cite{vllm-pagedattention,pagedattention_paper}.
-  \item \textbf{Benchmark Cost-Per-Token.} For each GPU/TPU candidate, benchmark tokens/sec and compute cost per 1k tokens~\cite{fabricated-knowledge-costs,lambda-gpt3-cost}. A more expensive hourly instance may be cheaper per output due to higher throughput.
-  \item \textbf{Utilization Monitoring.} Keep GPUs busy. If average utilization $<$30\%, increase batch sizes or consolidate jobs. Low utilization = wasted money.
-  \item \textbf{Batching Tuning.} Determine optimal batch size relative to latency goals. Benchmark throughput/latency curves (e.g., with Hugging Face’s scripts) and configure dynamic batching accordingly~\cite{tgi-github,tgi_docs}.
-  \item \textbf{Adaptive Batching \& Queuing.} Introduce short request queues (10–30 ms) to improve batching without perceptible user impact. Use servers/frameworks that natively support this.
-  \item \textbf{Profile End-to-End Latency.} Break down latency into preprocessing, model compute, post-processing, and network transfer. Optimize each stage; GPU-accelerate post-processing if necessary.
-  \item \textbf{Plan for Spikes.} Define peak QPS and establish autoscaling or load-shedding strategies. Test spike scenarios to ensure capacity expansion occurs in time.
-  \item \textbf{Graceful Degradation.} Employ fallback mechanisms under overload: route to faster, smaller models, or reduce output length. Ensemble routing approaches such as Smoothie illustrate this principle~\cite{smoothie-routing}.
-  \item \textbf{Log and Analyze Tail Latencies.} Monitor p95/p99 latency for outliers. Identify causes (e.g., long inputs, hardware stalls) and mitigate (reject ultra-long prompts, split jobs).
-  \item \textbf{Thermal Monitoring.} In on-prem clusters, monitor GPU temperature and power draw. Thermal throttling reduces throughput; adequate cooling and power monitoring are essential.
-\end{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Hardware \& Performance Checklist}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{blue!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{blue!8}
+\textbf{Ensure Sufficient GPU Memory} & Calculate or empirically measure memory usage (including KV cache) at target sequence lengths. Avoid contexts that trigger out-of-memory errors. For longer contexts, employ higher-memory GPUs (80GB A100/H100) or KV compression. As a rule of thumb, a 13B model consumes $\sim$1.6 GB per 2048 tokens~\cite{vllm-pagedattention,pagedattention_paper}. \\
+\rowcolor{blue!3}
+\textbf{Benchmark Cost-Per-Token} & For each GPU/TPU candidate, benchmark tokens/sec and compute cost per 1k tokens~\cite{fabricated-knowledge-costs,lambda-gpt3-cost}. A more expensive hourly instance may be cheaper per output due to higher throughput. \\
+\rowcolor{blue!8}
+\textbf{Utilization Monitoring} & Keep GPUs busy. If average utilization $<$30\%, increase batch sizes or consolidate jobs. Low utilization = wasted money. \\
+\rowcolor{blue!3}
+\textbf{Batching Tuning} & Determine optimal batch size relative to latency goals. Benchmark throughput/latency curves (e.g., with Hugging Face's scripts) and configure dynamic batching accordingly~\cite{tgi-github,tgi_docs}. \\
+\rowcolor{blue!8}
+\textbf{Adaptive Batching \& Queuing} & Introduce short request queues (10–30 ms) to improve batching without perceptible user impact. Use servers/frameworks that natively support this. \\
+\rowcolor{blue!3}
+\textbf{Profile End-to-End Latency} & Break down latency into preprocessing, model compute, post-processing, and network transfer. Optimize each stage; GPU-accelerate post-processing if necessary. \\
+\rowcolor{blue!8}
+\textbf{Plan for Spikes} & Define peak QPS and establish autoscaling or load-shedding strategies. Test spike scenarios to ensure capacity expansion occurs in time. \\
+\rowcolor{blue!3}
+\textbf{Graceful Degradation} & Employ fallback mechanisms under overload: route to faster, smaller models, or reduce output length. Ensemble routing approaches such as Smoothie illustrate this principle~\cite{smoothie-routing}. \\
+\rowcolor{blue!8}
+\textbf{Log and Analyze Tail Latencies} & Monitor p95/p99 latency for outliers. Identify causes (e.g., long inputs, hardware stalls) and mitigate (reject ultra-long prompts, split jobs). \\
+\rowcolor{blue!3}
+\textbf{Thermal Monitoring} & In on-prem clusters, monitor GPU temperature and power draw. Thermal throttling reduces throughput; adequate cooling and power monitoring are essential. \\
+\end{tabularx}
+\end{tcolorbox}
 
 \subsection{IaC \& DevOps Checklist}
 \label{sec:bp-iac}
