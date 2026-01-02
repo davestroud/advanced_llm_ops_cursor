@@ -290,9 +290,79 @@ Three high-leverage risk categories dominate production hardening:
 Figure~\ref{fig:llm-threat-model} summarizes the main attack surfaces and a defense-in-depth
 control stack spanning input handling, retrieval governance, tool security, and output controls.
 
+% Preamble requirements: \usepackage{tikz} and \usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.98\textwidth]{images/ch01-security-threat-model}
+  \begin{tikzpicture}[
+    >=Stealth,
+    node distance=0.5cm and 0.25cm,
+    % Box styles
+    surface/.style={rectangle, draw=blue!70!black, fill=blue!10, thick, rounded corners=4pt, minimum width=1.9cm, minimum height=1.1cm, align=center, font=\footnotesize},
+    threat/.style={rectangle, draw=red!70!black, fill=red!12, thick, rounded corners=4pt, minimum width=1.9cm, minimum height=1cm, align=center, font=\footnotesize},
+    control/.style={rectangle, draw=green!70!black, fill=green!10, thick, rounded corners=4pt, minimum width=1.9cm, minimum height=1.1cm, align=center, font=\footnotesize},
+    crosscut/.style={rectangle, draw=purple!70!black, fill=purple!8, thick, rounded corners=4pt, minimum width=9.5cm, minimum height=0.7cm, align=center, font=\tiny},
+    arrow/.style={->, thick, color=black!60},
+    label/.style={font=\tiny, color=black!50}
+  ]
+
+  % Top layer: Threat surfaces
+  \node[surface] (input) at (0,3.8) {\begin{tabular}{c}\textbf{Untrusted input}\\\tiny User query\\Uploads\\Links\end{tabular}};
+  \node[surface, right=0.15cm of input] (prompt) {\begin{tabular}{c}\textbf{Prompt / policy}\\\tiny System rules\\Templates\\Routing\end{tabular}};
+  \node[surface, right=0.15cm of prompt] (retrieval) {\begin{tabular}{c}\textbf{Retrieval (RAG)}\\\tiny Search + filters\\Evidence bundle\\Citations\end{tabular}};
+  \node[surface, right=0.15cm of retrieval] (tools) {\begin{tabular}{c}\textbf{Tools / actions}\\\tiny APIs\\DB writes\\Workflows\end{tabular}};
+  \node[surface, right=0.15cm of tools] (output) {\begin{tabular}{c}\textbf{Model output}\\\tiny Answer text\\Citations\\Logs\end{tabular}};
+
+  % Flow arrows between surfaces
+  \draw[->, thick, color=blue!50!black] (input) -- (prompt);
+  \draw[->, thick, color=blue!50!black] (prompt) -- (retrieval);
+  \draw[->, thick, color=blue!50!black] (retrieval) -- (tools);
+  \draw[->, thick, color=blue!50!black] (tools) -- (output);
+
+  % Middle layer: Threats
+  \node[threat, below=1.3cm of input] (inj) {\begin{tabular}{c}\textbf{Prompt injection}\\\tiny User text overrides\\instructions\end{tabular}};
+  \node[threat, below=1.3cm of prompt] (bypass) {\begin{tabular}{c}\textbf{Policy bypass}\\\tiny Hidden rules exposed\\or weakened\end{tabular}};
+  \node[threat, below=1.3cm of retrieval] (exfil) {\begin{tabular}{c}\textbf{Data exfiltration}\\\tiny Unauthorized docs\\retrieved\end{tabular}};
+  \node[threat, below=1.3cm of tools] (misuse) {\begin{tabular}{c}\textbf{Tool misuse}\\\tiny (confused deputy)\\\tiny Unsafe side effects\end{tabular}};
+  \node[threat, below=1.3cm of output] (leak) {\begin{tabular}{c}\textbf{Output leakage}\\\tiny (PII/secrets)\\\tiny Sensitive content\end{tabular}};
+
+  % Arrows from surfaces to threats
+  \draw[arrow, color=red!70!black, line width=1.1pt] (input.south) -- (inj.north);
+  \draw[arrow, color=red!70!black, line width=1.1pt] (prompt.south) -- (inj.north);
+  \draw[arrow, color=red!70!black, line width=1.1pt] (prompt.south) -- (bypass.north);
+  \draw[arrow, color=red!70!black, line width=1.1pt] (retrieval.south) -- (exfil.north);
+  \draw[arrow, color=red!70!black, line width=1.1pt] (tools.south) -- (misuse.north);
+  \draw[arrow, color=red!70!black, line width=1.1pt] (output.south) -- (leak.north);
+
+  % Cross-cutting element
+  \node[crosscut, below=1cm of inj, anchor=west, xshift=-0.8cm] (tracing) {\textbf{Cross-cutting:} structured tracing + audit logs (prompt IDs, retrieved doc IDs, tool calls, policy decisions) for incident response and rollback};
+
+  % Bottom layer: Controls
+  \node[control, below=1cm of inj] (sanitize) {\begin{tabular}{c}\textbf{Input sanitization}\\\tiny Separate user vs\\system content\\Block known patterns\end{tabular}};
+  \node[control, below=1cm of bypass] (hierarchy) {\begin{tabular}{c}\textbf{Instruction hierarchy}\\\tiny System > developer > user\\Constrained formats\end{tabular}};
+  \node[control, below=1cm of exfil] (governance) {\begin{tabular}{c}\textbf{Retrieval governance}\\\tiny ACL checks\\Provenance + recency\\Trust allow-list\end{tabular}};
+  \node[control, below=1cm of misuse] (toolsec) {\begin{tabular}{c}\textbf{Tool security}\\\tiny Allow-list tools\\Argument validation\\Sandbox side effects\end{tabular}};
+  \node[control, below=1cm of leak] (outctrl) {\begin{tabular}{c}\textbf{Output controls}\\\tiny PII/secret redaction\\Citation requirements\\Rate limits \& HITL\end{tabular}};
+
+  % Arrows from threats to controls
+  \draw[arrow, color=green!70!black, line width=1.1pt] (inj.south) -- (sanitize.north);
+  \draw[arrow, color=green!70!black, line width=1.1pt] (bypass.south) -- (hierarchy.north);
+  \draw[arrow, color=green!70!black, line width=1.1pt] (exfil.south) -- (governance.north);
+  \draw[arrow, color=green!70!black, line width=1.1pt] (misuse.south) -- (toolsec.north);
+  \draw[arrow, color=green!70!black, line width=1.1pt] (leak.south) -- (outctrl.north);
+
+  % Cross-cutting connections (dashed)
+  \draw[->, dashed, thick, color=purple!70!black] ($(tracing.north west)!0.2!(tracing.north east)$) to[out=90,in=-90] (inj);
+  \draw[->, dashed, thick, color=purple!70!black] ($(tracing.north west)!0.4!(tracing.north east)$) to[out=90,in=-90] (bypass);
+  \draw[->, dashed, thick, color=purple!70!black] ($(tracing.north west)!0.6!(tracing.north east)$) to[out=90,in=-90] (exfil);
+  \draw[->, dashed, thick, color=purple!70!black] ($(tracing.north west)!0.8!(tracing.north east)$) to[out=90,in=-90] (misuse);
+  \draw[->, dashed, thick, color=purple!70!black] ($(tracing.north east)$) to[out=90,in=-90] (leak);
+
+  % Layer labels
+  \node[font=\small\bfseries, color=blue!70!black, above=0.25cm of input, anchor=west, xshift=-0.4cm] {Threat surfaces};
+  \node[font=\small\bfseries, color=red!70!black, above=0.15cm of inj, anchor=west, xshift=-0.4cm] {Threats (what can go wrong)};
+  \node[font=\small\bfseries, color=green!70!black, below=0.15cm of sanitize, anchor=west, xshift=-0.4cm] {Controls (what you implement)};
+
+  \end{tikzpicture}
   \caption{Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass,
   retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization,
   instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing
