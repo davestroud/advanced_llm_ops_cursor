@@ -526,29 +526,31 @@ This code defines an EKS cluster with a GPU-enabled node group. Labels and taint
 
 \begin{figure}[t]
   \centering
-  \begin{tcolorbox}[
-    title={\textbf{\textcolor{white}{Terraform: EKS Cluster with GPU Node Group}}},
-    colback=blue!8,
-    colframe=blue!60!black,
-    colbacktitle=blue!60!black,
-    coltitle=white,
-    fonttitle=\bfseries\small,
-    boxrule=1pt,
-    arc=5pt,
-    left=3mm, right=3mm, top=3mm, bottom=3mm,
-    enhanced,
-    breakable
-  ]
-  \tiny
-  \ttfamily
-  \setlength{\baselineskip}{1.1\baselineskip}
-  \begin{verbatim}
+  \fboxsep=4pt
+  \fboxrule=1pt
+  \colorbox{blue!8}{%
+    \begin{minipage}{0.95\linewidth}
+      \vspace{4pt}
+      \centering
+      \textbf{\textcolor{blue!60!black}{Terraform: EKS Cluster with GPU Node Group}}
+      \vspace{4pt}
+      \hrule
+      \vspace{4pt}
+      \footnotesize
+      \ttfamily
+      \begin{verbatim}
 # EKS Cluster with GPU-enabled node group
 terraform {
   required_version = ">= 1.5"
   required_providers {
-    aws = { source = "hashicorp/aws", version = "~> 5.0" }
-    kubernetes = { source = "hashicorp/kubernetes", version = "~> 2.23" }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.23"
+    }
   }
 }
 
@@ -558,12 +560,14 @@ resource "aws_eks_cluster" "llm_cluster" {
   role_arn = aws_iam_role.cluster.arn
   version  = "1.28"
   vpc_config {
-    subnet_ids = var.subnet_ids
+    subnet_ids              = var.subnet_ids
     endpoint_private_access = true
-    endpoint_public_access = false
+    endpoint_public_access  = false
   }
-  enabled_cluster_log_types = ["api", "audit", "authenticator", 
-                                "controllerManager", "scheduler"]
+  enabled_cluster_log_types = [
+    "api", "audit", "authenticator", 
+    "controllerManager", "scheduler"
+  ]
   tags = {
     Environment = var.environment
     ManagedBy   = "Terraform"
@@ -615,10 +619,11 @@ output "kubeconfig" {
 output "cluster_endpoint" {
   value = aws_eks_cluster.llm_cluster.endpoint
 }
-  \end{verbatim}
-  \normalfont
-  \normalsize
-  \end{tcolorbox}
+      \end{verbatim}
+      \normalfont
+      \normalsize
+    \end{minipage}%
+  }
   \caption{Terraform configuration for an EKS cluster with GPU-enabled node groups. The configuration demonstrates key IaC patterns: declarative resource definitions, node labeling and taints for workload isolation, autoscaling configuration, and secure outputs. Labels and taints ensure only GPU workloads (with matching tolerations) can schedule on GPU nodes, preventing resource contention.}
   \label{fig:iac-example}
 \end{figure}
