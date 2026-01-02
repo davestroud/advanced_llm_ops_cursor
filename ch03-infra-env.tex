@@ -219,12 +219,12 @@ From a cost perspective, batching is one of the biggest levers to reduce cost pe
 
 In summary, it is best to operate GPUs at a batch size that still meets your latency SLA. If latency is more critical, you may run at small batches and accept higher cost per token. If throughput (and cost) is key, you batch aggressively and perhaps even do asynchronous processing (queue up work and process in big chunks). Interactive services often find a middle ground: small batches during off-peak (to keep latency low) and larger batches during peak (trading a bit more latency for major throughput gain when many users are active).
 
-\begin{figure}[htbp]
+\begin{figure}[t]
   \centering
   \begin{tikzpicture}
     \begin{axis}[
-      width=0.88\textwidth,
-      height=8.5cm,
+      width=0.95\textwidth,
+      height=10cm,
       xlabel={Batch Size $B$},
       ylabel={Throughput $\Theta$ (tokens/sec)},
       xmin=0, xmax=140,
@@ -234,11 +234,12 @@ In summary, it is best to operate GPUs at a batch size that still meets your lat
       axis lines=left,
       axis line style={thick, color=black!70},
       tick style={thick, color=black!70},
-      xlabel style={font=\small\bfseries, color=black!80, yshift=3pt},
-      ylabel style={font=\small\bfseries, color=black!80, xshift=-3pt},
+      xlabel style={font=\normalsize\bfseries, color=black!80, yshift=4pt},
+      ylabel style={font=\normalsize\bfseries, color=black!80, xshift=-4pt},
       xtick={0,16,32,48,64,80,96,112,128},
       ytick={0,2000,4000,6000,8000,10000,12000},
       yticklabels={0,2k,4k,6k,8k,10k,12k},
+      tick label style={font=\small},
       every axis plot/.append style={smooth}
     ]
       
@@ -284,24 +285,24 @@ In summary, it is best to operate GPUs at a batch size that still meets your lat
       \addplot[dashed, color=gray!50, thick, line width=0.8pt] coordinates {(128,0) (128,11000)};
       
       % Annotate key points with colored markers
-      \node[circle, fill=green!70!black, draw=white, line width=2pt, inner sep=3.5pt] at (axis cs:4,3500) {};
-      \node[font=\tiny\bfseries, text=green!70!black, above=4pt] at (axis cs:4,3500) {3$\times$ gain};
+      \node[circle, fill=green!70!black, draw=white, line width=2pt, inner sep=4pt] at (axis cs:4,3500) {};
+      \node[font=\small\bfseries, text=green!70!black, above=5pt] at (axis cs:4,3500) {3$\times$ gain};
       
-      \node[circle, fill=orange!70!black, draw=white, line width=2pt, inner sep=3.5pt] at (axis cs:32,8500) {};
-      \node[font=\tiny\bfseries, text=orange!70!black, above=4pt] at (axis cs:32,8500) {Diminishing};
+      \node[circle, fill=orange!70!black, draw=white, line width=2pt, inner sep=4pt] at (axis cs:32,8500) {};
+      \node[font=\small\bfseries, text=orange!70!black, above=5pt] at (axis cs:32,8500) {Diminishing};
       
-      \node[circle, fill=red!70!black, draw=white, line width=2pt, inner sep=3.5pt] at (axis cs:64,10500) {};
-      \node[font=\tiny\bfseries, text=red!70!black, above=4pt] at (axis cs:64,10500) {Saturation};
+      \node[circle, fill=red!70!black, draw=white, line width=2pt, inner sep=4pt] at (axis cs:64,10500) {};
+      \node[font=\small\bfseries, text=red!70!black, above=5pt] at (axis cs:64,10500) {Saturation};
       
-      % Add phase labels in shaded regions
-      \node[font=\footnotesize\bfseries, text=green!70!black, align=center] at (axis cs:4,2000) {Rapid\\gain};
-      \node[font=\footnotesize\bfseries, text=orange!70!black, align=center] at (axis cs:24,6000) {Diminishing\\returns};
-      \node[font=\footnotesize\bfseries, text=red!70!black, align=center] at (axis cs:100,11000) {Saturation\\region};
+      % Add phase labels in shaded regions (larger font for readability)
+      \node[font=\small\bfseries, text=green!70!black, align=center] at (axis cs:4,2000) {Rapid\\gain};
+      \node[font=\small\bfseries, text=orange!70!black, align=center] at (axis cs:24,6000) {Diminishing\\returns};
+      \node[font=\small\bfseries, text=red!70!black, align=center] at (axis cs:100,11000) {Saturation\\region};
       
       % Add batch size labels on x-axis for key points
-      \node[font=\tiny, text=gray!70, below=3pt] at (axis cs:32,0) {32};
-      \node[font=\tiny, text=gray!70, below=3pt] at (axis cs:64,0) {64};
-      \node[font=\tiny, text=gray!70, below=3pt] at (axis cs:128,0) {128};
+      \node[font=\small, text=gray!70, below=4pt] at (axis cs:32,0) {32};
+      \node[font=\small, text=gray!70, below=4pt] at (axis cs:64,0) {64};
+      \node[font=\small, text=gray!70, below=4pt] at (axis cs:128,0) {128};
       
     \end{axis}
   \end{tikzpicture}
