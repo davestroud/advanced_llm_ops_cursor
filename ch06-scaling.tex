@@ -1028,21 +1028,42 @@ $\bullet$ Tiered models \& spot for cost-awareness
 \section{Best Practices Checklist}
 In conclusion, scaling up LLM deployments involves a combination of strategic planning and tactical optimizations. The following checklist distills best practices:
 
-Plan for demand: Start with capacity planning and demand forecasting to avoid constantly playing catch-up. Use historical data (or analogues) to predict peak loads, and design your system with some headroom.
-
-Leverage mixed scaling: Don’t rely on just vertical or just horizontal scaling. Use a mix – vertical for performance, horizontal for flexibility. Many successful deployments use moderate per-node power plus the ability to add nodes dynamically.
-
-Optimize inference before adding hardware: It’s often cheaper to optimize software (batching, caching, quantization) than to throw more GPUs at the problem. Squeeze as much throughput as possible out of each GPU; measure cost per token as a key metric.
-
-Implement robust autoscaling: Automated scaling is essential for cost-effective operation. Use metrics to scale reactively and incorporate predictive or scheduled scaling for known patterns. Ensure you have safeguards (cooldowns, max/min bounds) to prevent thrashing.
-
-Monitor and iterate: Continuously monitor latency percentiles, throughput, and utilization. These metrics will tell you where the bottlenecks are (e.g. if GPUs are underutilized, maybe your batcher is too conservative; if latency spikes, maybe a particular component is slow or thrashing).
-
-Use caching liberally: Caching can drastically cut redundant work. Identify opportunities at all levels – from full response caching for repeated queries, to prefix caching within the model, to embedding caching in RAG. Even a small cache with a few GB of RAM can often handle a large fraction of repeat requests.
-
-Geo-distribute if user base is global: The speed of light is a factor – serving from a single region will incur unavoidable latency for distant users. Plan a geo-deployment if your user base is worldwide or if data locality laws require it. This often comes after nailing down everything in one region first.
-
-Gradual rollout and testing: Scale incrementally. Test new scaling techniques (like speculative decoding or new batching algorithms) under load in a staging environment if possible. Each addition (e.g. a new cache layer, new parallelism) adds complexity; ensure it behaves as expected with your workload before relying on it in prod.
+\begin{tcolorbox}[
+  title={\textbf{Best Practices Checklist for Scaling LLM Deployments}},
+  colback=teal!5,
+  colframe=teal!40!black,
+  colbacktitle=teal!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{teal!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{teal!8}
+\textbf{Plan for Demand} & Start with capacity planning and demand forecasting to avoid constantly playing catch-up. Use historical data (or analogues) to predict peak loads, and design your system with some headroom. \\
+\rowcolor{teal!3}
+\textbf{Leverage Mixed Scaling} & Don't rely on just vertical or just horizontal scaling. Use a mix – vertical for performance, horizontal for flexibility. Many successful deployments use moderate per-node power plus the ability to add nodes dynamically. \\
+\rowcolor{teal!8}
+\textbf{Optimize Inference Before Adding Hardware} & It's often cheaper to optimize software (batching, caching, quantization) than to throw more GPUs at the problem. Squeeze as much throughput as possible out of each GPU; measure cost per token as a key metric. \\
+\rowcolor{teal!3}
+\textbf{Implement Robust Autoscaling} & Automated scaling is essential for cost-effective operation. Use metrics to scale reactively and incorporate predictive or scheduled scaling for known patterns. Ensure you have safeguards (cooldowns, max/min bounds) to prevent thrashing. \\
+\rowcolor{teal!8}
+\textbf{Monitor and Iterate} & Continuously monitor latency percentiles, throughput, and utilization. These metrics will tell you where the bottlenecks are (e.g. if GPUs are underutilized, maybe your batcher is too conservative; if latency spikes, maybe a particular component is slow or thrashing). \\
+\rowcolor{teal!3}
+\textbf{Use Caching Liberally} & Caching can drastically cut redundant work. Identify opportunities at all levels – from full response caching for repeated queries, to prefix caching within the model, to embedding caching in RAG. Even a small cache with a few GB of RAM can often handle a large fraction of repeat requests. \\
+\rowcolor{teal!8}
+\textbf{Geo-Distribute if User Base is Global} & The speed of light is a factor – serving from a single region will incur unavoidable latency for distant users. Plan a geo-deployment if your user base is worldwide or if data locality laws require it. This often comes after nailing down everything in one region first. \\
+\rowcolor{teal!3}
+\textbf{Gradual Rollout and Testing} & Scale incrementally. Test new scaling techniques (like speculative decoding or new batching algorithms) under load in a staging environment if possible. Each addition (e.g. a new cache layer, new parallelism) adds complexity; ensure it behaves as expected with your workload before relying on it in prod. \\
+\end{tabularx}
+\end{tcolorbox}
 
 Scaling LLM systems requires balancing performance, cost, and complexity. By designing for scalability from the outset and drawing on the patterns discussed (from distributed inference to caching and autoscaling), teams can adapt rapidly to changing demands without sacrificing quality or breaking the bank. The story of IshtarAI demonstrates that with careful planning and incorporation of cutting-edge techniques from academia and industry, even a resource-intensive LLM application can be made to operate reliably at scale. 
 

@@ -643,36 +643,81 @@ To conclude the case study, consider a scenario where verification finds a serio
 \end{itemize}
 
 \section{Best Practices Checklist}
-\begin{itemize}
-    \item Clearly define agent roles and responsibilities.
-    \item Choose communication patterns that match system scale and complexity.
-    \item Implement robust error handling and fallbacks.
-    \item Monitor inter-agent performance and optimize for minimal latency.
-    \item Secure all channels of communication.
-\end{itemize}
+
+\begin{tcolorbox}[
+  title={\textbf{Best Practices Checklist for Multi-Agent Systems}},
+  colback=red!5,
+  colframe=red!40!black,
+  colbacktitle=red!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{red!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{red!8}
+\textbf{Define Agent Roles Clearly} & Clearly define agent roles and responsibilities. Each agent should have a single well-defined purpose and scope of responsibility to avoid confusion or duplicated work. \\
+\rowcolor{red!3}
+\textbf{Choose Communication Patterns} & Choose communication patterns that match system scale and complexity. Use direct calls for simple systems; consider message buses or shared memory for larger, more complex agent ecosystems. \\
+\rowcolor{red!8}
+\textbf{Implement Robust Error Handling} & Implement robust error handling and fallbacks. Plan retries for transient issues and alternate paths for more serious failures. Use heartbeat checks or timeouts to detect stuck agents. \\
+\rowcolor{red!3}
+\textbf{Monitor Inter-Agent Performance} & Monitor inter-agent performance and optimize for minimal latency. Collect metrics on each agent's response time and identify bottlenecks. Use parallelism where possible and keep inter-agent communication payloads lean. \\
+\rowcolor{red!8}
+\textbf{Secure All Channels} & Secure all channels of communication. Apply authentication for agent communications, encrypt data in transit, and restrict each agent's access rights. Regularly audit who/what can invoke each agent. \\
+\end{tabularx}
+\end{tcolorbox}
 
 Multi-agent architectures bring modularity, scalability, and resilience to LLM applications. For \ishtar{}, orchestration ensures that specialized capabilities—data ingestion, analysis, verification, and communication—work in concert to deliver timely, accurate, and context-rich information.
 
 \subsection*{Best Practices Checklist}
 Designing and operating a multi-agent LLM system is complex, but following best practices can guide practitioners to success. Below is a checklist of recommended practices, distilled from the concepts and the Ishtar AI case study:
 
-Clearly Define Agent Roles and Boundaries: Each agent should have a single well-defined purpose and scope of responsibility. Avoid overlapping duties that could cause confusion or duplicated work. For example, only the verification agent should fact-check; the synthesis agent should not try to verify its own output beyond basic sanity. This clarity makes the system easier to maintain and extend.
-
-Choose Communication Patterns to Match Scale: Use direct calls or sequential chains for simple, small-scale systems; consider message buses or shared memory for larger, more complex agent ecosystems. Don’t over-engineer: a straightforward orchestrator function may suffice for up to a handful of agents. As you grow, evaluate if an event-driven or blackboard approach is needed for flexibility. Ensure your choice supports the required concurrency.
-
-Orchestrator Logic – Start Simple, Add Dynamism Carefully: Begin with a rule-based flow (or a few static flows for different query types). This allows baseline functionality and easier debugging. If/when adding dynamic LLM-driven orchestration, thoroughly test it in sandbox scenarios. Make sure to put constraints on an LLM orchestrator (e.g., allowed actions, timeouts) to avoid it going haywire. Log its decisions for review.
-
-Implement Robust Error Handling and Fallbacks: Assume agents will fail or produce bad outputs occasionally. Plan retries for transient issues and alternate paths for more serious failures. For instance, have a default response if the pipeline cannot complete (“Sorry, I cannot answer that right now.”). Use heartbeat checks or timeouts to detect stuck agents. If certain data is missing, perhaps integrate a fallback knowledge source or escalate to human review. Regularly simulate failures in a staging environment to ensure your fallbacks work as intended.
-
-Monitor and Optimize Inter-Agent Performance: Collect metrics on each agent’s response time and the overall latency. Identify bottlenecks – if one agent is significantly slower, consider scaling it out (more instances), optimizing its prompt or model, or caching its results. Keep inter-agent communication payloads lean (don’t pass huge data if not necessary). Use parallelism where possible: e.g., the orchestrator might fetch documents and call an agent concurrently to save time. Also monitor token usage per agent to manage cost (multi-agent systems can use more total tokens; ensure the value justifies this).
-
-Secure All Channels and Enforce Permissions: Apply authentication for agent communications, encrypt data in transit, and restrict each agent's access rights. For example, if using cloud secrets (API keys for tools), scope them to the agent that needs them. Regularly audit who/what can invoke each agent. Ensure that logs or debug UIs that display agent internals are secured (they might contain sensitive info). If using a UI to visualize LangGraph \cite{langchain} or traces, guard it behind authentication.
-
-Continuous Testing (Unit and Integration): Test each agent in isolation (unit tests with synthetic inputs and checking outputs). Then test the whole pipeline (integration tests) with various scenarios: normal queries, edge cases, failure injection (e.g., make the analysis agent return an empty result and see if verification handles it). Include dynamic behavior in tests: if using an LLM orchestrator, test its decision-making deterministically if possible (maybe fix a random seed or use stubbed responses). Having a suite of regression tests (like the canary prompts in Ishtar) helps catch when a model update or prompt tweak breaks part of the chain.
-
-Logging and Transparency: Maintain detailed logs of agent actions and decisions. Not only is this critical for debugging, but in an academic or enterprise context it provides traceability (why was a particular answer given?). Tools like LangChain's tracing \cite{blogLangChain}, OpenTelemetry, or custom logs with unique IDs for each query can tie together the multi-agent steps. Transparency is also a selling point: for instance, Ishtar could show the journalist which sources were used (coming from the multi-agent process) to build trust.
-
-Iterate with Human Feedback: Use feedback from users to refine the system. If journalists often correct or ask follow-ups on certain details, analyze whether the analysis agent could be improved or if a new agent role is needed (e.g., a “Clarification Agent”). Multi-agent setups offer modular points for improvement – maybe the verification prompt needs adjusting if it misses certain errors, or the conversation agent needs to be more concise if users often ask for summaries. Continuous improvement can be done agent by agent without disrupting the whole system, which is a boon of the modular design.
+\begin{tcolorbox}[
+  title={\textbf{Detailed Best Practices Checklist for Multi-Agent Systems}},
+  colback=red!5,
+  colframe=red!40!black,
+  colbacktitle=red!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{red!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{red!8}
+\textbf{Define Agent Roles and Boundaries} & Each agent should have a single well-defined purpose and scope of responsibility. Avoid overlapping duties that could cause confusion or duplicated work. For example, only the verification agent should fact-check; the synthesis agent should not try to verify its own output beyond basic sanity. This clarity makes the system easier to maintain and extend. \\
+\rowcolor{red!3}
+\textbf{Choose Communication Patterns to Match Scale} & Use direct calls or sequential chains for simple, small-scale systems; consider message buses or shared memory for larger, more complex agent ecosystems. Don't over-engineer: a straightforward orchestrator function may suffice for up to a handful of agents. As you grow, evaluate if an event-driven or blackboard approach is needed for flexibility. Ensure your choice supports the required concurrency. \\
+\rowcolor{red!8}
+\textbf{Start Simple, Add Dynamism Carefully} & Begin with a rule-based flow (or a few static flows for different query types). This allows baseline functionality and easier debugging. If/when adding dynamic LLM-driven orchestration, thoroughly test it in sandbox scenarios. Make sure to put constraints on an LLM orchestrator (e.g., allowed actions, timeouts) to avoid it going haywire. Log its decisions for review. \\
+\rowcolor{red!3}
+\textbf{Implement Robust Error Handling} & Assume agents will fail or produce bad outputs occasionally. Plan retries for transient issues and alternate paths for more serious failures. For instance, have a default response if the pipeline cannot complete ("Sorry, I cannot answer that right now."). Use heartbeat checks or timeouts to detect stuck agents. If certain data is missing, perhaps integrate a fallback knowledge source or escalate to human review. Regularly simulate failures in a staging environment to ensure your fallbacks work as intended. \\
+\rowcolor{red!8}
+\textbf{Monitor and Optimize Performance} & Collect metrics on each agent's response time and the overall latency. Identify bottlenecks – if one agent is significantly slower, consider scaling it out (more instances), optimizing its prompt or model, or caching its results. Keep inter-agent communication payloads lean (don't pass huge data if not necessary). Use parallelism where possible: e.g., the orchestrator might fetch documents and call an agent concurrently to save time. Also monitor token usage per agent to manage cost (multi-agent systems can use more total tokens; ensure the value justifies this). \\
+\rowcolor{red!3}
+\textbf{Secure All Channels and Enforce Permissions} & Apply authentication for agent communications, encrypt data in transit, and restrict each agent's access rights. For example, if using cloud secrets (API keys for tools), scope them to the agent that needs them. Regularly audit who/what can invoke each agent. Ensure that logs or debug UIs that display agent internals are secured (they might contain sensitive info). If using a UI to visualize LangGraph \cite{langchain} or traces, guard it behind authentication. \\
+\rowcolor{red!8}
+\textbf{Continuous Testing} & Test each agent in isolation (unit tests with synthetic inputs and checking outputs). Then test the whole pipeline (integration tests) with various scenarios: normal queries, edge cases, failure injection (e.g., make the analysis agent return an empty result and see if verification handles it). Include dynamic behavior in tests: if using an LLM orchestrator, test its decision-making deterministically if possible (maybe fix a random seed or use stubbed responses). Having a suite of regression tests (like the canary prompts in Ishtar) helps catch when a model update or prompt tweak breaks part of the chain. \\
+\rowcolor{red!3}
+\textbf{Logging and Transparency} & Maintain detailed logs of agent actions and decisions. Not only is this critical for debugging, but in an academic or enterprise context it provides traceability (why was a particular answer given?). Tools like LangChain's tracing \cite{blogLangChain}, OpenTelemetry, or custom logs with unique IDs for each query can tie together the multi-agent steps. Transparency is also a selling point: for instance, Ishtar could show the journalist which sources were used (coming from the multi-agent process) to build trust. \\
+\rowcolor{red!8}
+\textbf{Iterate with Human Feedback} & Use feedback from users to refine the system. If journalists often correct or ask follow-ups on certain details, analyze whether the analysis agent could be improved or if a new agent role is needed (e.g., a "Clarification Agent"). Multi-agent setups offer modular points for improvement – maybe the verification prompt needs adjusting if it misses certain errors, or the conversation agent needs to be more concise if users often ask for summaries. Continuous improvement can be done agent by agent without disrupting the whole system, which is a boon of the modular design. \\
+\end{tabularx}
+\end{tcolorbox}
 
 By adhering to these practices, one can manage the complexity of multi-agent systems and harness their power effectively. Multi-agent LLM systems, as exemplified by Ishtar AI, combine specialization with orchestration to deliver better results than a monolithic approach. The journey involves careful planning, iterative tuning, and vigilant operation, but the end result is a more powerful and reliable AI application that can tackle sophisticated, real-world tasks in a robust manner.
 \printbibliography[

@@ -725,19 +725,43 @@ Policies and filters require continuous calibration to avoid both under- and ove
 \subsection{End-to-end checklist}
 \label{sec:ishtar-checklist}
 
-\begin{tcolorbox}[title={End-to-End Checklist for Production LLM Systems (Ishtar-derived)},colback=black!2,colframe=black!35,breakable]
+\begin{tcolorbox}[
+  title={\textbf{End-to-End Checklist for Production LLM Systems (Ishtar-derived)}},
+  colback=black!5,
+  colframe=black!40!black,
+  colbacktitle=black!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
 \small
-\begin{itemize}
-    \item \textbf{Define operational contracts:} output schema, citation rules, and uncertainty policy are explicit and testable.
-    \item \textbf{Version everything:} prompts, retrieval parameters, tool permissions, model configs, and index snapshots.
-    \item \textbf{Instrument first:} traces/metrics/logs exist before user launch; alerts map to user impact.
-    \item \textbf{Prefer recall in retrieval:} missing a critical source is worse than retrieving extra context (then rerank).
-    \item \textbf{Make safety defense-in-depth:} ingestion scrubbing + output filtering + refusal logic + audits.
-    \item \textbf{Gate releases on evaluation:} offline metrics + canary rollouts + rollback automation.
-    \item \textbf{Plan for bursty demand:} GPU autoscaling, caching/hot tiers, and priority scheduling for critical users.
-    \item \textbf{Treat hallucination as a defect:} root-cause via traces; fix via data, prompts, or retrieval tuning.
-    \item \textbf{Embed human oversight:} escalation paths for high-impact outputs and continuous domain review.
-\end{itemize}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{black!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{black!8}
+\textbf{Define Operational Contracts} & Output schema, citation rules, and uncertainty policy are explicit and testable. \\
+\rowcolor{black!3}
+\textbf{Version Everything} & Version prompts, retrieval parameters, tool permissions, model configs, and index snapshots. \\
+\rowcolor{black!8}
+\textbf{Instrument First} & Traces/metrics/logs exist before user launch; alerts map to user impact. \\
+\rowcolor{black!3}
+\textbf{Prefer Recall in Retrieval} & Missing a critical source is worse than retrieving extra context (then rerank). \\
+\rowcolor{black!8}
+\textbf{Make Safety Defense-in-Depth} & Implement ingestion scrubbing + output filtering + refusal logic + audits. \\
+\rowcolor{black!3}
+\textbf{Gate Releases on Evaluation} & Use offline metrics + canary rollouts + rollback automation. \\
+\rowcolor{black!8}
+\textbf{Plan for Bursty Demand} & Implement GPU autoscaling, caching/hot tiers, and priority scheduling for critical users. \\
+\rowcolor{black!3}
+\textbf{Treat Hallucination as a Defect} & Root-cause via traces; fix via data, prompts, or retrieval tuning. \\
+\rowcolor{black!8}
+\textbf{Embed Human Oversight} & Establish escalation paths for high-impact outputs and continuous domain review. \\
+\end{tabularx}
 \end{tcolorbox}
 
 % ---------------------------------------------------------------------

@@ -938,41 +938,115 @@ The answer (with citations) is returned to the user. The user interface allows t
 
 \section{Best Practices Checklist}
 \label{sec:rag-best-practices-checklist}
-\begin{itemize}
-    \item Keep vector stores updated with relevant, reliable content.
-    \item Use hybrid retrieval for balance between recall and precision.
-    \item Always cite retrieved sources in responses.
-    \item Monitor retrieval quality alongside model performance.
-\end{itemize}
+
+\begin{tcolorbox}[
+  title={\textbf{Best Practices Checklist for RAG Systems}},
+  colback=violet!5,
+  colframe=violet!40!black,
+  colbacktitle=violet!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{violet!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{violet!8}
+\textbf{Keep Vector Stores Updated} & Keep vector stores updated with relevant, reliable content. Regularly ingest new data and remove outdated content to ensure answers remain current and accurate. \\
+\rowcolor{violet!3}
+\textbf{Use Hybrid Retrieval} & Use hybrid retrieval for balance between recall and precision. Combine dense semantic search with sparse keyword search for best coverage. \\
+\rowcolor{violet!8}
+\textbf{Always Cite Sources} & Always cite retrieved sources in responses. This builds user trust and forces the system to stay honest by grounding outputs in provided text. \\
+\rowcolor{violet!3}
+\textbf{Monitor Retrieval Quality} & Monitor retrieval quality alongside model performance. Log queries and retrieved documents, and periodically review relevance to identify improvement opportunities. \\
+\end{tabularx}
+\end{tcolorbox}
 
 RAG transforms LLMs from static knowledge stores into dynamic, context-aware systems. For \ishtar{}, it is the foundation for delivering accurate, timely, and trustworthy intelligence in crisis reporting.
 
 \subsection{Best Practices Checklist (Recap for Ishtar)}
-Through building Ishtar’s RAG system, we compiled some best practices:
-\begin{itemize}
-    \item Keep the vector index updated with the latest reliable content; stale data can mislead the model. We have automated nightly jobs to remove or archive data older than X days or mark it as historical so that current queries favor recent info.
-    \item Use hybrid retrieval to balance recall and precision. Dense semantic search alone missed some exact figures, and pure keyword search missed synonyms – the combination was key.
-    \item Always cite sources in the output. It not only builds user trust\footnote{\url{https://www.pinecone.io}}, but also forces the system to stay honest (the model knows it should stick to provided text).
-    \item Continuously monitor retrieval quality. We log query + retrieved docs and occasionally manually review if the top docs were indeed relevant. If not, we tweak the embedding model or add stop-word removal or such. Similarly, monitor the model’s usage of context – if it ignores context often, maybe the prompt needs adjustment.
-\end{itemize}
+Through building Ishtar's RAG system, we compiled some best practices:
+
+\begin{tcolorbox}[
+  title={\textbf{Best Practices Checklist (Recap for Ishtar)}},
+  colback=violet!5,
+  colframe=violet!40!black,
+  colbacktitle=violet!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{violet!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{violet!8}
+\textbf{Keep Vector Index Updated} & Keep the vector index updated with the latest reliable content; stale data can mislead the model. We have automated nightly jobs to remove or archive data older than X days or mark it as historical so that current queries favor recent info. \\
+\rowcolor{violet!3}
+\textbf{Use Hybrid Retrieval} & Use hybrid retrieval to balance recall and precision. Dense semantic search alone missed some exact figures, and pure keyword search missed synonyms – the combination was key. \\
+\rowcolor{violet!8}
+\textbf{Always Cite Sources} & Always cite sources in the output. It not only builds user trust\footnote{\url{https://www.pinecone.io}}, but also forces the system to stay honest (the model knows it should stick to provided text). \\
+\rowcolor{violet!3}
+\textbf{Monitor Retrieval Quality Continuously} & Continuously monitor retrieval quality. We log query + retrieved docs and occasionally manually review if the top docs were indeed relevant. If not, we tweak the embedding model or add stop-word removal or such. Similarly, monitor the model's usage of context – if it ignores context often, maybe the prompt needs adjustment. \\
+\end{tabularx}
+\end{tcolorbox}
 
 In conclusion, Ishtar AI’s case illustrates how RAG can transform a domain-specific LLM application: we achieved near real-time situational awareness with accuracy grounded in authoritative sources. RAG turned the LLM from a static oracle into a dynamic researcher that provides timely, verifiable, and context-rich answers, which is exactly what’s needed in crisis reporting scenarios.
 
 \subsection{Best Practices Checklist (General)}
-To wrap up, here’s a summary checklist of best practices when implementing Retrieval-Augmented Generation systems:
+To wrap up, here's a summary checklist of best practices when implementing Retrieval-Augmented Generation systems:
 
-\begin{description}
-    \item[\textbf{Maintain an Updated Knowledge Base.}] Regularly ingest new relevant data and remove outdated content. RAG is only as good as the data it retrieves, so ensure your vector store is continuously refreshed with high-quality information. This keeps answers current and accurate (for instance, always include the latest crisis updates or documentation changes)\footnote{\url{https://www.pinecone.io}}.
-    \item[\textbf{Ensure Data Quality and Relevance.}] During ingestion, clean the data and filter out noise. It's better to have a focused knowledge base than a huge one full of irrelevant text. Use source verification and prefer trusted sources to reduce the chance of garbage-in (which could lead to bad answers). As the saying goes, "garbage in, garbage out", so invest in a strong ingestion pipeline\footnote{\url{https://www.pryon.com}}.
-    \item[\textbf{Leverage Hybrid Retrieval.}] Combine dense and sparse retrieval techniques for the best results. Dense embeddings capture semantics, while sparse (keyword) search handles exact matches and rare terms\footnote{\url{https://www.pinecone.io}}\footnote{\url{https://aws.amazon.com}}. A hybrid approach often yields higher recall and precision than either alone. Configure your system to use semantic search by default but also incorporate keyword or metadata filters especially for domain-specific jargon, codes, or names.
-    \item[\textbf{Optimize the Vector Database.}] Choose the right index type (flat vs HNSW vs IVF etc.) based on your scale and latency needs\footnote{\url{https://www.pinecone.io}}. Use sharding to partition data logically (by topic, time, etc.) if it improves performance and relevance. Enable replication for high availability. And store useful metadata with vectors so you can filter and contextualize results (e.g., filter by document type or date for queries that need it). An efficiently configured vector DB will ensure fast and accurate retrieval, which is the backbone of RAG.
-    \item[\textbf{Augment Prompts Wisely.}] When adding retrieved context to LLM prompts, be mindful of token limits and relevance. Only include the most relevant snippets needed to answer the question, ordered by importance. Too much text can confuse the model or exceed limits\footnote{\url{https://www.pinecone.io}}. Clearly separate context from the user question (use headings or delimiters) and explicitly instruct the model to use the provided info and not to guess beyond it. If feasible, ask the model to cite sources in its answer for transparency.
-    \item[\textbf{Implement Caching and Batching.}] To improve performance, cache results for frequent queries and batch-process tasks. For example, cache embeddings of common queries and even whole answers if the same question is asked often (as long as the knowledge hasn't changed)\footnote{\url{https://www.reddit.com}}. Batch multiple embedding or reranking requests together to utilize compute resources efficiently. This helps keep latency low and throughput high.
-    \item[\textbf{Monitor and Evaluate Continuously.}] Put in place monitoring for both retrieval and generation. Track metrics like retrieval recall@k, answer accuracy (perhaps via periodic human evaluation or user feedback), and latency \emph{neptune.ai}\footnote{\url{https://neptune.ai}}. Log queries and their results to identify any failures or hallucinations. Continuous evaluation allows you to spot when the system might be drifting (e.g., if a new type of query isn’t answered well) and then update the pipeline (maybe add new data sources or fine-tune the retriever/LLM). Also watch for cases where the LLM didn’t use the retrieved data correctly – that could indicate a need to adjust the prompt or provide more specific context.
-    \item[\textbf{Security and Privacy.}] Enforce access controls on your data. Ensure sensitive information in the knowledge base is handled properly – use encryption, and if needed, restrict which queries can see which content\footnote{\url{https://www.pryon.com}}. If your application serves multiple users or groups, implement permissions at the retrieval level (so, for instance, one client's private documents never get retrieved for another client's query). Keep audit logs of queries to detect misuse or to comply with data regulations.
-    \item[\textbf{Fail Gracefully.}] If the system doesn't have information on a query, it should respond with uncertainty (e.g., "I'm sorry, I don't have that information.") rather than making something up. Configure the LLM's instructions to say "if you don't find the answer in context, say you don't know"\footnote{\url{https://www.pinecone.io}}. It's better to admit not knowing than to hallucinate an answer. Users generally trust systems that can say “I don’t know that” with cited context of what was tried, more than a confident incorrect answer.
-    \item[\textbf{User Feedback Loop.}] Where possible, get user feedback on answers. If users can flag answers as incorrect or not helpful, feed that back into improving the system – maybe it missed a document, or retrieved irrelevant context. Similarly, if users ask new kinds of questions that aren’t answered well, that signals you might need to ingest new data sources or adjust embeddings. A RAG system can continuously learn from usage (even if just the developers manually review feedback and make changes).
-\end{description}
+\begin{tcolorbox}[
+  title={\textbf{Best Practices Checklist (General)}},
+  colback=violet!5,
+  colframe=violet!40!black,
+  colbacktitle=violet!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{violet!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{violet!8}
+\textbf{Maintain an Updated Knowledge Base} & Regularly ingest new relevant data and remove outdated content. RAG is only as good as the data it retrieves, so ensure your vector store is continuously refreshed with high-quality information. This keeps answers current and accurate (for instance, always include the latest crisis updates or documentation changes)\footnote{\url{https://www.pinecone.io}}. \\
+\rowcolor{violet!3}
+\textbf{Ensure Data Quality and Relevance} & During ingestion, clean the data and filter out noise. It's better to have a focused knowledge base than a huge one full of irrelevant text. Use source verification and prefer trusted sources to reduce the chance of garbage-in (which could lead to bad answers). As the saying goes, "garbage in, garbage out", so invest in a strong ingestion pipeline\footnote{\url{https://www.pryon.com}}. \\
+\rowcolor{violet!8}
+\textbf{Leverage Hybrid Retrieval} & Combine dense and sparse retrieval techniques for the best results. Dense embeddings capture semantics, while sparse (keyword) search handles exact matches and rare terms\footnote{\url{https://www.pinecone.io}}\footnote{\url{https://aws.amazon.com}}. A hybrid approach often yields higher recall and precision than either alone. Configure your system to use semantic search by default but also incorporate keyword or metadata filters especially for domain-specific jargon, codes, or names. \\
+\rowcolor{violet!3}
+\textbf{Optimize the Vector Database} & Choose the right index type (flat vs HNSW vs IVF etc.) based on your scale and latency needs\footnote{\url{https://www.pinecone.io}}. Use sharding to partition data logically (by topic, time, etc.) if it improves performance and relevance. Enable replication for high availability. And store useful metadata with vectors so you can filter and contextualize results (e.g., filter by document type or date for queries that need it). An efficiently configured vector DB will ensure fast and accurate retrieval, which is the backbone of RAG. \\
+\rowcolor{violet!8}
+\textbf{Augment Prompts Wisely} & When adding retrieved context to LLM prompts, be mindful of token limits and relevance. Only include the most relevant snippets needed to answer the question, ordered by importance. Too much text can confuse the model or exceed limits\footnote{\url{https://www.pinecone.io}}. Clearly separate context from the user question (use headings or delimiters) and explicitly instruct the model to use the provided info and not to guess beyond it. If feasible, ask the model to cite sources in its answer for transparency. \\
+\rowcolor{violet!3}
+\textbf{Implement Caching and Batching} & To improve performance, cache results for frequent queries and batch-process tasks. For example, cache embeddings of common queries and even whole answers if the same question is asked often (as long as the knowledge hasn't changed)\footnote{\url{https://www.reddit.com}}. Batch multiple embedding or reranking requests together to utilize compute resources efficiently. This helps keep latency low and throughput high. \\
+\rowcolor{violet!8}
+\textbf{Monitor and Evaluate Continuously} & Put in place monitoring for both retrieval and generation. Track metrics like retrieval recall@k, answer accuracy (perhaps via periodic human evaluation or user feedback), and latency \emph{neptune.ai}\footnote{\url{https://neptune.ai}}. Log queries and their results to identify any failures or hallucinations. Continuous evaluation allows you to spot when the system might be drifting (e.g., if a new type of query isn't answered well) and then update the pipeline (maybe add new data sources or fine-tune the retriever/LLM). Also watch for cases where the LLM didn't use the retrieved data correctly – that could indicate a need to adjust the prompt or provide more specific context. \\
+\rowcolor{violet!3}
+\textbf{Security and Privacy} & Enforce access controls on your data. Ensure sensitive information in the knowledge base is handled properly – use encryption, and if needed, restrict which queries can see which content\footnote{\url{https://www.pryon.com}}. If your application serves multiple users or groups, implement permissions at the retrieval level (so, for instance, one client's private documents never get retrieved for another client's query). Keep audit logs of queries to detect misuse or to comply with data regulations. \\
+\rowcolor{violet!8}
+\textbf{Fail Gracefully} & If the system doesn't have information on a query, it should respond with uncertainty (e.g., "I'm sorry, I don't have that information.") rather than making something up. Configure the LLM's instructions to say "if you don't find the answer in context, say you don't know"\footnote{\url{https://www.pinecone.io}}. It's better to admit not knowing than to hallucinate an answer. Users generally trust systems that can say "I don't know that" with cited context of what was tried, more than a confident incorrect answer. \\
+\rowcolor{violet!3}
+\textbf{User Feedback Loop} & Where possible, get user feedback on answers. If users can flag answers as incorrect or not helpful, feed that back into improving the system – maybe it missed a document, or retrieved irrelevant context. Similarly, if users ask new kinds of questions that aren't answered well, that signals you might need to ingest new data sources or adjust embeddings. A RAG system can continuously learn from usage (even if just the developers manually review feedback and make changes). \\
+\end{tabularx}
+\end{tcolorbox}
 
 By following these best practices, you can build RAG systems that are accurate, efficient, and trustworthy. RAG truly transforms LLMs from static knowledge stores into dynamic, up-to-date information experts. It harnesses the strengths of both worlds: the reasoning and fluency of LLMs with the factual grounding of a knowledge base. In domains from crisis response (Ishtar) to customer support and beyond, RAG is rapidly becoming a cornerstone of practical and reliable AI deployments.
 
