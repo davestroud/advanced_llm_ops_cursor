@@ -150,7 +150,27 @@ This simple math underscores two things: (1) newer hardware can indeed reduce ma
 \textit{Example.} Google Cloud reports that advanced infrastructure and optimized inference runtimes (e.g., JetStream on TPU v5e) can bring generation costs down to \$0.25–\$0.30 per million tokens, or $\sim$0.00025 per token~\cite{jouppi2023-tpuv4}.
 \end{quote}
 
-In practice, cost modeling often involves simulating different deployment scenarios. For example, if you expect 100 requests per second each generating 200 tokens, that is 20k tokens/sec throughput needed. How many GPUs of type X are required to sustain that? If each A100 can do $\sim$8k/sec, you would need 3 A100s (at \$3.80/hr each, so \$11.4/hr). Maybe 2 H100s could do it (2 $\times$ \$5.00 = \$10/hr), slightly cheaper. Or perhaps 5 L4 GPUs (5 $\times$ \$0.35 = \$1.75/hr), but at $\sim$2k/sec each, 5 L4s only yield 10k/sec---not enough. This back-of-the-envelope calculation shows that while L4s are cheap, you would need too many of them in this scenario. On the other hand, if the workload was lighter (say 2k tokens/sec), a single A100 would be overkill and an L4 could handle it at one-eighth the hourly cost. 
+\begin{tcolorbox}[
+  title={\textbf{Cost Modeling Example: Comparing GPU Options}},
+  colback=orange!8,
+  colframe=orange!60!black,
+  colbacktitle=orange!25,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.8pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+In practice, cost modeling often involves simulating different deployment scenarios. For example, if you expect \textbf{100 requests per second} each generating \textbf{200 tokens}, that is \textbf{20k tokens/sec throughput} needed. How many GPUs of type X are required to sustain that?
+
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+    \item \textbf{Option 1: A100 GPUs} — If each A100 can do $\sim$8k/sec, you would need \textbf{3 A100s} (at \$3.80/hr each, so \textbf{\$11.4/hr}).
+    \item \textbf{Option 2: H100 GPUs} — Maybe \textbf{2 H100s} could do it (2 $\times$ \$5.00 = \textbf{\$10/hr}), slightly cheaper.
+    \item \textbf{Option 3: L4 GPUs} — Or perhaps \textbf{5 L4 GPUs} (5 $\times$ \$0.35 = \textbf{\$1.75/hr}), but at $\sim$2k/sec each, 5 L4s only yield \textbf{10k/sec}---not enough.
+\end{itemize}
+
+This back-of-the-envelope calculation shows that while L4s are cheap, you would need too many of them in this scenario. On the other hand, if the workload was lighter (say \textbf{2k tokens/sec}), a single A100 would be overkill and an L4 could handle it at \textbf{one-eighth the hourly cost}.
+\end{tcolorbox}
 
 Thus, rightsizing hardware to workload is important---and in many cases a mix of different instance types (as Ishtar uses) is the optimal solution.
 
