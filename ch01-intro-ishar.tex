@@ -199,12 +199,23 @@ In practice, LLM applications behave like composed systems: a single user reques
 
 A useful mental model is to treat observability as an \emph{evidence ledger} for each response: record the exact prompt template and parameters, the evidence retrieved (with identifiers and timestamps), the tool calls performed, and the model configuration (provider, version, temperature/top-$p$, context length). These traces support three production-critical workflows: (i) incident response (rapid attribution and rollback), (ii) continuous evaluation (turning production failures into regression tests), and (iii) governance (audit trails for safety, privacy, and policy compliance).
 
-Effective LLM observability includes:
-\begin{itemize}
+\begin{tcolorbox}[
+  enhanced,
+  colback=blue!5,
+  colframe=blue!50!black,
+  coltitle=black,
+  title=Effective LLM observability includes:,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  rounded corners=4pt,
+  left=4mm, right=4mm, top=3mm, bottom=3mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
   \item \textbf{Structured tracing:} capturing prompt versions, retrieved passages, tool-call inputs/outputs, and model parameters for reproducibility.
   \item \textbf{Behavioral monitoring:} hallucination indicators, refusal rates, toxicity filter triggers, and citation coverage.
   \item \textbf{Root-cause isolation:} distinguishing whether a failure arose from retrieval, prompt assembly, tool output, or the model itself.
 \end{itemize}
+\end{tcolorbox}
 
 \begin{table}[t]
 \centering\small
