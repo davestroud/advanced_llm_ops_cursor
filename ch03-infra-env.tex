@@ -516,9 +516,121 @@ This ensures that infrastructure knowledge remains accurate, auditable, and acce
 \subsection{Code Example}
 \label{sec:iac-example}
 
-
-
 This code defines an EKS cluster with a GPU-enabled node group. Labels and taints ensure only GPU workloads land on those nodes, while outputs provide the kubeconfig for downstream automation.
+
+\begin{figure}[t]
+  \centering
+  \begin{tcolorbox}[
+    title={\textbf{Terraform: EKS Cluster with GPU Node Group}},
+    colback=blue!5,
+    colframe=blue!50!black,
+    colbacktitle=blue!20,
+    coltitle=black,
+    fonttitle=\bfseries\small,
+    boxrule=0.8pt,
+    arc=4pt,
+    left=4mm, right=4mm, top=4mm, bottom=4mm
+  ]
+  \footnotesize
+  \ttfamily
+  \begin{minipage}{\linewidth}
+\begin{verbatim}
+# EKS Cluster with GPU-enabled node group
+# This module provisions an AWS EKS cluster optimized for LLM workloads
+
+terraform {
+  required_version = ">= 1.5"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.23"
+    }
+  }
+}
+
+# EKS Cluster
+resource "aws_eks_cluster" "llm_cluster" {
+  name     = var.cluster_name
+  role_arn = aws_iam_role.cluster.arn
+  version  = "1.28"
+
+  vpc_config {
+    subnet_ids              = var.subnet_ids
+    endpoint_private_access = true
+    endpoint_public_access  = false  # Private API endpoint
+  }
+
+  enabled_cluster_log_types = [
+    "api", "audit", "authenticator", "controllerManager", "scheduler"
+  ]
+
+  tags = {
+    Environment = var.environment
+    ManagedBy   = "Terraform"
+    Purpose     = "LLM-Inference"
+  }
+}
+
+# GPU Node Group (A100/H100 instances)
+resource "aws_eks_node_group" "gpu_nodes" {
+  cluster_name    = aws_eks_cluster.llm_cluster.name
+  node_group_name = "gpu-node-group"
+  node_role_arn   = aws_iam_role.node_group.arn
+  subnet_ids      = var.subnet_ids
+
+  instance_types = ["g5.2xlarge", "p4d.24xlarge"]  # NVIDIA A10G, A100
+
+  scaling_config {
+    desired_size = 2
+    max_size     = 10
+    min_size     = 1
+  }
+
+  # Labels and taints for GPU workload isolation
+  labels = {
+    "accelerator" = "nvidia-gpu"
+    "workload"    = "llm-inference"
+  }
+
+  taint {
+    key    = "nvidia.com/gpu"
+    value  = "true"
+    effect = "NO_SCHEDULE"  # Only pods with toleration can schedule
+  }
+
+  # Launch template with NVIDIA drivers
+  launch_template {
+    id      = aws_launch_template.gpu_nodes.id
+    version = "$Latest"
+  }
+
+  depends_on = [
+    aws_eks_cluster.llm_cluster,
+    aws_iam_role_policy_attachment.node_group
+  ]
+}
+
+# Output: Kubeconfig for downstream automation
+output "kubeconfig" {
+  value     = aws_eks_cluster.llm_cluster.kubeconfig
+  sensitive = true
+}
+
+output "cluster_endpoint" {
+  value = aws_eks_cluster.llm_cluster.endpoint
+}
+\end{verbatim}
+  \end{minipage}
+  \normalfont
+  \normalsize
+  \end{tcolorbox}
+  \caption{Terraform configuration for an EKS cluster with GPU-enabled node groups. The configuration demonstrates key IaC patterns: declarative resource definitions, node labeling and taints for workload isolation, autoscaling configuration, and secure outputs. Labels and taints ensure only GPU workloads (with matching tolerations) can schedule on GPU nodes, preventing resource contention.}
+  \label{fig:iac-example}
+\end{figure}
 
 \subsection{Checklist: Best Practices for IaC in LLMOps}
 \label{sec:iac-checklist}
