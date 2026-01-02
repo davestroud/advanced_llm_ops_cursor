@@ -1245,38 +1245,98 @@ To conclude the chapter, we present condensed best practices and checklists for 
 \subsection{IaC \& DevOps Checklist}
 \label{sec:bp-iac}
 
-\begin{itemize}
-  \item \textbf{Version Control Everything.} All infrastructure changes should flow through Git; no manual console edits~\cite{terraform-docs,pulumi-docs}.
-  \item \textbf{Use Remote State with Locking (e.g., S3 + DynamoDB) to Avoid Conflicts.} Storing state remotely with distributed locking ensures that multiple engineers do not make conflicting changes, preventing state corruption.
-  \item \textbf{Modularize Code for Clusters, Networking, and Node Groups.} Encapsulation into reusable modules reduces duplication and enforces consistency across environments.
-  \item \textbf{Integrate Automated Checks:} \texttt{terraform plan}, \texttt{tflint}, security scans, and policy-as-code. Automated validation pipelines catch misconfigurations and enforce organizational policies before changes are applied~\cite{opa-docs,sentinel-docs}.
-  \item \textbf{Manage Secrets via Secure Stores (Vault, Secrets Manager).} Sensitive values must never be hardcoded in templates; instead, use secure vaults or cloud-native secret managers to inject values at runtime.
-  \item \textbf{Tag and Name All Resources for Cost and Ownership Tracking.} Consistent tagging supports cost allocation, monitoring, and compliance audits across large-scale LLM deployments.
-  \item \textbf{Ensure Idempotency and Test Rollbacks in Sandbox Environments.} Code should safely reapply without side effects. Rollback scenarios must be validated to guarantee disaster recovery capabilities.
-  \item \textbf{Use Multiple Environments (dev, staging, prod) with Promotion Gates.} Changes should flow progressively, with staging as a proving ground before reaching production. Promotion gates provide controlled approvals.
-  \item \textbf{Keep Documentation Co-located with Code (README, diagrams).} Documentation must evolve with the code itself, ensuring that infrastructure knowledge remains accurate and accessible.
-  \item \textbf{Minimize Manual Console Operations; Backport Emergency Fixes into IaC Immediately.} The console should never be the source of truth. If an emergency console change is required, it must be reflected back into the IaC repository at once to avoid drift.
-\end{itemize}
+\begin{tcolorbox}[
+  title={\textbf{IaC \& DevOps Checklist}},
+  colback=green!5,
+  colframe=green!40!black,
+  colbacktitle=green!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{green!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{green!8}
+\textbf{Version Control Everything} & All infrastructure changes should flow through Git; no manual console edits~\cite{terraform-docs,pulumi-docs}. \\
+\rowcolor{green!3}
+\textbf{Use Remote State with Locking} & Use remote state with locking (e.g., S3 + DynamoDB) to avoid conflicts. Storing state remotely with distributed locking ensures that multiple engineers do not make conflicting changes, preventing state corruption. \\
+\rowcolor{green!8}
+\textbf{Modularize Code} & Modularize code for clusters, networking, and node groups. Encapsulation into reusable modules reduces duplication and enforces consistency across environments. \\
+\rowcolor{green!3}
+\textbf{Integrate Automated Checks} & Integrate automated checks: \texttt{terraform plan}, \texttt{tflint}, security scans, and policy-as-code. Automated validation pipelines catch misconfigurations and enforce organizational policies before changes are applied~\cite{opa-docs,sentinel-docs}. \\
+\rowcolor{green!8}
+\textbf{Manage Secrets via Secure Stores} & Manage secrets via secure stores (Vault, Secrets Manager). Sensitive values must never be hardcoded in templates; instead, use secure vaults or cloud-native secret managers to inject values at runtime. \\
+\rowcolor{green!3}
+\textbf{Tag and Name All Resources} & Tag and name all resources for cost and ownership tracking. Consistent tagging supports cost allocation, monitoring, and compliance audits across large-scale LLM deployments. \\
+\rowcolor{green!8}
+\textbf{Ensure Idempotency and Test Rollbacks} & Ensure idempotency and test rollbacks in sandbox environments. Code should safely reapply without side effects. Rollback scenarios must be validated to guarantee disaster recovery capabilities. \\
+\rowcolor{green!3}
+\textbf{Use Multiple Environments} & Use multiple environments (dev, staging, prod) with promotion gates. Changes should flow progressively, with staging as a proving ground before reaching production. Promotion gates provide controlled approvals. \\
+\rowcolor{green!8}
+\textbf{Keep Documentation Co-located} & Keep documentation co-located with code (README, diagrams). Documentation must evolve with the code itself, ensuring that infrastructure knowledge remains accurate and accessible. \\
+\rowcolor{green!3}
+\textbf{Minimize Manual Console Operations} & Minimize manual console operations; backport emergency fixes into IaC immediately. The console should never be the source of truth. If an emergency console change is required, it must be reflected back into the IaC repository at once to avoid drift. \\
+\end{tabularx}
+\end{tcolorbox}
 
 \subsection{Serving \& Scaling Checklist}
 \label{sec:bp-serving}
 
-\begin{itemize}
-  \item \textbf{Use Health Probes.} Configure liveness and readiness probes for all LLM pods~\cite{nvidia-k8s-device-plugin}.
-  \item \textbf{Enable Logging and Tracing.} Integrate tracing (e.g., OpenTelemetry) and correlation IDs. Log major lifecycle events (model load, request timings).
-  \item \textbf{Batching Enabled.} Verify serving stack batches requests effectively. Enable dynamic batching in frameworks (TGI, Triton, vLLM) and tune batch delays~\cite{tgi-github,vllm-pagedattention}.
-  \item \textbf{Autoscaling Policies.} Configure horizontal pod autoscalers (by QPS, latency, or custom metrics) and GPU node autoscaling. Test synthetic loads for responsiveness.
-  \item \textbf{Graceful Shutdown.} Use \texttt{preStop} hooks and termination grace periods to let pods drain requests before eviction.
-  \item \textbf{Model Rollout Strategy.} Adopt rolling or canary updates. Never replace all pods simultaneously; validate new model quality before full rollout.
-  \item \textbf{Concurrency Limits.} Enforce maximum concurrent requests per instance. Return “retry later” rather than crashing under overload.
-  \item \textbf{Resource Requests \& Limits.} Assign accurate CPU/GPU/memory requests so schedulers pack pods appropriately.
-  \item \textbf{Error Handling.} Implement retries for transient errors. Handle OOMs gracefully (e.g., friendly error or fallback response).
-  \item \textbf{Secure the Endpoint.} Restrict access with mTLS, network policies, or API gateways. Never expose open model endpoints.
-  \item \textbf{Observability on Quality.} Track not only performance but also output quality (manual ratings or automated classifiers). Monitor drift.
-  \item \textbf{Plan for Scaling Limits.} Know cluster scaling ceilings (e.g., max 10 H100 nodes). Plan partitioning or caching before reaching limits.
-  \item \textbf{Client-Side Rate Limiting.} Apply per-user/API key request limits to prevent misuse and runaway costs.
-  \item \textbf{Continuous Load Testing.} Periodically stress test systems after major changes (new models, infra updates) to ensure scaling and SLAs hold.
-\end{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Serving \& Scaling Checklist}},
+  colback=orange!5,
+  colframe=orange!40!black,
+  colbacktitle=orange!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=3mm, right=3mm, top=3mm, bottom=3mm
+]
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\rowcolor{orange!15}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\rowcolor{orange!8}
+\textbf{Use Health Probes} & Configure liveness and readiness probes for all LLM pods~\cite{nvidia-k8s-device-plugin}. \\
+\rowcolor{orange!3}
+\textbf{Enable Logging and Tracing} & Integrate tracing (e.g., OpenTelemetry) and correlation IDs. Log major lifecycle events (model load, request timings). \\
+\rowcolor{orange!8}
+\textbf{Batching Enabled} & Verify serving stack batches requests effectively. Enable dynamic batching in frameworks (TGI, Triton, vLLM) and tune batch delays~\cite{tgi-github,vllm-pagedattention}. \\
+\rowcolor{orange!3}
+\textbf{Autoscaling Policies} & Configure horizontal pod autoscalers (by QPS, latency, or custom metrics) and GPU node autoscaling. Test synthetic loads for responsiveness. \\
+\rowcolor{orange!8}
+\textbf{Graceful Shutdown} & Use \texttt{preStop} hooks and termination grace periods to let pods drain requests before eviction. \\
+\rowcolor{orange!3}
+\textbf{Model Rollout Strategy} & Adopt rolling or canary updates. Never replace all pods simultaneously; validate new model quality before full rollout. \\
+\rowcolor{orange!8}
+\textbf{Concurrency Limits} & Enforce maximum concurrent requests per instance. Return "retry later" rather than crashing under overload. \\
+\rowcolor{orange!3}
+\textbf{Resource Requests \& Limits} & Assign accurate CPU/GPU/memory requests so schedulers pack pods appropriately. \\
+\rowcolor{orange!8}
+\textbf{Error Handling} & Implement retries for transient errors. Handle OOMs gracefully (e.g., friendly error or fallback response). \\
+\rowcolor{orange!3}
+\textbf{Secure the Endpoint} & Restrict access with mTLS, network policies, or API gateways. Never expose open model endpoints. \\
+\rowcolor{orange!8}
+\textbf{Observability on Quality} & Track not only performance but also output quality (manual ratings or automated classifiers). Monitor drift. \\
+\rowcolor{orange!3}
+\textbf{Plan for Scaling Limits} & Know cluster scaling ceilings (e.g., max 10 H100 nodes). Plan partitioning or caching before reaching limits. \\
+\rowcolor{orange!8}
+\textbf{Client-Side Rate Limiting} & Apply per-user/API key request limits to prevent misuse and runaway costs. \\
+\rowcolor{orange!3}
+\textbf{Continuous Load Testing} & Periodically stress test systems after major changes (new models, infra updates) to ensure scaling and SLAs hold. \\
+\end{tabularx}
+\end{tcolorbox}
 
 \subsection{Summary}\label{sec:checklists-summary}
 By adhering to these checklists, LLMOps teams can maintain robust, efficient, and secure systems. The LLM infrastructure landscape evolves rapidly—new hardware and inference optimizations emerge constantly—but a disciplined foundation of best practices enables confident adaptation. The next chapters build on this, covering CI/CD for models, monitoring and evaluation, and full lifecycle management, all of which rest upon these infrastructural principles.
