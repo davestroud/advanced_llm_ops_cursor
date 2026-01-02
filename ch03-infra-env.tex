@@ -535,30 +535,20 @@ This code defines an EKS cluster with a GPU-enabled node group. Labels and taint
     fonttitle=\bfseries\small,
     boxrule=1pt,
     arc=5pt,
-    left=5mm, right=5mm, top=4mm, bottom=4mm,
-    drop shadow={xshift=0.5mm, yshift=0.5mm, color=black!30},
-    enhanced
+    left=3mm, right=3mm, top=3mm, bottom=3mm,
+    enhanced,
+    breakable
   ]
-  \footnotesize
+  \tiny
   \ttfamily
-  \setlength{\parindent}{0pt}
-  \setlength{\parskip}{2pt}
-  \begin{minipage}[t]{\linewidth}
-\begin{verbatim}
+  \setlength{\baselineskip}{1.1\baselineskip}
+  \begin{verbatim}
 # EKS Cluster with GPU-enabled node group
-# This module provisions an AWS EKS cluster optimized for LLM workloads
-
 terraform {
   required_version = ">= 1.5"
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = "~> 2.23"
-    }
+    aws = { source = "hashicorp/aws", version = "~> 5.0" }
+    kubernetes = { source = "hashicorp/kubernetes", version = "~> 2.23" }
   }
 }
 
@@ -567,17 +557,13 @@ resource "aws_eks_cluster" "llm_cluster" {
   name     = var.cluster_name
   role_arn = aws_iam_role.cluster.arn
   version  = "1.28"
-
   vpc_config {
-    subnet_ids              = var.subnet_ids
+    subnet_ids = var.subnet_ids
     endpoint_private_access = true
-    endpoint_public_access  = false  # Private API endpoint
+    endpoint_public_access = false
   }
-
-  enabled_cluster_log_types = [
-    "api", "audit", "authenticator", "controllerManager", "scheduler"
-  ]
-
+  enabled_cluster_log_types = ["api", "audit", "authenticator", 
+                                "controllerManager", "scheduler"]
   tags = {
     Environment = var.environment
     ManagedBy   = "Terraform"
@@ -585,56 +571,51 @@ resource "aws_eks_cluster" "llm_cluster" {
   }
 }
 
-# GPU Node Group (A100/H100 instances)
+# GPU Node Group
 resource "aws_eks_node_group" "gpu_nodes" {
   cluster_name    = aws_eks_cluster.llm_cluster.name
   node_group_name = "gpu-node-group"
   node_role_arn   = aws_iam_role.node_group.arn
   subnet_ids      = var.subnet_ids
-
-  instance_types = ["g5.2xlarge", "p4d.24xlarge"]  # NVIDIA A10G, A100
-
+  instance_types  = ["g5.2xlarge", "p4d.24xlarge"]
+  
   scaling_config {
     desired_size = 2
     max_size     = 10
     min_size     = 1
   }
-
-  # Labels and taints for GPU workload isolation
+  
   labels = {
     "accelerator" = "nvidia-gpu"
     "workload"    = "llm-inference"
   }
-
+  
   taint {
     key    = "nvidia.com/gpu"
     value  = "true"
-    effect = "NO_SCHEDULE"  # Only pods with toleration can schedule
+    effect = "NO_SCHEDULE"
   }
-
-  # Launch template with NVIDIA drivers
+  
   launch_template {
     id      = aws_launch_template.gpu_nodes.id
     version = "$Latest"
   }
-
+  
   depends_on = [
     aws_eks_cluster.llm_cluster,
     aws_iam_role_policy_attachment.node_group
   ]
 }
 
-# Output: Kubeconfig for downstream automation
+# Outputs
 output "kubeconfig" {
   value     = aws_eks_cluster.llm_cluster.kubeconfig
   sensitive = true
 }
-
 output "cluster_endpoint" {
   value = aws_eks_cluster.llm_cluster.endpoint
 }
-\end{verbatim}
-  \end{minipage}
+  \end{verbatim}
   \normalfont
   \normalsize
   \end{tcolorbox}
