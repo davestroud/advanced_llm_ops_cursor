@@ -2260,4 +2260,465 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
 Package microtype Info: Character `013' is missing
 (microtype)             in font `OT1/ntxtlf/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
-LaTeX Font Info:    Trying to load font information for OT1+lmtt on inpu
+LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 1262.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmtt.fd
+File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+
+[39{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}]
+
+[40])
+
+[41]
+\openout2 = `ch02-llmops-fundamentals.aux'.
+
+ (./ch02-llmops-fundamentals.tex
+
+[42
+
+
+
+
+
+]
+Chapter 2.
+Package biblatex Info: Reference segment=4 on input line 1.
+Package biblatex Info: Setting label 'refsegment:04' on input line 1.
+Package biblatex Info: Reference segment=5 on input line 3.
+Package biblatex Info: Setting label 'refsegment:05' on input line 3.
+
+
+[43]
+
+[44]
+
+[45]
+
+[46]
+
+[47]
+
+[48]
+
+[49]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Package pgfplots info on input line 209: Using 'lua backend=false' for axis: ymode=log unsupported (yet).
+
+Underfull \hbox (badness 1253) in paragraph at lines 265--266
+[]\OT1/ntxtlf/b/n/10 (+20) A100-40GB: \OT1/ntxtlf/m/n/10 (+20) 7B fits with mod-er-ate $\OML/ntxmi/m/it/10 B[]T$ \OT1/ntxtlf/m/n/10 (+20) (e.g., $\OML/ntxmi/m/it/10 B[]\OT1/minntx/m/n/10 8\OML/ntxmi/m/it/10 ; T[]\OT1/minntx/m/n/10 2048$ $\LMS/ntxsy/m/n/10 )$
+ []
+
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 10.0pt on input line 272.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 7.3pt on input line 272.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 5.5pt on input line 272.
+
+
+[50]
+
+[51]
+
+[52]
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 8.5pt on input line 305.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 6.20496pt on input line 305.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 4.67502pt on input line 305.
+
+
+[53]
+
+[54]
+
+[55]
+
+[56]
+
+[57]
+
+[58]
+
+[59]
+
+[60]
+
+[61]
+
+[62]
+
+[63]
+
+[64]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.20496pt on input line 591.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 4.67502pt on input line 591.
+
+
+[65]
+
+[66]
+
+[67]
+
+[68]
+
+[69]
+
+[70])
+
+[71]
+\openout2 = `ch03-infra-env.aux'.
+
+ (./ch03-infra-env.tex
+
+[72
+
+
+
+
+
+]
+Chapter 3.
+Package biblatex Info: Reference segment=6 on input line 1.
+Package biblatex Info: Setting label 'refsegment:06' on input line 1.
+Package biblatex Info: Reference segment=7 on input line 3.
+Package biblatex Info: Setting label 'refsegment:07' on input line 3.
+
+
+[73]
+
+[74]
+
+[75]
+Overfull \hbox (17.2671pt too wide) in paragraph at lines 87--97
+ [][] 
+ []
+
+
+
+[76]
+
+[77]
+
+[78]
+
+[79]
+
+[80]
+
+[81]
+
+[82]
+Overfull \hbox (3.98167pt too wide) in paragraph at lines 273--278
+[]\OT1/ntxtlf/b/n/10 (-20) Terraform (HashiCorp). \OT1/ntxtlf/m/n/10 (-20) Declar-a-tive, cloud-agnostic IaC tool us-ing HCL (HashiCorp
+ []
+
+
+
+[83]
+Overfull \hbox (92.10152pt too wide) in paragraph at lines 302--312
+ [][] 
+ []
+
+
+
+[84]
+
+[85]
+
+[86]
+
+[87]
+
+[88]
+
+[89]
+
+[90]
+
+[91]
+
+[92]
+Underfull \hbox (badness 1092) in paragraph at lines 541--541
+\OT1/ntxtlf/m/n/8.5 (+20) tion; ef-fi-cient KV cache reuse;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--545
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Maximum per-for-mance on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--545
+\OT1/ntxtlf/m/n/8.5 (+20) enterprise-grade multi-model
+ []
+
+
+Overfull \hbox (59.07527pt too wide) in paragraph at lines 531--557
+ [][] 
+ []
+
+
+
+[93]
+
+[94]
+
+[95]
+
+[96]
+Overfull \hbox (5.16875pt too wide) in paragraph at lines 794--795
+ [][] 
+ []
+
+
+
+[97]
+
+[98]
+Overfull \hbox (181.70961pt too wide) in paragraph at lines 912--913
+ [][] 
+ []
+
+
+
+[99]
+
+[100]
+
+[101]
+
+[102]
+Overfull \hbox (3.95467pt too wide) in paragraph at lines 985--985
+[]\OT1/ntxtlf/m/it/10 (-20) Learn Ter-raform Rec-om-mended Prac-tices\OT1/ntxtlf/m/n/10 (-20) . HashiCorp. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / developer .
+ []
+
+
+
+[103]
+Overfull \hbox (6.67911pt too wide) in paragraph at lines 985--985
+[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
+ []
+
+
+
+[104]
+
+[105]
+
+[106])
+
+[107]
+
+[108
+
+
+
+
+]
+
+[109]
+
+[110]
+\openout2 = `author/part2-delivery.aux'.
+
+ (./author/part2-delivery.tex)
+
+[111
+
+]
+\openout2 = `ch04-cicd.aux'.
+
+ (./ch04-cicd.tex
+
+[112
+
+
+
+
+
+]
+Chapter 4.
+Package biblatex Info: Reference segment=8 on input line 1.
+Package biblatex Info: Setting label 'refsegment:08' on input line 1.
+Package biblatex Info: Reference segment=9 on input line 3.
+Package biblatex Info: Setting label 'refsegment:09' on input line 3.
+
+
+[113]
+
+[114]
+
+[115]
+
+[116]
+
+[117]
+
+[118]
+Underfull \hbox (badness 2326) in paragraph at lines 130--130
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Nightly/Batch (cost-
+ []
+
+
+Overfull \hbox (316.43091pt too wide) in paragraph at lines 197--198
+ [][] 
+ []
+
+
+
+[119]
+
+[120]
+
+[121]
+
+[122]
+
+[123]
+
+[124]
+
+[125]
+
+[126]
+
+[127]
+
+[128]
+
+[129]
+
+[130]
+
+[131]
+
+[132])
+
+[133]
+\openout2 = `ch05-observability.aux'.
+
+ (./ch05-observability.tex
+
+[134
+
+
+
+
+
+]
+Chapter 5.
+Package biblatex Info: Reference segment=10 on input line 1.
+Package biblatex Info: Setting label 'refsegment:010' on input line 1.
+Package biblatex Info: Reference segment=11 on input line 3.
+Package biblatex Info: Setting label 'refsegment:011' on input line 3.
+
+
+[135]
+
+[136]
+Overfull \hbox (12.25851pt too wide) in paragraph at lines 78--80
+ [][] 
+ []
+
+
+
+[137]
+
+[138]
+
+[139]
+
+[140]
+Overfull \hbox (7.07446pt too wide) in paragraph at lines 178--180
+\OT1/lmtt/m/n/10 retrieval[]metadata \OT1/ntxtlf/m/n/10 (-20) (doc IDs, in-dex ver-sion, top-$k$, re-ranker scores); \OT1/lmtt/m/n/10 token[]counts
+ []
+
+
+Overfull \hbox (38.40677pt too wide) in paragraph at lines 178--180
+\OT1/ntxtlf/m/n/10 (-20) tax-on-omy (e.g., \OT1/lmtt/m/n/10 provider[]timeout\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 rate[]limit\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 tool[]schema[]mismatch\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 parser[]failure\OT1/ntxtlf/m/n/10 (-20) )
+ []
+
+
+
+[141]
+
+[142]
+LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <8.5> not available
+(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 262.
+
+Overfull \hbox (583.99873pt too wide) in paragraph at lines 305--309
+ [][] 
+ []
+
+
+
+[143]
+
+[144]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 350.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 350.
+
+
+[145{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+[146]
+Overfull \hbox (37.4113pt too wide) in paragraph at lines 411--412
+[]\OT1/ntxtlf/b/n/10 (-20) Cohort and route lenses. \OT1/ntxtlf/m/n/10 (-20) Pro-vide con-sis-tent la-bels|\OT1/lmtt/m/n/10 model[]version\OT1/ntxtlf/m/n/10 (-20) , \OT1/lmtt/m/n/10 retriever[]version\OT1/ntxtlf/m/n/10 (-20) ,
+ []
+
+
+
+[147]
+
+[148]
+
+[149]
+
+[150]
+
+[151]
+
+[152]
+
+[153]
+Overfull \hbox (15.38861pt too wide) in paragraph at lines 591--591
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
+
+[154])
+
+[155]
+\openout2 = `ch06-scaling.aux'.
+
+ (./ch06-scaling.tex
+
+[156
+
+
+
+
+
+]
+Chapter 6.
+Package biblatex Info: Reference segment=12 on input line 1.
+Package biblatex Info: Setting label 'refsegment:012' on input line 1.
+Package biblatex Info: 
