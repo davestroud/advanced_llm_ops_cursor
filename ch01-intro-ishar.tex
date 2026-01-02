@@ -291,10 +291,10 @@ Figure~\ref{fig:llm-threat-model} summarizes the main attack surfaces and a defe
 control stack spanning input handling, retrieval governance, tool security, and output controls.
 
 % Preamble requirements: \usepackage{tikz} and \usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
-\clearpage
-\begin{figure}[p]
+\begin{landscape}
+\begin{figure}[!htbp]
   \centering
-  \resizebox{0.95\textwidth}{!}{%
+  \resizebox{0.92\textwidth}{!}{%
   \begin{tikzpicture}[
     >=Stealth,
     node distance=1cm and 0.6cm,
@@ -372,6 +372,7 @@ control stack spanning input handling, retrieval governance, tool security, and 
   as a cross-cutting requirement for incident response and rollback.}
   \label{fig:llm-threat-model}
 \end{figure}
+\end{landscape}
 
 \subsection{Change Management and Release Discipline}
 Finally, LLM systems change frequently: prompts evolve, models are upgraded, retrieval corpora update, and tool schemas shift. Without disciplined release processes, teams risk unintentional regressions. Mature LLMOps introduces:
