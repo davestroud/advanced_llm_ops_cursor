@@ -12,10 +12,17 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter frames responsible LLMOps as an operational discipline grounded in measurable controls and accountable processes. We connect core ethical principles—transparency, fairness, privacy, safety, and accountability—to concrete engineering mechanisms: dataset and prompt governance, bias and toxicity testing, privacy-preserving data handling and retention, policy enforcement, red-teaming, and human oversight. We structure these practices using widely adopted external baselines (e.g., NIST AI Risk Management Framework and its Generative AI profile, OWASP guidance for LLM application risks, and evolving regulatory timelines), emphasizing that governance must be integrated into release gates and monitoring rather than appended after deployment. We discuss practical requirements such as audit trails, escalation protocols, user feedback loops, and stakeholder transparency, and we highlight how organizational roles (legal, compliance, domain experts) translate into operational workflows. The Ishtar AI case study illustrates how high-stakes journalism constraints become concrete system requirements—citation-backed claims, conservative uncertainty, and strict privacy safeguards—implemented through CI/CD gates, observability signals, and human-in-the-loop review.
 
-As large language models (LLMs) become integral to decision-making, communication, and knowledge dissemination, the ethical stakes rise sharply. Ethical and responsible LLMOps ensures that these models are designed, deployed, and maintained in ways that align with societal values, legal requirements, and organizational principles. 
-
-For \ishtar{}, which supports journalists in conflict zones, ethical operations are not optional—they are foundational to maintaining trust and safety.
-
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
 \noindent\textbf{Chapter roadmap.}
 This chapter introduces the ethical and responsible practices required to operate LLM-powered systems in production.
 We begin by motivating why ethics is an operational concern (not only a philosophical one), then distill key principles
@@ -24,6 +31,23 @@ for bias mitigation, privacy-preserving data handling, safety filtering, and hum
 assurance to widely used external baselines (e.g., NIST AI RMF and the Generative AI Profile, OWASP guidance, and emerging
 regulatory timelines such as the EU AI Act). Finally, we apply these ideas to the \ishtar{} case study and conclude with a
 checklist that can be used as a release-gate artifact in LLMOps.
+
+\medskip
+\noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Understand why ethics is an operational concern in LLMOps
+    \item Apply core ethical principles (transparency, fairness, privacy, safety, accountability)
+    \item Implement concrete controls for bias mitigation and privacy preservation
+    \item Integrate governance into release gates and monitoring
+    \item Apply external baselines (NIST AI RMF, OWASP) to LLM systems
+\end{itemize}
+\end{tcolorbox}
+
+\section{Introduction}
+\label{sec:ch11-introduction}
+As large language models (LLMs) become integral to decision-making, communication, and knowledge dissemination, the ethical stakes rise sharply. Ethical and responsible LLMOps ensures that these models are designed, deployed, and maintained in ways that align with societal values, legal requirements, and organizational principles. 
+
+For \ishtar{}, which supports journalists in conflict zones, ethical operations are not optional—they are foundational to maintaining trust and safety.
 
 \section{Why Ethics in LLMOps Matters}\label{sec:ethics-why}
 

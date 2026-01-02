@@ -12,14 +12,38 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter examines multi-agent architectures as a mechanism for extending LLM systems beyond single-turn generation into coordinated, tool-augmented workflows. We introduce core components—specialized agents, an orchestration layer, shared memory (episodic and semantic), and external tools/APIs—and show how these elements enable task decomposition, modularity, and verifiable handoffs. We compare communication patterns (direct messaging, message bus, and blackboard-style collaboration) and analyze orchestration strategies ranging from rule-based pipelines to dynamic (LLM-driven) and hierarchical controllers, emphasizing the trade-off between adaptability and auditability. Because agentic systems introduce new failure modes, we detail error handling and fallback design, performance and cost governance (loop detection, step budgets), and security controls such as least-privilege tool access and traceable policy enforcement. The Ishtar AI case study illustrates an operationally grounded agent pipeline (ingestion → analysis → verification → conversation) and highlights how observability and contract testing convert agent coordination from ad hoc behavior into a manageable production system.
 
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\noindent\textbf{Chapter roadmap.}
+This chapter examines multi-agent architectures as a mechanism for extending LLM systems into coordinated, tool-augmented workflows.
+We introduce core components (specialized agents, orchestration layer, shared memory, external tools), compare communication patterns, and analyze orchestration strategies (rule-based, dynamic, hierarchical).
+We then address error handling, performance and cost governance, security controls, and conclude with an \ishtar{} case study demonstrating operationally grounded agent pipelines.
+
+\medskip
+\noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Design multi-agent architectures with specialized agents and orchestration layers
+    \item Compare communication patterns and orchestration strategies
+    \item Implement error handling and fallback mechanisms for agentic systems
+    \item Govern performance and cost through loop detection and step budgets
+    \item Apply security controls for tool access and policy enforcement
+\end{itemize}
+\end{tcolorbox}
+
+\section{Introduction}
+\label{sec:ch9-introduction}
 Large Language Model systems can extend their capabilities far beyond single-turn interactions by leveraging multiple specialized agents. In multi-agent architectures, each agent is responsible for a specific set of tasks, and an orchestration layer coordinates their work to achieve complex goals.
 
-This chapter provides a deep dive into multi-agent design patterns, orchestration strategies, communication protocols, and performance considerations, with \ishtar{} as the guiding example.
-
-\section*{Multi-Agent Architectures and Orchestration}
-Large Language Model (LLM) applications can be made more robust and scalable by structuring them as multi-agent systems rather than relying on a single monolithic model. In a multi-agent architecture, multiple specialized LLM-driven agents work together under an orchestration layer to handle different aspects of a task. This approach brings benefits in specialization, parallelism, modularity, and fault tolerance that are difficult to achieve with a single agent \cite{blogLangChain,learnMicrosoft}.
-
-This chapter provides a comprehensive exploration of designing, implementing, and operating multi-agent LLM systems, using the \ishtar{} AI case study as a running example. We will examine the motivations for multi-agent systems, the core components and roles of agents in \ishtar{}, communication patterns and orchestration strategies (including how to leverage frameworks like LangGraph and LangChain), error handling mechanisms, performance considerations, and security architecture. A detailed case study of \ishtar{}’s orchestration pipeline is presented with a diagram, and we conclude with a best practices checklist for practitioners.
+This chapter provides a deep dive into multi-agent design patterns, orchestration strategies, communication protocols, and performance considerations, with \ishtar{} as the guiding example. Large Language Model (LLM) applications can be made more robust and scalable by structuring them as multi-agent systems rather than relying on a single monolithic model. In a multi-agent architecture, multiple specialized LLM-driven agents work together under an orchestration layer to handle different aspects of a task. This approach brings benefits in specialization, parallelism, modularity, and fault tolerance that are difficult to achieve with a single agent \cite{blogLangChain,learnMicrosoft}.
 
 \section{Why Multi-Agent Systems?}
 A single LLM can handle many tasks, but multi-agent setups offer significant advantages over monolithic approaches.  

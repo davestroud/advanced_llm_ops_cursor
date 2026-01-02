@@ -12,19 +12,41 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter provides a comprehensive guide to Retrieval-Augmented Generation (RAG) as a foundational pattern for grounding LLM outputs in external evidence. We motivate RAG through the limitations of static model knowledge (cutoffs, hallucination risk, and lack of private/domain context) and then unpack the core components of production RAG systems: ingestion and preprocessing, chunking and metadata enrichment, embedding generation, vector indexing, retrieval, reranking, prompt augmentation, and generation with citations. We compare retriever strategies (dense, sparse, and hybrid) and discuss modern enhancements such as fusion, late interaction, and query rewriting. The chapter then addresses operational concerns: scaling vector search (sharding, replication, caching), constructing context under token budgets, measuring end-to-end RAG quality (faithfulness, answer relevance, attribution), and securing the pipeline via access control, provenance, and injection-aware defenses. An Ishtar AI case study illustrates an evidence-first RAG design for crisis reporting, and the chapter concludes with a best-practices checklist to operationalize RAG as a versioned, observable, and testable subsystem.
 
-Large Language Models (LLMs) are powerful, but inherently limited by their training data cut-off and inability to store all world knowledge in their parameters. Once trained, an LLM’s knowledge is effectively frozen at its cutoff date and cannot automatically incorporate new events, domain-specific information, or private data. This limitation often results in outdated answers, hallucinations, and fabricated facts \cite{Lewis2020RAG, Pinecone2023RAG}. 
-
-Retrieval-Augmented Generation (RAG) bridges this gap by coupling an LLM with an external knowledge retrieval system, enabling real-time access to up-to-date and authoritative information. Instead of relying solely on static parameters, the LLM can dynamically pull in relevant context from external sources at query time, making responses more accurate, context-aware, and grounded in evidence \cite{Guu2020REALM, Izacard2020Fusion}. 
-
-This chapter provides a comprehensive guide to RAG in LLMOps, exploring architectural patterns, tooling, performance considerations, and real-world examples using \ishtar{}. RAG has rapidly become the go-to technique for integrating external knowledge into LLM pipelines, consistently outperforming approaches such as unsupervised fine-tuning for tasks requiring freshness, specialization, or private data integration \cite{Borgeaud2022RETRO, Thakur2021BEIR, RAGAS2023}.
-
-RAG in LLMOps: RAG is essential in modern LLM operations (LLMOps) because it transforms a static model into a dynamic system that can adapt to real-world changes. This chapter provides a comprehensive guide to building RAG systems, covering core components, technical design choices, and best practices. We’ll explore how RAG architecture patterns (single-step vs multi-step vs agent-driven) work, delve into vector database options like Pinecone and FAISS, and examine performance considerations (caching, indexing, batching) with citations from recent sources. By the end, you’ll see how RAG enables systems like Ishtar (our crisis-reporting AI) to deliver timely, factual intelligence grounded in live data.
-
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
 \noindent\textbf{Chapter roadmap.}
 This chapter introduces Retrieval-Augmented Generation (RAG) as a foundational pattern for grounding LLM outputs in external evidence.
 We begin by motivating RAG in the context of LLMOps, then unpack the core components of a production RAG system (ingestion, indexing, retrieval, reranking, prompt augmentation, and generation).
 We cover retriever strategies (dense, sparse, and hybrid), context construction, reranking and filtering, chunking, vector index choices, and query processing patterns (including multi-hop and agentic RAG).
 We then address scaling and performance considerations, evaluation of end-to-end RAG quality, and security and compliance, before concluding with an \ishtar{} case study and an operational best-practices checklist.
+
+\medskip
+\noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Understand why RAG is essential for grounding LLM outputs in external evidence
+    \item Design production RAG systems with proper ingestion, indexing, and retrieval
+    \item Compare and choose retriever strategies (dense, sparse, hybrid)
+    \item Scale vector search and measure end-to-end RAG quality
+    \item Secure RAG pipelines with access control and provenance
+\end{itemize}
+\end{tcolorbox}
+
+\section{Introduction}
+\label{sec:ch8-introduction}
+Large Language Models (LLMs) are powerful, but inherently limited by their training data cut-off and inability to store all world knowledge in their parameters. Once trained, an LLM's knowledge is effectively frozen at its cutoff date and cannot automatically incorporate new events, domain-specific information, or private data. This limitation often results in outdated answers, hallucinations, and fabricated facts \cite{Lewis2020RAG, Pinecone2023RAG}. 
+
+Retrieval-Augmented Generation (RAG) bridges this gap by coupling an LLM with an external knowledge retrieval system, enabling real-time access to up-to-date and authoritative information. Instead of relying solely on static parameters, the LLM can dynamically pull in relevant context from external sources at query time, making responses more accurate, context-aware, and grounded in evidence \cite{Guu2020REALM, Izacard2020Fusion}. 
+
+This chapter provides a comprehensive guide to RAG in LLMOps, exploring architectural patterns, tooling, performance considerations, and real-world examples using \ishtar{}. RAG has rapidly become the go-to technique for integrating external knowledge into LLM pipelines, consistently outperforming approaches such as unsupervised fine-tuning for tasks requiring freshness, specialization, or private data integration \cite{Borgeaud2022RETRO, Thakur2021BEIR, RAGAS2023}.
 
 \section{Why RAG is Essential for LLMOps}
 \label{sec:rag-why-rag-is-essential-for-llmops}

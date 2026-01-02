@@ -12,12 +12,36 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter presents performance optimization as the discipline of delivering target quality at acceptable latency and cost. We organize optimization techniques into four layers. First, model-level methods—quantization, pruning, distillation, and efficient fine-tuning—reduce memory footprint and compute while preserving task performance. Second, inference-engine optimizations—kernel fusion, efficient attention implementations, and KV-cache policies—improve tokens-per-second and tail latency under long-context and multi-tenant loads. Third, system-level techniques—dynamic batching, caching, asynchronous processing, request routing, and advanced decoding strategies—convert raw accelerator capacity into predictable service-level performance. Fourth, prompt-level and retrieval-aware strategies reduce token overhead and mitigate prompt bloat without degrading answer faithfulness. We provide benchmarking guidance that emphasizes decomposing end-to-end latency (prefill vs decode), measuring TTFT and p95/p99 behavior, and tracking cost per successful outcome. The chapter closes with Ishtar AI case studies that connect optimization decisions to measurable operational gains and provide reusable patterns for production deployments.
 
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\noindent\textbf{Chapter roadmap.}
+This chapter presents performance optimization techniques at four layers: (i) \emph{model-level} methods (quantization, pruning, and distillation), (ii) \emph{inference-engine} optimizations (kernel fusion, efficient attention implementations, and KV-cache management), (iii) \emph{system-level} techniques (batching, caching, asynchronous processing, request scheduling, and advanced decoding), and (iv) \emph{prompt-level} strategies that reduce token and retrieval overhead. The chapter closes with benchmarking guidance and \ishtar{} case studies that connect these methods to measurable outcomes such as TTFT, tokens/s, tail latency, and cost per request.
+
+\medskip
+\noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Apply model-level optimization techniques (quantization, pruning, distillation)
+    \item Optimize inference engines through kernel fusion and efficient attention
+    \item Implement system-level techniques (batching, caching, request routing)
+    \item Reduce token overhead through prompt-level strategies
+    \item Benchmark and measure optimization outcomes effectively
+\end{itemize}
+\end{tcolorbox}
+
+\section{Introduction}
+\label{sec:ch7-introduction}
 Performance optimization in Large Language Model Operations (LLMOps) is about achieving the best trade-off between latency, throughput, quality, and cost. In production environments, especially for mission-critical systems like \ishtar{}, these optimizations determine whether a service can meet user expectations while staying within budget.
 
 This chapter outlines advanced techniques to optimize LLM performance across hardware, software, and system architecture. We will focus on real-world scenarios, detailed methods, and measurable outcomes.
-
-\noindent\textbf{Chapter roadmap.}
-This chapter presents performance optimization techniques at four layers: (i) \emph{model-level} methods (quantization, pruning, and distillation), (ii) \emph{inference-engine} optimizations (kernel fusion, efficient attention implementations, and KV-cache management), (iii) \emph{system-level} techniques (batching, caching, asynchronous processing, request scheduling, and advanced decoding), and (iv) \emph{prompt-level} strategies that reduce token and retrieval overhead. The chapter closes with benchmarking guidance and \ishtar{} case studies that connect these methods to measurable outcomes such as TTFT, tokens/s, tail latency, and cost per request.
 
 \section{Why Optimization Matters}
 \label{sec:perf-why}

@@ -12,15 +12,37 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter positions observability as the operational manifestation of LLM product quality. We explain why monitoring differs for LLM applications, requiring instrumentation across three layers: system telemetry (GPU/CPU, latency, throughput), model telemetry (token usage, refusals, safety triggers), and pipeline telemetry (retrieval lineage, tool calls, and multi-agent handoffs). We introduce RAG-specific metrics—retrieval quality, context utilization, groundedness/faithfulness, citation fidelity, and drift signals for embeddings and indices—and show how these are operationalized through traces, dashboards, and continuous evaluation on canary and golden queries. We then provide practical guidance for tracing complex prompt flows and agent graphs, standardizing telemetry schemas, and enforcing privacy-preserving logging and retention. Finally, we connect observability to action: alerting is tied to SLOs and pre-authorized playbooks (fallback retrieval, safe-mode decoding, rollback), enabling faster incident response and continuous improvement. Ishtar AI is used throughout as a reference architecture for evidence-centric monitoring in high-stakes deployments.
 
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\noindent\textbf{Chapter roadmap.}
+We begin by explaining why LLM observability differs from traditional application monitoring, then introduce RAG-specific drift signals and instrumentation patterns for complex prompt chains and multi-agent workflows.
+We close with dashboards, automated quality checks, incident response playbooks, and an \ishtar{}-based reference stack that illustrates how to operationalize semantic quality, safety, and cost constraints.
+
+\medskip
+\noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Understand why LLM observability requires instrumentation beyond traditional monitoring
+    \item Implement three-layer telemetry (system, model, and pipeline)
+    \item Measure RAG-specific metrics (retrieval quality, groundedness, citation fidelity)
+    \item Design traces for complex prompt flows and multi-agent workflows
+    \item Connect observability to actionable incident response playbooks
+\end{itemize}
+\end{tcolorbox}
+
 \section{Introduction}
 \label{sec:monitoring-intro}
 Monitoring and observability are critical pillars of LLMOps. For Large Language Model applications, visibility extends beyond traditional system health metrics---it must encompass quality of generated outputs, safety compliance, performance under load, and the evolving needs of end-users.
 
 In this chapter, we explore the principles, architecture, and practical techniques for achieving comprehensive observability in LLM-powered systems, focusing on the LangChain ecosystem and integrating recent survey findings, runtime evaluation patterns, and RAG-specific metrics, with \ishtar{} as our running example.
-
-\noindent\textbf{Chapter roadmap.}
-We begin by explaining why LLM observability differs from traditional application monitoring, then introduce RAG-specific drift signals and instrumentation patterns for complex prompt chains and multi-agent workflows.
-We close with dashboards, automated quality checks, incident response playbooks, and an \ishtar{}-based reference stack that illustrates how to operationalize semantic quality, safety, and cost constraints.
 
 \section{Why Monitoring is Different for LLMs}
 \label{sec:why-monitoring-is-different-for-llms}

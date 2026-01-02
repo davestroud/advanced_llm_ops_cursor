@@ -12,18 +12,39 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter develops a rigorous testing and evaluation discipline for LLM-powered systems, motivated by non-deterministic outputs, context dependence, and adversarial exposure. We present a layered testing taxonomy—unit tests for prompts and schemas, integration tests for multi-component chains, end-to-end tests for user workflows, and adversarial testing for injection and jailbreak scenarios—then connect these tests to measurable quality criteria. We survey quantitative and qualitative evaluation metrics, including task accuracy where references exist, semantic similarity measures, and rubric-based LLM-as-judge approaches, and we discuss how RAG-specific evaluators quantify faithfulness and attribution. Human-in-the-loop evaluation is positioned as essential for high-stakes workflows, providing calibration for automated judges and surfacing domain-specific failure modes. Robustness is treated as reliability under stress: load testing, fault injection, dependency failures, and security probes. Finally, we show how regression testing is operationalized in CI/CD with baseline comparisons and release gates, and we ground the approach in an Ishtar AI case study and a production-oriented best-practices checklist.
 
-Testing and evaluation are essential to building trust in LLM systems. For mission-critical applications such as \ishtar{}, quality cannot be assumed—it must be continuously validated against well-defined criteria. This chapter covers the methodologies, metrics, and practices needed to evaluate LLM applications and ensure robustness against failures, regressions, and adversarial inputs.
-
-\section{Chapter Overview}\label{sec:ch10-overview}
-Testing and evaluation are essential to building trust in LLM systems. For mission-critical applications such as \ishtar{}, quality cannot be assumed—it must be continuously validated against well-defined criteria. In modern LLM Operations (LLMOps), where model outputs are nondeterministic and context-dependent \cite{arxivEval,bytexEval}, a rigorous testing regimen is the only way to ensure reliability.  
-
-This chapter provides a comprehensive treatment of methodologies, metrics, and practices for evaluating LLM-based applications and ensuring robustness against failures, regressions, and adversarial inputs. We cover multiple levels of testing (from unit prompts to full-system end-to-end tests), delve into quantitative and qualitative evaluation metrics (and how tools like RAGAS and LangSmith implement them), and discuss strategies for adversarial robustness and resilience. An expanded case study on \ishtar{} illustrates how these principles come together in practice, and a detailed best-practices checklist concludes the chapter, distilling lessons for advanced LLMOps practitioners.
-
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
 \noindent\textbf{Chapter roadmap.}
 This chapter introduces a practical testing and evaluation discipline for LLM-powered systems.
 We begin with the motivation for testing in LLMOps and review major testing types (unit, integration, end-to-end, and adversarial).
 We then cover evaluation metrics and automated techniques, followed by human-in-the-loop methods for high-stakes workflows.
 Finally, we address robustness and resilience, show how to operationalize regression testing in CI/CD, and ground the discussion in the \ishtar{} case study.
+
+\medskip
+\noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Design layered testing taxonomies for LLM systems (unit, integration, end-to-end, adversarial)
+    \item Apply quantitative and qualitative evaluation metrics
+    \item Implement human-in-the-loop evaluation for high-stakes workflows
+    \item Test robustness under stress (load testing, fault injection, security probes)
+    \item Operationalize regression testing in CI/CD pipelines
+\end{itemize}
+\end{tcolorbox}
+
+\section{Introduction}
+\label{sec:ch10-introduction}
+Testing and evaluation are essential to building trust in LLM systems. For mission-critical applications such as \ishtar{}, quality cannot be assumed—it must be continuously validated against well-defined criteria. In modern LLM Operations (LLMOps), where model outputs are nondeterministic and context-dependent \cite{arxivEval,bytexEval}, a rigorous testing regimen is the only way to ensure reliability.  
+
+This chapter provides a comprehensive treatment of methodologies, metrics, and practices for evaluating LLM-based applications and ensuring robustness against failures, regressions, and adversarial inputs. We cover multiple levels of testing (from unit prompts to full-system end-to-end tests), delve into quantitative and qualitative evaluation metrics (and how tools like RAGAS and LangSmith implement them), and discuss strategies for adversarial robustness and resilience. An expanded case study on \ishtar{} illustrates how these principles come together in practice, and a detailed best-practices checklist concludes the chapter, distilling lessons for advanced LLMOps practitioners.
 
 \section{The Importance of Testing in LLMOps}
 \label{sec:ch10-the-importance-of-testing-in-llmops}

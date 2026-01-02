@@ -12,11 +12,33 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter reframes CI/CD for LLM systems as continuous validation of behavior rather than only code automation. We present staged evaluation pipelines that combine fast pre-merge checks, post-merge regression suites, nightly adversarial testing, and canary/shadow deployments, with explicit gates for groundedness, safety, and performance. The chapter surveys modern evaluation techniques—golden and slice datasets, LLM-as-judge scoring with bias mitigations, RAG-specific faithfulness metrics, and statistical tests for regression control—then shows how these evaluations become promotion criteria. We detail deployment strategies (shadow, canary, blue–green, rollback) and emphasize bundling model weights, prompts/guardrails, and retrieval index snapshots into a single reversible release artifact. Finally, we connect CI/CD to observability: production traces are curated into replayable datasets that tighten the feedback loop between incidents and tests. Supply-chain integrity (provenance, signed artifacts, SBOMs) and secure cloud authentication practices are presented as prerequisites for trustworthy releases at scale.
 
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\noindent\textbf{Chapter roadmap.} This chapter treats CI/CD for LLM systems as an end-to-end quality and risk-management workflow, not merely a build-and-deploy pipeline. We begin with continuous evaluation (including hallucination and groundedness checks), then cover fine-tuning-aware workflows and progressive deployment strategies (canary, blue-green, and rollback). We close with observability practices, secure supply-chain controls, and structured prompt testing suitable for multi-agent systems.
+
+\medskip
+\noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Design continuous evaluation pipelines for LLM systems
+    \item Implement progressive deployment strategies (canary, shadow, rollback)
+    \item Bundle model weights, prompts, and retrieval indices as versioned artifacts
+    \item Connect CI/CD to observability for feedback loops
+    \item Apply secure supply-chain practices for LLM releases
+\end{itemize}
+\end{tcolorbox}
+
 \section{Introduction}
 \label{sec:cicd-intro}
 Continuous Integration and Continuous Deployment (CI/CD) pipelines for Large Language Models (LLMs) inherit traditional DevOps rigor but introduce unique complexities due to non-determinism, model weight size, GPU/TPU requirements, and evolving behavior. This chapter explores cutting-edge practices from research and industry (2023--2025), including novel evaluation, fine-tuning-aware workflows, canary/rollback strategies, observability (LangSmith, LangFuse, LangGraph), structured prompt testing, and CI/CD for multi-agent LLM systems.
-
-\noindent\textbf{Chapter roadmap.} This chapter treats CI/CD for LLM systems as an end-to-end quality and risk-management workflow, not merely a build-and-deploy pipeline. We begin with continuous evaluation (including hallucination and groundedness checks), then cover fine-tuning-aware workflows and progressive deployment strategies (canary, blue-green, and rollback). We close with observability practices, secure supply-chain controls, and structured prompt testing suitable for multi-agent systems.
 
 \subsection{Opening Part II: Deployment Artifacts as Behavioral Contracts}
 \label{subsec:cicd-part2-opening}

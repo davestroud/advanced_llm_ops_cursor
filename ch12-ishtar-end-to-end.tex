@@ -12,14 +12,38 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter synthesizes the book's methods through an end-to-end implementation of the Ishtar AI system, from requirements to production operations. We begin with problem framing and a threat model suitable for conflict-zone journalism, then restate functional and non-functional requirements such as timeliness, citation-backed factuality, privacy, and resilience under bursty demand. We recap the reference architecture (ingestion, vector index, RAG, multi-agent orchestration, serving, and observability) and provide concrete implementation steps: platform and infrastructure setup, ingestion and embedding pipelines, index versioning, retrieval and prompt contracts with citations and uncertainty, and a controller pattern that composes retrieval, synthesis, verification, safety, and optional translation agents. We then specify CI/CD and evaluation gates that treat prompts, agent graphs, retrieval configuration, serving parameters, and index snapshots as versioned release units with canary rollouts and rollback automation. Operational practices—SLOs, dashboards, incident response, drift management, periodic re-indexing, and knowledge-base curation—are tied to measurable outcomes in latency, quality, and cost. The chapter concludes with an Ishtar-derived end-to-end checklist and future directions for multimodal inputs, adaptive planning, and standardized evaluation.
 
-This chapter synthesizes the methods developed throughout the book into a single, end-to-end implementation narrative for \ishtar{}: an LLM-driven assistant built for journalists operating in conflict and crisis zones.
-Unlike low-stakes consumer chatbots, \ishtar{} is designed for \emph{time-critical}, \emph{high-uncertainty}, and \emph{high-consequence} decisions where misinformation and sensitive-data exposure can cause direct harm.
-Accordingly, the system is engineered as a full LLMOps stack---from ingestion and retrieval to serving, evaluation, observability, and governance---rather than as a single model invocation.
-
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
 \noindent\textbf{Chapter roadmap.}
 We begin by restating the \ishtar{} problem framing and concrete operational requirements.
 We then recap the system architecture as implemented, and walk step-by-step through the build: infrastructure provisioning, ingestion and knowledge-base construction, retrieval-augmented generation, multi-agent orchestration, CI/CD and evaluation gates, observability and SLO enforcement, and security and responsible-deployment controls.
 We close with measured performance outcomes, lessons learned, and forward-looking extensions.
+
+\medskip
+\noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Synthesize all book methods into an end-to-end LLMOps implementation
+    \item Frame problems and requirements for high-stakes LLM applications
+    \item Build complete LLMOps stacks from ingestion to governance
+    \item Implement CI/CD and evaluation gates for versioned release units
+    \item Operationalize SLOs, observability, and security controls
+\end{itemize}
+\end{tcolorbox}
+
+\section{Introduction}
+\label{sec:ch12-introduction}
+This chapter synthesizes the methods developed throughout the book into a single, end-to-end implementation narrative for \ishtar{}: an LLM-driven assistant built for journalists operating in conflict and crisis zones.
+Unlike low-stakes consumer chatbots, \ishtar{} is designed for \emph{time-critical}, \emph{high-uncertainty}, and \emph{high-consequence} decisions where misinformation and sensitive-data exposure can cause direct harm.
+Accordingly, the system is engineered as a full LLMOps stack---from ingestion and retrieval to serving, evaluation, observability, and governance---rather than as a single model invocation.
 
 \subsection{Synthesis Across the Four-Part Structure}
 \label{sec:ishtar-four-part-synthesis}

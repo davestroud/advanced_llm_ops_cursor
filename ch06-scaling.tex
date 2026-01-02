@@ -12,12 +12,36 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter treats scaling as a multi-objective optimization problem across latency, throughput, reliability, and cost. We characterize why LLM scaling departs from classical web scaling due to GPU memory constraints, KV-cache growth, bursty demand, and non-linear efficiency effects from batching and scheduling. We survey scaling modes—vertical, horizontal, and hybrid—and present distributed inference techniques including parallelism, quantization, and speculative decoding. The chapter then focuses on production throughput levers: continuous batching, scheduling policies that avoid head-of-line blocking, and KV-cache management under long-context workloads. We describe autoscaling strategies driven by LLM-aware signals (TTFT, tokens/s, queue depth), caching patterns for both responses and embeddings, and geo-distribution for latency and resilience. The Ishtar AI scaling narrative illustrates how these controls interact across maturity stages, highlighting how disciplined operations and cost-aware routing convert systems techniques into stable behavior under real traffic.
 
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\noindent\textbf{Chapter roadmap.}
+This chapter frames scaling as a multi-objective systems problem: meeting latency and reliability targets while controlling cost under bursty and seasonality-driven demand. We begin by characterizing why LLM scaling behaves differently from classical services, then survey scaling modes (vertical, horizontal, and hybrid). Next, we cover distributed inference techniques (parallelism, quantization, and speculative decoding) and the throughput levers that dominate production performance (batching, scheduling, and KV-cache management). Finally, we discuss autoscaling, caching, and geo-distribution as operational mechanisms for sustaining performance and availability under real-world traffic patterns. Throughout, \ishtar{} serves as the reference point for the engineering and decision trade-offs.
+
+\medskip
+\noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Understand why LLM scaling differs from classical web scaling
+    \item Choose appropriate scaling modes (vertical, horizontal, hybrid)
+    \item Apply distributed inference techniques (parallelism, quantization, speculative decoding)
+    \item Optimize throughput using batching, scheduling, and KV-cache management
+    \item Design autoscaling strategies driven by LLM-aware signals
+\end{itemize}
+\end{tcolorbox}
+
+\section{Introduction}
+\label{sec:ch6-introduction}
 Scaling a Large Language Model deployment is a multifaceted challenge. While traditional applications often scale linearly with additional compute resources, LLM-based systems face unique constraints: massive model sizes, GPU memory limits, high operational costs, and variable demand patterns.
 
 In this chapter, we present a detailed guide to scaling LLM systems from prototype to global production, with \ishtar{} as our primary reference case.
-
-\noindent\textbf{Chapter roadmap.}
-This chapter frames scaling as a multi-objective systems problem: meeting latency and reliability targets while controlling cost under bursty and seasonality-driven demand. We begin by characterizing why LLM scaling behaves differently from classical services, then survey scaling modes (vertical, horizontal, and hybrid). Next, we cover distributed inference techniques (parallelism, quantization, and speculative decoding) and the throughput levers that dominate production performance (batching, scheduling, and KV-cache management). Finally, we discuss autoscaling, caching, and geo-distribution as operational mechanisms for sustaining performance and availability under real-world traffic patterns. Throughout, \ishtar{} serves as the reference point for the engineering and decision trade-offs.
 
 \section{The Scaling Problem in LLMOps}
 \label{sec:scaling-problem}
