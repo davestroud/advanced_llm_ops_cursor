@@ -815,7 +815,7 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     
     % Auto-scaling indicator
     \draw[arrow, color=orange!70!black, line width=1.5pt, <->] ($(gpu1c.east) + (0.2, 0)$) -- ($(gpu1d.east) + (0.2, 0)$);
-    \node[font=\tiny\bfseries, color=orange!70!black, right=0.1cm of gpu1c] {Auto\\Scale};
+    \node[font=\tiny\bfseries, color=orange!70!black, right=0.1cm of gpu1c, align=center] {Auto\\Scale};
     
     % Managed services (right side)
     \node[service, above right=0.5cm and 1cm of az2.north east] (sqs) {SQS\\Pub/Sub};
@@ -842,7 +842,7 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     
     % Disaster Recovery indicator (dotted box for DR region)
     \draw[dotted, color=gray!60, line width=1.5pt, rounded corners=8pt] ($(az2.north east) + (1.5, 0.5)$) rectangle ($(az2.south east) + (3.5, -0.5)$);
-    \node[font=\tiny\bfseries, color=gray!70, right=2.5cm of az2.east] {DR Region\\via IaC};
+    \node[font=\tiny\bfseries, color=gray!70, right=2.5cm of az2.east, align=center] {DR Region\\via IaC};
     
     % Legend
     \node[font=\footnotesize\bfseries, color=black!80, below=0.3cm of az1.south west, anchor=north west] at ($(az1.south west) + (-0.5, -1.2)$) {Key Features:};
