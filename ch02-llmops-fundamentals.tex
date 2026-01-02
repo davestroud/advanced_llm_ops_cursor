@@ -12,10 +12,6 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter establishes the conceptual and quantitative foundations of LLMOps. We define LLMOps and explain why it extends classical MLOps to accommodate prompt and policy management, retrieval integration, tool calling, non-deterministic behavior, and new security and compliance requirements. We then formalize the primary systems constraints that dominate deployment decisions—parameter memory, KV-cache growth, attention complexity, and throughput/latency trade-offs—using lightweight equations that connect model architecture to operational metrics such as time-to-first-token (TTFT), tokens-per-second, and cost per request. Building on these foundations, we present the core stages of a production LLMOps pipeline: data curation, model selection and adaptation, prompt/chain development, evaluation and testing, serving and release engineering, and monitoring with feedback loops. Throughout, we use Ishtar AI as a running example to make the "observability contract" concrete: what must be logged, versioned, and gated so that behavior is reproducible, auditable, and improvable over time.
 
-LLMOps, or Large Language Model Operations, is the discipline of building, deploying, and maintaining large language model-powered systems in production. It extends the principles of traditional MLOps to accommodate the unique demands of LLMs — such as managing prompts, integrating retrieval systems, ensuring safety and compliance, and optimizing for cost and performance. In essence, LLMOps covers everything needed to take a powerful language model out of the lab and make it work reliably in a real-world application. This means that beyond just training a model and exposing it via an API, practitioners must handle continuous prompt updates, incorporate real-time data retrieval, manage unprecedented computational loads, and guard against potential misuse or errors from the model's outputs.
-This chapter introduces the foundational principles, workflows, and terminology of LLMOps. It prepares the reader to understand and implement best practices in later, more advanced chapters, using \ishtar{} as a continuous reference. As we delve into these fundamentals, we will clarify not just the "what" of LLMOps, but also the "why" – why new approaches and tools are needed specifically for large language models, and how they build on (or differ from) established MLOps practices.
-The concepts introduced here form the foundation for subsequent chapters: Chapter~\ref{ch:infra} builds on these fundamentals to cover infrastructure and environment design, Chapter~\ref{ch:cicd} addresses CI/CD practices for LLM systems, Chapter~\ref{ch:monitoring} focuses on monitoring and observability, and Chapter~\ref{ch:scaling} examines scaling strategies. Each of these chapters assumes familiarity with the core concepts and terminology established in this chapter.
-
 \noindent\textbf{Chapter roadmap.} This chapter establishes the conceptual and quantitative foundations of LLMOps.
 We begin by defining LLMOps and explaining why it extends classical MLOps. We then
 introduce the main performance and cost drivers (parameter memory, KV cache, and attention
@@ -30,6 +26,13 @@ running example, which will serve as a continuous reference implementation throu
     \item Identify the key components of an LLMOps pipeline
     \item Recognize the unique challenges of operationalizing LLM systems
 \end{itemize}
+
+\section{Introduction}
+\label{sec:ch2-introduction}
+
+LLMOps, or Large Language Model Operations, is the discipline of building, deploying, and maintaining large language model-powered systems in production. It extends the principles of traditional MLOps to accommodate the unique demands of LLMs — such as managing prompts, integrating retrieval systems, ensuring safety and compliance, and optimizing for cost and performance. In essence, LLMOps bridges the gap between research prototypes and production-ready systems, providing the operational framework necessary to transform powerful language models into reliable, scalable, and maintainable components of real-world applications.
+
+This chapter introduces the foundational principles, workflows, and terminology of LLMOps. It prepares the reader to understand and implement best practices in later, more advanced chapters, using \ishtar{} as a continuous reference. As we delve into these fundamentals, we will clarify not just the ``what'' of LLMOps, but also the ``why'' — why new approaches and tools are needed specifically for large language models, and how they build on (or differ from) established MLOps practices.
 
 \section{What is LLMOps?}
 \label{sec:ch2-what-is-llmops}
