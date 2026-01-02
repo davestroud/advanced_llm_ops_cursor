@@ -793,11 +793,11 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
   ]
 
     % Top layers
-    \node[cloud] (cloud) {Cloud Provider\\(AWS/Azure/GCP)};
-    \node[network, below=0.85cm of cloud] (gateway) {API Gateway\\Load Balancer};
+    \node[cloud, align=center] (cloud) {Cloud Provider\\(AWS/Azure/GCP)};
+    \node[network, below=0.85cm of cloud, align=center] (gateway) {API Gateway\\Load Balancer};
 
     \node[security, left=2.3cm of gateway]  (iam) {IAM};
-    \node[security, right=2.3cm of gateway] (sg)  {Security\\Groups};
+    \node[security, right=2.3cm of gateway, align=center] (sg)  {Security\\Groups};
 
     % Availability zones containers
     \node[az, below=1.15cm of gateway, xshift=-3.9cm] (az1) {};
@@ -811,16 +811,16 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     \node[k8s] (k8s2) at ($(az2.center)+(0,0.65)$) {K8s Cluster};
 
     % GPU nodes (AZ-1)
-    \node[gpu, below=0.5cm of k8s1.south, xshift=-0.68cm] (gpu1a) {GPU\\Node};
-    \node[gpu, below=0.5cm of k8s1.south]                 (gpu1b) {GPU\\Node};
-    \node[gpu, below=0.5cm of k8s1.south, xshift= 0.68cm] (gpu1c) {GPU\\Node};
+    \node[gpu, below=0.5cm of k8s1.south, xshift=-0.68cm, align=center] (gpu1a) {GPU\\Node};
+    \node[gpu, below=0.5cm of k8s1.south, align=center]                 (gpu1b) {GPU\\Node};
+    \node[gpu, below=0.5cm of k8s1.south, xshift= 0.68cm, align=center] (gpu1c) {GPU\\Node};
 
-    \node[gpu, opacity=0.35, below=0.95cm of k8s1.south, xshift=-0.34cm] (gpu1d) {GPU\\Node};
-    \node[gpu, opacity=0.35, below=0.95cm of k8s1.south, xshift= 0.34cm] (gpu1e) {GPU\\Node};
+    \node[gpu, opacity=0.35, below=0.95cm of k8s1.south, xshift=-0.34cm, align=center] (gpu1d) {GPU\\Node};
+    \node[gpu, opacity=0.35, below=0.95cm of k8s1.south, xshift= 0.34cm, align=center] (gpu1e) {GPU\\Node};
 
     % GPU nodes (AZ-2)
-    \node[gpu, below=0.5cm of k8s2.south, xshift=-0.52cm] (gpu2a) {GPU\\Node};
-    \node[gpu, below=0.5cm of k8s2.south, xshift= 0.52cm] (gpu2b) {GPU\\Node};
+    \node[gpu, below=0.5cm of k8s2.south, xshift=-0.52cm, align=center] (gpu2a) {GPU\\Node};
+    \node[gpu, below=0.5cm of k8s2.south, xshift= 0.52cm, align=center] (gpu2b) {GPU\\Node};
 
     % Auto-scaling indicator (clean + robust)
     \draw[arrow, draw=orange!70!black, line width=1.2pt, <->]
@@ -828,10 +828,10 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     \node[font=\tiny\bfseries, color=orange!70!black, right=0.35cm of gpu1c, align=center] {Auto\\Scale};
 
     % Managed services stack (right side)
-    \node[service, right=2.35cm of az2.east, yshift=1.05cm] (sqs)     {SQS\\Pub/Sub};
-    \node[service, below=0.52cm of sqs]     (vector)  {Vector\\DB};
-    \node[service, below=0.52cm of vector]  (storage) {Object\\Store};
-    \node[service, below=0.52cm of storage] (bedrock) {Bedrock\\OpenAI};
+    \node[service, right=2.35cm of az2.east, yshift=1.05cm, align=center] (sqs)     {SQS\\Pub/Sub};
+    \node[service, below=0.52cm of sqs, align=center]     (vector)  {Vector\\DB};
+    \node[service, below=0.52cm of vector, align=center]  (storage) {Object\\Store};
+    \node[service, below=0.52cm of storage, align=center] (bedrock) {Bedrock\\OpenAI};
 
     % Private subnet boundary using fit (reliable)
     \node[draw=cyan!60!black, dashed, line width=0.95pt, rounded corners=5pt,
@@ -996,11 +996,11 @@ The choice of deployment model depends on workload profiles, user distribution, 
 % ================== (A) CLOUD-NATIVE ==================
 \node[cloud, label={[lbl, above=0.3cm]Cloud-Native}] (cloudA) at (col1) {};
 \node[vpc, minimum width=2.6cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]VPC}] (vpcA) at (cloudA.center) {};
-\node[lb, minimum width=1cm, minimum height=0.5cm] (apigwA) at ($(vpcA.north) + (0, -0.3cm)$) {API\\GW};
+\node[lb, minimum width=1cm, minimum height=0.5cm, align=center] (apigwA) at ($(vpcA.north) + (0, -0.3cm)$) {API\\GW};
 \node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\tiny\bfseries, above=0.1cm]K8s}] (k8sA) at ($(vpcA.center) + (0, -0.2cm)$) {};
 \node[gpu, minimum width=0.7cm] (gpuA1) at ($(k8sA.south) + (-0.4cm, -0.25cm)$) {GPU};
 \node[gpu, minimum width=0.7cm] (gpuA2) at ($(k8sA.south) + (0.4cm, -0.25cm)$) {GPU};
-\node[store, minimum width=1cm] (objA) at ($(gpuA1.south) + (0.4cm, -0.3cm)$) {Object\\Store};
+\node[store, minimum width=1cm, align=center] (objA) at ($(gpuA1.south) + (0.4cm, -0.3cm)$) {Object\\Store};
 
 \draw[arrow, orange!80!black] (apigwA) -- (k8sA);
 \draw[arrow, violet!80!black] (k8sA) -- (objA);
@@ -1010,11 +1010,11 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\tiny\bfseries, above=0.1cm]On-Prem K8s}] (k8sBprem) at ($(premB.center) + (0, 0.1cm)$) {};
 \node[gpu, minimum width=0.7cm] (gpuB1) at ($(k8sBprem.south) + (-0.4cm, -0.25cm)$) {GPU};
 \node[gpu, minimum width=0.7cm] (gpuB2) at ($(k8sBprem.south) + (0.4cm, -0.25cm)$) {GPU};
-\node[store, minimum width=1cm] (vecB) at ($(gpuB1.south) + (0.4cm, -0.3cm)$) {Vector\\DB};
+\node[store, minimum width=1cm, align=center] (vecB) at ($(gpuB1.south) + (0.4cm, -0.3cm)$) {Vector\\DB};
 
 \node[cloud] (cloudB) at ($(col2) + (1.2cm, 0)$) {};
 \node[vpc, minimum width=2.6cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]Cloud VPC}] (vpcB) at (cloudB.center) {};
-\node[lb, minimum width=1cm, minimum height=0.5cm] (apigwB) at ($(vpcB.north) + (0, -0.3cm)$) {API\\GW};
+\node[lb, minimum width=1cm, minimum height=0.5cm, align=center] (apigwB) at ($(vpcB.north) + (0, -0.3cm)$) {API\\GW};
 \node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\tiny\bfseries, above=0.1cm]Cloud K8s}] (k8sBcloud) at ($(vpcB.center) + (0, -0.2cm)$) {};
 \node[gpu, minimum width=0.7cm] (gpuB3) at ($(k8sBcloud.south) + (-0.4cm, -0.25cm)$) {GPU};
 \node[gpu, minimum width=0.7cm] (gpuB4) at ($(k8sBcloud.south) + (0.4cm, -0.25cm)$) {GPU};
@@ -1030,7 +1030,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 
 % ================== (C) MULTI-CLUSTER ==================
 \node[cloud, label={[lbl, above=0.3cm]Multi-Cluster / Multi-Region}] (cloudC) at (col3) {};
-\node[lb, minimum width=1.2cm, minimum height=0.5cm] (glbC) at ($(cloudC.north) + (0, -0.2cm)$) {Global\\LB/DNS};
+\node[lb, minimum width=1.2cm, minimum height=0.5cm, align=center] (glbC) at ($(cloudC.north) + (0, -0.2cm)$) {Global\\LB/DNS};
 
 \node[vpc, minimum width=2.4cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]Region A}] (vpcC1) at ($(cloudC.center) + (-0.7cm, -0.1cm)$) {};
 \node[k8s, minimum width=2cm, minimum height=0.7cm, label={[font=\tiny\bfseries, above=0.1cm]K8s A}] (k8sC1) at ($(vpcC1.center) + (0, 0.1cm)$) {};
@@ -1138,7 +1138,7 @@ Future plans include a European cluster for GDPR compliance and model routing (e
       label={[lbl]above:{\textbf{On-Prem (L4 Cluster)}}}] (onprem) {};
 \node[gpu, fill=violet!25] (l4a) at ([yshift=5mm]onprem.center) {L4 GPU};
 \node[gpu, fill=violet!25, right=3mm of l4a] (l4b) {L4 GPU};
-\node[box, fill=yellow!25, below=4mm of onprem.center] (embed) {Embeddings /\\NER Tagging};
+\node[box, fill=yellow!25, below=4mm of onprem.center, align=center] (embed) {Embeddings /\\NER Tagging};
 \draw[arrow, gray!70] (l4a) -- (embed);
 \draw[arrow, gray!70] (l4b) -- (embed);
 
@@ -1179,14 +1179,12 @@ Future plans include a European cluster for GDPR compliance and model routing (e
 
 % ============= Legend =============
 \node[box, fill=white, draw=black, very thick, inner sep=1mm,
-      below=10mm of cloud.south, minimum width=0.9\linewidth] (legend) {
-\begin{tikzpicture}[baseline=(current bounding box.center), node distance=2mm and 4mm]
-  \node[gpu, fill=violet!25, minimum width=8mm, minimum height=5mm, label={[lbl]right:L4 / A100 GPU}] (L1) {};
-  \node[gpu, fill=violet!40, minimum width=8mm, minimum height=5mm, right=20mm of L1, label={[lbl]right:H100 GPU}] (L2) {};
-  \node[box, fill=orange!25, minimum width=8mm, minimum height=5mm, right=20mm of L2, label={[lbl]right:Serving Pods}] (L3) {};
-  \node[box, fill=blue!25, minimum width=8mm, minimum height=5mm, right=20mm of L3, label={[lbl]right:IaC / Control Plane}] (L4) {};
-\end{tikzpicture}
-};
+      below=10mm of cloud.south, minimum width=0.9\linewidth] (legend) {};
+
+\node[gpu, fill=violet!25, minimum width=8mm, minimum height=5mm, label={[lbl]right:L4 / A100 GPU}] (L1) at ($(legend.west) + (0.5cm, 0.15cm)$) {};
+\node[gpu, fill=violet!40, minimum width=8mm, minimum height=5mm, label={[lbl]right:H100 GPU}] (L2) at ($(L1.east) + (2cm, 0)$) {};
+\node[box, fill=orange!25, minimum width=8mm, minimum height=5mm, label={[lbl]right:Serving Pods}] (L3) at ($(L2.east) + (2cm, 0)$) {};
+\node[box, fill=blue!25, minimum width=8mm, minimum height=5mm, label={[lbl]right:IaC / Control Plane}] (L4) at ($(L3.east) + (2cm, 0)$) {};
 
 \end{tikzpicture}
 \caption{Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling.}
