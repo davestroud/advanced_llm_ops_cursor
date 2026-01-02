@@ -769,14 +769,14 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
   \centering
   \begin{tikzpicture}[
     >=Stealth,
-    node distance=0.6cm and 1.2cm,
+    node distance=0.5cm and 0.8cm,
     cloud/.style={ellipse, draw=blue!60!black, fill=blue!15, thick, minimum width=3.5cm, minimum height=1.8cm, align=center, font=\small\bfseries},
-    az/.style={rectangle, draw=green!60!black, fill=green!10, thick, rounded corners=5pt, minimum width=3.2cm, minimum height=4cm},
-    k8s/.style={rectangle, draw=purple!60!black, fill=purple!10, thick, rounded corners=3pt, minimum width=2.5cm, minimum height=1.1cm, align=center, font=\footnotesize\bfseries},
-    gpu/.style={rectangle, draw=orange!70!black, fill=orange!15, thick, rounded corners=3pt, minimum width=1.6cm, minimum height=0.75cm, align=center, font=\tiny},
+    az/.style={rectangle, draw=green!60!black, fill=green!10, thick, rounded corners=5pt, minimum width=3.5cm, minimum height=4.2cm},
+    k8s/.style={rectangle, draw=purple!60!black, fill=purple!10, thick, rounded corners=3pt, minimum width=2.8cm, minimum height=1.2cm, align=center, font=\footnotesize\bfseries},
+    gpu/.style={rectangle, draw=orange!70!black, fill=orange!15, thick, rounded corners=3pt, minimum width=1.5cm, minimum height=0.7cm, align=center, font=\tiny},
     service/.style={rectangle, draw=teal!60!black, fill=teal!10, thick, rounded corners=3pt, minimum width=1.8cm, minimum height=0.75cm, align=center, font=\tiny},
     security/.style={rectangle, draw=red!60!black, fill=red!10, thick, rounded corners=3pt, minimum width=1.6cm, minimum height=0.7cm, align=center, font=\tiny\bfseries},
-    network/.style={rectangle, draw=cyan!60!black, fill=cyan!10, thick, rounded corners=3pt, minimum width=2.5cm, minimum height=0.8cm, align=center, font=\tiny\bfseries},
+    network/.style={rectangle, draw=cyan!60!black, fill=cyan!10, thick, rounded corners=3pt, minimum width=2.8cm, minimum height=0.9cm, align=center, font=\tiny\bfseries},
     arrow/.style={->, thick, color=black!60, line width=1pt},
     label/.style={font=\scriptsize, color=black!70}
   ]
@@ -788,68 +788,70 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     \node[network, below=0.8cm of cloud] (gateway) {API Gateway\\Load Balancer};
     
     % Security layer - properly aligned
-    \node[security, left=2cm of gateway] (iam) {IAM};
-    \node[security, right=2cm of gateway, align=center] (sg) {Security\\Groups};
+    \node[security, left=2.2cm of gateway] (iam) {IAM};
+    \node[security, right=2.2cm of gateway, align=center] (sg) {Security\\Groups};
     
     % Availability Zones - properly aligned and sized
-    \node[az, below=1cm of gateway, xshift=-3.5cm] (az1) {};
+    \node[az, below=1.1cm of gateway, xshift=-3.8cm] (az1) {};
     \node[font=\small\bfseries, color=green!70!black, above=3pt of az1.north] {AZ-1};
     
-    \node[az, below=1cm of gateway, xshift=3.5cm] (az2) {};
+    \node[az, below=1.1cm of gateway, xshift=3.8cm] (az2) {};
     \node[font=\small\bfseries, color=green!70!black, above=3pt of az2.north] {AZ-2};
     
-    % Kubernetes clusters in each AZ - centered
-    \node[k8s] (k8s1) at ($(az1.center) + (0, 0.5)$) {K8s Cluster};
-    \node[k8s] (k8s2) at ($(az2.center) + (0, 0.5)$) {K8s Cluster};
+    % Kubernetes clusters in each AZ - centered horizontally
+    \node[k8s] (k8s1) at ($(az1.center) + (0, 0.6)$) {K8s Cluster};
+    \node[k8s] (k8s2) at ($(az2.center) + (0, 0.6)$) {K8s Cluster};
     
-    % GPU nodes - properly aligned in grid
-    \node[gpu] (gpu1a) at ($(k8s1.south) + (-0.7, -0.4)$) {GPU\\Node};
-    \node[gpu] (gpu1b) at ($(k8s1.south) + (0, -0.4)$) {GPU\\Node};
-    \node[gpu] (gpu1c) at ($(k8s1.south) + (0.7, -0.4)$) {GPU\\Node};
-    \node[gpu, opacity=0.4] (gpu1d) at ($(k8s1.south) + (-0.35, -0.8)$) {GPU\\Node};
-    \node[gpu, opacity=0.4] (gpu1e) at ($(k8s1.south) + (0.35, -0.8)$) {GPU\\Node};
+    % GPU nodes - perfectly centered and aligned under K8s clusters
+    % AZ-1: 3 nodes in top row (centered), 2 nodes in bottom row (scaling)
+    \node[gpu, below=0.5cm of k8s1.south, xshift=-0.65cm] (gpu1a) {GPU\\Node};
+    \node[gpu, below=0.5cm of k8s1.south] (gpu1b) {GPU\\Node};
+    \node[gpu, below=0.5cm of k8s1.south, xshift=0.65cm] (gpu1c) {GPU\\Node};
+    \node[gpu, opacity=0.4, below=0.95cm of k8s1.south, xshift=-0.325cm] (gpu1d) {GPU\\Node};
+    \node[gpu, opacity=0.4, below=0.95cm of k8s1.south, xshift=0.325cm] (gpu1e) {GPU\\Node};
     
-    \node[gpu] (gpu2a) at ($(k8s2.south) + (-0.5, -0.4)$) {GPU\\Node};
-    \node[gpu] (gpu2b) at ($(k8s2.south) + (0.5, -0.4)$) {GPU\\Node};
+    % AZ-2: 2 nodes perfectly centered
+    \node[gpu, below=0.5cm of k8s2.south, xshift=-0.5cm] (gpu2a) {GPU\\Node};
+    \node[gpu, below=0.5cm of k8s2.south, xshift=0.5cm] (gpu2b) {GPU\\Node};
     
     % Auto-scaling indicator - better positioned
-    \draw[arrow, color=orange!70!black, line width=1.5pt, <->] ($(gpu1c.east) + (0.15, 0)$) -- ($(gpu1d.east) + (0.15, 0)$);
-    \node[font=\tiny\bfseries, color=orange!70!black, right=0.2cm of gpu1c, align=center] {Auto\\Scale};
+    \draw[arrow, color=orange!70!black, line width=1.5pt, <->] ($(gpu1c.east) + (0.2, 0)$) -- ($(gpu1d.east) + (0.2, 0)$);
+    \node[font=\tiny\bfseries, color=orange!70!black, right=0.25cm of gpu1c, align=center] {Auto\\Scale};
     
-    % Managed services - properly aligned vertically
-    \node[service, right=2cm of az2.east, yshift=1.2cm] (sqs) {SQS\\Pub/Sub};
+    % Managed services - properly aligned vertically, centered
+    \node[service, right=2.2cm of az2.east, yshift=1cm] (sqs) {SQS\\Pub/Sub};
     \node[service, below=0.5cm of sqs] (vector) {Vector\\DB};
     \node[service, below=0.5cm of vector] (storage) {Object\\Store};
     \node[service, below=0.5cm of storage] (bedrock) {Bedrock\\OpenAI};
     
-    % Private subnet indicator - properly sized
+    % Private subnet indicator - properly sized to encompass both AZs
     \draw[dashed, color=cyan!60!black, line width=1pt, rounded corners=5pt] ($(az1.south west) + (-0.3, -0.3)$) rectangle ($(az2.north east) + (0.3, 0.3)$);
-    \node[font=\tiny\bfseries, color=cyan!70!black, below=0.15cm of az1.south] {Private Subnets};
+    \node[font=\tiny\bfseries, color=cyan!70!black, below=0.2cm of az1.south] {Private Subnets};
     
-    % Connections - cleaner paths
+    % Connections - cleaner, more direct paths
     \draw[arrow] (cloud.south) -- (gateway.north);
     \draw[arrow] (gateway.south) -- (k8s1.north);
     \draw[arrow] (gateway.south) -- (k8s2.north);
     \draw[arrow] (iam.east) -- (gateway.west);
     \draw[arrow] (sg.west) -- (gateway.east);
-    \draw[arrow, dashed, color=teal!60] (k8s1.east) .. controls (3, 3.5) .. (sqs.west);
+    \draw[arrow, dashed, color=teal!60] (k8s1.east) .. controls (3.5, 3.2) .. (sqs.west);
     \draw[arrow, dashed, color=teal!60] (k8s2.east) -- (sqs.west);
-    \draw[arrow, dashed, color=teal!60] (k8s1.east) .. controls (3, 2.5) .. (vector.west);
+    \draw[arrow, dashed, color=teal!60] (k8s1.east) .. controls (3.5, 2.2) .. (vector.west);
     \draw[arrow, dashed, color=teal!60] (k8s2.east) -- (vector.west);
-    \draw[arrow, dashed, color=teal!60] (k8s1.east) .. controls (3, 1.5) .. (storage.west);
+    \draw[arrow, dashed, color=teal!60] (k8s1.east) .. controls (3.5, 1.2) .. (storage.west);
     \draw[arrow, dashed, color=teal!60] (k8s2.east) -- (storage.west);
     
-    % Disaster Recovery indicator - better positioned
+    % Disaster Recovery indicator - properly positioned around services
     \draw[dotted, color=gray!60, line width=1.5pt, rounded corners=8pt] ($(sqs.north east) + (0.2, 0.2)$) rectangle ($(bedrock.south east) + (0.2, -0.2)$);
     \node[font=\tiny\bfseries, color=gray!70, right=0.3cm of sqs.east, align=center] {DR Region\\via IaC};
     
-    % Legend - properly aligned
-    \node[font=\footnotesize\bfseries, color=black!80, below=0.5cm of az1.south west, anchor=north west, xshift=-0.5cm] (legend) {Key Features:};
-    \node[gpu, below=0.15cm of legend.south west, anchor=north west, minimum width=1.2cm] (leg1) {};
+    % Legend - properly aligned with consistent spacing
+    \node[font=\footnotesize\bfseries, color=black!80, below=0.6cm of az1.south west, anchor=north west, xshift=-0.5cm] (legend) {Key Features:};
+    \node[gpu, below=0.2cm of legend.south west, anchor=north west, minimum width=1.2cm] (leg1) {};
     \node[font=\tiny, right=0.15cm of leg1.east, anchor=west] {GPU Nodes (Auto-scaling)};
-    \node[service, below=0.15cm of leg1.south west, anchor=north west, minimum width=1.2cm] (leg2) {};
+    \node[service, below=0.2cm of leg1.south west, anchor=north west, minimum width=1.2cm] (leg2) {};
     \node[font=\tiny, right=0.15cm of leg2.east, anchor=west] {Managed Services};
-    \node[security, below=0.15cm of leg2.south west, anchor=north west, minimum width=1.2cm] (leg3) {};
+    \node[security, below=0.2cm of leg2.south west, anchor=north west, minimum width=1.2cm] (leg3) {};
     \node[font=\tiny, right=0.15cm of leg3.east, anchor=west] {Security \& IAM};
     
   \end{tikzpicture}
