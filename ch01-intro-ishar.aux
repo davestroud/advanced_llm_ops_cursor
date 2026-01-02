@@ -24,93 +24,93 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.6}Security, Privacy, and New Threat Models}{12}{subsection.1.2.6}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces LLMOps observability: what to capture beyond traditional monitoring, why it matters, and common failure signals.}}{13}{table.1.1}\protected@file@percent }
 \newlabel{tab:llm_observability}{{1.1}{13}{LLMOps observability: what to capture beyond traditional monitoring, why it matters, and common failure signals}{table.1.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass, retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization, instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing as a cross-cutting requirement for incident response and rollback.}}{14}{figure.1.4}\protected@file@percent }
-\newlabel{fig:llm-threat-model}{{1.4}{14}{Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass, retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization, instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing as a cross-cutting requirement for incident response and rollback}{figure.1.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.7}Change Management and Release Discipline}{14}{subsection.1.2.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.8}Why This Motivates LLMOps}{15}{subsection.1.2.8}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1.2}{\ignorespaces Four dimensions where LLMOps extends MLOps.}}{16}{table.1.2}\protected@file@percent }
-\newlabel{tab:llmops-extends-mlops}{{1.2}{16}{Four dimensions where LLMOps extends MLOps}{table.1.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.8}Why This Motivates LLMOps}{14}{subsection.1.2.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1.2}{\ignorespaces Four dimensions where LLMOps extends MLOps.}}{15}{table.1.2}\protected@file@percent }
+\newlabel{tab:llmops-extends-mlops}{{1.2}{15}{Four dimensions where LLMOps extends MLOps}{table.1.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Infrastructure and Environment Design}{16}{section.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {1.4}The Emergence of LLMOps}{17}{section.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}The Emergence of LLMOps}{16}{section.1.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {1.5}This Book and the Ishtar AI Case Study}{17}{section.1.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces From MLOps to LLMOps: modeling milestones and operational inflections. Major capability jumps (top) correlate with new operational requirements (bottom): serving at scale, rigorous evaluation/red-teaming, and governance/policy embedded into the lifecycle.}}{18}{figure.1.5}\protected@file@percent }
-\newlabel{fig:mlops-llmops-timeline}{{1.5}{18}{From MLOps to LLMOps: modeling milestones and operational inflections. Major capability jumps (top) correlate with new operational requirements (bottom): serving at scale, rigorous evaluation/red-teaming, and governance/policy embedded into the lifecycle}{figure.1.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.6}From MLOps to LLMOps: Evolution and Key Differences}{18}{section.1.6}\protected@file@percent }
-\newlabel{sec:mlops-to-llmops}{{1.6}{18}{From MLOps to LLMOps: Evolution and Key Differences}{section.1.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.1}Why LLMOps is Distinct}{19}{subsection.1.6.1}\protected@file@percent }
-\newlabel{sec:why-llmops-distinct}{{1.6.1}{19}{Why LLMOps is Distinct}{subsection.1.6.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1.1}Scale}{19}{subsubsection.1.6.1.1}\protected@file@percent }
-\newlabel{sec:llmops-scale}{{1.6.1.1}{19}{Scale}{subsubsection.1.6.1.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces Why scale changes LLM deployment. Large parameter counts make weight memory a first-order constraint, while longer contexts introduce $\Theta (T^2)$ attention cost and KV-cache pressure. Together these drive LLM-specific SLOs (TTFT, tokens/s, \$/1K tokens) and engineering levers (parallelism, quantization, batching/scheduling, KV-cache policy, and model routing).}}{20}{figure.1.6}\protected@file@percent }
-\newlabel{fig:scale-constraints}{{1.6}{20}{Why scale changes LLM deployment. Large parameter counts make weight memory a first-order constraint, while longer contexts introduce $\Theta (T^2)$ attention cost and KV-cache pressure. Together these drive LLM-specific SLOs (TTFT, tokens/s, \$/1K tokens) and engineering levers (parallelism, quantization, batching/scheduling, KV-cache policy, and model routing)}{figure.1.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1.2}Complexity}{20}{subsubsection.1.6.1.2}\protected@file@percent }
-\newlabel{sec:llmops-complexity}{{1.6.1.2}{20}{Complexity}{subsubsection.1.6.1.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1.3}Variability}{21}{subsubsection.1.6.1.3}\protected@file@percent }
-\newlabel{sec:llmops-variability}{{1.6.1.3}{21}{Variability}{subsubsection.1.6.1.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1.4}Risk and Alignment}{21}{subsubsection.1.6.1.4}\protected@file@percent }
-\newlabel{sec:llmops-risk-alignment}{{1.6.1.4}{21}{Risk and Alignment}{subsubsection.1.6.1.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.2}Summary}{22}{subsection.1.6.2}\protected@file@percent }
-\newlabel{sec:why-llmops-summary}{{1.6.2}{22}{Summary}{subsection.1.6.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.7}Structure of the Book}{22}{section.1.7}\protected@file@percent }
-\newlabel{sec:book-structure}{{1.7}{22}{Structure of the Book}{section.1.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.1}How to Read This Book}{23}{subsection.1.7.1}\protected@file@percent }
-\newlabel{subsec:how-to-read}{{1.7.1}{23}{How to Read This Book}{subsection.1.7.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1.3}{\ignorespaces Operational role of each chapter in the LLMOps lifecycle.}}{24}{table.1.3}\protected@file@percent }
-\newlabel{tab:llmops-legend}{{1.3}{24}{Operational role of each chapter in the LLMOps lifecycle}{table.1.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces LLMOps lifecycle mapped to the book's chapters. The flow progresses from foundations (Part I) through delivery operations (Part II: CI/CD, monitoring, scaling), optimization (Part III: performance, RAG, multi-agent), and governance (Part IV: testing, ethics, case study). A dashed feedback loop connects the case study back to foundational practices.}}{24}{figure.1.7}\protected@file@percent }
-\newlabel{fig:llmops-lifecycle}{{1.7}{24}{LLMOps lifecycle mapped to the book's chapters. The flow progresses from foundations (Part I) through delivery operations (Part II: CI/CD, monitoring, scaling), optimization (Part III: performance, RAG, multi-agent), and governance (Part IV: testing, ethics, case study). A dashed feedback loop connects the case study back to foundational practices}{figure.1.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces Mini legend for Fig.~\ref {fig:llmops-lifecycle}: why each chapter matters operationally. \emph  {Legend of chapter roles in the lifecycle.}}}{25}{figure.1.8}\protected@file@percent }
-\newlabel{fig:llmops-legend}{{1.8}{25}{Mini legend for Fig.~\ref {fig:llmops-lifecycle}: why each chapter matters operationally. \emph {Legend of chapter roles in the lifecycle.}}{figure.1.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.8}Introducing the Ishtar AI Case Study}{25}{section.1.8}\protected@file@percent }
-\newlabel{sec:ishtar-intro}{{1.8}{25}{Introducing the Ishtar AI Case Study}{section.1.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.1}Purpose of \ishtar  {}}{25}{subsection.1.8.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces Subsystem-to-chapter mapping for the \ishtar  {} reference architecture.}}{26}{figure.1.9}\protected@file@percent }
-\newlabel{fig:ishtar-arch-callout}{{1.9}{26}{Subsystem-to-chapter mapping for the \ishtar {} reference architecture}{figure.1.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces \ishtar  {} reference architecture. The pipeline includes data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages.}}{26}{figure.1.10}\protected@file@percent }
-\newlabel{fig:ishtar-arch-main}{{1.10}{26}{\ishtar {} reference architecture. The pipeline includes data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages}{figure.1.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.2}Architecture Overview}{26}{subsection.1.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.1}Data Ingestion}{27}{subsubsection.1.8.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.2}Retrieval-Augmented Generation (RAG)}{27}{subsubsection.1.8.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.3}Multi-Agent Orchestration}{27}{subsubsection.1.8.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.4}Inference Cluster}{27}{subsubsection.1.8.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.5}Observability and Feedback}{27}{subsubsection.1.8.2.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Evidence sources powering \ishtar  {}. Curated inputs (news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds) are routed through retrieval to support journalist queries.}}{28}{figure.1.11}\protected@file@percent }
-\newlabel{fig:ishtar-inputs-taxonomy}{{1.11}{28}{Evidence sources powering \ishtar {}. Curated inputs (news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds) are routed through retrieval to support journalist queries}{figure.1.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.3}LLMOps in Practice}{28}{subsection.1.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {1.9}Core Components of LLMOps}{28}{section.1.9}\protected@file@percent }
-\newlabel{sec:core-llmops}{{1.9}{28}{Core Components of LLMOps}{section.1.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.1}Prompt Management}{28}{subsection.1.9.1}\protected@file@percent }
-\newlabel{subsec:prompt-mgmt}{{1.9.1}{28}{Prompt Management}{subsection.1.9.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.1}Objectives}{29}{subsubsection.1.9.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.2}Practices}{29}{subsubsection.1.9.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.3}Example}{29}{subsubsection.1.9.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.2}Retrieval and RAG Pipelines}{29}{subsection.1.9.2}\protected@file@percent }
-\newlabel{subsec:rag}{{1.9.2}{29}{Retrieval and RAG Pipelines}{subsection.1.9.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.1}Design choices}{30}{subsubsection.1.9.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.2}Operational concerns}{30}{subsubsection.1.9.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.3}Example}{30}{subsubsection.1.9.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.3}Deployment and Serving}{30}{subsection.1.9.3}\protected@file@percent }
-\newlabel{subsec:serving}{{1.9.3}{30}{Deployment and Serving}{subsection.1.9.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.1}Serving stack}{30}{subsubsection.1.9.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.2}Release engineering}{31}{subsubsection.1.9.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.3}Example}{31}{subsubsection.1.9.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.4}Evaluation and Testing}{31}{subsection.1.9.4}\protected@file@percent }
-\newlabel{subsec:evaluation}{{1.9.4}{31}{Evaluation and Testing}{subsection.1.9.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.1}Evaluation layers}{31}{subsubsection.1.9.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.2}Regression control}{31}{subsubsection.1.9.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.3}Example}{32}{subsubsection.1.9.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.4}Systems telemetry}{32}{subsubsection.1.9.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.5}Model telemetry}{32}{subsubsection.1.9.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.6}Tooling and alerts}{32}{subsubsection.1.9.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.7}Example}{32}{subsubsection.1.9.4.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {1.10}LLMOps in Practice: Successes, Failures, and Lessons Learned}{33}{section.1.10}\protected@file@percent }
-\newlabel{sec:llmops-practice}{{1.10}{33}{LLMOps in Practice: Successes, Failures, and Lessons Learned}{section.1.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.11}Preview of Subsequent Chapters}{35}{section.1.11}\protected@file@percent }
-\newlabel{sec:preview}{{1.11}{35}{Preview of Subsequent Chapters}{section.1.11}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1.4}{\ignorespaces Early deployments: failures, successes, and the operations that mattered.}}{36}{table.1.4}\protected@file@percent }
-\newlabel{tab:early-llmops-cases}{{1.4}{36}{Early deployments: failures, successes, and the operations that mattered}{table.1.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces What to watch in LLMOps (quick reference).}}{38}{figure.1.12}\protected@file@percent }
-\newlabel{fig:llmops-quick-checklist}{{1.12}{38}{What to watch in LLMOps (quick reference)}{figure.1.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.6}From MLOps to LLMOps: Evolution and Key Differences}{17}{section.1.6}\protected@file@percent }
+\newlabel{sec:mlops-to-llmops}{{1.6}{17}{From MLOps to LLMOps: Evolution and Key Differences}{section.1.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.1}Why LLMOps is Distinct}{18}{subsection.1.6.1}\protected@file@percent }
+\newlabel{sec:why-llmops-distinct}{{1.6.1}{18}{Why LLMOps is Distinct}{subsection.1.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1.1}Scale}{18}{subsubsection.1.6.1.1}\protected@file@percent }
+\newlabel{sec:llmops-scale}{{1.6.1.1}{18}{Scale}{subsubsection.1.6.1.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1.2}Complexity}{19}{subsubsection.1.6.1.2}\protected@file@percent }
+\newlabel{sec:llmops-complexity}{{1.6.1.2}{19}{Complexity}{subsubsection.1.6.1.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1.3}Variability}{19}{subsubsection.1.6.1.3}\protected@file@percent }
+\newlabel{sec:llmops-variability}{{1.6.1.3}{19}{Variability}{subsubsection.1.6.1.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1.4}Risk and Alignment}{20}{subsubsection.1.6.1.4}\protected@file@percent }
+\newlabel{sec:llmops-risk-alignment}{{1.6.1.4}{20}{Risk and Alignment}{subsubsection.1.6.1.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6.2}Summary}{20}{subsection.1.6.2}\protected@file@percent }
+\newlabel{sec:why-llmops-summary}{{1.6.2}{20}{Summary}{subsection.1.6.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.7}Structure of the Book}{20}{section.1.7}\protected@file@percent }
+\newlabel{sec:book-structure}{{1.7}{20}{Structure of the Book}{section.1.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1.3}{\ignorespaces Operational role of each chapter in the LLMOps lifecycle.}}{22}{table.1.3}\protected@file@percent }
+\newlabel{tab:llmops-legend}{{1.3}{22}{Operational role of each chapter in the LLMOps lifecycle}{table.1.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.1}How to Read This Book}{22}{subsection.1.7.1}\protected@file@percent }
+\newlabel{subsec:how-to-read}{{1.7.1}{22}{How to Read This Book}{subsection.1.7.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.8}Introducing the Ishtar AI Case Study}{23}{section.1.8}\protected@file@percent }
+\newlabel{sec:ishtar-intro}{{1.8}{23}{Introducing the Ishtar AI Case Study}{section.1.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.1}Purpose of \ishtar  {}}{23}{subsection.1.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.2}Architecture Overview}{23}{subsection.1.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.1}Data Ingestion}{24}{subsubsection.1.8.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.2}Retrieval-Augmented Generation (RAG)}{24}{subsubsection.1.8.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.3}Multi-Agent Orchestration}{24}{subsubsection.1.8.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.4}Inference Cluster}{24}{subsubsection.1.8.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.5}Observability and Feedback}{24}{subsubsection.1.8.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.3}LLMOps in Practice}{25}{subsection.1.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.9}Core Components of LLMOps}{25}{section.1.9}\protected@file@percent }
+\newlabel{sec:core-llmops}{{1.9}{25}{Core Components of LLMOps}{section.1.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.1}Prompt Management}{25}{subsection.1.9.1}\protected@file@percent }
+\newlabel{subsec:prompt-mgmt}{{1.9.1}{25}{Prompt Management}{subsection.1.9.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.1}Objectives}{25}{subsubsection.1.9.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.2}Practices}{25}{subsubsection.1.9.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.3}Example}{26}{subsubsection.1.9.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.2}Retrieval and RAG Pipelines}{26}{subsection.1.9.2}\protected@file@percent }
+\newlabel{subsec:rag}{{1.9.2}{26}{Retrieval and RAG Pipelines}{subsection.1.9.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.1}Design choices}{26}{subsubsection.1.9.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.2}Operational concerns}{26}{subsubsection.1.9.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.3}Example}{27}{subsubsection.1.9.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.3}Deployment and Serving}{27}{subsection.1.9.3}\protected@file@percent }
+\newlabel{subsec:serving}{{1.9.3}{27}{Deployment and Serving}{subsection.1.9.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.1}Serving stack}{27}{subsubsection.1.9.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.2}Release engineering}{27}{subsubsection.1.9.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.3}Example}{27}{subsubsection.1.9.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.4}Evaluation and Testing}{28}{subsection.1.9.4}\protected@file@percent }
+\newlabel{subsec:evaluation}{{1.9.4}{28}{Evaluation and Testing}{subsection.1.9.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.1}Evaluation layers}{28}{subsubsection.1.9.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.2}Regression control}{28}{subsubsection.1.9.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.3}Example}{28}{subsubsection.1.9.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.4}Systems telemetry}{28}{subsubsection.1.9.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.5}Model telemetry}{28}{subsubsection.1.9.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.6}Tooling and alerts}{29}{subsubsection.1.9.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.7}Example}{29}{subsubsection.1.9.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.10}LLMOps in Practice: Successes, Failures, and Lessons Learned}{29}{section.1.10}\protected@file@percent }
+\newlabel{sec:llmops-practice}{{1.10}{29}{LLMOps in Practice: Successes, Failures, and Lessons Learned}{section.1.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1.4}{\ignorespaces Early deployments: failures, successes, and the operations that mattered.}}{32}{table.1.4}\protected@file@percent }
+\newlabel{tab:early-llmops-cases}{{1.4}{32}{Early deployments: failures, successes, and the operations that mattered}{table.1.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.11}Preview of Subsequent Chapters}{33}{section.1.11}\protected@file@percent }
+\newlabel{sec:preview}{{1.11}{33}{Preview of Subsequent Chapters}{section.1.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass, retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization, instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing as a cross-cutting requirement for incident response and rollback.}}{38}{figure.1.4}\protected@file@percent }
+\newlabel{fig:llm-threat-model}{{1.4}{38}{Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass, retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization, instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing as a cross-cutting requirement for incident response and rollback}{figure.1.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces From MLOps to LLMOps: modeling milestones and operational inflections. Major capability jumps (top) correlate with new operational requirements (bottom): serving at scale, rigorous evaluation/red-teaming, and governance/policy embedded into the lifecycle.}}{38}{figure.1.5}\protected@file@percent }
+\newlabel{fig:mlops-llmops-timeline}{{1.5}{38}{From MLOps to LLMOps: modeling milestones and operational inflections. Major capability jumps (top) correlate with new operational requirements (bottom): serving at scale, rigorous evaluation/red-teaming, and governance/policy embedded into the lifecycle}{figure.1.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces Why scale changes LLM deployment. Large parameter counts make weight memory a first-order constraint, while longer contexts introduce $\Theta (T^2)$ attention cost and KV-cache pressure. Together these drive LLM-specific SLOs (TTFT, tokens/s, \$/1K tokens) and engineering levers (parallelism, quantization, batching/scheduling, KV-cache policy, and model routing).}}{39}{figure.1.6}\protected@file@percent }
+\newlabel{fig:scale-constraints}{{1.6}{39}{Why scale changes LLM deployment. Large parameter counts make weight memory a first-order constraint, while longer contexts introduce $\Theta (T^2)$ attention cost and KV-cache pressure. Together these drive LLM-specific SLOs (TTFT, tokens/s, \$/1K tokens) and engineering levers (parallelism, quantization, batching/scheduling, KV-cache policy, and model routing)}{figure.1.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces LLMOps lifecycle mapped to the book's chapters. The flow progresses from foundations (Part I) through delivery operations (Part II: CI/CD, monitoring, scaling), optimization (Part III: performance, RAG, multi-agent), and governance (Part IV: testing, ethics, case study). A dashed feedback loop connects the case study back to foundational practices.}}{39}{figure.1.7}\protected@file@percent }
+\newlabel{fig:llmops-lifecycle}{{1.7}{39}{LLMOps lifecycle mapped to the book's chapters. The flow progresses from foundations (Part I) through delivery operations (Part II: CI/CD, monitoring, scaling), optimization (Part III: performance, RAG, multi-agent), and governance (Part IV: testing, ethics, case study). A dashed feedback loop connects the case study back to foundational practices}{figure.1.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces Mini legend for Fig.~\ref {fig:llmops-lifecycle}: why each chapter matters operationally. \emph  {Legend of chapter roles in the lifecycle.}}}{40}{figure.1.8}\protected@file@percent }
+\newlabel{fig:llmops-legend}{{1.8}{40}{Mini legend for Fig.~\ref {fig:llmops-lifecycle}: why each chapter matters operationally. \emph {Legend of chapter roles in the lifecycle.}}{figure.1.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces Subsystem-to-chapter mapping for the \ishtar  {} reference architecture.}}{40}{figure.1.9}\protected@file@percent }
+\newlabel{fig:ishtar-arch-callout}{{1.9}{40}{Subsystem-to-chapter mapping for the \ishtar {} reference architecture}{figure.1.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces \ishtar  {} reference architecture. The pipeline includes data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages.}}{40}{figure.1.10}\protected@file@percent }
+\newlabel{fig:ishtar-arch-main}{{1.10}{40}{\ishtar {} reference architecture. The pipeline includes data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages}{figure.1.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Evidence sources powering \ishtar  {}. Curated inputs (news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds) are routed through retrieval to support journalist queries.}}{41}{figure.1.11}\protected@file@percent }
+\newlabel{fig:ishtar-inputs-taxonomy}{{1.11}{41}{Evidence sources powering \ishtar {}. Curated inputs (news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds) are routed through retrieval to support journalist queries}{figure.1.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces What to watch in LLMOps (quick reference).}}{41}{figure.1.12}\protected@file@percent }
+\newlabel{fig:llmops-quick-checklist}{{1.12}{41}{What to watch in LLMOps (quick reference)}{figure.1.12}{}}
 \@setckpt{ch01-intro-ishar}{
 \setcounter{page}{42}
 \setcounter{equation}{0}
