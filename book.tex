@@ -107,46 +107,6 @@
 \include{author/preface}
 \include{author/acknowledgement}
 
-\begin{figure}[t]
-\centering
-\small
-\setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.25}
-
-% Color swatch macro (tiny rounded rectangle)
-\renewcommand{\swatch}[1]{%
-  {\color{#1}\rule{8pt}{8pt}}%
-}
-
-\begin{tabularx}{\linewidth}{@{}p{10mm}p{45mm}X@{}}
-\toprule
- & \textbf{Chapter} & \textbf{Operational purpose (1-line)} \\
-\midrule
-\swatch{blue!55} & \textbf{Ch.~\ref{ch:llmops-fundamentals} Fundamentals} &
-Define LLMOps scope; contrast with MLOps; introduce prompts, RAG, evaluation, alignment. \\
-\swatch{teal!60!black} & \textbf{Ch.~\ref{ch:infra} Infrastructure \& Environment} &
-Right-size accelerators; packaging \& Kubernetes; IaC for reproducibility; cost baselining. \\
-\swatch{orange!70!black} & \textbf{Ch.~\ref{ch:cicd} CI/CD for LLM Systems} &
-Automate prompt/model tests; canary/shadow; feature flags; rollback to last-known-good. \\
-\swatch{purple!70!black} & \textbf{Ch.~\ref{ch:monitoring} Monitoring \& Scaling} &
-TTFT/tokens·s, GPU util; semantic traces; autoscaling triggers; incident response playbooks. \\
-\swatch{cyan!60!black} & \textbf{Ch.~\ref{ch:performance} Performance \& RAG} &
-Quantization/distillation; KV-cache policy; ANN indices; chunking/re-ranking; latency–quality trade-offs. \\
-\swatch{green!60!black} & \textbf{Ch.~\ref{ch:multiagent} Multi-Agent Orchestration} &
-Tool use, graphs, manager–worker patterns; coordination \& failure handling; traceability. \\
-\swatch{red!65!black} & \textbf{Ch.~\ref{ch:testing} Testing \& Robustness} &
-LLM-as-judge, gold sets, adversarial prompts; regression gates; reliability under drift. \\
-\swatch{brown!70!black} & \textbf{Ch.~\ref{ch:ethics} Ethics \& Responsible Deployment} &
-Guardrails, privacy, safety policies; governance \& auditability; human-in-the-loop for high-stakes tasks. \\
-\swatch{black!60} & \textbf{Ch.~\ref{ch:case-study} End-to-End Case Study} &
-Ishtar AI from ingestion to ops; lessons learned; patterns \& anti-patterns in production. \\
-\bottomrule
-\end{tabularx}
-
-\caption{Mini legend for Fig.~\ref{fig:llmops-lifecycle}: why each chapter matters operationally. \emph{Legend of chapter roles in the lifecycle.}}
-\label{fig:llmops-legend-frontmatter}
-\end{figure}
-
 \tableofcontents
 \include{author/acronym}
 
