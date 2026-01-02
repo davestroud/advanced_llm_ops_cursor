@@ -3722,4 +3722,442 @@ Overfull \hbox (101.2487pt too wide) in paragraph at lines 453--453
 
 
 Overfull \hbox (206.2484pt too wide) in paragraph at lines 455--455
-[]        \OT1/lmtt/m/n/10 return ConversationAgent("I'm sorry, I'm having trouble analy
+[]        \OT1/lmtt/m/n/10 return ConversationAgent("I'm sorry, I'm having trouble analyzing this request.", tone="apology")[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 457--457
+[]\OT1/lmtt/m/n/10 result_verif = call(VerificationAgent, result_analysis, timeout=5s)[] 
+ []
+
+
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 462--462
+[]\OT1/lmtt/m/n/10 final_answer = format_answer(result_verif or result_analysis) + warning[] 
+ []
+
+
+
+[295]
+
+[296]
+
+[297]
+
+[298]
+
+[299]
+
+[300]
+
+[301]
+
+[302]
+LaTeX Font Info:    Trying to load font information for OMS+ntxtlf on input line 579.
+LaTeX Font Info:    No file OMSntxtlf.fd. on input line 579.
+
+
+LaTeX Font Warning: Font shape `OMS/ntxtlf/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbackslash' on input line 579.
+
+
+
+[303]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 608.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 608.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 608.
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 608.
+
+
+[304]
+
+[305]
+
+[306]
+
+[307])
+
+[308]
+
+[309
+
+
+
+
+]
+
+[310]
+\openout2 = `author/part4-governance.aux'.
+
+ (./author/part4-governance.tex)
+
+[311
+
+]
+\openout2 = `ch10-testing-eval.aux'.
+
+ (./ch10-testing-eval.tex
+
+[312
+
+
+
+
+
+]
+Chapter 10.
+Package biblatex Info: Reference segment=20 on input line 1.
+Package biblatex Info: Setting label 'refsegment:020' on input line 1.
+Package biblatex Info: Reference segment=21 on input line 3.
+Package biblatex Info: Setting label 'refsegment:021' on input line 3.
+
+
+[313]
+
+[314]
+
+[315]
+
+[316]
+
+[317]
+
+[318]
+
+[319]
+
+[320]
+
+[321]
+Overfull \hbox (9.85628pt too wide) in paragraph at lines 183--184
+[]\OT1/ntxtlf/b/n/10 (-20) Other Met-rics: \OT1/ntxtlf/m/n/10 (-20) Pre-ci-sion/Re-cal-l/F1 are es-sen-tial for re-trieval eval-u-a-tion. BLEU/ROUGE
+ []
+
+
+
+[322]
+
+[323]
+
+[324]
+
+[325]
+
+[326]
+
+[327]
+
+[328]
+
+[329]
+
+[330]
+
+[331]
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ntxtlf in TS1 encoding.
+            Default family used instead on input line 434.
+
+
+[332]
+
+[333]
+
+[334]
+
+[335]
+
+[336]
+
+[337]
+
+[338]
+Overfull \hbox (5.4307pt too wide) in paragraph at lines 543--543
+[]\OT1/ntxtlf/m/n/10 (-20) Langchain Con-trib-u-tors. \OT1/ntxtlf/m/it/10 (-20) Langchain Changelog\OT1/ntxtlf/m/n/10 (-20) . URL: https://github.com/langchain-
+ []
+
+
+
+[339])
+
+[340]
+\openout2 = `ch11-ethics.aux'.
+
+ (./ch11-ethics.tex
+Chapter 11.
+Package biblatex Info: Reference segment=22 on input line 1.
+Package biblatex Info: Setting label 'refsegment:022' on input line 1.
+Package biblatex Info: Reference segment=23 on input line 3.
+Package biblatex Info: Setting label 'refsegment:023' on input line 3.
+
+
+[341
+
+
+
+
+
+]
+
+[342]
+
+[343]
+
+[344]
+
+[345]
+
+[346]
+
+[347]
+
+[348]
+
+[349]
+
+[350]
+
+[351]
+
+[352]
+
+[353]
+
+[354]
+
+[355]
+
+[356]
+
+[357]
+
+[358]
+
+[359]
+
+[360]
+Overfull \hbox (81.1274pt too wide) in paragraph at lines 479--479
+[]\OT1/ntxtlf/m/n/10 (-20) European Com-mis-sion. \OT1/ntxtlf/m/it/10 (-20) Ar-ti-fi-cial In-tel-li-gence Act (AI Act)\OT1/ntxtlf/m/n/10 (-20) . []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+Overfull \hbox (73.91864pt too wide) in paragraph at lines 479--479
+\OT1/lmtt/m/n/10 eu$[]\OT1/ntxtlf/m/n/10 (-20) . Ex-pected to come into force 2025--2026. Avail-able at []$\OT1/lmtt/m/n/10 https : / / artificialintelligenceact .
+ []
+
+
+
+[361]
+
+[362])
+
+[363]
+\openout2 = `ch12-ishtar-end-to-end.aux'.
+
+ (./ch12-ishtar-end-to-end.tex
+
+[364
+
+
+
+
+
+]
+Chapter 12.
+Package biblatex Info: Reference segment=24 on input line 1.
+Package biblatex Info: Setting label 'refsegment:024' on input line 1.
+Package biblatex Info: Reference segment=25 on input line 3.
+Package biblatex Info: Setting label 'refsegment:025' on input line 3.
+
+
+[365]
+
+[366]
+Underfull \hbox (badness 4779) in paragraph at lines 92--92
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Poll/stream sources
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) log alert-ing if lag
+ []
+
+
+Underfull \hbox (badness 1859) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) for typ-i-cal queries;
+ []
+
+
+Underfull \hbox (badness 2318) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) fer ab-sten-tion over
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) fab-ri-ca-tion; ver-i-fi-ca-
+ []
+
+
+Underfull \hbox (badness 5064) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) out-put redac-tion/re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) ob-jec-tive; grace-ful
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) degra-da-tion and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+[]|\OT1/ntxtlf/m/n/8.5 (+20) GPU au-toscal-ing;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+[]|\OT1/ntxtlf/m/n/8.5 (+20) Track cost/-query;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+\OT1/ntxtlf/m/n/8.5 (+20) critical work-loads;
+ []
+
+
+Overfull \hbox (145.91408pt too wide) in paragraph at lines 172--173
+ [][] 
+ []
+
+
+
+[367]
+
+[368]
+
+LaTeX Warning: Reference `ch:infra-env' on page 369 undefined on input line 187.
+
+
+
+[369]
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 219--219
+[]  \OT1/lmtt/m/n/10 enable_oidc   = true             # enables workload identity / OIDC[] 
+ []
+
+
+
+[370]
+
+[371]
+
+[372]
+
+[373]
+
+[374]
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 399--399
+[]    \OT1/lmtt/m/n/10 safe = TranslationAgent(safe, target_lang=state.user_context.lang)[] 
+ []
+
+
+
+[375]
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 461--461
+[]      \OT1/lmtt/m/n/10 - run: python eval/run_offline_eval.py --index_version v2025.12.01[] 
+ []
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 462--462
+[]      \OT1/lmtt/m/n/10 - run: python eval/check_gates.py  # fails if metrics regress[] 
+ []
+
+
+
+[376]
+
+[377]
+
+[378]
+
+[379]
+
+[380]
+
+[381]
+
+[382]
+
+[383]
+
+[384]
+Overfull \hbox (3.95467pt too wide) in paragraph at lines 756--756
+[]\OT1/ntxtlf/m/it/10 (-20) Learn Ter-raform Rec-om-mended Prac-tices\OT1/ntxtlf/m/n/10 (-20) . HashiCorp. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / developer .
+ []
+
+
+Overfull \hbox (6.67911pt too wide) in paragraph at lines 756--756
+[]\OT1/ntxtlf/m/it/10 (-20) Kubernetes Com-po-nents\OT1/ntxtlf/m/n/10 (-20) . Ku-ber-netes Doc-u-men-ta-tion. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / kubernetes .
+ []
+
+
+Overfull \hbox (15.38861pt too wide) in paragraph at lines 756--756
+[]\OT1/ntxtlf/m/it/10 (-20) OpenTelemetry Spec-i-fi-ca-tion\OT1/ntxtlf/m/n/10 (-20) . Open-Teleme-try. 2025. \OT1/ntxtlf/m/sc/10 (-20) url\OT1/ntxtlf/m/n/10 (-20) : []$\OT1/lmtt/m/n/10 https : / / opentelemetry .
+ []
+
+
+
+[385])
+
+[386]
+\openout2 = `author/glossary.aux'.
+
+ (./author/glossary.tex) (./book.ind) (./book.aux (./author/dedication.aux) (./author/foreword.aux) (./author/preface.aux) (./author/acknowledgement.aux) (./author/acronym.aux) (./author/part1-foundations.aux) (./ch01-intro-ishar.aux) (./ch02-llmops-fundamentals.aux) (./ch03-infra-env.aux) (./author/part2-delivery.aux) (./ch04-cicd.aux) (./ch05-observability.aux) (./ch06-scaling.aux) (./author/part3-optimization.aux) (./ch07-performance.aux) (./ch08-rag.aux) (./ch09-agents-orchestration.aux) (./author/part4-governance.aux) (./ch10-testing-eval.aux) (./ch11-ethics.aux) (./ch12-ishtar-end-to-end.aux) (./author/glossary.aux))
+ ***********
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2020/03/25>
+ ***********
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.5pt have occurred.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+Package logreq Info: Writing requests to 'book.run.xml'.
+\openout1 = `book.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 67448 strings out of 467800
+ 1544287 string characters out of 5431882
+ 2767616 words of memory out of 5000000
+ 92088 multiletter control sequences out of 15000+600000
+ 773560 words of font info for 977 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 98i,21n,101p,2661b,2395s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
+
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on book.pdf (400 pages, 3396168 bytes).
+PDF statistics:
+ 7107 PDF objects out of 7423 (max. 8388607)
+ 6476 compressed objects within 65 object streams
+ 1762 named destinations out of 2073 (max. 500000)
+ 160627 words of extra memory for PDF output out of 184870 (max. 10000000)
+
