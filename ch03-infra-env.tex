@@ -1024,7 +1024,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 
 \draw[arrow, teal!80!black] (k8sBprem) -- (vpnL);
 \draw[arrow, teal!80!black] (vpnR) -- (k8sBcloud);
-\draw[arrow, gray!70, dashed, line width=1.2pt] (vpnL) -- node[font=\tiny, midway, above] {Direct\\Connect} (vpnR);
+\draw[arrow, gray!70, dashed, line width=1.2pt] (vpnL) -- node[font=\tiny, align=center, midway, above] {Direct\\Connect} (vpnR);
 \draw[arrow, violet!80!black] (k8sBprem) -- (vecB);
 \draw[arrow, orange!80!black] (apigwB) -- (k8sBcloud);
 
@@ -1044,7 +1044,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 
 \draw[arrow, orange!80!black] (glbC) -- ($(glbC) + (-0.7cm, -0.5cm)$) -- (k8sC1);
 \draw[arrow, orange!80!black] (glbC) -- ($(glbC) + (0.7cm, -0.5cm)$) -- (k8sC2);
-\draw[arrow, gray!70, dashed, line width=1.2pt] (k8sC1) -- node[font=\tiny, midway, above, sloped] {spillover/\\failover} (k8sC2);
+\draw[arrow, gray!70, dashed, line width=1.2pt] (k8sC1) -- node[font=\tiny, align=center, midway, above, sloped] {spillover/\\failover} (k8sC2);
 
 % ================== Clean legend (below all patterns) ==================
 \node[box, fill=white!95, draw=black!50, rounded corners=4pt, minimum width=14cm, minimum height=1.2cm, inner sep=4pt] (legend) at ($(cloudB.south) + (0, -1.8cm)$) {};
