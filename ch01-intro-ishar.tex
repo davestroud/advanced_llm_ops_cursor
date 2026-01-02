@@ -133,9 +133,76 @@ Even with managed APIs, LLM-powered applications behave like distributed systems
 
 Reliability is also a concern: when a subcomponent fails (retriever times out, a tool API is down, or the model hits a rate limit), the overall system should gracefully degrade (e.g., use cached or partial results, fall back to a simpler response) rather than fail catastrophically.
 
+% Preamble requirements: \usepackage{tikz} and \usetikzlibrary{arrows.meta,positioning}
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{images/ch01-llm-architecture}
+\begin{tikzpicture}[
+  >=Stealth,
+  node distance=1cm and 2.2cm,
+  % Component styles
+  user/.style={ellipse, draw=blue!70!black, fill=blue!8, thick, minimum width=1.8cm, minimum height=0.9cm, align=center, font=\footnotesize\bfseries},
+  orchestrator/.style={rectangle, draw=red!60!black, fill=red!8, thick, rounded corners=4pt, minimum width=3.2cm, minimum height=1.1cm, align=center, font=\footnotesize\bfseries},
+  retriever/.style={rectangle, draw=teal!70!black, fill=teal!8, thick, rounded corners=4pt, minimum width=2.5cm, minimum height=0.9cm, align=center, font=\footnotesize},
+  knowledge/.style={rectangle, draw=green!70!black, fill=green!8, thick, rounded corners=4pt, minimum width=2.4cm, minimum height=1cm, align=center, font=\footnotesize},
+  llm/.style={rectangle, draw=orange!70!black, fill=orange!8, thick, rounded corners=4pt, minimum width=2.3cm, minimum height=1.1cm, align=center, font=\footnotesize\bfseries},
+  tool/.style={rectangle, draw=red!70!black, fill=red!8, thick, rounded corners=4pt, minimum width=2.2cm, minimum height=0.9cm, align=center, font=\footnotesize},
+  response/.style={ellipse, draw=blue!70!black, fill=blue!8, thick, minimum width=1.8cm, minimum height=0.9cm, align=center, font=\footnotesize\bfseries},
+  failure/.style={circle, draw=red!70!black, fill=red!15, thick, minimum size=0.5cm},
+  % Arrow styles
+  mainflow/.style={->, thick, color=black!70},
+  fallback/.style={->, dashed, thick, color=red!70!black},
+  toolflow/.style={->, thick, color=brown!70!black},
+  retrieval/.style={->, thick, color=teal!70!black},
+  queryflow/.style={->, thick, color=blue!70!black},
+  label/.style={font=\tiny, color=black!60}
+]
+
+% User and Response (top level)
+\node[user] (user) {User};
+\node[response, right=4.2cm of user] (response) {Response};
+
+% Orchestrator (center)
+\node[orchestrator, below=1.6cm of user] (orchestrator) {\begin{tabular}{c}Orchestrator\\\tiny LLM Application\end{tabular}};
+
+% Retriever and Knowledge Base (left side)
+\node[retriever, below left=1.4cm and 1.8cm of orchestrator] (retriever) {\begin{tabular}{c}Retriever\\\tiny (Vector DB)\end{tabular}};
+\node[knowledge, below=1.2cm of retriever] (knowledge) {\begin{tabular}{c}Knowledge Base\\\tiny (Documents)\end{tabular}};
+
+% LLM Model (right side)
+\node[llm, below right=1.4cm and 1.8cm of orchestrator] (llm) {LLM Model};
+
+% External Tool (below LLM)
+\node[tool, below=1.2cm of llm] (tool) {\begin{tabular}{c}External Tool\\\tiny / API\end{tabular}};
+
+% Failure indicator
+\node[failure, left=0.7cm of retriever] (failure) {\textcolor{red!70!black}{\textbf{×}}};
+
+% Main flow: User → Orchestrator → Response
+\draw[queryflow] (user) -- node[label, above, pos=0.5] {User Query} (orchestrator);
+\draw[mainflow] (orchestrator) -- node[label, above, pos=0.5] {Return answer} (response);
+
+% Retrieval flow: Orchestrator → Retriever → Knowledge Base
+\draw[retrieval] (orchestrator) -- node[label, left, pos=0.5] {Retrieve docs} (retriever);
+\draw[retrieval] (retriever) -- node[label, right, pos=0.5] {query index} (knowledge);
+\draw[retrieval] (knowledge) -- node[label, left, pos=0.5] {docs} (retriever);
+\draw[retrieval] (retriever) -- node[label, right, pos=0.5] {docs} (orchestrator);
+
+% Failure indicator connection
+\draw[->, dashed, thick, color=red!70!black] (retriever) -- (failure);
+\node[font=\tiny, color=black!60, left=0.2cm of failure] {Failure};
+
+% LLM flow: Orchestrator → LLM (dashed for model interaction)
+\draw[fallback] (orchestrator) -- node[label, right, pos=0.5] {Assemble prompt \& call model} (llm);
+\draw[fallback] (llm) -- node[label, left, pos=0.5] {LLM answer} (orchestrator);
+
+% Fallback: Orchestrator → LLM (skip retrieval)
+\draw[fallback] (orchestrator) to[out=0,in=180, looseness=1.0] node[label, above, pos=0.5] {\tiny Fallback: skip retrieval} (llm);
+
+% Tool flow: LLM → Tool
+\draw[toolflow] (llm) -- node[label, right, pos=0.5] {Tool call (if needed)} (tool);
+\draw[toolflow] (tool) -- node[label, left, pos=0.5] {Tool result} (llm);
+
+\end{tikzpicture}
 \caption{Architecture of an LLM-powered application showing retrieval-augmented generation (RAG) flow with fallback mechanisms. The orchestrator manages user queries, optionally retrieves relevant documents from a knowledge base via a vector database, constructs prompts for an LLM, allows the LLM to use external tools, and finally delivers a coherent response to the user.}
 \label{fig:ch01:architecture}
 \end{figure}
