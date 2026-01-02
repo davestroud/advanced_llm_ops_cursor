@@ -522,9 +522,82 @@ efficiency gains (better batching, improved cache policy, routing ``easy'' reque
 cost deltas. Thus, \emph{scale forces an operational shift}: from single-model deployment to distributed, budgeted
 systems engineering, where memory, latency, and cost must be co-optimized (Fig.~\ref{fig:scale-constraints}).
 
+% Preamble requirements: \usepackage{tikz} and \usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,decorations.pathreplacing}
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.98\textwidth]{images/ch01-scale-constraints}
+  \begin{tikzpicture}[
+    >=Stealth,
+    node distance=0.6cm and 1.8cm,
+    % Box styles
+    constraint/.style={rectangle, draw=red!70!black, fill=red!12, thick, rounded corners=5pt, minimum width=2.8cm, minimum height=0.95cm, align=center, font=\footnotesize\bfseries},
+    slo/.style={rectangle, draw=blue!70!black, fill=blue!12, thick, rounded corners=5pt, minimum width=2.3cm, minimum height=0.85cm, align=center, font=\footnotesize\bfseries},
+    lever/.style={rectangle, draw=green!70!black, fill=green!12, thick, rounded corners=5pt, minimum width=2.1cm, minimum height=0.75cm, align=center, font=\tiny\bfseries},
+    formula/.style={rectangle, draw=purple!60!black, fill=purple!8, thick, rounded corners=3pt, minimum width=2.3cm, minimum height=0.6cm, align=center, font=\scriptsize},
+    arrow/.style={->, thick, color=black!70},
+    label/.style={font=\tiny, color=black!65}
+  ]
+
+  % Title/Header
+  \node[constraint, minimum width=11cm, fill=red!8, draw=red!80!black, very thick] (title) at (0,3.2) {\textbf{Scale Constraints on LLM Deployment}};
+
+  % Left column: Constraints
+  \node[constraint, below=0.4cm of title, anchor=north west, xshift=-3.8cm] (param) {\begin{tabular}{c}Parameter Scale\\\tiny $P \cdot b$ memory\end{tabular}};
+  \node[formula, below=0.25cm of param] (paramformula) {$M_{\text{params}} \approx P \cdot b$};
+  
+  \node[constraint, below=0.7cm of paramformula] (context) {\begin{tabular}{c}Context Length\\\tiny $\Theta(T^2)$ attention\end{tabular}};
+  \node[formula, below=0.25cm of context] (contextformula) {Attention cost $\propto T^2$};
+  
+  \node[constraint, below=0.7cm of contextformula] (kv) {\begin{tabular}{c}KV-Cache Pressure\\\tiny Linear in $T \times B$\end{tabular}};
+  \node[formula, below=0.25cm of kv] (kvformula) {$M_{\text{KV}} \propto T \cdot B$};
+
+  % Center column: SLOs
+  \node[slo, below=0.4cm of title, anchor=north] (ttft) {\begin{tabular}{c}TTFT\\\tiny Time-to-first-token\end{tabular}};
+  \node[slo, below=0.35cm of ttft] (tput) {\begin{tabular}{c}Tokens/s\\\tiny Throughput\end{tabular}};
+  \node[slo, below=0.35cm of tput] (cost) {\begin{tabular}{c}\$/1K tokens\\\tiny Unit economics\end{tabular}};
+  \node[slo, below=0.35cm of cost] (latency) {\begin{tabular}{c}p95/p99\\\tiny Tail latency\end{tabular}};
+
+  % Right column: Engineering Levers
+  \node[lever, below=0.4cm of title, anchor=north east, xshift=3.8cm] (parallel) {\begin{tabular}{c}Parallelism\\\tiny Tensor/Model\end{tabular}};
+  \node[lever, below=0.3cm of parallel] (quant) {\begin{tabular}{c}Quantization\\\tiny INT8/4-bit\end{tabular}};
+  \node[lever, below=0.3cm of quant] (batch) {\begin{tabular}{c}Batching\\\tiny \& Scheduling\end{tabular}};
+  \node[lever, below=0.3cm of batch] (cache) {\begin{tabular}{c}KV-Cache\\\tiny Policy\end{tabular}};
+  \node[lever, below=0.3cm of cache] (route) {\begin{tabular}{c}Model Routing\\\tiny Small/Large\end{tabular}};
+
+  % Arrows showing relationships - Constraints to Levers
+  \draw[arrow, color=red!70!black, line width=1.2pt] (param.east) to[out=0,in=180] node[label, above, pos=0.5] {drives} (parallel.west);
+  \draw[arrow, color=red!70!black, line width=1.2pt] (param.east) to[out=0,in=180] node[label, above, pos=0.5] {requires} (quant.west);
+  
+  % Context to SLOs
+  \draw[arrow, color=orange!70!black, line width=1.2pt] (context.east) to[out=0,in=180] node[label, above, pos=0.5] {impacts} (ttft.west);
+  \draw[arrow, color=orange!70!black, line width=1.2pt] (context.east) to[out=0,in=180] node[label, above, pos=0.5] {affects} (tput.west);
+  
+  % KV-Cache to Levers
+  \draw[arrow, color=purple!70!black, line width=1.2pt] (kv.east) to[out=0,in=180] node[label, above, pos=0.5] {constrains} (batch.west);
+  \draw[arrow, color=purple!70!black, line width=1.2pt] (kv.east) to[out=0,in=180] node[label, above, pos=0.5] {requires} (cache.west);
+  
+  % SLOs to Tail Latency
+  \draw[arrow, color=blue!70!black, line width=1pt] (ttft) -- node[label, right] {→} (latency);
+  \draw[arrow, color=blue!70!black, line width=1pt] (tput) -- node[label, right] {→} (latency);
+  \draw[arrow, color=blue!70!black, line width=1pt] (cost) -- node[label, right] {→} (latency);
+  
+  % Levers to SLOs
+  \draw[arrow, color=green!70!black, line width=1.2pt] (parallel.west) to[out=180,in=0] node[label, above, pos=0.5] {optimizes} (cost.east);
+  \draw[arrow, color=green!70!black, line width=1.2pt] (quant.west) to[out=180,in=0] node[label, above, pos=0.5] {reduces} (cost.east);
+  \draw[arrow, color=green!70!black, line width=1.2pt] (batch.west) to[out=180,in=0] node[label, above, pos=0.5] {improves} (tput.east);
+  \draw[arrow, color=green!70!black, line width=1.2pt] (cache.west) to[out=180,in=0] node[label, above, pos=0.5] {manages} (kv.east);
+  \draw[arrow, color=green!70!black, line width=1.2pt] (route.west) to[out=180,in=0] node[label, above, pos=0.5] {balances} (ttft.east);
+
+  % Decorative braces
+  \draw[decorate, decoration={brace, amplitude=6pt, mirror}, color=red!60!black, line width=1pt] 
+    ($(param.west) + (-0.1,0)$) -- ($(kvformula.west) + (-0.1,0)$) node[midway, left=0.4cm, font=\small\bfseries, color=red!70!black] {Constraints};
+  
+  \draw[decorate, decoration={brace, amplitude=6pt}, color=blue!60!black, line width=1pt] 
+    ($(ttft.north) + (0,0.05)$) -- ($(latency.south) + (0,-0.05)$) node[midway, right=0.4cm, font=\small\bfseries, color=blue!70!black] {SLOs};
+  
+  \draw[decorate, decoration={brace, amplitude=6pt}, color=green!60!black, line width=1pt] 
+    ($(parallel.north) + (0,0.05)$) -- ($(route.south) + (0,-0.05)$) node[midway, right=0.4cm, font=\small\bfseries, color=green!70!black] {Levers};
+
+  \end{tikzpicture}
   \caption{Why scale changes LLM deployment. Large parameter counts make weight memory a first-order constraint,
   while longer contexts introduce $\Theta(T^2)$ attention cost and KV-cache pressure. Together these drive LLM-specific
   SLOs (TTFT, tokens/s, \$/1K tokens) and engineering levers (parallelism, quantization, batching/scheduling,
@@ -673,7 +746,7 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 
 % Preamble (once):
 % \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc,matrix,fit}
+\usetikzlibrary{arrows.meta,positioning,calc,matrix,fit,decorations.pathreplacing}
 % \usepackage{graphicx} % for \resizebox
 
 \begin{figure}[t]
