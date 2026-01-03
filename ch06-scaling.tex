@@ -126,19 +126,41 @@ Vertical scaling refers to increasing the computational capacity of a single nod
 \subsubsection{Characteristics}
 A vertically scaled node offers increased per-instance throughput and reduced latency, particularly for large-batch inference and long-context workloads. It is often the only way to serve extremely large models that cannot easily be partitioned across multiple GPUs due to latency or complexity constraints. Vertical scaling also simplifies deployment by reducing the need for distributed inference and inter-node communication.
 
-\subsubsection{Pros}
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Vertical Scaling: Pros}},
+  colback=green!5,
+  colframe=green!40!black,
+  colbacktitle=green!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Lower latency:} A more powerful GPU provides more tensor cores, faster memory (e.g., HBM3), and higher interconnect bandwidth, all of which reduce inference time per request.
     \item \textbf{Higher throughput:} A single beefy node can process larger batch sizes and longer contexts without resorting to aggressive truncation or multi-node sharding.
     \item \textbf{Reduced operational complexity:} Fewer nodes to manage means simpler orchestration and monitoring compared to a distributed deployment.
 \end{itemize}
+\end{tcolorbox}
 
-\subsubsection{Cons}
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Vertical Scaling: Cons}},
+  colback=red!5,
+  colframe=red!40!black,
+  colbacktitle=red!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{High costs:} Premium hardware like the latest H100 or GH200 Grace Hopper Superchips is extremely expensive (both capital expenditure and on-demand cloud pricing). For instance, the NVIDIA GH200 combines a Hopper GPU with 96--144\,GB of HBM3e memory \cite{supermicro.com}, enabling unprecedented single-node model sizes but at significant cost.
     \item \textbf{Limited availability:} Cutting-edge GPUs may be in short supply or restricted in some cloud regions, leading to provisioning delays.
     \item \textbf{Scaling ceiling:} There is a physical and economic limit to vertical scaling; at some point, adding more capacity to one node yields diminishing returns or becomes impractical (one cannot infinitely increase GPU memory or clock speeds).
 \end{itemize}
+\end{tcolorbox}
 
 \subsubsection{When to use}
 Vertical scaling is ideal when the model size or context length cannot be efficiently distributed across multiple GPUs without impacting latency. It shines for latency-sensitive workloads (e.g., real-time user interactions, conversational agents) where every millisecond counts, and for early production stages where the simplicity of a single-node deployment outweighs the need for maximal cost efficiency.
@@ -155,19 +177,41 @@ Horizontal scaling increases capacity by adding more nodes (e.g., multiple GPU s
     \item \emph{Sharded serving:} Hosting different models or model versions on separate nodes behind a routing layer.
 \end{itemize}
 
-\subsubsection{Pros}
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Horizontal Scaling: Pros}},
+  colback=green!5,
+  colframe=green!40!black,
+  colbacktitle=green!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Elasticity:} Capacity can be scaled out or in based on demand, without hardware replacement. This makes it easier to handle bursty workloads by temporarily adding more nodes.
     \item \textbf{High availability:} With multiple instances, failover strategies can keep the service running even if one node fails.
     \item \textbf{Cost control:} One can mix instance types and pricing models (e.g., on-demand vs. spot/preemptible VMs) to optimize cost, using cheap instances when possible and scaling down during low traffic.
 \end{itemize}
+\end{tcolorbox}
 
-\subsubsection{Cons}
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Horizontal Scaling: Cons}},
+  colback=red!5,
+  colframe=red!40!black,
+  colbacktitle=red!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Increased complexity:} Horizontal scaling requires distributed inference frameworks (e.g., PyTorch TensorParallel, DeepSpeed, Megatron-LM, vLLM, or Petals) and orchestration logic for load balancing. Engineering effort is needed to manage inter-node communication, distributed state (like KV caches per node), and aggregate monitoring.
     \item \textbf{Networking overhead:} Inference latency can increase if model layers or attention states need to communicate across nodes during processing. High-speed interconnects (InfiniBand, NVLink over NVSwitch) are often needed to keep multi-node inference efficient.
-    \item \textbf{State synchronization:} For conversational or multi-turn applications, ensuring that a user’s context is routed consistently to the same replica (or that state is shared) adds complexity.
+    \item \textbf{State synchronization:} For conversational or multi-turn applications, ensuring that a user's context is routed consistently to the same replica (or that state is shared) adds complexity.
 \end{itemize}
+\end{tcolorbox}
 
 \subsubsection{When to use}
 Horizontal scaling is effective when workloads are bursty or high-throughput such that adding replicas on demand improves cost-efficiency. It is also the go-to approach when redundancy and geo-distribution are required---e.g., deploying model servers in multiple regions for resiliency or compliance. In practice, mature systems use horizontal autoscaling to handle peaks while scaling down during troughs, something vertical scaling alone cannot achieve.
@@ -179,19 +223,41 @@ During peak demand (e.g., major breaking news), \ishtar{} scaled horizontally fr
 \label{sec:scaling-hybrid}
 Hybrid scaling combines vertical and horizontal strategies to optimize for both latency and elasticity. In practice, this means using the most powerful GPUs per node (vertical scaling) and deploying multiple such nodes behind a load balancer (horizontal scaling). A hybrid approach can also involve heterogeneous tiers of hardware: e.g., a fleet of high-end GPUs for latency-critical requests and a secondary pool of lower-cost GPUs or even CPUs for less urgent, batch-oriented jobs.
 
-\subsubsection{Pros}
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Hybrid Scaling: Pros}},
+  colback=green!5,
+  colframe=green!40!black,
+  colbacktitle=green!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Performance--cost balance:} Hybrid deployments can achieve low latency for critical interactions (by using a few very powerful nodes) without overprovisioning expensive hardware for all workloads.
     \item \textbf{Flexible allocation:} The system can route each request to the appropriate ``tier'' based on complexity, priority, or SLA.
     \item \textbf{Resilience:} Leveraging multiple scaling modes provides more fallback options. If top-tier GPUs are unavailable (due to supply or quota limits), the system can temporarily scale out on smaller GPUs to compensate, and vice versa.
 \end{itemize}
+\end{tcolorbox}
 
-\subsubsection{Cons}
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Hybrid Scaling: Cons}},
+  colback=red!5,
+  colframe=red!40!black,
+  colbacktitle=red!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Operational complexity:} Hybrid scaling introduces a multi-tier architecture. Sophisticated orchestration is needed to route requests intelligently (often involving a gateway that inspects requests or a scheduler that knows the capabilities of each tier).
     \item \textbf{Monitoring challenges:} Performance metrics and logs must be aggregated across heterogeneous hardware, and tuning the system requires understanding both per-node performance and the interplay between tiers.
     \item \textbf{Higher baseline cost:} Maintaining multiple types of hardware and a more complex software stack (with routing logic, caching layers, etc.) can increase fixed overhead.
 \end{itemize}
+\end{tcolorbox}
 
 \subsubsection{When to use}
 Hybrid scaling makes sense for global, latency-sensitive LLM services that serve mixed workloads. If both low latency and handling large bursts are required, and if the operations team is capable of managing the complexity, a hybrid strategy is often the endgame in a mature deployment. It is also useful when certain tasks can be separated and assigned to specialized infrastructure (e.g., a GPU cluster for real-time inference and a separate CPU cluster for nightly batch processing of analytics using the same model).
