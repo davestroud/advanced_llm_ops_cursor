@@ -20,40 +20,43 @@
 \newlabel{sec:otel-openmetrics}{{5.4.1}{145}{Standardizing Telemetry: OpenTelemetry and OpenMetrics}{subsection.5.4.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}LLM Application Tracing in Practice}{145}{subsection.5.4.2}\protected@file@percent }
 \newlabel{sec:llm-tracing-practice}{{5.4.2}{145}{LLM Application Tracing in Practice}{subsection.5.4.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}Tracing Complex Prompt Flows and Multi-Agent Interactions}{147}{section.5.5}\protected@file@percent }
-\newlabel{sec:tracing-complex-prompt-flows-and-multi-agent-interactions}{{5.5}{147}{Tracing Complex Prompt Flows and Multi-Agent Interactions}{section.5.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.1}End-to-end context propagation.}{147}{subsubsection.5.5.0.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.2}Streaming-aware tracing.}{147}{subsubsection.5.5.0.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Color-coded taxonomy for span naming and attributes in LLM applications. Stable, descriptive span names (\texttt  {llm.call}, \texttt  {retriever.search}, \texttt  {tool.invoke.<name>}, \texttt  {parser.jsonschema}, \texttt  {guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining readable in tracing UIs.}}{148}{figure.5.2}\protected@file@percent }
-\newlabel{fig:span_taxonomy}{{5.2}{148}{Color-coded taxonomy for span naming and attributes in LLM applications. Stable, descriptive span names (\texttt {llm.call}, \texttt {retriever.search}, \texttt {tool.invoke.<name>}, \texttt {parser.jsonschema}, \texttt {guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining readable in tracing UIs}{figure.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Example observability stack (\ishtar  ) for LLM applications. OpenTelemetry provides shared context (trace IDs, resource attributes), while specialized tools deliver operator- and developer-facing views.}}{147}{table.5.1}\protected@file@percent }
+\newlabel{tab:ishtar_obs_stack}{{5.1}{147}{Example observability stack (\ishtar ) for LLM applications. OpenTelemetry provides shared context (trace IDs, resource attributes), while specialized tools deliver operator- and developer-facing views}{table.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Case Study: Enhanced Ishtar Monitoring Stack}{147}{subsection.5.4.3}\protected@file@percent }
+\newlabel{sec:case-study-enhanced-ishtar-monitoring-stack}{{5.4.3}{147}{Case Study: Enhanced Ishtar Monitoring Stack}{subsection.5.4.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Tracing Complex Prompt Flows and Multi-Agent Interactions}{148}{section.5.5}\protected@file@percent }
+\newlabel{sec:tracing-complex-prompt-flows-and-multi-agent-interactions}{{5.5}{148}{Tracing Complex Prompt Flows and Multi-Agent Interactions}{section.5.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.1}End-to-end context propagation.}{148}{subsubsection.5.5.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.2}Streaming-aware tracing.}{148}{subsubsection.5.5.0.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.3}Variant and experiment tracking.}{148}{subsubsection.5.5.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.4}Sampling and exemplar selection.}{148}{subsubsection.5.5.0.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Color-coded taxonomy for span naming and attributes in LLM applications. Stable, descriptive span names (\texttt  {llm.call}, \texttt  {retriever.search}, \texttt  {tool.invoke.<name>}, \texttt  {parser.jsonschema}, \texttt  {guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining readable in tracing UIs.}}{149}{figure.5.2}\protected@file@percent }
+\newlabel{fig:span_taxonomy}{{5.2}{149}{Color-coded taxonomy for span naming and attributes in LLM applications. Stable, descriptive span names (\texttt {llm.call}, \texttt {retriever.search}, \texttt {tool.invoke.<name>}, \texttt {parser.jsonschema}, \texttt {guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining readable in tracing UIs}{figure.5.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.4}Sampling and exemplar selection.}{149}{subsubsection.5.5.0.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.5}Multi-agent specifics.}{149}{subsubsection.5.5.0.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.6}What Observability Must Capture for RAG and Agents}{149}{subsubsection.5.5.0.6}\protected@file@percent }
-\newlabel{subsec:observability-rag-agents-bridge}{{5.5.0.6}{149}{What Observability Must Capture for RAG and Agents}{subsubsection.5.5.0.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.6}What Observability Must Capture for RAG and Agents}{150}{subsubsection.5.5.0.6}\protected@file@percent }
+\newlabel{subsec:observability-rag-agents-bridge}{{5.5.0.6}{150}{What Observability Must Capture for RAG and Agents}{subsubsection.5.5.0.6}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.7}Quality artifacts in traces.}{150}{subsubsection.5.5.0.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.8}Governance and privacy.}{150}{subsubsection.5.5.0.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.9}Operationalization.}{150}{subsubsection.5.5.0.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.6}Real-Time Dashboards and Live Metrics}{150}{section.5.6}\protected@file@percent }
-\newlabel{sec:real-time-dashboards-and-live-metrics}{{5.6}{150}{Real-Time Dashboards and Live Metrics}{section.5.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.7}Automated Quality Checks and Feedback Loops}{152}{section.5.7}\protected@file@percent }
-\newlabel{sec:automated-quality-checks-and-feedback-loops}{{5.7}{152}{Automated Quality Checks and Feedback Loops}{section.5.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.1}Designing evaluators that correlate with human judgment.}{152}{subsubsection.5.7.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.8}Governance and privacy.}{151}{subsubsection.5.5.0.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.9}Operationalization.}{151}{subsubsection.5.5.0.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}Real-Time Dashboards and Live Metrics}{151}{section.5.6}\protected@file@percent }
+\newlabel{sec:real-time-dashboards-and-live-metrics}{{5.6}{151}{Real-Time Dashboards and Live Metrics}{section.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.7}Automated Quality Checks and Feedback Loops}{153}{section.5.7}\protected@file@percent }
+\newlabel{sec:automated-quality-checks-and-feedback-loops}{{5.7}{153}{Automated Quality Checks and Feedback Loops}{section.5.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.1}Designing evaluators that correlate with human judgment.}{153}{subsubsection.5.7.0.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.2}Claim-level evaluation.}{153}{subsubsection.5.7.0.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.3}Active sampling and triage.}{153}{subsubsection.5.7.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.4}Closing the loop to improvement.}{153}{subsubsection.5.7.0.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.5}Quality SLOs and gating.}{153}{subsubsection.5.7.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.3}Active sampling and triage.}{154}{subsubsection.5.7.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.4}Closing the loop to improvement.}{154}{subsubsection.5.7.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.5}Quality SLOs and gating.}{154}{subsubsection.5.7.0.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.6}Guarding against metric gaming and drift.}{154}{subsubsection.5.7.0.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.7}Governance and reproducibility.}{154}{subsubsection.5.7.0.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.8}Alerts, Incident Response, and Resilience}{154}{section.5.8}\protected@file@percent }
-\newlabel{sec:alerts-incident-response-and-resilience}{{5.8}{154}{Alerts, Incident Response, and Resilience}{section.5.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.1}Operational playbooks (minimal, pre-approved actions).}{155}{subsubsection.5.8.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.7}Governance and reproducibility.}{155}{subsubsection.5.7.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.8}Alerts, Incident Response, and Resilience}{155}{section.5.8}\protected@file@percent }
+\newlabel{sec:alerts-incident-response-and-resilience}{{5.8}{155}{Alerts, Incident Response, and Resilience}{section.5.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.1}Operational playbooks (minimal, pre-approved actions).}{156}{subsubsection.5.8.0.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.2}Canaries and progressive delivery.}{156}{subsubsection.5.8.0.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.3}Resilience patterns for LLM services.}{156}{subsubsection.5.8.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.4}Preparedness and learning.}{156}{subsubsection.5.8.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.4}Preparedness and learning.}{157}{subsubsection.5.8.0.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5.9}Historical Analysis and Continuous Improvement}{157}{section.5.9}\protected@file@percent }
 \newlabel{sec:historical-analysis-and-continuous-improvement}{{5.9}{157}{Historical Analysis and Continuous Improvement}{section.5.9}{}}
-\newlabel{sec:case-study-enhanced-ishtar-monitoring-stack}{{5.9}{157}{Historical Analysis and Continuous Improvement}{section.5.9}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5.10}Best Practices and Conclusion}{157}{section.5.10}\protected@file@percent }
 \newlabel{sec:best-practices-and-conclusion}{{5.10}{157}{Best Practices and Conclusion}{section.5.10}{}}
 \@setckpt{ch05-observability}{
@@ -72,7 +75,7 @@
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
 \setcounter{figure}{2}
-\setcounter{table}{0}
+\setcounter{table}{1}
 \setcounter{chapter}{5}
 \setcounter{theorem}{0}
 \setcounter{case}{0}
@@ -121,7 +124,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{528}
+\setcounter{instcount}{548}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}

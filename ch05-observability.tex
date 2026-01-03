@@ -113,7 +113,7 @@ Retrieval-Augmented Generation (RAG) introduces unique observability needs. Beyo
     \item \textbf{Embedding drift}: Distribution shift in vector embeddings may reduce retrieval quality over time.
 \end{itemize}
 
-Monitoring drift requires continuous embedding distribution checks and canary prompts to detect when retrieval fails to capture relevant documents. Open-source platforms such as \emph{Phoenix} \cite{arize_phoenix_docs} and \emph{Langfuse \cite{langfuse_obs_overview}} provide built-in RAG metrics and support OpenTelemetry-based export for integration into Grafana \cite{grafana_dashboards} dashboards \cite{phoenix2025}.
+Monitoring drift requires continuous embedding distribution checks and canary prompts to detect when retrieval fails to capture relevant documents. Open-source platforms such as \emph{Phoenix} \cite{arize_phoenix_docs} and \emph{Langfuse} \cite{langfuse_obs_overview} provide built-in RAG metrics and support OpenTelemetry-based export for integration into Grafana \cite{grafana_dashboards} dashboards \cite{phoenix2025}.
 
 \medskip
 \noindent\textbf{Metric taxonomy for RAG pipelines.}
@@ -224,11 +224,37 @@ Treat the logging schema as a governed artifact. Maintain versioned schemas with
 \noindent\textbf{From signals to action.}
 Close the loop by wiring selected fields directly into alerting and automated guards. Examples include: throttling or switching to a safer model route when jailbreak signals trip; reducing context window or enabling passage de-duplication when token-cost surges are detected; or automatically rolling back a prompt version when golden-replay deltas exceed thresholds. By coupling structured logs, distributed traces, and evaluator outputs under a unified OpenTelemetry backbone, teams gain a principled path from raw signals to operational action.
 
+\subsection{Case Study: Enhanced Ishtar Monitoring Stack}
+\label{sec:case-study-enhanced-ishtar-monitoring-stack}
+
+To make the preceding patterns concrete, consider an example observability stack used by \ishtar. The design principle is to treat OpenTelemetry as the backbone and to maintain a clear mapping from each signal type to the operational question it answers: Prometheus/OpenMetrics metrics answer ``how bad and how widespread is the issue?''; tracing answers ``where is the latency/cost/error coming from?''; and semantic evaluators answer ``is the system still correct and safe?''
+
+Table~\ref{tab:ishtar_obs_stack} summarizes a minimal-but-extensible stack composition.
+
+\begin{table}[t]
+\centering
+\caption{Example observability stack (\ishtar) for LLM applications. OpenTelemetry provides shared context (trace IDs, resource attributes), while specialized tools deliver operator- and developer-facing views.}
+\label{tab:ishtar_obs_stack}
+\begin{tabular}{p{0.18\linewidth}p{0.33\linewidth}p{0.42\linewidth}}
+\toprule
+Signal & Tools & Typical questions answered \\
+\midrule
+Metrics & Prometheus/OpenMetrics \cite{prometheus_instrumentation,openmetrics_spec} + Grafana \cite{grafana_dashboards} & What is the impact? (P95 TTFT, request/error rate, tokens per request, cost per tenant) and is it getting worse? (burn-rate, change-point detection) \\
+Traces & OpenTelemetry \cite{otel_spec} + Jaeger \cite{jaeger_tracing} (via OTel Collector \cite{otel_collector}) & Where is time and cost spent across retrieval, reranking, model calls, tools, and post-processing? Which span caused the tail? \\
+LLM workflows & LangSmith \cite{langsmith_home} / Langfuse \cite{langfuse_obs_overview} & How did a specific chain/agent execute? Which prompt/template version ran, and what intermediate steps produced the final answer? \\
+Quality & Phoenix evaluators \cite{arize_phoenix_docs,phoenix2025} + LLM-as-a-judge \cite{zheng2023judge} & Did quality regress? (faithfulness, groundedness, toxicity/refusal rates) and which cohorts/routes are affected? \\
+Logs & Structured JSON/OTel logs \cite{otel_logs_concepts} + centralized store & What exactly failed? (error taxonomy, tool schema mismatch) and how to reproduce and replay the request? \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In practice, \ishtar exports traces and evaluator artifacts to an OpenTelemetry Collector, uses exemplars to link Grafana panels to representative Jaeger traces, and curates ``golden replay'' datasets from production traces to feed back into CI/CD gates (Chapter~\ref{ch:cicd}). The result is a single operational loop that spans detection, diagnosis, and regression prevention.
+
 \section{Tracing Complex Prompt Flows and Multi-Agent Interactions}
 \label{sec:tracing-complex-prompt-flows-and-multi-agent-interactions}
 Tracing captures the \emph{execution waterfall} of an LLM application. Each span in a trace corresponds to a model call, retrieval step, or tool execution, and can be correlated back to the originating user query.
 
-\textbf{LangSmith} provides out-of-the-box tracing for LangChain applications: enabling tracing requires only an API key, after which every chain execution is recorded. Traces include:
+\textbf{LangSmith} \cite{langsmith_home} provides out-of-the-box tracing for LangChain applications: enabling tracing requires only an API key, after which every chain execution is recorded. Traces include:
 \begin{itemize}
     \item Prompts and responses at each step.
     \item Latency per span, including time-to-first-token (TTFT) and per-token generation.
@@ -439,14 +465,9 @@ Finally, treat real-time boards as \emph{operational control surfaces}, not just
 
 \section{Automated Quality Checks and Feedback Loops}
 \label{sec:automated-quality-checks-and-feedback-loops}
-Observability is incomplete without continuous quality evaluation. Automated evaluators such as BLEU/ROUGE, cosine similarity, or LLM-as-a-judge can run asynchronously on sampled outputs. Integrating these signals into monitoring allows operators to detect regressions even when system metrics look normal.
+Observability is incomplete without continuous quality evaluation. Automated evaluators such as BLEU/ROUGE, cosine similarity, or LLM-as-a-judge \cite{zheng2023judge} can run asynchronously on sampled outputs. Integrating these signals into monitoring allows operators to detect regressions even when system metrics look normal.
 
-For example, Phoenix supports attaching evaluators that grade outputs for relevance or toxicity, storing the results alongside traces. This makes it possible to chart not only latency or error rates, but also a \emph{hallucination rate} or \emph{toxicity score} over time. Feedback loops connect these evaluations back into prompt libraries or fine-tuning datasets.
-
-\medskip
-% (Duplicate removed)
-
-For example, Phoenix supports attaching evaluators that grade outputs for relevance or toxicity, storing the results alongside traces. This makes it possible to chart not only latency or error rates, but also a \emph{hallucination rate} or \emph{toxicity score} over time. Feedback loops connect these evaluations back into prompt libraries or fine-tuning datasets.
+For example, Phoenix \cite{arize_phoenix_docs} supports attaching evaluators that grade outputs for relevance or toxicity, storing the results alongside traces. This makes it possible to chart not only latency or error rates, but also a \emph{hallucination rate} or \emph{toxicity score} over time. Feedback loops connect these evaluations back into prompt libraries or fine-tuning datasets.
 
 \medskip
 \noindent\textbf{Quality as a first-class pipeline artifact.}
@@ -471,7 +492,7 @@ Quality signals should automatically inform:
 \end{itemize}
 
 \subsubsection{Quality SLOs and gating.}
-Define SLOs for quality (e.g., median groundedness $\ge 0.85$, unsupported-claim rate $\le 3\%$). Attach burn-rate alerts and automatic gates: when the error budget is consumed, freeze risky deployments, increase evaluation sampling, or trigger a controlled rollback. Because quality is non-deterministic, base gates on moving averages with confidence intervals rather than single-point thresholds. These quality gates integrate directly with CI/CD pipelines (Chapter~\ref{ch:cicd}), where deployment gates enforce SLO thresholds, and with comprehensive evaluation practices (Chapter~\ref{ch:testing}), where systematic testing validates quality improvements. These quality gates integrate directly with CI/CD pipelines (Chapter~\ref{ch:cicd}), where deployment gates enforce SLO thresholds, and with comprehensive evaluation practices (Chapter~\ref{ch:testing}), where systematic testing validates quality improvements.
+Define SLOs for quality (e.g., median groundedness $\ge 0.85$, unsupported-claim rate $\le 3\%$). Attach burn-rate alerts and automatic gates: when the error budget is consumed, freeze risky deployments, increase evaluation sampling, or trigger a controlled rollback. Because quality is non-deterministic, base gates on moving averages with confidence intervals rather than single-point thresholds. These quality gates integrate directly with CI/CD pipelines (Chapter~\ref{ch:cicd}), where deployment gates enforce SLO thresholds, and with comprehensive evaluation practices (Chapter~\ref{ch:testing}), where systematic testing validates quality improvements.
 
 \subsubsection{Guarding against metric gaming and drift.}
 Any metric can be gamed; rotate adversarial and stress tests to ensure genuine improvements rather than overfitting to a fixed suite. Track metric–metric correlations (e.g., helpfulness vs.\ groundedness) to spot degenerate strategies that boost one metric while harming another. Re-seed evaluation sets over time to prevent stale distributions and regularly re-score historical baselines to detect evaluator drift.
@@ -492,12 +513,7 @@ Alerting strategies must balance sensitivity with operator fatigue. Recommended 
 
 These alerts connect metrics to actionable runbooks: when thresholds are breached, predefined playbooks guide operators through detection, stabilization, and recovery. The feedback from these incidents feeds back into CI/CD pipelines (Chapter~\ref{ch:cicd}) through automated rollback gates and into evaluation frameworks (Chapter~\ref{ch:testing}) through updated test suites that prevent recurrence.
 
-Incident response playbooks should define rollback strategies (e.g., revert prompt versions, fail over to smaller models) and escalation criteria for human review. Case studies such as Microsoft Bing's "Sydney" prompt injection incidents illustrate the need for rapid tracing and patching workflows.
-
-\medskip
-% (Duplicate removed)
-
-Incident response playbooks should define rollback strategies (e.g., revert prompt versions, fail over to smaller models) and escalation criteria for human review. Case studies such as Microsoft Bing’s “Sydney” prompt injection incidents illustrate the need for rapid tracing and patching workflows.
+Incident response playbooks should define rollback strategies (e.g., revert prompt versions, fail over to smaller models) and escalation criteria for human review. Public prompt-injection and jailbreak failures in deployed assistants underscore the need for rapid tracing, guardrail patching, and adversarial replay before full restoration \cite{owasp_llm, mitre_atlas}.
 
 \medskip
 \noindent\textbf{SLO-aligned, multi-window alerting.}
@@ -545,8 +561,8 @@ Logs and traces serve as a longitudinal dataset for improvement. By clustering t
 Continuous improvement depends on tying observability back into development: integrating regression traces into CI pipelines (Chapter~\ref{ch:cicd}), enriching prompt libraries, and adjusting retrieval strategies based on drift analysis. This creates a closed loop where observability data feeds into CI/CD gates and evaluation frameworks (Chapter~\ref{ch:testing}), ensuring that production insights translate into systematic improvements.
 
 % \section{Case Study: Enhanced Ishtar Monitoring Stack}
-\label{sec:case-study-enhanced-ishtar-monitoring-stack}
-% Ishtar’s observability layer integrates both open-source and specialized tools:
+% \label{sec:case-study-enhanced-ishtar-monitoring-stack}
+% Ishtar's observability layer integrates both open-source and specialized tools:
 % \begin{itemize}
 %     \item \textbf{Prometheus + Grafana}: system and GPU metrics.
 %     \item \textbf{LangSmith}: chain- and agent-level traces with token usage and latency.
