@@ -312,16 +312,26 @@ Shadow testing (\emph{a.k.a.} traffic mirroring or dark launching) provides the 
 \noindent\textbf{LLM-specific operational nuances.}
 Unlike conventional microservices, LLM behavior depends on a triad of artifacts---\emph{model}, \emph{prompt/guardrails}, and \emph{retrieval index}. Deployment pipelines should therefore (i) pre-warm context caches and embeddings to prevent latency and cost spikes from cold starts; (ii) synchronize index versions across blue/green and canary paths; (iii) log inputs/outputs with privacy-preserving hashing for replay and audit; and (iv) bound agent tool permissions more tightly on canary traffic than on baseline until safety confidence increases. Cost governance is first-class in LLM deployments; canaries often reveal token-amplifying failure modes (verbosity loops, unnecessary tool calls) that are invisible in offline tests.
 
-\medskip
-\noindent\textbf{A worked rollout playbook.}
-\begin{enumerate}[label=(\roman*)]
-\item \emph{Shadow:} Mirror 5--10\% of representative traffic to the candidate; disable real side effects; validate latency/cost curves and online evaluator distributions against baseline.  
-\item \emph{Gate 0 (promotion to canary):} Require offline CI wins (e.g., faithfulness $\uparrow$ with 95\% CI excluding 0; toxicity not worse via McNemar) and shadow parity on latency/cost.  
-\item \emph{Canary ramp:} Start at 1\% sticky traffic; advance only if p95 latency, refusal, toxicity, and groundedness stay within predefined bands relative to baseline for a minimum sample size (e.g., $N \ge 1{,}000$ turns per slice).  
-\item \emph{Live A/B:} At 10--25\% traffic, run a pre-registered test plan with slice-level dashboards and online evaluators; stop for harm rate inflation or hallucination spikes beyond error budgets \cite{mlflow_llm_eval, langsmith_eval, phoenix_rag, trulens}.  
-\item \emph{Blue--green cutover:} Promote the new color only after index/prompt parity checks and cache warm-up pass; keep the prior color hot for rapid rollback.  
-\item \emph{Automated rollback drills:} Exercise kill-switches and artifact reversion in staging; verify that logs, alerts, and postmortem templates capture the full bundle needed for audit \cite{rohan_llmops}.
+\begin{tcolorbox}[
+  title={\textbf{A Worked Rollout Playbook}},
+  colback=green!5,
+  colframe=green!40!black,
+  colbacktitle=green!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{enumerate}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
+\item \textbf{Shadow:} Mirror 5--10\% of representative traffic to the candidate; disable real side effects; validate latency/cost curves and online evaluator distributions against baseline.  
+\item \textbf{Gate 0 (promotion to canary):} Require offline CI wins (e.g., faithfulness $\uparrow$ with 95\% CI excluding 0; toxicity not worse via McNemar) and shadow parity on latency/cost.  
+\item \textbf{Canary ramp:} Start at 1\% sticky traffic; advance only if p95 latency, refusal, toxicity, and groundedness stay within predefined bands relative to baseline for a minimum sample size (e.g., $N \ge 1{,}000$ turns per slice).  
+\item \textbf{Live A/B:} At 10--25\% traffic, run a pre-registered test plan with slice-level dashboards and online evaluators; stop for harm rate inflation or hallucination spikes beyond error budgets \cite{mlflow_llm_eval, langsmith_eval, phoenix_rag, trulens}.  
+\item \textbf{Blue--green cutover:} Promote the new color only after index/prompt parity checks and cache warm-up pass; keep the prior color hot for rapid rollback.  
+\item \textbf{Automated rollback drills:} Exercise kill-switches and artifact reversion in staging; verify that logs, alerts, and postmortem templates capture the full bundle needed for audit \cite{rohan_llmops}.
 \end{enumerate}
+\end{tcolorbox}
 
 \medskip
 \noindent\textbf{Common failure modes (and mitigations).}
