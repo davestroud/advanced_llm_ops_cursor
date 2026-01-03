@@ -12,45 +12,49 @@
 \newlabel{subsec:cicd-part2-opening}{{4.1.1}{118}{Opening Part II: Deployment Artifacts as Behavioral Contracts}{subsection.4.1.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.2}Continuous Evaluation to Catch Regressions and Hallucinations}{119}{section.4.2}\protected@file@percent }
 \newlabel{sec:cicd-continuous-eval}{{4.2}{119}{Continuous Evaluation to Catch Regressions and Hallucinations}{section.4.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Why Continuous Evaluation is Non-Negotiable}{119}{section.4.3}\protected@file@percent }
-\newlabel{sec:cicd-why-continuous-eval}{{4.3}{119}{Why Continuous Evaluation is Non-Negotiable}{section.4.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Taxonomy: What to Evaluate and How}{120}{subsection.4.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Model-Graded Evaluation (LLM-as-Judge): Strengths, Caveats, Mitigations}{120}{subsection.4.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Evaluating Groundedness and Hallucination in RAG Systems}{121}{subsection.4.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Adversarial and Metric-Based Checks in CI}{121}{subsection.4.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}Regression and Behavioral Drift Testing}{121}{subsection.4.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.6}Engineering the Eval Pipeline (Best-Practice Blueprint)}{122}{subsection.4.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.6.1}Eval harnesses and registries}{122}{subsubsection.4.3.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.7}Cloud-Native Evaluation Services}{122}{subsection.4.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.8}Operational Monitoring and Drift Response}{122}{subsection.4.3.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.9}Worked Example: CI Gate with Statistical Control}{123}{subsection.4.3.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.10}Cost Management}{123}{subsection.4.3.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.11}Documentation \& Compliance (Springer-Friendly Practices)}{123}{subsection.4.3.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.12}Tooling Landscape}{123}{subsection.4.3.12}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Staged evaluation in LLM CI/CD pipelines, showing objectives, metrics, and representative tools at each stage.}}{124}{table.4.1}\protected@file@percent }
-\newlabel{tab:eval_stages}{{4.1}{124}{Staged evaluation in LLM CI/CD pipelines, showing objectives, metrics, and representative tools at each stage}{table.4.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Continuous evaluation as a staged CI/CD loop. Each stage runs distinct suites and gates; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline.}}{125}{figure.4.1}\protected@file@percent }
-\newlabel{fig:eval_stages_pipeline}{{4.1}{125}{Continuous evaluation as a staged CI/CD loop. Each stage runs distinct suites and gates; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline}{figure.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Staged evaluation in LLM CI/CD pipelines, showing objectives, metrics, and representative tools at each stage.}}{120}{table.4.1}\protected@file@percent }
+\newlabel{tab:eval_stages}{{4.1}{120}{Staged evaluation in LLM CI/CD pipelines, showing objectives, metrics, and representative tools at each stage}{table.4.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Why Continuous Evaluation is Non-Negotiable}{120}{section.4.3}\protected@file@percent }
+\newlabel{sec:cicd-why-continuous-eval}{{4.3}{120}{Why Continuous Evaluation is Non-Negotiable}{section.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Continuous evaluation as a staged CI/CD loop. Each stage runs distinct suites and gates; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline.}}{121}{figure.4.1}\protected@file@percent }
+\newlabel{fig:eval_stages_pipeline}{{4.1}{121}{Continuous evaluation as a staged CI/CD loop. Each stage runs distinct suites and gates; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline}{figure.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Taxonomy: What to Evaluate and How}{121}{subsection.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Model-Graded Evaluation (LLM-as-Judge): Strengths, Caveats, Mitigations}{122}{subsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Evaluating Groundedness and Hallucination in RAG Systems}{122}{subsection.4.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Adversarial and Metric-Based Checks in CI}{122}{subsection.4.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}Regression and Behavioral Drift Testing}{123}{subsection.4.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.6}Engineering the Eval Pipeline (Best-Practice Blueprint)}{123}{subsection.4.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.6.1}Eval harnesses and registries}{123}{subsubsection.4.3.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.7}Cloud-Native Evaluation Services}{124}{subsection.4.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.8}Operational Monitoring and Drift Response}{124}{subsection.4.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.9}Worked Example: CI Gate with Statistical Control}{124}{subsection.4.3.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.10}Cost Management}{124}{subsection.4.3.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.11}Documentation and Compliance}{125}{subsection.4.3.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.12}Tooling Landscape}{125}{subsection.4.3.12}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.4}Fine-Tuning-Aware Workflows}{125}{section.4.4}\protected@file@percent }
 \newlabel{sec:cicd-finetune}{{4.4}{125}{Fine-Tuning-Aware Workflows}{section.4.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.0.1}Model and prompt promotion as first-class releases}{125}{subsubsection.4.4.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Model and prompt promotion as first-class releases}{125}{subsection.4.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.5}Deployment Strategies: Canary, Blue-Green, and Rollback}{126}{section.4.5}\protected@file@percent }
 \newlabel{sec:cicd-deploy-strategies}{{4.5}{126}{Deployment Strategies: Canary, Blue-Green, and Rollback}{section.4.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Progressive Delivery Controllers for Kubernetes}{126}{subsection.4.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.6}Observability and CI Tooling}{128}{section.4.6}\protected@file@percent }
-\newlabel{sec:cicd-observability-ci}{{4.6}{128}{Observability and CI Tooling}{section.4.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}Supply-Chain Security, Provenance, and Trusted Releases}{128}{subsection.4.6.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Notable observability tools for LLM CI/CD}}{129}{table.4.2}\protected@file@percent }
-\newlabel{tab:obs-tools}{{4.2}{129}{Notable observability tools for LLM CI/CD}{table.4.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Observability and CI Tooling}{129}{section.4.6}\protected@file@percent }
+\newlabel{sec:cicd-observability-ci}{{4.6}{129}{Observability and CI Tooling}{section.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}Supply-Chain Security, Provenance, and Trusted Releases}{129}{subsection.4.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.6.2}GitHub Actions Hardening and OIDC-Based Cloud Auth}{129}{subsection.4.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.1}From traces to tests}{129}{subsubsection.4.6.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Notable observability tools for LLM CI/CD}}{130}{table.4.2}\protected@file@percent }
+\newlabel{tab:obs-tools}{{4.2}{130}{Notable observability tools for LLM CI/CD}{table.4.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.1}From traces to tests}{130}{subsubsection.4.6.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.2}The minimal reproducibility contract}{130}{subsubsection.4.6.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.3}Dataset curation via observability}{130}{subsubsection.4.6.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.4}Integrating with CI/CD}{130}{subsubsection.4.6.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.7}Structured Prompt Testing}{130}{section.4.7}\protected@file@percent }
-\newlabel{sec:cicd-structured-prompt-testing}{{4.7}{130}{Structured Prompt Testing}{section.4.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.8}Conclusion}{137}{section.4.8}\protected@file@percent }
-\newlabel{sec:cicd-conclusion}{{4.8}{137}{Conclusion}{section.4.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.4}Integrating with CI/CD}{131}{subsubsection.4.6.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.7}Structured Prompt Testing}{131}{section.4.7}\protected@file@percent }
+\newlabel{sec:cicd-structured-prompt-testing}{{4.7}{131}{Structured Prompt Testing}{section.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.1}CI/CD for Multi-Agent Systems}{133}{subsection.4.7.1}\protected@file@percent }
+\newlabel{sec:cicd-multi-agent}{{4.7.1}{133}{CI/CD for Multi-Agent Systems}{subsection.4.7.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.2}Practitioner Checklist: Production-Ready LLM CI/CD}{135}{subsection.4.7.2}\protected@file@percent }
+\newlabel{sec:cicd-checklist}{{4.7.2}{135}{Practitioner Checklist: Production-Ready LLM CI/CD}{subsection.4.7.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.8}Conclusion}{138}{section.4.8}\protected@file@percent }
+\newlabel{sec:cicd-conclusion}{{4.8}{138}{Conclusion}{section.4.8}{}}
 \@setckpt{ch04-cicd}{
 \setcounter{page}{139}
 \setcounter{equation}{0}
@@ -116,7 +120,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{461}
+\setcounter{instcount}{482}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}
