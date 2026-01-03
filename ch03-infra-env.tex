@@ -1377,7 +1377,19 @@ Finally, we mapped these concepts into concrete deployment patterns and an end-t
 
 In this chapter, we surveyed the infrastructure and environmental considerations critical for LLMOps. We examined hardware options (and saw that the choice between GPUs like A100/H100 or TPUs depends on workload characteristics and cost trade-offs), and we highlighted the importance of performance modeling—understanding how batch size, sequence length, and precision affect throughput and latency. We then delved into Infrastructure-as-Code and container orchestration, emphasizing how automation and Kubernetes can tame the complexity of deploying large models reliably and repeatably. We explored model serving frameworks and cutting-edge techniques that push the efficiency of inference serving, from dynamic batching to speculative decoding. Finally, we discussed deployment topologies, from full cloud to hybrid to multi-region, showing how to design for scalability, resilience, and data governance.
 
-The key takeaways are that successful LLMOps is not just about choosing a powerful model—it is equally about engineering the ecosystem around that model to deliver results at scale, at reasonable cost, and within operational constraints. By applying the architectural principles and best practices outlined here, practitioners can ensure their LLM applications are built on a solid, scalable foundation. This infrastructure foundation will support the next steps in the LLMOps journey: in the following chapters, we'll look at how to continuously integrate and deploy model updates (MLOps for LLMs), how to monitor and observability (keeping an eye on those latency and quality metrics in production), and how to manage scaling in response to growth. All those advanced topics rest on the infrastructure fundamentals covered in this chapter—the "right foundation" to ensure our advanced models do not stumble when it counts.
+\begin{tcolorbox}[
+  title={\textbf{Key Takeaways: Infrastructure and Environment Best Practices}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+Successful LLMOps is not just about choosing a powerful model—it is equally about engineering the ecosystem around that model to deliver results at scale, at reasonable cost, and within operational constraints. By applying the architectural principles and best practices outlined here, practitioners can ensure their LLM applications are built on a solid, scalable foundation. This infrastructure foundation will support the next steps in the LLMOps journey: in the following chapters, we'll look at how to continuously integrate and deploy model updates (MLOps for LLMs), how to monitor and observability (keeping an eye on those latency and quality metrics in production), and how to manage scaling in response to growth. All those advanced topics rest on the infrastructure fundamentals covered in this chapter—the "right foundation" to ensure our advanced models do not stumble when it counts.
+\end{tcolorbox}
 
 \subsection{Bridging to Part II: Infrastructure as Operational Contracts}
 \label{sec:infra-part2-bridge}
