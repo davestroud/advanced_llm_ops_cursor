@@ -51,7 +51,7 @@ Scaling a Large Language Model deployment is a multifaceted challenge. While tra
 Beyond baseline resource limits, several operational realities make scaling LLM deployments uniquely challenging compared to traditional microservices:
 
 \begin{enumerate}
-    \item \textbf{Non-linear scaling of inference latency:} Unlike stateless API endpoints where horizontal scaling is straightforward, LLM inference latency may plateau or worsen under load due to GPU queueing and the quadratic complexity of the attention mechanism with respect to context length. Concretely, doubling the input sequence length roughly quadruples the attention computation, so serving long prompts incurs superlinear slowdowns unless mitigated.
+    \item \textbf{Non-linear scaling of inference latency:} Unlike stateless API endpoints where horizontal scaling is straightforward, LLM inference latency may plateau or worsen under load due to GPU queueing and the quadratic complexity of the attention mechanism with respect to context length. Concretely, doubling the input sequence length roughly quadruples the attention computation \cite{vaswani2017_attention}, so serving long prompts incurs superlinear slowdowns unless mitigated.
 
     \item \textbf{Context window–driven resource pressure:} Increasing the maximum context length (e.g., from 4k to 32k tokens) multiplies memory requirements for the key–value (KV) cache and intermediate activations. This often necessitates model parallelism, tensor slicing, or sequence parallelism to maintain throughput:\cite{vaswani2017_attention,vllm_pagedattention}.
 
@@ -83,6 +83,35 @@ These optimizations allowed \ishtar{} to maintain a median latency below 800\,ms
 \subsection{Broader Perspective}\label{sec:scaling-broader-perspective}
 The challenges outlined above are driving intense research into LLM serving systems. A 2024 survey identified an explosion of system-level innovations published since 2023 aimed specifically at LLM inference scalability \cite{vllm2023}. Solving these issues is not just about adding hardware; it requires rethinking system design for LLMs. In the following sections, we explore how vertical, horizontal, and hybrid scaling approaches address these challenges, and we delve into advanced techniques—distributed inference, batching, speculative decoding, caching, and more—that enable LLM deployments to operate efficiently at scale:\cite{vllm_pagedattention,tensorrt_llm_docs,tgi_docs}.
 
+
+\subsection{Capacity Planning and SLO Budgets}
+\label{sec:scaling-capacity-planning}
+Scaling work often fails first in the planning phase: teams benchmark ``tokens/s per GPU'' on a single happy-path prompt and then discover that real traffic has a long tail of context lengths, tool calls, and retrieval delays. A practical way to de-risk scaling is to combine (i) an explicit SLO budget with (ii) a lightweight capacity model, then validate both with load tests.
+
+\medskip
+\noindent\textbf{Step 1: Set SLOs that match human perception.}
+For interactive applications, two latency metrics dominate perceived responsiveness: \emph{time-to-first-token} (TTFT) and \emph{time-between-tokens} (TBT). Tail targets (e.g., p95 TTFT) should be tracked separately for ``short'' and ``long-context'' classes because long prompts change both compute time and key--value (KV) cache pressure \cite{vaswani2017_attention,vllm_pagedattention}.
+
+\medskip
+\noindent\textbf{Step 2: Convert workload into token demand.}
+Let the arrival rate be $\lambda$ requests/s with expected prompt and decode lengths $\mathbb{E}[\ell_{\text{prompt}}]$ and $\mathbb{E}[\ell_{\text{decode}}]$. A simple first-order estimate of token demand is
+\[
+D = \lambda \left(\mathbb{E}[\ell_{\text{prompt}}] + \mathbb{E}[\ell_{\text{decode}}]\right)\ \text{tokens/s}.
+\]
+If a single replica sustains an effective throughput of $\hat{\Theta}$ tokens/s under the chosen batching and scheduling policy (Section~\ref{sec:batching-throughput}), the baseline replica count is $N \approx \left\lceil D/\hat{\Theta} \right\rceil$, multiplied by a headroom factor to absorb burstiness, variance in request sizes, and cold starts.
+
+\medskip
+\noindent\textbf{Step 3: Validate with latency decomposition.}
+Whenever a capacity estimate is wrong, the most common failure mode is missing a dominant latency component (retrieval, queueing, or decode). Break end-to-end latency into prefill, decode, and queueing components and verify that each fits the SLO budget (Section~\ref{sec:latency-decomposition}). TetriInfer provides a representative breakdown of where inference time is spent in real serving stacks, which is useful for sanity-checking measurement methodology \cite{tetriinfer2023}.
+
+\medskip
+\noindent\textbf{Practical tips.}
+\begin{itemize}[leftmargin=1.2em]
+  \item Use class-based capacity planning: separate pools for short vs.\ long-context traffic, or high- vs.\ low-priority tenants.
+  \item Plan for cache-miss storms: assume cold caches during deploys or incidents and size the system for degraded (miss-heavy) behavior (Section~\ref{sec:caching}).
+  \item Treat scaling policies as code: version, review, and load-test autoscaling rules the same way you test application logic (Section~\ref{sec:autoscaling}).
+\end{itemize}
+
 \section{Scaling Dimensions}
 \label{sec:scaling-dimensions}
 \subsection{GPU Partitioning and Multi-Tenancy}\label{sec:gpu-partitioning}
@@ -91,6 +120,7 @@ At moderate scales, a common efficiency problem is \emph{under-filled GPUs}: man
 Scaling LLM deployments can follow multiple dimensions, each with distinct architectural, cost, and operational trade-offs. The primary approaches are vertical scaling, horizontal scaling, and hybrid scaling, which we discuss in turn. Figure~\ref{fig:scaling-dimensions} provides a schematic overview of these three strategies, while Table~\ref{tab:scaling-matrix} summarizes their comparative characteristics.
 
 \subsection{Vertical Scaling}
+\label{sec:scaling-vertical}
 Vertical scaling refers to increasing the computational capacity of a single node by upgrading to more powerful hardware---for example, moving from NVIDIA A100 GPUs to H100 GPUs, or doubling a GPU’s memory from 40\,GB to 80\,GB. In essence, the server gets ``bigger and faster,'' allowing it to handle more demanding workloads.
 
 \subsubsection{Characteristics}
@@ -117,6 +147,7 @@ Vertical scaling is ideal when the model size or context length cannot be effici
 During early deployments, \ishtar{} leveraged vertical scaling by upgrading from A100-40GB to A100-80GB instances. This allowed the system to serve 32k-token context windows without model sharding. The result was a 35\% reduction in median latency (measured via A/B comparison over a 2-week period), achieved without the engineering overhead of distributed inference---albeit at the cost of a 28\% increase in GPU spend (based on on-demand pricing for the upgraded instance types).
 
 \subsection{Horizontal Scaling}
+\label{sec:scaling-horizontal}
 Horizontal scaling increases capacity by adding more nodes (e.g., multiple GPU servers) and distributing workloads across them. In LLM deployments, horizontal scale typically involves one or a combination of:
 \begin{itemize}
     \item \emph{Data parallelism:} Replicating the full model across $N$ nodes and routing incoming requests among them.
@@ -145,6 +176,7 @@ Horizontal scaling is effective when workloads are bursty or high-throughput suc
 During peak demand (e.g., major breaking news), \ishtar{} scaled horizontally from 4 to 20 GPU nodes. A load balancer routed requests, and we employed a distributed KV cache so that repeated queries could avoid redundant computation across different nodes. This provided elastic capacity: as traffic spiked, new nodes were added to share the load, and during lulls nodes were released to save cost.
 
 \subsection{Hybrid Scaling}
+\label{sec:scaling-hybrid}
 Hybrid scaling combines vertical and horizontal strategies to optimize for both latency and elasticity. In practice, this means using the most powerful GPUs per node (vertical scaling) and deploying multiple such nodes behind a load balancer (horizontal scaling). A hybrid approach can also involve heterogeneous tiers of hardware: e.g., a fleet of high-end GPUs for latency-critical requests and a secondary pool of lower-cost GPUs or even CPUs for less urgent, batch-oriented jobs.
 
 \subsubsection{Pros}
@@ -263,29 +295,34 @@ In practice, scaling hinges on the serving runtime as much as the model. High-th
 As LLM deployments scale, single-GPU inference often becomes insufficient due to model size, context length, or throughput requirements. Distributed inference techniques enable the use of multiple GPUs (or nodes) in concert to meet performance and latency goals for a single model. The main approaches are model parallelism, tensor parallelism, and pipeline parallelism. We also consider speculative decoding, an orthogonal technique to accelerate generation:\cite{vllm_pagedattention}.
 
 \subsection{Model Parallelism}
+\label{sec:scaling-model-parallelism}
 Model parallelism partitions the model across multiple GPUs, with each device storing a portion of the weights and computing its share of the forward pass (and backward pass, if training/fine-tuning). For example, in a 2-way model split, GPU0 might hold transformer layers 1--12 and GPU1 layers 13--24; a request is processed by passing intermediate activations between GPUs after each partition.
 
-\subsubsection{Key Considerations.} Effective model parallelism requires high-bandwidth, low-latency interconnects such as NVIDIA NVLink or InfiniBand to avoid communication bottlenecks. It is well-suited for extremely large models that cannot fit into a single GPU’s memory, even with techniques like quantization or offloading. In practice, model parallelism is often combined with tensor or pipeline parallelism (forming a ``3D parallel'' strategy) for very large-scale deployments (multi-billion-parameter models on GPU clusters).
+\subsubsection{Key Considerations} Effective model parallelism requires high-bandwidth, low-latency interconnects such as NVIDIA NVLink or InfiniBand to avoid communication bottlenecks. It is well-suited for extremely large models that cannot fit into a single GPU’s memory, even with techniques like quantization or offloading. In practice, model parallelism is often combined with tensor or pipeline parallelism (forming a ``3D parallel'' strategy) for very large-scale deployments (multi-billion-parameter models on GPU clusters).
 
-\subsubsection{Best Practices.} Partition at natural boundaries (e.g., whole transformer layers) to minimize cross-GPU communication. Co-locate GPUs on the same server or NVSwitch domain to reduce network hops. Ensure each GPU’s memory is fully utilized; imbalance leads to idle capacity.
+\subsubsection{Best Practices} Partition at natural boundaries (e.g., whole transformer layers) to minimize cross-GPU communication. Co-locate GPUs on the same server or NVSwitch domain to reduce network hops. Ensure each GPU’s memory is fully utilized; imbalance leads to idle capacity.
 
 Recent research has produced automated tools for planning partitions. For example, Pope et al. (2023) proposed \textit{ExeGPT}, which analytically selects optimal combinations of data, tensor, and pipeline parallelism under a latency target \cite{pope2023exegpt}. Similarly, Helix (OSDI 2023) formulates partitioning across heterogeneous GPU clusters as a max-flow optimization problem, balancing compute and network bandwidth \cite{helix2023}.
 
 \subsection{Tensor Parallelism}
+\label{sec:scaling-tensor-parallelism}
 Tensor parallelism divides the computation within a layer---especially large matrix multiplies in attention and feed-forward networks---across multiple GPUs. Each GPU owns a slice of the weight matrices and processes a slice of the incoming data in parallel; partial results are then combined via all-reduce collectives.
 
-\subsubsection{Key Considerations.} Tensor parallelism is useful when individual layers are too large for a single GPU, or when per-layer throughput must be increased. Communication overhead is significant, since every matmul requires synchronization. High-speed links (NVLink, InfiniBand) and efficient libraries like NCCL are essential.
+\subsubsection{Key Considerations} Tensor parallelism is useful when individual layers are too large for a single GPU, or when per-layer throughput must be increased. Communication overhead is significant, since every matmul requires synchronization. High-speed links (NVLink, InfiniBand) and efficient libraries like NCCL are essential.
 
-\subsubsection{Best Practices.} Balance tensor slices so all GPUs finish concurrently. Use optimized collectives (e.g., ring all-reduce). Monitor communication overhead---over PCIe-only clusters, scaling often stalls. Tensor parallelism excels for very wide transformer layers, as in Megatron-LM:\cite{vaswani2017_attention,vllm_pagedattention}.
+\subsubsection{Best Practices} Balance tensor slices so all GPUs finish concurrently. Use optimized collectives (e.g., ring all-reduce). Monitor communication overhead---over PCIe-only clusters, scaling often stalls. Tensor parallelism excels for very wide transformer layers, as in Megatron-LM:\cite{vaswani2017_attention,vllm_pagedattention}.
 
 \subsection{Pipeline Parallelism}
+\label{sec:scaling-pipeline-parallelism}
 Pipeline parallelism partitions the model into sequential stages (contiguous layer blocks). Each stage resides on a GPU (or group) and processes microbatches concurrently, forming an ``assembly line.''
 
-\subsubsection{Key Considerations.} Pipeline parallelism fits larger models without replicating weights on every GPU. Throughput rises as more microbatches are in flight, but latency per request grows with pipeline depth. Pipeline ``bubbles'' (idle stages) reduce efficiency if concurrency is low.
+\subsubsection{Key Considerations} Pipeline parallelism fits larger models without replicating weights on every GPU. Throughput rises as more microbatches are in flight, but latency per request grows with pipeline depth. Pipeline ``bubbles'' (idle stages) reduce efficiency if concurrency is low.
 
-\subsubsection{Best Practices.} Tune microbatch size to balance GPU utilization and latency. Align stage boundaries so each GPU’s workload is balanced. Combine with data parallelism for optimal scaling. Advanced schedulers such as TetriInfer decouple prefill and decode stages, reducing straggler effects \cite{tetriinfer2023}.
+\subsubsection{Best Practices} Tune microbatch size to balance GPU utilization and latency. Align stage boundaries so each GPU’s workload is balanced. Combine with data parallelism for optimal scaling. Advanced schedulers such as TetriInfer decouple prefill and decode stages, reducing straggler effects \cite{tetriinfer2023}.
 
-\subsubsection{Case in \ishtar{}.} In the IshtarAI deployment of the LLaMA-3.1-70B model, a hybrid of tensor and pipeline parallelism was used. Tensor parallelism accelerated per-layer GEMMs across 8 A100 GPUs via NVLink, while pipeline parallelism split the model into 4 sequential stages. This enabled 32k-token context windows without exceeding memory budgets, sustaining sub-second latency for 90\% of queries during breaking news events:\cite{frugalgpt_2023}.
+\subsubsection{Case in \ishtar{}.} In the \ishtar{} deployment of the LLaMA-3.1-70B model, a hybrid of tensor and pipeline parallelism was used. Tensor parallelism accelerated per-layer GEMMs across 8 A100 GPUs via NVLink, while pipeline parallelism split the model into 4 sequential stages. This enabled 32k-token context windows without exceeding memory budgets, sustaining sub-second latency for 90\% of queries during breaking news events:\cite{frugalgpt_2023}.
+
+Table~\ref{tab:distributed-inference} compares common distributed inference techniques and highlights their dominant trade-offs in latency, throughput, and communication cost.
 
 \begin{table}[htbp]
 \centering
@@ -313,6 +350,8 @@ Best use cases & Huge models that cannot fit a single GPU. & Wide layers (large 
 \end{tabularx}
 \end{table}
 
+Figure~\ref{fig:parallelism} provides a compact view of how model, tensor, and pipeline parallelism split parameters and computation across devices.
+
 \begin{figure}[htbp]
 \centering
 %\includegraphics[width=0.9\textwidth]{figures/parallelism-diagram.pdf}
@@ -321,21 +360,22 @@ Best use cases & Huge models that cannot fit a single GPU. & Wide layers (large 
 \end{figure}
 
 \subsection{Speculative Decoding}
+\label{sec:scaling-speculative-decoding}
 Speculative decoding is an orthogonal method to accelerate autoregressive generation. A smaller ``draft'' model rapidly proposes token blocks, which the larger ``target'' model verifies in parallel \cite{google2022_chip}. Verified tokens are accepted until the first mismatch, reducing the number of full passes through the large model.
 
-\subsubsection{Principle.} At step $t$, the draft proposes $k$ tokens $\hat{y}_{t:t+k-1}$ sampled from $p_d$, and the target verifies them against $p_T$. Accepted tokens advance the decode state; mismatches trigger fallback to the target.
+\subsubsection{Principle} At step $t$, the draft proposes $k$ tokens $\hat{y}_{t:t+k-1}$ sampled from $p_d$, and the target verifies them against $p_T$. Accepted tokens advance the decode state; mismatches trigger fallback to the target.
 
-\subsubsection{Baseline Algorithm.} Generate $k$ draft tokens; run $T$ on them; accept the longest matching prefix; continue from first mismatch.
+\subsubsection{Baseline Algorithm} Generate $k$ draft tokens; run $T$ on them; accept the longest matching prefix; continue from first mismatch.
 
-\subsubsection{Acceptance Intuition.} Let $q$ be the draft-target match probability. Expected accepted run length $E[L]\approx (1-q^k)/(1-q)$. Speedup scales with $q$ and $v_d/v_T$ (draft vs target speed). Gains saturate if $q$ is low or verification overhead dominates.
+\subsubsection{Acceptance Intuition} Let $q$ be the draft-target match probability. Expected accepted run length $E[L]\approx (1-q^k)/(1-q)$. Speedup scales with $q$ and $v_d/v_T$ (draft vs target speed). Gains saturate if $q$ is low or verification overhead dominates.
 
-\subsubsection{Design Knobs.} Draft choice (distilled models improve $q$); adaptive block size $k$; top-$r$ acceptance tests; batched verification across requests; early-abort heuristics for rare tokens; guardrails to monitor $q$ drift.
+\subsubsection{Design Knobs} Draft choice (distilled models improve $q$); adaptive block size $k$; top-$r$ acceptance tests; batched verification across requests; early-abort heuristics for rare tokens; guardrails to monitor $q$ drift.
 
-\subsubsection{Case in \ishtar{}.} IshtarAI deploys an 8--13B draft distilled from the production model. With adaptive $k\in[3,8]$ and top-$r$ acceptance ($r=2$), decode throughput improved by $1.4$--$1.8\times$ (measured via production metrics comparing speculative vs.\ non-speculative decode paths) with no measurable loss in factuality:\cite{vllm_pagedattention,tensorrt_llm_docs,tgi_docs}.
+\subsubsection{Case in \ishtar{}.} \ishtar{} deploys an 8--13B draft distilled from the production model. With adaptive $k\in[3,8]$ and top-$r$ acceptance ($r=2$), decode throughput improved by $1.4$--$1.8\times$ (measured via production metrics comparing speculative vs.\ non-speculative decode paths) with no measurable loss in factuality:\cite{vllm_pagedattention,tensorrt_llm_docs,tgi_docs}.
 
 Recent work extends speculative decoding. ReDrafter proposes recurrent draft models for higher $q$ \cite{reda2023redrafter}. Yan et al. (2025) studied 350+ LLaMA-65B runs, showing draft latency is more critical than perplexity; a smaller but faster draft doubled throughput \cite{pope2023exegpt}. Google’s adoption of speculative decoding in production search pipelines cut user-visible latency by 2--3$\times$ without new hardware \cite{google2022_chip}.
 
-\subsubsection{Summary.} Speculative decoding exemplifies algorithmic scaling: improving throughput without extra GPUs. By shifting ``easy'' work to a smaller draft, it complements hardware parallelism. Alongside model/tensor/pipeline parallelism, it is becoming a standard lever for practical LLMOps:\cite{speculative_decoding}.
+\subsubsection{Summary} Speculative decoding exemplifies algorithmic scaling: improving throughput without extra GPUs. By shifting ``easy'' work to a smaller draft, it complements hardware parallelism. Alongside model/tensor/pipeline parallelism, it is becoming a standard lever for practical LLMOps:\cite{speculative_decoding}.
 
 % ------------------------------------------------------------
 
@@ -356,7 +396,7 @@ where $B$ is the set of sequences scheduled in that decode step, $\text{decode\_
 \subsection{Static vs.\ dynamic batching}\label{sec:static-dynamic-batching}
 Traditional systems might use fixed-size batches processed at fixed intervals (\emph{static batching}). This is simple but wastes capacity under variable load---e.g., a batch of size 8 may often run half-empty if only 3 requests arrived. Modern serving frameworks use \emph{dynamic (continuous) batching}, wherein requests arriving within a small window $\Delta$ are aggregated on the fly. Requests are added to ongoing decode steps rather than waiting for a batch to finish. This ``token-level'' batching maximizes throughput and has become an industry standard in engines such as Hugging Face TGI, vLLM, and NVIDIA TensorRT-LLM \cite{pope2023exegpt}.
 
-\subsubsection{Choosing the batching window.}
+\subsubsection{Choosing the batching window}
 A key tuning parameter is the batching window $\Delta$ (micro-batch timeout). If $\Delta$ is too large, TTFT suffers; if too small, utilization is lost. A practical heuristic is
 \[
 \Delta^\star \;=\; \min\!\big(\Delta_{\max},\, \max(0,\, \tau - \hat{t}_{\mathrm{prefill}})\big),
@@ -378,7 +418,7 @@ Early schedulers like Orca introduced token-level continuous batching \cite{pope
 Batching very short and very long requests together is inefficient, since long requests dominate step time. Grouping requests by predicted length avoids this. Methods such as S$^3$ (MLSys 2024) train lightweight predictors to estimate output length, then batch by similarity \cite{helix2023}. Other approaches like Sarathi-Serve interleave long decodes with short ones to avoid idle bubbles \cite{tetriinfer2023}. DeepSpeed-Inference introduced ``concurrent batching'' to split large prompts for parallel processing. These reduce padding and improve fairness.
 
 \subsection{KV-cache management}\label{sec:kv-cache-mgmt}
-\subsubsection{Emerging approaches.}
+\subsubsection{Emerging approaches}
 PagedAttention reduces KV-cache fragmentation via paging-inspired memory management in serving runtimes \cite{vllm_pagedattention}. Recent work such as vAttention explores leveraging OS-level demand paging to manage KV-cache allocation with less framework-specific memory machinery, highlighting that KV-cache management remains an active systems area \cite{vattention_2024}.
 
 Memory for the KV cache often limits batching. Optimizations include:
@@ -397,8 +437,8 @@ Memory for the KV cache often limits batching. Optimizations include:
   \item \textbf{Speculation + batching:} combine speculative decoding with batching by verifying draft tokens for many requests together.
 \end{itemize}
 
-\subsubsection{Case in \ishtar{}.}
-By employing continuous batching with $\Delta \in [8,20]$\,ms, WSRT scheduling, and paged KV caching, \ishtar{} achieved roughly $2\times$ higher effective decode throughput (measured via per-GPU token/s metrics before and after optimization) while maintaining p95 TTFT below 250\,ms. This allowed IshtarAI to handle twice as many tokens per second per GPU during peak demand without breaching latency SLOs:\cite{vllm_pagedattention}.
+\subsubsection{Case in \ishtar{}}
+By employing continuous batching with $\Delta \in [8,20]$\,ms, WSRT scheduling, and paged KV caching, \ishtar{} achieved roughly $2\times$ higher effective decode throughput (measured via per-GPU token/s metrics before and after optimization) while maintaining p95 TTFT below 250\,ms. This allowed \ishtar{} to handle twice as many tokens per second per GPU during peak demand without breaching latency SLOs:\cite{vllm_pagedattention}.
 
 % ------------------------------------------------------------
 
@@ -407,19 +447,20 @@ By employing continuous batching with $\Delta \in [8,20]$\,ms, WSRT scheduling, 
 Autoscaling is the mechanism by which the system automatically adjusts the number of running model replicas (or the resources allocated to them) based on current load and performance metrics. In LLMOps, autoscaling is complicated by factors like long model load times, stateful sessions (KV caches tied to replicas), and unpredictable workload bursts. Two broad approaches are metrics-based autoscaling and event-based (or schedule-based) autoscaling, often used in combination.
 
 \subsection{Metrics-Based Autoscaling}
+\label{sec:scaling-metrics-autoscaling}
 We scale replicas to meet SLOs on p95 TTFT, p95 TBT, and error rate, while controlling cost. In metrics-driven autoscaling, the system continuously monitors performance indicators and triggers scale-out or scale-in when certain thresholds are crossed. Common metrics in LLM serving include: request arrival rate ($\lambda$, in req/s), GPU utilization, throughput (tokens/s), and latency percentiles (e.g., p95 TTFT or TBT).
 
-\subsubsection{Kubernetes scaling primitives.}
+\subsubsection{Kubernetes scaling primitives}
 Most production deployments implement autoscaling via Kubernetes controllers. The HorizontalPodAutoscaler (HPA) adjusts replica counts based on observed metrics such as CPU, memory, or custom application metrics \cite{k8s_hpa_docs}. For LLM systems, queue depth, TTFT, and tokens/s are often more predictive than CPU utilization, so teams commonly export application-level metrics and use them as scaling signals. Event-driven autoscaling frameworks such as KEDA\cite{keda_docs} can scale workloads based on external event sources (for example, message queue backlog), complementing metrics-based approaches when demand is bursty or driven by discrete events \cite{keda_docs}. These primitives are often combined with predictive pre-warming to mitigate GPU cold-start and model load time.
 
-\subsubsection{Control signals.}
+\subsubsection{Control signals}
 \begin{itemize}
   \item \textbf{Load}: arrival rate $\lambda$ (req/s), prompt/decode token estimates $\mathbb{E}[\ell_{\text{prompt}}],\ \mathbb{E}[\ell_{\text{decode}}]$.
   \item \textbf{Capacity}: per-replica effective throughput $\hat{C}$ (tokens/s), measured online (separately for prefill/decode if supported).
   \item \textbf{Congestion}: queue length $Q$, queueing delay $W_q$, GPU utilization $U$, KV pressure $M_{\mathrm{KV}}/M_{\max}$.
 \end{itemize}
 
-\subsubsection{Replica target computation.}
+\subsubsection{Replica target computation}
 Estimate token demand $D$ over a horizon $H$ (e.g., $H=30$\,s):
 \[
 D \;=\; \lambda\, \big(\mathbb{E}[\ell_{\text{prompt}}]+\mathbb{E}[\ell_{\text{decode}}]\big).
@@ -435,19 +476,19 @@ N_{t+1} \;=\; \mathrm{clip}\!\Big(\mathrm{EMA}_\eta(N^\star),\ N_{\min},\ N_{\ma
 \]
 with cooldown timers to prevent oscillation.
 
-\subsubsection{Trigger guards.}
+\subsubsection{Trigger guards}
 \begin{itemize}
   \item \textbf{Scale out} if any holds for $T$ seconds: $U>\!U^{*}$, $W_q>\!W^{*}$, $Q>\!Q^{*}$, or p95 TTFT $>\!\tau^{*}$.
   \item \textbf{Scale in} only if all hold for $T_{\downarrow}$: $U< U_{\downarrow}$, $Q<Q_{\downarrow}$, TTFT below target, and no draining sessions with pinned KV.
 \end{itemize}
 
-\subsubsection{Predictive pre-warm (optional but recommended).}
+\subsubsection{Predictive pre-warm (optional but recommended)}
 Use short-horizon forecasting of $\lambda$ (exponential smoothing or calendar features) and content/event signals to provision $N^\star$ ahead of spikes (e.g., news drops, product launches). Maintain a \emph{warm pool} of partially loaded replicas to cap cold-start.
 
-\subsubsection{Cost-aware placement.}
+\subsubsection{Cost-aware placement}
 Bin-pack requests by expected prompt+decode tokens onto GPU types (e.g., H100 for latency-critical, A100 for batch). Prefer spot/preemptible nodes for background jobs; drain gracefully with checkpointed KV.
 
-\subsubsection{Case in \ishtar{}.}
+\subsubsection{Case in \ishtar{}}
 \ishtar{} uses target-tracking autoscaling with $\gamma=0.7$ and predictive pre-warm from newsroom calendars. During major events it scaled from 6 to 28 replicas in $<\!90$\,s while holding p95 TTFT under 300\,ms; scale-in waited for queue-empty and KV-drain signals to avoid churn.
 
 \medskip
@@ -463,13 +504,14 @@ Bin-pack requests by expected prompt+decode tokens onto GPU types (e.g., H100 fo
 \end{itemize}
 
 \subsection{Event-Based Autoscaling}
+\label{sec:scaling-event-autoscaling}
 Event-based autoscaling provisions capacity in advance of known or predicted load surges, bypassing the lag inherent in purely reactive metrics-based scaling.
 
-\subsubsection{Principle.}
+\subsubsection{Principle}
 Leverage domain-specific signals---calendars, scheduled events, marketing campaigns, or recurring usage patterns---to trigger scale-out before requests arrive.
 In news-oriented LLM deployments, this includes scheduled press briefings, election result windows, or embargoed report releases.
 
-\subsubsection{Design components.}
+\subsubsection{Design components}
 \begin{itemize}
     \item \textbf{Event registry:} A structured source of future events (internal CMS, newsroom calendar, external APIs).
     \item \textbf{Demand models:} Map event types to expected load multipliers and time offsets.
@@ -477,7 +519,7 @@ In news-oriented LLM deployments, this includes scheduled press briefings, elect
     \item \textbf{Integration with autoscaler:} Event triggers act as an additional input to the desired replica count $N^\star$, merged with metrics-based estimates.
 \end{itemize}
 
-\subsubsection{Best practices.}
+\subsubsection{Best practices}
 \begin{itemize}
     \item Validate event metadata quality to avoid false positives that waste GPU-hours.
     \item Maintain a \emph{warm pool} of partially loaded models to cut cold-start to seconds.
@@ -485,7 +527,7 @@ In news-oriented LLM deployments, this includes scheduled press briefings, elect
     \item Combine with regional placement if events are geographically localized.
 \end{itemize}
 
-\subsubsection{Case in \ishtar{}.}
+\subsubsection{Case in \ishtar{}}
 By integrating the newsroom editorial calendar with its autoscaler, \ishtar{} increased replicas by $+80\%$ ten minutes before high-profile briefings. This ensured sub-300\,ms p95 TTFT without overshooting capacity during the rest of the day.
 
 \medskip
@@ -500,6 +542,8 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 
 \medskip
 \noindent\textbf{Summary.} Autoscaling an LLM deployment is a delicate balance: react quickly enough to maintain SLOs, avoid oscillations and unnecessary cost, and anticipate cold starts. Combining reactive metrics with proactive event signals is state of the art. In our \ishtar{} deployment, the hybrid approach (load forecasts + calendar events) enabled rapid yet stable scale-outs (6 to 28 GPU replicas in under 2 minutes) without breaching latency targets.
+
+Figure~\ref{fig:autoscale-target-tracking} illustrates a token-aware target-tracking loop for autoscaling inference replicas under bursty demand.
 
 \begin{figure}[htbp]
 \centering
@@ -546,6 +590,8 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 \caption{Metrics-based target tracking. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma$ by adjusting replicas $N(t)$.}
 \label{fig:autoscale-target-tracking}
 \end{figure}
+
+Figure~\ref{fig:autoscale-event-based} shows an event-driven autoscaling workflow that uses external triggers to pre-warm capacity ahead of traffic spikes.
 
 \begin{figure}[htbp]
 \centering
@@ -608,9 +654,10 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 Caching avoids recomputation for repeated work, reducing both latency and GPU load. In LLM systems, we consider two main types: response caching (caching model outputs for identical queries) and embedding caching (caching vector embeddings for identical pieces of text, to accelerate retrieval-augmented generation, \textsc{RAG}). Effective caching can significantly improve scalability by serving a portion of requests from memory instead of using scarce GPU cycles.
 
 \subsection{Response Caching}
+\label{sec:scaling-response-caching}
 Response caching stores recent queries and their generated outputs, bypassing the model for exact matches. This is analogous to web caching for static content, but with additional considerations given the stochastic nature of LLM decoding.
 
-\subsubsection{Key considerations.}
+\subsubsection{Key considerations}
 \begin{itemize}
     \item \textbf{Cache key:} Must uniquely represent the query, model version, decoding parameters, and prompt template. Even minor changes in parameters (e.g., temperature, top-$p$) can alter outputs.
     \item \textbf{TTL (time-to-live):} Balance freshness with hit rate; short TTL for time-sensitive domains, longer for static domains (e.g., FAQ bots).
@@ -618,30 +665,31 @@ Response caching stores recent queries and their generated outputs, bypassing th
     \item \textbf{Invalidation:} Invalidate cache entries when upstream knowledge base changes.
 \end{itemize}
 
-\subsubsection{Optimizations.}
+\subsubsection{Optimizations}
 \begin{itemize}
     \item \textbf{Partial match caching:} Store and reuse intermediate outputs (e.g., retrieval results) for partially overlapping queries.
     \item \textbf{Compression:} Apply lightweight compression (e.g., LZ4) to reduce memory footprint.
     \item \textbf{Popularity-based eviction:} Keep high-frequency queries pinned; use LFU eviction policy.
 \end{itemize}
 
-\subsubsection{Notes and context.}
+\subsubsection{Notes and context}
 Beyond exact matches, caches can support partial reuse. For instance, if two queries share a long prefix, the work done for the first query’s response might be partially reused for the second (cf.\ prefix caching). Some systems cache not only final outputs but intermediate results (retrieved documents, prompt embeddings), allowing the pipeline to skip repeated sub-steps on subsequent requests. Prediction caches have been used in prior ML serving systems for similar reasons (e.g., Clipper’s prediction cache) \cite{rise.cs.berkeley.edu}. In LLM deployments, the same ideas apply with larger payloads and generative variability.
 
-\subsubsection{Case in \ishtar{}.}
+\subsubsection{Case in \ishtar{}}
 A Redis-based response cache with a 15-minute TTL yielded a 7--12\% GPU load reduction during steady traffic and $>\!30\%$ during breaking news with repeated queries (measured via GPU utilization metrics comparing cache-hit vs.\ cache-miss request paths).
 
 \subsection{Embedding Caching}
+\label{sec:scaling-embedding-caching}
 Embedding caching stores vector embeddings for repeated documents, passages, or chunks in \textsc{RAG} pipelines. In RAG systems, every unique document (or query) is transformed into an embedding by an encoder model; if the same document or query reappears, caching its embedding avoids redundant encoder forward passes.
 
-\subsubsection{Key considerations.}
+\subsubsection{Key considerations}
 \begin{itemize}
     \item \textbf{Cache key:} Deterministic hash of the document content plus embedding model identifier/version.
     \item \textbf{Persistence:} Use durable storage (e.g., Postgres with pgvector, FAISS on disk) to survive process restarts.
     \item \textbf{Invalidation:} Recompute and overwrite embeddings when content changes or model version updates.
 \end{itemize}
 
-\subsubsection{Optimizations.}
+\subsubsection{Optimizations}
 \begin{itemize}
     \item \textbf{Lazy population:} Compute embeddings on first request; serve from cache thereafter.
     \item \textbf{Batch backfill:} For large document sets, precompute embeddings offline and populate the cache in bulk.
@@ -649,14 +697,16 @@ Embedding caching stores vector embeddings for repeated documents, passages, or 
     \item \textbf{Quantization:} Store compressed vector formats (e.g., FP16 or 8-bit) to reduce storage costs.
 \end{itemize}
 
-\subsubsection{Notes and context.}
+\subsubsection{Notes and context}
 Persistence matters more for embedding caches: unlike response caches (which can often be purely in-memory), embedding caches benefit from durability so restarts do not cause mass re-embedding. Sharding and replication scale throughput and improve fault tolerance. At very large scales, storage pressure can be significant; product quantization or 8-bit storage reduces footprint at small accuracy cost, and many vector DBs (FAISS, Milvus) support compressed indexes out of the box.
 
-\subsubsection{Case in \ishtar{}.}
+\subsubsection{Case in \ishtar{}}
 By hashing retrieved document chunks and caching embeddings in a pgvector-enabled Postgres cluster, \ishtar{} eliminated redundant embedding computation for $\sim$65\% of retrievals (measured via cache hit rate over a 7-day production window), cutting average RAG pipeline latency by 220\,ms (computed as the difference in end-to-end latency between cache-hit and cache-miss requests).
 
 \medskip
 \noindent\textbf{Summary.} Caching at both the response level and the embedding level contributed to the overall scalability of \ishtar{}. By avoiding recomputation, we effectively obtained more throughput from each GPU and served more users with the same hardware. The trade-off is additional complexity (key design, invalidation, persistence), but with careful engineering the benefits far outweigh the overhead.
+
+Figure~\ref{fig:caching-flow} summarizes where common caching layers sit in the LLM request path and how they reduce repeated work.
 
 \begin{figure}[htbp]
 \centering
@@ -739,28 +789,28 @@ Beyond just technical performance, scaling strategies must account for cost effi
 \end{itemize}
 For \ishtar{}, critical fact-checking requests go to high-accuracy models, while background summarization uses smaller models.
 
-\subsubsection{Mix instance types.}
+\subsubsection{Mix instance types}
 Use high-end GPUs only for latency-critical or very heavy workloads, and route lighter or non-urgent jobs to cheaper hardware (even if it is slower). For instance, one might use a few A100/H100 nodes for interactive queries, but send batch processing or long-running jobs to clusters of T4 or CPU instances overnight. This way, the expensive GPUs are utilized only for what truly needs them.
 
-\subsubsection{Spot/preemptible capacity.}
+\subsubsection{Spot/preemptible capacity}
 Many cloud providers offer spare capacity at much lower prices (e.g., AWS Spot, Azure Low-Priority VMs, GCP Preemptible VMs). The downside is they can be terminated with short notice. However, for elastic portions of your workload (background tasks or burst capacity), leveraging these can drastically cut costs. Systems like SpotServe have shown it is feasible to serve LLMs on spot instances by using fast checkpointing---saving model state at token boundaries so if an instance dies, work is not lost \cite{pope2023exegpt}. SpotServe introduces a mechanism to commit partial decoding progress so another instance can resume, achieving cost savings with minimal impact on users.
 
-\subsubsection{Autoscale down aggressively.}
-Idle GPUs burn money. Ensure your autoscaling (Section~6.5) scales in when load drops. It can even be worth it to shut down to zero during off-hours (if the model can be re-loaded relatively quickly when needed). Also consider using GPU time-sharing (if supported)---e.g., run two small models on one GPU when volumes are low, instead of each on separate GPUs, to increase utilization.
+\subsubsection{Autoscale down aggressively}
+Idle GPUs burn money. Ensure your autoscaling (Section~\ref{sec:autoscaling}) scales in when load drops. It can even be worth it to shut down to zero during off-hours (if the model can be re-loaded relatively quickly when needed). Also consider using GPU time-sharing (if supported)---e.g., run two small models on one GPU when volumes are low, instead of each on separate GPUs, to increase utilization.
 
-\subsubsection{Batching for cost.}
+\subsubsection{Batching for cost}
 Optimize batch size for cost, not just latency: running at maximum throughput (full GPU utilization) yields the lowest cost per token, but might introduce latency. Decide on an acceptable latency target and within that, push batch sizes as high as possible. Many deployments find a sweet spot where slight latency sacrifice (e.g., 50\,ms slower) can double throughput, thus halving cost per query. It is a business decision how much latency one can trade for cost savings.
 
-\subsubsection{Multi-model serving and routing.}
+\subsubsection{Multi-model serving and routing}
 Often, one can deploy a family of models of different sizes and costs, and route queries intelligently. For example, some requests can be satisfied by a 7B or 13B model, while only a subset truly require a 70B model. A router (possibly a small classifier) predicts which model is sufficient for a given query. By doing so, average cost per query can be brought down significantly, since only a fraction of queries hit the largest model.
 
-\subsubsection{Throughput-oriented R\&D.}
+\subsubsection{Throughput-oriented R\&D}
 Optimize your deployment as if you were optimizing a training job---profile bottlenecks, try quantization, faster kernels, etc. Every 10\% speedup is 10\% cost reduction if you can do the same work with fewer GPU-seconds. Techniques covered in Chapter~\ref{ch:performance} (quantization, pruning, better kernels) directly translate to cost savings when deployed at scale.
 
-\subsubsection{Case in \ishtar{}.}
-In IshtarAI, we implemented a multi-tier model approach as mentioned: critical fact-checking or editing requests went to a high-accuracy, large model, whereas routine summarizations or drafts used a smaller distilled model. This yielded large cost reductions by serving a portion of queries on cheap infrastructure. We also aggressively used spot instances for non-critical scaling---at one point, 50\% of our GPUs were spot (based on fleet composition during a cost-optimization period), saving an estimated 40\% in GPU-hours (calculated from spot vs.\ on-demand pricing differentials and actual usage), and the system seamlessly failed over to on-demand when a spot instance occasionally evicted (thanks to fast checkpointing of the KV cache).
+\subsubsection{Case in \ishtar{}}
+In \ishtar{}, we implemented a multi-tier model approach as mentioned: critical fact-checking or editing requests went to a high-accuracy, large model, whereas routine summarizations or drafts used a smaller distilled model. This yielded large cost reductions by serving a portion of queries on cheap infrastructure. We also aggressively used spot instances for non-critical scaling---at one point, 50\% of our GPUs were spot (based on fleet composition during a cost-optimization period), saving an estimated 40\% in GPU-hours (calculated from spot vs.\ on-demand pricing differentials and actual usage), and the system seamlessly failed over to on-demand when a spot instance occasionally evicted (thanks to fast checkpointing of the KV cache).
 
-\subsubsection{Automated cost planners.}
+\subsubsection{Automated cost planners}
 Another research prototype called Melange takes cost-awareness further by automatically selecting the cheapest combination of heterogeneous instances to meet an LLM service's SLOs \cite{pope2023exegpt}. It considers the request rate, size, and latency target, then navigates cloud instance options (GPU types, counts, prices) to find an optimal deployment plan \cite{pope2023exegpt}. Such systems hint at a future where, given a budget constraint, the infrastructure could dynamically reconfigure to minimize cost (even moving across regions for price arbitrage, if latency allows).
 
 \medskip
@@ -775,26 +825,28 @@ Many LLM applications augment the base model with a retrieval step---fetching re
     \item Keep hot data in memory for low-latency retrieval.
 \end{itemize}
 
-\subsubsection{Index sharding.}
+\subsubsection{Index sharding}
 As the corpus grows (potentially to millions of documents or more), a single vector index may not handle the load or may not fit in memory. Sharding the index across multiple servers (or using a distributed vector database) allows parallel searches. For example, splitting an index into $k$ shards and querying them in parallel can nearly maintain per-query latency even as data scales $k\times$. This is essentially horizontal scaling for the retriever.
 
-\subsubsection{Approximate nearest neighbor (ANN) search.}
+\subsubsection{Approximate nearest neighbor (ANN) search}
 Using algorithms like HNSW, IVF, or product quantization can dramatically speed up retrieval with minimal loss in relevance. At large scale, exact nearest neighbor search in high dimensions is often infeasible. ANN methods allow sub-linear time queries and much smaller memory footprints, trading a tiny bit of accuracy for huge speed gains. This is crucial for real-time RAG.
 
-\subsubsection{Hot tiers and in-memory caches.}
+\subsubsection{Hot tiers and in-memory caches}
 For corpora that are partially hot (frequently queried documents) and cold (rarely queried), it makes sense to keep the hot subset in GPU or RAM for fast access, and store the rest on slower storage. In practice, this might mean maintaining an in-memory cache of popular vectors, or using a two-tier index (first check a smaller high-speed index of popular items, then the full index if needed). This ensures low latency on the majority of queries that hit popular content.
 
-\subsubsection{Overlap retrieval with generation.}
+\subsubsection{Overlap retrieval with generation}
 RAG is often implemented sequentially (retrieve then generate). When the model is large and slow, consider overlapping retrieval and generation for different segments of the response. For instance, fetch the first chunk, start generation, and concurrently fetch the next chunk(s) while the model writes the beginning of the answer. Coordination is non-trivial, but overlapping can hide retrieval latency behind ongoing decoding.
 
-\subsubsection{Recent directions.}
+\subsubsection{Recent directions}
 Sparse RAG (2023) observed that one major cost in RAG is that retrieved documents lengthen the model’s input, causing more attention computation \cite{pope2023exegpt}. It proposed encoding retrieved docs in parallel (outside the main model) to avoid the quadratic attention cost, and then using control tokens to let the model selectively attend only to the most relevant information \cite{pope2023exegpt}. Another work, RAGCache, targets redundancy across queries \cite{pope2023exegpt}: it caches intermediate states of the external knowledge (e.g., a ``knowledge tree’’ of frequently co-retrieved items) so multiple queries can reuse shared representations rather than recomputing from scratch \cite{pope2023exegpt}. These approaches reduce both retrieval latency and the amount of text fed repeatedly into the model.
 
-\subsubsection{Case in \ishtar{}.}
-Scaling RAG in \ishtar{} meant scaling the vector search backend alongside the model. We sharded a FAISS index of news articles into three shards (one per region data center) and used locality-aware querying (users in Europe query the EU shard first, etc.) to minimize latency. We also pre-computed and cached embeddings for the top 100k most-read articles. This way, when those articles were retrieved as context, we already had their vectors and could also skip re-embedding them for generation (as described in Section~6.6.2). Through these measures, we maintained end-to-end RAG query latencies under 1\,s even as our knowledge base grew by tens of thousands of articles per day.
+\subsubsection{Case in \ishtar{}}
+Scaling RAG in \ishtar{} meant scaling the vector search backend alongside the model. We sharded a FAISS index of news articles into three shards (one per region data center) and used locality-aware querying (users in Europe query the EU shard first, etc.) to minimize latency. We also pre-computed and cached embeddings for the top 100k most-read articles. This way, when those articles were retrieved as context, we already had their vectors and could also skip re-embedding them for generation (as described in Section~\ref{sec:scaling-event-autoscaling}). Through these measures, we maintained end-to-end RAG query latencies under 1\,s even as our knowledge base grew by tens of thousands of articles per day.
 
 \medskip
 \noindent\textbf{Summary.} Scaling RAG is a multidimensional challenge: IR-side scaling (index sharding, ANN, hot tiers, caching) must go hand-in-hand with LLM-side scaling (batching, KV management, and context-efficient prompting). Marrying these efficiently is an active area of systems research.
+
+Figure~\ref{fig:rag-two-tier} sketches a practical two-tier RAG serving layout that separates hot and cold data while keeping latency predictable.
 
 \begin{figure}[htbp]
 \centering
@@ -875,35 +927,37 @@ Deploy regional inference clusters to:
 \end{itemize}
 \ishtar{} maintains clusters in North America, Europe, and Asia.
 
-\subsubsection{Latency and compliance benefits.}
+\subsubsection{Latency and compliance benefits}
 Deploying regional inference clusters can achieve: (a) latency reduction---users connect to the nearest server, avoiding transcontinental network delays (often saving 50--150\,ms RTT for interactive workloads), and (b) regulatory compliance---certain jurisdictions require that user data (and by extension, model processing of that data) remain in-region (e.g., EU data in the EU).
 
-\subsubsection{Model placement strategies.}
+\subsubsection{Model placement strategies}
 \emph{Replicate vs.\ partition.} The simplest approach is to replicate the entire model and pipeline in each region (low latency, higher cost). Alternatives include hub-and-spoke layouts (central region hosts the largest model; edges host smaller models, caches, or pre/post-processing). Replication ensures consistent latency for all users; partial replication reduces GPU footprint at the cost of some cross-region hops.
 
-\subsubsection{Consistency, versioning, and caches.}
+\subsubsection{Consistency, versioning, and caches}
 If multiple regions host models, keep them aligned on weights, prompts, and policy. Users moving between regions should see consistent behavior, implying global deployment orchestration. Caches are usually per-region (for performance and simplicity), so duplicates across regions are acceptable; cross-region cache sharing is rarely worthwhile due to latency.
 
-\subsubsection{Traffic routing and failover.}
+\subsubsection{Traffic routing and failover}
 Use geo-aware DNS or global traffic managers to route users to the nearest or healthiest region. For failover, overflow or outage traffic can be routed to a secondary region (with a latency penalty). Anycast and cloud traffic managers help maintain high availability with policy-based routing.
 
-\subsubsection{Data compliance controls.}
+\subsubsection{Data compliance controls}
 Ensure sensitive data does not cross regions: enforce geo-fencing at the application and networking layers. If a user from region~$X$ hits region~$Y$, forward or deny based on compliance posture.
 
-\subsubsection{Edge acceleration vs.\ full serving.}
+\subsubsection{Edge acceleration vs.\ full serving}
 Some deployments use smaller ``edge'' models or caches: edge sites handle easy queries locally and forward only complex ones to a central model. Hybrid setups can run speech-to-text or retrieval locally and send compact representations to the central LLM, trading compute for latency.
 
-\subsubsection{Decentralized precedent (Petals).}
+\subsubsection{Decentralized precedent (Petals)}
 Petals demonstrated geo-distributed inference over a volunteer network of GPU nodes hosting shards of very large models (e.g., BLOOM-176B), achieving interactive speeds by pooling global resources \cite{pope2023exegpt, helix2023}. While the volunteer setting is unique, similar ideas appear in enterprise multi-region pools (with stronger SLAs): aggregate GPU capacity across regions and rebalance as load shifts. Petals addressed unpredictable latencies and node churn with fault-tolerant protocols and dynamic rebalancing \cite{pope2023exegpt}.
 
-\subsubsection{Industrial practice.}
+\subsubsection{Industrial practice}
 In production, most organizations replicate models regionally for reliability and latency. For example, multiple Azure regions host ChatGPT for proximity to users. Similarly, \ishtar{} maintained clusters in North America, Europe, and Asia, each capable of serving local traffic independently; if one region went down or saturated, traffic shifted to another region with a controlled performance penalty.
 
-\subsubsection{Networking and future directions.}
+\subsubsection{Networking and future directions}
 Private backbones and smart routing let providers forward requests to a near-optimal region (not always the physically closest) under load. CDN-like strategies for LLMs may emerge, caching not static assets but popular ``prompt--response'' pairs or compact intermediate representations.
 
 \medskip
 \noindent\textbf{Summary.} Geographic scaling reduces user-perceived latency and meets local policies at the cost of added operational complexity. It is the outermost layer of scale: after optimizing single- and multi-node serving, the final frontier is scaling across continents.
+
+Figure~\ref{fig:geo-scaling-inset} depicts a typical multi-region serving topology with geo-routing, regional caches, and failover paths.
 
 \begin{figure}[htbp]
 \centering
@@ -952,22 +1006,28 @@ at ($(frame.south west)+(0.35,0.35)$) {\small
 \end{figure}
 
 \section{Case Study: Scaling Ishtar AI}
-To ground the above concepts, we reflect on how IshtarAI’s deployment evolved through several stages as demand grew. This progression illustrates the typical steps in scaling an LLM service from a small pilot to a global operation.
+\label{sec:scaling-ishtar-case-study}
+To ground the above concepts, we reflect on how \ishtar{}'s deployment evolved through several stages as demand grew. This progression illustrates the typical steps in scaling an LLM service from a small pilot to a global operation.
 
 \subsection{Initial State}
+\label{sec:scaling-ishtar-initial}
 One GPU server with limited capacity, suitable for early trials.
 
-In the earliest stage, IshtarAI ran on a single GPU server with limited capacity. This was sufficient for early trials and internal demos. We used an off-the-shelf 13B parameter model, hosted on one NVIDIA A100 GPU with 40\,GB memory. There was no redundancy or autoscaling --- if the server went down, the service was offline (which was acceptable during prototyping). This setup handled only a few requests at a time with high latency (several seconds per query for longer articles). Batching was minimal and caching was not yet implemented. The focus at this stage was simply to validate the application’s functionality.
+In the earliest stage, \ishtar{} ran on a single GPU server with limited capacity. This was sufficient for early trials and internal demos. We used an off-the-shelf 13B parameter model, hosted on one NVIDIA A100 GPU with 40\,GB memory. There was no redundancy or autoscaling --- if the server went down, the service was offline (which was acceptable during prototyping). This setup handled only a few requests at a time with high latency (several seconds per query for longer articles). Batching was minimal and caching was not yet implemented. The focus at this stage was simply to validate the application’s functionality.
 
 \subsection{Intermediate Stage}
+\label{sec:scaling-ishtar-intermediate}
 Multiple A100 servers behind a Kubernetes-based load balancer, dynamic batching enabled.
 
 As usage grew, we moved to a cluster of multiple A100 GPU servers behind a Kubernetes-based load balancer. The model (now a fine-tuned 30B) was containerized, and we deployed 4 replicas to start, scaling up to 8 during peak hours. Horizontal scaling and basic autoscaling were introduced --- Kubernetes HPA (Horizontal Pod Autoscaler) based on GPU utilization. We enabled dynamic batching in the inference server, which significantly improved throughput (we observed up to 5--6$\times$ throughput increase when 8 requests were batched). At this stage, we also rolled out a simple response cache (in-memory within each pod) to cache exact question--answer pairs for a short time. This intermediate setup could handle moderate newsroom traffic, though it sometimes struggled with big spikes. Latency was brought down into the 1--2\,s range for most queries, thanks to batching and the move from CPU-bound parts (like some preprocessing) to GPU. We also started using monitoring dashboards to track p95 latency and utilization, feeding those into refined autoscaling rules.
 
 \subsection{Mature Stage}
+\label{sec:scaling-ishtar-mature}
 Multi-region H100 clusters with automated scaling policies, caching layers, and tiered model serving.
 
-In the mature stage, IshtarAI became a multi-region, multi-tier deployment. We upgraded to clusters of H100 GPUs for core serving, as the model had grown to 70B with a 32k context. Each region (US-East, EU-West, APAC) had a cluster with auto-provisioning via Terraform and Kubernetes. We implemented the hybrid scaling strategy: a baseline of high-end GPUs always running for low latency, plus the ability to burst with additional GPUs (including spot instances) during events. Caching was now multi-layer: a Redis global response cache (shared by all pods in a region) and a distributed embedding cache using a vector DB for the document index. We had also introduced speculative decoding in this stage (running a 6B draft model alongside), which gave roughly a 1.5$\times$ speedup on long text generation. The system employed sophisticated autoscaling signals including predictive triggers for known events (as discussed in Section~6.5.2). Multi-tenancy was in effect: the platform served both our internal journalists and external API consumers, with priority scheduling ensuring the internal users (journalists) had reserved capacity during crunch time. By the time of this mature setup, IshtarAI was sustaining peaks of $\sim$100 requests per second with median latency $<\!800$\,ms and p99 around 2\,s, across a user base spanning three continents. The scalability groundwork --- everything from model optimizations to geo-distributed clusters --- allowed it to handle major news surges (10$\times$ traffic in minutes) without failing. This final architecture reflects many best practices we have covered: mixed vertical/horizontal scaling, distributed inference techniques, aggressive batching, autoscaling, caching layers, and cost-awareness (spot instances, multi-model routing for efficiency).
+In the mature stage, \ishtar{} became a multi-region, multi-tier deployment. We upgraded to clusters of H100 GPUs for core serving, as the model had grown to 70B with a 32k context. Each region (US-East, EU-West, APAC) had a cluster with auto-provisioning via Terraform and Kubernetes. We implemented the hybrid scaling strategy: a baseline of high-end GPUs always running for low latency, plus the ability to burst with additional GPUs (including spot instances) during events. Caching was now multi-layer: a Redis global response cache (shared by all pods in a region) and a distributed embedding cache using a vector DB for the document index. We had also introduced speculative decoding in this stage (running a 6B draft model alongside), which gave roughly a 1.5$\times$ speedup on long text generation. The system employed sophisticated autoscaling signals including predictive triggers for known events (as discussed in Section~\ref{sec:scaling-event-autoscaling}). Multi-tenancy was in effect: the platform served both our internal journalists and external API consumers, with priority scheduling ensuring the internal users (journalists) had reserved capacity during crunch time. By the time of this mature setup, \ishtar{} was sustaining peaks of $\sim$100 requests per second with median latency $<\!800$\,ms and p99 around 2\,s, across a user base spanning three continents. The scalability groundwork --- everything from model optimizations to geo-distributed clusters --- allowed it to handle major news surges (10$\times$ traffic in minutes) without failing. This final architecture reflects many best practices we have covered: mixed vertical/horizontal scaling, distributed inference techniques, aggressive batching, autoscaling, caching layers, and cost-awareness (spot instances, multi-model routing for efficiency).
+
+Figure~\ref{fig:ishtar-timeline} summarizes the evolution of \ishtar{} from a single-GPU prototype to a multi-region, multi-tier production deployment.
 
 \begin{figure}[htbp]
 \centering
@@ -1021,11 +1081,12 @@ $\bullet$ Tiered models \& spot for cost-awareness
 };
 
 \end{tikzpicture}
-\caption{IshtarAI scaling timeline. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling.}
+\caption{\ishtar{} scaling timeline. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling.}
 \label{fig:ishtar-timeline}
 \end{figure}
 
 \section{Best Practices Checklist}
+\label{sec:scaling-best-practices}
 In conclusion, scaling up LLM deployments involves a combination of strategic planning and tactical optimizations. The following checklist distills best practices:
 
 \begin{tcolorbox}[
@@ -1065,7 +1126,7 @@ In conclusion, scaling up LLM deployments involves a combination of strategic pl
 \end{tabularx}
 \end{tcolorbox}
 
-Scaling LLM systems requires balancing performance, cost, and complexity. By designing for scalability from the outset and drawing on the patterns discussed (from distributed inference to caching and autoscaling), teams can adapt rapidly to changing demands without sacrificing quality or breaking the bank. The story of IshtarAI demonstrates that with careful planning and incorporation of cutting-edge techniques from academia and industry, even a resource-intensive LLM application can be made to operate reliably at scale. 
+Scaling LLM systems requires balancing performance, cost, and complexity. By designing for scalability from the outset and drawing on the patterns discussed (from distributed inference to caching and autoscaling), teams can adapt rapidly to changing demands without sacrificing quality or breaking the bank. The story of \ishtar{} demonstrates that with careful planning and incorporation of cutting-edge techniques from academia and industry, even a resource-intensive LLM application can be made to operate reliably at scale. 
 
 \medskip
 \noindent\textbf{Scaling vs.\ Performance Optimization.} It is important to distinguish scaling (adding capacity to handle more load) from performance optimization (improving efficiency per unit of capacity). While this chapter has focused on scaling mechanisms---adding replicas, distributing inference, and provisioning capacity---these strategies must still respect fundamental performance constraints: Time-To-First-Token (TTFT), throughput per GPU, and cost per token. Simply scaling out without optimizing individual node performance can lead to inefficient deployments that consume excessive resources. In Chapter~\ref{ch:performance}, we turn to performance optimization techniques---quantization, kernel optimization, model compression, and advanced inference strategies---that improve the efficiency of each GPU and reduce cost per query. The relationship is complementary: scaling provides capacity headroom, while performance optimization ensures that capacity is used efficiently. A well-scaled system that ignores performance optimization wastes resources; a highly optimized system that cannot scale fails under load. Together, scaling and performance optimization enable LLM deployments that are both efficient and elastic.
@@ -1077,4 +1138,3 @@ Scaling LLM systems requires balancing performance, cost, and complexity. By des
 ]
 \section*{Chapter Summary}
 Scaling LLM deployments is a multi-objective optimization problem across latency, throughput, reliability, and cost. The most impactful performance levers are usually systems techniques implemented in the serving runtime (continuous batching, scheduling, and KV-cache management), combined with distributed inference strategies such as parallelism, quantization, and speculative decoding. Operationally, autoscaling, caching, and geo-routing turn these techniques into reliable behavior under bursty demand and shifting traffic patterns. The \ishtar{} case study illustrates how these controls interact in practice, emphasizing that robust scaling depends on both algorithmic techniques and disciplined operations. However, scaling alone is insufficient: performance optimization (covered in Chapter~\ref{ch:performance}) ensures that scaled capacity operates efficiently, respecting TTFT, throughput, and cost constraints.
-
