@@ -63,12 +63,23 @@ A cornerstone of LLM CI/CD is integrating automated evaluation suites into the p
 
 \noindent\textbf{Design principles.} Effective continuous evaluation tends to follow a few recurring principles:
 
-\begin{itemize}
-  \item \textbf{Stage for speed vs.~coverage.} Run fast deterministic checks on every pull request, and reserve heavy suites for post-merge, nightly/batch, and canary/shadow stages.
-  \item \textbf{Version the full behavior surface.} Treat prompts, retrieval snapshots, tool schemas, guardrails, judge prompts, and metric code as versioned artifacts.
-  \item \textbf{Gate promotions with statistics.} Compare candidates to a baseline using paired tests (e.g., bootstrap for rubric scores; McNemar for binary safety flags) and pre-registered thresholds \cite{koehn2004, mcnemar1947}.
-  \item \textbf{Close the loop from production.} Mine traces and failures into reusable CI datasets and ``hard'' slices, so that incidents become regression tests \cite{langsmith_eval, phoenix_rag, trulens}.
-\end{itemize}
+\begin{table}[t]
+\centering
+\caption{Design principles for effective continuous evaluation in LLM CI/CD pipelines.}
+\label{tab:eval_design_principles}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{p{3.5cm}X}
+\toprule
+\textbf{Principle} & \textbf{Description} \\
+\midrule
+\textbf{Stage for speed vs.~coverage} & Run fast deterministic checks on every pull request, and reserve heavy suites for post-merge, nightly/batch, and canary/shadow stages. \\
+\textbf{Version the full behavior surface} & Treat prompts, retrieval snapshots, tool schemas, guardrails, judge prompts, and metric code as versioned artifacts. \\
+\textbf{Gate promotions with statistics} & Compare candidates to a baseline using paired tests (e.g., bootstrap for rubric scores; McNemar for binary safety flags) and pre-registered thresholds \cite{koehn2004, mcnemar1947}. \\
+\textbf{Close the loop from production} & Mine traces and failures into reusable CI datasets and ``hard'' slices, so that incidents become regression tests \cite{langsmith_eval, phoenix_rag, trulens}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 To operationalize these principles, evaluation pipelines are typically organized into distinct stages, each with specific objectives, metrics, and tooling. Table~\ref{tab:eval_stages} summarizes the staged evaluation approach, showing how different evaluation suites run at different points in the CI/CD pipeline to balance speed, coverage, and cost.
 
