@@ -240,8 +240,19 @@ Finally, evaluation artifacts must be archived for governance. Where possible, d
 \subsection{Tooling Landscape}
 A broad ecosystem of tools supports continuous evaluation. Open-source frameworks include OpenAI Evals, the EleutherAI LM Harness, HELM, RAGAS, TruLens, Arize Phoenix, promptfoo, and MLflow LLM evaluation. On the managed side, LangSmith provides evaluators integrated into LangChain pipelines. The choice depends on auditability needs, integration costs, and confidence in judge reliability \cite{openai_evals}.  
 
-\bigskip
-\noindent\textbf{Key Takeaways.} Continuous evaluation is no longer optional---it is the backbone of responsible LLMOps. Staged evaluation pipelines, model-graded judges, retrieval-aware groundedness checks, and statistical gates collectively enable reliable, auditable, and safe releases. Model judges offer scalability, but their biases must be controlled and their outputs triangulated with human assessments. In sum, evaluations should be treated both as executable code and as governance evidence.
+\begin{tcolorbox}[
+  title={\textbf{Key Takeaways: Continuous Evaluation Best Practices}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+Continuous evaluation is no longer optional---it is the backbone of responsible LLMOps. Staged evaluation pipelines, model-graded judges, retrieval-aware groundedness checks, and statistical gates collectively enable reliable, auditable, and safe releases. Model judges offer scalability, but their biases must be controlled and their outputs triangulated with human assessments. In sum, evaluations should be treated both as executable code and as governance evidence.
+\end{tcolorbox}
 
 \section{Fine-Tuning-Aware Workflows}
 \label{sec:cicd-finetune}
