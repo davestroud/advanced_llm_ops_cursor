@@ -114,19 +114,41 @@ Quantization reduces the precision of model weights---and sometimes activations-
 
 Lower numerical precision also enables the use of specialized hardware instructions (tensor cores) that can dramatically increase throughput. For example, an NVIDIA A100 GPU can perform up to 1248 INT4 tera-operations per second versus 312 TFLOPS for FP16, a $\sim$4$\times$ theoretical speedup by leveraging low-precision tensor cores \cite{Dettmers2022LLMint8,Xiao2023SmoothQuant}. In practice, quantization can deliver substantial benefits. For example, applying 4-bit post-training quantization (e.g., GPTQ) to a 13B-parameter model has enabled it to be served on a single GPU instead of two, with only minor accuracy degradation \cite{Frantar2023GPTQ}\footnote{\url{https://cloud.google.com}}. Smaller memory requirements also reduce energy consumption per query, which can be significant at scale. Quantization can apply not only to the model weights but also to auxiliary structures like the Transformer’s key/value (KV) cache---quantizing the KV cache to 8-bit precision can further lower memory usage and improve latency, albeit with a potential impact on accuracy.
 
-\subsubsection{Pros:}
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Quantization: Pros}},
+  colback=green!5,
+  colframe=green!40!black,
+  colbacktitle=green!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item Lower latency and reduced GPU memory usage.
     \item Enables running large models on smaller or fewer devices.
     \item Potential reductions in energy consumption per query.
 \end{itemize}
+\end{tcolorbox}
 
-\subsubsection{Cons:}
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Quantization: Cons}},
+  colback=red!5,
+  colframe=red!40!black,
+  colbacktitle=red!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item Potential minor loss in accuracy or fidelity due to reduced numerical precision.
     \item Requires selecting an appropriate quantization scheme (e.g., INT8, FP8, GPTQ, AWQ) and, in some cases, calibration or fine-tuning to mitigate quality loss.
     \item Certain methods require an offline pre-quantization step, while others (e.g., \texttt{bitsandbytes} INT8/INT4) can quantize on-the-fly at runtime\footnote{\url{https://cloud.google.com}}.
 \end{itemize}
+\end{tcolorbox}
 
 In modern LLMOps, 8-bit quantization is widely adopted for inference, and research into 4-bit or mixed-precision quantization is rapidly advancing. Recent advances like SmoothQuant \cite{Xiao2023SmoothQuant} and AWQ \cite{Lin2023AWQ} demonstrate that even aggressive low-bit quantization can maintain model accuracy by intelligently rescaling weights or retaining outlier features in higher precision; GPTQ provides a practical post-training path for 4-bit quantization with strong results \cite{Frantar2023GPTQ}. With newer hardware (e.g., NVIDIA H100 GPUs) supporting FP8 arithmetic natively \cite{NVIDIA2023Hopper}, practitioners should experiment with different quantization levels and observe their impact on both speed and task-specific accuracy before committing to a deployment strategy. Additionally, some frameworks mix precisions (combining FP16, FP8, INT8 in different layers) to balance speed and accuracy, tuning each layer’s precision for minimal quality impact.
 
