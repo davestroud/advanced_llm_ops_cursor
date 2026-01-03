@@ -354,12 +354,24 @@ When using GitHub Actions, security hardening should treat workflow definitions 
 
 Modern observability platforms bridge CI/CD with runtime monitoring. They provide structured tracing, evaluation, and dataset replay that let teams turn production behavior into reproducible CI assets and defensible promotion gates.
 
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Observability Platforms for LLM CI/CD}},
+  colback=purple!5,
+  colframe=purple!40!black,
+  colbacktitle=purple!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
   \item \textbf{LangSmith:} Enterprise-grade debugging, tracing, prompt evaluation, and dataset replay for LLM apps.
   \item \textbf{LangFuse:} Open-source tracing and monitoring for multi-step chains; supports curating edge-case datasets for CI.
   \item \textbf{LangGraph:} Explicit graph-based agent orchestration with LangFuse/LangSmith integration for dependency testing.
   \item \textbf{Other tools:} TruLens, Ragas, and PromptLayer provide prompt/version tracking, RAG-focused evaluation, and explainability metrics.
 \end{itemize}
+\end{tcolorbox}
 
 \begin{table}[t]
   \centering
@@ -394,9 +406,19 @@ A practical pattern is \emph{dataset replay as a first-class CI step}. Post--mer
 
 \section{Structured Prompt Testing}
 \label{sec:cicd-structured-prompt-testing}
+\begin{tcolorbox}[
+  title={\textbf{Prompts as First-Class Artifacts: Best Practices}},
+  colback=orange!5,
+  colframe=orange!40!black,
+  colbacktitle=orange!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
 Prompts are treated as first-class artifacts:
-
-\begin{itemize}
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
     \item \textbf{Prompt Version Control:} Store prompts in Git; update via PRs.
     \item \textbf{Unit Tests:} Verify structural correctness (e.g., valid JSON output).
     \item \textbf{Evaluation Suites:} Apply metrics (BLEU, ROUGE, cosine similarity) and LLM-as-judge assessments.
@@ -404,6 +426,7 @@ Prompts are treated as first-class artifacts:
     \item \textbf{Safety Testing:} Red-team prompts included in regression CI to test refusals and alignment.
     \item \textbf{Chain Validation:} Multi-step chains are tested end-to-end, ensuring intermediate outputs match schema and dependencies.
 \end{itemize}
+\end{tcolorbox}
 
 \noindent\textbf{From ``prompting'' to engineered artifacts.}
 As LLM applications mature, free-form prompt crafting gives way to disciplined software practice: prompts are templatized, parameterized, and \emph{versioned} exactly like code. Storing prompts in Git and updating them through pull requests enables code review, diffing, and traceability (who changed which instruction and why). Prompt diffs should be coupled to CI runs that replay representative datasets and report per-slice deltas so reviewers can evaluate impact rather than relying on intuition \cite{promptfoo, openai_evals, lm_harness, langsmith_eval, mlflow_llm_eval}. In this model, a prompt is not merely text but a contract governing structure (schemas), safety (guardrails), and performance (task metrics).
@@ -423,13 +446,24 @@ Prompts encode policy just as much as they encode task instructions. Regression 
 \noindent\textbf{Chain validation and dependency tests.}
 Modern LLM applications often involve multi-step chains or agent graphs. A prompt may be correct in isolation yet fail when its output feeds a subsequent tool or node. End-to-end tests therefore validate \emph{intermediate} outputs against schemas, assert pre/post-conditions on tool calls (e.g., no external write without classification approval), and perform record--replay of retrieval contexts to ensure reproducibility across runs. Dependency tests inject controlled faults (e.g., retrieval miss, tool timeout) to verify that the chain remains safe and degrades gracefully. Observability platforms can export failing traces into CI datasets, turning production incidents into regression tests for future prompt revisions \cite{langsmith_eval, mlflow_llm_eval, trulens, phoenix_rag}.
 
-\noindent\textbf{A worked gating recipe.}
-\begin{enumerate}[label=(\roman*)]
-\item \emph{Pre-merge}: run structural/unit tests (template render, JSON Schema validate), static guard checks (injection patterns, PII clauses), and 50--200 deterministic cases for smoke validation \cite{promptfoo}.  
-\item \emph{Post-merge}: evaluate 1--5k examples with judge rubrics (helpfulness, groundedness) plus classical metrics; require paired bootstrap CIs that exclude zero for promotion \cite{koehn2004}.  
-\item \emph{Nightly}: adversarial and fairness suites (toxicity/bias, jailbreaks), contradiction/NLI checks, and slice mining from production traces \cite{gehman2020realtoxicity, crowsPairs2020, bbq2022, phoenix_rag}.  
-\item \emph{Canary}: ramp to 1--10\% sticky traffic with online evaluators; gate on safety incident budgets and latency/cost SLOs; roll back on breach \cite{langsmith_eval, mlflow_llm_eval}.  
+\begin{tcolorbox}[
+  title={\textbf{A Worked Gating Recipe}},
+  colback=teal!5,
+  colframe=teal!40!black,
+  colbacktitle=teal!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{enumerate}[leftmargin=1.5em, itemsep=4pt, topsep=2pt, label=(\roman*)]
+\item \textbf{Pre-merge:} run structural/unit tests (template render, JSON Schema validate), static guard checks (injection patterns, PII clauses), and 50--200 deterministic cases for smoke validation \cite{promptfoo}.  
+\item \textbf{Post-merge:} evaluate 1--5k examples with judge rubrics (helpfulness, groundedness) plus classical metrics; require paired bootstrap CIs that exclude zero for promotion \cite{koehn2004}.  
+\item \textbf{Nightly:} adversarial and fairness suites (toxicity/bias, jailbreaks), contradiction/NLI checks, and slice mining from production traces \cite{gehman2020realtoxicity, crowsPairs2020, bbq2022, phoenix_rag}.  
+\item \textbf{Canary:} ramp to 1--10\% sticky traffic with online evaluators; gate on safety incident budgets and latency/cost SLOs; roll back on breach \cite{langsmith_eval, mlflow_llm_eval}.  
 \end{enumerate}
+\end{tcolorbox}
 
 \noindent\textbf{Common failure modes (and mitigations).}
 (1) \emph{Unversioned prompt edits}: changes are irreproducible; enforce PRs and artifact snapshots.  
@@ -443,15 +477,26 @@ In sum, structured prompt testing elevates prompts from craft to engineering: ve
 
 \subsection{CI/CD for Multi-Agent Systems}
 \label{sec:cicd-multi-agent}
+\begin{tcolorbox}[
+  title={\textbf{CI/CD Extensions for Multi-Agent Systems}},
+  colback=red!5,
+  colframe=red!40!black,
+  colbacktitle=red!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
 Multi-agent systems require CI/CD extensions:
-
-\begin{itemize}
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
     \item \textbf{Workflow Tracing:} Trace interactions step-by-step (LangFuse traces reveal inter-agent failures).
     \item \textbf{Dependency Checks:} Validate contracts (e.g., schema adherence) between agents.
     \item \textbf{Golden Path Scenarios:} Test curated complex tasks requiring multiple cooperating agents.
     \item \textbf{Modular Updates:} Roll out agent updates individually with regression tests on downstream agents.
     \item \textbf{Performance and Cost Monitoring:} Guard against runaway loops, latency, or excessive token usage.
 \end{itemize}
+\end{tcolorbox}
 
 \noindent\textbf{Why multi-agent changes the CI/CD calculus.}
 When an application is decomposed into collaborating agents (planner, retriever, analyst, executor, verifier), the unit of correctness is the \emph{graph}, not an individual call. Each edge in that graph transmits contracts---schemas, pre/post-conditions, and safety guarantees---that must hold even as individual agents evolve. Consequently, CI/CD must include graph-aware testing, graph-level observability, and promotion gates that reason over end-to-end behavior rather than isolated prompts or models \cite{helm2022, langsmith_eval, phoenix_rag}.
@@ -471,14 +516,25 @@ Agents should be upgradable independently, but only behind \emph{interface compa
 \noindent\textbf{Performance and cost governance for graphs.}
 Multi-agent graphs risk \emph{runaway loops} (planner--retriever ping-pong), prompt verbosity cascades, and tool storms that inflate latency and spend. CI should enforce graph-level budgets: maximum steps per request, maximum cumulative tokens, and per-tool call ceilings. Online, error-budget style alerting (e.g., EWMA or CUSUM on loop rate, p95 latency, \$ per 1k tokens) triggers automated rollback or path gating. Observability should attribute costs to nodes and edges, so teams can identify the worst-offending interactions and re-tune prompts or introduce early-exit heuristics \cite{langsmith_eval, mlflow_llm_eval}.
 
-\noindent\textbf{A graph-aware gating recipe (worked example).}
-\begin{enumerate}[label=(\roman*)]
-\item \emph{Record--replay dataset}: Materialize $N$ recent production traces that cover golden paths and risky slices (privacy, safety, long-context). Persist retrieval snapshots and tool outcomes.  
-\item \emph{Node contracts}: Validate schema conformance and safety clauses on every edge; run adversarial inputs from OWASP/ATLAS playbooks on planner and executor boundaries \cite{owasp_llm, mitre_atlas}.  
-\item \emph{Path metrics}: Compute per-path helpfulness and groundedness via model-graded rubrics, calibrated to human anchors; compute retrieval hit rate and citation coverage for RAG steps \cite{trulens, phoenix_rag, ragas}.  
-\item \emph{Statistical gates}: Promote only if (a) path-level groundedness improves with a paired bootstrap 95\% CI excluding 0 and (b) safety incident rate is not worse (McNemar, $\alpha=0.05$), with (c) p95 latency and token budgets within SLOs \cite{koehn2004, mcnemar1947}.  
-\item \emph{Canary by node}: Ramp a single agent (e.g., planner) on 1--10\% sticky traffic while holding others fixed; monitor loop rate and cost per resolved task.  
+\begin{tcolorbox}[
+  title={\textbf{A Graph-Aware Gating Recipe (Worked Example)}},
+  colback=cyan!5,
+  colframe=cyan!40!black,
+  colbacktitle=cyan!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{enumerate}[leftmargin=1.5em, itemsep=4pt, topsep=2pt, label=(\roman*)]
+\item \textbf{Record--replay dataset:} Materialize $N$ recent production traces that cover golden paths and risky slices (privacy, safety, long-context). Persist retrieval snapshots and tool outcomes.  
+\item \textbf{Node contracts:} Validate schema conformance and safety clauses on every edge; run adversarial inputs from OWASP/ATLAS playbooks on planner and executor boundaries \cite{owasp_llm, mitre_atlas}.  
+\item \textbf{Path metrics:} Compute per-path helpfulness and groundedness via model-graded rubrics, calibrated to human anchors; compute retrieval hit rate and citation coverage for RAG steps \cite{trulens, phoenix_rag, ragas}.  
+\item \textbf{Statistical gates:} Promote only if (a) path-level groundedness improves with a paired bootstrap 95\% CI excluding 0 and (b) safety incident rate is not worse (McNemar, $\alpha=0.05$), with (c) p95 latency and token budgets within SLOs \cite{koehn2004, mcnemar1947}.  
+\item \textbf{Canary by node:} Ramp a single agent (e.g., planner) on 1--10\% sticky traffic while holding others fixed; monitor loop rate and cost per resolved task.  
 \end{enumerate}
+\end{tcolorbox}
 
 \noindent\textbf{Common failure modes (and mitigations).}
 (1) \emph{Local fixes, global regressions}: a planner change improves single-step quality but increases loop depth; mitigate with path-level budgets and gates.  
@@ -495,7 +551,18 @@ In summary, multi-agent CI/CD elevates testing and monitoring from \emph{calls} 
 \label{sec:cicd-checklist}
 The following checklist condenses the chapter into a concrete ``definition of done'' for LLM CI/CD. It is intended to be used during design reviews and release readiness reviews.
 
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Practitioner Checklist: Production-Ready LLM CI/CD}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
   \item \textbf{Release unit defined and versioned.} Prompt templates, model IDs (and fine-tune checkpoints where applicable), retrieval index snapshots, tool schemas, and safety policies are versioned and promotable together.
   \item \textbf{Staged evaluation implemented.} Pre-merge smoke suite, post-merge regression gates, nightly adversarial/fairness suite, and canary/shadow online evaluation (Table~\ref{tab:eval_stages}).
   \item \textbf{Safety and security probes included.} Prompt-injection/jailbreak, PII leakage, insecure output handling, and tool-abuse scenarios aligned with OWASP LLM Top-10 and NIST risk guidance \cite{owasp_llm, nist_genai_profile}.
@@ -505,6 +572,7 @@ The following checklist condenses the chapter into a concrete ``definition of do
   \item \textbf{Supply-chain integrity is enforced.} Provenance and signing (SLSA; signed images and attestations) and secretless cloud auth (OIDC) are required before promotion \cite{slsa_about, slsa_levels, sigstore_cosign, cosign_attestations, gha_oidc_concepts, gha_oidc_cloud}.
   \item \textbf{Agent graphs are tested as graphs.} Contract tests on edges, golden-path scenarios, and graph-level budgets (steps, tokens, tool ceilings) are enforced for multi-agent systems.
 \end{itemize}
+\end{tcolorbox}
 
 \printbibliography[
   heading=subbibliography,
