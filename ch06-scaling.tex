@@ -379,17 +379,38 @@ As LLM deployments scale, single-GPU inference often becomes insufficient due to
 \label{sec:scaling-model-parallelism}
 Model parallelism partitions the model across multiple GPUs, with each device storing a portion of the weights and computing its share of the forward pass (and backward pass, if training/fine-tuning). For example, in a 2-way model split, GPU0 might hold transformer layers 1--12 and GPU1 layers 13--24; a request is processed by passing intermediate activations between GPUs after each partition.
 
-\subsubsection{Key Considerations}
-\begin{description}
+\begin{tcolorbox}[
+  title={\textbf{Model Parallelism: Key Considerations}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{description}[leftmargin=2em, itemsep=4pt]
   \item[Interconnect bandwidth:] Effective model parallelism requires high-bandwidth, low-latency interconnects such as NVIDIA NVLink or InfiniBand to avoid communication bottlenecks.
   
   \item[Memory constraints:] It is well-suited for extremely large models that cannot fit into a single GPU's memory, even with techniques like quantization or offloading.
   
   \item[Hybrid strategies:] In practice, model parallelism is often combined with tensor or pipeline parallelism (forming a ``3D parallel'' strategy) for very large-scale deployments (multi-billion-parameter models on GPU clusters).
 \end{description}
+\end{tcolorbox}
 
-\subsubsection{Best Practices}
-\begin{description}
+\begin{tcolorbox}[
+  title={\textbf{Model Parallelism: Best Practices}},
+  colback=green!5,
+  colframe=green!40!black,
+  colbacktitle=green!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{description}[leftmargin=2em, itemsep=4pt]
   \item[Partition boundaries:] Partition at natural boundaries (e.g., whole transformer layers) to minimize cross-GPU communication.
   
   \item[GPU placement:] Co-locate GPUs on the same server or NVSwitch domain to reduce network hops.
@@ -398,6 +419,7 @@ Model parallelism partitions the model across multiple GPUs, with each device st
   
   \item[Automated tools:] Recent research has produced automated tools for planning partitions. For example, Pope et al. (2023) proposed \textit{ExeGPT}, which analytically selects optimal combinations of data, tensor, and pipeline parallelism under a latency target \cite{pope2023exegpt}. Similarly, Helix (OSDI 2023) formulates partitioning across heterogeneous GPU clusters as a max-flow optimization problem, balancing compute and network bandwidth \cite{helix2023}.
 \end{description}
+\end{tcolorbox}
 
 \subsection{Tensor Parallelism}
 \label{sec:scaling-tensor-parallelism}
