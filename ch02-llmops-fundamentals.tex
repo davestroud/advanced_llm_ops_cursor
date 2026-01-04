@@ -236,10 +236,22 @@ Sampling temperature $\tau$ is a decoding hyperparameter that rescales the model
 \end{figure}
 
 % ------------------ Capacity Planning Sidebar ------------------
-\begin{tcolorbox}[title={Capacity Planning: A100/H100 Quick Rules}, colback=gray!5, colframe=gray!50, breakable, width=\textwidth, fonttitle=\small]
+\begin{tcolorbox}[
+  title={\textbf{Capacity Planning: A100/H100 Quick Rules}},
+  colback=gray!5,
+  colframe=gray!50!black,
+  colbacktitle=gray!20,
+  coltitle=black,
+  fonttitle=\bfseries\small,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=4mm, right=4mm, top=3mm, bottom=3mm,
+  breakable
+]
 \small
-\textbf{GPU memory budgets (inference):}
+\noindent\textbf{GPU memory budgets (inference):}
 \begin{center}
+\setlength{\tabcolsep}{5pt}
 \begin{tabular}{lcc}
 \toprule
 Device & HBM (GB) & Notes \\
@@ -251,8 +263,9 @@ NVIDIA H100 & 80     & Higher throughput; FP8/INT8 common \\
 \end{center}
 
 \medskip
-\textbf{Rule-of-thumb parameter memory (FP16):}
+\noindent\textbf{Rule-of-thumb parameter memory (FP16):}
 \begin{center}
+\setlength{\tabcolsep}{5pt}
 \begin{tabular}{lrr}
 \toprule
 Model & Params $P$ & $M_{\text{params}}$ (GB) \\
@@ -266,27 +279,23 @@ Model & Params $P$ & $M_{\text{params}}$ (GB) \\
 \end{center}
 
 \medskip
-\textbf{KV-cache sizing examples (FP16, Eq.~\ref{eq:kv-cache}):}
-\begin{itemize}
-\item \textbf{7B-like} ($L{=}32,\,d{=}4096$): coefficient $\approx \num{524288}$ bytes per token per batch.\\
-$B{=}8,\,T{=}2048 \Rightarrow M_{\text{KV}}\!\approx\!\SI{8}{\gibi\byte}$;\quad
-$B{=}8,\,T{=}8192 \Rightarrow \SI{32}{\gibi\byte}$.
-\item \textbf{13B-like} ($L{=}40,\,d{=}5120$): coefficient $\approx \num{819200}$ bytes per token per batch.\\
-$B{=}4,\,T{=}4096 \Rightarrow \approx \SI{12.5}{\gibi\byte}$;\quad
-$B{=}8,\,T{=}8192 \Rightarrow \approx \SI{50}{\gibi\byte}$.
+\noindent\textbf{KV-cache sizing examples (FP16, Eq.~\ref{eq:kv-cache}):}
+\begin{itemize}[leftmargin=1.2em, itemsep=2pt]
+\item \textbf{7B-like} ($L{=}32$, $d{=}4096$): coefficient $\approx \num{524288}$ bytes per token per batch. For $B{=}8$, $T{=}2048$: $M_{\text{KV}}\approx$\SI{8}{\gibi\byte}; for $B{=}8$, $T{=}8192$: \SI{32}{\gibi\byte}.
+\item \textbf{13B-like} ($L{=}40$, $d{=}5120$): coefficient $\approx \num{819200}$ bytes per token per batch. For $B{=}4$, $T{=}4096$: $\approx$\SI{12.5}{\gibi\byte}; for $B{=}8$, $T{=}8192$: $\approx$\SI{50}{\gibi\byte}.
 \end{itemize}
 
 \medskip
-\textbf{Fit heuristics (single GPU, FP16):}
-\begin{itemize}
-\item \textbf{A100-40GB:} 7B fits with moderate $B{\times}T$ (e.g., $B{=}8, T{=}2048$ $\Rightarrow$ $\sim$14+8=\SI{22}{\gibi\byte}$); 13B fits only with conservative $B{\times}T$ (e.g., $B{=}4, T{=}4096$ $\Rightarrow$ $\sim$26+12.5$=\SI{38.5}{\gibi\byte}$, tight). 70B+ requires tensor parallelism.
-\item \textbf{A100/H100-80GB:} 7B/13B allow larger $B{\times}T$ (e.g., 13B with $B{=}8, T{=}8192$ $\Rightarrow$ $\sim$26+50=\SI{76}{\gibi\byte}). 70B+ still needs multi-GPU sharding.
+\noindent\textbf{Fit heuristics (single GPU, FP16):}
+\begin{itemize}[leftmargin=1.2em, itemsep=2pt]
+\item \textbf{A100-40GB:} 7B fits with moderate $B{\times}T$ (e.g., $B{=}8$, $T{=}2048$ $\Rightarrow$ $\sim$14+8$=$\SI{22}{\gibi\byte}); 13B fits only with conservative $B{\times}T$ (e.g., $B{=}4$, $T{=}4096$ $\Rightarrow$ $\sim$26+12.5$=$\SI{38.5}{\gibi\byte}, tight). 70B+ requires tensor parallelism.
+\item \textbf{A100/H100-80GB:} 7B/13B allow larger $B{\times}T$ (e.g., 13B with $B{=}8$, $T{=}8192$ $\Rightarrow$ $\sim$26+50$=$\SI{76}{\gibi\byte}). 70B+ still needs multi-GPU sharding.
 \end{itemize}
 
 \medskip
-\textbf{Ops recommendations:}
-\begin{itemize}
-\item Reserve \(\mathbf{10\%{-}20\%}\) headroom for fragmentation/overheads.
+\noindent\textbf{Ops recommendations:}
+\begin{itemize}[leftmargin=1.2em, itemsep=2pt]
+\item Reserve 10\%--20\% headroom for fragmentation/overheads.
 \item Use quantized weights (INT8/FP8) to halve or better the parameter footprint.
 \item Employ paged attention and sequence batching; monitor $B{\times}T$ against Eq.~\ref{eq:kv-cache}.
 \item For 70B+, plan tensor/pipeline parallelism; co-tune batcher to avoid KV spills.
