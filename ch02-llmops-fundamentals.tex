@@ -279,8 +279,7 @@ $B{=}8,\,T{=}8192 \Rightarrow \approx \SI{50}{\gibi\byte}$.
 \medskip
 \textbf{Fit heuristics (single GPU, FP16):}
 \begin{itemize}
-\item \textbf{A100-40GB:} 7B fits with moderate $B{\times}T$ (e.g., $B{=}8, T{=}2048$ $\Rightarrow$ $\sim$14+8=\SI{22}{\gibi\byte}$); 13B fits only with conservative $B{\times}T$ (e.g., $B{=}4, T{=}4096$ $\Rightarrow$ $\sim$26+12.5=\SI{38.5}{\gibi\byte}$, tight).\\
-70B+ requires tensor parallelism.
+\item \textbf{A100-40GB:} 7B fits with moderate $B{\times}T$ (e.g., $B{=}8, T{=}2048$ $\Rightarrow$ $\sim$14+8=\SI{22}{\gibi\byte}$); 13B fits only with conservative $B{\times}T$ (e.g., $B{=}4, T{=}4096$ $\Rightarrow$ $\sim$26+12.5$=\SI{38.5}{\gibi\byte}$, tight). 70B+ requires tensor parallelism.
 \item \textbf{A100/H100-80GB:} 7B/13B allow larger $B{\times}T$ (e.g., 13B with $B{=}8, T{=}8192$ $\Rightarrow$ $\sim$26+50=\SI{76}{\gibi\byte}). 70B+ still needs multi-GPU sharding.
 \end{itemize}
 
