@@ -379,9 +379,23 @@ As LLM deployments scale, single-GPU inference often becomes insufficient due to
 \label{sec:scaling-model-parallelism}
 Model parallelism partitions the model across multiple GPUs, with each device storing a portion of the weights and computing its share of the forward pass (and backward pass, if training/fine-tuning). For example, in a 2-way model split, GPU0 might hold transformer layers 1--12 and GPU1 layers 13--24; a request is processed by passing intermediate activations between GPUs after each partition.
 
-\subsubsection{Key Considerations} Effective model parallelism requires high-bandwidth, low-latency interconnects such as NVIDIA NVLink or InfiniBand to avoid communication bottlenecks. It is well-suited for extremely large models that cannot fit into a single GPU’s memory, even with techniques like quantization or offloading. In practice, model parallelism is often combined with tensor or pipeline parallelism (forming a ``3D parallel'' strategy) for very large-scale deployments (multi-billion-parameter models on GPU clusters).
+\subsubsection{Key Considerations}
+\begin{description}
+  \item[Interconnect bandwidth:] Effective model parallelism requires high-bandwidth, low-latency interconnects such as NVIDIA NVLink or InfiniBand to avoid communication bottlenecks.
+  
+  \item[Memory constraints:] It is well-suited for extremely large models that cannot fit into a single GPU's memory, even with techniques like quantization or offloading.
+  
+  \item[Hybrid strategies:] In practice, model parallelism is often combined with tensor or pipeline parallelism (forming a ``3D parallel'' strategy) for very large-scale deployments (multi-billion-parameter models on GPU clusters).
+\end{description}
 
-\subsubsection{Best Practices} Partition at natural boundaries (e.g., whole transformer layers) to minimize cross-GPU communication. Co-locate GPUs on the same server or NVSwitch domain to reduce network hops. Ensure each GPU’s memory is fully utilized; imbalance leads to idle capacity.
+\subsubsection{Best Practices}
+\begin{description}
+  \item[Partition boundaries:] Partition at natural boundaries (e.g., whole transformer layers) to minimize cross-GPU communication.
+  
+  \item[GPU placement:] Co-locate GPUs on the same server or NVSwitch domain to reduce network hops.
+  
+  \item[Memory utilization:] Ensure each GPU's memory is fully utilized; imbalance leads to idle capacity.
+\end{description}
 
 Recent research has produced automated tools for planning partitions. For example, Pope et al. (2023) proposed \textit{ExeGPT}, which analytically selects optimal combinations of data, tensor, and pipeline parallelism under a latency target \cite{pope2023exegpt}. Similarly, Helix (OSDI 2023) formulates partitioning across heterogeneous GPU clusters as a max-flow optimization problem, balancing compute and network bandwidth \cite{helix2023}.
 
@@ -389,9 +403,25 @@ Recent research has produced automated tools for planning partitions. For exampl
 \label{sec:scaling-tensor-parallelism}
 Tensor parallelism divides the computation within a layer---especially large matrix multiplies in attention and feed-forward networks---across multiple GPUs. Each GPU owns a slice of the weight matrices and processes a slice of the incoming data in parallel; partial results are then combined via all-reduce collectives.
 
-\subsubsection{Key Considerations} Tensor parallelism is useful when individual layers are too large for a single GPU, or when per-layer throughput must be increased. Communication overhead is significant, since every matmul requires synchronization. High-speed links (NVLink, InfiniBand) and efficient libraries like NCCL are essential.
+\subsubsection{Key Considerations}
+\begin{description}
+  \item[Use cases:] Tensor parallelism is useful when individual layers are too large for a single GPU, or when per-layer throughput must be increased.
+  
+  \item[Communication overhead:] Communication overhead is significant, since every matmul requires synchronization.
+  
+  \item[Hardware and libraries:] High-speed links (NVLink, InfiniBand) and efficient libraries like NCCL are essential.
+\end{description}
 
-\subsubsection{Best Practices} Balance tensor slices so all GPUs finish concurrently. Use optimized collectives (e.g., ring all-reduce). Monitor communication overhead---over PCIe-only clusters, scaling often stalls. Tensor parallelism excels for very wide transformer layers, as in Megatron-LM:\cite{vaswani2017_attention,vllm_pagedattention}.
+\subsubsection{Best Practices}
+\begin{description}
+  \item[Load balancing:] Balance tensor slices so all GPUs finish concurrently.
+  
+  \item[Collective operations:] Use optimized collectives (e.g., ring all-reduce).
+  
+  \item[Monitoring:] Monitor communication overhead---over PCIe-only clusters, scaling often stalls.
+  
+  \item[Wide layers:] Tensor parallelism excels for very wide transformer layers, as in Megatron-LM \cite{vaswani2017_attention,vllm_pagedattention}.
+\end{description}
 
 \subsection{Pipeline Parallelism}
 \label{sec:scaling-pipeline-parallelism}
