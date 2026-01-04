@@ -104,39 +104,39 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.4}Case in \ishtar  {}}{181}{subsubsection.6.6.2.4}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Metrics-based target tracking. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma $ by adjusting replicas $N(t)$.}}{182}{figure.6.3}\protected@file@percent }
 \newlabel{fig:autoscale-target-tracking}{{6.3}{182}{Metrics-based target tracking. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma $ by adjusting replicas $N(t)$}{figure.6.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.7}Caching for Scale}{182}{section.6.7}\protected@file@percent }
-\newlabel{sec:caching}{{6.7}{182}{Caching for Scale}{section.6.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Event-based autoscaling with predictive pre-warming. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph  {before} demand spikes arrive, leveraging calendar events or scheduled triggers. This eliminates cold-start latency and ensures capacity is ready when needed.}}{183}{figure.6.4}\protected@file@percent }
 \newlabel{fig:autoscale-event-based}{{6.4}{183}{Event-based autoscaling with predictive pre-warming. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph {before} demand spikes arrive, leveraging calendar events or scheduled triggers. This eliminates cold-start latency and ensures capacity is ready when needed}{figure.6.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.7}Caching for Scale}{183}{section.6.7}\protected@file@percent }
+\newlabel{sec:caching}{{6.7}{183}{Caching for Scale}{section.6.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.7.1}Response Caching}{183}{subsection.6.7.1}\protected@file@percent }
 \newlabel{sec:scaling-response-caching}{{6.7.1}{183}{Response Caching}{subsection.6.7.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.1}Key considerations}{183}{subsubsection.6.7.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.2}Optimizations}{183}{subsubsection.6.7.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.1}Key considerations}{184}{subsubsection.6.7.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.2}Optimizations}{184}{subsubsection.6.7.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.3}Notes and context}{184}{subsubsection.6.7.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.4}Case in \ishtar  {}}{184}{subsubsection.6.7.1.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.7.2}Embedding Caching}{184}{subsection.6.7.2}\protected@file@percent }
 \newlabel{sec:scaling-embedding-caching}{{6.7.2}{184}{Embedding Caching}{subsection.6.7.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.1}Key considerations}{184}{subsubsection.6.7.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.2}Optimizations}{184}{subsubsection.6.7.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.1}Key considerations}{185}{subsubsection.6.7.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.2}Optimizations}{185}{subsubsection.6.7.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.3}Notes and context}{185}{subsubsection.6.7.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.4}Case in \ishtar  {}}{185}{subsubsection.6.7.2.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Cache flow diagrams. \textbf  {(a)} Response caching short-circuits identical requests; keys include query, model version, and decoding parameters. \textbf  {(b)} Embedding caching avoids redundant encoder passes for repeated chunks; keys hash content + embedding model identity.}}{185}{figure.6.5}\protected@file@percent }
-\newlabel{fig:caching-flow}{{6.5}{185}{Cache flow diagrams. \textbf {(a)} Response caching short-circuits identical requests; keys include query, model version, and decoding parameters. \textbf {(b)} Embedding caching avoids redundant encoder passes for repeated chunks; keys hash content + embedding model identity}{figure.6.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.8}Cost-Aware Scaling}{185}{section.6.8}\protected@file@percent }
-\newlabel{sec:cost-aware-scaling}{{6.8}{185}{Cost-Aware Scaling}{section.6.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Cache flow diagrams. \textbf  {(a)} Response caching short-circuits identical requests; keys include query, model version, and decoding parameters. \textbf  {(b)} Embedding caching avoids redundant encoder passes for repeated chunks; keys hash content + embedding model identity.}}{186}{figure.6.5}\protected@file@percent }
+\newlabel{fig:caching-flow}{{6.5}{186}{Cache flow diagrams. \textbf {(a)} Response caching short-circuits identical requests; keys include query, model version, and decoding parameters. \textbf {(b)} Embedding caching avoids redundant encoder passes for repeated chunks; keys hash content + embedding model identity}{figure.6.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.8}Cost-Aware Scaling}{186}{section.6.8}\protected@file@percent }
+\newlabel{sec:cost-aware-scaling}{{6.8}{186}{Cost-Aware Scaling}{section.6.8}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.1}Mix instance types}{186}{subsubsection.6.8.0.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.2}Spot/preemptible capacity}{186}{subsubsection.6.8.0.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.3}Autoscale down aggressively}{186}{subsubsection.6.8.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.4}Batching for cost}{186}{subsubsection.6.8.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.3}Autoscale down aggressively}{187}{subsubsection.6.8.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.4}Batching for cost}{187}{subsubsection.6.8.0.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.5}Multi-model serving and routing}{187}{subsubsection.6.8.0.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.6}Throughput-oriented R\&D}{187}{subsubsection.6.8.0.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.7}Case in \ishtar  {}}{187}{subsubsection.6.8.0.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.8}Automated cost planners}{187}{subsubsection.6.8.0.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.8}Automated cost planners}{188}{subsubsection.6.8.0.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6.9}Scaling Retrieval-Augmented Generation (RAG)}{188}{section.6.9}\protected@file@percent }
 \newlabel{sec:scaling-rag}{{6.9}{188}{Scaling Retrieval-Augmented Generation (RAG)}{section.6.9}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.1}Index sharding}{188}{subsubsection.6.9.0.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.2}Approximate nearest neighbor (ANN) search}{188}{subsubsection.6.9.0.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.3}Hot tiers and in-memory caches}{188}{subsubsection.6.9.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.3}Hot tiers and in-memory caches}{189}{subsubsection.6.9.0.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.4}Overlap retrieval with generation}{189}{subsubsection.6.9.0.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.5}Recent directions}{189}{subsubsection.6.9.0.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.6}Case in \ishtar  {}}{189}{subsubsection.6.9.0.6}\protected@file@percent }
@@ -144,29 +144,29 @@
 \newlabel{fig:rag-two-tier}{{6.6}{190}{Two-tier RAG scaling. A router first probes a \emph {hot} in-memory/GPU tier; on miss, it falls back to a \emph {distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator}{figure.6.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6.10}Geographic Scaling}{190}{section.6.10}\protected@file@percent }
 \newlabel{sec:geo-scaling}{{6.10}{190}{Geographic Scaling}{section.6.10}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.1}Latency and compliance benefits}{190}{subsubsection.6.10.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.1}Latency and compliance benefits}{191}{subsubsection.6.10.0.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.2}Model placement strategies}{191}{subsubsection.6.10.0.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.3}Consistency, versioning, and caches}{191}{subsubsection.6.10.0.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.4}Traffic routing and failover}{191}{subsubsection.6.10.0.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.5}Data compliance controls}{191}{subsubsection.6.10.0.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.6}Edge acceleration vs.\ full serving}{191}{subsubsection.6.10.0.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.7}Decentralized precedent (Petals)}{191}{subsubsection.6.10.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.7}Decentralized precedent (Petals)}{192}{subsubsection.6.10.0.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.8}Industrial practice}{192}{subsubsection.6.10.0.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.9}Networking and future directions}{192}{subsubsection.6.10.0.9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Geographic scaling schematic. Users are routed to the nearest regional cluster (NA/EU/APAC) for latency and data residency; dashed links illustrate failover/overflow between regions.}}{192}{figure.6.7}\protected@file@percent }
-\newlabel{fig:geo-scaling-inset}{{6.7}{192}{Geographic scaling schematic. Users are routed to the nearest regional cluster (NA/EU/APAC) for latency and data residency; dashed links illustrate failover/overflow between regions}{figure.6.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.11}Case Study: Scaling Ishtar AI}{193}{section.6.11}\protected@file@percent }
-\newlabel{sec:scaling-ishtar-case-study}{{6.11}{193}{Case Study: Scaling Ishtar AI}{section.6.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.11}Case Study: Scaling Ishtar AI}{192}{section.6.11}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-case-study}{{6.11}{192}{Case Study: Scaling Ishtar AI}{section.6.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Geographic scaling schematic. Users are routed to the nearest regional cluster (NA/EU/APAC) for latency and data residency; dashed links illustrate failover/overflow between regions.}}{193}{figure.6.7}\protected@file@percent }
+\newlabel{fig:geo-scaling-inset}{{6.7}{193}{Geographic scaling schematic. Users are routed to the nearest regional cluster (NA/EU/APAC) for latency and data residency; dashed links illustrate failover/overflow between regions}{figure.6.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.11.1}Initial State}{193}{subsection.6.11.1}\protected@file@percent }
 \newlabel{sec:scaling-ishtar-initial}{{6.11.1}{193}{Initial State}{subsection.6.11.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.11.2}Intermediate Stage}{193}{subsection.6.11.2}\protected@file@percent }
 \newlabel{sec:scaling-ishtar-intermediate}{{6.11.2}{193}{Intermediate Stage}{subsection.6.11.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.11.3}Mature Stage}{194}{subsection.6.11.3}\protected@file@percent }
 \newlabel{sec:scaling-ishtar-mature}{{6.11.3}{194}{Mature Stage}{subsection.6.11.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces \ishtar  {} scaling timeline. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling.}}{194}{figure.6.8}\protected@file@percent }
-\newlabel{fig:ishtar-timeline}{{6.8}{194}{\ishtar {} scaling timeline. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling}{figure.6.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.12}Best Practices Checklist}{195}{section.6.12}\protected@file@percent }
-\newlabel{sec:scaling-best-practices}{{6.12}{195}{Best Practices Checklist}{section.6.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.12}Best Practices Checklist}{194}{section.6.12}\protected@file@percent }
+\newlabel{sec:scaling-best-practices}{{6.12}{194}{Best Practices Checklist}{section.6.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces \ishtar  {} scaling timeline. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling.}}{195}{figure.6.8}\protected@file@percent }
+\newlabel{fig:ishtar-timeline}{{6.8}{195}{\ishtar {} scaling timeline. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling}{figure.6.8}{}}
 \@setckpt{ch06-scaling}{
 \setcounter{page}{197}
 \setcounter{equation}{0}
@@ -216,7 +216,7 @@
 \setcounter{r@tfl@t}{1}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{38}
+\setcounter{tcolorbox@number}{39}
 \setcounter{tcbrastercolumn}{1}
 \setcounter{tcbrasterrow}{1}
 \setcounter{tcbrasternum}{1}

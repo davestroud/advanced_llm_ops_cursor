@@ -737,15 +737,32 @@ In news-oriented LLM deployments, this includes scheduled press briefings, elect
 \subsubsection{Case in \ishtar{}}
 By integrating the newsroom editorial calendar with its autoscaler, \ishtar{} increased replicas by $+80\%$ ten minutes before high-profile briefings. This ensured sub-300\,ms p95 TTFT without overshooting capacity during the rest of the day.
 
-\medskip
-\noindent\textit{Operational notes.} Metrics-based policies are reactive by nature. Event-based autoscaling anticipates load changes and is critical when cold starts are long or spikes are predictable. Examples include:
-\begin{itemize}
-  \item \emph{Time-of-day schedules:} scale at 08{:}50 for a 09{:}00 daily peak.
-  \item \emph{Launches/releases:} pre-provision at known drop times (content, product, or news).
-  \item \emph{Social signals:} triggers from trending topics.
-  \item \emph{Manual/API triggers:} SRE-initiated scale-ups on anomalies.
+\begin{tcolorbox}[
+  title={\textbf{Event-Based Autoscaling: Operational Notes}},
+  colback=orange!5,
+  colframe=orange!40!black,
+  colbacktitle=orange!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+Metrics-based policies are reactive by nature. Event-based autoscaling anticipates load changes and is critical when cold starts are long or spikes are predictable. Examples include:
+
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item \textbf{Time-of-day schedules:} scale at 08{:}50 for a 09{:}00 daily peak.
+  
+  \item \textbf{Launches/releases:} pre-provision at known drop times (content, product, or news).
+  
+  \item \textbf{Social signals:} triggers from trending topics.
+  
+  \item \textbf{Manual/API triggers:} SRE-initiated scale-ups on anomalies.
 \end{itemize}
+
+\medskip
 Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming and snapshot/restore help, but warm instances are still faster. Emerging systems (e.g., LLMKnob) use dynamic policies to co-tune scheduling and scaling, packing requests to reduce over-provisioning by 20--40\% at the same latency targets \cite{pope2023exegpt, helix2023}.
+\end{tcolorbox}
 
 \medskip
 \noindent\textbf{Summary.} Autoscaling an LLM deployment is a delicate balance: react quickly enough to maintain SLOs, avoid oscillations and unnecessary cost, and anticipate cold starts. Combining reactive metrics with proactive event signals is state of the art. In our \ishtar{} deployment, the hybrid approach (load forecasts + calendar events) enabled rapid yet stable scale-outs (6 to 28 GPU replicas in under 2 minutes) without breaching latency targets.
