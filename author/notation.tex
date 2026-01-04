@@ -34,7 +34,7 @@ This section defines the mathematical notation, variables, and symbols used thro
 \item[$B$] Batch size or batch set
 \item[$Q$] Queue length
 \item[$U$] GPU utilization
-\item[$W_q$] Queueing delay
+\item[$W_{q}$] Queueing delay
 \item[$M_{\text{KV}}$] Key-value cache memory (bytes)
 \item[$M_{\text{params}}$] Parameter memory (bytes)
 \item[$M_{\text{act}}$] Activation memory (bytes)
@@ -55,12 +55,12 @@ This section defines the mathematical notation, variables, and symbols used thro
 \item[$k$] Draft tokens, number of shards, or top-$k$ parameter
 \item[$r$] Top-$r$ acceptance threshold
 \item[$q$] Draft-target match probability
-\item[$v_d, v_T$] Draft and target model speeds
+\item[$v_{d}$, $v_{T}$] Draft and target model speeds
 \item[$p$] Probability, or top-$p$ nucleus sampling parameter
-\item[$p_d, p_T$] Draft and target model probability distributions
+\item[$p_{d}$, $p_{T}$] Draft and target model probability distributions
 \item[$d$] Hidden dimension size
-\item[$d_h$] Per-head dimension in multi-head attention
-\item[$d_{\text{model}}$] Model dimension ($= H \cdot d_h$)
+\item[$d_{h}$] Per-head dimension in multi-head attention
+\item[$d_{\text{model}}$] Model dimension ($= H \cdot d_{h}$)
 \item[$d_{\text{ff}}$] Feed-forward network inner dimension
 \item[$b$] Bytes per weight or element (e.g., FP16: $b=2$, INT8: $b=1$)
 \item[$t$] Time step or index
@@ -68,7 +68,7 @@ This section defines the mathematical notation, variables, and symbols used thro
 \item[$n$] Number or count
 \item[$\ell$] Length (e.g., $\ell_{\text{prompt}}$, $\ell_{\text{decode}}$)
 \item[$N_{\text{out}}$] Number of output tokens
-\item[$N_0$] Initial sequence length (prompt length)
+\item[$N_{0}$] Initial sequence length (prompt length)
 \end{description}
 
 \section*{Operators and Functions}
@@ -83,7 +83,7 @@ This section defines the mathematical notation, variables, and symbols used thro
 \item[$\min(\cdot)$] Minimum function
 \item[$\max(\cdot)$] Maximum function
 \item[$\text{clip}(\cdot)$] Clipping function (bounding values)
-\item[$\text{EMA}_\eta(\cdot)$] Exponential moving average with smoothing parameter $\eta$
+\item[$\text{EMA}_{\eta}(\cdot)$] Exponential moving average with smoothing parameter $\eta$
 \end{description}
 
 \section*{Performance Metrics and Abbreviations}
@@ -117,8 +117,8 @@ This section defines the mathematical notation, variables, and symbols used thro
 \item[$\mathbb{E}[\ell_{\text{prompt}}]$] Expected prompt length
 \item[$\mathbb{E}[\ell_{\text{decode}}]$] Expected decode length
 \item[$M_{\text{KV}}/M_{\max}$] KV cache pressure ratio
-\item[$v_d/v_T$] Draft-to-target speed ratio
-\item[$H \cdot d_h$] Total hidden dimension (heads $\times$ per-head dimension)
+\item[$v_{d}/v_{T}$] Draft-to-target speed ratio
+\item[$H \cdot d_{h}$] Total hidden dimension (heads $\times$ per-head dimension)
 \item[$B \times T$] Batch size times sequence length (memory scaling factor)
 \end{description}
 
