@@ -390,13 +390,13 @@ Model parallelism partitions the model across multiple GPUs, with each device st
   arc=4pt,
   left=5mm, right=5mm, top=4mm, bottom=4mm
 ]
-\begin{description}[leftmargin=2em, itemsep=4pt]
-  \item[Interconnect bandwidth:] Effective model parallelism requires high-bandwidth, low-latency interconnects such as NVIDIA NVLink or InfiniBand to avoid communication bottlenecks.
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item \textbf{Interconnect bandwidth:} Effective model parallelism requires high-bandwidth, low-latency interconnects such as NVIDIA NVLink or InfiniBand to avoid communication bottlenecks.
   
-  \item[Memory constraints:] It is well-suited for extremely large models that cannot fit into a single GPU's memory, even with techniques like quantization or offloading.
+  \item \textbf{Memory constraints:} It is well-suited for extremely large models that cannot fit into a single GPU's memory, even with techniques like quantization or offloading.
   
-  \item[Hybrid strategies:] In practice, model parallelism is often combined with tensor or pipeline parallelism (forming a ``3D parallel'' strategy) for very large-scale deployments (multi-billion-parameter models on GPU clusters).
-\end{description}
+  \item \textbf{Hybrid strategies:} In practice, model parallelism is often combined with tensor or pipeline parallelism (forming a ``3D parallel'' strategy) for very large-scale deployments (multi-billion-parameter models on GPU clusters).
+\end{itemize}
 \end{tcolorbox}
 
 \begin{tcolorbox}[
@@ -410,15 +410,15 @@ Model parallelism partitions the model across multiple GPUs, with each device st
   arc=4pt,
   left=5mm, right=5mm, top=4mm, bottom=4mm
 ]
-\begin{description}[leftmargin=2em, itemsep=4pt]
-  \item[Partition boundaries:] Partition at natural boundaries (e.g., whole transformer layers) to minimize cross-GPU communication.
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item \textbf{Partition boundaries:} Partition at natural boundaries (e.g., whole transformer layers) to minimize cross-GPU communication.
   
-  \item[GPU placement:] Co-locate GPUs on the same server or NVSwitch domain to reduce network hops.
+  \item \textbf{GPU placement:} Co-locate GPUs on the same server or NVSwitch domain to reduce network hops.
   
-  \item[Memory utilization:] Ensure each GPU's memory is fully utilized; imbalance leads to idle capacity.
+  \item \textbf{Memory utilization:} Ensure each GPU's memory is fully utilized; imbalance leads to idle capacity.
   
-  \item[Automated tools:] Recent research has produced automated tools for planning partitions. For example, Pope et al. (2023) proposed \textit{ExeGPT}, which analytically selects optimal combinations of data, tensor, and pipeline parallelism under a latency target \cite{pope2023exegpt}. Similarly, Helix (OSDI 2023) formulates partitioning across heterogeneous GPU clusters as a max-flow optimization problem, balancing compute and network bandwidth \cite{helix2023}.
-\end{description}
+  \item \textbf{Automated tools:} Recent research has produced automated tools for planning partitions. For example, Pope et al. (2023) proposed \textit{ExeGPT}, which analytically selects optimal combinations of data, tensor, and pipeline parallelism under a latency target \cite{pope2023exegpt}. Similarly, Helix (OSDI 2023) formulates partitioning across heterogeneous GPU clusters as a max-flow optimization problem, balancing compute and network bandwidth \cite{helix2023}.
+\end{itemize}
 \end{tcolorbox}
 
 \subsection{Tensor Parallelism}
