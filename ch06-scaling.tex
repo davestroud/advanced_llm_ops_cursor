@@ -684,17 +684,31 @@ Bin-pack requests by expected prompt+decode tokens onto GPU types (e.g., H100 fo
 \subsubsection{Case in \ishtar{}}
 \ishtar{} uses target-tracking autoscaling with $\gamma=0.7$ and predictive pre-warm from newsroom calendars. During major events it scaled from 6 to 28 replicas in $<\!90$\,s while holding p95 TTFT under 300\,ms; scale-in waited for queue-empty and KV-drain signals to avoid churn.
 
-\medskip
-\noindent\textit{Alternative presentation (equivalent policy).} The same logic can be expressed as a practical recipe:
-
-\begin{itemize}
+\begin{tcolorbox}[
+  title={\textbf{Metrics-Based Autoscaling: Practical Recipe}},
+  colback=teal!5,
+  colframe=teal!40!black,
+  colbacktitle=teal!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
   \item \textbf{Signals:} Load ($\lambda$ and moving averages of $\mathbb{E}[\ell_{\text{prompt}}],\ \mathbb{E}[\ell_{\text{decode}}]$), Capacity ($\hat{\Theta}$ tokens/s per GPU), Utilization/Queueing ($U, W_q, Q$), and KV pressure.
+  
   \item \textbf{Token demand over 30\,s:} $\text{TokenDemand}_{30\text{s}}\approx \lambda\times(\mathbb{E}[\ell_{\text{prompt}}]+\mathbb{E}[\ell_{\text{decode}}])\times 30$.
+  
   \item \textbf{Replica need:} $N^*=\left\lceil \frac{(\text{TokenDemand}_{30\text{s}}/30)}{\omega\,\hat{\Theta}}\right\rceil$, with headroom $\omega\simeq 0.7$.
+  
   \item \textbf{Stability:} EMA smoothing, min/max bounds, and asymmetric cooldowns (scale-in slower than scale-out).
+  
   \item \textbf{Cold starts:} Mitigate with predictive or event-based pre-warm. (Purely reactive scalers lag when model load time is tens of seconds.)
+  
   \item \textbf{Cost:} Bin-pack by request size/hardware; exploit spot capacity with checkpointable KV (e.g., SpotServe resumes on eviction) \cite{pope2023exegpt}.
 \end{itemize}
+\end{tcolorbox}
 
 \subsection{Event-Based Autoscaling}
 \label{sec:scaling-event-autoscaling}
