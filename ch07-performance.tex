@@ -157,7 +157,7 @@ In modern LLMOps, 8-bit quantization is widely adopted for inference, and resear
 \centering
 \caption{Comparison of common quantization schemes for large language models.}
 \label{tab:quantization-comparison}
-\setlength{\tabcolsep}{6pt}
+\setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\textwidth}{@{}l
                                     p{2.6cm}
                                     p{2.3cm}
@@ -329,15 +329,15 @@ Low to moderate; can affect long-context fidelity. &
 \centering
 \caption{Approximate parameter memory vs.\ precision for 13B and 70B models (weights only).}
 \label{tab:mem-vs-precision}
-\setlength{\tabcolsep}{6pt}
+\setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
 \small
 \begin{tabularx}{\textwidth}{@{}l
-  >{\raggedleft\arraybackslash}p{2cm}
-  >{\raggedleft\arraybackslash}p{2.6cm}
-  >{\raggedleft\arraybackslash}p{2.6cm}
-  >{\raggedleft\arraybackslash}p{2.6cm}
-  X
+  >{\raggedleft\arraybackslash}p{1.8cm}
+  >{\raggedleft\arraybackslash}p{2.3cm}
+  >{\raggedleft\arraybackslash}p{2.3cm}
+  >{\raggedleft\arraybackslash}p{2.3cm}
+  >{\raggedright\arraybackslash}p{2.5cm}
 @{}}
 \toprule
 \textbf{Model} & \textbf{Params} & \textbf{FP16 (2\,B/param)} & \textbf{INT8 / FP8 (1\,B/param)} & \textbf{4-bit (0.5\,B/param)} & \textbf{Typical GPU fit (weights-only)} \\
@@ -402,7 +402,7 @@ PagedAttention is especially valuable in use cases like \ishtar{} if they need t
 \centering
 \caption{Illustrative inference engine benchmarks (single GPU). Values are representative examples based on typical production deployments; actual performance depends on model size, hardware configuration, and workload characteristics.}
 \label{tab:engine-bench}
-\setlength{\tabcolsep}{6pt}
+\setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
 \begin{tabularx}{\textwidth}{@{}l
   >{\raggedleft\arraybackslash}p{2.1cm}
@@ -619,7 +619,7 @@ In \ishtar{}’s deployment, we configured our GPU workers to use two CUDA strea
 \centering
 \caption{Illustrative kernel-time breakdown before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute). Percentages vary by model, sequence length, and runtime.}
 \label{tab:profiling-breakdown}
-\setlength{\tabcolsep}{6pt}
+\setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
 \begin{tabularx}{\textwidth}{@{}l
   >{\raggedleft\arraybackslash}p{2.0cm}
@@ -800,7 +800,7 @@ Overall, this case study underscores that combining model, system, and prompt op
   left=3mm, right=3mm, top=3mm, bottom=3mm
 ]
 \small
-\setlength{\tabcolsep}{6pt}
+\setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
 \rowcolor{cyan!15}
@@ -825,7 +825,7 @@ Performance optimization is not a one-time task—it is an ongoing process that 
 \centering
 \caption{\ishtar{} optimization KPIs: before vs.\ after. Values are representative of the case study scenario and depend on workload and hardware.}
 \label{tab:ishtar-kpis}
-\setlength{\tabcolsep}{6pt}
+\setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
 \begin{tabularx}{\textwidth}{@{}l
   >{\raggedleft\arraybackslash}p{2.6cm}
@@ -861,7 +861,7 @@ By synthesizing the above strategies, we can outline a checklist of best practic
   left=3mm, right=3mm, top=3mm, bottom=3mm
 ]
 \small
-\setlength{\tabcolsep}{6pt}
+\setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
 \rowcolor{cyan!15}
@@ -1015,7 +1015,7 @@ These formulas link low-level engineering decisions (e.g., quantization, batchin
 \caption{Comparison of Architectural Variants for Cloud Deployment}
 \label{tab:arch-comparison}
 \renewcommand{\arraystretch}{1.15}
-\setlength{\tabcolsep}{6pt}
+\setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\linewidth}{p{3.2cm}X X X}
 \toprule
 \textbf{Dimension} & \textbf{Encoder-Only (BERT)} & \textbf{Decoder-Only (GPT)} & \textbf{Mixture-of-Experts (MoE)} \\
@@ -1049,7 +1049,7 @@ A number of specialized inference engines have been developed to serve LLMs effi
   \caption{Qualitative comparison of LLM serving runtimes (decoder-only focus).}
   \label{tab:runtimes}
   \renewcommand{\arraystretch}{1.15}
-  \setlength{\tabcolsep}{6pt}
+  \setlength{\tabcolsep}{4pt}
   \begin{tabular}{p{3.5cm}p{3.8cm}p{3.6cm}p{3.6cm}}
     \toprule
     & \textbf{vLLM} \cite{Kwon2023vLLM} & \textbf{Hugging Face TGI} \cite{tgi_docs} & \textbf{TensorRT-LLM} \cite{tensorrt_llm_docs} \\
