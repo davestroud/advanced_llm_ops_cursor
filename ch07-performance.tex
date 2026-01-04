@@ -50,8 +50,8 @@ Even the most advanced GPUs and cloud infrastructure have limits. Without optimi
 \begin{itemize}
     \item \textbf{Latency spikes}: Responses can exceed acceptable thresholds, frustrating users who expect near-instant answers. For \ishtar{}, journalists counting on quick, accurate summaries during breaking news events may lose trust if responses lag.
     \item \textbf{Throughput bottlenecks}: The system may handle only a limited number of concurrent requests, creating backlogs during peak usage.
-    \item \textbf{Skyrocketing costs}: Inefficient use of hardware---such as idle GPUs, oversized models for the workload, or suboptimal batching---can drive cloud bills sharply upward. Self-hosting large models without careful optimization can cost far more than using a managed API; one industry analysis found that naive deployments cost \emph{far more than the API bill}, whereas optimized designs reduced costs by up to 90\%\footnote{\url{https://medium.com/}}. In a cloud environment, every millisecond and GPU-hour saved directly translates into cost savings. Large-scale services have long recognized that high tail latencies can dramatically undermine user satisfaction.
-    \item \textbf{Inconsistent user experience}: Unoptimized systems may show unpredictable performance, with slow or erratic response times that degrade user confidence in the system’s reliability.
+    \item \textbf{Skyrocketing costs}: Inefficient use of hardware---such as idle GPUs, oversized models for the workload, or suboptimal batching---can drive cloud bills sharply upward. In practice, the gap between a naive deployment and a production-hardened one is often dominated by \emph{utilization}: the headroom required for p95/p99 latency, queueing during bursts, and wasted computation on unnecessarily long prompts. In a cloud environment, every millisecond and GPU-hour saved translates directly into cost savings. Large-scale services have long recognized that high tail latencies can dramatically undermine user satisfaction \cite{Dean2013Tail}.
+\item \textbf{Inconsistent user experience}: Unoptimized systems may show unpredictable performance, with slow or erratic response times that degrade user confidence in the system’s reliability.
 \end{itemize}
 
 For \ishtar{}, performance bottlenecks directly translate to reduced utility and diminished trust among journalists relying on timely insights. Optimization is not a matter of premature tuning or vanity; it is often a prerequisite for \emph{viability}---\textit{can we afford to serve this model?}---and \emph{scalability}---\textit{can we handle more users or larger inputs without degradation?} In high-stakes applications, these questions are not theoretical. The answers determine whether the system meets its mission requirements in production.
@@ -64,18 +64,19 @@ The following sections explore concrete strategies for optimization across three
 \node[draw, rounded corners, thick, fill=gray!5, align=left, inner sep=4mm, text width=0.88\linewidth]{
 \textbf{Practical gains from common optimizations}\\[2pt]
 \begin{itemize}\setlength\itemsep{0.3em}
-  \item \textbf{Quantization (INT8/FP8):} $\sim$2$\times$ reduction in parameter memory; 1.3--2.0$\times$ throughput with TensorRT-LLM on H100 (model-dependent).
-  \item \textbf{Operator fusion \& kernel tuning:} 10--30\% end-to-end speedups by reducing memory traffic and launch overheads.
-  \item \textbf{Dynamic batching:} 3--8$\times$ more tokens/s at steady state with a small ($<\!20$\,ms) batching window (Section~6.4).
-  \item \textbf{KV-cache engineering (paged KV, prefix reuse):} 1.5--3.0$\times$ larger effective batches and reduced fragmentation under long contexts.
-  \item \textbf{Speculative decoding:} 1.4--2.0$\times$ latency reduction on long generations by draft+verify (Section~6.3.4).
-  \item \textbf{Response \& embedding caches:} 5--30\% GPU-hour savings under real traffic mix (Section~6.6).
+  \item \textbf{Quantization (INT8/FP8/4-bit):} $\sim$2$\times$ reduction in parameter memory; 1.3--2.0$\times$ higher tokens/s on supported hardware (model-dependent) \cite{Xiao2023SmoothQuant,Frantar2023GPTQ,Lin2023AWQ,NVIDIA2023Hopper}.
+  \item \textbf{Operator fusion \& kernel tuning:} 10--30\% end-to-end speedups by reducing memory traffic and kernel-launch overhead \cite{Dao2022FlashAttention,Dao2023FlashAttention2}.
+  \item \textbf{Dynamic/continuous batching:} 3--8$\times$ more tokens/s at steady state with a small ($<\!20$\,ms) batching window, especially under bursty traffic \cite{Kwon2023vLLM}.
+  \item \textbf{KV-cache engineering (paged KV, prefix reuse):} 1.5--3.0$\times$ larger effective batches and reduced fragmentation under long contexts \cite{Kwon2023vLLM}.
+  \item \textbf{Speculative decoding:} 1.4--2.0$\times$ lower latency on long generations via draft+verify \cite{Chen2023SpeculativeSampling}.
+  \item \textbf{Response \& embedding caches:} can cut GPU load roughly in proportion to cache hit rate and reduce tail latency during bursts; validate correctness with TTLs, versioning, and guardrails \cite{langchain-cache}.
 \end{itemize}
 };
 \end{tikzpicture}
-\caption{Representative performance improvements from widely deployed techniques, based on published benchmarks and production deployments. Actual gains depend on model size, hardware, and traffic mix. See Sections 7.1--7.4 for detailed discussions and citations.}
+\caption{Representative performance improvements from widely deployed techniques, based on published benchmarks and production deployments. Actual gains depend on model size, hardware, and traffic mix. See Sections~\ref{sec:perf-model}--\ref{sec:perf-system} and Section~\ref{sec:perf-prompt} for detailed discussions and implementation guidance.}
 \label{fig:opt-gains-callout}
 \end{figure}
+
 
 \begin{figure}[htbp]
 \centering
@@ -101,7 +102,7 @@ The following sections explore concrete strategies for optimization across three
 
 \end{axis}
 \end{tikzpicture}
-\caption{Illustrative latency improvements after batching, KV-cache engineering, and quantization. Replace with your measured values to reflect your deployment.}
+\caption{Illustrative example of latency improvements after batching, KV-cache engineering, and quantization. Absolute values vary by model, hardware, and traffic mix.}
 \label{fig:latency-before-after}
 \end{figure}
 
@@ -112,7 +113,7 @@ Model-level optimizations involve making the model itself more efficient, often 
 \subsection{Quantization}
 Quantization reduces the precision of model weights---and sometimes activations---from higher-precision formats such as FP16 (16-bit floating point) to lower-precision representations like INT8, FP8, or even 4-bit integers. By using fewer bits to represent each parameter, the model’s memory footprint shrinks and arithmetic operations execute faster, often enabling deployment on smaller or fewer devices.
 
-Lower numerical precision also enables the use of specialized hardware instructions (tensor cores) that can dramatically increase throughput. For example, an NVIDIA A100 GPU can perform up to 1248 INT4 tera-operations per second versus 312 TFLOPS for FP16, a $\sim$4$\times$ theoretical speedup by leveraging low-precision tensor cores \cite{Dettmers2022LLMint8,Xiao2023SmoothQuant}. In practice, quantization can deliver substantial benefits. For example, applying 4-bit post-training quantization (e.g., GPTQ) to a 13B-parameter model has enabled it to be served on a single GPU instead of two, with only minor accuracy degradation \cite{Frantar2023GPTQ}\footnote{\url{https://cloud.google.com}}. Smaller memory requirements also reduce energy consumption per query, which can be significant at scale. Quantization can apply not only to the model weights but also to auxiliary structures like the Transformer’s key/value (KV) cache---quantizing the KV cache to 8-bit precision can further lower memory usage and improve latency, albeit with a potential impact on accuracy.
+Lower numerical precision also enables the use of specialized hardware instructions (tensor cores) that can dramatically increase throughput. Modern accelerators provide substantially higher arithmetic throughput at INT8/INT4 (and, on newer devices, FP8) than at FP16/BF16, which is why quantization and mixed precision can yield large tokens/s gains when supported by kernels and hardware \cite{Dettmers2022LLMint8,Xiao2023SmoothQuant,NVIDIA2023Hopper}. In practice, quantization can deliver substantial benefits. For example, applying 4-bit post-training quantization (e.g., GPTQ) to a 13B-parameter model has enabled it to be served on a single GPU instead of two, with only minor accuracy degradation \cite{Frantar2023GPTQ}. Smaller memory requirements also reduce energy consumption per query, which can be significant at scale. Quantization can apply not only to the model weights but also to auxiliary structures like the Transformer’s key/value (KV) cache---quantizing the KV cache to 8-bit precision can further lower memory usage and improve latency, albeit with a potential impact on accuracy.
 
 \begin{tcolorbox}[
   title={\textbf{Quantization: Pros}},
@@ -146,7 +147,7 @@ Lower numerical precision also enables the use of specialized hardware instructi
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item Potential minor loss in accuracy or fidelity due to reduced numerical precision.
     \item Requires selecting an appropriate quantization scheme (e.g., INT8, FP8, GPTQ, AWQ) and, in some cases, calibration or fine-tuning to mitigate quality loss.
-    \item Certain methods require an offline pre-quantization step, while others (e.g., \texttt{bitsandbytes} INT8/INT4) can quantize on-the-fly at runtime\footnote{\url{https://cloud.google.com}}.
+    \item Certain methods require an offline pre-quantization step, while others (e.g., \texttt{bitsandbytes} INT8/INT4) can quantize on-the-fly at runtime.
 \end{itemize}
 \end{tcolorbox}
 
@@ -320,7 +321,7 @@ Low to moderate; can affect long-context fidelity. &
 
 \end{axis}
 \end{tikzpicture}
-\caption{Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). Replace values with your measured tokens/s to reflect your deployment. FP8 is native on H100; 4-bit performance varies by toolkit/model.}
+\caption{Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture.}
 \label{fig:quant-throughput-bars}
 \end{figure}
 
@@ -349,7 +350,7 @@ Low to moderate; can affect long-context fidelity. &
 \end{tabularx}
 
 \medskip
-\footnotesize\emph{Notes}: Values exclude activations, KV cache, and framework overheads. For inference with long contexts or high concurrency, KV memory can exceed weights; see Eq.~(2.2) and Section~7.11.1 for sizing guidelines.
+\footnotesize\emph{Notes}: Values exclude activations, KV cache, and framework overheads. For inference with long contexts or high concurrency, KV memory can exceed weights; see Eq.~\eqref{eq:kv-total} and Section~\ref{sec:perf-attention-kv-cache} for sizing guidelines.
 \end{table}
 
 \begin{figure}[htbp]
@@ -359,8 +360,8 @@ Low to moderate; can affect long-context fidelity. &
 \textbf{Sizing cheat-sheet (inference memory)}\\[2pt]
 \begin{itemize}\setlength\itemsep{0.3em}
   \item \emph{Weights (per replica)}: $\displaystyle M_{\text{weights}} \approx P \times b$, where $P$ is parameter count and $b$ is bytes/weight (e.g., FP16$=2$, INT8/FP8$=1$, 4-bit$=0.5$).
-  \item \emph{KV cache (decoder-only)}: $\displaystyle M_{\text{KV}} \approx 2 \cdot L \cdot B \cdot S \cdot d \cdot b$, for $L$ layers, batch $B$, sequence length $S$, per-token hidden $d$ (or $H\cdot d_h$), bytes/elt $b$ (see Eq.~(2.2)).
-  \item \emph{Rule of thumb}: For long contexts or high concurrency, $M_{\text{KV}}$ can exceed $M_{\text{weights}}$; plan headroom for paging/fragmentation (Section~7.11.1).
+  \item \emph{KV cache (decoder-only)}: $\displaystyle M_{\text{KV}} \approx 2 \cdot L \cdot B \cdot S \cdot d \cdot b$, for $L$ layers, batch $B$, sequence length $S$, per-token hidden $d$ (or $H\cdot d_h$), bytes/elt $b$ (see Eq.~\eqref{eq:kv-total}).
+  \item \emph{Rule of thumb}: For long contexts or high concurrency, $M_{\text{KV}}$ can exceed $M_{\text{weights}}$; plan headroom for paging/fragmentation (Section~\ref{sec:perf-attention-kv-cache}).
 \end{itemize}
 };
 \end{tikzpicture}
@@ -373,9 +374,7 @@ Low to moderate; can affect long-context fidelity. &
 While model-level methods make the model inherently lighter or faster, inference engine optimizations focus on \emph{how} the model is executed at runtime. This includes using specialized software and libraries to maximize throughput on given hardware, fusing operations to reduce overhead, and managing memory more intelligently during inference.
 
 \subsection{Specialized Runtimes}
-Using optimized inference engines such as TensorRT-LLM, vLLM, or Hugging Face TGI.
-
-Instead of running an LLM with a generic deep learning framework, practitioners often use optimized inference engines such as TensorRT-LLM (NVIDIA), vLLM, or Hugging Face Text Generation Inference (TGI). These specialized runtimes employ low-level optimizations tailored to transformer models. For example, TensorRT-LLM compiles the model to highly optimized GPU kernels and can leverage INT8/FP8 precision on NVIDIA GPUs to achieve maximum throughput. vLLM is a high-throughput serving engine built around a novel memory management technique (PagedAttention) to allow very large batches and long context windows without wasting memory \cite{Kwon2023vLLM}. Hugging Face TGI provides a production-ready server with features like dynamic batching, multi-model serving, and efficient request handling (TGI, 2023). Each of these runtimes can significantly outperform naive model execution.
+Instead of running an LLM with a generic deep learning framework, practitioners often use optimized inference engines such as TensorRT-LLM (NVIDIA), vLLM, or Hugging Face Text Generation Inference (TGI). These specialized runtimes employ low-level optimizations tailored to transformer models. For example, TensorRT-LLM compiles the model to highly optimized GPU kernels and can leverage INT8/FP8 precision on NVIDIA GPUs to achieve maximum throughput. vLLM is a high-throughput serving engine built around a novel memory management technique (PagedAttention) to allow very large batches and long context windows without wasting memory \cite{Kwon2023vLLM}. Hugging Face TGI provides a production-ready server with features like dynamic batching, multi-model serving, and efficient request handling \cite{tgi_docs}. Each of these runtimes can significantly outperform naive model execution.
 
 For instance, vLLM’s continuous batching and memory optimization delivers up to 2--4$\times$ higher throughput than standard PyTorch inference at the same latency \cite{Kwon2023vLLM}. It achieves this by interleaving tokens from multiple requests and sharing KV cache pages across requests, greatly increasing GPU utilization. TGI, on the other hand, integrates with Hugging Face Transformers and ONNX Runtime, offering ease of use and good performance out-of-the-box; it may not reach vLLM’s peak throughput on long contexts, but it excels in multi-tenant scenarios and stability. TensorRT-LLM requires an offline compilation step but produces an engine with many fused ops and uses Tensor Cores aggressively. On supported hardware (Ampere and Hopper GPUs), TensorRT-LLM can unlock industry-leading speed. For example, NVIDIA reports that using FP8 on H100 GPUs with TensorRT-LLM yields a 4.5$\times$ higher inference throughput and drastically lower latency compared to A100 FP16 baseline \cite{NVIDIA2023Hopper}. The drawback is reduced flexibility: any model or prompt shape change may require rebuilding the engine. In summary, specialized runtimes trade a bit of development convenience for substantial performance gains. In production, using them can mean serving the same load with fewer GPUs or achieving lower latency ceilings.
 
@@ -435,6 +434,7 @@ TensorRT-LLM (INT8/FP8)  & 420  & 410 & 18  & Fused ops; Tensor Cores; engine bu
 System-level optimizations improve the overall throughput and latency of the serving system by better handling how requests are scheduled and executed on the available hardware. These techniques treat the model as a black box and focus on orchestrating multiple inference calls efficiently. Key methods include batching, asynchronous request handling, and caching of results.
 
 \subsection{Batching Strategies}
+\label{sec:perf-batching}
 Grouping multiple requests to amortize model invocation costs. Dynamic batching in vLLM is especially effective for mixed workloads.
 
 Grouping multiple requests and processing them together in one forward pass can dramatically amortize the cost of model invocation per request. Batching is especially effective for throughput-oriented scenarios, since modern GPUs are highly parallel and can often process a batch of $n$ requests nearly as fast as a single request (up to certain limits). By filling the GPU with as much work as possible, we increase utilization.
@@ -443,11 +443,38 @@ There are different batching strategies. \textit{Static batching} uses a fixed b
 
 Continuous batching is an even more advanced form where, during autoregressive generation, new token requests from other queries can be interwoven into the ongoing processing of existing batches. For example, while one batch of sequences is generating token $t$, a new request that arrives can start being processed for its token $t$ in the next step, rather than waiting for the batch to finish all tokens. This is implemented in vLLM’s scheduler, effectively creating a conveyor belt of requests \cite{Kwon2023vLLM}. The benefit is maximizing throughput at high load with minimal queuing latency.
 
-That said, batching has trade-offs: it increases the latency for each individual request (because of the waiting time to form a batch and the fact that all in a batch finish together, meaning a small request might be delayed behind a large one in the same batch). The optimal batch size or waiting time is a tuning knob: too small batches and we under-utilize the GPU; too large or waiting too long and we hurt tail latency. Continuous monitoring of batch utilization is important. In practice, many deployments start with a small maximum batch size (say 8 or 16) and adjust based on observed GPU utilization. If the GPU has spare room, increasing batch size can yield higher throughput (up to a point of diminishing returns where overheads or memory limits kick in). Indeed, throughput $\Theta$ often scales sub-linearly with batch size $B$; a typical curve might show strong gains up to a moderate $B$ then flattening as the GPU saturates (see Figure~7.2 for a representative throughput vs.\ batch size curve).
+That said, batching has trade-offs: it increases the latency for each individual request (because of the waiting time to form a batch and the fact that all in a batch finish together, meaning a small request might be delayed behind a large one in the same batch). The optimal batch size or waiting time is a tuning knob: too small batches and we under-utilize the GPU; too large or waiting too long and we hurt tail latency. Continuous monitoring of batch utilization is important. In practice, many deployments start with a small maximum batch size (say 8 or 16) and adjust based on observed GPU utilization. If the GPU has spare room, increasing batch size can yield higher throughput (up to a point of diminishing returns where overheads or memory limits kick in). Indeed, throughput $\Theta$ often scales sub-linearly with batch size $B$; a typical curve might show strong gains up to a moderate $B$ then flattening as the GPU saturates (see Figure~\ref{fig:throughput-vs-batch} for a representative throughput vs.\ batch size curve).
 
-From a production standpoint, dynamic batching is a low-hanging fruit for optimization: frameworks like TGI and DeepSpeed-Inference provide it out-of-the-box. Continuous batching (token-level interleaving) is more complex but very powerful for large models under heavy multi-user load. IshtarAI initially implemented simple request grouping, then moved to vLLM’s dynamic token batching to handle surges of simultaneous queries without exploding latency.
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.92\linewidth, height=5.2cm,
+  xlabel={Batch size $B$},
+  ylabel={Throughput (normalized)},
+  xmin=1, xmax=32,
+  ymin=0, ymax=1.05,
+  grid=both, grid style={gray!20},
+  tick align=outside,
+  xtick={1,2,4,8,16,32},
+  legend style={at={(0.5,1.02)},anchor=south,draw=none,fill=none},
+]
+\addplot+[very thick] coordinates {
+  (1,0.18) (2,0.33) (4,0.55) (8,0.75) (16,0.92) (32,1.00)
+};
+\addlegendentry{Tokens/s (relative)}
+\end{axis}
+\end{tikzpicture}
+\caption{Representative throughput scaling with batch size. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. In production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}
+\label{fig:throughput-vs-batch}
+\end{figure}
+
+
+
+From a production standpoint, dynamic batching is a low-hanging fruit for optimization: frameworks like TGI and DeepSpeed-Inference provide it out-of-the-box. Continuous batching (token-level interleaving) is more complex but very powerful for large models under heavy multi-user load. \ishtar{} initially implemented simple request grouping, then moved to vLLM’s dynamic token batching to handle surges of simultaneous queries without exploding latency.
 
 \subsection{Asynchronous Processing}
+\label{sec:perf-async}
 Allowing requests to be queued and processed as resources become available.
 
 Allowing requests to be queued and processed as resources become available (asynchronous handling) can significantly improve system throughput and user-perceived latency. In an asynchronous API, a request is immediately acknowledged (often with a request ID or a stream is opened) and the response is delivered incrementally or via callback once ready. This decouples the client from the server’s processing timeline.
@@ -458,9 +485,10 @@ From a performance standpoint, an asynchronous design pairs well with batching a
 
 The trade-off is increased complexity: you need a system to manage the queue and possibly a strategy to drop or timeout requests if they queue too long. Care must be taken to prevent the queue from growing unbounded (which could lead to very high latencies or out-of-memory). In cloud deployment, combining async processing with autoscaling is common: e.g., if queue length or wait time exceeds a threshold, spin up another GPU node.
 
-For IshtarAI, we introduced an async API endpoint for heavy analysis queries. Instead of blocking until the full article summary was ready, the system immediately returned a confirmation and then streamed the summary as it was generated. This preserved an interactive feel. During peak news bursts, the server would queue dozens of requests and serve them in sequence with dynamic batching. A short queue timeout (e.g., a few seconds) ensured no request waited indefinitely. This asynchronous design increased throughput (requests were not dropped; they were delayed into batches) and preserved a responsive UX (journalists started seeing the beginning of an answer quickly via streaming). The production consequence is that engineers must monitor the queue and tune autoscaling policies to keep queue latency within acceptable bounds (see \S7.13.2 on autoscaling triggers).
+For \ishtar{}, we introduced an async API endpoint for heavy analysis queries. Instead of blocking until the full article summary was ready, the system immediately returned a confirmation and then streamed the summary as it was generated. This preserved an interactive feel. During peak news bursts, the server would queue dozens of requests and serve them in sequence with dynamic batching. A short queue timeout (e.g., a few seconds) ensured no request waited indefinitely. This asynchronous design increased throughput (requests were not dropped; they were delayed into batches) and preserved a responsive UX (journalists started seeing the beginning of an answer quickly via streaming). The production consequence is that engineers must monitor the queue and tune autoscaling policies to keep queue latency within acceptable bounds (see Section~\ref{sec:perf-autoscaling-queue} on autoscaling triggers).
 
 \subsection{Caching}
+\label{sec:perf-cache}
 Reusing results for repeated queries or embeddings.
 
 Reusing results for repeated or similar queries can yield enormous performance gains. Caching in the context of LLM serving comes in a few flavors:
@@ -470,18 +498,18 @@ Reusing results for repeated or similar queries can yield enormous performance g
 \item \textbf{Layer-wise cache (KV cache)}: In autoregressive models, the transformer’s KV cache from previous tokens is effectively a cache that prevents re-computation of attention for those tokens. However, this is an internal, short-lived cache (per request) and not shared across requests. Here we focus on cross-request caching.
 \end{itemize}
 
-Studies have found that a significant fraction of real LLM queries are repeated or have high overlap semantically with past queries (around 30\% in some production traces) (Zhu et al., 2023). For IshtarAI, this aligns with expectations: many users might ask similar questions about a breaking news story. Implementing a cache for prompt $\to$ answer means if user~A asks ``What is the latest on event X?'' and user~B shortly after asks the same or a very similar question, the system can return the previously generated summary almost instantly, rather than generating it from scratch. Similarly, if IshtarAI summarizes the same source document multiple times (perhaps in the context of different questions), caching that summary (a deterministic sub-result) can save a lot of tokens.
+Production traffic often includes repeated or near-duplicate queries---especially in bursty domains like news---making caching a high-leverage optimization. For \ishtar{}, this aligns with expectations: many users might ask similar questions about a breaking news story. Implementing a cache for prompt $\to$ answer means if user~A asks ``What is the latest on event X?'' and user~B shortly after asks the same or a very similar question, the system can return the previously generated summary almost instantly, rather than generating it from scratch. Similarly, if \ishtar{} summarizes the same source document multiple times (perhaps in the context of different questions), caching that summary (a deterministic sub-result) can save a lot of tokens.
 
 The benefits of caching are clear: it can reduce latency to near-zero for cache hits and save a proportional amount of compute cost. However, there are important considerations and trade-offs:
 \begin{itemize}
 \item \textbf{Cache key and lookup:} For exact prompt matching, the key could be the full prompt string or a hash of it. This will not catch semantically similar queries that are not identical. More advanced caches might use embeddings of the query to find ``near'' matches (semantic cache), though that is more complex and could return incorrect results if not carefully constrained.
-\item \textbf{Staleness and invalidation:} If the underlying model is updated or the world changes (new info arrives), cached answers might become outdated or inconsistent. A cache invalidation policy (time-based expiry, or versioning per model snapshot) is needed. For example, if IshtarAI’s model is retrained or a knowledge source is updated, relevant cache entries should be invalidated. This is part of the classic cache invalidation challenge: storing a cached result, one must decide when it is no longer valid. Many production systems use a TTL (time-to-live) for LLM outputs or flush the cache whenever a major update occurs to mitigate this.
+\item \textbf{Staleness and invalidation:} If the underlying model is updated or the world changes (new info arrives), cached answers might become outdated or inconsistent. A cache invalidation policy (time-based expiry, or versioning per model snapshot) is needed. For example, if \ishtar{}’s model is retrained or a knowledge source is updated, relevant cache entries should be invalidated. This is part of the classic cache invalidation challenge: storing a cached result, one must decide when it is no longer valid. Many production systems use a TTL (time-to-live) for LLM outputs or flush the cache whenever a major update occurs to mitigate this.
 \item \textbf{Memory overhead:} Storing a lot of completions can consume memory, and looking up in a large cache might add slight latency. In practice, an LRU (least-recently used) eviction policy bound by memory or entry count can keep the cache to a manageable size.
 \end{itemize}
 
 Despite these complexities, the production impact of caching is often dramatic. Even a modest cache hit rate (e.g., 20\%) directly translates to that many fewer calls to the model, which could mean a 20\% cost reduction. It also reduces load on the system, indirectly improving latency for cache misses by alleviating contention.
 
-IshtarAI implemented a Redis-backed cache for prompt-to-summary results. We scoped it to cache only final results for idempotent queries (not for interactive multi-turn prompts, since those change with conversation). We also cached embeddings for documents so that repeated retrieval-augmented generation (RAG) lookups would not recompute vectors. Empirically, we saw cache hit rates around 10--15\% in production during busy news cycles, which improved overall throughput and cut tail latencies (since popular queries returned immediately from cache). We set a short TTL on cached news summaries (e.g., 1 hour) to ensure that as news updates, the summaries would be regenerated periodically to include new information. This approach of caching deterministic subchains and prompt results provided a cheap ``layer'' of optimization orthogonal to model and system tweaks.
+\ishtar{} implemented a Redis-backed cache for prompt-to-summary results. We scoped it to cache only final results for idempotent queries (not for interactive multi-turn prompts, since those change with conversation). We also cached embeddings for documents so that repeated retrieval-augmented generation (RAG) lookups would not recompute vectors. Empirically, we saw cache hit rates around 10--15\% in production during busy news cycles, which improved overall throughput and cut tail latencies (since popular queries returned immediately from cache). We set a short TTL on cached news summaries (e.g., 1 hour) to ensure that as news updates, the summaries would be regenerated periodically to include new information. This approach of caching deterministic subchains and prompt results provided a cheap ``layer'' of optimization orthogonal to model and system tweaks.
 
 \noindent \textbf{Engineering Sidebar: Cache Invalidation.}
 One of the hardest parts of caching is invalidation---deciding when a cached entry should be discarded or refreshed. In LLMOps, this could mean invalidating when the model is updated (since a new model might produce a different answer), when the knowledge sources have changed (for instance, new articles have come in), or after a certain time to ensure freshness. A practical strategy is to include a version tag in the cache key that incorporates the model ID or data timestamp. For example, key by \verb|model_v3::[prompt hash]|. When you deploy model v4, it automatically does not hit v3’s cache. Another strategy is time-based: e.g., any summary older than 24 hours for a ``latest news'' query is probably stale. Ultimately, imperfect invalidation is tolerated; it might occasionally serve an answer that is a bit outdated, but in exchange for large performance gains. System designers should monitor for cache accuracy and have a mechanism (like a feature flag or admin API) to flush caches if a problem is discovered.
@@ -497,7 +525,7 @@ Avoiding unnecessary tokens in prompts can greatly reduce computation. The model
 
 In practice, this can mean removing irrelevant or redundant information from the prompt. For instance, if an application always prepends a long instruction or policy text to the user query, we might see if that can be abbreviated or encoded by a special token that the model was trained to recognize (some foundation models have system or instruction tokens). Another approach is to use IDs or references in place of verbose content when possible (e.g., rather than inserting a full document’s text every time, insert a reference and have the model retrieve it if it has access, or use a shorter summary).
 
-For \ishtar{}, reducing context size was important when summarizing sources. Early on, we fed the full text of articles (which could be thousands of tokens) along with the query to the model. We optimized this by summarizing or extracting only the relevant portions of the articles via a retriever component, which cut down the context length dramatically (more on this in \S7.5.3). We also ensured not to carry over too much conversation history: only the last few turns of Q/A were kept in the prompt for context, rather than the entire history, since older turns were often not needed.
+For \ishtar{}, reducing context size was important when summarizing sources. Early on, we fed the full text of articles (which could be thousands of tokens) along with the query to the model. We optimized this by summarizing or extracting only the relevant portions of the articles via a retriever component, which cut down the context length dramatically (more on this in Section~\ref{sec:perf-rag-compression}). We also ensured not to carry over too much conversation history: only the last few turns of Q/A were kept in the prompt for context, rather than the entire history, since older turns were often not needed.
 
 The production trade-off here is between context and completeness: if you cut too much, the model might lack information to answer accurately. So prompt size reduction should be paired with experiments to ensure the model’s performance on tasks does not degrade. But generally, one should follow Occam’s razor for prompts: provide only what is necessary for the task. In addition to speed, this also lowers cost (since many providers charge by input token count in API scenarios).
 
@@ -521,6 +549,7 @@ In engineering terms, template efficiency might also involve how the prompt is c
 The production consequence of prompt optimization is mostly positive: shorter, well-structured prompts yield faster responses and lower token usage. One must just ensure the changes do not alter the semantics. For \ishtar{}, we refined our system prompts and instructions over time to be both effective and brief. We removed extraneous polite verbiage and focused the prompt on essential directives. The result was a small speed-up and cost saving per request, which adds up at scale.
 
 \subsection{Compression of Retrieved Context}
+\label{sec:perf-rag-compression}
 Summarizing retrieved documents before feeding them to the model.
 
 When using retrieval-augmented generation (RAG) or any process that feeds external text into the prompt, summarizing or compressing that retrieved context can be very beneficial. Instead of inserting raw documents, which might be long, we insert a shorter synthesized version of those documents that still contains the relevant information.
@@ -536,6 +565,7 @@ During \ishtar{}’s optimization, we implemented an intermediate step: after re
 One must monitor that the summarization does not introduce errors—there is a risk of propagating a mistaken summary into the final answer. Our mitigation was to ensure the summarizer was high-quality (fine-tuned on news summarization) and to keep summaries as neutral and fact-oriented as possible (avoiding adding new info). This way, prompt compression remained a safe optimization.
 
 \subsection{Speculative Decoding}
+\label{sec:perf-speculative}
 Speculative decoding reduces end-to-end latency by generating multiple \emph{draft} tokens with a smaller, faster model and then verifying those draft tokens with the \emph{target} model. The key observation is that scoring a short continuation can cost roughly the same as sampling a single token from the target model, enabling the target model to accept several draft tokens per forward pass when the draft is accurate \cite{Chen2023SpeculativeSampling}. In favorable regimes (high acceptance), speculative decoding can increase tokens-per-second throughput and reduce tail latency without changing the target model's output distribution.
 
 Operationally, speculative decoding introduces new controls and failure modes. Teams must select a draft model that remains well-aligned with the target model (to preserve acceptance), monitor acceptance-rate drift as prompts and traffic evolve, and ensure graceful fallback when acceptance collapses (e.g., revert to standard decoding). As with other runtime changes, speculative decoding should be gated by regression evals and monitored in production using the same core SLOs (TTFT, tokens/s, p95/p99 latency) alongside task-level quality metrics.
@@ -587,7 +617,7 @@ In \ishtar{}’s deployment, we configured our GPU workers to use two CUDA strea
 
 \begin{table}[htbp]
 \centering
-\caption{Illustrative kernel-time breakdown before vs.\ after hardware utilization tuning. Replace with measured Nsight/PyTorch Profiler percentages.}
+\caption{Illustrative kernel-time breakdown before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute). Percentages vary by model, sequence length, and runtime.}
 \label{tab:profiling-breakdown}
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.12}
@@ -611,19 +641,12 @@ Gaps / launch overhead             &  8 &  3 & Larger dynamic batches; async sch
 
 \section{Performance Testing and Benchmarking}
 \label{sec:perf-benchmark}
-Establishing baselines and continuously monitoring:
-\begin{itemize}
-    \item Latency distribution (P50, P95, P99).
-    \item Tokens/sec per GPU.
-    \item Cost per 1,000 tokens.
-\end{itemize}
-Benchmarks should simulate realistic traffic patterns for \ishtar{}, including bursts during major events.
-
 Establishing baselines and continuously monitoring performance metrics is vital. Before and after any optimization, you should measure:
 \begin{itemize}
-\item \textbf{Latency distribution}: e.g., track the median latency (P50) and tail latencies (P95, P99) for requests. It is not enough to just look at the average; the 95th or 99th percentile might be much higher (indicating that some requests experience significantly worse performance). In many applications (especially user-facing ones), tail latency is critical \cite{Dean2013Tail}.
-\item \textbf{Throughput}: measure tokens processed per second per GPU (tokens/sec/GPU), or requests per second if each request is similar. Tokens/sec is a convenient unit in LLM inference since it captures both input and output lengths normalized over time. Higher is better for throughput; but one must consider if those tokens are useful work (e.g., generating unneeded tokens is wasted throughput).
-\item \textbf{Cost per 1,000 tokens}: if running in a cloud environment or even on-prem with an internal cost model, track how much it costs to serve 1k tokens. This incorporates both throughput and the cost of hardware instances. If a GPU costs \$X/hour and produces $Y$ tokens/sec, you can compute a \$ per token figure (as we formalize in Eq.~(7.4) later). Optimizations that improve throughput or allow cheaper hardware will reduce this cost.
+\item \textbf{End-to-end latency distribution}: track p50/p95/p99 (and max) for full request latency, including queueing and networking. For interactive systems, tail latency (p95/p99) is often the dominant UX driver \cite{Dean2013Tail}.
+\item \textbf{Streaming metrics}: measure \emph{time-to-first-token} (TTFT) and \emph{time-between-tokens} (TBT). TTFT is sensitive to prefill compute, queueing delays, and prompt length; TBT reflects steady-state decode speed and batching efficiency.
+\item \textbf{Throughput}: measure tokens processed per second per GPU (tokens/s/GPU) under representative concurrency. Prefer tokens/s over requests/s when outputs vary widely; it penalizes waste (e.g., generating unneeded tokens).
+\item \textbf{Cost per 1,000 tokens}: track dollars per 1k tokens under your deployment model (on-demand vs.\ reserved vs.\ spot/preemptible). This metric links performance to business cost; see Eq.~\eqref{eq:cost-k}.
 \end{itemize}
 
 Benchmarks should simulate realistic traffic patterns for \ishtar{}, including bursts during major events. It is important that testing mimics production: if typical usage has bursts of 100 requests in one minute and idle periods after, performance testing should include bursty loads, not just a constant rate. Bursts often reveal weaknesses in autoscaling, request queueing, or thread pool sizing. We tested \ishtar{} with scenarios such as: 10 requests per second sustained for 5 minutes (normal load), then a burst of 100 requests arriving almost simultaneously (breaking news scenario), then back to idle. We measured how the system coped: did latency spike, did any requests time out, did autoscaling trigger to add more GPUs in time?
@@ -677,7 +700,7 @@ x   y
 
 \end{axis}
 \end{tikzpicture}
-\caption{Latency CDF with p50/p95/p99 markers. Replace with measured points to reflect production baselines.}
+\caption{Latency CDF with p50/p95/p99 markers. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix.}
 \label{fig:latency-cdf}
 \end{figure}
 
@@ -702,13 +725,13 @@ x   y
 };
 \end{axis}
 \end{tikzpicture}
-\caption{Illustrative cost per 1k tokens across engines. Replace values with your economics (Section~7.3).}
+\caption{Illustrative cost per 1k tokens across engines under a simple hourly-cost model (see Section~\ref{sec:perf-cost-per-token}). Absolute values depend on hardware pricing, utilization, and batch/sequence lengths.}
 \label{fig:cost-per-1k-by-engine}
 \end{figure}
 
 \section{Case Study: Optimizing Ishtar AI}
 \label{sec:perf-ishtar-case}
-To illustrate the above techniques in practice, we consider the performance optimization journey for the IshtarAI application. Initially, IshtarAI was running a 13B parameter Transformer model in a straightforward deployment. Through iterative optimizations, we managed to dramatically improve its latency and throughput while cutting costs.
+To illustrate the above techniques in practice, we consider the performance optimization journey for the \ishtar{} application. Initially, \ishtar{} was running a 13B parameter Transformer model in a straightforward deployment. Through iterative optimizations, we managed to dramatically improve its latency and throughput while cutting costs.
 
 \subsection{Initial Performance}
 A 13B model running at FP16 on A100 GPUs with average latency of 2.3\,s per request.
@@ -726,7 +749,7 @@ Importantly, at this stage, each request was processed in isolation---no batchin
     \item Implemented RAG context summarization.
 \end{itemize}
 
-Over time, we introduced several optimization strategies (guided by the categories in this chapter) to improve IshtarAI’s performance:
+Over time, we introduced several optimization strategies (guided by the categories in this chapter) to improve \ishtar{}’s performance:
 
 \subsubsection{Model quantization to INT8/4-bit.}
 We quantized the 13B model to 8-bit weights first, using an approach like GPTQ, and later experimented with 4-bit weight quantization for even greater gains. The INT8 quantization immediately cut memory usage roughly in half and allowed the entire model (and its KV cache) to easily fit on one 40GB GPU with room to spare. We measured only minor accuracy degradation on internal evals (e.g., summary quality scores dropped by a small fraction, within acceptable range). Encouraged, we tried 4-bit quantization (with AWQ for better accuracy). The 4-bit model was trickier---we had to ensure outlier weights were handled to avoid quality loss \cite{Lin2023AWQ}. In the end, 4-bit quantization further reduced memory (allowing even a 24GB GPU to potentially host the model) and improved inference speed by $\sim$20--30\%. This established a new baseline: the model could run in INT8 on a single GPU per instance, or even multiple instances per GPU with 4-bit.
@@ -758,7 +781,7 @@ The combined effect of these optimizations was significant. After applying the a
 \subsubsection{Alternate configurations considered.}
 \emph{Hardware upgrade (NVIDIA H100).} Testing H100 with FP8 showed roughly 2$\times$ throughput gains and 30--40\% lower latency vs.\ A100 FP16; median latency decreased from 1.1\,s to about 0.7\,s in a representative benchmark, and throughput-per-dollar also improved as FP8 kernels saturated Tensor Cores more effectively (vendor-reported; see \cite{NVIDIA2023Hopper}).\\
 \emph{Quantization strategy comparison.} We compared AWQ \cite{Lin2023AWQ} vs.\ GPTQ \cite{Frantar2023GPTQ}; both delivered similar speedups, with AWQ preserving accuracy slightly better on some edge cases (handling outliers) at the cost of more preprocessing. We retained GPTQ in production for operational simplicity.\\
-\emph{Fallback model policy.} A cascading design (2.7B fallback for trivial queries) yielded 3--5$\times$ faster answers on simple prompts; however, quality loss was noticeable on nuanced queries. We opted not to deploy globally, reserving the approach for future confidence-threshold routing (cf.\ §7.14.3).
+\emph{Fallback model policy.} A cascading design (2.7B fallback for trivial queries) yielded 3--5$\times$ faster answers on simple prompts; however, quality loss was noticeable on nuanced queries. We opted not to deploy globally, reserving the approach for future confidence-threshold routing (cf.\ Section~\ref{sec:perf-model-routing}).
 
 Overall, this case study underscores that combining model, system, and prompt optimizations yields a performant, cost-effective LLM service suitable for real-time journalism.
 
@@ -800,7 +823,7 @@ Performance optimization is not a one-time task—it is an ongoing process that 
 
 \begin{table}[htbp]
 \centering
-\caption{IshtarAI optimization KPIs: before vs.\ after. Replace with exact measured values if available.}
+\caption{\ishtar{} optimization KPIs: before vs.\ after. Values are representative of the case study scenario and depend on workload and hardware.}
 \label{tab:ishtar-kpis}
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.12}
@@ -824,7 +847,7 @@ Cost per 1k tokens (USD) & 1.00   & 0.70   & $\sim$30\% GPU-hour reduction at sa
 \section{Best Practices Checklist}
 \label{sec:perf-checklist}
 
-By synthesizing the above strategies, we can outline a checklist of best practices for optimizing LLM performance, which we found invaluable in the IshtarAI project:
+By synthesizing the above strategies, we can outline a checklist of best practices for optimizing LLM performance, which we found invaluable in the \ishtar{} project:
 
 \begin{tcolorbox}[
   title={\textbf{Best Practices Checklist for LLM Performance Optimization}},
@@ -889,7 +912,7 @@ Decoder-only models generate tokens sequentially, conditioning on prior tokens. 
   \Theta \;\approx\; \frac{B \cdot \Delta}{\tau_{\text{step}}(B, T_0, \Delta)} \cdot \eta
 \end{equation}
 
-where $B$ is batch size, $\Delta$ the generated length, $\tau_{\text{step}}$ the per-step time, and $\eta$ an efficiency factor accounting for utilization \cite{vllm-paper, fused-kernels}. Larger $B$ boosts throughput, but queueing delays increase latency.
+where $B$ is batch size, $\Delta$ the generated length, $\tau_{\text{step}}$ the per-step time, and $\eta$ an efficiency factor accounting for utilization \cite{Kwon2023vLLM, fused-kernels}. Larger $B$ boosts throughput, but queueing delays increase latency.
 
 \textbf{Memory:} Memory pressure arises from the key/value (KV) cache, which grows linearly with batch size $B$ and sequence length $T$. For a single layer:
 \[
@@ -901,7 +924,7 @@ where $H$ is number of heads, $d_h$ head dimension, and $b$ bytes per scalar. Fo
 \]
 Thus long contexts and larger batches quickly dominate GPU memory, often equaling or exceeding model weights \cite{attention-kv-cache, kv-quant}. Paging and quantizing KV (\S\ref{sec:inference-engines}) expand feasible deployment ranges \cite{paged-attention}.
 
-\textbf{Cloud Implications:} Serving decoder-only models efficiently requires optimized runtimes (e.g., vLLM, TGI, TensorRT-LLM) with continuous batching to maintain utilization \cite{vllm-paper, tgi-whitepaper, tensorrt-llm}. Scaling options include vertical scaling (larger GPUs for longer contexts) and horizontal scaling (more replicas behind a load balancer). Trade-offs include: 
+\textbf{Cloud Implications:} Serving decoder-only models efficiently requires optimized runtimes (e.g., vLLM, TGI, TensorRT-LLM) with continuous batching to maintain utilization \cite{Kwon2023vLLM, tgi_docs, tensorrt_llm_docs}. Scaling options include vertical scaling (larger GPUs for longer contexts) and horizontal scaling (more replicas behind a load balancer). Trade-offs include: 
 \begin{itemize}
   \item Large batches maximize throughput but risk queueing delay. 
   \item Streaming outputs (via HTTP streaming or WebSockets) reduce perceived latency.
@@ -934,6 +957,7 @@ For \ishtar{}, MoEs were considered but ultimately rejected in favor of simpler 
 To guide capacity planning and autoscaling, we formalize inference cost across architectures. These analytical models provide a quantitative backbone for understanding scaling behavior of LLM inference and connecting engineering trade-offs to cloud economics.
 
 \subsection{Attention and KV Cache}
+\label{sec:perf-attention-kv-cache}
 Self-attention time complexity per layer with naive kernels is $O(B\,T^2\,H\,d_h)$. For generation, time-to-first-token (TTFT) scales with $T_0^2$; steady-state token latency scales linearly in $\Delta$ with optimized kernels such as FlashAttention \cite{flashattention-v2}.
 
 We now formalize the memory requirements of the key-value (KV) cache, which often dominates memory usage for decoder models with long contexts. Let $B$ denote batch size (number of sequences processed concurrently), $N$ input (or current sequence) length, $H$ number of attention heads, $d_h$ head dimension, and $\rho$ bytes per scalar (e.g., 2 for FP16, 1 for INT8). The per-layer KV cache memory is approximately:
@@ -967,9 +991,10 @@ Throughput for generation can be modeled in terms of how many tokens per second 
 where $t_{\text{step}}(B, N_0, \Delta)$ is the average wall-clock time per generation step, and $\eta \in (0,1]$ aggregates utilization (kernel fusion, scheduling, and I/O overlap). This states that throughput is proportional to tokens produced per step ($B$) divided by per-step runtime, scaled by utilization.
 
 \subsubsection{Interpretation.}  
-Increasing $B$ raises tokens/step linearly but can also increase $t_{\text{step}}$ due to memory contention. Thus, throughput gains saturate. Continuous batching and operator fusion reduce $t_{\text{step}}$ and increase $\eta$ \cite{vllm-paper, fused-kernels}. In \ishtar{}, GPU utilization was initially ~60\%; introducing dynamic batching and stream overlap raised $\eta$ toward 0.9, nearly doubling throughput as Eq.~\eqref{eq:throughput-main} predicts.
+Increasing $B$ raises tokens/step linearly but can also increase $t_{\text{step}}$ due to memory contention. Thus, throughput gains saturate. Continuous batching and operator fusion reduce $t_{\text{step}}$ and increase $\eta$ \cite{Kwon2023vLLM, fused-kernels}. In \ishtar{}, GPU utilization was initially ~60\%; introducing dynamic batching and stream overlap raised $\eta$ toward 0.9, nearly doubling throughput as Eq.~\eqref{eq:throughput-main} predicts.
 
 \subsection{Cost per 1{,}000 Tokens}
+\label{sec:perf-cost-per-token}
 In practice, operators measure economics as cost per generated token. Let $C_{\text{GPU}}$ be hourly GPU cost, then:
 \begin{equation}
 \text{Cost}_{1k} \;=\; \frac{C_{\text{GPU}}}{3600} \cdot \frac{1000}{\Theta}.
@@ -1013,42 +1038,13 @@ These formulas link low-level engineering decisions (e.g., quantization, batchin
 \end{tabularx}
 \end{table}
 
-\begin{landscape}
-\begin{table}[htbp]
-\centering
-\caption{Comparison of Architectural Variants for Cloud Deployment (Landscape)}
-\label{tab:arch-comparison-landscape}
-\renewcommand{\arraystretch}{1.15}
-\setlength{\tabcolsep}{8pt}
-\begin{tabularx}{1.05\linewidth}{p{4.0cm}X X X}
-\toprule
-\textbf{Dimension} & \textbf{Encoder-Only (BERT)} & \textbf{Decoder-Only (GPT)} & \textbf{Mixture-of-Experts (MoE)} \\
-\midrule
-\textbf{Latency / Throughput}
-& Low latency; high throughput for short/fixed outputs; full-sequence parallelism.
-& TTFT grows with prompt length; steady-state throughput in tokens/s; sequential decoding bottleneck.
-& Sparsity lowers FLOPs/token; routing overhead and expert imbalance can increase tail latency. \\
-\midrule
-\textbf{Memory Behavior}
-& Fixed per input (activations and attention over $T$); no cache growth.
-& KV cache grows $\propto B \cdot T \cdot L$; can exceed weights for long contexts; paging/quantization essential.
-& Experts sharded across devices; lower per-token compute/memory but larger aggregate parameters and router state. \\
-\midrule
-\textbf{Cloud Deployment Trade-offs}
-& Cost-effective on CPUs or modest GPUs; aggressive batching/quantization; trivially replicated stateless workers.
-& Needs optimized runtimes (vLLM, TGI, TensorRT-LLM); continuous batching; balance latency vs throughput; streaming helps.
-& Benefits from expert parallelism on multi-GPU clusters; requires high-bandwidth interconnects; router-aware scheduling and complex autoscaling. \\
-\bottomrule
-\end{tabularx}
-\end{table}
-\end{landscape}
 
 \subsection{Inference Engines and Serving Runtimes}
 \label{sec:perf-runtimes}
 
 \label{sec:inference-engines}
 
-A number of specialized inference engines have been developed to serve LLMs efficiently. Here we compare three widely used runtimes for decoder-based LLM inference in the cloud: vLLM, Hugging Face Text Generation Inference (TGI), and NVIDIA TensorRT-LLM. Each runtime embodies a distinct approach to batching, memory management, and kernel optimization. Table~\ref{tab:runtimes} provides a qualitative comparison, focused on decoder-only use cases since they remain the most challenging to serve at scale.\footnote{Comparison based on public docs, blog posts, and community benchmarks; ideally substitute your internal benchmark data.}
+A number of specialized inference engines have been developed to serve LLMs efficiently. Here we compare three widely used runtimes for decoder-based LLM inference in the cloud: vLLM, Hugging Face Text Generation Inference (TGI), and NVIDIA TensorRT-LLM. Each runtime embodies a distinct approach to batching, memory management, and kernel optimization. Table~\ref{tab:runtimes} provides a qualitative comparison, focused on decoder-only use cases since they remain the most challenging to serve at scale. Table~\ref{tab:runtimes} provides a qualitative comparison drawn from public documentation and reported benchmarks; validate with your own workloads.
 
 \begin{table}[htbp]
   \centering
@@ -1058,7 +1054,7 @@ A number of specialized inference engines have been developed to serve LLMs effi
   \setlength{\tabcolsep}{6pt}
   \begin{tabular}{p{3.5cm}p{3.8cm}p{3.6cm}p{3.6cm}}
     \toprule
-    & \textbf{vLLM} \cite{vllm-paper} & \textbf{Hugging Face TGI} \cite{tgi-whitepaper} & \textbf{TensorRT-LLM} \cite{tensorrt-llm} \\
+    & \textbf{vLLM} \cite{Kwon2023vLLM} & \textbf{Hugging Face TGI} \cite{tgi_docs} & \textbf{TensorRT-LLM} \cite{tensorrt_llm_docs} \\
     \midrule
     \textbf{Batching/Scheduling} 
     & Continuous batching; request interleaving; excels at tokens/s under bursty load 
@@ -1097,7 +1093,7 @@ A number of specialized inference engines have been developed to serve LLMs effi
 For \ishtar{}, vLLM’s continuous batching and PagedAttention yielded large tokens/s gains under bursty traffic and long-context queries. TGI provided a robust production baseline with simpler deployment, while TensorRT-LLM delivered best-in-class single-instance latency when workloads were fixed and throughput-sensitive.
 
 \subsubsection{Discussion.}  
-In summary, vLLM \cite{vllm-paper} shines when maximum throughput and long context support are critical, but its complexity is higher. Hugging Face TGI \cite{tgi-whitepaper} is the most accessible option, offering fast setup, streaming, and multi-model support, though not always the fastest per-GPU. TensorRT-LLM \cite{tensorrt-llm} achieves the lowest latency and highest tokens/s on NVIDIA hardware, but requires offline engine compilation and is best suited to stable, repeatable workloads.
+In summary, vLLM \cite{Kwon2023vLLM} shines when maximum throughput and long context support are critical, but its complexity is higher. Hugging Face TGI \cite{tgi_docs} is the most accessible option, offering fast setup, streaming, and multi-model support, though not always the fastest per-GPU. TensorRT-LLM \cite{tensorrt_llm_docs} achieves the lowest latency and highest tokens/s on NVIDIA hardware, but requires offline engine compilation and is best suited to stable, repeatable workloads.
 
 In practice, organizations often adopt a staged approach: starting with TGI for simplicity, migrating to vLLM as throughput needs scale, and investing in TensorRT-LLM for latency-critical, cost-sensitive production environments. These runtimes also represent a broader pattern in LLMOps: turnkey systems that integrate optimizations like batching, kernel fusion, and memory-efficient attention into production-ready serving frameworks. They are often the first—and most impactful—optimizations to apply before considering deeper custom engineering.
 
@@ -1111,6 +1107,7 @@ We outline patterns that consistently improve cost, latency, and reliability in 
 Prefer the smallest GPU that meets memory and throughput targets after compression (INT8/FP8, 4-bit weight quant) and KV optimizations. Mix on-demand for SLO-critical replicas with spot/preemptible for surge capacity; warm pools mitigate cold-load times for large checkpoints \cite{cloud-rightsizing, spot-capacity}.
 
 \subsection{Autoscaling and Queuing}
+\label{sec:perf-autoscaling-queue}
 Scale on \emph{token throughput} and \emph{queue depth}, not just GPU utilization. Token-aware autoscalers react to long-context traffic; bounded waiting-room queues smooth bursts without overload. For \ishtar{}, a short queue TTL plus streaming responses preserved UX during breaking events.
 
 \subsection{Model Parallelism vs.\ Replication}
@@ -1132,7 +1129,8 @@ Use LangSmith (or OpenTelemetry export) to trace chains/graphs: per-node latency
 Enable LLM cache (e.g., Redis-backed) for deterministic subchains (prompt $\rightarrow$ answer) and for embeddings. For \ishtar{}, caching per-source summaries cut input tokens by $5$--$10\times$ on repeat queries while improving tail latency \cite{langchain-cache}.
 
 \subsection{Model Routing and Cascades}
-Implement a router that selects the smallest adequate model; escalate on uncertainty or policy triggers. In LangGraph, encode routing as guards on nodes; log route decisions for auditability. Expect $3$--$10\times$ cost improvements on mixed workloads with minimal quality loss \cite{model-cascade}.
+\label{sec:perf-model-routing}
+Implement a router that selects the smallest adequate model; escalate on uncertainty or policy triggers. In LangGraph, encode routing as guards on nodes; log route decisions for auditability. Expect $3$--$10\times$ cost improvements on mixed workloads with minimal quality loss \cite{frugalgpt_2023}.
 
 \subsection{Failure Budgeting and Retries}
 Bound retries with exponential backoff; prefer \emph{partial} fallbacks (e.g., shorter context, lower temperature) before full escalation. Capture degraded-mode metrics (answers returned under fallback) to quantify resilience.
@@ -1145,8 +1143,8 @@ Bound retries with exponential backoff; prefer \emph{partial} fallbacks (e.g., s
 
 \subsubsection{Interventions.}
 \begin{enumerate}
-  \item \textbf{Quantization} to 4-bit (GPTQ/AWQ), keeping task quality within tolerance \cite{gptq, awq}.
-  \item \textbf{Runtime swap} to vLLM with continuous batching and PagedAttention \cite{vllm-paper}.
+  \item \textbf{Quantization} to 4-bit (GPTQ/AWQ), keeping task quality within tolerance \cite{Frantar2023GPTQ,Lin2023AWQ}.
+  \item \textbf{Runtime swap} to vLLM with continuous batching and PagedAttention \cite{Kwon2023vLLM}.
   \item \textbf{RAG compression} (per-source abstractive summaries cached; top-$k$ relevant only).
   \item \textbf{Async API + queue} with token-based autoscaling and streaming responses.
 \end{enumerate}
