@@ -1040,8 +1040,6 @@ These formulas link low-level engineering decisions (e.g., quantization, batchin
 
 
 \subsection{Inference Engines and Serving Runtimes}
-\label{sec:perf-runtimes}
-
 \label{sec:inference-engines}
 
 A number of specialized inference engines have been developed to serve LLMs efficiently. Here we compare three widely used runtimes for decoder-based LLM inference in the cloud: vLLM, Hugging Face Text Generation Inference (TGI), and NVIDIA TensorRT-LLM. Each runtime embodies a distinct approach to batching, memory management, and kernel optimization. Table~\ref{tab:runtimes} provides a qualitative comparison, focused on decoder-only use cases since they remain the most challenging to serve at scale. Table~\ref{tab:runtimes} provides a qualitative comparison drawn from public documentation and reported benchmarks; validate with your own workloads.
@@ -1099,8 +1097,6 @@ In practice, organizations often adopt a staged approach: starting with TGI for 
 
 \subsection{Cloud-Native Optimization Patterns}
 \label{sec:perf-cloud-native}
-
-\label{sec:cloud-patterns}
 We outline patterns that consistently improve cost, latency, and reliability in cloud deployments.
 
 \subsection{Right-Sizing and Instance Mix}
@@ -1118,8 +1114,6 @@ Place model weights on local NVMe; prefetch on scale-out; use image layers with 
 
 \subsection{LangChain-Centric Performance Engineering}
 \label{sec:perf-langchain}
-
-\label{sec:langchain-perf}
 LangChain provides orchestration that, if instrumented carefully, improves both performance and reliability for complex LLM workflows.
 
 \subsection{Tracing, Telemetry, and Token Accounting}
@@ -1137,8 +1131,6 @@ Bound retries with exponential backoff; prefer \emph{partial} fallbacks (e.g., s
 
 \subsection{Extended Case Study: Ishtar AI}
 \label{sec:perf-ishtar-extended}
-
-\label{sec:ishtar-extended}
 \subsubsection{Setup.} 13B decoder-only baseline on A100 (FP16), naive serving. Median latency $\sim2.3$\,s; P95 $\sim5$\,s under bursts.
 
 \subsubsection{Interventions.}
@@ -1154,8 +1146,6 @@ Median latency $\downarrow$ to $\sim1.1$\,s; P95 $\downarrow$ to $\sim2$\,s; thr
 
 \subsection{Implementation Checklist (Addendum)}
 \label{sec:perf-impl-checklist}
-
-\label{sec:checklist-addendum}
 \begin{itemize}
   \item \textbf{Measure first:} profile TTFT vs.\ $T_0$, tokens/s vs.\ $B$, and KV memory vs.\ precision.
   \item \textbf{Exploit precision:} FP16/BF16 by default; consider FP8/INT8; quantize KV where acceptable.
