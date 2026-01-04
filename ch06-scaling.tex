@@ -395,9 +395,9 @@ Model parallelism partitions the model across multiple GPUs, with each device st
   \item[GPU placement:] Co-locate GPUs on the same server or NVSwitch domain to reduce network hops.
   
   \item[Memory utilization:] Ensure each GPU's memory is fully utilized; imbalance leads to idle capacity.
+  
+  \item[Automated tools:] Recent research has produced automated tools for planning partitions. For example, Pope et al. (2023) proposed \textit{ExeGPT}, which analytically selects optimal combinations of data, tensor, and pipeline parallelism under a latency target \cite{pope2023exegpt}. Similarly, Helix (OSDI 2023) formulates partitioning across heterogeneous GPU clusters as a max-flow optimization problem, balancing compute and network bandwidth \cite{helix2023}.
 \end{description}
-
-Recent research has produced automated tools for planning partitions. For example, Pope et al. (2023) proposed \textit{ExeGPT}, which analytically selects optimal combinations of data, tensor, and pipeline parallelism under a latency target \cite{pope2023exegpt}. Similarly, Helix (OSDI 2023) formulates partitioning across heterogeneous GPU clusters as a max-flow optimization problem, balancing compute and network bandwidth \cite{helix2023}.
 
 \subsection{Tensor Parallelism}
 \label{sec:scaling-tensor-parallelism}
