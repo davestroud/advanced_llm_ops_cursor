@@ -71,12 +71,27 @@ Beyond baseline resource limits, several operational realities make scaling LLM 
 
 In \ishtar{}, these constraints manifested most visibly during breaking news cycles, when concurrent journalist queries could spike $10\times$ above baseline. Our scaling strategy combined:
 
-\begin{itemize}
-    \item \emph{Hierarchical model routing:} Lightweight distilled models handled simple classification and summarization, reserving full LLaMA-3.1/3.2 inference for complex, high-value prompts:\cite{frugalgpt_2023}.
-    \item \emph{Hybrid retrieval caching:} Frequently accessed documents were pre-embedded and cached in GPU memory, reducing vector search latency by up to 65\% (measured via production telemetry comparing cache-hit vs.\ cache-miss retrieval times).
-    \item \emph{Dynamic context trimming:} Automated pruning of low-relevance context reduced KV-cache footprint, increasing the number of concurrent requests that could be batched.
-    \item \emph{Predictive autoscaling:} Instead of purely reactive scaling, we integrated external signals (newsroom publishing calendars and trending topic feeds) to pre-warm GPU nodes before anticipated traffic surges.
-\end{itemize}
+\begin{table}[htbp]
+\centering
+\small
+\caption{Scaling strategies employed in \ishtar{} to handle breaking news traffic surges.}
+\label{tab:ishtar-scaling-strategies}
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{8pt}
+\begin{tabularx}{\linewidth}{@{}p{4.2cm}X@{}}
+\toprule
+\textbf{Strategy} & \textbf{Description} \\
+\midrule
+\textbf{Hierarchical model routing} & Lightweight distilled models handled simple classification and summarization, reserving full LLaMA-3.1/3.2 inference for complex, high-value prompts \cite{frugalgpt_2023}. \\
+\midrule
+\textbf{Hybrid retrieval caching} & Frequently accessed documents were pre-embedded and cached in GPU memory, reducing vector search latency by up to 65\% (measured via production telemetry comparing cache-hit vs.\ cache-miss retrieval times). \\
+\midrule
+\textbf{Dynamic context trimming} & Automated pruning of low-relevance context reduced KV-cache footprint, increasing the number of concurrent requests that could be batched. \\
+\midrule
+\textbf{Predictive autoscaling} & Instead of purely reactive scaling, we integrated external signals (newsroom publishing calendars and trending topic feeds) to pre-warm GPU nodes before anticipated traffic surges. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 These optimizations allowed \ishtar{} to maintain a median latency below 800\,ms for 90\% of requests during peak demand (measured over a 30-day production window), without overprovisioning GPU capacity. The challenges faced—sudden surges in queries, maintaining low-latency retrieval, and preserving response quality—are emblematic of the scaling problem in LLMOps.
 
