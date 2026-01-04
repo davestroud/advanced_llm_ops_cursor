@@ -425,33 +425,93 @@ Model parallelism partitions the model across multiple GPUs, with each device st
 \label{sec:scaling-tensor-parallelism}
 Tensor parallelism divides the computation within a layer---especially large matrix multiplies in attention and feed-forward networks---across multiple GPUs. Each GPU owns a slice of the weight matrices and processes a slice of the incoming data in parallel; partial results are then combined via all-reduce collectives.
 
-\subsubsection{Key Considerations}
-\begin{description}
-  \item[Use cases:] Tensor parallelism is useful when individual layers are too large for a single GPU, or when per-layer throughput must be increased.
+\begin{tcolorbox}[
+  title={\textbf{Tensor Parallelism: Key Considerations}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item \textbf{Use cases:} Tensor parallelism is useful when individual layers are too large for a single GPU, or when per-layer throughput must be increased.
   
-  \item[Communication overhead:] Communication overhead is significant, since every matmul requires synchronization.
+  \item \textbf{Communication overhead:} Communication overhead is significant, since every matmul requires synchronization.
   
-  \item[Hardware and libraries:] High-speed links (NVLink, InfiniBand) and efficient libraries like NCCL are essential.
-\end{description}
+  \item \textbf{Hardware and libraries:} High-speed links (NVLink, InfiniBand) and efficient libraries like NCCL are essential.
+\end{itemize}
+\end{tcolorbox}
 
-\subsubsection{Best Practices}
-\begin{description}
-  \item[Load balancing:] Balance tensor slices so all GPUs finish concurrently.
+\begin{tcolorbox}[
+  title={\textbf{Tensor Parallelism: Best Practices}},
+  colback=green!5,
+  colframe=green!40!black,
+  colbacktitle=green!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item \textbf{Load balancing:} Balance tensor slices so all GPUs finish concurrently.
   
-  \item[Collective operations:] Use optimized collectives (e.g., ring all-reduce).
+  \item \textbf{Collective operations:} Use optimized collectives (e.g., ring all-reduce).
   
-  \item[Monitoring:] Monitor communication overhead---over PCIe-only clusters, scaling often stalls.
+  \item \textbf{Monitoring:} Monitor communication overhead---over PCIe-only clusters, scaling often stalls.
   
-  \item[Wide layers:] Tensor parallelism excels for very wide transformer layers, as in Megatron-LM \cite{vaswani2017_attention,vllm_pagedattention}.
-\end{description}
+  \item \textbf{Wide layers:} Tensor parallelism excels for very wide transformer layers, as in Megatron-LM \cite{vaswani2017_attention,vllm_pagedattention}.
+\end{itemize}
+\end{tcolorbox}
 
 \subsection{Pipeline Parallelism}
 \label{sec:scaling-pipeline-parallelism}
 Pipeline parallelism partitions the model into sequential stages (contiguous layer blocks). Each stage resides on a GPU (or group) and processes microbatches concurrently, forming an ``assembly line.''
 
-\subsubsection{Key Considerations} Pipeline parallelism fits larger models without replicating weights on every GPU. Throughput rises as more microbatches are in flight, but latency per request grows with pipeline depth. Pipeline ``bubbles'' (idle stages) reduce efficiency if concurrency is low.
+\begin{tcolorbox}[
+  title={\textbf{Pipeline Parallelism: Key Considerations}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item Pipeline parallelism fits larger models without replicating weights on every GPU.
+  
+  \item Throughput rises as more microbatches are in flight, but latency per request grows with pipeline depth.
+  
+  \item Pipeline ``bubbles'' (idle stages) reduce efficiency if concurrency is low.
+\end{itemize}
+\end{tcolorbox}
 
-\subsubsection{Best Practices} Tune microbatch size to balance GPU utilization and latency. Align stage boundaries so each GPU’s workload is balanced. Combine with data parallelism for optimal scaling. Advanced schedulers such as TetriInfer decouple prefill and decode stages, reducing straggler effects \cite{tetriinfer2023}.
+\begin{tcolorbox}[
+  title={\textbf{Pipeline Parallelism: Best Practices}},
+  colback=green!5,
+  colframe=green!40!black,
+  colbacktitle=green!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item Tune microbatch size to balance GPU utilization and latency.
+  
+  \item Align stage boundaries so each GPU's workload is balanced.
+  
+  \item Combine with data parallelism for optimal scaling.
+  
+  \item Advanced schedulers such as TetriInfer decouple prefill and decode stages, reducing straggler effects \cite{tetriinfer2023}.
+\end{itemize}
+\end{tcolorbox}
 
 \subsubsection{Case in \ishtar{}.} In the \ishtar{} deployment of the LLaMA-3.1-70B model, a hybrid of tensor and pipeline parallelism was used. Tensor parallelism accelerated per-layer GEMMs across 8 A100 GPUs via NVLink, while pipeline parallelism split the model into 4 sequential stages. This enabled 32k-token context windows without exceeding memory budgets, sustaining sub-second latency for 90\% of queries during breaking news events:\cite{frugalgpt_2023}.
 
