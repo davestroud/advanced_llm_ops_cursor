@@ -41,43 +41,43 @@
 \newlabel{fig:quadratic-attn}{{2.2}{50}{Attention cost grows quadratically with context length $T$ (solid), outpacing linear strategies (dashed). This motivates paged attention, local attention, and RAG to manage long contexts in production}{figure.2.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Empirical growth in Transformer-based model size (log scale). Parameter counts have increased by orders of magnitude, driving distinct operational constraints in memory, compute, and cost.}}{51}{figure.2.3}\protected@file@percent }
 \newlabel{fig:llm-scale}{{2.3}{51}{Empirical growth in Transformer-based model size (log scale). Parameter counts have increased by orders of magnitude, driving distinct operational constraints in memory, compute, and cost}{figure.2.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Core Components of an LLMOps Pipeline}{51}{section.2.3}\protected@file@percent }
-\newlabel{sec:ch2-core-components}{{2.3}{51}{Core Components of an LLMOps Pipeline}{section.2.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Idealized throughput vs. TTFT using Eq.~\ref {eq:throughput} with $N{=}120$ tokens/request and $\tau _1{=}\SI {0.02}{s/token}$. Larger batches ($B$) amortize TTFT, but real systems saturate due to kernel/IO limits; use as a planning guideline, not a guarantee.}}{52}{figure.2.4}\protected@file@percent }
-\newlabel{fig:ttft-throughput}{{2.4}{52}{Idealized throughput vs. TTFT using Eq.~\ref {eq:throughput} with $N{=}120$ tokens/request and $\tau _1{=}\SI {0.02}{s/token}$. Larger batches ($B$) amortize TTFT, but real systems saturate due to kernel/IO limits; use as a planning guideline, not a guarantee}{figure.2.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Idealized throughput vs. TTFT using Eq.~\ref {eq:throughput} with $N{=}120$ tokens/request and $\tau _1{=}\SI {0.02}{s/token}$. Larger batches ($B$) amortize TTFT, but real systems saturate due to kernel/IO limits; use as a planning guideline, not a guarantee.}}{51}{figure.2.4}\protected@file@percent }
+\newlabel{fig:ttft-throughput}{{2.4}{51}{Idealized throughput vs. TTFT using Eq.~\ref {eq:throughput} with $N{=}120$ tokens/request and $\tau _1{=}\SI {0.02}{s/token}$. Larger batches ($B$) amortize TTFT, but real systems saturate due to kernel/IO limits; use as a planning guideline, not a guarantee}{figure.2.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Core Components of an LLMOps Pipeline}{52}{section.2.3}\protected@file@percent }
+\newlabel{sec:ch2-core-components}{{2.3}{52}{Core Components of an LLMOps Pipeline}{section.2.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Key Concepts in LLMOps}{54}{section.2.4}\protected@file@percent }
 \newlabel{sec:ch2-key-concepts}{{2.4}{54}{Key Concepts in LLMOps}{section.2.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Prompt Engineering}{54}{subsection.2.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Retrieval-Augmented Generation (RAG)}{55}{subsection.2.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Retrieval-Augmented Generation (RAG)}{54}{subsection.2.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Tool Calling and Structured Outputs}{55}{subsection.2.4.3}\protected@file@percent }
 \newlabel{sec:ch2-tool-calling}{{2.4.3}{55}{Tool Calling and Structured Outputs}{subsection.2.4.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3.1}Ops implications}{56}{subsubsection.2.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3.1}Ops implications}{55}{subsubsection.2.4.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Evaluation Metrics}{56}{subsection.2.4.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.4.1}Evaluation Frameworks and Tooling}{57}{subsubsection.2.4.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}Human Feedback and Alignment}{57}{subsection.2.4.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.6}Security, Privacy, and Threat Modeling}{58}{subsection.2.4.6}\protected@file@percent }
 \newlabel{sec:ch2-security}{{2.4.6}{58}{Security, Privacy, and Threat Modeling}{subsection.2.4.6}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.6.1}Operational controls}{58}{subsubsection.2.4.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Transformer Architecture Foundations for LLMOps}{59}{subsection.2.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Transformer Architecture Foundations for LLMOps}{58}{subsection.2.4.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.1}Self-attention and multi-head attention}{59}{subsubsection.2.4.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.2}Positional encodings}{60}{subsubsection.2.4.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.2}Positional encodings}{59}{subsubsection.2.4.7.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.3}Feed-forward networks (FFN)}{60}{subsubsection.2.4.7.3}\protected@file@percent }
 \newlabel{eq:ffn-formula}{{2.13}{60}{Feed-forward networks (FFN)}{equation.2.13}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.4}Residual connections and LayerNorm}{61}{subsubsection.2.4.7.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.5}Worked example (KV-cache sizing)}{62}{subsubsection.2.4.7.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.6}Rule-of-thumb parameter memory}{63}{subsubsection.2.4.7.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Approximate parameter memory requirements for different model scales (FP16 weights).}}{64}{table.2.1}\protected@file@percent }
-\newlabel{tab:param-memory}{{2.1}{64}{Approximate parameter memory requirements for different model scales (FP16 weights)}{table.2.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Approximate parameter memory requirements for different model scales (FP16 weights).}}{63}{table.2.1}\protected@file@percent }
+\newlabel{tab:param-memory}{{2.1}{63}{Approximate parameter memory requirements for different model scales (FP16 weights)}{table.2.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.5}The LLM Lifecycle}{64}{section.2.5}\protected@file@percent }
 \newlabel{sec:ch2-lifecycle}{{2.5}{64}{The LLM Lifecycle}{section.2.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Governance and Risk Management}{64}{subsection.2.5.1}\protected@file@percent }
 \newlabel{sec:ch2-governance}{{2.5.1}{64}{Governance and Risk Management}{subsection.2.5.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1.1}LLMOps linkage}{65}{subsubsection.2.5.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1.1}LLMOps linkage}{64}{subsubsection.2.5.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2.6}Tools and Frameworks}{66}{section.2.6}\protected@file@percent }
 \newlabel{sec:ch2-tools}{{2.6}{66}{Tools and Frameworks}{section.2.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.7}Ishtar AI: A Running Example}{68}{section.2.7}\protected@file@percent }
-\newlabel{sec:ch2-ishtar-running-example}{{2.7}{68}{Ishtar AI: A Running Example}{section.2.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.1}A concrete query trace}{68}{subsubsection.2.7.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Ishtar AI: A Running Example}{67}{section.2.7}\protected@file@percent }
+\newlabel{sec:ch2-ishtar-running-example}{{2.7}{67}{Ishtar AI: A Running Example}{section.2.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.1}A concrete query trace}{67}{subsubsection.2.7.0.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.2}Release gates for reliability}{68}{subsubsection.2.7.0.2}\protected@file@percent }
 \@setckpt{ch02-llmops-fundamentals}{
 \setcounter{page}{69}
