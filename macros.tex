@@ -29,6 +29,13 @@
 }
 \makeatother
 
+% --- Global TikZ defaults ---
+\tikzset{
+  >=Stealth,
+  every picture/.append style={line width=0.6pt},
+  every node/.append style={font=\footnotesize},
+}
+
 % --- Column type 'Y' only if array/tabularx is available ---
 \makeatletter
 \@ifundefined{newcolumntype}{%
