@@ -75,6 +75,7 @@ Finally, LLM observability has a governance dimension. Logs often contain user t
 
 \begin{figure}[t]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   layer/.style={rectangle, rounded corners, draw=black, very thick,
                 minimum width=42mm, minimum height=10mm,
@@ -98,6 +99,7 @@ Finally, LLM observability has a governance dimension. Logs often contain user t
 \node[note, right=15mm of pipeline.east] {End-to-end lineage across agents};
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Three layers of LLM observability. Effective monitoring requires integrating system health,
 model quality signals, and full pipeline tracing to explain regressions and prevent observability debt.}
 \label{fig:telemetry_layers}
@@ -274,6 +276,7 @@ High-fidelity traces require stable correlation across boundaries. Every request
 
 \begin{figure}[t]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   font=\small,
   node distance=8mm and 10mm,
@@ -351,6 +354,7 @@ High-fidelity traces require stable correlation across boundaries. Every request
 };
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Color-coded taxonomy for span naming and attributes in LLM applications. Stable, descriptive
 span names (\texttt{llm.call}, \texttt{retriever.search}, \texttt{tool.invoke.<name>}, \texttt{parser.jsonschema},
 \texttt{guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining

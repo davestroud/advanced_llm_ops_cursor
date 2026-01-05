@@ -148,6 +148,7 @@ Sampling temperature $\tau$ is a decoding hyperparameter that rescales the model
 
 \begin{figure}[t]
     \centering
+    \begin{llmfigbox}
     % --- Transformer Block Schematic (TikZ) ---
     \begin{tikzpicture}[font=\small,>=latex,scale=0.95, every node/.style={scale=0.95}]
         % Nodes
@@ -174,12 +175,14 @@ Sampling temperature $\tau$ is a decoding hyperparameter that rescales the model
         \node[align=left, anchor=west] at ($(ffn.east)+(1.2,0)$) {$d \rightarrow d_{ff} \rightarrow d$};
         \node[align=left, anchor=west] at ($(addnorm2.east)+(1.2,0)$) {Residual + LayerNorm};
     \end{tikzpicture}
+    \end{llmfigbox}
     \caption{Schematic of a Transformer block highlighting attention, FFN, and residual paths. Inference memory is dominated by parameters and the KV cache (Eq.~\ref{eq:param-mem}, \ref{eq:kv-cache}); compute cost scales with Eq.~\ref{eq:flops-layer}.}
     \label{fig:transformer-block}
 \end{figure}
 
 \begin{figure}[t]
     \centering
+    \begin{llmfigbox}
     % --- Quadratic Attention Complexity Plot (pgfplots) ---
     \begin{tikzpicture}
         \begin{axis}[
@@ -205,12 +208,14 @@ Sampling temperature $\tau$ is a decoding hyperparameter that rescales the model
 
         \end{axis}
     \end{tikzpicture}
+    \end{llmfigbox}
     \caption{Attention cost grows quadratically with context length $T$ (solid), outpacing linear strategies (dashed). This motivates paged attention, local attention, and RAG to manage long contexts in production.}
     \label{fig:quadratic-attn}
 \end{figure}
 
 \begin{figure}[t]
     \centering
+    \begin{llmfigbox}
     % --- Parameter scaling over time (pgfplots) ---
     \begin{tikzpicture}
       \begin{axis}[
@@ -231,6 +236,7 @@ Sampling temperature $\tau$ is a decoding hyperparameter that rescales the model
         };
       \end{axis}
     \end{tikzpicture}
+    \end{llmfigbox}
     \caption{Empirical growth in Transformer-based model size (log scale). Parameter counts have increased by orders of magnitude, driving distinct operational constraints in memory, compute, and cost.}
     \label{fig:llm-scale}
 \end{figure}
@@ -305,6 +311,7 @@ Model & Params $P$ & $M_{\text{params}}$ (GB) \\
 % ------------------ Throughput vs TTFT Plot ------------------
 \begin{figure}[t]
     \centering
+    \begin{llmfigbox}
     \begin{tikzpicture}
         \begin{axis}[
             width=0.9\linewidth,
@@ -330,6 +337,7 @@ Model & Params $P$ & $M_{\text{params}}$ (GB) \\
             \addlegendentry{$B{=}16$};
         \end{axis}
     \end{tikzpicture}
+    \end{llmfigbox}
     \caption{Idealized throughput vs. TTFT using Eq.~\ref{eq:throughput} with $N{=}120$ tokens/request and $\tau_1{=}\SI{0.02}{s/token}$. Larger batches ($B$) amortize TTFT, but real systems saturate due to kernel/IO limits; use as a planning guideline, not a guarantee.}
     \label{fig:ttft-throughput}
 \end{figure}

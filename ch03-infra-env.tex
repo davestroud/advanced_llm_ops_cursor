@@ -221,6 +221,7 @@ In summary, it is best to operate GPUs at a batch size that still meets your lat
 
 \begin{figure}[t]
   \centering
+  \begin{llmfigbox}
   \begin{tikzpicture}
     \begin{axis}[
       width=0.95\textwidth,
@@ -309,6 +310,7 @@ In summary, it is best to operate GPUs at a batch size that still meets your lat
       
     \end{axis}
   \end{tikzpicture}
+  \end{llmfigbox}
   \caption{Throughput vs.\ batch size (schematic). Increasing batch size initially yields large throughput gains (e.g., 3$\times$ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck.}
   \label{fig:batchtradeoff}
 \end{figure}
@@ -789,6 +791,7 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
   % \resizebox{\linewidth}{!}{%
   % \tikzset{every picture/.style={scale=0.95}}
 
+  \begin{llmfigbox}
   \begin{tikzpicture}[
     >=Stealth,
     node distance=0.6cm and 0.9cm,
@@ -895,6 +898,7 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     \node[font=\tiny, right=0.15cm of leg3.east, anchor=west] {Security \& IAM};
 
   \end{tikzpicture}
+  \end{llmfigbox}
   % } % end resizebox if you enable it above
 
   \caption{Cloud-native deployment architecture for LLMOps. The diagram illustrates elastic GPU scaling across multiple availability zones, integration with managed services (queues, vector databases, object storage), secure networking through API gateways and private subnets, and disaster recovery capabilities. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls.}
@@ -989,6 +993,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 
 \begin{figure}[H]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
   node distance=0.4cm and 0.5cm,
@@ -1089,6 +1094,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \node[font=\tiny, right=0.15cm of L7.east, anchor=west] {Object/Vector Store};
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Balanced schematic of deployment patterns: \textbf{Cloud-Native} (left), \textbf{Hybrid} (middle), and \textbf{Multi-Cluster} (right).}
 \label{fig:deploy-patterns-balanced}
 \end{figure}
@@ -1142,6 +1148,7 @@ Future plans include a European cluster for GDPR compliance and model routing (e
 
 \begin{figure}[H]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   scale=0.9, every node/.style={transform shape},
   box/.style={rectangle, rounded corners, draw=black, thick, align=center, font=\scriptsize},
@@ -1205,6 +1212,7 @@ Future plans include a European cluster for GDPR compliance and model routing (e
 \node[box, fill=blue!25, minimum width=8mm, minimum height=5mm, label={[lbl]right:IaC / Control Plane}] (L4) at ($(L3.east) + (2cm, 0)$) {};
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling.}
 \label{fig:ishtar-infra}
 \end{figure}

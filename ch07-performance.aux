@@ -1,145 +1,145 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Performance Optimization Strategies for LLMs}{203}{chapter.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Performance Optimization Strategies for LLMs}{199}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{refsegment:015}{{7}{203}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
-\newlabel{ch:performance}{{7}{203}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
-\newlabel{refsegment:016}{{7}{203}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Introduction}{204}{section.7.1}\protected@file@percent }
-\newlabel{sec:ch7-introduction}{{7.1}{204}{Introduction}{section.7.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Why Optimization Matters}{204}{section.7.2}\protected@file@percent }
-\newlabel{sec:perf-why}{{7.2}{204}{Why Optimization Matters}{section.7.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.3}Model-Level Optimization Techniques}{205}{section.7.3}\protected@file@percent }
-\newlabel{sec:perf-model}{{7.3}{205}{Model-Level Optimization Techniques}{section.7.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Quantization}{205}{subsection.7.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Representative performance improvements from widely deployed techniques, based on published benchmarks and production deployments. Actual gains depend on model size, hardware, and traffic mix. See Sections~\ref {sec:perf-model}--\ref {sec:perf-system} and Section~\ref {sec:perf-prompt} for detailed discussions and implementation guidance.}}{206}{figure.7.1}\protected@file@percent }
-\newlabel{fig:opt-gains-callout}{{7.1}{206}{Representative performance improvements from widely deployed techniques, based on published benchmarks and production deployments. Actual gains depend on model size, hardware, and traffic mix. See Sections~\ref {sec:perf-model}--\ref {sec:perf-system} and Section~\ref {sec:perf-prompt} for detailed discussions and implementation guidance}{figure.7.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Illustrative example of latency improvements after batching, KV-cache engineering, and quantization. Absolute values vary by model, hardware, and traffic mix.}}{206}{figure.7.2}\protected@file@percent }
-\newlabel{fig:latency-before-after}{{7.2}{206}{Illustrative example of latency improvements after batching, KV-cache engineering, and quantization. Absolute values vary by model, hardware, and traffic mix}{figure.7.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Pruning}{207}{subsection.7.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Comparison of common quantization schemes for large language models.}}{208}{table.7.1}\protected@file@percent }
-\newlabel{tab:quantization-comparison}{{7.1}{208}{Comparison of common quantization schemes for large language models}{table.7.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.3}Knowledge Distillation}{208}{subsection.7.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.4}Efficient Fine-Tuning}{209}{subsection.7.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture.}}{210}{figure.7.3}\protected@file@percent }
-\newlabel{fig:quant-throughput-bars}{{7.3}{210}{Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture}{figure.7.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Memory accounting at a glance. Use precision $b$ from Table~\ref {tab:quantization-comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets.}}{210}{figure.7.4}\protected@file@percent }
-\newlabel{fig:memory-cheatsheet}{{7.4}{210}{Memory accounting at a glance. Use precision $b$ from Table~\ref {tab:quantization-comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets}{figure.7.4}{}}
-\newlabel{RF2}{211}
-\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces Summary of model compression and adaptation techniques for LLM deployment.}}{211}{table.7.2}\protected@file@percent }
-\newlabel{tab:compression-summary}{{7.2}{211}{Summary of model compression and adaptation techniques for LLM deployment}{table.7.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces Approximate parameter memory vs.\ precision for 13B and 70B models (weights only).}}{212}{table.7.3}\protected@file@percent }
-\newlabel{tab:mem-vs-precision}{{7.3}{212}{Approximate parameter memory vs.\ precision for 13B and 70B models (weights only)}{table.7.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.4}Inference Engine Optimization}{212}{section.7.4}\protected@file@percent }
-\newlabel{sec:perf-engine}{{7.4}{212}{Inference Engine Optimization}{section.7.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Specialized Runtimes}{212}{subsection.7.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Operator Fusion}{213}{subsection.7.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Paged Attention}{214}{subsection.7.4.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces Illustrative inference engine benchmarks (single GPU). Values are representative examples based on typical production deployments; actual performance depends on model size, hardware configuration, and workload characteristics.}}{215}{table.7.4}\protected@file@percent }
-\newlabel{tab:engine-bench}{{7.4}{215}{Illustrative inference engine benchmarks (single GPU). Values are representative examples based on typical production deployments; actual performance depends on model size, hardware configuration, and workload characteristics}{table.7.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.5}System-Level Optimization}{215}{section.7.5}\protected@file@percent }
-\newlabel{sec:perf-system}{{7.5}{215}{System-Level Optimization}{section.7.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.1}Batching Strategies}{215}{subsection.7.5.1}\protected@file@percent }
-\newlabel{sec:perf-batching}{{7.5.1}{215}{Batching Strategies}{subsection.7.5.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces Representative throughput scaling with batch size. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. In production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}}{216}{figure.7.5}\protected@file@percent }
-\newlabel{fig:throughput-vs-batch}{{7.5}{216}{Representative throughput scaling with batch size. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. In production, the optimal $B$ is constrained by latency SLOs and KV-cache memory}{figure.7.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.2}Asynchronous Processing}{217}{subsection.7.5.2}\protected@file@percent }
-\newlabel{sec:perf-async}{{7.5.2}{217}{Asynchronous Processing}{subsection.7.5.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.3}Caching}{218}{subsection.7.5.3}\protected@file@percent }
-\newlabel{sec:perf-cache}{{7.5.3}{218}{Caching}{subsection.7.5.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.6}Prompt Optimization}{219}{section.7.6}\protected@file@percent }
-\newlabel{sec:perf-prompt}{{7.6}{219}{Prompt Optimization}{section.7.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.1}Reducing Context Size}{219}{subsection.7.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.2}Template Efficiency}{220}{subsection.7.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.3}Compression of Retrieved Context}{221}{subsection.7.6.3}\protected@file@percent }
-\newlabel{sec:perf-rag-compression}{{7.6.3}{221}{Compression of Retrieved Context}{subsection.7.6.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.4}Speculative Decoding}{222}{subsection.7.6.4}\protected@file@percent }
-\newlabel{sec:perf-speculative}{{7.6.4}{222}{Speculative Decoding}{subsection.7.6.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.7}Hardware Utilization Tuning}{222}{section.7.7}\protected@file@percent }
-\newlabel{sec:perf-hw}{{7.7}{222}{Hardware Utilization Tuning}{section.7.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.1}GPU Profiling}{222}{subsection.7.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.2}Mixed Precision}{223}{subsection.7.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.3}Concurrency Tuning}{224}{subsection.7.7.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces Illustrative kernel-time breakdown before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute). Percentages vary by model, sequence length, and runtime.}}{225}{table.7.5}\protected@file@percent }
-\newlabel{tab:profiling-breakdown}{{7.5}{225}{Illustrative kernel-time breakdown before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute). Percentages vary by model, sequence length, and runtime}{table.7.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.8}Performance Testing and Benchmarking}{225}{section.7.8}\protected@file@percent }
-\newlabel{sec:perf-benchmark}{{7.8}{225}{Performance Testing and Benchmarking}{section.7.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.9}Case Study: Optimizing Ishtar AI}{226}{section.7.9}\protected@file@percent }
-\newlabel{sec:perf-ishtar-case}{{7.9}{226}{Case Study: Optimizing Ishtar AI}{section.7.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Latency CDF with p50/p95/p99 markers. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix.}}{227}{figure.7.6}\protected@file@percent }
-\newlabel{fig:latency-cdf}{{7.6}{227}{Latency CDF with p50/p95/p99 markers. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix}{figure.7.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.7}{\ignorespaces Illustrative cost per 1k tokens across engines under a simple hourly-cost model (see Section~\ref {sec:perf-cost-per-token}). Absolute values depend on hardware pricing, utilization, and batch/sequence lengths.}}{227}{figure.7.7}\protected@file@percent }
-\newlabel{fig:cost-per-1k-by-engine}{{7.7}{227}{Illustrative cost per 1k tokens across engines under a simple hourly-cost model (see Section~\ref {sec:perf-cost-per-token}). Absolute values depend on hardware pricing, utilization, and batch/sequence lengths}{figure.7.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.1}Initial Performance}{227}{subsection.7.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.2}Optimizations Applied}{228}{subsection.7.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.1}Model quantization to INT8/4-bit.}{228}{subsubsection.7.9.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.2}Inference engine swap (vLLM with dynamic batching).}{228}{subsubsection.7.9.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.3}Prompt and context optimization (RAG compression).}{229}{subsubsection.7.9.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.4}Asynchronous API and streaming.}{229}{subsubsection.7.9.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.3}Results}{229}{subsection.7.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.3.1}Alternate configurations considered.}{230}{subsubsection.7.9.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7.10}Best Practices Checklist (Quick)}{231}{section.7.10}\protected@file@percent }
-\newlabel{sec:perf-checklist-quick}{{7.10}{231}{Best Practices Checklist (Quick)}{section.7.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces \ishtar  {} optimization KPIs: before vs.\ after. Values are representative of the case study scenario and depend on workload and hardware.}}{231}{table.7.6}\protected@file@percent }
-\newlabel{tab:ishtar-kpis}{{7.6}{231}{\ishtar {} optimization KPIs: before vs.\ after. Values are representative of the case study scenario and depend on workload and hardware}{table.7.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.11}Best Practices Checklist}{232}{section.7.11}\protected@file@percent }
-\newlabel{sec:perf-checklist}{{7.11}{232}{Best Practices Checklist}{section.7.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.12}Extended Material}{233}{section.7.12}\protected@file@percent }
-\newlabel{sec:perf-extended}{{7.12}{233}{Extended Material}{section.7.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.1}Architectural Variants and Cloud Deployment Trade-offs}{233}{subsection.7.12.1}\protected@file@percent }
-\newlabel{sec:perf-variants}{{7.12.1}{233}{Architectural Variants and Cloud Deployment Trade-offs}{subsection.7.12.1}{}}
-\newlabel{sec:arch-variants}{{7.12.1}{233}{Architectural Variants and Cloud Deployment Trade-offs}{subsection.7.12.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.2}Encoder-Only (Masked LM)}{233}{subsection.7.12.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.3}Decoder-Only (Autoregressive LM)}{233}{subsection.7.12.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.4}Mixture-of-Experts (MoE)}{234}{subsection.7.12.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.4.1}Guideline.}{235}{subsubsection.7.12.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.5}Complexity and Scaling: Cost Models and Memory Formulas}{235}{subsection.7.12.5}\protected@file@percent }
-\newlabel{sec:perf-cost-models}{{7.12.5}{235}{Complexity and Scaling: Cost Models and Memory Formulas}{subsection.7.12.5}{}}
-\newlabel{sec:complexity-scaling}{{7.12.5}{235}{Complexity and Scaling: Cost Models and Memory Formulas}{subsection.7.12.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.6}Attention and KV Cache}{235}{subsection.7.12.6}\protected@file@percent }
-\newlabel{sec:perf-attention-kv-cache}{{7.12.6}{235}{Attention and KV Cache}{subsection.7.12.6}{}}
-\newlabel{eq:kv-layer}{{7.2}{235}{Attention and KV Cache}{equation.7.2}{}}
-\newlabel{eq:kv-total}{{7.3}{235}{Attention and KV Cache}{equation.7.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.6.1}Worked Example.}{236}{subsubsection.7.12.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.7}Throughput and Utilization}{236}{subsection.7.12.7}\protected@file@percent }
-\newlabel{eq:throughput-main}{{7.4}{236}{Throughput and Utilization}{equation.7.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.7.1}Interpretation.}{236}{subsubsection.7.12.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.8}Cost per 1{,}000 Tokens}{237}{subsection.7.12.8}\protected@file@percent }
-\newlabel{sec:perf-cost-per-token}{{7.12.8}{237}{Cost per 1{,}000 Tokens}{subsection.7.12.8}{}}
-\newlabel{eq:cost-k}{{7.5}{237}{Cost per 1{,}000 Tokens}{equation.7.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.8.1}Worked Example.}{237}{subsubsection.7.12.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.9}Inference Engines and Serving Runtimes}{237}{subsection.7.12.9}\protected@file@percent }
-\newlabel{sec:inference-engines}{{7.12.9}{237}{Inference Engines and Serving Runtimes}{subsection.7.12.9}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.9.1}Practice notes.}{237}{subsubsection.7.12.9.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces Comparison of Architectural Variants for Cloud Deployment}}{238}{table.7.7}\protected@file@percent }
-\newlabel{tab:arch-comparison}{{7.7}{238}{Comparison of Architectural Variants for Cloud Deployment}{table.7.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.8}{\ignorespaces Qualitative comparison of LLM serving runtimes (decoder-only focus).}}{238}{table.7.8}\protected@file@percent }
-\newlabel{tab:runtimes}{{7.8}{238}{Qualitative comparison of LLM serving runtimes (decoder-only focus)}{table.7.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.9.2}Discussion.}{239}{subsubsection.7.12.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.10}Cloud-Native Optimization Patterns}{239}{subsection.7.12.10}\protected@file@percent }
-\newlabel{sec:perf-cloud-native}{{7.12.10}{239}{Cloud-Native Optimization Patterns}{subsection.7.12.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.11}Right-Sizing and Instance Mix}{239}{subsection.7.12.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.12}Autoscaling and Queuing}{239}{subsection.7.12.12}\protected@file@percent }
-\newlabel{sec:perf-autoscaling-queue}{{7.12.12}{239}{Autoscaling and Queuing}{subsection.7.12.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.13}Model Parallelism vs.\ Replication}{240}{subsection.7.12.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.14}I/O and Storage}{240}{subsection.7.12.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.15}LangChain-Centric Performance Engineering}{240}{subsection.7.12.15}\protected@file@percent }
-\newlabel{sec:perf-langchain}{{7.12.15}{240}{LangChain-Centric Performance Engineering}{subsection.7.12.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.16}Tracing, Telemetry, and Token Accounting}{240}{subsection.7.12.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.17}Caching and Deterministic Subchains}{240}{subsection.7.12.17}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.18}Model Routing and Cascades}{240}{subsection.7.12.18}\protected@file@percent }
-\newlabel{sec:perf-model-routing}{{7.12.18}{240}{Model Routing and Cascades}{subsection.7.12.18}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.19}Failure Budgeting and Retries}{241}{subsection.7.12.19}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.20}Extended Case Study: Ishtar AI}{241}{subsection.7.12.20}\protected@file@percent }
-\newlabel{sec:perf-ishtar-extended}{{7.12.20}{241}{Extended Case Study: Ishtar AI}{subsection.7.12.20}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.1}Setup.}{241}{subsubsection.7.12.20.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.2}Interventions.}{241}{subsubsection.7.12.20.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.3}Outcomes.}{241}{subsubsection.7.12.20.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.21}Implementation Checklist (Addendum)}{241}{subsection.7.12.21}\protected@file@percent }
-\newlabel{sec:perf-impl-checklist}{{7.12.21}{241}{Implementation Checklist (Addendum)}{subsection.7.12.21}{}}
+\newlabel{refsegment:015}{{7}{199}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
+\newlabel{ch:performance}{{7}{199}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
+\newlabel{refsegment:016}{{7}{199}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Introduction}{200}{section.7.1}\protected@file@percent }
+\newlabel{sec:ch7-introduction}{{7.1}{200}{Introduction}{section.7.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Why Optimization Matters}{200}{section.7.2}\protected@file@percent }
+\newlabel{sec:perf-why}{{7.2}{200}{Why Optimization Matters}{section.7.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Model-Level Optimization Techniques}{201}{section.7.3}\protected@file@percent }
+\newlabel{sec:perf-model}{{7.3}{201}{Model-Level Optimization Techniques}{section.7.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Quantization}{201}{subsection.7.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Representative performance improvements from widely deployed techniques, based on published benchmarks and production deployments. Actual gains depend on model size, hardware, and traffic mix. See Sections~\ref {sec:perf-model}--\ref {sec:perf-system} and Section~\ref {sec:perf-prompt} for detailed discussions and implementation guidance.}}{202}{figure.7.1}\protected@file@percent }
+\newlabel{fig:opt-gains-callout}{{7.1}{202}{Representative performance improvements from widely deployed techniques, based on published benchmarks and production deployments. Actual gains depend on model size, hardware, and traffic mix. See Sections~\ref {sec:perf-model}--\ref {sec:perf-system} and Section~\ref {sec:perf-prompt} for detailed discussions and implementation guidance}{figure.7.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Illustrative example of latency improvements after batching, KV-cache engineering, and quantization. Absolute values vary by model, hardware, and traffic mix.}}{202}{figure.7.2}\protected@file@percent }
+\newlabel{fig:latency-before-after}{{7.2}{202}{Illustrative example of latency improvements after batching, KV-cache engineering, and quantization. Absolute values vary by model, hardware, and traffic mix}{figure.7.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Pruning}{203}{subsection.7.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Comparison of common quantization schemes for large language models.}}{204}{table.7.1}\protected@file@percent }
+\newlabel{tab:quantization-comparison}{{7.1}{204}{Comparison of common quantization schemes for large language models}{table.7.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.3}Knowledge Distillation}{204}{subsection.7.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.4}Efficient Fine-Tuning}{205}{subsection.7.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture.}}{206}{figure.7.3}\protected@file@percent }
+\newlabel{fig:quant-throughput-bars}{{7.3}{206}{Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture}{figure.7.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Memory accounting at a glance. Use precision $b$ from Table~\ref {tab:quantization-comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets.}}{206}{figure.7.4}\protected@file@percent }
+\newlabel{fig:memory-cheatsheet}{{7.4}{206}{Memory accounting at a glance. Use precision $b$ from Table~\ref {tab:quantization-comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets}{figure.7.4}{}}
+\newlabel{RF2}{207}
+\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces Summary of model compression and adaptation techniques for LLM deployment.}}{207}{table.7.2}\protected@file@percent }
+\newlabel{tab:compression-summary}{{7.2}{207}{Summary of model compression and adaptation techniques for LLM deployment}{table.7.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces Approximate parameter memory vs.\ precision for 13B and 70B models (weights only).}}{208}{table.7.3}\protected@file@percent }
+\newlabel{tab:mem-vs-precision}{{7.3}{208}{Approximate parameter memory vs.\ precision for 13B and 70B models (weights only)}{table.7.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}Inference Engine Optimization}{208}{section.7.4}\protected@file@percent }
+\newlabel{sec:perf-engine}{{7.4}{208}{Inference Engine Optimization}{section.7.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Specialized Runtimes}{208}{subsection.7.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Operator Fusion}{209}{subsection.7.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Paged Attention}{210}{subsection.7.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces Illustrative inference engine benchmarks (single GPU). Values are representative examples based on typical production deployments; actual performance depends on model size, hardware configuration, and workload characteristics.}}{211}{table.7.4}\protected@file@percent }
+\newlabel{tab:engine-bench}{{7.4}{211}{Illustrative inference engine benchmarks (single GPU). Values are representative examples based on typical production deployments; actual performance depends on model size, hardware configuration, and workload characteristics}{table.7.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}System-Level Optimization}{211}{section.7.5}\protected@file@percent }
+\newlabel{sec:perf-system}{{7.5}{211}{System-Level Optimization}{section.7.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.1}Batching Strategies}{211}{subsection.7.5.1}\protected@file@percent }
+\newlabel{sec:perf-batching}{{7.5.1}{211}{Batching Strategies}{subsection.7.5.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces Representative throughput scaling with batch size. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. In production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}}{212}{figure.7.5}\protected@file@percent }
+\newlabel{fig:throughput-vs-batch}{{7.5}{212}{Representative throughput scaling with batch size. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. In production, the optimal $B$ is constrained by latency SLOs and KV-cache memory}{figure.7.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.2}Asynchronous Processing}{213}{subsection.7.5.2}\protected@file@percent }
+\newlabel{sec:perf-async}{{7.5.2}{213}{Asynchronous Processing}{subsection.7.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.3}Caching}{214}{subsection.7.5.3}\protected@file@percent }
+\newlabel{sec:perf-cache}{{7.5.3}{214}{Caching}{subsection.7.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.6}Prompt Optimization}{215}{section.7.6}\protected@file@percent }
+\newlabel{sec:perf-prompt}{{7.6}{215}{Prompt Optimization}{section.7.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.1}Reducing Context Size}{215}{subsection.7.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.2}Template Efficiency}{216}{subsection.7.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.3}Compression of Retrieved Context}{217}{subsection.7.6.3}\protected@file@percent }
+\newlabel{sec:perf-rag-compression}{{7.6.3}{217}{Compression of Retrieved Context}{subsection.7.6.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.4}Speculative Decoding}{218}{subsection.7.6.4}\protected@file@percent }
+\newlabel{sec:perf-speculative}{{7.6.4}{218}{Speculative Decoding}{subsection.7.6.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.7}Hardware Utilization Tuning}{218}{section.7.7}\protected@file@percent }
+\newlabel{sec:perf-hw}{{7.7}{218}{Hardware Utilization Tuning}{section.7.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.1}GPU Profiling}{218}{subsection.7.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.2}Mixed Precision}{219}{subsection.7.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.3}Concurrency Tuning}{220}{subsection.7.7.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces Illustrative kernel-time breakdown before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute). Percentages vary by model, sequence length, and runtime.}}{221}{table.7.5}\protected@file@percent }
+\newlabel{tab:profiling-breakdown}{{7.5}{221}{Illustrative kernel-time breakdown before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute). Percentages vary by model, sequence length, and runtime}{table.7.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.8}Performance Testing and Benchmarking}{221}{section.7.8}\protected@file@percent }
+\newlabel{sec:perf-benchmark}{{7.8}{221}{Performance Testing and Benchmarking}{section.7.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.9}Case Study: Optimizing Ishtar AI}{222}{section.7.9}\protected@file@percent }
+\newlabel{sec:perf-ishtar-case}{{7.9}{222}{Case Study: Optimizing Ishtar AI}{section.7.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Latency CDF with p50/p95/p99 markers. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix.}}{223}{figure.7.6}\protected@file@percent }
+\newlabel{fig:latency-cdf}{{7.6}{223}{Latency CDF with p50/p95/p99 markers. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix}{figure.7.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.7}{\ignorespaces Illustrative cost per 1k tokens across engines under a simple hourly-cost model (see Section~\ref {sec:perf-cost-per-token}). Absolute values depend on hardware pricing, utilization, and batch/sequence lengths.}}{223}{figure.7.7}\protected@file@percent }
+\newlabel{fig:cost-per-1k-by-engine}{{7.7}{223}{Illustrative cost per 1k tokens across engines under a simple hourly-cost model (see Section~\ref {sec:perf-cost-per-token}). Absolute values depend on hardware pricing, utilization, and batch/sequence lengths}{figure.7.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.1}Initial Performance}{223}{subsection.7.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.2}Optimizations Applied}{224}{subsection.7.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.1}Model quantization to INT8/4-bit.}{224}{subsubsection.7.9.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.2}Inference engine swap (vLLM with dynamic batching).}{224}{subsubsection.7.9.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.3}Prompt and context optimization (RAG compression).}{225}{subsubsection.7.9.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.4}Asynchronous API and streaming.}{225}{subsubsection.7.9.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.3}Results}{225}{subsection.7.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.3.1}Alternate configurations considered.}{226}{subsubsection.7.9.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.10}Best Practices Checklist (Quick)}{227}{section.7.10}\protected@file@percent }
+\newlabel{sec:perf-checklist-quick}{{7.10}{227}{Best Practices Checklist (Quick)}{section.7.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces \ishtar  {} optimization KPIs: before vs.\ after. Values are representative of the case study scenario and depend on workload and hardware.}}{227}{table.7.6}\protected@file@percent }
+\newlabel{tab:ishtar-kpis}{{7.6}{227}{\ishtar {} optimization KPIs: before vs.\ after. Values are representative of the case study scenario and depend on workload and hardware}{table.7.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.11}Best Practices Checklist}{228}{section.7.11}\protected@file@percent }
+\newlabel{sec:perf-checklist}{{7.11}{228}{Best Practices Checklist}{section.7.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.12}Extended Material}{229}{section.7.12}\protected@file@percent }
+\newlabel{sec:perf-extended}{{7.12}{229}{Extended Material}{section.7.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.1}Architectural Variants and Cloud Deployment Trade-offs}{229}{subsection.7.12.1}\protected@file@percent }
+\newlabel{sec:perf-variants}{{7.12.1}{229}{Architectural Variants and Cloud Deployment Trade-offs}{subsection.7.12.1}{}}
+\newlabel{sec:arch-variants}{{7.12.1}{229}{Architectural Variants and Cloud Deployment Trade-offs}{subsection.7.12.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.2}Encoder-Only (Masked LM)}{229}{subsection.7.12.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.3}Decoder-Only (Autoregressive LM)}{229}{subsection.7.12.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.4}Mixture-of-Experts (MoE)}{230}{subsection.7.12.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.4.1}Guideline.}{231}{subsubsection.7.12.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.5}Complexity and Scaling: Cost Models and Memory Formulas}{231}{subsection.7.12.5}\protected@file@percent }
+\newlabel{sec:perf-cost-models}{{7.12.5}{231}{Complexity and Scaling: Cost Models and Memory Formulas}{subsection.7.12.5}{}}
+\newlabel{sec:complexity-scaling}{{7.12.5}{231}{Complexity and Scaling: Cost Models and Memory Formulas}{subsection.7.12.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.6}Attention and KV Cache}{231}{subsection.7.12.6}\protected@file@percent }
+\newlabel{sec:perf-attention-kv-cache}{{7.12.6}{231}{Attention and KV Cache}{subsection.7.12.6}{}}
+\newlabel{eq:kv-layer}{{7.2}{231}{Attention and KV Cache}{equation.7.2}{}}
+\newlabel{eq:kv-total}{{7.3}{231}{Attention and KV Cache}{equation.7.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.6.1}Worked Example.}{232}{subsubsection.7.12.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.7}Throughput and Utilization}{232}{subsection.7.12.7}\protected@file@percent }
+\newlabel{eq:throughput-main}{{7.4}{232}{Throughput and Utilization}{equation.7.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.7.1}Interpretation.}{232}{subsubsection.7.12.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.8}Cost per 1{,}000 Tokens}{233}{subsection.7.12.8}\protected@file@percent }
+\newlabel{sec:perf-cost-per-token}{{7.12.8}{233}{Cost per 1{,}000 Tokens}{subsection.7.12.8}{}}
+\newlabel{eq:cost-k}{{7.5}{233}{Cost per 1{,}000 Tokens}{equation.7.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.8.1}Worked Example.}{233}{subsubsection.7.12.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.9}Inference Engines and Serving Runtimes}{233}{subsection.7.12.9}\protected@file@percent }
+\newlabel{sec:inference-engines}{{7.12.9}{233}{Inference Engines and Serving Runtimes}{subsection.7.12.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.9.1}Practice notes.}{233}{subsubsection.7.12.9.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces Comparison of Architectural Variants for Cloud Deployment}}{234}{table.7.7}\protected@file@percent }
+\newlabel{tab:arch-comparison}{{7.7}{234}{Comparison of Architectural Variants for Cloud Deployment}{table.7.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.8}{\ignorespaces Qualitative comparison of LLM serving runtimes (decoder-only focus).}}{234}{table.7.8}\protected@file@percent }
+\newlabel{tab:runtimes}{{7.8}{234}{Qualitative comparison of LLM serving runtimes (decoder-only focus)}{table.7.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.9.2}Discussion.}{235}{subsubsection.7.12.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.10}Cloud-Native Optimization Patterns}{235}{subsection.7.12.10}\protected@file@percent }
+\newlabel{sec:perf-cloud-native}{{7.12.10}{235}{Cloud-Native Optimization Patterns}{subsection.7.12.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.11}Right-Sizing and Instance Mix}{235}{subsection.7.12.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.12}Autoscaling and Queuing}{235}{subsection.7.12.12}\protected@file@percent }
+\newlabel{sec:perf-autoscaling-queue}{{7.12.12}{235}{Autoscaling and Queuing}{subsection.7.12.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.13}Model Parallelism vs.\ Replication}{236}{subsection.7.12.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.14}I/O and Storage}{236}{subsection.7.12.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.15}LangChain-Centric Performance Engineering}{236}{subsection.7.12.15}\protected@file@percent }
+\newlabel{sec:perf-langchain}{{7.12.15}{236}{LangChain-Centric Performance Engineering}{subsection.7.12.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.16}Tracing, Telemetry, and Token Accounting}{236}{subsection.7.12.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.17}Caching and Deterministic Subchains}{236}{subsection.7.12.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.18}Model Routing and Cascades}{236}{subsection.7.12.18}\protected@file@percent }
+\newlabel{sec:perf-model-routing}{{7.12.18}{236}{Model Routing and Cascades}{subsection.7.12.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.19}Failure Budgeting and Retries}{237}{subsection.7.12.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.20}Extended Case Study: Ishtar AI}{237}{subsection.7.12.20}\protected@file@percent }
+\newlabel{sec:perf-ishtar-extended}{{7.12.20}{237}{Extended Case Study: Ishtar AI}{subsection.7.12.20}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.1}Setup.}{237}{subsubsection.7.12.20.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.2}Interventions.}{237}{subsubsection.7.12.20.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.3}Outcomes.}{237}{subsubsection.7.12.20.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.21}Implementation Checklist (Addendum)}{237}{subsection.7.12.21}\protected@file@percent }
+\newlabel{sec:perf-impl-checklist}{{7.12.21}{237}{Implementation Checklist (Addendum)}{subsection.7.12.21}{}}
 \@setckpt{ch07-performance}{
-\setcounter{page}{243}
+\setcounter{page}{239}
 \setcounter{equation}{5}
 \setcounter{enumi}{4}
 \setcounter{enumii}{0}

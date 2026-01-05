@@ -60,6 +60,7 @@ The following sections explore concrete strategies for optimization across three
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}
 \node[draw, rounded corners, thick, fill=gray!5, align=left, inner sep=4mm, text width=0.88\linewidth]{
 \textbf{Practical gains from common optimizations}\\[2pt]
@@ -73,6 +74,7 @@ The following sections explore concrete strategies for optimization across three
 \end{itemize}
 };
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Representative performance improvements from widely deployed techniques, based on published benchmarks and production deployments. Actual gains depend on model size, hardware, and traffic mix. See Sections~\ref{sec:perf-model}--\ref{sec:perf-system} and Section~\ref{sec:perf-prompt} for detailed discussions and implementation guidance.}
 \label{fig:opt-gains-callout}
 \end{figure}
@@ -80,6 +82,7 @@ The following sections explore concrete strategies for optimization across three
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
     width=0.9\linewidth, height=5.0cm,
@@ -102,6 +105,7 @@ The following sections explore concrete strategies for optimization across three
 
 \end{axis}
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Illustrative example of latency improvements after batching, KV-cache engineering, and quantization. Absolute values vary by model, hardware, and traffic mix.}
 \label{fig:latency-before-after}
 \end{figure}
@@ -297,6 +301,7 @@ Low to moderate; can affect long-context fidelity. &
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
   width=0.92\linewidth, height=5.6cm,
@@ -321,6 +326,7 @@ Low to moderate; can affect long-context fidelity. &
 
 \end{axis}
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture.}
 \label{fig:quant-throughput-bars}
 \end{figure}
@@ -355,6 +361,7 @@ Low to moderate; can affect long-context fidelity. &
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}
 \node[draw, rounded corners, thick, fill=gray!5, align=left, inner sep=4mm, text width=0.88\linewidth]{
 \textbf{Sizing cheat-sheet (inference memory)}\\[2pt]
@@ -365,6 +372,7 @@ Low to moderate; can affect long-context fidelity. &
 \end{itemize}
 };
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Memory accounting at a glance. Use precision $b$ from Table~\ref{tab:quantization-comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets.}
 \label{fig:memory-cheatsheet}
 \end{figure}
@@ -447,6 +455,7 @@ That said, batching has trade-offs: it increases the latency for each individual
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
   width=0.92\linewidth, height=5.2cm,
@@ -465,6 +474,7 @@ That said, batching has trade-offs: it increases the latency for each individual
 \addlegendentry{Tokens/s (relative)}
 \end{axis}
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Representative throughput scaling with batch size. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. In production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}
 \label{fig:throughput-vs-batch}
 \end{figure}
@@ -661,6 +671,7 @@ In summary, rigorous performance testing gives confidence that optimizations are
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
   width=0.92\linewidth, height=5.6cm,
@@ -700,12 +711,14 @@ x   y
 
 \end{axis}
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Latency CDF with p50/p95/p99 markers. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix.}
 \label{fig:latency-cdf}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
   width=0.92\linewidth, height=5.6cm,
@@ -725,6 +738,7 @@ x   y
 };
 \end{axis}
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Illustrative cost per 1k tokens across engines under a simple hourly-cost model (see Section~\ref{sec:perf-cost-per-token}). Absolute values depend on hardware pricing, utilization, and batch/sequence lengths.}
 \label{fig:cost-per-1k-by-engine}
 \end{figure}

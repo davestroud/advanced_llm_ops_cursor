@@ -62,6 +62,7 @@ Reliability is also a concern: when a subcomponent fails (retriever times out, a
 % Preamble requirements: \usepackage{tikz} and \usetikzlibrary{arrows.meta,positioning}
 \begin{figure}[t]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
   node distance=1cm and 2.2cm,
@@ -129,6 +130,7 @@ Reliability is also a concern: when a subcomponent fails (retriever times out, a
 \draw[toolflow] (tool) -- node[label, left, pos=0.5] {Tool result} (llm);
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Architecture of an LLM-powered application showing retrieval-augmented generation (RAG) flow with fallback mechanisms. The orchestrator manages user queries, optionally retrieves relevant documents from a knowledge base via a vector database, constructs prompts for an LLM, allows the LLM to use external tools, and finally delivers a coherent response to the user.}
 \label{fig:ch01:architecture}
 \end{figure}
@@ -294,7 +296,7 @@ control stack spanning input handling, retrieval governance, tool security, and 
 \begin{landscape}
 \begin{figure}[!htbp]
   \centering
-  \resizebox{0.90\textwidth}{!}{%
+  \begin{llmfigbox}
   \begin{tikzpicture}[
     >=Stealth,
     % Box styles - simplified and clearer
@@ -363,8 +365,8 @@ control stack spanning input handling, retrieval governance, tool security, and 
   \node[font=\normalsize\bfseries, color=red!70!black, above=0.2cm of inj, anchor=west, xshift=-0.5cm] {Threats (what can go wrong)};
   \node[font=\normalsize\bfseries, color=green!70!black, below=0.2cm of sanitize, anchor=west, xshift=-0.5cm] {Controls (what you implement)};
 
-  \end{tikzpicture}%
-  }
+  \end{tikzpicture}
+  \end{llmfigbox}
   \caption{Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass,
   retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization,
   instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing
@@ -462,6 +464,7 @@ By the early 2020s, however, the rise of \textbf{foundation models}—especially
 
 \begin{figure}[t]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
   font=\small,
@@ -555,6 +558,7 @@ By the early 2020s, however, the rise of \textbf{foundation models}—especially
    \end{tabular}};
 
 \end{tikzpicture}
+\end{llmfigbox}
 
 \caption{From MLOps to LLMOps: modeling milestones and operational inflections. Major capability jumps (top) correlate with new operational requirements (bottom): serving at scale, rigorous evaluation/red-teaming, and governance/policy embedded into the lifecycle.}
 \label{fig:mlops-llmops-timeline}
@@ -603,6 +607,7 @@ systems engineering, where memory, latency, and cost must be co-optimized (Fig.~
 % Preamble requirements: \usepackage{tikz} and \usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,decorations.pathreplacing}
 \begin{figure}[t]
   \centering
+  \begin{llmfigbox}
   \begin{tikzpicture}[
     >=Stealth,
     node distance=0.8cm and 2cm,
@@ -652,6 +657,7 @@ systems engineering, where memory, latency, and cost must be co-optimized (Fig.~
   \node[font=\small\bfseries, color=green!70!black, above=0.4cm of parallel] {Levers};
 
   \end{tikzpicture}
+  \end{llmfigbox}
   \caption{Why scale changes LLM deployment. Large parameter counts make weight memory a first-order constraint,
   while longer contexts introduce $\Theta(T^2)$ attention cost and KV-cache pressure. Together these drive LLM-specific
   SLOs (TTFT, tokens/s, \$/1K tokens) and engineering levers (parallelism, quantization, batching/scheduling,
@@ -805,7 +811,7 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 
 \begin{figure}[t]
 \centering
-\begin{adjustbox}{width=\linewidth}%
+\begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
   % --- Styles (Springer-friendly, B/W) ---
@@ -871,8 +877,8 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 \node[note, anchor=north east] at ($(case.south east)+(0,-5mm)$)
   {\textbf{Lifecycle:} Design $\rightarrow$ Deploy $\rightarrow$ Operate $\rightarrow$ Improve};
 
-\end{tikzpicture}%
-\end{adjustbox}
+\end{tikzpicture}
+\end{llmfigbox}
 
 
 \caption{LLMOps lifecycle mapped to the book's chapters. The flow progresses from foundations (Part I) through delivery operations (Part II: CI/CD, monitoring, scaling), optimization (Part III: performance, RAG, multi-agent), and governance (Part IV: testing, ethics, case study). A dashed feedback loop connects the case study back to foundational practices.}
@@ -988,6 +994,7 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
 % ----------------------------------------------------------------------
 \begin{figure}[t]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   font=\small,
   cIngest/.style={fill=blue!18,   draw=blue!55!black},
@@ -1035,6 +1042,7 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
    \scriptsize Ingestion$\to$left lane; Retrieval$\to$RAG block; Agents$\to$controller; Serving$\to$inference; Observability$\to$telemetry; Testing/Ethics$\to$cross-cutting.};
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Subsystem-to-chapter mapping for the \ishtar{} reference architecture.}
 \label{fig:ishtar-arch-callout}
 \end{figure}
@@ -1082,7 +1090,7 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
 % ----------------------------------------------------------------------
 \begin{figure}[t]
 \centering
-\begin{adjustbox}{max width=\linewidth}
+\begin{llmfigbox}
 \begin{tikzpicture}[
   font=\small,
   cNews/.style  ={fill=blue!18,  draw=blue!55!black},
@@ -1126,7 +1134,7 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
 \textbf{Flow:} sources $\rightarrow$ retrieval $\rightarrow$ journalist-facing answers.};
 
 \end{tikzpicture}
-\end{adjustbox}
+\end{llmfigbox}
 \caption{Evidence sources powering \ishtar{}. Curated inputs (news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds) are routed through retrieval to support journalist queries.}
 \label{fig:ishtar-inputs-taxonomy}
 \end{figure}

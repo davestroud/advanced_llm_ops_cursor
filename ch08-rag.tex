@@ -92,6 +92,7 @@ A production RAG system consists of \emph{offline} components (ingestion, cleani
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[node distance=2.6cm, auto,
     block/.style={rectangle, draw, fill=blue!10, rounded corners, minimum height=1cm, minimum width=2.8cm, align=center},
     arrow/.style={->, thick}
@@ -111,6 +112,7 @@ A production RAG system consists of \emph{offline} components (ingestion, cleani
 \draw[arrow] (pack) -- (gen);
 \draw[arrow] (gen) -- (ans);
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Query-time RAG pipeline. Retrieval supplies evidence; reranking and filtering improve top-$k$ quality; the context packer constructs a token-budgeted prompt with source identifiers; the generator produces an answer that can cite the retrieved chunks.}
 \label{fig:rag-querytime}
 \end{figure}
@@ -286,6 +288,7 @@ Ingestion quality and freshness determine RAG quality. Treat ingestion as a vers
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[node distance=1.8cm, auto,
     block/.style={rectangle, draw, fill=blue!10, rounded corners, minimum height=1cm, minimum width=3cm, align=center},
     arrow/.style={->, thick}
@@ -307,6 +310,7 @@ Ingestion quality and freshness determine RAG quality. Treat ingestion as a vers
 \draw[arrow] (metadata) -- (vector);
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Ingestion pipeline for RAG: data flows from raw sources through preprocessing, chunking, deduplication, and metadata enrichment before being stored as embeddings in a vector database.}
 \label{fig:ingestion-pipeline}
 \end{figure}
@@ -714,6 +718,7 @@ This section illustrates an evidence-first RAG design for \ishtar{}, a crisis in
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[node distance=1.7cm, auto,
     block/.style={rectangle, draw, fill=gray!6, rounded corners, minimum height=1cm, minimum width=3.1cm, align=center},
     arrow/.style={->, thick}
@@ -729,6 +734,7 @@ This section illustrates an evidence-first RAG design for \ishtar{}, a crisis in
 \draw[arrow] (idx) -- (ret);
 \draw[arrow] (ret) -- (gen);
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{\ishtar{} RAG pipeline at a glance. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release.}
 \label{fig:ishtar-rag}
 \end{figure}

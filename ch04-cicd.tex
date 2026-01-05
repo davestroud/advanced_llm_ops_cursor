@@ -128,6 +128,7 @@ The staged evaluation approach creates a continuous loop that feeds production i
 
 \begin{figure}[t]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   node distance=18mm and 14mm,
   stage/.style={rounded corners, draw, thick, align=center, fill=gray!5, inner sep=3.5pt, font=\small},
@@ -183,6 +184,7 @@ The staged evaluation approach creates a continuous loop that feeds production i
 };
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Continuous evaluation as a staged CI/CD loop. Each stage runs distinct suites and gates; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline.}
 \label{fig:eval_stages_pipeline}
 \end{figure}

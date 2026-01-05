@@ -321,6 +321,7 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   scale=0.92, transform shape,
   node distance=6mm and 10mm,
@@ -361,6 +362,7 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
 \draw[arrow] (v2.south) -- (v3.north);
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Visual comparison of scaling dimensions for LLM deployments. Vertical scaling upgrades a single node, horizontal scaling adds nodes in parallel, and hybrid scaling combines tiers of hardware for performance--cost balance.}
 \label{fig:scaling-dimensions}
 \end{figure}
@@ -771,6 +773,7 @@ Figure~\ref{fig:autoscale-target-tracking} illustrates a token-aware target-trac
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
     width=0.9\linewidth,
@@ -811,6 +814,7 @@ Figure~\ref{fig:autoscale-target-tracking} illustrates a token-aware target-trac
 
 \end{axis}
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Metrics-based target tracking. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma$ by adjusting replicas $N(t)$.}
 \label{fig:autoscale-target-tracking}
 \end{figure}
@@ -819,6 +823,7 @@ Figure~\ref{fig:autoscale-event-based} shows an event-driven autoscaling workflo
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
     width=0.9\linewidth,
@@ -867,6 +872,7 @@ Figure~\ref{fig:autoscale-event-based} shows an event-driven autoscaling workflo
 
 \end{axis}
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Event-based autoscaling with predictive pre-warming. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph{before} demand spikes arrive, leveraging calendar events or scheduled triggers. This eliminates cold-start latency and ensures capacity is ready when needed.}
 \label{fig:autoscale-event-based}
 \end{figure}
@@ -1074,6 +1080,7 @@ Figure~\ref{fig:rag-two-tier} sketches a practical two-tier RAG serving layout t
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   node distance=7mm and 9mm,
   box/.style={draw, rounded corners, thick, align=center, minimum width=2.9cm, minimum height=0.9cm, fill=gray!5},
@@ -1136,6 +1143,7 @@ Figure~\ref{fig:rag-two-tier} sketches a practical two-tier RAG serving layout t
 };
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Two-tier RAG scaling. A router first probes a \emph{hot} in-memory/GPU tier; on miss, it falls back to a \emph{distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator.}
 \label{fig:rag-two-tier}
 \end{figure}
@@ -1185,6 +1193,7 @@ Figure~\ref{fig:geo-scaling-inset} depicts a typical multi-region serving topolo
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   node distance=6mm and 12mm,
   region/.style={draw, rounded corners, thick, minimum width=2.9cm, minimum height=1.0cm, align=center, fill=gray!5},
@@ -1225,6 +1234,7 @@ at ($(frame.south west)+(0.35,0.35)$) {\small
 };
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{Geographic scaling schematic. Users are routed to the nearest regional cluster (NA/EU/APAC) for latency and data residency; dashed links illustrate failover/overflow between regions.}
 \label{fig:geo-scaling-inset}
 \end{figure}
@@ -1255,6 +1265,7 @@ Figure~\ref{fig:ishtar-timeline} summarizes the evolution of \ishtar{} from a si
 
 \begin{figure}[htbp]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
   milestone/.style={draw, rounded corners, thick, align=left, minimum width=4.8cm, minimum height=0.95cm, fill=gray!5, inner sep=3pt},
@@ -1305,6 +1316,7 @@ $\bullet$ Tiered models \& spot for cost-awareness
 };
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{\ishtar{} scaling timeline. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling.}
 \label{fig:ishtar-timeline}
 \end{figure}

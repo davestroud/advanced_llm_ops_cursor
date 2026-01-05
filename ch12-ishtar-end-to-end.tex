@@ -140,6 +140,7 @@ Figure~\ref{fig:ishtar-architecture-ch12} depicts the end-to-end flows. The diag
 
 \begin{figure}[tb]
 \centering
+\begin{llmfigbox}
 \begin{tikzpicture}[
   font=\small,
   box/.style={draw=black!45, rounded corners=4pt, fill=black!2, align=center, minimum height=10mm, inner sep=3pt},
@@ -194,6 +195,7 @@ Figure~\ref{fig:ishtar-architecture-ch12} depicts the end-to-end flows. The diag
 OpenTelemetry traces + Prometheus metrics + audit logs.};
 
 \end{tikzpicture}
+\end{llmfigbox}
 \caption{End-to-end \ishtar{} architecture. Background ingestion continuously updates a document store and vector index. Online query handling performs authenticated retrieval-augmented generation, followed by verification and safety post-processing, under end-to-end tracing and monitoring.}
 \label{fig:ishtar-architecture-ch12}
 \end{figure}
