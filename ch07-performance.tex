@@ -802,36 +802,20 @@ Overall, this case study underscores that combining model, system, and prompt op
 \section{Best Practices Checklist (Quick)}
 \label{sec:perf-checklist-quick}
 
-\begin{tcolorbox}[
-  title={\textbf{Best Practices Checklist (Quick)}},
-  colback=cyan!5,
-  colframe=cyan!40!black,
-  colbacktitle=cyan!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
-]
+\ChecklistBox{
 \small
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\rowcolor{cyan!15}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
-\rowcolor{cyan!8}
 \textbf{Profile Before Optimizing} & Know your bottlenecks. Use profilers to identify whether compute, memory, or data transfer is limiting throughput. \\
-\rowcolor{cyan!3}
 \textbf{Start with Easy Wins} & Apply simple, high-impact optimizations first: batching, caching, and prompt optimization before more involved changes. \\
-\rowcolor{cyan!8}
 \textbf{Use Specialized Runtimes} & Leverage high-performance inference engines (vLLM, TGI, DeepSpeed-Inference, TensorRT, etc.) for inference. \\
-\rowcolor{cyan!3}
 \textbf{Quantize and Prune Cautiously} & Reduce precision of weights and activations to cut memory and increase speed, but always test the impact on task quality. \\
-\rowcolor{cyan!8}
 \textbf{Automate Performance Regression Tests} & Integrate performance benchmarks into CI/CD to catch degradations whenever you change the model, code, or infrastructure. \\
 \end{tabularx}
-\end{tcolorbox}
+}
 
 Performance optimization is not a one-time task—it is an ongoing process that must adapt to changing workloads, hardware, and user expectations. For \ishtar{}, the combination of model, system, and prompt optimizations delivers the speed and cost-effectiveness needed for real-time, high-impact journalism.
 
@@ -863,40 +847,22 @@ Cost per 1k tokens (USD) & 1.00   & 0.70   & $\sim$30\% GPU-hour reduction at sa
 
 By synthesizing the above strategies, we can outline a checklist of best practices for optimizing LLM performance, which we found invaluable in the \ishtar{} project:
 
-\begin{tcolorbox}[
-  title={\textbf{Best Practices Checklist for LLM Performance Optimization}},
-  colback=cyan!5,
-  colframe=cyan!40!black,
-  colbacktitle=cyan!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
-]
+\ChecklistBox{
 \small
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\rowcolor{cyan!15}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
-\rowcolor{cyan!8}
 \textbf{Profile Before Optimizing} & Know your bottlenecks. Use profilers to identify whether compute, memory, or data transfer is limiting throughput. Focus efforts accordingly. \\
-\rowcolor{cyan!3}
 \textbf{Start with Easy Wins} & Apply simple, high-impact optimizations first: enable batching, caching, and prompt simplification before more involved changes. These often yield immediate improvements with little downside. \\
-\rowcolor{cyan!8}
 \textbf{Use Specialized Runtimes} & Leverage high-performance inference engines (vLLM, TGI, DeepSpeed-Inference, TensorRT, etc.) for inference. They come with many optimizations out-of-the-box that are hard to replicate by hand. \\
-\rowcolor{cyan!3}
 \textbf{Quantize (and Prune) Cautiously} & Reduce precision of weights (and activations if possible) to cut memory and increase speed, but always test the impact on task quality. Similarly, if pruning, verify the model still meets accuracy requirements. Introduce these optimizations gradually and use calibration or fine-tuning to recover any lost performance. \\
-\rowcolor{cyan!8}
 \textbf{Automate Performance Regression Tests} & Integrate performance benchmarks into CI/CD. Whenever you change the model, code, or infrastructure, run these tests to catch degradations. This includes tracking latency, throughput, and cost metrics over time. \\
-\rowcolor{cyan!3}
 \textbf{Monitor in Production} & Even after deploying, continue to gather performance data (latencies, GPU utilization, error rates). Production traffic can reveal patterns that static benchmarks do not (e.g., a particular prompt that always slows the model). Continuous monitoring allows you to react and adapt, keeping performance optimal. \\
-\rowcolor{cyan!8}
 \textbf{Iterate and Tune} & Optimization is an ongoing process, not one-time. As models, hardware, and workloads evolve, revisit these strategies. The balance might shift (for instance, new GPUs might favor different precision, or a new model version might handle longer prompts more efficiently, changing the optimal prompt length). \\
 \end{tabularx}
-\end{tcolorbox}
+}
 
 Performance optimization must adapt to changing workloads, hardware, and user expectations. In summary, a holistic and iterative approach is needed: combine model tweaks, system engineering, and careful measurement to deliver the speed and cost-efficiency required for your specific application.
 

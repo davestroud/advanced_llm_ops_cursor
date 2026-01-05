@@ -401,17 +401,7 @@ Model parallelism partitions the model across multiple GPUs, with each device st
 \end{itemize}
 \end{tcolorbox}
 
-\begin{tcolorbox}[
-  title={\textbf{Model Parallelism: Best Practices}},
-  colback=green!5,
-  colframe=green!40!black,
-  colbacktitle=green!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
-]
+\BestPracticeBox{
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt]
   \item \textbf{Partition boundaries:} Partition at natural boundaries (e.g., whole transformer layers) to minimize cross-GPU communication.
   
@@ -421,7 +411,7 @@ Model parallelism partitions the model across multiple GPUs, with each device st
   
   \item \textbf{Automated tools:} Recent research has produced automated tools for planning partitions. For example, Pope et al. (2023) proposed \textit{ExeGPT}, which analytically selects optimal combinations of data, tensor, and pipeline parallelism under a latency target \cite{pope2023exegpt}. Similarly, Helix (OSDI 2023) formulates partitioning across heterogeneous GPU clusters as a max-flow optimization problem, balancing compute and network bandwidth \cite{helix2023}.
 \end{itemize}
-\end{tcolorbox}
+}
 
 \subsection{Tensor Parallelism}
 \label{sec:scaling-tensor-parallelism}
@@ -447,17 +437,7 @@ Tensor parallelism divides the computation within a layer---especially large mat
 \end{itemize}
 \end{tcolorbox}
 
-\begin{tcolorbox}[
-  title={\textbf{Tensor Parallelism: Best Practices}},
-  colback=green!5,
-  colframe=green!40!black,
-  colbacktitle=green!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
-]
+\BestPracticeBox{
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt]
   \item \textbf{Load balancing:} Balance tensor slices so all GPUs finish concurrently.
   
@@ -467,7 +447,7 @@ Tensor parallelism divides the computation within a layer---especially large mat
   
   \item \textbf{Wide layers:} Tensor parallelism excels for very wide transformer layers, as in Megatron-LM \cite{vaswani2017_attention,vllm_pagedattention}.
 \end{itemize}
-\end{tcolorbox}
+}
 
 \subsection{Pipeline Parallelism}
 \label{sec:scaling-pipeline-parallelism}
@@ -493,17 +473,7 @@ Pipeline parallelism partitions the model into sequential stages (contiguous lay
 \end{itemize}
 \end{tcolorbox}
 
-\begin{tcolorbox}[
-  title={\textbf{Pipeline Parallelism: Best Practices}},
-  colback=green!5,
-  colframe=green!40!black,
-  colbacktitle=green!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
-]
+\BestPracticeBox{
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt]
   \item Tune microbatch size to balance GPU utilization and latency.
   
@@ -513,7 +483,7 @@ Pipeline parallelism partitions the model into sequential stages (contiguous lay
   
   \item Advanced schedulers such as TetriInfer decouple prefill and decode stages, reducing straggler effects \cite{tetriinfer2023}.
 \end{itemize}
-\end{tcolorbox}
+}
 
 \subsubsection{Case in \ishtar{}.} In the \ishtar{} deployment of the LLaMA-3.1-70B model, a hybrid of tensor and pipeline parallelism was used. Tensor parallelism accelerated per-layer GEMMs across 8 A100 GPUs via NVLink, while pipeline parallelism split the model into 4 sequential stages. This enabled 32k-token context windows without exceeding memory budgets, sustaining sub-second latency for 90\% of queries during breaking news events:\cite{frugalgpt_2023}.
 
@@ -1325,42 +1295,23 @@ $\bullet$ Tiered models \& spot for cost-awareness
 \label{sec:scaling-best-practices}
 In conclusion, scaling up LLM deployments involves a combination of strategic planning and tactical optimizations. The following checklist distills best practices:
 
-\begin{tcolorbox}[
-  title={\textbf{Best Practices Checklist for Scaling LLM Deployments}},
-  colback=teal!5,
-  colframe=teal!40!black,
-  colbacktitle=teal!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
-]
+\ChecklistBox{
 \small
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\rowcolor{teal!15}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
-\rowcolor{teal!8}
 \textbf{Plan for Demand} & Start with capacity planning and demand forecasting to avoid constantly playing catch-up. Use historical data (or analogues) to predict peak loads, and design your system with some headroom. \\
-\rowcolor{teal!3}
 \textbf{Leverage Mixed Scaling} & Don't rely on just vertical or just horizontal scaling. Use a mix – vertical for performance, horizontal for flexibility. Many successful deployments use moderate per-node power plus the ability to add nodes dynamically. \\
-\rowcolor{teal!8}
 \textbf{Optimize Inference Before Adding Hardware} & It's often cheaper to optimize software (batching, caching, quantization) than to throw more GPUs at the problem. Squeeze as much throughput as possible out of each GPU; measure cost per token as a key metric. \\
-\rowcolor{teal!3}
 \textbf{Implement Robust Autoscaling} & Automated scaling is essential for cost-effective operation. Use metrics to scale reactively and incorporate predictive or scheduled scaling for known patterns. Ensure you have safeguards (cooldowns, max/min bounds) to prevent thrashing. \\
-\rowcolor{teal!8}
 \textbf{Monitor and Iterate} & Continuously monitor latency percentiles, throughput, and utilization. These metrics will tell you where the bottlenecks are (e.g. if GPUs are underutilized, maybe your batcher is too conservative; if latency spikes, maybe a particular component is slow or thrashing). \\
-\rowcolor{teal!3}
 \textbf{Use Caching Liberally} & Caching can drastically cut redundant work. Identify opportunities at all levels – from full response caching for repeated queries, to prefix caching within the model, to embedding caching in RAG. Even a small cache with a few GB of RAM can often handle a large fraction of repeat requests. \\
-\rowcolor{teal!8}
 \textbf{Geo-Distribute if User Base is Global} & The speed of light is a factor – serving from a single region will incur unavoidable latency for distant users. Plan a geo-deployment if your user base is worldwide or if data locality laws require it. This often comes after nailing down everything in one region first. \\
-\rowcolor{teal!3}
 \textbf{Gradual Rollout and Testing} & Scale incrementally. Test new scaling techniques (like speculative decoding or new batching algorithms) under load in a staging environment if possible. Each addition (e.g. a new cache layer, new parallelism) adds complexity; ensure it behaves as expected with your workload before relying on it in prod. \\
 \end{tabularx}
-\end{tcolorbox}
+}
 
 Scaling LLM systems requires balancing performance, cost, and complexity. By designing for scalability from the outset and drawing on the patterns discussed (from distributed inference to caching and autoscaling), teams can adapt rapidly to changing demands without sacrificing quality or breaking the bank. The story of \ishtar{} demonstrates that with careful planning and incorporation of cutting-edge techniques from academia and industry, even a resource-intensive LLM application can be made to operate reliably at scale. 
 

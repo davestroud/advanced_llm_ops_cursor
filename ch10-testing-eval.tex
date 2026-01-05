@@ -545,36 +545,20 @@ Resilience is not a bolt-on but a core feature. Strategies often interact: a tim
 \section{Best Practices Checklist}
 \label{sec:ch10-best-practices-checklist}
 
-\begin{tcolorbox}[
-  title={\textbf{Best Practices Checklist for Testing and Evaluation}},
-  colback=yellow!5,
-  colframe=yellow!40!black,
-  colbacktitle=yellow!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
-]
+\ChecklistBox{
 \small
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\rowcolor{yellow!15}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
-\rowcolor{yellow!8}
 \textbf{Maintain Both Evaluation Types} & Maintain both automated and human-in-the-loop evaluations. Automated tests provide continuous coverage, while human evaluation ensures quality for high-stakes scenarios. \\
-\rowcolor{yellow!3}
 \textbf{Test Under Realistic Conditions} & Test under realistic and adversarial conditions. Use production-like data distributions and include adversarial test cases to ensure robustness against attacks and edge cases. \\
-\rowcolor{yellow!8}
 \textbf{Integrate into Deployment Workflows} & Integrate evaluation into deployment workflows. Make evaluation metrics part of CI/CD gates, blocking deployments when quality thresholds are not met. \\
-\rowcolor{yellow!3}
 \textbf{Continuously Update Test Datasets} & Continuously update test datasets to reflect current usage. As user queries evolve and new failure modes emerge, incorporate them into evaluation suites to prevent regressions. \\
-\rowcolor{yellow!8}
 \textbf{Treat Robustness as Core Feature} & Treat robustness as a core feature, not an afterthought. Design systems with failure handling, fallbacks, and graceful degradation from the start rather than adding them later. \\
 \end{tabularx}
-\end{tcolorbox}
+}
 
 Testing and evaluation are the guardrails that keep LLM systems safe, reliable, and aligned with user expectations. In the high-stakes environment of \ishtar{}, rigorous validation ensures that the system delivers trustworthy intelligence every time.
 

@@ -882,45 +882,28 @@ These outcomes depended less on the base model and more on retrieval quality, me
 \label{sec:rag-best-practices-checklist}
 RAG transforms LLMs from static knowledge stores into dynamic, evidence-grounded systems. The following checklist distills practices that consistently improve reliability in production deployments.
 
-\begin{tcolorbox}[
-  title={\textbf{Best Practices Checklist for RAG Systems}},
-  colback=violet!5,
-  colframe=violet!40!black,
-  colbacktitle=violet!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
-]
+\ChecklistBox{
 \small
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.35}
 \begin{tabularx}{\linewidth}{@{}p{3.3cm}X@{}}
-\rowcolor{violet!15}
 \textbf{Area} & \textbf{Practices} \\
 \midrule
-\rowcolor{violet!8}
 \textbf{Corpus \& ingestion} &
 Curate reliable sources; normalize and deduplicate; version chunking rules; enrich metadata (time, source, ACL). Monitor ingestion lag and parsing errors. \\
-\rowcolor{violet!3}
 \textbf{Embeddings \& indexing} &
 Treat embedding model + chunking as a coupled versioned artifact. Plan for re-indexing and backfills. Benchmark ANN parameters against recall and latency SLOs. \\
-\rowcolor{violet!8}
 \textbf{Retrieval \& reranking} &
 Use hybrid retrieval when queries mix jargon and natural language. Retrieve for recall, rerank for precision. Apply metadata filters for freshness and permissions. \\
-\rowcolor{violet!3}
 \textbf{Prompt construction} &
 Pack a small, well-delimited evidence set. Include source identifiers and clear abstention instructions. Prefer extractive compression over truncation when possible. \\
-\rowcolor{violet!8}
 \textbf{Evaluation \& monitoring} &
 Track Recall@k, faithfulness, and citation precision. Maintain regression sets and run them on every change. Log retrieved IDs, prompt sizes, and abstentions. \\
-\rowcolor{violet!3}
 \textbf{Security \& governance} &
 Enforce access control at retrieval time, encrypt data, retain audit logs, and defend against prompt injection from retrieved text. \\
 \bottomrule
 \end{tabularx}
-\end{tcolorbox}
+}
 
 \medskip
 \noindent\textbf{RAG Evaluation and Responsible Deployment.} The evaluation metrics discussed in this chapter---faithfulness, retrieval relevance, and source attribution---form the foundation for comprehensive LLM system assessment covered in Chapter~\ref{ch:testing}. The RAG-specific concerns of hallucination detection, retrieval precision, and citation accuracy extend naturally to the broader testing and evaluation framework, where adversarial testing, robustness checks, and regression gates ensure system integrity across all LLM components. Similarly, RAG's emphasis on source transparency, knowledge base curation, and data privacy aligns with the ethical considerations in Chapter~\ref{ch:ethics}: ensuring that retrieved information is unbiased, that sensitive data is handled appropriately, and that users can verify claims through citations are all aspects of responsible AI deployment. The operational discipline required for production RAG---monitoring retrieval quality, maintaining audit logs, and curating knowledge sources---complements the governance frameworks needed for ethical LLM operations.

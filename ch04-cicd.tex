@@ -242,19 +242,7 @@ Finally, evaluation artifacts must be archived for governance. Where possible, d
 \subsection{Tooling Landscape}
 A broad ecosystem of tools supports continuous evaluation. Open-source frameworks include OpenAI Evals, the EleutherAI LM Harness, HELM, RAGAS, TruLens, Arize Phoenix, promptfoo, and MLflow LLM evaluation. On the managed side, LangSmith provides evaluators integrated into LangChain pipelines. The choice depends on auditability needs, integration costs, and confidence in judge reliability \cite{openai_evals}.  
 
-\begin{tcolorbox}[
-  title={\textbf{Key Takeaways: Continuous Evaluation Best Practices}},
-  colback=blue!5,
-  colframe=blue!40!black,
-  colbacktitle=blue!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
-]
-Continuous evaluation is no longer optional---it is the backbone of responsible LLMOps. Staged evaluation pipelines, model-graded judges, retrieval-aware groundedness checks, and statistical gates collectively enable reliable, auditable, and safe releases. Model judges offer scalability, but their biases must be controlled and their outputs triangulated with human assessments. In sum, evaluations should be treated both as executable code and as governance evidence.
-\end{tcolorbox}
+\BestPracticeBox{Continuous evaluation is no longer optional---it is the backbone of responsible LLMOps. Staged evaluation pipelines, model-graded judges, retrieval-aware groundedness checks, and statistical gates collectively enable reliable, auditable, and safe releases. Model judges offer scalability, but their biases must be controlled and their outputs triangulated with human assessments. In sum, evaluations should be treated both as executable code and as governance evidence.}
 
 \section{Fine-Tuning-Aware Workflows}
 \label{sec:cicd-finetune}
@@ -408,18 +396,7 @@ A practical pattern is \emph{dataset replay as a first-class CI step}. Post--mer
 
 \section{Structured Prompt Testing}
 \label{sec:cicd-structured-prompt-testing}
-\begin{tcolorbox}[
-  title={\textbf{Prompts as First-Class Artifacts: Best Practices}},
-  colback=orange!5,
-  colframe=orange!40!black,
-  colbacktitle=orange!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
-]
-Prompts are treated as first-class artifacts:
+\BestPracticeBox{Prompts are treated as first-class artifacts:
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
     \item \textbf{Prompt Version Control:} Store prompts in Git; update via PRs.
     \item \textbf{Unit Tests:} Verify structural correctness (e.g., valid JSON output).
@@ -427,8 +404,7 @@ Prompts are treated as first-class artifacts:
     \item \textbf{Canary Prompts:} A/B test prompt variants before full rollout.
     \item \textbf{Safety Testing:} Red-team prompts included in regression CI to test refusals and alignment.
     \item \textbf{Chain Validation:} Multi-step chains are tested end-to-end, ensuring intermediate outputs match schema and dependencies.
-\end{itemize}
-\end{tcolorbox}
+\end{itemize}}
 
 \noindent\textbf{From ``prompting'' to engineered artifacts.}
 As LLM applications mature, free-form prompt crafting gives way to disciplined software practice: prompts are templatized, parameterized, and \emph{versioned} exactly like code. Storing prompts in Git and updating them through pull requests enables code review, diffing, and traceability (who changed which instruction and why). Prompt diffs should be coupled to CI runs that replay representative datasets and report per-slice deltas so reviewers can evaluate impact rather than relying on intuition \cite{promptfoo,openai_evals,lm_harness,langsmith_eval,mlflow_llm_eval}. In this model, a prompt is not merely text but a contract governing structure (schemas), safety (guardrails), and performance (task metrics).

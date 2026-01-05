@@ -453,54 +453,29 @@ Through these practices, \ishtar{} demonstrates how AI can be used responsibly i
 
 Bringing everything together, this section presents a checklist of best practices for ethical and responsible LLMOps. It serves as both a summary reference for practitioners and a practical guide for stakeholders. The checklist builds on the principles of transparency, accountability, fairness, privacy, safety, and human oversight discussed throughout this chapter. 
 
-\begin{tcolorbox}[
-  title={\textbf{Best Practices Checklist for Ethical and Responsible LLMOps}},
-  colback=gray!5,
-  colframe=gray!40!black,
-  colbacktitle=gray!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
-]
+\ChecklistBox{
 \small
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\rowcolor{gray!15}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
-\rowcolor{gray!8}
 \textbf{Conduct Regular Audits} & Conduct regular bias and safety audits. Schedule periodic ethical audits (e.g., quarterly or before major releases) covering bias, safety, compliance, and security aspects. \\
-\rowcolor{gray!3}
 \textbf{Establish Accountability} & Establish clear accountability structures. Assign responsibility (e.g., an AI ethics officer or product manager) for the model's behavior. Maintain audit logs of outputs and interventions. \\
-\rowcolor{gray!8}
 \textbf{Maintain Transparency} & Maintain transparency with stakeholders. Publish documentation (model cards, system cards) detailing model origin, training data, intended use, performance, and limitations \cite{iapp}. Clearly label AI-generated content and keep stakeholders informed about major updates. \\
-\rowcolor{gray!3}
 \textbf{Protect Privacy Rigorously} & Apply data minimization principles—do not collect or retain unnecessary data \cite{edpb}. Encrypt data in transit and at rest. Where possible, anonymize or pseudonymize personal data. Provide users with control mechanisms (opt-outs, deletion requests). Ensure compliance with GDPR, CCPA, and other relevant regulations. \\
-\rowcolor{gray!8}
 \textbf{Keep Human Oversight} & Keep human oversight in critical workflows. Retain human review in high-stakes or sensitive workflows. Define explicit triggers for review (e.g., low confidence, sensitive categories). Train human reviewers on how the AI system works and potential failure modes \cite{aiact}. Always provide a manual override or "stop button." \\
-\rowcolor{gray!3}
 \textbf{Ensure Fairness} & Conduct regular bias audits using appropriate benchmarks and real-world testing \cite{aclanthology}. Mitigate biases via data curation and model fine-tuning (pre-, during, or post-training). Involve diverse stakeholders in testing to capture multiple perspectives. Document residual biases and outline strategies for remediation. \\
-\rowcolor{gray!8}
 \textbf{Prevent Harm} & Integrate content filters and classifiers to intercept harmful outputs \cite{arxiv}. Fine-tune models with alignment techniques such as RLHF or constitutional AI \cite{openai}. Define and enforce policies on prohibited content. Conduct red-teaming exercises to stress-test safety and patch vulnerabilities. \\
-\rowcolor{gray!3}
 \textbf{Define Escalation Protocols} & Define procedures for escalating issues to humans or authorities. For example, if outputs risk violating laws or causing harm, an incident response plan should be activated. AI systems should signal uncertainty or risk rather than guess. \\
-\rowcolor{gray!8}
 \textbf{Deploy Gradually} & Begin with limited deployment, gather feedback, and expand gradually. Continuously monitor metrics such as quality, error rates, bias indicators, and user complaints. Use A/B testing to evaluate updates and prevent regressions in ethical behavior. \\
-\rowcolor{gray!3}
 \textbf{Establish User Feedback Loop} & Provide intuitive mechanisms for users to give feedback (e.g., thumbs down, report button). Actively incorporate feedback into retraining or prompt adjustment cycles. Communicate back to users when their input drives improvements. \\
-\rowcolor{gray!8}
 \textbf{Cross-Functional Governance} & Involve legal, compliance, and domain experts. For example, medical LLMs should be periodically reviewed by physicians; journalism LLMs, like \ishtar{}, should undergo review by editors and independent ethicists. \\
-\rowcolor{gray!3}
 \textbf{Provide Opt-Out Options} & Ensure alternatives are available for users who prefer not to use AI systems. Provide human-driven processes for critical decisions. Respect user choices regarding data collection and usage. \\
-\rowcolor{gray!8}
 \textbf{Documentation and Logging} & Maintain comprehensive documentation of model versions, changelogs, and rationale for updates. Securely log outputs and interventions to enable post-incident analysis. \\
-\rowcolor{gray!3}
 \textbf{Responsiveness to New Issues} & Adapt to evolving risks such as emergent deepfake trends or novel hate speech patterns. Update policies and models swiftly to address emerging harms. \\
 \end{tabularx}
-\end{tcolorbox}
+}
 
 \section*{Chapter Summary}\label{sec:ethics-summary}
 This chapter framed responsible LLMOps as an operational discipline grounded in measurable controls and accountable
