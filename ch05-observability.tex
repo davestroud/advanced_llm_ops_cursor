@@ -469,18 +469,18 @@ A useful organizing principle is a \emph{three-tier} layout:
 \caption{Three-tier dashboard layout for LLM observability}
 \label{tab:three-tier-layout}
 \small
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\textwidth}{p{3.5cm}X}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4cm}X}
 \toprule
 \textbf{Tier} & \textbf{Components \& Purpose} \\
 \midrule
 \textbf{Infra board} & 
 Cluster/node health, cache hit rates, GPU utilization, queue depth. This board answers "can we serve traffic?" and isolates resource saturation from application regressions. \\
-\addlinespace[3pt]
+\addlinespace[4pt]
 \textbf{LLM performance/cost board} & 
 TTFT, tokens/s, prompt vs.\ completion tokens, retriever latency, re-ranker contribution, cache efficacy. Trend lines should annotate deployment events, model upgrades, and prompt-template releases to enable instant attribution of step changes. \\
-\addlinespace[3pt]
+\addlinespace[4pt]
 \textbf{Quality/safety board} & 
 Rolling hallucination estimates, groundedness distributions, refusal rates, jailbreak/PII triggers. Include cohort filters by route, user segment, geography, and model version to localize degradations to specific populations rather than global traffic. \\
 \bottomrule
