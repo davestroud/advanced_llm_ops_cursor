@@ -55,3 +55,17 @@
 % \newcommand{\product}[1]{\textsf{#1}}
 % \newcommand{\term}[1]{\textit{#1}}
 % \newcommand{\code}[1]{\texttt{#1}}
+
+% ==========================================================
+% Figure fitting helpers (SNmono-safe)
+% ==========================================================
+\newcommand{\LLMFigMaxWidth}{\linewidth}
+\newcommand{\LLMFigMaxHeight}{0.82\textheight}
+
+% A wrapper that scales DOWN to fit the Springer textblock,
+% and prevents overly-tall diagrams from spilling off the page.
+\newenvironment{llmfigbox}{%
+  \begin{adjustbox}{max width=\LLMFigMaxWidth, max totalheight=\LLMFigMaxHeight, center}%
+}{%
+  \end{adjustbox}%
+}
