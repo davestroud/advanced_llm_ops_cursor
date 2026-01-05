@@ -76,7 +76,7 @@ The following sections explore concrete strategies for optimization across three
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Representative performance improvements from widely deployed techniques, based on published benchmarks and production deployments. Actual gains depend on model size, hardware, and traffic mix. See Sections~\ref{sec:perf-model}--\ref{sec:perf-system} and Section~\ref{sec:perf-prompt} for detailed discussions and implementation guidance.}
-\label{fig:opt-gains-callout}
+\label{fig:ch07_opt_gains_callout}
 \end{figure}
 
 
@@ -107,7 +107,7 @@ The following sections explore concrete strategies for optimization across three
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Illustrative example of latency improvements after batching, KV-cache engineering, and quantization. Absolute values vary by model, hardware, and traffic mix.}
-\label{fig:latency-before-after}
+\label{fig:ch07_latency_before_after}
 \end{figure}
 
 \section{Model-Level Optimization Techniques}
@@ -160,7 +160,7 @@ In modern LLMOps, 8-bit quantization is widely adopted for inference, and resear
 \begin{table}
 \centering
 \caption{Comparison of common quantization schemes for large language models.}
-\label{tab:quantization-comparison}
+\label{tab:ch07_quantization_comparison}
 \setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\textwidth}{@{}l
                                     p{2.6cm}
@@ -227,7 +227,7 @@ From a production perspective, parameter-efficient fine-tuning is valuable becau
 \begin{sidewaystable}
 \centering
 \caption{Summary of model compression and adaptation techniques for LLM deployment.}
-\label{tab:compression-summary}
+\label{tab:ch07_compression_summary}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.1}
 \small
@@ -328,13 +328,13 @@ Low to moderate; can affect long-context fidelity. &
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture.}
-\label{fig:quant-throughput-bars}
+\label{fig:ch07_quant_throughput_bars}
 \end{figure}
 
 \begin{table}[htbp]
 \centering
 \caption{Approximate parameter memory vs.\ precision for 13B and 70B models (weights only).}
-\label{tab:mem-vs-precision}
+\label{tab:ch07_mem_vs_precision}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
 \small
@@ -374,7 +374,7 @@ Low to moderate; can affect long-context fidelity. &
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Memory accounting at a glance. Use precision $b$ from Table~\ref{tab:quantization-comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets.}
-\label{fig:memory-cheatsheet}
+\label{fig:ch07_memory_cheatsheet}
 \end{figure}
 
 \section{Inference Engine Optimization}
@@ -409,7 +409,7 @@ PagedAttention is especially valuable in use cases like \ishtar{} if they need t
 \begin{table}[htbp]
 \centering
 \caption{Illustrative inference engine benchmarks (single GPU). Values are representative examples based on typical production deployments; actual performance depends on model size, hardware configuration, and workload characteristics.}
-\label{tab:engine-bench}
+\label{tab:ch07_engine_bench}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
 \begin{tabularx}{\textwidth}{@{}l
@@ -451,7 +451,7 @@ There are different batching strategies. \textit{Static batching} uses a fixed b
 
 Continuous batching is an even more advanced form where, during autoregressive generation, new token requests from other queries can be interwoven into the ongoing processing of existing batches. For example, while one batch of sequences is generating token $t$, a new request that arrives can start being processed for its token $t$ in the next step, rather than waiting for the batch to finish all tokens. This is implemented in vLLM’s scheduler, effectively creating a conveyor belt of requests \cite{Kwon2023vLLM}. The benefit is maximizing throughput at high load with minimal queuing latency.
 
-That said, batching has trade-offs: it increases the latency for each individual request (because of the waiting time to form a batch and the fact that all in a batch finish together, meaning a small request might be delayed behind a large one in the same batch). The optimal batch size or waiting time is a tuning knob: too small batches and we under-utilize the GPU; too large or waiting too long and we hurt tail latency. Continuous monitoring of batch utilization is important. In practice, many deployments start with a small maximum batch size (say 8 or 16) and adjust based on observed GPU utilization. If the GPU has spare room, increasing batch size can yield higher throughput (up to a point of diminishing returns where overheads or memory limits kick in). Indeed, throughput $\Theta$ often scales sub-linearly with batch size $B$; a typical curve might show strong gains up to a moderate $B$ then flattening as the GPU saturates (see Figure~\ref{fig:throughput-vs-batch} for a representative throughput vs.\ batch size curve).
+That said, batching has trade-offs: it increases the latency for each individual request (because of the waiting time to form a batch and the fact that all in a batch finish together, meaning a small request might be delayed behind a large one in the same batch). The optimal batch size or waiting time is a tuning knob: too small batches and we under-utilize the GPU; too large or waiting too long and we hurt tail latency. Continuous monitoring of batch utilization is important. In practice, many deployments start with a small maximum batch size (say 8 or 16) and adjust based on observed GPU utilization. If the GPU has spare room, increasing batch size can yield higher throughput (up to a point of diminishing returns where overheads or memory limits kick in). Indeed, throughput $\Theta$ often scales sub-linearly with batch size $B$; a typical curve might show strong gains up to a moderate $B$ then flattening as the GPU saturates (see Fig.~\ref{fig:throughput-vs-batch} for a representative throughput vs.\ batch size curve).
 
 \begin{figure}[htbp]
 \centering
@@ -476,7 +476,7 @@ That said, batching has trade-offs: it increases the latency for each individual
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Representative throughput scaling with batch size. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. In production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}
-\label{fig:throughput-vs-batch}
+\label{fig:ch07_throughput_vs_batch}
 \end{figure}
 
 
@@ -628,7 +628,7 @@ In \ishtar{}’s deployment, we configured our GPU workers to use two CUDA strea
 \begin{table}[htbp]
 \centering
 \caption{Illustrative kernel-time breakdown before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute). Percentages vary by model, sequence length, and runtime.}
-\label{tab:profiling-breakdown}
+\label{tab:ch07_profiling_breakdown}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
 \begin{tabularx}{\textwidth}{@{}l
@@ -713,7 +713,7 @@ x   y
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Latency CDF with p50/p95/p99 markers. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix.}
-\label{fig:latency-cdf}
+\label{fig:ch07_latency_cdf}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -740,7 +740,7 @@ x   y
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Illustrative cost per 1k tokens across engines under a simple hourly-cost model (see Section~\ref{sec:perf-cost-per-token}). Absolute values depend on hardware pricing, utilization, and batch/sequence lengths.}
-\label{fig:cost-per-1k-by-engine}
+\label{fig:ch07_cost_per_1k_by_engine}
 \end{figure}
 
 \section{Case Study: Optimizing Ishtar AI}
@@ -838,7 +838,7 @@ Performance optimization is not a one-time task—it is an ongoing process that 
 \begin{table}[htbp]
 \centering
 \caption{\ishtar{} optimization KPIs: before vs.\ after. Values are representative of the case study scenario and depend on workload and hardware.}
-\label{tab:ishtar-kpis}
+\label{tab:ch07_ishtar_kpis}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
 \begin{tabularx}{\textwidth}{@{}l
@@ -1027,7 +1027,7 @@ These formulas link low-level engineering decisions (e.g., quantization, batchin
 \begin{table}[htbp]
 \centering
 \caption{Comparison of Architectural Variants for Cloud Deployment}
-\label{tab:arch-comparison}
+\label{tab:ch07_arch_comparison}
 \renewcommand{\arraystretch}{1.15}
 \setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\linewidth}{p{3.2cm}X X X}
@@ -1061,7 +1061,7 @@ A number of specialized inference engines have been developed to serve LLMs effi
 \begin{table}[htbp]
   \centering
   \caption{Qualitative comparison of LLM serving runtimes (decoder-only focus).}
-  \label{tab:runtimes}
+  \label{tab:ch07_runtimes}
   \renewcommand{\arraystretch}{1.15}
   \setlength{\tabcolsep}{4pt}
   \begin{tabular}{p{3.5cm}p{3.8cm}p{3.6cm}p{3.6cm}}

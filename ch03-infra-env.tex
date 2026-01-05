@@ -96,10 +96,10 @@ This linear dependence means that long-context or high-concurrency serving can e
 
 NVIDIA GPUs remain the dominant hardware for LLM workloads in 2024–2025. The NVIDIA L4 offers excellent per-watt efficiency for smaller models, embeddings, and lightweight inference; the A100 was the mainstream workhorse for both training and inference in the early 2020s; and the H100 (Hopper architecture) introduces new low-precision math (FP8), significantly higher memory bandwidth, and other architectural improvements targeting Transformer models. 
 
-\begin{table}[H]
+\begin{table}[t]
   \centering
   \caption{Representative GPU accelerators for LLM workloads (throughput approximate for OPT-13B inference).}
-  \label{tab:gpucompare}
+  \label{tab:ch03_gpucompare}
   \begin{tabular}{lcccc}
     \hline
     Processor & Memory & Tokens/s (13B) & Price/hr (cloud) & Best Use Case \\
@@ -147,7 +147,7 @@ From an infrastructure owner's perspective, tracking cost per 1k tokens is very 
 \begin{table}[t]
   \centering
   \caption{Cost per thousand tokens comparison: A100 vs.\ H100 under different utilization scenarios.}
-  \label{tab:cost-per-token}
+  \label{tab:ch03_cost_per_token}
   \small
   \setlength{\tabcolsep}{10pt}
   \renewcommand{\arraystretch}{1.4}
@@ -312,7 +312,7 @@ In summary, it is best to operate GPUs at a batch size that still meets your lat
   \end{tikzpicture}
   \end{llmfigbox}
   \caption{Throughput vs.\ batch size (schematic). Increasing batch size initially yields large throughput gains (e.g., 3$\times$ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck.}
-  \label{fig:batchtradeoff}
+  \label{fig:ch03_batchtradeoff}
 \end{figure}
 
 \subsection{Caching and Quantization Effects}
@@ -341,10 +341,10 @@ To make the abstract formulas more tangible, Table~\ref{tab:costcompare} provide
 We assume on-demand cloud pricing (as of early 2025) and sustained throughput figures taken from public benchmarks and vendor reports. 
 The effective cost per million tokens is calculated using Equation~\ref{eq:costptok}. 
 
-\begin{table}[H]
+\begin{table}[t]
   \centering
   \caption{Approximate cost per million tokens across representative accelerators. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing. Lower is better.}
-  \label{tab:costcompare}
+  \label{tab:ch03_costcompare}
   \begin{tabular}{lccc}
     \hline
     Accelerator & Hourly Price (\$) & Sustained Throughput (tok/s) & Cost per 1M tokens (\$) \\
@@ -452,10 +452,10 @@ There are several popular IaC tools, each with pros and cons. The most relevant 
 
 In practice, LLMOps stacks often combine these tools. For instance, \ishtar{} uses Terraform to provision cloud resources (VMs, networks, EKS clusters) and Helm to deploy LLM services onto those clusters. A summary is shown in Table~\ref{tab:iaccompare}.
 
-\begin{table}[H]
+\begin{table}[t]
   \centering
   \caption{Comparison of Infrastructure-as-Code tools (selected for LLMOps).}
-  \label{tab:iaccompare}
+  \label{tab:ch03_iaccompare}
   \small
   \setlength{\tabcolsep}{8pt}
   \renewcommand{\arraystretch}{1.4}
@@ -696,10 +696,10 @@ When models exceed the memory of a single GPU, serving requires model parallelis
 The landscape of LLM serving is rapidly evolving. By combining robust serving frameworks (e.g., TGI, vLLM, TensorRT) with novel methods (e.g., Smoothie routing, KV cache optimizations, speculative decoding), LLMOps practitioners can achieve significant gains in both performance and cost-efficiency. What is cutting-edge today often becomes standard within a year—continuous awareness of new serving methods is therefore critical for engineering competitive, scalable LLM systems.
 
 
-\begin{table}[H]
+\begin{table}[t]
 \centering
 \caption{Comparison of selected LLM serving frameworks. Strengths and limitations reflect typical deployments in 2024--2025.}
-\label{tab:servingcompare}
+\label{tab:ch03_servingcompare}
 \renewcommand{\arraystretch}{1.25}
 \setlength{\tabcolsep}{6pt}
 \begin{tabular}{>{\columncolor{blue!10}}l p{4.2cm} p{4.2cm}}
@@ -902,7 +902,7 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
   % } % end resizebox if you enable it above
 
   \caption{Cloud-native deployment architecture for LLMOps. The diagram illustrates elastic GPU scaling across multiple availability zones, integration with managed services (queues, vector databases, object storage), secure networking through API gateways and private subnets, and disaster recovery capabilities. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls.}
-  \label{fig:cloud-native-deployment}
+  \label{fig:ch03_cloud_native_deployment}
 \end{figure}
 
 \subsection{Hybrid Deployments}
@@ -991,7 +991,7 @@ Cloud-native approaches emphasize elasticity and speed, hybrid deployments balan
 The choice of deployment model depends on workload profiles, user distribution, regulatory requirements, and cost constraints. Each deployment pattern establishes operational contracts that define availability guarantees, latency characteristics, and scaling boundaries—contracts that must be enforced by CI/CD pipelines (Chapter~\ref{ch:cicd}), monitored by observability systems (Chapter~\ref{ch:monitoring}), and respected by scaling strategies (Chapter~\ref{ch:scaling}). IaC and unified observability are unifying enablers across all deployment modes, ensuring reproducibility, compliance, and operational efficiency.
 
 
-\begin{figure}[H]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
@@ -1096,7 +1096,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Balanced schematic of deployment patterns: \textbf{Cloud-Native} (left), \textbf{Hybrid} (middle), and \textbf{Multi-Cluster} (right).}
-\label{fig:deploy-patterns-balanced}
+\label{fig:ch03_deploy_patterns_balanced}
 \end{figure}
 
 
@@ -1146,7 +1146,7 @@ Ishtar’s infrastructure demonstrates key principles of advanced LLMOps:
 Future plans include a European cluster for GDPR compliance and model routing (e.g., Smoothie) to offload simpler queries to a distilled model. Overall, Ishtar illustrates how rigorous LLMOps practices yield both technical robustness and economic efficiency.
 
 
-\begin{figure}[H]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
@@ -1214,7 +1214,7 @@ Future plans include a European cluster for GDPR compliance and model routing (e
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling.}
-\label{fig:ishtar-infra}
+\label{fig:ch03_ishtar_infra}
 \end{figure}
 
 

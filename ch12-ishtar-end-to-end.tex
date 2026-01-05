@@ -115,7 +115,7 @@ Cost control & Predictable unit economics & Track cost/query; scale-to-zero for 
 \bottomrule
 \end{tabularx}
 \caption{Representative \ishtar{} end-to-end requirements used as design targets.}
-\label{tab:ishtar-requirements}
+\label{tab:ch12_ishtar_requirements}
 \end{table}
 
 % ---------------------------------------------------------------------
@@ -136,7 +136,7 @@ The major subsystems are:
     \item \textbf{Observability and governance} spanning traces, metrics, logs, evaluation, and auditability (Chapters~\ref{ch:monitoring} and~\ref{ch:ethics}).
 \end{itemize}
 
-Figure~\ref{fig:ishtar-architecture-ch12} depicts the end-to-end flows. The diagram is intentionally operational: it shows where persistence boundaries exist, where latency budgets apply, and where safety checks are enforced.
+Fig.~\ref{fig:ishtar-architecture-ch12} depicts the end-to-end flows. The diagram is intentionally operational: it shows where persistence boundaries exist, where latency budgets apply, and where safety checks are enforced.
 
 \begin{figure}[tb]
 \centering
@@ -197,7 +197,7 @@ OpenTelemetry traces + Prometheus metrics + audit logs.};
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{End-to-end \ishtar{} architecture. Background ingestion continuously updates a document store and vector index. Online query handling performs authenticated retrieval-augmented generation, followed by verification and safety post-processing, under end-to-end tracing and monitoring.}
-\label{fig:ishtar-architecture-ch12}
+\label{fig:ch12_ishtar_architecture_ch12}
 \end{figure}
 
 % ---------------------------------------------------------------------
@@ -664,7 +664,7 @@ Deployment cadence & $\sim$2/week & Evaluation-gated releases; no rollbacks in t
 \bottomrule
 \end{tabularx}
 \caption{Representative \ishtar{} performance outcomes after end-to-end implementation.}
-\label{tab:ishtar-outcomes}
+\label{tab:ch12_ishtar_outcomes}
 \end{table}
 
 \subsection{Latency and throughput}

@@ -36,6 +36,13 @@
   every node/.append style={font=\footnotesize},
 }
 
+% --- TikZ baseline styles (keep diagrams consistent) ---
+\tikzset{
+  box/.style={draw, rounded corners, align=center, inner sep=4pt, minimum height=10mm},
+  arrow/.style={-Stealth, thick},
+  lane/.style={draw, rounded corners, inner sep=6pt}
+}
+
 % --- Column type 'Y' only if array/tabularx is available ---
 \makeatletter
 \@ifundefined{newcolumntype}{%
@@ -81,6 +88,24 @@
 \newcommand{\IshtarVignette}[1]{%
   \begin{svgraybox}\textbf{Ishtar AI Vignette.} #1\end{svgraybox}%
 }
+
+% --- Listings default style (production-safe) ---
+\lstdefinestyle{springer}{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  breaklines=true,
+  breakatwhitespace=true,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=6pt,
+  frame=single,
+  framerule=0.2pt,
+  xleftmargin=1.5em,
+  tabsize=2,
+  showstringspaces=false
+}
+\lstset{style=springer}
 
 % ==========================================================
 % Figure fitting helpers (SNmono-safe)

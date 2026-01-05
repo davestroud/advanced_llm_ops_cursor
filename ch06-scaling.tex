@@ -75,7 +75,7 @@ In \ishtar{}, these constraints manifested most visibly during breaking news cyc
 \centering
 \small
 \caption{Scaling strategies employed in \ishtar{} to handle breaking news traffic surges.}
-\label{tab:ishtar-scaling-strategies}
+\label{tab:ch06_ishtar_scaling_strategies}
 \renewcommand{\arraystretch}{1.3}
 \setlength{\tabcolsep}{8pt}
 \begin{tabularx}{\linewidth}{@{}p{4.2cm}X@{}}
@@ -132,7 +132,7 @@ Whenever a capacity estimate is wrong, the most common failure mode is missing a
 \subsection{GPU Partitioning and Multi-Tenancy}\label{sec:gpu-partitioning}
 At moderate scales, a common efficiency problem is \emph{under-filled GPUs}: many requests or tenants do not require an entire high-end accelerator. NVIDIA Multi-Instance GPU (MIG) partitions supported GPUs into multiple isolated GPU instances with dedicated memory and compute resources, enabling higher overall utilization while providing stronger quality-of-service isolation for mixed workloads \cite{nvidia_mig_guide}. In LLM serving, MIG is most effective for smaller models, embedding services, and low-throughput inference workloads where per-tenant isolation and predictable latency are more important than maximum batch size. For large models or long-context workloads, full-GPU access is often preferable to preserve batching headroom and KV-cache capacity.
 
-Scaling LLM deployments can follow multiple dimensions, each with distinct architectural, cost, and operational trade-offs. The primary approaches are vertical scaling, horizontal scaling, and hybrid scaling, which we discuss in turn. Figure~\ref{fig:scaling-dimensions} provides a schematic overview of these three strategies, while Table~\ref{tab:scaling-matrix} summarizes their comparative characteristics.
+Scaling LLM deployments can follow multiple dimensions, each with distinct architectural, cost, and operational trade-offs. The primary approaches are vertical scaling, horizontal scaling, and hybrid scaling, which we discuss in turn. Fig.~\ref{fig:scaling-dimensions} provides a schematic overview of these three strategies, while Table~\ref{tab:scaling-matrix} summarizes their comparative characteristics.
 
 \subsection{Vertical Scaling}
 \label{sec:scaling-vertical}
@@ -284,7 +284,7 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
 \centering
 \small
 \caption{Comparison of vertical, horizontal, and hybrid scaling approaches for LLM deployments.}
-\label{tab:scaling-matrix}
+\label{tab:ch06_scaling_matrix}
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{8pt}
 \begin{tabular}{p{3.2cm}p{4.5cm}p{4.5cm}p{4.5cm}}
@@ -364,7 +364,7 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Visual comparison of scaling dimensions for LLM deployments. Vertical scaling upgrades a single node, horizontal scaling adds nodes in parallel, and hybrid scaling combines tiers of hardware for performance--cost balance.}
-\label{fig:scaling-dimensions}
+\label{fig:ch06_scaling_dimensions}
 \end{figure}
 
 \subsubsection{Lessons Learned}
@@ -523,7 +523,7 @@ Table~\ref{tab:distributed-inference} compares common distributed inference tech
 \centering
 \footnotesize
 \caption{Comparison of distributed inference techniques for LLM deployments.}
-\label{tab:distributed-inference}
+\label{tab:ch06_distributed_inference}
 \renewcommand{\arraystretch}{1.12}
 \setlength{\tabcolsep}{3pt}
 \begin{tabularx}{\linewidth}{
@@ -545,13 +545,13 @@ Best use cases & Huge models that cannot fit a single GPU. & Wide layers (large 
 \end{tabularx}
 \end{table}
 
-Figure~\ref{fig:parallelism} provides a compact view of how model, tensor, and pipeline parallelism split parameters and computation across devices.
+Fig.~\ref{fig:parallelism} provides a compact view of how model, tensor, and pipeline parallelism split parameters and computation across devices.
 
 \begin{figure}[htbp]
 \centering
 %\includegraphics[width=0.9\textwidth]{figures/parallelism-diagram.pdf}
 \caption{Conceptual illustration of distributed inference methods. \textbf{(a)} Model Parallelism---different GPUs host disjoint layer blocks. \textbf{(b)} Tensor Parallelism---within-layer matrix multiplications are split across GPUs with all-reduce merges. \textbf{(c)} Pipeline Parallelism---model is divided into stages and microbatches flow concurrently.}
-\label{fig:parallelism}
+\label{fig:ch06_parallelism}
 \end{figure}
 
 \subsection{Speculative Decoding}
@@ -769,7 +769,7 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 \medskip
 \noindent\textbf{Summary.} Autoscaling an LLM deployment is a delicate balance: react quickly enough to maintain SLOs, avoid oscillations and unnecessary cost, and anticipate cold starts. Combining reactive metrics with proactive event signals is state of the art. In our \ishtar{} deployment, the hybrid approach (load forecasts + calendar events) enabled rapid yet stable scale-outs (6 to 28 GPU replicas in under 2 minutes) without breaching latency targets.
 
-Figure~\ref{fig:autoscale-target-tracking} illustrates a token-aware target-tracking loop for autoscaling inference replicas under bursty demand.
+Fig.~\ref{fig:autoscale-target-tracking} illustrates a token-aware target-tracking loop for autoscaling inference replicas under bursty demand.
 
 \begin{figure}[htbp]
 \centering
@@ -816,10 +816,10 @@ Figure~\ref{fig:autoscale-target-tracking} illustrates a token-aware target-trac
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Metrics-based target tracking. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma$ by adjusting replicas $N(t)$.}
-\label{fig:autoscale-target-tracking}
+\label{fig:ch06_autoscale_target_tracking}
 \end{figure}
 
-Figure~\ref{fig:autoscale-event-based} shows an event-driven autoscaling workflow that uses external triggers to pre-warm capacity ahead of traffic spikes.
+Fig.~\ref{fig:autoscale-event-based} shows an event-driven autoscaling workflow that uses external triggers to pre-warm capacity ahead of traffic spikes.
 
 \begin{figure}[htbp]
 \centering
@@ -874,7 +874,7 @@ Figure~\ref{fig:autoscale-event-based} shows an event-driven autoscaling workflo
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Event-based autoscaling with predictive pre-warming. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph{before} demand spikes arrive, leveraging calendar events or scheduled triggers. This eliminates cold-start latency and ensures capacity is ready when needed.}
-\label{fig:autoscale-event-based}
+\label{fig:ch06_autoscale_event_based}
 \end{figure}
 
 % ------------------------------------------------------------
@@ -936,7 +936,7 @@ By hashing retrieved document chunks and caching embeddings in a pgvector-enable
 \medskip
 \noindent\textbf{Summary.} Caching at both the response level and the embedding level contributed to the overall scalability of \ishtar{}. By avoiding recomputation, we effectively obtained more throughput from each GPU and served more users with the same hardware. The trade-off is additional complexity (key design, invalidation, persistence), but with careful engineering the benefits far outweigh the overhead.
 
-Figure~\ref{fig:caching-flow} summarizes where common caching layers sit in the LLM request path and how they reduce repeated work.
+Fig.~\ref{fig:caching-flow} summarizes where common caching layers sit in the LLM request path and how they reduce repeated work.
 
 \begin{figure}[htbp]
 \centering
@@ -1005,7 +1005,7 @@ Figure~\ref{fig:caching-flow} summarizes where common caching layers sit in the 
 % \end{subfigure}
 
 \caption{Cache flow diagrams. \textbf{(a)} Response caching short-circuits identical requests; keys include query, model version, and decoding parameters. \textbf{(b)} Embedding caching avoids redundant encoder passes for repeated chunks; keys hash content + embedding model identity.}
-\label{fig:caching-flow}
+\label{fig:ch06_caching_flow}
 \end{figure}
 
 \section{Cost-Aware Scaling}
@@ -1076,7 +1076,7 @@ Scaling RAG in \ishtar{} meant scaling the vector search backend alongside the m
 \medskip
 \noindent\textbf{Summary.} Scaling RAG is a multidimensional challenge: IR-side scaling (index sharding, ANN, hot tiers, caching) must go hand-in-hand with LLM-side scaling (batching, KV management, and context-efficient prompting). Marrying these efficiently is an active area of systems research.
 
-Figure~\ref{fig:rag-two-tier} sketches a practical two-tier RAG serving layout that separates hot and cold data while keeping latency predictable.
+Fig.~\ref{fig:rag-two-tier} sketches a practical two-tier RAG serving layout that separates hot and cold data while keeping latency predictable.
 
 \begin{figure}[htbp]
 \centering
@@ -1145,7 +1145,7 @@ Figure~\ref{fig:rag-two-tier} sketches a practical two-tier RAG serving layout t
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Two-tier RAG scaling. A router first probes a \emph{hot} in-memory/GPU tier; on miss, it falls back to a \emph{distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator.}
-\label{fig:rag-two-tier}
+\label{fig:ch06_rag_two_tier}
 \end{figure}
 
 \section{Geographic Scaling}
@@ -1189,7 +1189,7 @@ Private backbones and smart routing let providers forward requests to a near-opt
 \medskip
 \noindent\textbf{Summary.} Geographic scaling reduces user-perceived latency and meets local policies at the cost of added operational complexity. It is the outermost layer of scale: after optimizing single- and multi-node serving, the final frontier is scaling across continents.
 
-Figure~\ref{fig:geo-scaling-inset} depicts a typical multi-region serving topology with geo-routing, regional caches, and failover paths.
+Fig.~\ref{fig:geo-scaling-inset} depicts a typical multi-region serving topology with geo-routing, regional caches, and failover paths.
 
 \begin{figure}[htbp]
 \centering
@@ -1236,7 +1236,7 @@ at ($(frame.south west)+(0.35,0.35)$) {\small
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Geographic scaling schematic. Users are routed to the nearest regional cluster (NA/EU/APAC) for latency and data residency; dashed links illustrate failover/overflow between regions.}
-\label{fig:geo-scaling-inset}
+\label{fig:ch06_geo_scaling_inset}
 \end{figure}
 
 \section{Case Study: Scaling Ishtar AI}
@@ -1261,7 +1261,7 @@ Multi-region H100 clusters with automated scaling policies, caching layers, and 
 
 In the mature stage, \ishtar{} became a multi-region, multi-tier deployment. We upgraded to clusters of H100 GPUs for core serving, as the model had grown to 70B with a 32k context. Each region (US-East, EU-West, APAC) had a cluster with auto-provisioning via Terraform and Kubernetes. We implemented the hybrid scaling strategy: a baseline of high-end GPUs always running for low latency, plus the ability to burst with additional GPUs (including spot instances) during events. Caching was now multi-layer: a Redis global response cache (shared by all pods in a region) and a distributed embedding cache using a vector DB for the document index. We had also introduced speculative decoding in this stage (running a 6B draft model alongside), which gave roughly a 1.5$\times$ speedup on long text generation. The system employed sophisticated autoscaling signals including predictive triggers for known events (as discussed in Section~\ref{sec:scaling-event-autoscaling}). Multi-tenancy was in effect: the platform served both our internal journalists and external API consumers, with priority scheduling ensuring the internal users (journalists) had reserved capacity during crunch time. By the time of this mature setup, \ishtar{} was sustaining peaks of $\sim$100 requests per second with median latency $<\!800$\,ms and p99 around 2\,s, across a user base spanning three continents. The scalability groundwork --- everything from model optimizations to geo-distributed clusters --- allowed it to handle major news surges (10$\times$ traffic in minutes) without failing. This final architecture reflects many best practices we have covered: mixed vertical/horizontal scaling, distributed inference techniques, aggressive batching, autoscaling, caching layers, and cost-awareness (spot instances, multi-model routing for efficiency).
 
-Figure~\ref{fig:ishtar-timeline} summarizes the evolution of \ishtar{} from a single-GPU prototype to a multi-region, multi-tier production deployment.
+Fig.~\ref{fig:ishtar-timeline} summarizes the evolution of \ishtar{} from a single-GPU prototype to a multi-region, multi-tier production deployment.
 
 \begin{figure}[htbp]
 \centering
@@ -1318,7 +1318,7 @@ $\bullet$ Tiered models \& spot for cost-awareness
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{\ishtar{} scaling timeline. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling.}
-\label{fig:ishtar-timeline}
+\label{fig:ch06_ishtar_timeline}
 \end{figure}
 
 \section{Best Practices Checklist}

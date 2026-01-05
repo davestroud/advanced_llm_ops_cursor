@@ -102,7 +102,7 @@ Finally, LLM observability has a governance dimension. Logs often contain user t
 \end{llmfigbox}
 \caption{Three layers of LLM observability. Effective monitoring requires integrating system health,
 model quality signals, and full pipeline tracing to explain regressions and prevent observability debt.}
-\label{fig:telemetry_layers}
+\label{fig:ch05_telemetry_layers}
 \end{figure}
 
 \section{RAG-Specific Metrics and Drift Monitoring}
@@ -236,7 +236,7 @@ Table~\ref{tab:ishtar_obs_stack} summarizes a minimal-but-extensible stack compo
 \begin{table}[t]
 \centering
 \caption{Example observability stack (\ishtar) for LLM applications. OpenTelemetry provides shared context (trace IDs, resource attributes), while specialized tools deliver operator- and developer-facing views.}
-\label{tab:ishtar_obs_stack}
+\label{tab:ch05_ishtar_obs_stack}
 \begin{tabular}{p{0.18\linewidth}p{0.33\linewidth}p{0.42\linewidth}}
 \toprule
 Signal & Tools & Typical questions answered \\
@@ -359,7 +359,7 @@ High-fidelity traces require stable correlation across boundaries. Every request
 span names (\texttt{llm.call}, \texttt{retriever.search}, \texttt{tool.invoke.<name>}, \texttt{parser.jsonschema},
 \texttt{guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining
 readable in tracing UIs.}
-\label{fig:span_taxonomy}
+\label{fig:ch05_span_taxonomy}
 \end{figure}
 
 \subsubsection{Streaming-aware tracing.}
@@ -471,7 +471,7 @@ A useful organizing principle is a \emph{three-tier} layout:
 \begin{table}[htbp]
 \centering
 \caption{Three-tier dashboard layout for LLM observability}
-\label{tab:three-tier-layout}
+\label{tab:ch05_three_tier_layout}
 \small
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.4}
@@ -621,7 +621,7 @@ Continuous improvement depends on tying observability back into development: int
 %     \centering
 %     \includegraphics[width=0.9\textwidth]{../figures/ishtar-observability.pdf}
 %     \caption{Enhanced observability stack for LLMOps.}
-%     \label{fig:ishtar-observability}
+%     \label{fig:ch05_ishtar_observability}
 % \end{figure}
 
 % Figure~\ref{fig:ishtar-observability} shows the enhanced stack: unified tracing (LangSmith + OTel), semantic logging (LangFuse \cite{langfuse_docs}), automated evaluators, and dashboards. This design provides both real-time monitoring and offline analysis, enabling fast incident response and long-term quality improvement.

@@ -177,7 +177,7 @@ Sampling temperature $\tau$ is a decoding hyperparameter that rescales the model
     \end{tikzpicture}
     \end{llmfigbox}
     \caption{Schematic of a Transformer block highlighting attention, FFN, and residual paths. Inference memory is dominated by parameters and the KV cache (Eq.~\ref{eq:param-mem}, \ref{eq:kv-cache}); compute cost scales with Eq.~\ref{eq:flops-layer}.}
-    \label{fig:transformer-block}
+    \label{fig:ch02_transformer_block}
 \end{figure}
 
 \begin{figure}[t]
@@ -210,7 +210,7 @@ Sampling temperature $\tau$ is a decoding hyperparameter that rescales the model
     \end{tikzpicture}
     \end{llmfigbox}
     \caption{Attention cost grows quadratically with context length $T$ (solid), outpacing linear strategies (dashed). This motivates paged attention, local attention, and RAG to manage long contexts in production.}
-    \label{fig:quadratic-attn}
+    \label{fig:ch02_quadratic_attn}
 \end{figure}
 
 \begin{figure}[t]
@@ -238,7 +238,7 @@ Sampling temperature $\tau$ is a decoding hyperparameter that rescales the model
     \end{tikzpicture}
     \end{llmfigbox}
     \caption{Empirical growth in Transformer-based model size (log scale). Parameter counts have increased by orders of magnitude, driving distinct operational constraints in memory, compute, and cost.}
-    \label{fig:llm-scale}
+    \label{fig:ch02_llm_scale}
 \end{figure}
 
 % ------------------ Capacity Planning Sidebar ------------------
@@ -339,7 +339,7 @@ Model & Params $P$ & $M_{\text{params}}$ (GB) \\
     \end{tikzpicture}
     \end{llmfigbox}
     \caption{Idealized throughput vs. TTFT using Eq.~\ref{eq:throughput} with $N{=}120$ tokens/request and $\tau_1{=}\SI{0.02}{s/token}$. Larger batches ($B$) amortize TTFT, but real systems saturate due to kernel/IO limits; use as a planning guideline, not a guarantee.}
-    \label{fig:ttft-throughput}
+    \label{fig:ch02_ttft_throughput}
 \end{figure}
 
 % ------------------ Pipeline / Concepts ------------------
@@ -631,7 +631,7 @@ Model & Parameters $P$ & $M_{\text{params}}$ (approx.) \\
 \bottomrule
 \end{tabular}
 \caption{Approximate parameter memory requirements for different model scales (FP16 weights).}
-\label{tab:param-memory}
+\label{tab:ch02_param_memory}
 \end{table}
 
 These figures make it immediately clear that once models reach tens of billions of parameters, a single standard GPU (commonly 16 or 24~GB of memory) cannot hold the model, necessitating \emph{sharding} across multiple GPUs or using techniques like 8-bit quantization (which would roughly halve these memory numbers—potentially bringing a 13B model down to $\sim$13~GB, allowing it to fit on a 16~GB GPU).  
