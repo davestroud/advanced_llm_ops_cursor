@@ -381,23 +381,49 @@ When an orchestrator escalates (fallback model, constrained decoding), the trace
 \label{subsec:observability-rag-agents-bridge}
 The observability patterns established in this chapter form essential prerequisites for the advanced topics covered in Part III. Specifically, comprehensive observability enables the sophisticated RAG systems (Chapter~\ref{ch:rag}) and multi-agent orchestration (Chapter~\ref{ch:multiagent}) that follow.
 
+\begin{tcolorbox}[
+  title={\textbf{RAG Systems: Observability Requirements}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=4mm, right=4mm, top=3mm, bottom=3mm
+]
+\small
 For RAG systems, observability must capture:
-\begin{itemize}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Retrieval spans} with full attribution: index version, query reformulation steps, top-K candidates, re-ranker scores, and final selected passages
     \item \textbf{Evidence attribution} linking each answer claim to supporting retrieved spans, enabling faithfulness verification and citation validation
     \item \textbf{Citation links} mapping answer sentences to specific document chunks and passage IDs, allowing auditors to verify groundedness
     \item \textbf{Retrieval quality metrics} (recall@K, MRR, NDCG) tracked per query and aggregated to detect drift
     \item \textbf{Context utilization} showing which retrieved passages contributed to the final answer and which were ignored
 \end{itemize}
+\end{tcolorbox}
 
+\begin{tcolorbox}[
+  title={\textbf{Multi-Agent Systems: Observability Requirements}},
+  colback=purple!5,
+  colframe=purple!40!black,
+  colbacktitle=purple!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=4mm, right=4mm, top=3mm, bottom=3mm
+]
+\small
 For multi-agent systems, observability must capture:
-\begin{itemize}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Agent roles and responsibilities} clearly identified in traces (planner, retriever, critic, synthesizer, executor)
     \item \textbf{Handoff points} between agents with full context preservation, including message payloads, tool schemas, and state transitions
     \item \textbf{Coordination overhead} quantified as latency, token cost, and API calls attributable to inter-agent communication
     \item \textbf{Loop detection} tracking plan→act→critique cycles, tool invocation counts, and stop conditions to prevent infinite loops
     \item \textbf{Agent-level cost attribution} separating tokens and external API spend per agent to optimize coordination strategies
 \end{itemize}
+\end{tcolorbox}
 
 Without these observability foundations, it is impossible to debug RAG hallucinations, optimize retrieval strategies, diagnose multi-agent coordination failures, or validate that agent graphs produce correct outputs. The chapters in Part III assume these observability capabilities are in place, building on them to cover advanced RAG architectures (Chapter~\ref{ch:rag}) and sophisticated multi-agent orchestration patterns (Chapter~\ref{ch:multiagent}).
 
