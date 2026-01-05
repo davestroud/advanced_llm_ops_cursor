@@ -35,4 +35,311 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3.2}Case in \ishtar  {}}{167}{subsubsection.6.3.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Hybrid Scaling}{167}{subsection.6.3.4}\protected@file@percent }
 \newlabel{sec:scaling-hybrid}{{6.3.4}{167}{Hybrid Scaling}{subsection.6.3.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4.1}When to use}{168}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4.1}When to use}{168}{subsubsection.6.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4.2}Case in \ishtar  {}}{168}{subsubsection.6.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4.3}Lessons Learned}{168}{subsubsection.6.3.4.3}\protected@file@percent }
+\newlabel{RF1}{169}
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Comparison of vertical, horizontal, and hybrid scaling approaches for LLM deployments.}}{169}{table.6.2}\protected@file@percent }
+\newlabel{tab:scaling-matrix}{{6.2}{169}{Comparison of vertical, horizontal, and hybrid scaling approaches for LLM deployments}{table.6.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Visual comparison of scaling dimensions for LLM deployments. Vertical scaling upgrades a single node, horizontal scaling adds nodes in parallel, and hybrid scaling combines tiers of hardware for performance--cost balance.}}{170}{figure.6.1}\protected@file@percent }
+\newlabel{fig:scaling-dimensions}{{6.1}{170}{Visual comparison of scaling dimensions for LLM deployments. Vertical scaling upgrades a single node, horizontal scaling adds nodes in parallel, and hybrid scaling combines tiers of hardware for performance--cost balance}{figure.6.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Distributed Inference Techniques}{170}{section.6.4}\protected@file@percent }
+\newlabel{sec:distributed-inference}{{6.4}{170}{Distributed Inference Techniques}{section.6.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Serving Runtimes and Kernel Optimizations}{170}{subsection.6.4.1}\protected@file@percent }
+\newlabel{sec:serving-runtimes-scaling}{{6.4.1}{170}{Serving Runtimes and Kernel Optimizations}{subsection.6.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Model Parallelism}{171}{subsection.6.4.2}\protected@file@percent }
+\newlabel{sec:scaling-model-parallelism}{{6.4.2}{171}{Model Parallelism}{subsection.6.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Tensor Parallelism}{172}{subsection.6.4.3}\protected@file@percent }
+\newlabel{sec:scaling-tensor-parallelism}{{6.4.3}{172}{Tensor Parallelism}{subsection.6.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.4}Pipeline Parallelism}{172}{subsection.6.4.4}\protected@file@percent }
+\newlabel{sec:scaling-pipeline-parallelism}{{6.4.4}{172}{Pipeline Parallelism}{subsection.6.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.4.1}Case in \ishtar  {}.}{173}{subsubsection.6.4.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Comparison of distributed inference techniques for LLM deployments.}}{173}{table.6.3}\protected@file@percent }
+\newlabel{tab:distributed-inference}{{6.3}{173}{Comparison of distributed inference techniques for LLM deployments}{table.6.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Conceptual illustration of distributed inference methods. \textbf  {(a)} Model Parallelism---different GPUs host disjoint layer blocks. \textbf  {(b)} Tensor Parallelism---within-layer matrix multiplications are split across GPUs with all-reduce merges. \textbf  {(c)} Pipeline Parallelism---model is divided into stages and microbatches flow concurrently.}}{174}{figure.6.2}\protected@file@percent }
+\newlabel{fig:parallelism}{{6.2}{174}{Conceptual illustration of distributed inference methods. \textbf {(a)} Model Parallelism---different GPUs host disjoint layer blocks. \textbf {(b)} Tensor Parallelism---within-layer matrix multiplications are split across GPUs with all-reduce merges. \textbf {(c)} Pipeline Parallelism---model is divided into stages and microbatches flow concurrently}{figure.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.5}Speculative Decoding}{174}{subsection.6.4.5}\protected@file@percent }
+\newlabel{sec:scaling-speculative-decoding}{{6.4.5}{174}{Speculative Decoding}{subsection.6.4.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.1}Principle}{174}{subsubsection.6.4.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.2}Baseline Algorithm}{174}{subsubsection.6.4.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.3}Acceptance Intuition}{174}{subsubsection.6.4.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.4}Design Knobs}{174}{subsubsection.6.4.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.5}Case in \ishtar  {}.}{174}{subsubsection.6.4.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.6}Summary}{175}{subsubsection.6.4.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}Batching and Throughput Optimization}{175}{section.6.5}\protected@file@percent }
+\newlabel{sec:batching-throughput}{{6.5}{175}{Batching and Throughput Optimization}{section.6.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.1}Latency decomposition}{175}{subsection.6.5.1}\protected@file@percent }
+\newlabel{sec:latency-decomposition}{{6.5.1}{175}{Latency decomposition}{subsection.6.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.2}Static vs.\ dynamic batching}{176}{subsection.6.5.2}\protected@file@percent }
+\newlabel{sec:static-dynamic-batching}{{6.5.2}{176}{Static vs.\ dynamic batching}{subsection.6.5.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.2.1}Choosing the batching window}{176}{subsubsection.6.5.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.3}Scheduling policies and head-of-line blocking}{176}{subsection.6.5.3}\protected@file@percent }
+\newlabel{sec:scheduling-hol}{{6.5.3}{176}{Scheduling policies and head-of-line blocking}{subsection.6.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.4}Continuous batching and preemption}{177}{subsection.6.5.4}\protected@file@percent }
+\newlabel{sec:continuous-batching}{{6.5.4}{177}{Continuous batching and preemption}{subsection.6.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.5}Heterogeneous batching and length-aware scheduling}{177}{subsection.6.5.5}\protected@file@percent }
+\newlabel{sec:hetero-batching}{{6.5.5}{177}{Heterogeneous batching and length-aware scheduling}{subsection.6.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.6}KV-cache management}{177}{subsection.6.5.6}\protected@file@percent }
+\newlabel{sec:kv-cache-mgmt}{{6.5.6}{177}{KV-cache management}{subsection.6.5.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.6.1}Emerging approaches}{177}{subsubsection.6.5.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.7}Other throughput levers}{178}{subsection.6.5.7}\protected@file@percent }
+\newlabel{sec:throughput-levers}{{6.5.7}{178}{Other throughput levers}{subsection.6.5.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.7.1}Case in \ishtar  {}}{178}{subsubsection.6.5.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.6}Autoscaling Strategies}{178}{section.6.6}\protected@file@percent }
+\newlabel{sec:autoscaling}{{6.6}{178}{Autoscaling Strategies}{section.6.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6.1}Metrics-Based Autoscaling}{178}{subsection.6.6.1}\protected@file@percent }
+\newlabel{sec:scaling-metrics-autoscaling}{{6.6.1}{178}{Metrics-Based Autoscaling}{subsection.6.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.1}Kubernetes scaling primitives}{179}{subsubsection.6.6.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.2}Control signals}{179}{subsubsection.6.6.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.3}Replica target computation}{179}{subsubsection.6.6.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.4}Trigger guards}{179}{subsubsection.6.6.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.5}Predictive pre-warm (optional but recommended)}{180}{subsubsection.6.6.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.6}Cost-aware placement}{180}{subsubsection.6.6.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.7}Case in \ishtar  {}}{180}{subsubsection.6.6.1.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6.2}Event-Based Autoscaling}{181}{subsection.6.6.2}\protected@file@percent }
+\newlabel{sec:scaling-event-autoscaling}{{6.6.2}{181}{Event-Based Autoscaling}{subsection.6.6.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.1}Principle}{181}{subsubsection.6.6.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.2}Design components}{181}{subsubsection.6.6.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.3}Best practices}{181}{subsubsection.6.6.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.4}Case in \ishtar  {}}{181}{subsubsection.6.6.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Metrics-based target tracking. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma $ by adjusting replicas $N(t)$.}}{182}{figure.6.3}\protected@file@percent }
+\newlabel{fig:autoscale-target-tracking}{{6.3}{182}{Metrics-based target tracking. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma $ by adjusting replicas $N(t)$}{figure.6.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Event-based autoscaling with predictive pre-warming. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph  {before} demand spikes arrive, leveraging calendar events or scheduled triggers. This eliminates cold-start latency and ensures capacity is ready when needed.}}{183}{figure.6.4}\protected@file@percent }
+\newlabel{fig:autoscale-event-based}{{6.4}{183}{Event-based autoscaling with predictive pre-warming. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph {before} demand spikes arrive, leveraging calendar events or scheduled triggers. This eliminates cold-start latency and ensures capacity is ready when needed}{figure.6.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.7}Caching for Scale}{183}{section.6.7}\protected@file@percent }
+\newlabel{sec:caching}{{6.7}{183}{Caching for Scale}{section.6.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.1}Response Caching}{183}{subsection.6.7.1}\protected@file@percent }
+\newlabel{sec:scaling-response-caching}{{6.7.1}{183}{Response Caching}{subsection.6.7.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.1}Key considerations}{184}{subsubsection.6.7.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.2}Optimizations}{184}{subsubsection.6.7.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.3}Notes and context}{184}{subsubsection.6.7.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.4}Case in \ishtar  {}}{184}{subsubsection.6.7.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.2}Embedding Caching}{184}{subsection.6.7.2}\protected@file@percent }
+\newlabel{sec:scaling-embedding-caching}{{6.7.2}{184}{Embedding Caching}{subsection.6.7.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.1}Key considerations}{185}{subsubsection.6.7.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.2}Optimizations}{185}{subsubsection.6.7.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.3}Notes and context}{185}{subsubsection.6.7.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.4}Case in \ishtar  {}}{185}{subsubsection.6.7.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Cache flow diagrams. \textbf  {(a)} Response caching short-circuits identical requests; keys include query, model version, and decoding parameters. \textbf  {(b)} Embedding caching avoids redundant encoder passes for repeated chunks; keys hash content + embedding model identity.}}{186}{figure.6.5}\protected@file@percent }
+\newlabel{fig:caching-flow}{{6.5}{186}{Cache flow diagrams. \textbf {(a)} Response caching short-circuits identical requests; keys include query, model version, and decoding parameters. \textbf {(b)} Embedding caching avoids redundant encoder passes for repeated chunks; keys hash content + embedding model identity}{figure.6.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.8}Cost-Aware Scaling}{186}{section.6.8}\protected@file@percent }
+\newlabel{sec:cost-aware-scaling}{{6.8}{186}{Cost-Aware Scaling}{section.6.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.1}Mix instance types}{186}{subsubsection.6.8.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.2}Spot/preemptible capacity}{186}{subsubsection.6.8.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.3}Autoscale down aggressively}{187}{subsubsection.6.8.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.4}Batching for cost}{187}{subsubsection.6.8.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.5}Multi-model serving and routing}{187}{subsubsection.6.8.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.6}Throughput-oriented R\&D}{187}{subsubsection.6.8.0.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.7}Case in \ishtar  {}}{187}{subsubsection.6.8.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.8}Automated cost planners}{188}{subsubsection.6.8.0.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.9}Scaling Retrieval-Augmented Generation (RAG)}{188}{section.6.9}\protected@file@percent }
+\newlabel{sec:scaling-rag}{{6.9}{188}{Scaling Retrieval-Augmented Generation (RAG)}{section.6.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.1}Index sharding}{188}{subsubsection.6.9.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.2}Approximate nearest neighbor (ANN) search}{188}{subsubsection.6.9.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.3}Hot tiers and in-memory caches}{189}{subsubsection.6.9.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.4}Overlap retrieval with generation}{189}{subsubsection.6.9.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.5}Recent directions}{189}{subsubsection.6.9.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.6}Case in \ishtar  {}}{189}{subsubsection.6.9.0.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces Two-tier RAG scaling. A router first probes a \emph  {hot} in-memory/GPU tier; on miss, it falls back to a \emph  {distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator.}}{190}{figure.6.6}\protected@file@percent }
+\newlabel{fig:rag-two-tier}{{6.6}{190}{Two-tier RAG scaling. A router first probes a \emph {hot} in-memory/GPU tier; on miss, it falls back to a \emph {distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator}{figure.6.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.10}Geographic Scaling}{190}{section.6.10}\protected@file@percent }
+\newlabel{sec:geo-scaling}{{6.10}{190}{Geographic Scaling}{section.6.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.1}Latency and compliance benefits}{191}{subsubsection.6.10.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.2}Model placement strategies}{191}{subsubsection.6.10.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.3}Consistency, versioning, and caches}{191}{subsubsection.6.10.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.4}Traffic routing and failover}{191}{subsubsection.6.10.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.5}Data compliance controls}{191}{subsubsection.6.10.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.6}Edge acceleration vs.\ full serving}{191}{subsubsection.6.10.0.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.7}Decentralized precedent (Petals)}{192}{subsubsection.6.10.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.8}Industrial practice}{192}{subsubsection.6.10.0.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.9}Networking and future directions}{192}{subsubsection.6.10.0.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.11}Case Study: Scaling Ishtar AI}{192}{section.6.11}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-case-study}{{6.11}{192}{Case Study: Scaling Ishtar AI}{section.6.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Geographic scaling schematic. Users are routed to the nearest regional cluster (NA/EU/APAC) for latency and data residency; dashed links illustrate failover/overflow between regions.}}{193}{figure.6.7}\protected@file@percent }
+\newlabel{fig:geo-scaling-inset}{{6.7}{193}{Geographic scaling schematic. Users are routed to the nearest regional cluster (NA/EU/APAC) for latency and data residency; dashed links illustrate failover/overflow between regions}{figure.6.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.1}Initial State}{193}{subsection.6.11.1}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-initial}{{6.11.1}{193}{Initial State}{subsection.6.11.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.2}Intermediate Stage}{193}{subsection.6.11.2}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-intermediate}{{6.11.2}{193}{Intermediate Stage}{subsection.6.11.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.3}Mature Stage}{194}{subsection.6.11.3}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-mature}{{6.11.3}{194}{Mature Stage}{subsection.6.11.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.12}Best Practices Checklist}{194}{section.6.12}\protected@file@percent }
+\newlabel{sec:scaling-best-practices}{{6.12}{194}{Best Practices Checklist}{section.6.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces \ishtar  {} scaling timeline. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling.}}{195}{figure.6.8}\protected@file@percent }
+\newlabel{fig:ishtar-timeline}{{6.8}{195}{\ishtar {} scaling timeline. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling}{figure.6.8}{}}
+\@setckpt{ch06-scaling}{
+\setcounter{page}{197}
+\setcounter{equation}{0}
+\setcounter{enumi}{7}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{2}
+\setcounter{section}{12}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{8}
+\setcounter{table}{3}
+\setcounter{chapter}{6}
+\setcounter{theorem}{0}
+\setcounter{case}{0}
+\setcounter{conjecture}{0}
+\setcounter{corollary}{0}
+\setcounter{definition}{0}
+\setcounter{example}{0}
+\setcounter{exercise}{0}
+\setcounter{lemma}{0}
+\setcounter{note}{0}
+\setcounter{problem}{0}
+\setcounter{property}{0}
+\setcounter{proposition}{0}
+\setcounter{question}{0}
+\setcounter{solution}{0}
+\setcounter{remark}{0}
+\setcounter{prob}{0}
+\setcounter{merk}{0}
+\setcounter{minitocdepth}{0}
+\setcounter{@inst}{0}
+\setcounter{@auth}{0}
+\setcounter{auco}{0}
+\setcounter{contribution}{0}
+\setcounter{Dfigchecks}{0}
+\setcounter{parentequation}{0}
+\setcounter{float@type}{16}
+\setcounter{LT@tables}{0}
+\setcounter{LT@chunks}{0}
+\setcounter{nlinenum}{0}
+\setcounter{r@tfl@t}{1}
+\setcounter{tcbbreakpart}{1}
+\setcounter{tcblayer}{0}
+\setcounter{tcolorbox@number}{41}
+\setcounter{tcbrastercolumn}{1}
+\setcounter{tcbrasterrow}{1}
+\setcounter{tcbrasternum}{1}
+\setcounter{tcbraster}{0}
+\setcounter{lstnumber}{1}
+\setcounter{tcblisting}{0}
+\setcounter{tabx@nest}{0}
+\setcounter{listtotal}{0}
+\setcounter{listcount}{0}
+\setcounter{liststart}{0}
+\setcounter{liststop}{0}
+\setcounter{citecount}{0}
+\setcounter{citetotal}{0}
+\setcounter{multicitecount}{0}
+\setcounter{multicitetotal}{0}
+\setcounter{instcount}{0}
+\setcounter{maxnames}{3}
+\setcounter{minnames}{1}
+\setcounter{maxitems}{3}
+\setcounter{minitems}{1}
+\setcounter{citecounter}{0}
+\setcounter{maxcitecounter}{0}
+\setcounter{savedcitecounter}{0}
+\setcounter{uniquelist}{0}
+\setcounter{uniquename}{0}
+\setcounter{refsection}{0}
+\setcounter{refsegment}{14}
+\setcounter{maxextratitle}{0}
+\setcounter{maxextratitleyear}{0}
+\setcounter{maxextraname}{0}
+\setcounter{maxextradate}{0}
+\setcounter{maxextraalpha}{0}
+\setcounter{abbrvpenalty}{50}
+\setcounter{highnamepenalty}{50}
+\setcounter{lownamepenalty}{25}
+\setcounter{maxparens}{3}
+\setcounter{parenlevel}{0}
+\setcounter{blx@maxsection}{0}
+\setcounter{mincomprange}{10}
+\setcounter{maxcomprange}{100000}
+\setcounter{mincompwidth}{1}
+\setcounter{afterword}{0}
+\setcounter{savedafterword}{0}
+\setcounter{annotator}{0}
+\setcounter{savedannotator}{0}
+\setcounter{author}{0}
+\setcounter{savedauthor}{0}
+\setcounter{bookauthor}{0}
+\setcounter{savedbookauthor}{0}
+\setcounter{commentator}{0}
+\setcounter{savedcommentator}{0}
+\setcounter{editor}{0}
+\setcounter{savededitor}{0}
+\setcounter{editora}{0}
+\setcounter{savededitora}{0}
+\setcounter{editorb}{0}
+\setcounter{savededitorb}{0}
+\setcounter{editorc}{0}
+\setcounter{savededitorc}{0}
+\setcounter{foreword}{0}
+\setcounter{savedforeword}{0}
+\setcounter{holder}{0}
+\setcounter{savedholder}{0}
+\setcounter{introduction}{0}
+\setcounter{savedintroduction}{0}
+\setcounter{namea}{0}
+\setcounter{savednamea}{0}
+\setcounter{nameb}{0}
+\setcounter{savednameb}{0}
+\setcounter{namec}{0}
+\setcounter{savednamec}{0}
+\setcounter{translator}{0}
+\setcounter{savedtranslator}{0}
+\setcounter{shortauthor}{0}
+\setcounter{savedshortauthor}{0}
+\setcounter{shorteditor}{0}
+\setcounter{savedshorteditor}{0}
+\setcounter{labelname}{0}
+\setcounter{savedlabelname}{0}
+\setcounter{institution}{0}
+\setcounter{savedinstitution}{0}
+\setcounter{lista}{0}
+\setcounter{savedlista}{0}
+\setcounter{listb}{0}
+\setcounter{savedlistb}{0}
+\setcounter{listc}{0}
+\setcounter{savedlistc}{0}
+\setcounter{listd}{0}
+\setcounter{savedlistd}{0}
+\setcounter{liste}{0}
+\setcounter{savedliste}{0}
+\setcounter{listf}{0}
+\setcounter{savedlistf}{0}
+\setcounter{location}{0}
+\setcounter{savedlocation}{0}
+\setcounter{organization}{0}
+\setcounter{savedorganization}{0}
+\setcounter{origlocation}{0}
+\setcounter{savedoriglocation}{0}
+\setcounter{origpublisher}{0}
+\setcounter{savedorigpublisher}{0}
+\setcounter{publisher}{0}
+\setcounter{savedpublisher}{0}
+\setcounter{language}{0}
+\setcounter{savedlanguage}{0}
+\setcounter{origlanguage}{0}
+\setcounter{savedoriglanguage}{0}
+\setcounter{pageref}{0}
+\setcounter{savedpageref}{0}
+\setcounter{textcitecount}{0}
+\setcounter{textcitetotal}{0}
+\setcounter{textcitemaxnames}{0}
+\setcounter{biburlbigbreakpenalty}{100}
+\setcounter{biburlbreakpenalty}{200}
+\setcounter{biburlnumpenalty}{0}
+\setcounter{biburlucpenalty}{0}
+\setcounter{biburllcpenalty}{0}
+\setcounter{smartand}{1}
+\setcounter{bbx:relatedcount}{0}
+\setcounter{bbx:relatedtotal}{0}
+\setcounter{section@level}{1}
+\setcounter{Item}{53}
+\setcounter{Hfootnote}{2}
+\setcounter{bookmark@seq@number}{0}
+\setcounter{lstlisting}{0}
+}
