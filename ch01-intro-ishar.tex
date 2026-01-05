@@ -43,7 +43,7 @@ Production systems therefore require:
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.98\textwidth]{images/ch01-cost-latency-throughput}
+  \includegraphics[width=0.95\linewidth]{images/ch01-cost-latency-throughput}
   \caption{Latency decomposition and scale levers for LLM serving. End-to-end latency is the sum of stage latencies (tokenization/policy checks, retrieval, LLM prefill+decode, post-processing). Sustaining throughput and cost efficiency requires coordinated controls: batching and scheduling for throughput, caching/quantization/routing for unit economics, and explicit capacity planning (peak demand, tail latency, and autoscaling on queue depth).}
   \label{fig:ch01_cost_latency_throughput}
 \end{figure}
@@ -178,7 +178,7 @@ canary evaluations, and auditable index snapshots (Fig.~\ref{fig:ch01_rag_drift_
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.98\textwidth]{images/ch01-rag-drift-control}
+  \includegraphics[width=0.95\linewidth]{images/ch01-rag-drift-control}
   \caption{RAG drift management as a closed-loop operational process: detect drift signals, diagnose the cause, remediate via index/retriever/governance changes, and validate with canary evaluation plus index/config snapshots for auditability and rollback.}
   \label{fig:ch01_rag_drift_control}
 \end{figure}

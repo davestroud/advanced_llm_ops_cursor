@@ -151,8 +151,8 @@ Fig.~\ref{fig:ishtar-architecture-ch12} depicts the end-to-end flows. The diagra
 ]
 
 % Lanes
-\node[lane, minimum width=0.96\textwidth, minimum height=26mm] (inglane) {};
-\node[lane, minimum width=0.96\textwidth, minimum height=30mm, below=8mm of inglane] (querylane) {};
+\node[lane, minimum width=0.95\linewidth, minimum height=26mm] (inglane) {};
+\node[lane, minimum width=0.95\linewidth, minimum height=30mm, below=8mm of inglane] (querylane) {};
 \node[note, anchor=west] at ([xshift=4mm]inglane.north west) {\textbf{Continuous ingestion \& indexing (background)}};
 \node[note, anchor=west] at ([xshift=4mm]querylane.north west) {\textbf{Online query handling (interactive path)}};
 
