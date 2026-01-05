@@ -42,11 +42,11 @@ We then address scaling and performance considerations, evaluation of end-to-end
 
 \section{Introduction}
 \label{sec:ch8-introduction}
-Large Language Models (LLMs) are powerful, but inherently limited by their training data cut-off and inability to store all world knowledge in their parameters. Once trained, an LLM's knowledge is effectively frozen at its cutoff date and cannot automatically incorporate new events, domain-specific information, or private data. This limitation often results in outdated answers, hallucinations, and fabricated facts \cite{Lewis2020RAG, Pinecone2023RAG}. 
+Large Language Models (LLMs) are powerful, but inherently limited by their training data cut-off and inability to store all world knowledge in their parameters. Once trained, an LLM's knowledge is effectively frozen at its cutoff date and cannot automatically incorporate new events, domain-specific information, or private data. This limitation often results in outdated answers, hallucinations, and fabricated facts \cite{Lewis2020RAG,Pinecone2023RAG}. 
 
-Retrieval-Augmented Generation (RAG) bridges this gap by coupling an LLM with an external knowledge retrieval system, enabling real-time access to up-to-date and authoritative information. Instead of relying solely on static parameters, the LLM can dynamically pull in relevant context from external sources at query time, making responses more accurate, context-aware, and grounded in evidence \cite{Guu2020REALM, Izacard2020Fusion}. 
+Retrieval-Augmented Generation (RAG) bridges this gap by coupling an LLM with an external knowledge retrieval system, enabling real-time access to up-to-date and authoritative information. Instead of relying solely on static parameters, the LLM can dynamically pull in relevant context from external sources at query time, making responses more accurate, context-aware, and grounded in evidence \cite{Guu2020REALM,Izacard2020Fusion}. 
 
-This chapter provides a comprehensive guide to RAG in LLMOps, exploring architectural patterns, tooling, performance considerations, and real-world examples using \ishtar{}. RAG has rapidly become the go-to technique for integrating external knowledge into LLM pipelines, consistently outperforming approaches such as unsupervised fine-tuning for tasks requiring freshness, specialization, or private data integration \cite{Borgeaud2022RETRO, Thakur2021BEIR, RAGAS2023}.
+This chapter provides a comprehensive guide to RAG in LLMOps, exploring architectural patterns, tooling, performance considerations, and real-world examples using \ishtar{}. RAG has rapidly become the go-to technique for integrating external knowledge into LLM pipelines, consistently outperforming approaches such as unsupervised fine-tuning for tasks requiring freshness, specialization, or private data integration \cite{Borgeaud2022RETRO,Thakur2021BEIR,RAGAS2023}.
 
 
 \section{Why RAG is Essential for LLMOps}

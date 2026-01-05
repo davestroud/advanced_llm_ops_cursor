@@ -561,7 +561,7 @@ Alerting strategies must balance sensitivity with operator fatigue. Recommended 
 
 These alerts connect metrics to actionable runbooks: when thresholds are breached, predefined playbooks guide operators through detection, stabilization, and recovery. The feedback from these incidents feeds back into CI/CD pipelines (Chapter~\ref{ch:cicd}) through automated rollback gates and into evaluation frameworks (Chapter~\ref{ch:testing}) through updated test suites that prevent recurrence.
 
-Incident response playbooks should define rollback strategies (e.g., revert prompt versions, fail over to smaller models) and escalation criteria for human review. Public prompt-injection and jailbreak failures in deployed assistants underscore the need for rapid tracing, guardrail patching, and adversarial replay before full restoration \cite{owasp_llm, mitre_atlas}.
+Incident response playbooks should define rollback strategies (e.g., revert prompt versions, fail over to smaller models) and escalation criteria for human review. Public prompt-injection and jailbreak failures in deployed assistants underscore the need for rapid tracing, guardrail patching, and adversarial replay before full restoration \cite{owasp_llm,mitre_atlas}.
 
 \medskip
 \noindent\textbf{SLO-aligned, multi-window alerting.}

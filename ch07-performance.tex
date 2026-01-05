@@ -912,21 +912,21 @@ Not all LLMs behave the same in inference. This section examines inference behav
 \subsection{Encoder-Only (Masked LM)}
 Encoder-only models (like BERT and its variants) process the input in a single forward pass, producing embeddings or classifications without auto-regressive decoding. They excel in tasks like textual similarity, classification, or retrieval when \emph{bidirectional} context is beneficial.
 
-\textbf{Latency/Throughput:} Encoder models process the entire sequence in parallel. Latency is driven by input length and attention complexity, but output is produced all at once. This enables high throughput under large-batch conditions, as matrix multiplications scale efficiently. In embedding workloads, throughput scales almost linearly with batch size until memory bandwidth becomes the bottleneck \cite{bert-original, encoder-ops}.
+\textbf{Latency/Throughput:} Encoder models process the entire sequence in parallel. Latency is driven by input length and attention complexity, but output is produced all at once. This enables high throughput under large-batch conditions, as matrix multiplications scale efficiently. In embedding workloads, throughput scales almost linearly with batch size until memory bandwidth becomes the bottleneck \cite{bert-original,encoder-ops}.
 
 \textbf{Memory:} Memory is dominated by activations and attention keys/values for the full input during the forward pass. There is no incremental cache growth across tokens, and no concept of step-by-step decoding. Thus, memory scales with input length $T$ and batch size $B$, but not output length \cite{bert-original}. A BERT-large run with $T=512$ incurs a fixed memory cost proportional to activations for that sequence, regardless of whether the output is a classification label or a dense vector.
 
-\textbf{Cloud Implications:} Encoder-only models are cost-effective on CPU or modest GPU instances for large-batch embedding workloads such as RAG indexing. Horizontal scaling is straightforward since requests are stateless, making load balancing trivial. Aggressive batching and $\mathrm{INT8}/\mathrm{FP8}$ quantization further reduce costs, enabling deployment even on commodity hardware \cite{int8-quantization, fp8-training}. In \ishtar{}, embedding jobs could run efficiently on T4 or L4 GPUs with batching, or even across CPU clusters using AVX-512 acceleration.
+\textbf{Cloud Implications:} Encoder-only models are cost-effective on CPU or modest GPU instances for large-batch embedding workloads such as RAG indexing. Horizontal scaling is straightforward since requests are stateless, making load balancing trivial. Aggressive batching and $\mathrm{INT8}/\mathrm{FP8}$ quantization further reduce costs, enabling deployment even on commodity hardware \cite{int8-quantization,fp8-training}. In \ishtar{}, embedding jobs could run efficiently on T4 or L4 GPUs with batching, or even across CPU clusters using AVX-512 acceleration.
 
 \subsection{Decoder-Only (Autoregressive LM)}
 Decoder-only models generate tokens sequentially, conditioning on prior tokens. They dominate open-ended generation, assistants, and RAG answer synthesis.
 
-\textbf{Latency/Throughput:} Time-to-first-token (TTFT) depends on prompt length $T_0$ since the model must encode the entire prompt before producing output. Subsequent tokens are generated step by step, each attending to all prior tokens. Naive complexity per step is $O(T^2)$, but optimizations like caching and FlashAttention significantly reduce runtime \cite{gpt-inference, flashattention-v2}. In steady state, throughput is measured in tokens/s:
+\textbf{Latency/Throughput:} Time-to-first-token (TTFT) depends on prompt length $T_0$ since the model must encode the entire prompt before producing output. Subsequent tokens are generated step by step, each attending to all prior tokens. Naive complexity per step is $O(T^2)$, but optimizations like caching and FlashAttention significantly reduce runtime \cite{gpt-inference,flashattention-v2}. In steady state, throughput is measured in tokens/s:
 \begin{equation}
   \Theta \;\approx\; \frac{B \cdot \Delta}{\tau_{\text{step}}(B, T_0, \Delta)} \cdot \eta
 \end{equation}
 
-where $B$ is batch size, $\Delta$ the generated length, $\tau_{\text{step}}$ the per-step time, and $\eta$ an efficiency factor accounting for utilization \cite{Kwon2023vLLM, fused-kernels}. Larger $B$ boosts throughput, but queueing delays increase latency.
+where $B$ is batch size, $\Delta$ the generated length, $\tau_{\text{step}}$ the per-step time, and $\eta$ an efficiency factor accounting for utilization \cite{Kwon2023vLLM,fused-kernels}. Larger $B$ boosts throughput, but queueing delays increase latency.
 
 \textbf{Memory:} Memory pressure arises from the key/value (KV) cache, which grows linearly with batch size $B$ and sequence length $T$. For a single layer:
 \[
@@ -936,9 +936,9 @@ where $H$ is number of heads, $d_h$ head dimension, and $b$ bytes per scalar. Fo
 \[
   M_{\text{KV}} \;=\; L \cdot M_{\text{KV, layer}} \;\propto\; B\,T\,L\,H\,d_h\,b.
 \]
-Thus long contexts and larger batches quickly dominate GPU memory, often equaling or exceeding model weights \cite{attention-kv-cache, kv-quant}. Paging and quantizing KV (\S\ref{sec:inference-engines}) expand feasible deployment ranges \cite{paged-attention}.
+Thus long contexts and larger batches quickly dominate GPU memory, often equaling or exceeding model weights \cite{attention-kv-cache,kv-quant}. Paging and quantizing KV (\S\ref{sec:inference-engines}) expand feasible deployment ranges \cite{paged-attention}.
 
-\textbf{Cloud Implications:} Serving decoder-only models efficiently requires optimized runtimes (e.g., vLLM, TGI, TensorRT-LLM) with continuous batching to maintain utilization \cite{Kwon2023vLLM, tgi_docs, tensorrt_llm_docs}. Scaling options include vertical scaling (larger GPUs for longer contexts) and horizontal scaling (more replicas behind a load balancer). Trade-offs include: 
+\textbf{Cloud Implications:} Serving decoder-only models efficiently requires optimized runtimes (e.g., vLLM, TGI, TensorRT-LLM) with continuous batching to maintain utilization \cite{Kwon2023vLLM,tgi_docs,tensorrt_llm_docs}. Scaling options include vertical scaling (larger GPUs for longer contexts) and horizontal scaling (more replicas behind a load balancer). Trade-offs include: 
 \begin{itemize}
   \item Large batches maximize throughput but risk queueing delay. 
   \item Streaming outputs (via HTTP streaming or WebSockets) reduce perceived latency.
@@ -947,7 +947,7 @@ Thus long contexts and larger batches quickly dominate GPU memory, often equalin
 In \ishtar{}, decoder components (e.g., summarization) showed significantly higher compute demand than embedding pipelines, forcing replication beyond a certain concurrency threshold.
 
 \subsection{Mixture-of-Experts (MoE)}
-MoE models activate a sparse subset of experts per token, reducing effective FLOPs while maintaining high capacity \cite{switch-transformers, moe-inference}.
+MoE models activate a sparse subset of experts per token, reducing effective FLOPs while maintaining high capacity \cite{switch-transformers,moe-inference}.
 
 \textbf{Latency/Throughput:} Ideally, sparsity reduces per-token FLOPs, but routing overhead and load imbalance can increase tail latency. Performance depends on effective expert load balancing. When balanced, MoEs deliver favorable quality–cost trade-offs.
 
@@ -985,7 +985,7 @@ M_{\text{KV}} \;=\; L \cdot M_{\text{KV,layer}} \;\propto\; B\,N\,L\,H\,d_h\,\rh
 \label{eq:kv-total}
 \end{equation}
 
-This linear growth in $B$ and $N$ is often the operational bottleneck for long contexts and high concurrency. It implies that doubling the batch or doubling the context length will double memory usage for KV (holding other factors constant). Thus, reducing precision ($\rho$), compressing or sparsifying the KV, or paging KV out of GPU memory (cf.~\S\ref{sec:inference-engines}) directly increases the feasible $B$ and $N$ \cite{kv-quant, paged-attention}.
+This linear growth in $B$ and $N$ is often the operational bottleneck for long contexts and high concurrency. It implies that doubling the batch or doubling the context length will double memory usage for KV (holding other factors constant). Thus, reducing precision ($\rho$), compressing or sparsifying the KV, or paging KV out of GPU memory (cf.~\S\ref{sec:inference-engines}) directly increases the feasible $B$ and $N$ \cite{kv-quant,paged-attention}.
 
 \subsubsection{Worked Example.}  
 Consider a model with $L=40$ layers, $H=40$ heads, $d_h=128$, serving $B=16$ sequences of length $N=2048$ in FP16 ($\rho=2$). Plugging into Eq.~\eqref{eq:kv-total}:
@@ -1005,7 +1005,7 @@ Throughput for generation can be modeled in terms of how many tokens per second 
 where $t_{\text{step}}(B, N_0, \Delta)$ is the average wall-clock time per generation step, and $\eta \in (0,1]$ aggregates utilization (kernel fusion, scheduling, and I/O overlap). This states that throughput is proportional to tokens produced per step ($B$) divided by per-step runtime, scaled by utilization.
 
 \subsubsection{Interpretation.}  
-Increasing $B$ raises tokens/step linearly but can also increase $t_{\text{step}}$ due to memory contention. Thus, throughput gains saturate. Continuous batching and operator fusion reduce $t_{\text{step}}$ and increase $\eta$ \cite{Kwon2023vLLM, fused-kernels}. In \ishtar{}, GPU utilization was initially ~60\%; introducing dynamic batching and stream overlap raised $\eta$ toward 0.9, nearly doubling throughput as Eq.~\eqref{eq:throughput-main} predicts.
+Increasing $B$ raises tokens/step linearly but can also increase $t_{\text{step}}$ due to memory contention. Thus, throughput gains saturate. Continuous batching and operator fusion reduce $t_{\text{step}}$ and increase $\eta$ \cite{Kwon2023vLLM,fused-kernels}. In \ishtar{}, GPU utilization was initially ~60\%; introducing dynamic batching and stream overlap raised $\eta$ toward 0.9, nearly doubling throughput as Eq.~\eqref{eq:throughput-main} predicts.
 
 \subsection{Cost per 1{,}000 Tokens}
 \label{sec:perf-cost-per-token}
@@ -1114,7 +1114,7 @@ In practice, organizations often adopt a staged approach: starting with TGI for 
 We outline patterns that consistently improve cost, latency, and reliability in cloud deployments.
 
 \subsection{Right-Sizing and Instance Mix}
-Prefer the smallest GPU that meets memory and throughput targets after compression (INT8/FP8, 4-bit weight quant) and KV optimizations. Mix on-demand for SLO-critical replicas with spot/preemptible for surge capacity; warm pools mitigate cold-load times for large checkpoints \cite{cloud-rightsizing, spot-capacity}.
+Prefer the smallest GPU that meets memory and throughput targets after compression (INT8/FP8, 4-bit weight quant) and KV optimizations. Mix on-demand for SLO-critical replicas with spot/preemptible for surge capacity; warm pools mitigate cold-load times for large checkpoints \cite{cloud-rightsizing,spot-capacity}.
 
 \subsection{Autoscaling and Queuing}
 \label{sec:perf-autoscaling-queue}
