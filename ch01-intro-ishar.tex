@@ -81,7 +81,7 @@ Reliability is also a concern: when a subcomponent fails (retriever times out, a
   toolflow/.style={->, thick, color=brown!70!black},
   retrieval/.style={->, thick, color=teal!70!black},
   queryflow/.style={->, thick, color=blue!70!black},
-  label/.style={font=\tiny, color=black!60}
+  label/.style={font=\footnotesize, color=black!60}
 ]
 
 % User and Response (top level)
@@ -116,7 +116,7 @@ Reliability is also a concern: when a subcomponent fails (retriever times out, a
 
 % Failure indicator connection
 \draw[->, dashed, thick, color=red!70!black] (retriever) -- (failure);
-\node[font=\tiny, color=black!60, left=0.2cm of failure] {Failure};
+\node[font=\footnotesize, color=black!60, left=0.2cm of failure] {Failure};
 
 % LLM flow: Orchestrator → LLM (dashed for model interaction)
 \draw[fallback] (orchestrator) -- node[label, right, pos=0.5] {Assemble prompt \& call model} (llm);
@@ -480,7 +480,7 @@ By the early 2020s, however, the rise of \textbf{foundation models}—especially
   tick/.style={draw=black!60, line width=0.3pt},
   label/.style={inner sep=2.2pt, rounded corners=2pt, align=center},
   yearlabel/.style={font=\footnotesize\bfseries, inner sep=1pt},
-  opstext/.style={font=\scriptsize\itshape},
+  opstext/.style={font=\small\itshape},
 ]
 
 % --- Geometry ---
@@ -550,7 +550,7 @@ By the early 2020s, however, the rise of \textbf{foundation models}—especially
   -- (15.6,2.3) -- (15.6,0.25) -- cycle;
 
 % --- Legend (compact) ---
-\node[anchor=north west, align=left, font=\scriptsize, draw=black!20, rounded corners=3pt, fill=black!2, inner sep=3pt]
+\node[anchor=north west, align=left, font=\small, draw=black!20, rounded corners=3pt, fill=black!2, inner sep=3pt]
   at (0.15,\ytop-0.2)
   {\begin{tabular}{@{}l@{}}
    \textbf{Milestones:} model capability peaks \\
@@ -824,7 +824,7 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
   },
   arrow/.style={-Stealth, semithick},
   feedback/.style={-Stealth, dashed, semithick},
-  note/.style={font=\scriptsize, align=center}
+  note/.style={font=\small, align=center}
 ]
 
 % ---- Top row in a matrix (clean alignment) ----
@@ -1008,7 +1008,7 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
   seg/.style    ={rounded corners=3pt, minimum width=22mm, minimum height=8mm,
                   inner sep=3pt, align=center, line width=0.5pt},
   arrow/.style  ={-{Stealth[length=2.2mm,width=1.8mm]}, line width=0.5pt},
-  note/.style   ={font=\scriptsize, align=center, text=black!70}
+  note/.style   ={font=\small, align=center, text=black!70}
 ]
 
 \node[band, minimum width=140mm, minimum height=24mm] (bandbox) {};
@@ -1100,11 +1100,11 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
   hub/.style    ={draw=black!25, rounded corners=5pt, fill=black!2},
   bubble/.style ={circle, minimum size=14mm, inner sep=2pt, line width=0.6pt, align=center},
   arrowthin/.style={-{Stealth[length=2mm,width=1.6mm]}, line width=0.5pt},
-  note/.style   ={font=\scriptsize, align=left, text=black!70}
+  note/.style   ={font=\small, align=left, text=black!70}
 ]
 
 \node[hub, minimum width=90mm, minimum height=50mm] (group) {};
-\node[black!50, font=\scriptsize] at ([yshift=-6pt]group.north) {Curated external evidence (ingested and vetted)};
+\node[black!50, font=\small] at ([yshift=-6pt]group.north) {Curated external evidence (ingested and vetted)};
 
 \node[bubble,cNews]   (news)   at (-2.8,  1.1) {News wires\\\& reports};
 \node[bubble,cNGO]    (ngo)    at ( 0.0,  1.7) {NGO bulletins};

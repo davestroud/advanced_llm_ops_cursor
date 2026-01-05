@@ -802,13 +802,13 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     k8s/.style={rectangle, draw=purple!60!black, fill=purple!10, thick,
       rounded corners=3pt, minimum width=2.9cm, minimum height=1.2cm, align=center, font=\footnotesize\bfseries},
     gpu/.style={rectangle, draw=orange!70!black, fill=orange!15, thick,
-      rounded corners=3pt, minimum width=1.55cm, minimum height=0.72cm, align=center, font=\tiny},
+      rounded corners=3pt, minimum width=1.55cm, minimum height=0.72cm, align=center, font=\footnotesize},
     service/.style={rectangle, draw=teal!60!black, fill=teal!10, thick,
-      rounded corners=3pt, minimum width=1.9cm, minimum height=0.78cm, align=center, font=\tiny},
+      rounded corners=3pt, minimum width=1.9cm, minimum height=0.78cm, align=center, font=\footnotesize},
     security/.style={rectangle, draw=red!60!black, fill=red!10, thick,
-      rounded corners=3pt, minimum width=1.7cm, minimum height=0.72cm, align=center, font=\tiny\bfseries},
+      rounded corners=3pt, minimum width=1.7cm, minimum height=0.72cm, align=center, font=\footnotesize\bfseries},
     network/.style={rectangle, draw=cyan!60!black, fill=cyan!10, thick,
-      rounded corners=3pt, minimum width=2.9cm, minimum height=0.95cm, align=center, font=\tiny\bfseries},
+      rounded corners=3pt, minimum width=2.9cm, minimum height=0.95cm, align=center, font=\footnotesize\bfseries},
     arrow/.style={->, thick, draw=black!60, line width=0.95pt},
     dasharrow/.style={->, thick, dashed, draw=teal!60!black, line width=0.95pt}
   ]
@@ -846,7 +846,7 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     % Auto-scaling indicator (clean + robust)
     \draw[arrow, draw=orange!70!black, line width=1.2pt, <->]
       ($(gpu1c.east)+(0.22,0)$) -- ($(gpu1d.east)+(0.22,0)$);
-    \node[font=\tiny\bfseries, color=orange!70!black, right=0.35cm of gpu1c, align=center] {Auto\\Scale};
+    \node[font=\footnotesize\bfseries, color=orange!70!black, right=0.35cm of gpu1c, align=center] {Auto\\Scale};
 
     % Managed services stack (right side)
     \node[service, right=2.35cm of az2.east, yshift=1.05cm, align=center] (sqs)     {SQS\\Pub/Sub};
@@ -857,12 +857,12 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     % Private subnet boundary using fit (reliable)
     \node[draw=cyan!60!black, dashed, line width=0.95pt, rounded corners=5pt,
           fit=(az1)(az2)(az1lbl)(az2lbl), inner sep=6pt] (priv) {};
-    \node[font=\tiny\bfseries, color=cyan!70!black, below=2pt of priv.south] {Private Subnets};
+    \node[font=\footnotesize\bfseries, color=cyan!70!black, below=2pt of priv.south] {Private Subnets};
 
     % DR region boundary using fit (reliable)
     \node[draw=gray!60, dotted, line width=1.2pt, rounded corners=8pt,
           fit=(sqs)(bedrock), inner sep=6pt] (dr) {};
-    \node[font=\tiny\bfseries, color=gray!70, right=0.35cm of dr.east, align=center] {DR Region\\via IaC};
+    \node[font=\footnotesize\bfseries, color=gray!70, right=0.35cm of dr.east, align=center] {DR Region\\via IaC};
 
     % Core traffic arrows
     \draw[arrow] (cloud.south) -- (gateway.north);
@@ -889,13 +889,13 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     \node[font=\footnotesize\bfseries, color=black!80, below=0.65cm of priv.south west, anchor=north west] (legend) {Key Features:};
 
     \node[gpu, below=0.25cm of legend.south west, anchor=north west, minimum width=1.2cm] (leg1) {};
-    \node[font=\tiny, right=0.15cm of leg1.east, anchor=west] {GPU Nodes (Auto-scaling)};
+    \node[font=\footnotesize, right=0.15cm of leg1.east, anchor=west] {GPU Nodes (Auto-scaling)};
 
     \node[service, below=0.22cm of leg1.south west, anchor=north west, minimum width=1.2cm] (leg2) {};
-    \node[font=\tiny, right=0.15cm of leg2.east, anchor=west] {Managed Services};
+    \node[font=\footnotesize, right=0.15cm of leg2.east, anchor=west] {Managed Services};
 
     \node[security, below=0.22cm of leg2.south west, anchor=north west, minimum width=1.2cm] (leg3) {};
-    \node[font=\tiny, right=0.15cm of leg3.east, anchor=west] {Security \& IAM};
+    \node[font=\footnotesize, right=0.15cm of leg3.east, anchor=west] {Security \& IAM};
 
   \end{tikzpicture}
   \end{llmfigbox}
@@ -999,7 +999,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
   node distance=0.4cm and 0.5cm,
   box/.style={rectangle, rounded corners=3pt, draw=black!70, thick, align=center},
   lbl/.style={font=\small\bfseries, inner sep=2pt},
-  res/.style={rectangle, rounded corners=2pt, draw=black!70, thick, minimum width=8mm, minimum height=5mm, font=\tiny, align=center},
+  res/.style={rectangle, rounded corners=2pt, draw=black!70, thick, minimum width=8mm, minimum height=5mm, font=\footnotesize, align=center},
   arrow/.style={->, thick, line width=1pt},
   cloud/.style={box, fill=blue!12, draw=blue!60!black, minimum width=3.2cm, minimum height=2.2cm, inner sep=3pt},
   vpc/.style={box, fill=blue!20, draw=blue!70!black, inner sep=2pt},
@@ -1020,7 +1020,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \node[cloud, label={[lbl, above=0.3cm]Cloud-Native}] (cloudA) at (col1) {};
 \node[vpc, minimum width=2.6cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]VPC}] (vpcA) at (cloudA.center) {};
 \node[lb, minimum width=1cm, minimum height=0.5cm, align=center] (apigwA) at ($(vpcA.north) + (0, -0.3cm)$) {API\\GW};
-\node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\tiny\bfseries, above=0.1cm]K8s}] (k8sA) at ($(vpcA.center) + (0, -0.2cm)$) {};
+\node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\footnotesize\bfseries, above=0.1cm]K8s}] (k8sA) at ($(vpcA.center) + (0, -0.2cm)$) {};
 \node[gpu, minimum width=0.7cm] (gpuA1) at ($(k8sA.south) + (-0.4cm, -0.25cm)$) {GPU};
 \node[gpu, minimum width=0.7cm] (gpuA2) at ($(k8sA.south) + (0.4cm, -0.25cm)$) {GPU};
 \node[store, minimum width=1cm, align=center] (objA) at ($(gpuA1.south) + (0.4cm, -0.3cm)$) {Object\\Store};
@@ -1030,7 +1030,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 
 % ================== (B) HYBRID ==================
 \node[onprem, label={[lbl, above=0.3cm]Hybrid}] (premB) at ($(col2) + (-1.2cm, 0)$) {};
-\node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\tiny\bfseries, above=0.1cm]On-Prem K8s}] (k8sBprem) at ($(premB.center) + (0, 0.1cm)$) {};
+\node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\footnotesize\bfseries, above=0.1cm]On-Prem K8s}] (k8sBprem) at ($(premB.center) + (0, 0.1cm)$) {};
 \node[gpu, minimum width=0.7cm] (gpuB1) at ($(k8sBprem.south) + (-0.4cm, -0.25cm)$) {GPU};
 \node[gpu, minimum width=0.7cm] (gpuB2) at ($(k8sBprem.south) + (0.4cm, -0.25cm)$) {GPU};
 \node[store, minimum width=1cm, align=center] (vecB) at ($(gpuB1.south) + (0.4cm, -0.3cm)$) {Vector\\DB};
@@ -1038,7 +1038,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \node[cloud] (cloudB) at ($(col2) + (1.2cm, 0)$) {};
 \node[vpc, minimum width=2.6cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]Cloud VPC}] (vpcB) at (cloudB.center) {};
 \node[lb, minimum width=1cm, minimum height=0.5cm, align=center] (apigwB) at ($(vpcB.north) + (0, -0.3cm)$) {API\\GW};
-\node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\tiny\bfseries, above=0.1cm]Cloud K8s}] (k8sBcloud) at ($(vpcB.center) + (0, -0.2cm)$) {};
+\node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\footnotesize\bfseries, above=0.1cm]Cloud K8s}] (k8sBcloud) at ($(vpcB.center) + (0, -0.2cm)$) {};
 \node[gpu, minimum width=0.7cm] (gpuB3) at ($(k8sBcloud.south) + (-0.4cm, -0.25cm)$) {GPU};
 \node[gpu, minimum width=0.7cm] (gpuB4) at ($(k8sBcloud.south) + (0.4cm, -0.25cm)$) {GPU};
 
@@ -1047,7 +1047,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 
 \draw[arrow, teal!80!black] (k8sBprem) -- (vpnL);
 \draw[arrow, teal!80!black] (vpnR) -- (k8sBcloud);
-\draw[arrow, gray!70, dashed, line width=1.2pt] (vpnL) -- node[font=\tiny, align=center, midway, above] {Direct\\Connect} (vpnR);
+\draw[arrow, gray!70, dashed, line width=1.2pt] (vpnL) -- node[font=\footnotesize, align=center, midway, above] {Direct\\Connect} (vpnR);
 \draw[arrow, violet!80!black] (k8sBprem) -- (vecB);
 \draw[arrow, orange!80!black] (apigwB) -- (k8sBcloud);
 
@@ -1056,42 +1056,42 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \node[lb, minimum width=1.2cm, minimum height=0.5cm, align=center] (glbC) at ($(cloudC.north) + (0, -0.2cm)$) {Global\\LB/DNS};
 
 \node[vpc, minimum width=2.4cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]Region A}] (vpcC1) at ($(cloudC.center) + (-0.7cm, -0.1cm)$) {};
-\node[k8s, minimum width=2cm, minimum height=0.7cm, label={[font=\tiny\bfseries, above=0.1cm]K8s A}] (k8sC1) at ($(vpcC1.center) + (0, 0.1cm)$) {};
+\node[k8s, minimum width=2cm, minimum height=0.7cm, label={[font=\footnotesize\bfseries, above=0.1cm]K8s A}] (k8sC1) at ($(vpcC1.center) + (0, 0.1cm)$) {};
 \node[gpu, minimum width=0.7cm] (gpuC1) at ($(k8sC1.south) + (-0.35cm, -0.25cm)$) {GPU};
 \node[gpu, minimum width=0.7cm] (gpuC2) at ($(k8sC1.south) + (0.35cm, -0.25cm)$) {GPU};
 
 \node[vpc, minimum width=2.4cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]Region B}] (vpcC2) at ($(cloudC.center) + (0.7cm, -0.1cm)$) {};
-\node[k8s, minimum width=2cm, minimum height=0.7cm, label={[font=\tiny\bfseries, above=0.1cm]K8s B}] (k8sC2) at ($(vpcC2.center) + (0, 0.1cm)$) {};
+\node[k8s, minimum width=2cm, minimum height=0.7cm, label={[font=\footnotesize\bfseries, above=0.1cm]K8s B}] (k8sC2) at ($(vpcC2.center) + (0, 0.1cm)$) {};
 \node[gpu, minimum width=0.7cm] (gpuC3) at ($(k8sC2.south) + (-0.35cm, -0.25cm)$) {GPU};
 \node[gpu, minimum width=0.7cm] (gpuC4) at ($(k8sC2.south) + (0.35cm, -0.25cm)$) {GPU};
 
 \draw[arrow, orange!80!black] (glbC) -- ($(glbC) + (-0.7cm, -0.5cm)$) -- (k8sC1);
 \draw[arrow, orange!80!black] (glbC) -- ($(glbC) + (0.7cm, -0.5cm)$) -- (k8sC2);
-\draw[arrow, gray!70, dashed, line width=1.2pt] (k8sC1) -- node[font=\tiny, align=center, midway, above, sloped] {spillover/\\failover} (k8sC2);
+\draw[arrow, gray!70, dashed, line width=1.2pt] (k8sC1) -- node[font=\footnotesize, align=center, midway, above, sloped] {spillover/\\failover} (k8sC2);
 
 % ================== Clean legend (below all patterns) ==================
 \node[box, fill=white!95, draw=black!50, rounded corners=4pt, minimum width=14cm, minimum height=1.2cm, inner sep=4pt] (legend) at ($(cloudB.south) + (0, -1.8cm)$) {};
 
 \node[cloud, minimum width=8mm, minimum height=5mm] (L1) at ($(legend.west) + (0.8cm, 0.25cm)$) {};
-\node[font=\tiny, right=0.15cm of L1.east, anchor=west] {Cloud/Region};
+\node[font=\footnotesize, right=0.15cm of L1.east, anchor=west] {Cloud/Region};
 
 \node[vpc, minimum width=8mm, minimum height=5mm] (L2) at ($(L1.east) + (1cm, 0)$) {};
-\node[font=\tiny, right=0.15cm of L2.east, anchor=west] {VPC};
+\node[font=\footnotesize, right=0.15cm of L2.east, anchor=west] {VPC};
 
 \node[k8s, minimum width=8mm, minimum height=5mm] (L3) at ($(L2.east) + (1cm, 0)$) {};
-\node[font=\tiny, right=0.15cm of L3.east, anchor=west] {K8s};
+\node[font=\footnotesize, right=0.15cm of L3.east, anchor=west] {K8s};
 
 \node[gpu, minimum width=8mm, minimum height=5mm] (L4) at ($(L3.east) + (1cm, 0)$) {};
-\node[font=\tiny, right=0.15cm of L4.east, anchor=west] {GPU Node};
+\node[font=\footnotesize, right=0.15cm of L4.east, anchor=west] {GPU Node};
 
 \node[lb, minimum width=8mm, minimum height=5mm] (L5) at ($(L1) + (0, -0.5cm)$) {};
-\node[font=\tiny, right=0.15cm of L5.east, anchor=west] {API GW/LB};
+\node[font=\footnotesize, right=0.15cm of L5.east, anchor=west] {API GW/LB};
 
 \node[gw, minimum width=8mm, minimum height=5mm] (L6) at ($(L2) + (0, -0.5cm)$) {};
-\node[font=\tiny, right=0.15cm of L6.east, anchor=west] {VPN/Direct Connect};
+\node[font=\footnotesize, right=0.15cm of L6.east, anchor=west] {VPN/Direct Connect};
 
 \node[store, minimum width=8mm, minimum height=5mm] (L7) at ($(L3) + (0, -0.5cm)$) {};
-\node[font=\tiny, right=0.15cm of L7.east, anchor=west] {Object/Vector Store};
+\node[font=\footnotesize, right=0.15cm of L7.east, anchor=west] {Object/Vector Store};
 
 \end{tikzpicture}
 \end{llmfigbox}
@@ -1151,11 +1151,11 @@ Future plans include a European cluster for GDPR compliance and model routing (e
 \begin{llmfigbox}
 \begin{tikzpicture}[
   scale=0.9, every node/.style={transform shape},
-  box/.style={rectangle, rounded corners, draw=black, thick, align=center, font=\scriptsize},
+  box/.style={rectangle, rounded corners, draw=black, thick, align=center, font=\small},
   gpu/.style={rectangle, rounded corners=2pt, draw=black, very thick,
-              minimum width=12mm, minimum height=6mm, font=\scriptsize, align=center},
+              minimum width=12mm, minimum height=6mm, font=\small, align=center},
   arrow/.style={-{Stealth[length=2.5mm,width=1.8mm]}, very thick},
-  lbl/.style={font=\scriptsize}
+  lbl/.style={font=\small}
 ]
 
 % ============= On-Prem =============
