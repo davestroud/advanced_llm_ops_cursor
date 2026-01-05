@@ -24,7 +24,14 @@
   left=5mm, right=5mm, top=4mm, bottom=4mm
 ]
 \noindent\textbf{Chapter roadmap.}
-This chapter presents performance optimization techniques at four layers: (i) \emph{model-level} methods (quantization, pruning, and distillation), (ii) \emph{inference-engine} optimizations (kernel fusion, efficient attention implementations, and KV-cache management), (iii) \emph{system-level} techniques (batching, caching, asynchronous processing, request scheduling, and advanced decoding), and (iv) \emph{prompt-level} strategies that reduce token and retrieval overhead. The chapter closes with benchmarking guidance and \ishtar{} case studies that connect these methods to measurable outcomes such as TTFT, tokens/s, tail latency, and cost per request.
+This chapter presents performance optimization techniques across four layers:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item \textbf{(i) Model-level methods:} quantization, pruning, and distillation
+    \item \textbf{(ii) Inference-engine optimizations:} kernel fusion, efficient attention implementations, and KV-cache management
+    \item \textbf{(iii) System-level techniques:} batching, caching, asynchronous processing, request scheduling, and advanced decoding
+    \item \textbf{(iv) Prompt-level strategies:} reduce token and retrieval overhead
+\end{itemize}
+The chapter closes with benchmarking guidance and \ishtar{} case studies that connect these methods to measurable outcomes such as TTFT, tokens/s, tail latency, and cost per request.
 
 \medskip
 \noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:

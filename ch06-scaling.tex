@@ -24,7 +24,15 @@
   left=5mm, right=5mm, top=4mm, bottom=4mm
 ]
 \noindent\textbf{Chapter roadmap.}
-This chapter frames scaling as a multi-objective systems problem: meeting latency and reliability targets while controlling cost under bursty and seasonality-driven demand. We begin by characterizing why LLM scaling behaves differently from classical services, then survey scaling modes (vertical, horizontal, and hybrid). Next, we cover distributed inference techniques (parallelism, quantization, and speculative decoding) and the throughput levers that dominate production performance (batching, scheduling, and KV-cache management). Finally, we discuss autoscaling, caching, and geo-distribution as operational mechanisms for sustaining performance and availability under real-world traffic patterns. Throughout, \ishtar{} serves as the reference point for the engineering and decision trade-offs.
+This chapter frames scaling as a multi-objective systems problem: meeting latency and reliability targets while controlling cost under bursty and seasonality-driven demand:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Why LLM scaling behaves differently from classical services
+    \item Scaling modes (vertical, horizontal, and hybrid)
+    \item Distributed inference techniques (parallelism, quantization, and speculative decoding)
+    \item Throughput levers (batching, scheduling, and KV-cache management)
+    \item Autoscaling, caching, and geo-distribution for sustaining performance and availability
+\end{itemize}
+Throughout, \ishtar{} serves as the reference point for the engineering and decision trade-offs.
 
 \medskip
 \noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:

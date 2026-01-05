@@ -24,10 +24,15 @@
   left=5mm, right=5mm, top=4mm, bottom=4mm
 ]
 \noindent\textbf{Chapter roadmap.}
-This chapter introduces Retrieval-Augmented Generation (RAG) as a foundational pattern for grounding LLM outputs in external evidence.
-We begin by motivating RAG in the context of LLMOps, then unpack the core components of a production RAG system (ingestion, indexing, retrieval, reranking, prompt augmentation, and generation).
-We cover retriever strategies (dense, sparse, and hybrid), context construction, reranking and filtering, chunking, vector index choices, and query processing patterns (including multi-hop and agentic RAG).
-We then address scaling and performance considerations, evaluation of end-to-end RAG quality, and security and compliance, before concluding with an \ishtar{} case study and an operational best-practices checklist.
+This chapter introduces Retrieval-Augmented Generation (RAG) as a foundational pattern for grounding LLM outputs in external evidence:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Motivation for RAG in the context of LLMOps
+    \item Core components of a production RAG system (ingestion, indexing, retrieval, reranking, prompt augmentation, and generation)
+    \item Retriever strategies (dense, sparse, and hybrid), context construction, reranking and filtering, chunking, and vector index choices
+    \item Query processing patterns (including multi-hop and agentic RAG)
+    \item Scaling and performance considerations, evaluation of end-to-end RAG quality, and security and compliance
+    \item An \ishtar{} case study and an operational best-practices checklist
+\end{itemize}
 
 \medskip
 \noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:

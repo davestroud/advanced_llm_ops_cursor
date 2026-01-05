@@ -12,6 +12,31 @@
 % --- Reader-visible abstract (PDF) ---
 \textbf{Abstract} This chapter introduces Large Language Model Operations (LLMOps) as the operational discipline required to run LLM-powered systems reliably at scale. We motivate LLMOps by analyzing production failure modes that arise from scale (GPU memory and throughput constraints), pipeline complexity (retrieval, tools, and multi-step chains), output variability (stochastic decoding), and heightened risk (hallucination, security, and governance). The chapter frames quality as multidimensional—groundedness, safety, usefulness, and cost/latency—and argues that continuous evaluation and semantic observability are necessary complements to traditional reliability engineering. To ground the discussion, we introduce the Ishtar AI case study: a conflict-zone journalism assistant that integrates ingestion, retrieval-augmented generation (RAG), multi-agent orchestration, and GPU-backed serving under strict citation and safety constraints. We use early deployment case studies (failures and successes) to extract operational lessons and preview the book's lifecycle structure, emphasizing reproducible infrastructure, disciplined change management, staged releases, and auditability. The chapter concludes with a roadmap that maps each subsequent chapter to the end-to-end Ishtar AI lifecycle.
 
+\begin{tcolorbox}[
+  title={\textbf{Chapter Overview}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm
+]
+\noindent\textbf{Chapter roadmap.}
+This chapter introduces LLMOps as the operational discipline for running LLM-powered systems reliably at scale. We begin by motivating LLMOps through production failure modes and operational challenges (compute economics, serving infrastructure, data drift, evaluation, observability, and security). We then introduce the Ishtar AI case study as a running example throughout the book, examine early deployment case studies to extract operational lessons, and conclude with a roadmap mapping each chapter to the end-to-end LLMOps lifecycle.
+
+\medskip
+\noindent\textbf{Learning objectives.} After reading this chapter, you will be able to:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item Understand why LLMOps extends beyond traditional MLOps
+    \item Identify key operational challenges in LLM deployments (cost, latency, drift, observability, security)
+    \item Recognize the multidimensional nature of LLM quality (groundedness, safety, usefulness, cost/latency)
+    \item Understand the Ishtar AI case study and its role as a reference implementation
+    \item Map operational challenges to the book's chapter structure
+\end{itemize}
+\end{tcolorbox}
+
 \section{Introduction}
 
 \label{sec:intro}

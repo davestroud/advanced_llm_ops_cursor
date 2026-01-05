@@ -59,6 +59,43 @@ If not already present in book.tex, add ONCE (do not add per chapter):
   \usepackage{listings}
 
 ==========================================
+C.1) SHARED ENVIRONMENTS (DEFINE ONCE, USE EVERYWHERE)
+==========================================
+The environments `llmalgobox` and `llmlistingbox` are defined in Chapter 9 (ch09-agents-orchestration.tex).
+**CRITICAL RULE**: Other chapters MUST NOT redefine these environments using `\newenvironment`.
+
+**For chapters that need these environments:**
+1. Define counters ONLY (if not already defined):
+   \makeatletter
+   \@ifundefined{c@llmalgorithm}{%
+     \newcounter{llmalgorithm}[chapter]
+     \renewcommand{\thellmalgorithm}{\thechapter.\arabic{llmalgorithm}}
+   }{}
+   \@ifundefined{c@llmlisting}{%
+     \newcounter{llmlisting}[chapter]
+     \renewcommand{\thellmlisting}{\thechapter.\arabic{llmlisting}}
+   }{}
+   \makeatother
+
+2. Use `\@ifundefined` to conditionally define environments ONLY if they don't exist:
+   \makeatletter
+   \@ifundefined{llmalgobox}{%
+     \newenvironment{llmalgobox}[1]{...}{\end{tcolorbox}}%
+   }{%
+     \renewenvironment{llmalgobox}[1]{...}{\end{tcolorbox}}%
+   }
+   \@ifundefined{llmlistingbox}{%
+     \newenvironment{llmlistingbox}[1]{...}{\end{tcolorbox}}%
+   }{%
+     \renewenvironment{llmlistingbox}[1]{...}{\end{tcolorbox}}%
+   }
+   \makeatother
+
+**Why**: Chapter 9 defines these environments first. If another chapter uses `\newenvironment` without checking, LaTeX will error with "already defined". The `\@ifundefined` check prevents this.
+
+**For listings language tags**: The `listings` package does not include YAML, JSON, or JavaScript by default. Use `style=springer` only, or define custom language styles if needed.
+
+==========================================
 D) STANDARD STYLES / MACROS (ADD ONCE)
 ==========================================
 Add the following to macros.tex (or a single global style file). Use these consistently.
