@@ -327,47 +327,76 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
 \end{tabular}
 \end{sidewaystable}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  scale=0.92, transform shape,
-  node distance=6mm and 10mm,
-  every node/.style={outer sep=1pt},
-  box/.style={rectangle, draw=black, thick, minimum width=2.2cm, minimum height=0.75cm, align=center, fill=gray!10, inner sep=2pt},
-  arrow/.style={->, thick}
+  every node/.style={font=\footnotesize},
+  box/.style={
+    rectangle,
+    draw=black!60,
+    line width=0.6pt,
+    minimum width=2.5cm,
+    minimum height=1cm,
+    align=center,
+    inner sep=5pt,
+    rounded corners=3pt
+  },
+  arrow/.style={->, >=Stealth, line width=0.6pt, draw=black!70},
+  labelbox/.style={
+    rectangle,
+    draw=none,
+    fill=none,
+    align=left,
+    text width=3.8cm,
+    inner sep=3pt,
+    font=\footnotesize
+  }
 ]
 
-% --- Vertical scaling (single beefy node) ---
-\node[box, fill=blue!15] (v1) {GPU Node\\(A100-40GB)};
-\node[box, below=of v1, fill=blue!25] (v2) {GPU Node\\(A100-80GB)};
-\node[box, below=of v2, fill=blue!35] (v3) {GPU Node\\(H100-80GB)};
+% --- Vertical scaling (left column) ---
+\node[box, fill=gray!12] (v1) at (0,3) {\textbf{A100-40GB}\\\small GPU Node};
+\node[box, fill=gray!20, below=10mm of v1] (v2) {\textbf{A100-80GB}\\\small GPU Node};
+\node[box, fill=gray!28, below=10mm of v2] (v3) {\textbf{H100-80GB}\\\small GPU Node};
 
-\node[align=center, right=0.15cm of v2, text width=2.8cm] (vlabel) {\textbf{Vertical Scaling}\\Upgrading a single node with more powerful GPUs and memory.};
+\node[labelbox, right=12mm of v2] (vlabel) {
+  \textbf{Vertical Scaling}\\[2pt]
+  \small Upgrading a single node with more powerful GPUs and memory.
+};
 
-% --- Horizontal scaling (multiple nodes) ---
-\node[box, fill=green!20, right=5.2cm of v1] (h1) {GPU Node};
-\node[box, right=6mm of h1, fill=green!25] (h2) {GPU Node};
-\node[box, right=6mm of h2, fill=green!30] (h3) {GPU Node};
-
-\node[align=center, below=2mm of h2, text width=3.2cm] (hlabel) {\textbf{Horizontal Scaling}\\Adding more nodes and distributing requests.};
-
-% --- Hybrid scaling (mix) ---
-\node[box, fill=orange!20, below=3.6cm of h1] (hy1) {H100 Node};
-\node[box, fill=orange!20, right=6mm of hy1] (hy2) {A100 Node};
-\node[box, fill=orange!20, right=6mm of hy2] (hy3) {CPU Pool};
-
-\node[align=center, below=2mm of hy2, text width=3.6cm] (hylabel) {\textbf{Hybrid Scaling}\\Mixing high-end GPUs with cheaper GPUs/CPUs for different tiers.};
-
-% Connect arrows for horizontal load balancing
-\draw[arrow] (hlabel) -- (h2.south);
-
-% Connect arrows for hybrid
-\draw[arrow] (hylabel) -- (hy2.south);
-
-% Connect vertical scaling progression
+% Vertical progression arrows
 \draw[arrow] (v1.south) -- (v2.north);
 \draw[arrow] (v2.south) -- (v3.north);
+
+% --- Horizontal scaling (top right) ---
+\node[box, fill=gray!12] (h1) at (7,3) {\small GPU Node};
+\node[box, fill=gray!18, right=10mm of h1] (h2) {\small GPU Node};
+\node[box, fill=gray!24, right=10mm of h2] (h3) {\small GPU Node};
+
+\node[labelbox, below=8mm of h2] (hlabel) {
+  \textbf{Horizontal Scaling}\\[2pt]
+  \small Adding more nodes and distributing requests.
+};
+
+% Horizontal expansion indicator
+\draw[arrow, dashed, draw=black!50] (h1.east) -- (h2.west);
+\draw[arrow, dashed, draw=black!50] (h2.east) -- (h3.west);
+\draw[arrow] (hlabel.north) -- (h2.south);
+
+% --- Hybrid scaling (bottom right) ---
+\node[box, fill=gray!18] (hy1) at (7,0) {\small\textbf{H100}\\\small Node};
+\node[box, fill=gray!12, right=10mm of hy1] (hy2) {\small\textbf{A100}\\\small Node};
+\node[box, fill=gray!8, right=10mm of hy2] (hy3) {\small\textbf{CPU}\\\small Pool};
+
+\node[labelbox, below=8mm of hy2] (hylabel) {
+  \textbf{Hybrid Scaling}\\[2pt]
+  \small Mixing high-end GPUs with cheaper GPUs/CPUs for different tiers.
+};
+
+% Hybrid connection indicator
+\draw[arrow, dashed, draw=black!50] (hy1.east) -- (hy2.west);
+\draw[arrow, dashed, draw=black!50] (hy2.east) -- (hy3.west);
+\draw[arrow] (hylabel.north) -- (hy2.south);
 
 \end{tikzpicture}
 \end{llmfigbox}
