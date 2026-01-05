@@ -54,6 +54,69 @@ Finally, we address robustness and resilience, show how to operationalize regres
   \renewcommand{\thellmlisting}{\thechapter.\arabic{llmlisting}}
 }{}
 % Environments llmalgobox and llmlistingbox are already defined in Chapter 9
+% If they don't exist (e.g., standalone compilation), define them here
+\@ifundefined{llmalgobox}{%
+  \newenvironment{llmalgobox}[1]{%
+    \refstepcounter{llmalgorithm}%
+    \begin{tcolorbox}[
+      title={\textbf{Algorithm \thellmalgorithm: #1}},
+      colback=gray!4,
+      colframe=gray!60!black,
+      colbacktitle=gray!20,
+      coltitle=black,
+      fonttitle=\bfseries,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=3mm, right=3mm, top=2mm, bottom=2mm
+    ]
+  }{\end{tcolorbox}}%
+}{%
+  \renewenvironment{llmalgobox}[1]{%
+    \refstepcounter{llmalgorithm}%
+    \begin{tcolorbox}[
+      title={\textbf{Algorithm \thellmalgorithm: #1}},
+      colback=gray!4,
+      colframe=gray!60!black,
+      colbacktitle=gray!20,
+      coltitle=black,
+      fonttitle=\bfseries,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=3mm, right=3mm, top=2mm, bottom=2mm
+    ]
+  }{\end{tcolorbox}}%
+}
+\@ifundefined{llmlistingbox}{%
+  \newenvironment{llmlistingbox}[1]{%
+    \refstepcounter{llmlisting}%
+    \begin{tcolorbox}[
+      title={\textbf{Listing \thellmlisting: #1}},
+      colback=black!2,
+      colframe=black!50,
+      colbacktitle=black!12,
+      coltitle=black,
+      fonttitle=\bfseries,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=3mm, right=3mm, top=2mm, bottom=2mm
+    ]
+  }{\end{tcolorbox}}%
+}{%
+  \renewenvironment{llmlistingbox}[1]{%
+    \refstepcounter{llmlisting}%
+    \begin{tcolorbox}[
+      title={\textbf{Listing \thellmlisting: #1}},
+      colback=black!2,
+      colframe=black!50,
+      colbacktitle=black!12,
+      coltitle=black,
+      fonttitle=\bfseries,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=3mm, right=3mm, top=2mm, bottom=2mm
+    ]
+  }{\end{tcolorbox}}%
+}
 \makeatother
 
 
@@ -436,7 +499,7 @@ Table~\ref{tab:ch10_adversarial_taxonomy} categorizes common adversarial test ty
 
 \begin{llmlistingbox}{Adversarial test suite structure (YAML)}
 \label{lst:ch10_adversarial_test_suite}
-\begin{lstlisting}[language=yaml, style=springer]
+\begin{lstlisting}[style=springer]
 # Adversarial test suite configuration
 test_suite:
   name: "OWASP LLM Top 10 Coverage"
@@ -997,7 +1060,7 @@ Listing~\ref{lst:ch10_eval_harness_config} shows an example configuration.
 
 \begin{llmlistingbox}{Evaluation harness configuration (YAML)}
 \label{lst:ch10_eval_harness_config}
-\begin{lstlisting}[language=yaml, style=springer]
+\begin{lstlisting}[style=springer]
 # Evaluation harness configuration
 suite:
   name: "ishtar_smoke"
@@ -1279,7 +1342,7 @@ The adjudicated label becomes the ``gold'' outcome, and disagreements are logged
 
 \begin{llmlistingbox}{Minimal annotation record schema}
 \label{lst:ch10_annotation_schema}
-\begin{lstlisting}[language=json, style=springer]
+\begin{lstlisting}[style=springer]
 {
   "item_id": "2026-01-incident-042",
   "question": "...",
@@ -1458,7 +1521,7 @@ No unhandled exceptions; user gets safe response \\
 
 \begin{llmlistingbox}{Load test sketch for an LLM endpoint (k6-style pseudocode)}
 \label{lst:ch10_load_test}
-\begin{lstlisting}[language=JavaScript, style=springer]
+\begin{lstlisting}[style=springer]
 // Pseudocode. Replace URL/auth with your environment.
 import http from "k6/http";
 import { sleep, check } from "k6";
@@ -1618,7 +1681,7 @@ Algorithm~\ref{alg:ch10_bootstrap_gate} provides a practical paired bootstrap ga
 
 \begin{llmlistingbox}{CI job sketch to run an evaluation suite}
 \label{lst:ch10_ci_eval}
-\begin{lstlisting}[language=yaml, style=springer]
+\begin{lstlisting}[style=springer]
 # GitHub Actions-style pseudocode.
 # Run a small eval suite and fail the build if gates do not pass.
 
