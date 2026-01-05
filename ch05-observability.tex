@@ -670,11 +670,12 @@ For teams bootstrapping LLM observability, the minimal viable backbone is: (1) s
 \noindent\textbf{Conclusion.}
 Observability for LLM systems is not a bolt-on---it is the operational manifestation of product quality. By making the evidence path observable, elevating quality to an SLO, engineering RAG metrics explicitly, and wiring dashboards and alerts to concrete, pre-authorized actions, teams reduce MTTR, control cost, and harden safety. Most importantly, they create a repeatable \emph{measure–explain–act} loop in which improvements are attributable and durable. This chapter has outlined the architectural patterns and operational playbooks needed to achieve that loop in practice, providing a foundation on which the rest of the book’s scaling, reliability, and governance strategies can confidently build.
 
+\section*{Chapter Summary}
+This chapter framed observability as a core LLMOps capability that spans both infrastructure reliability and \emph{semantic} quality. We explained why monitoring differs for LLM systems, introduced RAG-specific drift and attribution signals, and described instrumentation patterns for complex prompt flows and multi-agent interactions. We then connected these signals to dashboards, automated quality checks, and feedback loops, and we outlined alerting and incident response practices that translate telemetry into a coherent, continuously improving operational system.
+
 \printbibliography[
   heading=subbibliography,
   segment=\therefsegment,
   resetnumbers=true
 ]
-\section*{Chapter Summary}
-This chapter framed observability as a core LLMOps capability that spans both infrastructure reliability and \emph{semantic} quality. We explained why monitoring differs for LLM systems, introduced RAG-specific drift and attribution signals, and described instrumentation patterns for complex prompt flows and multi-agent interactions. We then connected these signals to dashboards, automated quality checks, and feedback loops, and we outlined alerting and incident response practices that translate telemetry into a coherent, continuously improving operational system.
 

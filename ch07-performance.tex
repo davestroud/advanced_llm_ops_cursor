@@ -1171,15 +1171,15 @@ Median latency $\downarrow$ to $\sim1.1$\,s; P95 $\downarrow$ to $\sim2$\,s; thr
   \item \textbf{Harden chains:} trace with LangSmith; define degraded modes and retry budgets.
 \end{itemize}
 
-\printbibliography[
-  heading=subbibliography,
-  segment=\therefsegment,
-  resetnumbers=true
-]
-
 \medskip
 \noindent\textbf{Performance Optimization in RAG and Multi-Agent Systems.} The optimization techniques covered in this chapter directly impact retrieval-augmented generation (RAG) pipelines and multi-agent orchestration systems. In RAG deployments (Chapter~\ref{ch:rag}), performance tuning affects multiple components: \emph{retrieval latency} (embedding generation speed, vector search throughput, and reranker inference cost), \emph{context compression overhead} (summarization model inference time when compressing retrieved documents), and \emph{end-to-end pipeline efficiency} (balancing retrieval quality with generation speed). For multi-agent systems (Chapter~\ref{ch:multiagent}), optimization becomes critical because tool calls, inter-agent communication, and coordination overhead compound latency: quantization and batching strategies must account for heterogeneous workloads (some agents may use specialized models), and caching becomes essential to avoid redundant tool invocations. The performance principles established here---measuring bottlenecks, optimizing inference engines, and managing memory efficiently---apply equally to these advanced architectures, where the cost of suboptimal performance scales with system complexity.
 
 \section*{Chapter Summary}
 This chapter treated performance as a first-class requirement in LLMOps and organized optimization work across model, engine, system, and prompt layers. We connected GPU-level techniques (operator fusion and efficient attention kernels), memory management (KV-cache policies and paging), and runtime strategies (batching, caching, asynchronous processing, and speculative decoding) to practical service objectives such as TTFT, tail latency, throughput, and cost per request. Finally, we grounded these methods through benchmarking guidance and \ishtar{} case studies, emphasizing repeatable measurement, regression testing, and safe rollout practices.
+
+\printbibliography[
+  heading=subbibliography,
+  segment=\therefsegment,
+  resetnumbers=true
+]
 

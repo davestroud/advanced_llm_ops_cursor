@@ -576,15 +576,16 @@ The following checklist condenses the chapter into a concrete ``definition of do
 \end{itemize}
 \end{tcolorbox}
 
-\printbibliography[
-  heading=subbibliography,
-  segment=\therefsegment,
-  resetnumbers=true
-]
 \section*{Chapter Summary}
 CI/CD for LLM systems extends traditional pipelines with continuous evaluation, semantic quality gates, and security controls tailored to generative behavior. In addition to code tests, LLM CI enforces regression suites over prompts, retrieval behavior, tool-call contracts, and safety policies. Deployment strategies such as canary and blue-green releases benefit from progressive delivery controllers and automated analysis hooks. Finally, supply-chain provenance (SLSA, signed artifacts, SBOMs) and secure cloud authentication (OIDC) reduce operational risk as systems scale.
 
 \section{Conclusion}
 \label{sec:cicd-conclusion}
 CI/CD for LLMs fuses DevOps automation with ML-specific safeguards: evaluation gates, staged deployment, prompt regression tests, and multi-agent orchestration. With LangSmith, LangFuse, and LangGraph, pipelines achieve both visibility and robustness. Structured prompt pipelines and multi-agent testing extend reliability. By continuously validating not only code but model behavior, organizations maintain velocity without sacrificing trustworthiness.
+
+\printbibliography[
+  heading=subbibliography,
+  segment=\therefsegment,
+  resetnumbers=true
+]
 

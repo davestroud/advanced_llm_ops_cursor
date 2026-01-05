@@ -581,14 +581,15 @@ Testing and evaluation are the guardrails that keep LLM systems safe, reliable, 
 \medskip
 \noindent\textbf{Evaluation as a Production Control System.} The testing and evaluation methodologies presented in this chapter are not one-off validation exercises---they form the foundation of a continuous production control system. The regression testing practices discussed here (Section~\ref{sec:ch10-regression-testing-in-ci-cd}) directly integrate with CI/CD quality gates from Chapter~\ref{ch:cicd}: evaluation metrics become automated release criteria, blocking deployments when quality thresholds are not met. Similarly, evaluation metrics complement the observability frameworks from Chapter~\ref{ch:monitoring}: structured quality assessments feed into monitoring dashboards, enabling teams to track quality trends over time and alert on regressions detected in production. This integration ensures that evaluation is not a separate activity but an operational discipline that continuously validates system behavior, catching regressions before they impact users and providing the data needed for informed deployment decisions. The \ishtar{} case study demonstrates how evaluation, CI/CD gates, and observability work together to maintain system reliability and trust.
 
-\printbibliography[
-  heading=subbibliography,
-  segment=\therefsegment,
-  resetnumbers=true
-]
 \section*{Chapter Summary}
 Testing and evaluation are the guardrails that make LLM systems trustworthy under real-world conditions.
 This chapter presented a spectrum of tests---from unit tests for prompts and parsers, to integration and end-to-end tests for RAG and agentic workflows,
 to adversarial and robustness testing for safety and security. We also covered automated evaluation techniques, human-in-the-loop procedures for high-stakes use,
 and CI/CD regression practices that enable fast iteration without sacrificing reliability. The \ishtar{} case study illustrates how these methods combine into an
 operationally sustainable evaluation program.
+
+\printbibliography[
+  heading=subbibliography,
+  segment=\therefsegment,
+  resetnumbers=true
+]
