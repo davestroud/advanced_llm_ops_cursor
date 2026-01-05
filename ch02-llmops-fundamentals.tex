@@ -176,7 +176,7 @@ Sampling temperature $\tau$ is a decoding hyperparameter that rescales the model
         \node[align=left, anchor=west] at ($(addnorm2.east)+(1.2,0)$) {Residual + LayerNorm};
     \end{tikzpicture}
     \end{llmfigbox}
-    \caption{Schematic of a Transformer block highlighting attention, FFN, and residual paths. Inference memory is dominated by parameters and the KV cache (Eq.~\ref{eq:param-mem}, \ref{eq:kv-cache}); compute cost scales with Eq.~\ref{eq:flops-layer}.}
+    \caption{Transformer architecture determines inference memory and compute requirements. The attention mechanism, FFN layers, and residual paths each contribute to memory (dominated by parameters and KV cache, Eq.~\ref{eq:param-mem}, \ref{eq:kv-cache}) and compute cost (scales with Eq.~\ref{eq:flops-layer}). Understanding these components enables capacity planning and optimization decisions.}
     \label{fig:ch02_transformer_block}
 \end{figure}
 
@@ -338,7 +338,7 @@ Model & Params $P$ & $M_{\text{params}}$ (GB) \\
         \end{axis}
     \end{tikzpicture}
     \end{llmfigbox}
-    \caption{Idealized throughput vs. TTFT using Eq.~\ref{eq:throughput} with $N{=}120$ tokens/request and $\tau_1{=}\SI{0.02}{s/token}$. Larger batches ($B$) amortize TTFT, but real systems saturate due to kernel/IO limits; use as a planning guideline, not a guarantee.}
+    \caption{Throughput vs.\ TTFT trade-off determines batching strategy and capacity planning. Larger batches ($B$) amortize TTFT overhead, improving throughput, but real systems saturate due to kernel/IO limits before reaching theoretical maximums. Understanding this trade-off helps teams optimize batch sizes for their latency requirements. Using Eq.~\ref{eq:throughput} with $N{=}120$ tokens/request and $\tau_1{=}\SI{0.02}{s/token}$ provides planning guidelines, not guarantees.}
     \label{fig:ch02_ttft_throughput}
 \end{figure}
 
@@ -630,7 +630,7 @@ Model & Parameters $P$ & $M_{\text{params}}$ (approx.) \\
 175B & $1.75\times 10^{11}$ & $\approx 350$~GB \\
 \bottomrule
 \end{tabular}
-\caption{Approximate parameter memory requirements for different model scales (FP16 weights).}
+\caption{Parameter memory requirements determine deployment feasibility and hardware selection. Memory scales linearly with parameter count, making large models (70B+) require multi-GPU deployments even with quantization. Understanding these requirements enables teams to plan infrastructure investments and choose appropriate model sizes for their constraints.}
 \label{tab:ch02_param_memory}
 \end{table}
 

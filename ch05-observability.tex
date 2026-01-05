@@ -100,8 +100,7 @@ Finally, LLM observability has a governance dimension. Logs often contain user t
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Three layers of LLM observability. Effective monitoring requires integrating system health,
-model quality signals, and full pipeline tracing to explain regressions and prevent observability debt.}
+\caption{Three-layer observability enables systematic debugging and quality assurance. System health metrics detect infrastructure failures; model quality signals identify accuracy regressions; pipeline tracing explains root causes. This layered approach prevents observability debt and enables rapid incident response by providing complete visibility into LLM system behavior.}
 \label{fig:ch05_telemetry_layers}
 \end{figure}
 
@@ -235,7 +234,7 @@ Table~\ref{tab:ishtar_obs_stack} summarizes a minimal-but-extensible stack compo
 
 \begin{table}[t]
 \centering
-\caption{Example observability stack (\ishtar) for LLM applications. OpenTelemetry provides shared context (trace IDs, resource attributes), while specialized tools deliver operator- and developer-facing views.}
+\caption{Observability stack design determines debugging speed and incident response capability. \ishtar{}'s stack demonstrates how OpenTelemetry provides shared context (trace IDs, resource attributes) for correlation, while specialized tools deliver operator- and developer-facing views. This layered approach enables both real-time troubleshooting and long-term trend analysis, supporting both reactive incident response and proactive optimization.}
 \label{tab:ch05_ishtar_obs_stack}
 \begin{tabular}{p{0.18\linewidth}p{0.33\linewidth}p{0.42\linewidth}}
 \toprule
@@ -355,10 +354,7 @@ High-fidelity traces require stable correlation across boundaries. Every request
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Color-coded taxonomy for span naming and attributes in LLM applications. Stable, descriptive
-span names (\texttt{llm.call}, \texttt{retriever.search}, \texttt{tool.invoke.<name>}, \texttt{parser.jsonschema},
-\texttt{guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining
-readable in tracing UIs.}
+\caption{Span naming taxonomy enables systematic observability and debugging in LLM applications. Stable, descriptive span names (\texttt{llm.call}, \texttt{retriever.search}, \texttt{tool.invoke.<name>}, \texttt{parser.jsonschema}, \texttt{guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining readable in tracing UIs. This taxonomy converts ad hoc instrumentation into a searchable, analyzable observability system that supports both debugging and optimization.}
 \label{fig:ch05_span_taxonomy}
 \end{figure}
 
@@ -470,7 +466,7 @@ A useful organizing principle is a \emph{three-tier} layout:
 
 \begin{table}[htbp]
 \centering
-\caption{Three-tier dashboard layout for LLM observability}
+\caption{Dashboard layout determines operator effectiveness and incident response speed. The three-tier structure separates real-time alerts (tier 1), detailed analysis (tier 2), and historical trends (tier 3), enabling operators to quickly diagnose issues and identify patterns. This layout supports both reactive troubleshooting and proactive optimization.}
 \label{tab:ch05_three_tier_layout}
 \small
 \setlength{\tabcolsep}{6pt}

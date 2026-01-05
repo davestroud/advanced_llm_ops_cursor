@@ -44,7 +44,7 @@ Production systems therefore require:
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.95\linewidth]{images/ch01-cost-latency-throughput}
-  \caption{Latency decomposition and scale levers for LLM serving. End-to-end latency is the sum of stage latencies (tokenization/policy checks, retrieval, LLM prefill+decode, post-processing). Sustaining throughput and cost efficiency requires coordinated controls: batching and scheduling for throughput, caching/quantization/routing for unit economics, and explicit capacity planning (peak demand, tail latency, and autoscaling on queue depth).}
+  \caption{Latency decomposition enables targeted optimization and capacity planning. End-to-end latency is the sum of stage latencies (tokenization/policy checks, retrieval, LLM prefill+decode, post-processing), and identifying bottlenecks requires measuring each stage independently. Sustaining throughput and cost efficiency demands coordinated controls: batching and scheduling optimize throughput, caching/quantization/routing improve unit economics, and explicit capacity planning (peak demand, tail latency, autoscaling) ensures SLO compliance.}
   \label{fig:ch01_cost_latency_throughput}
 \end{figure}
 
@@ -131,7 +131,7 @@ Reliability is also a concern: when a subcomponent fails (retriever times out, a
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Architecture of an LLM-powered application showing retrieval-augmented generation (RAG) flow with fallback mechanisms. The orchestrator manages user queries, optionally retrieves relevant documents from a knowledge base via a vector database, constructs prompts for an LLM, allows the LLM to use external tools, and finally delivers a coherent response to the user.}
+\caption{LLM application architecture determines reliability and capability. This RAG-based design enables grounded responses through retrieval, fallback mechanisms ensure graceful degradation, and tool integration extends model capabilities. This architecture pattern balances accuracy (via retrieval), reliability (via fallbacks), and functionality (via tools) for production deployments.}
 \label{fig:ch01_architecture}
 \end{figure}
 
@@ -367,10 +367,7 @@ control stack spanning input handling, retrieval governance, tool security, and 
 
   \end{tikzpicture}
   \end{llmfigbox}
-  \caption{Security for tool- and retrieval-augmented LLM systems. Threats (prompt injection, policy bypass,
-  retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization,
-  instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing
-  as a cross-cutting requirement for incident response and rollback.}
+  \caption{Security architecture for tool- and retrieval-augmented LLM systems requires defense-in-depth. Threats (prompt injection, policy bypass, retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization, instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing as a cross-cutting requirement for incident response and rollback. This threat model guides security architecture decisions and demonstrates why traditional application security is insufficient for LLM systems.}
   \label{fig:ch01_llm_threat_model}
 \end{figure}
 \end{landscape}
@@ -395,7 +392,7 @@ LLMOps therefore formalizes the practices required to run these systems with rel
 % Requires in preamble (once): \usepackage{tabularx,booktabs,threeparttable}
 \begin{table}[t]
 \centering\small
-\caption{Four dimensions where LLMOps extends MLOps.}
+\caption{LLMOps extends MLOps in four critical dimensions that require new operational practices. Scale introduces memory and cost constraints; complexity demands semantic observability; variability requires prompt and retrieval testing; risk necessitates safety gates and policy enforcement. Understanding these extensions helps teams anticipate operational challenges and plan infrastructure investments.}
 \label{tab:ch01_llmops_extends_mlops}
 \setlength{\tabcolsep}{8pt}
 \renewcommand{\arraystretch}{1.4}
@@ -560,7 +557,7 @@ By the early 2020s, however, the rise of \textbf{foundation models}—especially
 \end{tikzpicture}
 \end{llmfigbox}
 
-\caption{From MLOps to LLMOps: modeling milestones and operational inflections. Major capability jumps (top) correlate with new operational requirements (bottom): serving at scale, rigorous evaluation/red-teaming, and governance/policy embedded into the lifecycle.}
+\caption{LLMOps evolution reflects changing operational requirements. As model capabilities increased (transformer scaling, instruction following, tool use), operational needs shifted from basic serving to rigorous evaluation, safety gates, and governance. Understanding these inflections helps teams anticipate operational complexity and plan infrastructure investments.}
 \label{fig:ch01_mlops_llmops_timeline}
 \end{figure}
 
@@ -661,7 +658,8 @@ systems engineering, where memory, latency, and cost must be co-optimized (Fig.~
   \caption{Why scale changes LLM deployment. Large parameter counts make weight memory a first-order constraint,
   while longer contexts introduce $\Theta(T^2)$ attention cost and KV-cache pressure. Together these drive LLM-specific
   SLOs (TTFT, tokens/s, \$/1K tokens) and engineering levers (parallelism, quantization, batching/scheduling,
-  KV-cache policy, and model routing).}
+  KV-cache policy, and model routing). Understanding these constraints enables teams to make informed infrastructure
+  decisions and set realistic performance targets.}
   \label{fig:ch01_scale_constraints}
 \end{figure}
 
@@ -747,7 +745,7 @@ Part~IV addresses rigorous evaluation and responsible deployment, culminating in
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.12}
 
-\caption{Operational role of each chapter in the LLMOps lifecycle.}
+\caption{Chapter organization maps to operational lifecycle stages. Each chapter addresses specific operational challenges (foundations, delivery, optimization, governance), enabling readers to understand both individual practices and their integration into a complete LLMOps system. This organization supports both sequential reading and targeted reference for specific operational needs.}
 \label{tab:ch01_llmops_legend}
 
 \begin{tabularx}{\linewidth}{@{}p{52mm}X@{}}
@@ -881,7 +879,7 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 \end{llmfigbox}
 
 
-\caption{LLMOps lifecycle mapped to the book's chapters. The flow progresses from foundations (Part I) through delivery operations (Part II: CI/CD, monitoring, scaling), optimization (Part III: performance, RAG, multi-agent), and governance (Part IV: testing, ethics, case study). A dashed feedback loop connects the case study back to foundational practices.}
+\caption{LLMOps lifecycle demonstrates how operational practices integrate across development stages. The flow progresses from foundations (Part I) through delivery operations (Part II: CI/CD, monitoring, scaling), optimization (Part III: performance, RAG, multi-agent), and governance (Part IV: testing, ethics, case study). A dashed feedback loop connects the case study back to foundational practices, illustrating how real-world experience informs operational improvements.}
 \label{fig:ch01_llmops_lifecycle}
 \end{figure}
 
@@ -950,7 +948,7 @@ Ishtar AI from ingestion to ops; lessons learned; patterns \& anti-patterns in p
 \bottomrule
 \end{tabularx}
 
-\caption{Mini legend for Fig.~\ref{fig:ch01_llmops_lifecycle}: why each chapter matters operationally. \emph{Legend of chapter roles in the lifecycle.}}
+\caption{Chapter roles explain operational contributions to the LLMOps lifecycle. This legend clarifies why each chapter matters operationally, helping readers understand how individual practices (e.g., CI/CD, observability, scaling) contribute to overall system reliability and performance. See Fig.~\ref{fig:ch01_llmops_lifecycle} for the complete lifecycle visualization.}
 \label{fig:ch01_llmops_legend}
 \end{figure}
 
@@ -1043,7 +1041,7 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Subsystem-to-chapter mapping for the \ishtar{} reference architecture.}
+\caption{Subsystem-to-chapter mapping guides readers through \ishtar{}'s architecture. Each subsystem (ingestion, retrieval, orchestration, inference) corresponds to specific chapters, enabling readers to understand both the architecture and the operational practices that make it production-ready. This mapping demonstrates how book concepts apply to real-world systems.}
 \label{fig:ch01_ishtar_arch_callout}
 \end{figure}
 
@@ -1053,7 +1051,7 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \begin{figure}[tb]
 \centering
 % \includegraphics[width=0.85\textwidth]{ishtar-arch.pdf}
-\caption{\ishtar{} reference architecture. The pipeline includes data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages.}
+\caption{\ishtar{} reference architecture demonstrates production-ready LLMOps patterns. The pipeline integrates data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages. This architecture balances accuracy (via RAG), reliability (via multi-agent verification), and scalability (via GPU inference), serving as a template for similar deployments.}
 \label{fig:ch01_ishtar_arch_main}
 \end{figure}
 
@@ -1135,7 +1133,7 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Evidence sources powering \ishtar{}. Curated inputs (news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds) are routed through retrieval to support journalist queries.}
+\caption{Evidence source selection determines RAG quality and trustworthiness. \ishtar{} curates inputs from news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds, ensuring reliable, authoritative sources. This curation strategy demonstrates how source quality directly impacts answer accuracy and citation fidelity in production RAG systems.}
 \label{fig:ch01_ishtar_inputs_taxonomy}
 \end{figure}
 
@@ -1312,7 +1310,7 @@ The key lesson is that operational excellence can substitute for sheer model siz
 
 \begin{table}[p] % own page if possible
 \centering\small
-\caption{Early deployments: failures, successes, and the operations that mattered.}
+\caption{Early LLM deployments reveal critical operational lessons. Failures (Galactica, Sydney) demonstrate the cost of inadequate safety gates and evaluation; successes (Character.AI) show the value of systematic testing and monitoring. These case studies illustrate why operational discipline is essential for responsible LLM deployment.}
 \label{tab:ch01_early_llmops_cases}
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.25}
@@ -1452,7 +1450,7 @@ This introductory chapter has sketched the landscape of LLMOps and introduced \i
 \end{itemize}
 
 \end{tcolorbox}
-\caption{What to watch in LLMOps (quick reference).}
+\caption{LLMOps monitoring checklist enables proactive operations. This quick reference highlights key signals (latency, cost, quality, safety) that teams must track to maintain production reliability. Regular monitoring of these signals enables early detection of regressions and supports data-driven optimization decisions.}
 \label{fig:ch01_llmops_quick_checklist}
 \end{figure}
 

@@ -113,7 +113,7 @@ A production RAG system consists of \emph{offline} components (ingestion, cleani
 \draw[arrow] (gen) -- (ans);
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Query-time RAG pipeline. Retrieval supplies evidence; reranking and filtering improve top-$k$ quality; the context packer constructs a token-budgeted prompt with source identifiers; the generator produces an answer that can cite the retrieved chunks.}
+\caption{Query-time RAG pipeline design determines answer quality and citation fidelity. Retrieval supplies evidence; reranking and filtering improve top-$k$ quality; the context packer constructs a token-budgeted prompt with source identifiers; the generator produces an answer that can cite the retrieved chunks. This pipeline structure enables grounded, verifiable responses by preserving source attribution throughout the generation process.}
 \label{fig:ch08_rag_querytime}
 \end{figure}
 
@@ -346,7 +346,7 @@ Ingestion quality and freshness determine RAG quality. Treat ingestion as a vers
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Ingestion pipeline for RAG: data flows from raw sources through preprocessing, chunking, deduplication, and metadata enrichment before being stored as embeddings in a vector database.}
+\caption{Ingestion pipeline design determines RAG freshness and retrieval quality. Proper preprocessing, chunking, and deduplication prevent stale data and duplicate evidence, while metadata enrichment enables filtering and provenance tracking. This pipeline structure enables reliable, auditable RAG systems.}
 \label{fig:ch08_ingestion_pipeline}
 \end{figure}
 
@@ -457,7 +457,7 @@ Vector DB selection is an engineering trade-off across recall, latency, and oper
 
 \begin{sidewaystable}
 \centering
-\caption{Comparison of Vector Index Types for RAG Workloads}
+\caption{Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints.}
 \label{tab:ch08_vector_index_comparison_landscape}
 \begin{threeparttable}
 \small
@@ -572,7 +572,7 @@ Dense retrieval provides semantic coverage, sparse retrieval provides exact-matc
 \begin{table}[t]
 \centering
 \begin{threeparttable}
-\caption{Comparison of Retriever Strategies in RAG}
+\caption{Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements.}
 \label{tab:ch08_retriever_strategies}
 \renewcommand{\arraystretch}{1.15}
 \setlength{\tabcolsep}{4pt}
@@ -858,7 +858,7 @@ This section illustrates an evidence-first RAG design for \ishtar{}, a crisis in
 \draw[arrow] (ret) -- (gen);
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{\ishtar{} RAG pipeline at a glance. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release.}
+\caption{\ishtar{} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users.}
 \label{fig:ch08_ishtar_rag}
 \end{figure}
 

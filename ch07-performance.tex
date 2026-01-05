@@ -75,7 +75,7 @@ The following sections explore concrete strategies for optimization across three
 };
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Representative performance improvements from widely deployed techniques, based on published benchmarks and production deployments. Actual gains depend on model size, hardware, and traffic mix. See Sections~\ref{sec:perf-model}--\ref{sec:perf-system} and Section~\ref{sec:perf-prompt} for detailed discussions and implementation guidance.}
+\caption{Performance optimization techniques deliver substantial gains but require careful selection. Quantization, batching, and caching can each provide 2--4$\times$ improvements, but gains are multiplicative and depend on workload characteristics. Understanding these improvement ranges helps teams prioritize optimization efforts and set realistic performance targets. See Sections~\ref{sec:perf-model}--\ref{sec:perf-system} and Section~\ref{sec:perf-prompt} for detailed discussions and implementation guidance.}
 \label{fig:ch07_opt_gains_callout}
 \end{figure}
 
@@ -106,7 +106,7 @@ The following sections explore concrete strategies for optimization across three
 \end{axis}
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Illustrative example of latency improvements after batching, KV-cache engineering, and quantization. Absolute values vary by model, hardware, and traffic mix.}
+\caption{Optimization techniques deliver substantial latency improvements when applied systematically. Batching amortizes overhead, KV-cache engineering reduces memory access, and quantization increases compute speed. Combined, these techniques can reduce latency by 2--4$\times$, but gains are multiplicative and depend on workload characteristics. Absolute values vary by model, hardware, and traffic mix.}
 \label{fig:ch07_latency_before_after}
 \end{figure}
 
@@ -159,7 +159,7 @@ In modern LLMOps, 8-bit quantization is widely adopted for inference, and resear
 
 \begin{table}
 \centering
-\caption{Comparison of common quantization schemes for large language models.}
+\caption{Quantization scheme selection trades off accuracy, speed, and memory. INT8 provides 2$\times$ speedup with minimal accuracy loss; 4-bit quantization enables 4$\times$ memory reduction but requires calibration; FP8 offers native hardware support on H100. Choose based on model sensitivity, hardware capabilities, and accuracy requirements.}
 \label{tab:ch07_quantization_comparison}
 \setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\textwidth}{@{}l
@@ -226,7 +226,7 @@ From a production perspective, parameter-efficient fine-tuning is valuable becau
 
 \begin{sidewaystable}
 \centering
-\caption{Summary of model compression and adaptation techniques for LLM deployment.}
+\caption{Compression and adaptation techniques enable efficient LLM deployment. Quantization reduces memory and increases speed; distillation transfers knowledge to smaller models; LoRA enables parameter-efficient fine-tuning. Choose based on deployment constraints, accuracy requirements, and update frequency.}
 \label{tab:ch07_compression_summary}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.1}
@@ -333,7 +333,7 @@ Low to moderate; can affect long-context fidelity. &
 
 \begin{table}[htbp]
 \centering
-\caption{Approximate parameter memory vs.\ precision for 13B and 70B models (weights only).}
+\caption{Precision selection determines memory requirements and deployment feasibility. Lower precision (INT8, 4-bit) dramatically reduces memory, enabling larger models on fixed hardware or higher batch sizes. However, precision reduction may impact accuracy, requiring careful evaluation. Understanding these trade-offs enables teams to optimize memory usage while maintaining quality.}
 \label{tab:ch07_mem_vs_precision}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
@@ -373,7 +373,7 @@ Low to moderate; can affect long-context fidelity. &
 };
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Memory accounting at a glance. Use precision $b$ from Table~\ref{tab:quantization-comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets.}
+\caption{Memory accounting enables capacity planning and batch size optimization. Use precision $b$ from Table~\ref{tab:quantization-comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets. This accounting prevents OOM errors and helps teams understand memory headroom for batching and context length.}
 \label{fig:ch07_memory_cheatsheet}
 \end{figure}
 
@@ -408,7 +408,7 @@ PagedAttention is especially valuable in use cases like \ishtar{} if they need t
 
 \begin{table}[htbp]
 \centering
-\caption{Illustrative inference engine benchmarks (single GPU). Values are representative examples based on typical production deployments; actual performance depends on model size, hardware configuration, and workload characteristics.}
+\caption{Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints.}
 \label{tab:ch07_engine_bench}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
@@ -475,7 +475,7 @@ That said, batching has trade-offs: it increases the latency for each individual
 \end{axis}
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Representative throughput scaling with batch size. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. In production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}
+\caption{Throughput scaling with batch size reveals optimization opportunities and limits. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. Understanding this saturation point helps teams optimize batch sizes, but in production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}
 \label{fig:ch07_throughput_vs_batch}
 \end{figure}
 
@@ -627,7 +627,7 @@ In \ishtar{}’s deployment, we configured our GPU workers to use two CUDA strea
 
 \begin{table}[htbp]
 \centering
-\caption{Illustrative kernel-time breakdown before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute). Percentages vary by model, sequence length, and runtime.}
+\caption{Kernel-time profiling identifies optimization opportunities and validates improvements. Comparing breakdowns before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute) reveals which optimizations deliver the largest gains. This profiling guides optimization prioritization and helps teams understand where further improvements are possible. Percentages vary by model, sequence length, and runtime.}
 \label{tab:ch07_profiling_breakdown}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
@@ -712,7 +712,7 @@ x   y
 \end{axis}
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Latency CDF with p50/p95/p99 markers. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix.}
+\caption{Latency CDF reveals tail latency behavior critical for user experience. While p50 latency determines average user experience, p95/p99 percentiles expose tail latency that frustrates users and violates SLOs. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix, making CDF analysis essential for capacity planning and optimization prioritization.}
 \label{fig:ch07_latency_cdf}
 \end{figure}
 
@@ -739,7 +739,7 @@ x   y
 \end{axis}
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Illustrative cost per 1k tokens across engines under a simple hourly-cost model (see Section~\ref{sec:perf-cost-per-token}). Absolute values depend on hardware pricing, utilization, and batch/sequence lengths.}
+\caption{Cost per token varies significantly across inference engines and deployment configurations. Engine selection, hardware choice, and utilization levels can create 2--5$\times$ cost differences. When cost differences exceed 30\%, engine choice becomes a primary cost optimization lever, especially at scale. See Section~\ref{sec:perf-cost-per-token} for detailed cost modeling. Absolute values depend on hardware pricing, utilization, and batch/sequence lengths.}
 \label{fig:ch07_cost_per_1k_by_engine}
 \end{figure}
 
@@ -821,7 +821,7 @@ Performance optimization is not a one-time task—it is an ongoing process that 
 
 \begin{table}[htbp]
 \centering
-\caption{\ishtar{} optimization KPIs: before vs.\ after. Values are representative of the case study scenario and depend on workload and hardware.}
+\caption{\ishtar{} optimization KPIs demonstrate systematic improvement through targeted techniques. Comparing before vs.\ after metrics (latency, throughput, cost) validates that optimization strategies deliver measurable gains. These KPIs provide benchmarks for similar deployments and illustrate how systematic optimization achieves production goals. Values are representative of the case study scenario and depend on workload and hardware.}
 \label{tab:ch07_ishtar_kpis}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.12}
@@ -992,7 +992,7 @@ These formulas link low-level engineering decisions (e.g., quantization, batchin
 
 \begin{table}[htbp]
 \centering
-\caption{Comparison of Architectural Variants for Cloud Deployment}
+\caption{Architectural variant selection determines cost, latency, and operational complexity. Different deployment patterns (serverless, containerized, edge) optimize for different scenarios: serverless reduces operational overhead but may increase latency; containerized provides control but requires infrastructure management. Choose based on traffic patterns, latency requirements, and team capabilities.}
 \label{tab:ch07_arch_comparison}
 \renewcommand{\arraystretch}{1.15}
 \setlength{\tabcolsep}{4pt}
@@ -1026,7 +1026,7 @@ A number of specialized inference engines have been developed to serve LLMs effi
 
 \begin{table}[htbp]
   \centering
-  \caption{Qualitative comparison of LLM serving runtimes (decoder-only focus).}
+  \caption{Serving runtime selection determines operational complexity and performance characteristics. Different runtimes optimize for different deployment scenarios: some prioritize ease of use, others focus on maximum throughput or lowest latency. Choose based on team expertise, scale requirements, and operational constraints.}
   \label{tab:ch07_runtimes}
   \renewcommand{\arraystretch}{1.15}
   \setlength{\tabcolsep}{4pt}

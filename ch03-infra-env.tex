@@ -98,7 +98,7 @@ NVIDIA GPUs remain the dominant hardware for LLM workloads in 2024–2025. The N
 
 \begin{table}[t]
   \centering
-  \caption{Representative GPU accelerators for LLM workloads (throughput approximate for OPT-13B inference).}
+  \caption{GPU accelerator selection determines cost, throughput, and deployment feasibility. Different accelerators optimize for different model sizes and workloads: A100 provides balanced performance, H100 offers higher throughput and FP8 support, L4 enables cost-effective smaller models. Choose based on model size, traffic volume, and budget constraints.}
   \label{tab:ch03_gpucompare}
   \begin{tabular}{lcccc}
     \hline
@@ -146,7 +146,7 @@ From an infrastructure owner's perspective, tracking cost per 1k tokens is very 
 
 \begin{table}[t]
   \centering
-  \caption{Cost per thousand tokens comparison: A100 vs.\ H100 under different utilization scenarios.}
+  \caption{Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%.}
   \label{tab:ch03_cost_per_token}
   \small
   \setlength{\tabcolsep}{10pt}
@@ -311,7 +311,7 @@ In summary, it is best to operate GPUs at a batch size that still meets your lat
     \end{axis}
   \end{tikzpicture}
   \end{llmfigbox}
-  \caption{Throughput vs.\ batch size (schematic). Increasing batch size initially yields large throughput gains (e.g., 3$\times$ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck.}
+  \caption{Throughput vs.\ batch size trade-off determines capacity planning and latency SLOs. Increasing batch size initially yields large throughput gains (e.g., 3$\times$ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck. Understanding this saturation point helps teams optimize batch sizes for their latency requirements and hardware constraints.}
   \label{fig:ch03_batchtradeoff}
 \end{figure}
 
@@ -343,7 +343,7 @@ The effective cost per million tokens is calculated using Equation~\ref{eq:costp
 
 \begin{table}[t]
   \centering
-  \caption{Approximate cost per million tokens across representative accelerators. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing. Lower is better.}
+  \caption{Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times$, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing.}
   \label{tab:ch03_costcompare}
   \begin{tabular}{lccc}
     \hline
@@ -454,7 +454,7 @@ In practice, LLMOps stacks often combine these tools. For instance, \ishtar{} us
 
 \begin{table}[t]
   \centering
-  \caption{Comparison of Infrastructure-as-Code tools (selected for LLMOps).}
+  \caption{Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements.}
   \label{tab:ch03_iaccompare}
   \small
   \setlength{\tabcolsep}{8pt}
@@ -677,7 +677,7 @@ The landscape of LLM serving is rapidly evolving. By combining robust serving fr
 
 \begin{table}[t]
 \centering
-\caption{Comparison of selected LLM serving frameworks. Strengths and limitations reflect typical deployments in 2024--2025.}
+\caption{Serving framework selection determines throughput, latency, and operational complexity. Different frameworks optimize for different scenarios: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency inference, and TGI balances ease of use with performance. Choose based on traffic patterns, latency requirements, and team expertise.}
 \label{tab:ch03_servingcompare}
 \renewcommand{\arraystretch}{1.25}
 \setlength{\tabcolsep}{6pt}
@@ -880,7 +880,7 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
   \end{llmfigbox}
   % } % end resizebox if you enable it above
 
-  \caption{Cloud-native deployment architecture for LLMOps. The diagram illustrates elastic GPU scaling across multiple availability zones, integration with managed services (queues, vector databases, object storage), secure networking through API gateways and private subnets, and disaster recovery capabilities. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls.}
+  \caption{Cloud-native deployment architecture enables scalable, resilient LLMOps. Elastic GPU scaling across multiple availability zones ensures availability; integration with managed services (queues, vector databases, object storage) reduces operational overhead; secure networking through API gateways and private subnets protects sensitive data; disaster recovery capabilities ensure business continuity. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls. This architecture pattern balances scalability, security, and operational simplicity.}
   \label{fig:ch03_cloud_native_deployment}
 \end{figure}
 
@@ -1074,7 +1074,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Balanced schematic of deployment patterns: \textbf{Cloud-Native} (left), \textbf{Hybrid} (middle), and \textbf{Multi-Cluster} (right).}
+\caption{Deployment pattern selection determines operational complexity and cost structure. \textbf{Cloud-Native} (left) maximizes elasticity and reduces operational overhead but may increase costs at scale. \textbf{Hybrid} (middle) balances on-premise control with cloud flexibility, optimizing for cost and compliance. \textbf{Multi-Cluster} (right) enables geographic distribution and failover but increases management complexity. Choose based on scale, compliance requirements, and operational capabilities.}
 \label{fig:ch03_deploy_patterns_balanced}
 \end{figure}
 
@@ -1192,7 +1192,7 @@ Future plans include a European cluster for GDPR compliance and model routing (e
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Hybrid Ishtar AI infrastructure. On-prem L4 GPUs handle embeddings and preprocessing; AWS EKS hosts baseline A100s and autoscaling H100s for summarization. Terraform, ArgoCD, and Kubernetes manage deployments and scaling.}
+\caption{Hybrid infrastructure enables cost optimization and operational flexibility for \ishtar{}. On-prem L4 GPUs handle embeddings and preprocessing, reducing cloud costs for predictable workloads; AWS EKS hosts baseline A100s and autoscaling H100s for summarization, providing elasticity for variable traffic. Terraform, ArgoCD, and Kubernetes manage deployments and scaling, demonstrating how infrastructure-as-code and GitOps enable reliable hybrid operations.}
 \label{fig:ch03_ishtar_infra}
 \end{figure}
 

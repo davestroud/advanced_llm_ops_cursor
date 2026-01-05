@@ -154,7 +154,7 @@ Teams should therefore prefer multi-agent designs when there is a clear need for
 
 \begin{table}[t]
 \centering
-\caption{Monolithic vs.\ multi-agent LLM architectures: operational trade-offs.}
+\caption{Architecture choice (monolithic vs.\ multi-agent) determines operational complexity and reliability. Multi-agent systems enable specialization, explicit verification gates, and fault isolation, but introduce coordination overhead. Choose monolithic for simple tasks with low verification needs; choose multi-agent when specialization, safety gates, or tool-augmented workflows justify the added complexity.}
 \label{tab:ch09_monolithic_vs_multiagent}
 \small
 \setlength{\tabcolsep}{5pt}
@@ -296,7 +296,7 @@ graph.add_conditional_edge(
 \draw[->] (mem) -- (tools);
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Control-plane and data-plane separation in an agentic LLM architecture. The orchestrator enforces routing decisions, budgets, and policies; agents implement scoped capabilities; shared memory provides a consistent state substrate; external tools provide grounded capabilities.}
+\caption{Control-plane and data-plane separation enables reliable multi-agent orchestration. The orchestrator enforces routing decisions, budgets, and policies (control plane), while agents implement scoped capabilities and shared memory provides a consistent state substrate (data plane). This separation allows policy changes without modifying agent logic, enabling auditable, testable multi-agent systems. External tools provide grounded capabilities that extend agent functionality.}
 \label{fig:ch09_agentic_control_plane}
 \end{figure}
 
@@ -401,7 +401,7 @@ In \ishtar{}, the retrieval agent emits a context pack with citation IDs (e.g., 
 
 \begin{table}[t]
 \centering
-\caption{Example interface contracts for core \ishtar{} agents. Contracts define inputs/outputs, invariants, and operational metrics.}
+\caption{Agent contracts enable reliable multi-agent orchestration. By specifying inputs/outputs, invariants, and metrics, contracts allow deterministic validation, error handling, and debugging. This contract-first approach converts non-deterministic agent behavior into testable, auditable production workflows.}
 \label{tab:ch09_ishtar_agent_contracts}
 \small
 \setlength{\tabcolsep}{5pt}
@@ -642,7 +642,7 @@ Frameworks like LangGraph \cite{langchain} provide abstractions that blend these
 
 \begin{table}[t]
 \centering
-\caption{Communication patterns in agentic systems: trade-offs and typical use.}
+\caption{Communication pattern selection affects system scalability and debuggability. Direct messaging provides predictable latency but tight coupling; message buses enable loose coupling but harder debugging; blackboard architectures support iterative refinement but require coordination. Choose based on system scale, concurrency needs, and operational requirements.}
 \label{tab:ch09_comm_patterns}
 \small
 \setlength{\tabcolsep}{5pt}
@@ -828,10 +828,10 @@ The next section will discuss error handling and exception management in orchest
 \end{tikzpicture}
 \end{llmfigbox}
 
-\caption{Contrasting orchestration strategies in multi-agent systems. 
-(\textbf{a}) \emph{Rule-Based}: fixed, testable pipelines with explicit branches (retrieval → synthesis → verification → safety). 
-(\textbf{b}) \emph{Dynamic (LLM-driven)}: an LLM planner routes tasks at runtime, enabling adaptive flows and feedback. 
-(\textbf{c}) \emph{Hierarchical}: a supervisor delegates to sub-teams (which may orchestrate further sub-agents) and aggregates results. 
+\caption{Orchestration strategy selection determines system adaptability and operational complexity. 
+(\textbf{a}) \emph{Rule-Based}: fixed, testable pipelines with explicit branches (retrieval → synthesis → verification → safety) provide predictability and ease of debugging. 
+(\textbf{b}) \emph{Dynamic (LLM-driven)}: an LLM planner routes tasks at runtime, enabling adaptive flows and feedback but requiring rigorous testing. 
+(\textbf{c}) \emph{Hierarchical}: a supervisor delegates to sub-teams (which may orchestrate further sub-agents) and aggregates results, enabling scalability but increasing coordination overhead. 
 \ishtar{} primarily uses a rule-based pipeline today, with potential evolution toward dynamic and hierarchical patterns for complex scenarios.}
 \label{fig:ch09_orchestration_strategies}
 \end{figure}
@@ -852,7 +852,7 @@ Distinguishing these classes is critical: infrastructure failures warrant retrie
 
 \begin{table}[t]
 \centering
-\caption{Common failure modes in multi-agent systems and recommended orchestrator responses.}
+\caption{Failure taxonomy enables systematic error handling in multi-agent systems. By categorizing failures (infrastructure, schema, semantic, policy, coordination), orchestrators can apply appropriate responses (retry, re-prompt, escalate, abort). This taxonomy converts ad hoc error handling into a testable, auditable operational policy.}
 \label{tab:ch09_agent_failure_taxonomy}
 \small
 \setlength{\tabcolsep}{5pt}
@@ -988,7 +988,7 @@ where $m$ is the number of model invocations. This makes \emph{budget governance
 
 \begin{table}[t]
 \centering
-\caption{Core performance metrics for agentic systems and their operational interpretation.}
+\caption{Performance metrics drive capacity planning and cost governance in agentic systems. End-to-end latency, token usage, tool-call counts, and retry rates reveal bottlenecks and cost drivers. Monitoring these metrics enables proactive scaling, budget enforcement, and optimization decisions.}
 \label{tab:ch09_agent_performance_metrics}
 \small
 \setlength{\tabcolsep}{5pt}
@@ -1119,7 +1119,7 @@ Industry guidance such as the OWASP Top 10 for LLM Applications provides a usefu
 
 \begin{table}[t]
 \centering
-\caption{Representative threats in agentic architectures and practical mitigations.}
+\caption{Threat modeling identifies security risks unique to agentic systems. Prompt injection, tool misuse, and data exfiltration require defense-in-depth controls (input sanitization, least-privilege tool access, output filtering). This threat model guides security architecture decisions and audit requirements.}
 \label{tab:ch09_agentic_threats}
 \small
 \setlength{\tabcolsep}{5pt}
@@ -1247,7 +1247,7 @@ To ground the concepts above, let's walk through the orchestration pipeline of I
 \draw[->, dashed] (orch) -- (safety);
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{\ishtar{} multi-agent pipeline with explicit handoffs and artifacts. The orchestrator enforces workflow order, budgets, and policy gates; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations.}
+\caption{\ishtar{} multi-agent pipeline demonstrates production-ready orchestration patterns. The orchestrator enforces workflow order, budgets, and policy gates, ensuring reliable execution; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations. This pipeline structure enables traceability, error handling, and quality assurance by making each handoff explicit and verifiable.}
 \label{fig:ch09_ishtar_agent_pipeline}
 \end{figure}
 

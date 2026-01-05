@@ -65,7 +65,7 @@ A cornerstone of LLM CI/CD is integrating automated evaluation suites into the p
 
 \begin{table}[t]
 \centering
-\caption{Design principles for effective continuous evaluation in LLM CI/CD pipelines.}
+\caption{Continuous evaluation principles enable reliable LLM deployments. Automated testing, staged evaluation, and feedback loops convert non-deterministic model behavior into measurable quality gates. These principles ensure that prompt changes, model updates, and retrieval modifications are validated before production release.}
 \label{tab:ch04_eval_design_principles}
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
@@ -85,7 +85,7 @@ To operationalize these principles, evaluation pipelines are typically organized
 
 \begin{table}[t]
 \centering
-\caption{Staged evaluation in LLM CI/CD pipelines, showing objectives, metrics, and representative tools at each stage.}
+\caption{Staged evaluation enables systematic quality assurance in LLM CI/CD pipelines. Each stage (unit tests, integration tests, canary deployment, shadow mode) runs distinct suites and gates, catching regressions at the earliest possible point. This staged approach reduces risk by validating changes incrementally before full production release. Objectives, metrics, and representative tools at each stage are shown.}
 \label{tab:ch04_eval_stages}
 
 \setlength{\tabcolsep}{4pt}         % default 6pt; tighter to fit
@@ -185,7 +185,7 @@ The staged evaluation approach creates a continuous loop that feeds production i
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Continuous evaluation as a staged CI/CD loop. Each stage runs distinct suites and gates; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline.}
+\caption{Continuous evaluation creates a feedback loop that improves system quality over time. Each stage runs distinct suites and gates, validating changes incrementally; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline. This closed-loop approach converts production observations into regression tests, ensuring that failures become learning opportunities rather than recurring incidents.}
 \label{fig:ch04_eval_stages_pipeline}
 \end{figure}
 
@@ -268,7 +268,7 @@ Deploying LLMs requires staged risk mitigation:
 
 \begin{table}[ht]
 \centering
-\caption{Staged risk mitigation strategies for LLM deployments.}
+\caption{Staged risk mitigation reduces deployment risk through incremental validation. Different stages (pre-commit, pre-deploy, canary, full rollout) apply progressively stronger validation, catching issues before they affect all users. This staged approach enables teams to deploy confidently by validating changes at multiple checkpoints, reducing the blast radius of any regressions.}
 \label{tab:ch04_deployment_risk_mitigation}
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
@@ -365,7 +365,7 @@ Modern observability platforms bridge CI/CD with runtime monitoring. They provid
 
 \begin{table}[t]
   \centering
-  \caption{Notable observability tools for LLM CI/CD}
+  \caption{Observability tool selection determines debugging speed and incident response capability. Different tools specialize in different aspects: tracing (OpenTelemetry), prompt management (LangSmith), and evaluation (LangFuse). Choose based on existing infrastructure, team needs, and integration requirements.}
   \label{tab:ch04_obs_tools}
   
   \begin{tabularx}{\textwidth}{l X}

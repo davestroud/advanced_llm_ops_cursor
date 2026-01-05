@@ -114,7 +114,7 @@ Scalability & Breaking-news bursts & GPU autoscaling; backpressure; priority sch
 Cost control & Predictable unit economics & Track cost/query; scale-to-zero for non-critical workloads; model routing where feasible. \\
 \bottomrule
 \end{tabularx}
-\caption{Representative \ishtar{} end-to-end requirements used as design targets.}
+\caption{End-to-end requirements drive architectural decisions and operational priorities. \ishtar{}'s requirements emphasize latency (sub-second responses), accuracy (verified facts), and scalability (traffic surges). These requirements determine infrastructure choices, evaluation strategies, and monitoring priorities throughout the system design.}
 \label{tab:ch12_ishtar_requirements}
 \end{table}
 
@@ -196,7 +196,7 @@ OpenTelemetry traces + Prometheus metrics + audit logs.};
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{End-to-end \ishtar{} architecture. Background ingestion continuously updates a document store and vector index. Online query handling performs authenticated retrieval-augmented generation, followed by verification and safety post-processing, under end-to-end tracing and monitoring.}
+\caption{End-to-end \ishtar{} architecture demonstrates production-ready LLMOps integration. Background ingestion continuously updates a document store and vector index, ensuring freshness. Online query handling performs authenticated retrieval-augmented generation, followed by verification and safety post-processing, under end-to-end tracing and monitoring. This architecture illustrates how ingestion, retrieval, orchestration, and observability integrate into a complete production system.}
 \label{fig:ch12_ishtar_architecture_ch12}
 \end{figure}
 
@@ -663,7 +663,7 @@ Hallucination rate & $\sim$5\% & Post-hoc review; $\sim$40\% lower vs.\ non-RAG 
 Deployment cadence & $\sim$2/week & Evaluation-gated releases; no rollbacks in the measured window. \\
 \bottomrule
 \end{tabularx}
-\caption{Representative \ishtar{} performance outcomes after end-to-end implementation.}
+\caption{Performance outcomes validate architectural decisions and optimization strategies. \ishtar{}'s results demonstrate that systematic optimization (quantization, caching, autoscaling) achieves target latency and cost goals. These outcomes provide benchmarks for similar LLM deployments and validate the end-to-end LLMOps approach.}
 \label{tab:ch12_ishtar_outcomes}
 \end{table}
 
