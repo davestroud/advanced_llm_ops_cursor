@@ -53,37 +53,35 @@ Finally, we address robustness and resilience, show how to operationalize regres
   \newcounter{llmlisting}[chapter]
   \renewcommand{\thellmlisting}{\thechapter.\arabic{llmlisting}}
 }{}
-\makeatother
-
-\newenvironment{llmalgobox}[1]{%
-  \refstepcounter{llmalgorithm}%
-  \begin{tcolorbox}[
-    title={\textbf{Algorithm \thellmalgorithm: #1}},
-    colback=gray!4,
-    colframe=gray!60!black,
-    colbacktitle=gray!20,
-    coltitle=black,
-    fonttitle=\bfseries,
-    boxrule=0.6pt,
-    arc=3pt,
-    left=3mm, right=3mm, top=2mm, bottom=2mm
-  ]
-}{\end{tcolorbox}}
-
-\newenvironment{llmlistingbox}[1]{%
+\provideenvironment{llmalgobox}[1]{%
+    \refstepcounter{llmalgorithm}%
+    \begin{tcolorbox}[
+      title={\textbf{Algorithm \thellmalgorithm: #1}},
+      colback=gray!4,
+      colframe=gray!60!black,
+      colbacktitle=gray!20,
+      coltitle=black,
+      fonttitle=\bfseries,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=3mm, right=3mm, top=2mm, bottom=2mm
+    ]
+  }{\end{tcolorbox}}
+\provideenvironment{llmlistingbox}[1]{%
   \refstepcounter{llmlisting}%
-  \begin{tcolorbox}[
-    title={\textbf{Listing \thellmlisting: #1}},
-    colback=black!2,
-    colframe=black!50,
-    colbacktitle=black!12,
-    coltitle=black,
-    fonttitle=\bfseries,
-    boxrule=0.6pt,
-    arc=3pt,
-    left=3mm, right=3mm, top=2mm, bottom=2mm
-  ]
-}{\end{tcolorbox}}
+    \begin{tcolorbox}[
+      title={\textbf{Listing \thellmlisting: #1}},
+      colback=black!2,
+      colframe=black!50,
+      colbacktitle=black!12,
+      coltitle=black,
+      fonttitle=\bfseries,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=3mm, right=3mm, top=2mm, bottom=2mm
+    ]
+  }{\end{tcolorbox}}
+\makeatother
 
 
 \section{Introduction}
