@@ -5,12 +5,12 @@
 % ----------------------------
 % Chapter 9 — Abstract (online)
 % ----------------------------
-\abstract*{This chapter examines multi-agent architectures as a mechanism for extending LLM systems beyond single-turn generation into coordinated, tool-augmented workflows. We introduce core components—specialized agents, an orchestration layer, shared memory (episodic and semantic), and external tools/APIs—and show how these elements enable task decomposition, modularity, and verifiable handoffs. We compare communication patterns (direct messaging, message bus, and blackboard-style collaboration) and analyze orchestration strategies ranging from rule-based pipelines to dynamic (LLM-driven) and hierarchical controllers, emphasizing the trade-off between adaptability and auditability. Because agentic systems introduce new failure modes, we detail error handling and fallback design, performance and cost governance (loop detection, step budgets), and security controls such as least-privilege tool access and traceable policy enforcement. The Ishtar AI case study illustrates an operationally grounded agent pipeline (ingestion → analysis → verification → conversation) and highlights how observability and contract testing convert agent coordination from ad hoc behavior into a manageable production system.}
+\abstract*{This chapter examines multi-agent architectures as a mechanism for extending LLM systems beyond single-turn generation into coordinated, tool-augmented workflows. We introduce core components—specialized agents, an orchestration layer, shared memory (episodic and semantic), and external tools/APIs—and show how these elements enable task decomposition, modularity, and verifiable handoffs. We compare communication patterns (direct messaging, message bus, and blackboard-style collaboration) and analyze orchestration strategies ranging from rule-based pipelines to dynamic (LLM-driven) and hierarchical controllers, emphasizing the trade-off between adaptability and auditability. Because agentic systems introduce new failure modes, we detail error handling and fallback design, performance and cost governance (loop detection, step budgets), and security controls such as least-privilege tool access and traceable policy enforcement. The Ishtar AI case study illustrates an operationally grounded agent pipeline (ingestion → retrieval → synthesis → verification → safety) and highlights how observability and contract testing convert agent coordination from ad hoc behavior into a manageable production system.}
 
 \epigraph{\emph{"One agent can be powerful; a team of agents can be unstoppable."}}{David Stroud}
 
 % --- Reader-visible abstract (PDF) ---
-\textbf{Abstract} This chapter examines multi-agent architectures as a mechanism for extending LLM systems beyond single-turn generation into coordinated, tool-augmented workflows. We introduce core components—specialized agents, an orchestration layer, shared memory (episodic and semantic), and external tools/APIs—and show how these elements enable task decomposition, modularity, and verifiable handoffs. We compare communication patterns (direct messaging, message bus, and blackboard-style collaboration) and analyze orchestration strategies ranging from rule-based pipelines to dynamic (LLM-driven) and hierarchical controllers, emphasizing the trade-off between adaptability and auditability. Because agentic systems introduce new failure modes, we detail error handling and fallback design, performance and cost governance (loop detection, step budgets), and security controls such as least-privilege tool access and traceable policy enforcement. The Ishtar AI case study illustrates an operationally grounded agent pipeline (ingestion → analysis → verification → conversation) and highlights how observability and contract testing convert agent coordination from ad hoc behavior into a manageable production system.
+\textbf{Abstract} This chapter examines multi-agent architectures as a mechanism for extending LLM systems beyond single-turn generation into coordinated, tool-augmented workflows. We introduce core components—specialized agents, an orchestration layer, shared memory (episodic and semantic), and external tools/APIs—and show how these elements enable task decomposition, modularity, and verifiable handoffs. We compare communication patterns (direct messaging, message bus, and blackboard-style collaboration) and analyze orchestration strategies ranging from rule-based pipelines to dynamic (LLM-driven) and hierarchical controllers, emphasizing the trade-off between adaptability and auditability. Because agentic systems introduce new failure modes, we detail error handling and fallback design, performance and cost governance (loop detection, step budgets), and security controls such as least-privilege tool access and traceable policy enforcement. The Ishtar AI case study illustrates an operationally grounded agent pipeline (ingestion → retrieval → synthesis → verification → safety) and highlights how observability and contract testing convert agent coordination from ad hoc behavior into a manageable production system.
 
 \begin{tcolorbox}[
   title={\textbf{Chapter Overview}},
@@ -39,11 +39,93 @@ We then address error handling, performance and cost governance, security contro
 \end{itemize}
 \end{tcolorbox}
 
+
+
+% ------------------------------------------------------------
+% Chapter-local numbered boxes for Algorithms and Listings
+% (Defined here to avoid preamble dependencies.)
+% ------------------------------------------------------------
+\makeatletter
+\@ifundefined{c@llmalgorithm}{%
+  \newcounter{llmalgorithm}[chapter]
+  \renewcommand{\thellmalgorithm}{\thechapter.\arabic{llmalgorithm}}
+}{}
+\@ifundefined{c@llmlisting}{%
+  \newcounter{llmlisting}[chapter]
+  \renewcommand{\thellmlisting}{\thechapter.\arabic{llmlisting}}
+}{}
+\makeatother
+
+\newenvironment{llmalgobox}[1]{%
+  \refstepcounter{llmalgorithm}%
+  \begin{tcolorbox}[
+    title={\textbf{Algorithm \thellmalgorithm: #1}},
+    colback=gray!4,
+    colframe=gray!60!black,
+    colbacktitle=gray!20,
+    coltitle=black,
+    fonttitle=\bfseries,
+    boxrule=0.6pt,
+    arc=3pt,
+    left=3mm, right=3mm, top=2mm, bottom=2mm
+  ]
+}{\end{tcolorbox}}
+
+\newenvironment{llmlistingbox}[1]{%
+  \refstepcounter{llmlisting}%
+  \begin{tcolorbox}[
+    title={\textbf{Listing \thellmlisting: #1}},
+    colback=black!2,
+    colframe=black!50,
+    colbacktitle=black!12,
+    coltitle=black,
+    fonttitle=\bfseries,
+    boxrule=0.6pt,
+    arc=3pt,
+    left=3mm, right=3mm, top=2mm, bottom=2mm
+  ]
+}{\end{tcolorbox}}
+
 \section{Introduction}
 \label{sec:ch9-introduction}
 Large Language Model systems can extend their capabilities far beyond single-turn interactions by leveraging multiple specialized agents. In multi-agent architectures, each agent is responsible for a specific set of tasks, and an orchestration layer coordinates their work to achieve complex goals.
 
 This chapter provides a deep dive into multi-agent design patterns, orchestration strategies, communication protocols, and performance considerations, with \ishtar{} as the guiding example. Large Language Model (LLM) applications can be made more robust and scalable by structuring them as multi-agent systems rather than relying on a single monolithic model. In a multi-agent architecture, multiple specialized LLM-driven agents work together under an orchestration layer to handle different aspects of a task. This approach brings benefits in specialization, parallelism, modularity, and fault tolerance that are difficult to achieve with a single agent \cite{blogLangChain,learnMicrosoft}.
+
+\paragraph{From classic MAS to modern LLM agents.}
+The term \emph{multi-agent system} (MAS) predates contemporary LLMs: in classical distributed AI, a collection of autonomous entities coordinate (cooperate or compete) through communication and shared environment interactions \cite{Wooldridge2009MultiAgent}.
+LLM-based agents revive these ideas with a critical difference: the agent ``policy'' is partially implemented by a probabilistic generator.
+This shift increases flexibility (agents can interpret novel instructions) but also increases operational risk (non-deterministic planning, brittle tool invocation, and instruction-following failures).
+Modern agentic prompting methods such as ReAct interleave reasoning and actions to improve tool use and reduce hallucinations \cite{Yao2022ReAct}, while tool-use training methods such as Toolformer expose LMs to explicit API call patterns \cite{Schick2023Toolformer}.
+Frameworks like AutoGen operationalize these patterns via programmable multi-agent conversations and role-specialized agents \cite{Wu2023AutoGen}.
+
+\paragraph{Operational perspective.}
+From an LLMOps standpoint, multi-agent orchestration should be treated as a \emph{distributed system} and a \emph{workflow engine}, not as a purely prompt-engineering exercise.
+Agent boundaries introduce network hops, retries, timeouts, and partial failures; the orchestrator becomes a control plane that must enforce budgets, validate structured outputs, and record a trace of every decision.
+For high-stakes domains such as journalism, these controls are prerequisites for auditability and editorial trust.
+
+\begin{tcolorbox}[
+  title={\textbf{Key Definitions (Chapter 9)}},
+  colback=teal!4,
+  colframe=teal!55!black,
+  colbacktitle=teal!18,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.6pt,
+  arc=3pt,
+  left=3mm, right=3mm, top=2mm, bottom=2mm
+]
+\small
+\begin{description}[leftmargin=1.2em, labelsep=0.6em, itemsep=2pt]
+  \item[\textbf{Agent}] An LLM-powered component with a scoped responsibility, explicit input/output contract, and (optionally) a constrained toolset.
+  \item[\textbf{Orchestrator}] The control component that routes tasks, manages state, enforces budgets/timeouts, and coordinates agent interactions.
+  \item[\textbf{Tool}] A capability external to the LLM (API, database query, code execution, search) invoked through a typed interface.
+  \item[\textbf{Memory}] State persisted across steps, typically split into \emph{episodic} (session/intermediate) and \emph{semantic} (long-term knowledge base) memory.
+  \item[\textbf{Contract}] A machine-checkable specification of inputs, outputs, invariants, and error envelopes that enables validation and deterministic handoffs.
+\end{description}
+\end{tcolorbox}
+
+
 
 \section{Why Multi-Agent Systems?}
 A single LLM can handle many tasks, but multi-agent setups offer significant advantages over monolithic approaches.  
@@ -63,6 +145,39 @@ Key motivations include:
     \item \textbf{Resilience and Fault Tolerance}: Multi-agent systems naturally enable resilience through redundancy and fallback behaviors \cite{v7labs}. If one agent fails or produces low-confidence output, another agent can detect the issue and either retry or invoke a backup agent. For example, a fallback agent might generate a simplified answer if the primary agent fails, or the system can escalate to a human-in-the-loop when automation is insufficient (discussed further in Section~\ref{sec:errorhandling}). \ishtar{} leverages this by including a verification agent that can catch factual errors from the synthesis agent and request corrections.
 \end{itemize}
 
+
+
+\subsection*{Trade-offs and When \emph{Not} to Use Multi-Agent Designs}
+While multi-agent architectures improve modularity and robustness, they also introduce coordination overhead and new operational failure modes.
+An overly fine-grained decomposition can increase end-to-end latency (more network hops and serialization), amplify tail latency, and complicate debugging if state is not explicitly versioned and traced.
+Teams should therefore prefer multi-agent designs when there is a clear need for (i) specialization, (ii) parallel sub-tasks, (iii) explicit verification/safety gates, or (iv) tool-augmented reasoning that benefits from distinct execution policies.
+
+\begin{table}[t]
+\centering
+\caption{Monolithic vs.\ multi-agent LLM architectures: operational trade-offs.}
+\label{tab:ch09_monolithic_vs_multiagent}
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{3.3cm}X X@{}}
+\toprule
+\textbf{Dimension} & \textbf{Monolithic LLM} & \textbf{Multi-agent system} \\
+\midrule
+Modularity & One prompt/model changes can have system-wide effects; limited isolation. & Components are replaceable; changes can be localized behind stable contracts. \\
+\rowcolor{black!3}
+Verification and safety gates & Hard to enforce sequential checks without bloating prompts. & Natural to insert \emph{verification} and \emph{safety} agents as explicit stages. \\
+Debuggability & Few internal boundaries; errors may be opaque and hard to attribute. & Failures can be attributed to a specific agent step, provided contracts and traces are logged. \\
+\rowcolor{black!3}
+Latency and cost & Fewer hops; may be cheaper for simple tasks. & More coordination overhead; requires budget governance and pruning of unnecessary steps. \\
+Governance & Access control and tool use are implicit in the prompt. & Least-privilege tool assignment and policy enforcement can be scoped per agent. \\
+\rowcolor{black!3}
+Scalability & Scaling is tied to a single inference workload. & Individual agents can scale independently (e.g., retrieval vs.\ verification). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent In practice, many production systems adopt a \emph{hybrid} approach: a small number of well-scoped agents (typically 3--8) arranged in a mostly deterministic workflow, with limited dynamic branching where the benefit justifies the additional variance.
+
 In essence, multi-agent systems introduce internal checks and balances, reducing the chance that a single point of failure (one model’s mistake) will propagate directly to the user. By dividing responsibilities among specialized agents and orchestrating their collaboration, we achieve a system that is more robust, scalable, and easier to manage than any single large model alone \cite{learnMicrosoft}.  
 
 The following sections delve into how such systems are constructed and orchestrated in practice, with \ishtar{} AI as a guiding example.
@@ -71,10 +186,133 @@ The following sections delve into how such systems are constructed and orchestra
 
 Designing a multi-agent LLM system involves several core components that together enable agents to work collaboratively and interact with their environment. Figure~1.1 in \emph{Advanced LLMOps} provides a high-level reference architecture for \ishtar{} AI, highlighting key components like the orchestrator (LangGraph router \cite{langchain}), memory layers, and tool integrations. In general, the essential building blocks are:  
 
+
+
+
+
+\subsection{Common Orchestration Patterns in Practice}
+\label{sec:orch-patterns}
+Beyond the high-level categories above, production systems often converge on a small number of recurring coordination patterns.
+These patterns are useful because they expose an explicit \emph{control structure} that can be tested, budgeted, and reasoned about independently of the LLM's internal behavior.
+
+\paragraph{Planner--executor (plan-and-execute).}
+A planner agent proposes a sequence of steps (which agents to invoke, which tools to call), and executor agents carry them out.
+This pattern is particularly effective when a task decomposes naturally into stages (retrieve $\rightarrow$ synthesize $\rightarrow$ verify), or when the system must manage multiple heterogeneous tools.
+HuggingGPT exemplifies this approach: an LLM generates a plan, selects specialist models/tools, executes subtasks, and then summarizes results \cite{Shen2023HuggingGPT}.
+AutoGen generalizes the idea via conversation programming, allowing developers to encode planner/executor roles and iterative tool use \cite{Wu2023AutoGen}.
+
+\paragraph{Critic--reviser (iterative refinement).}
+Many tasks benefit from a second agent whose role is to critique or verify a draft produced by a first agent.
+Reflexion formalizes this as verbal feedback stored in memory to improve subsequent attempts without weight updates \cite{Shinn2023Reflexion}.
+In \ishtar{}, the verification agent and safety agent act as institutionalized critics whose outputs are authoritative.
+
+\paragraph{Search-based deliberation.}
+For complex reasoning or long-horizon decisions, an orchestrator can allocate budget to exploring multiple candidate reasoning paths and selecting the best.
+Tree-of-Thoughts (ToT) frames this as a search over intermediate ``thoughts'' with self-evaluation and backtracking \cite{Yao2023TreeOfThoughts}.
+In practice, ToT-style deliberation can be bounded and applied to high-impact steps (e.g., selecting which sources to trust, or generating alternative hypotheses) rather than applied indiscriminately across the entire workflow.
+
+\begin{llmalgobox}{Budgeted planner--execute--verify loop}
+\label{alg:ch09_budgeted_orchestration}
+\small
+\begin{enumerate}[leftmargin=1.4em, itemsep=2pt]
+  \item \textbf{Input:} user query $q$, policy $P$ (allowed tools/agents), budgets $B$ (max steps, max tokens, max wall time)
+  \item Initialize trace identifiers; create empty shared state $S$
+  \item $plan \leftarrow$ \textsc{PlannerAgent}$(q, S, P)$
+  \item \textbf{For} each $step$ in $plan$ \textbf{while} budget remains:
+    \begin{enumerate}[leftmargin=1.2em, itemsep=1pt]
+      \item Select agent $A \leftarrow step.agent$; enforce $A \in P$
+      \item $out \leftarrow$ \textsc{SafeInvoke}$(A, step.input, B)$ \hfill (schema check, timeout, retry)
+      \item Update shared state $S \leftarrow S \oplus out.artifacts$
+      \item \textbf{If} $out.status =$ \texttt{needs\_replan} \textbf{then} $plan \leftarrow$ \textsc{PlannerAgent}$(q, S, P)$
+      \item \textbf{If} loop detected (same $S$ signature repeats) \textbf{then} abort and escalate to human review
+    \end{enumerate}
+  \item $draft \leftarrow$ \textsc{SynthesisAgent}$(q, S.context\_pack)$
+  \item $verified \leftarrow$ \textsc{VerificationAgent}$(draft, S.context\_pack)$
+  \item $final \leftarrow$ \textsc{SafetyAgent}$(verified)$
+  \item \textbf{Return:} $final$ with citations and trace ID
+\end{enumerate}
+\end{llmalgobox}
+
+\noindent In practice, step (5) is implemented with a small set of deterministic rules (timeouts, schema validation, and policy checks) wrapped around LLM calls.
+This wrapper substantially increases system reliability because it prevents invalid outputs from silently propagating and ensures that dynamic orchestration remains bounded.
+
+\begin{llmlistingbox}{LangGraph-style orchestration sketch (pseudo-code)}
+\label{lst:ch09_langgraph_sketch}
+\begin{verbatim}
+state = {
+  "query": "...",
+  "context_pack": null,
+  "draft": null,
+  "verified": null
+}
+
+graph.add_node("retrieve", RetrievalAgent)
+graph.add_node("synthesize", SynthesisAgent)
+graph.add_node("verify", VerificationAgent)
+graph.add_node("safety", SafetyAgent)
+
+graph.add_edge("retrieve", "synthesize")
+graph.add_edge("synthesize", "verify")
+graph.add_edge("verify", "safety")
+
+# Optional loop: if verification flags issues, route back to synthesis
+graph.add_conditional_edge(
+  "verify",
+  condition=lambda st: st["verified"].status == "needs_review",
+  true_node="synthesize",
+  false_node="safety"
+)
+\end{verbatim}
+\end{llmlistingbox}
+
+\begin{figure}[t]
+\centering
+\begin{llmfigbox}
+\begin{tikzpicture}[node distance=1.2cm and 1.7cm, every node/.style={font=\small}]
+\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm] (ui) {User /\\Client};
+
+\node[draw, rounded corners, align=center, minimum width=3.8cm, minimum height=1.0cm, below=of ui] (orch) {Orchestrator\\(routing, budgets, policy)};
+
+\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm, left=of orch] (retr) {Retrieval\\Agent};
+\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm, right=of orch] (synth) {Synthesis\\Agent};
+
+\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm, below=of retr] (ver) {Verification\\Agent};
+\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm, below=of synth] (safe) {Safety\\Agent};
+
+\node[draw, rounded corners, align=center, minimum width=3.3cm, minimum height=0.9cm, below=of orch, yshift=-1.0cm] (mem) {Shared Memory\\(episodic + semantic)};
+
+\node[draw, rounded corners, align=center, minimum width=3.3cm, minimum height=0.9cm, below=of mem] (tools) {External Tools\\(search, DBs, APIs)};
+
+\draw[->] (ui) -- (orch);
+\draw[->] (orch) -- (retr);
+\draw[->] (orch) -- (synth);
+\draw[->] (retr) -- (ver);
+\draw[->] (synth) -- (safe);
+\draw[->] (orch) -- (mem);
+\draw[->] (retr) -- (mem);
+\draw[->] (synth) -- (mem);
+\draw[->] (ver) -- (mem);
+\draw[->] (safe) -- (mem);
+\draw[->] (mem) -- (tools);
+\end{tikzpicture}
+\end{llmfigbox}
+\caption{Control-plane and data-plane separation in an agentic LLM architecture. The orchestrator enforces routing decisions, budgets, and policies; agents implement scoped capabilities; shared memory provides a consistent state substrate; external tools provide grounded capabilities.}
+\label{fig:ch09_agentic_control_plane}
+\end{figure}
+
 \subsection{Agents}
 An agent is an LLM-powered process with defined inputs, outputs, and responsibilities. Each agent encapsulates a particular capability or role. It typically consists of a tailored prompt (or fine-tuned model), access to tools or knowledge, and logic to transform inputs into outputs. For example, one agent might be a “Summarizer” that ingests documents and produces summaries, while another might be a “Translator” converting text between languages.  
 
-Agents often adopt the ReAct paradigm or similar frameworks to decide whether to invoke tools, query other agents, or directly generate answers \cite{huggingfaceAgents,huggingfaceAgents2}. Within a multi-agent system, each agent can be viewed as a specialized worker. Heterogeneous models are often employed: lightweight agents for fast tasks and larger models for complex reasoning. Frameworks such as LangChain \cite{blogLangChain} and Hugging Face Transformers facilitate wrapping different models and tools into agent interfaces \cite{huggingfaceTransformers}. Hugging Face's Transformers Agents, for example, define an agent as an LLM combined with a suite of tools \cite{huggingfaceAgents3}. LangChain provides agent classes for multi-step workflows \cite{blogLangChain}, and LangGraph extends this capability to connect multiple agents into orchestrated graphs \cite{langchain}.  
+Agents are most effectively operationalized when they are treated as \emph{services with contracts} rather than as free-form ``prompt templates.'' 
+In production, the orchestrator must be able to \emph{validate} an agent response and decide what to do next.
+This typically requires: (i) a structured output envelope (e.g., JSON with fields for \texttt{status}, \texttt{answer}, \texttt{citations}, \texttt{confidence}, and \texttt{next\_action}), (ii) deterministic parsing and schema validation, and (iii) explicit failure semantics that distinguish model uncertainty from infrastructure faults.
+Section~\ref{sec:agent-contracts} develops these interface contracts in detail.
+
+A second design axis is the agent \emph{action space}: what tools the agent is allowed to call, with what arguments, and under what conditions.
+Empirically, restricting an agent's toolset (least privilege) and validating tool arguments (types, ranges, allowlists) reduces both hallucinations and security risk, particularly when agents operate on untrusted retrieved text \cite{Schick2023Toolformer,Greshake2023IndirectPromptInjection}.
+Finally, modern multi-agent frameworks emphasize explicit \emph{role specialization} and programmable interaction patterns (e.g., ``planner'' and ``executor'' roles), which can be implemented either as separate agents or as separate prompting modes within the same service \cite{Wu2023AutoGen,Shen2023HuggingGPT}.
+
+Agents often adopt the ReAct paradigm (interleaving reasoning and actions) or similar frameworks to decide whether to invoke tools, query other agents, or directly generate answers \cite{Yao2022ReAct,Schick2023Toolformer,huggingfaceAgents,huggingfaceAgents2}. Within a multi-agent system, each agent can be viewed as a specialized worker. Heterogeneous models are often employed: lightweight agents for fast tasks and larger models for complex reasoning. Frameworks such as LangChain \cite{blogLangChain} and Hugging Face Transformers facilitate wrapping different models and tools into agent interfaces \cite{huggingfaceTransformers}. Hugging Face's Transformers Agents, for example, define an agent as an LLM combined with a suite of tools \cite{huggingfaceAgents3}. LangChain provides agent classes for multi-step workflows \cite{blogLangChain}, and LangGraph extends this capability to connect multiple agents into orchestrated graphs \cite{langchain}.  
 
 Key properties of agents include:
 \begin{itemize}
@@ -97,6 +335,13 @@ Core responsibilities include:
     \item \textbf{Monitoring and Timeouts}: Detecting errors or latency breaches, retrying or invoking fallback strategies.  
 \end{itemize}
 
+In operational terms, the orchestrator implements a \emph{state machine} over an explicit workflow graph (pipeline, DAG, or graph with loops).
+A well-engineered orchestrator separates \emph{policy} (which agents may run, what tools may be invoked, and what budgets apply) from \emph{mechanism} (how messages and state are transported).
+This separation is essential for compliance and safety reviews, because policies can be inspected and tested independently of model behavior.
+
+Contemporary agent frameworks support increasingly rich orchestration abstractions: declarative graphs (e.g., LangGraph) for stateful routing and loops, and conversable multi-agent patterns (e.g., AutoGen) for role-based dialogue and iterative refinement \cite{Wu2023AutoGen}.
+For long-running or asynchronous tasks (e.g., ingestion, large batch verification), production systems often pair agent orchestration with a workflow engine (such as Temporal or Airflow) to manage retries, schedules, and durable state; the LLM orchestrator then occupies the ``cognitive'' layer while the workflow engine provides durable execution semantics.
+
 Practical orchestrators can be built via workflow engines or frameworks. LangGraph is a prime example: it encodes agents as nodes and transitions as edges, supporting branching, loops, and stateful orchestration \cite{langchain}. In \ishtar{}, the LangGraph Router serves as the orchestration layer, deployed as a service (e.g., FastAPI), routing user queries to retrieval, synthesis, verification, safety, and optional translation agents.  
 
 \subsection{Memory: Episodic and Semantic Memory}
@@ -106,6 +351,14 @@ Memory enables continuity across interactions. Two types are typically employed:
     \item \textbf{Episodic (Short-term) Memory}: Context relevant to the current session, such as conversation history, intermediate outputs, or a blackboard where agents post updates for others to read \cite{emergentmind,emergentmind2}. This ensures synchronization between agents. In \ishtar{}, episodic memory includes recent articles, facts, and active journalist conversations.  
     \item \textbf{Long-term (Semantic) Memory}: Persistent knowledge bases, often vector stores or knowledge graphs, containing ingested documents and embeddings. For instance, \ishtar{} leverages Pinecone or OpenSearch for semantic retrieval during analysis. Long-term memory enables updates without retraining agents—new facts are simply added to the store and retrieved as needed.  
 \end{itemize}
+
+Beyond simple ``conversation history,'' memory plays three distinct roles in agentic systems:
+\textbf{(i) coordination} (a shared blackboard for intermediate artifacts), \textbf{(ii) compression} (summarizing and retaining only salient decisions to fit context limits), and \textbf{(iii) learning-like adaptation} (storing reflections, critiques, or failure notes that shape future behavior).
+For example, the \emph{generative agents} architecture stores observations, synthesizes higher-level reflections, and retrieves those reflections to guide planning \cite{Park2023GenerativeAgents}.
+In production LLMOps, these memory writes should be treated as \emph{data assets}: versioned, access-controlled, and auditable, especially when the memory contains sensitive investigative material.
+
+A practical best practice is to distinguish between \emph{authoritative} state (e.g., retrieved source IDs, verified facts, and policy decisions) and \emph{non-authoritative} state (e.g., model brainstorms or speculative hypotheses).
+Downstream agents should preferentially consume authoritative state to prevent unverified drafts from becoming self-reinforcing ``facts'' through repeated reuse.
 
 Memory management is critical for multi-agent orchestration, ensuring consistent context-sharing. While agents may maintain private caches, shared memory is often preferred to avoid inconsistencies. LangChain provides standardized interfaces such as \texttt{VectorStoreRetriever} and \texttt{ConversationBufferMemory}. In orchestrated designs, the orchestrator often manages writes/reads to memory, ensuring ingestion updates propagate to analysis and verification agents.  
 
@@ -122,6 +375,118 @@ Some agents primarily serve as tool wrappers—for example:
 In LangChain, agents invoke tools via structured actions (e.g., \texttt{Search(query)}). Hugging Face Transformers Agents provide predefined tools like calculators, search, and image generation \cite{huggingfaceAgents3,huggingfaceAgents4}.  
 
 In \ishtar{}, the ingestion agent connects to RSS feeds, APIs of relief agencies, and web scrapers. The verification agent queries fact databases or search engines. The communication agent applies formatting and translation tools for output delivery. Tool integration must follow principles of least privilege (each agent has only the tools it requires) and define clear API contracts. Robust error handling (e.g., retries for failed tool calls) and security checks are also vital.  
+
+
+
+\section{Agent Contracts, Schemas, and Handoffs}
+\label{sec:agent-contracts}
+Multi-agent architectures succeed or fail on the quality of \emph{handoffs}.
+In a monolithic prompt, intermediate reasoning is implicit and unvalidated; in an agent pipeline, every transition between agents is a system boundary.
+Springer-style engineering practice therefore treats each agent boundary as an interface contract, akin to an RPC boundary between microservices.
+
+\subsection{Contracts as the Unit of Interoperability}
+An \emph{agent contract} specifies:
+(i) the input schema (required/optional fields, types, and constraints),
+(ii) the output schema (including error envelopes),
+(iii) invariants (properties that must hold for downstream safety),
+and (iv) observability requirements (metrics and trace fields that must be emitted).
+In LLM systems, contracts are particularly important because output is not guaranteed to be syntactically valid, semantically consistent, or aligned with policy.
+A robust orchestrator therefore performs \emph{contract checking} on every agent output and converts invalid outputs into retriable failures rather than letting them silently propagate.
+
+\subsection{Evidence Interfaces and the ``Context Pack''}
+For RAG-style agents, the most critical contract is the \emph{evidence interface} between retrieval and generation.
+Rather than passing raw text, production systems pass a \emph{context pack}: a compact, curated set of document chunks with stable identifiers, provenance metadata, and explicit delimiters separating data from instructions.
+This design improves auditability (every claim can be traced back to a source ID) and reduces the risk of indirect prompt injection from retrieved text, because the orchestrator can sanitize and delimit retrieved content \cite{Greshake2023IndirectPromptInjection}.
+In \ishtar{}, the retrieval agent emits a context pack with citation IDs (e.g., \texttt{S1}, \texttt{S2}) that are preserved through synthesis and verification.
+
+\begin{table}[t]
+\centering
+\caption{Example interface contracts for core \ishtar{} agents. Contracts define inputs/outputs, invariants, and operational metrics.}
+\label{tab:ch09_ishtar_agent_contracts}
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{2.6cm}p{3.1cm}X@{}}
+\toprule
+\textbf{Agent} & \textbf{Input / Output} & \textbf{Contract invariants and key metrics} \\
+\midrule
+Ingestion &
+\textbf{In:} source URIs, schedules \newline
+\textbf{Out:} chunk IDs, embeddings, metadata &
+Idempotent ingestion; provenance recorded (source, timestamp, hash); lag SLOs; parse error rate. \\
+\rowcolor{black!3}
+Retrieval &
+\textbf{In:} query + filters \newline
+\textbf{Out:} context pack (\texttt{S1..Sk}) &
+Stable citation IDs; explicit delimiters; access control enforced at retrieval time; Recall@k, latency p95. \\
+Synthesis &
+\textbf{In:} query + context pack \newline
+\textbf{Out:} draft answer + cited spans &
+Every major claim linked to one or more \texttt{S\#} sources; abstain when evidence is missing; token budget and tool-call count. \\
+\rowcolor{black!3}
+Verification &
+\textbf{In:} draft + context pack \newline
+\textbf{Out:} verified answer + corrections &
+Verification is monotone: it may correct/remove claims but not invent new unsupported claims; correction rate; unresolved-claim count. \\
+Safety &
+\textbf{In:} verified answer \newline
+\textbf{Out:} user-facing answer or refusal &
+Policy decisions are explainable and logged; sensitive data redaction; refusal rate; human-review escalation rate. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Structured Output Envelopes}
+A practical pattern is to require each agent to return a structured envelope even when the natural-language content is free-form.
+This envelope (a small JSON object) enables deterministic parsing, validation, and downstream routing.
+Listing~\ref{lst:ch09_context_pack_schema} shows a representative schema for a retrieval context pack.
+
+\begin{llmlistingbox}{Context pack schema (retrieval $\rightarrow$ synthesis)}
+\label{lst:ch09_context_pack_schema}
+\begin{verbatim}
+{
+  "request_id": "uuid",
+  "query": "string",
+  "filters": {"region": "optional", "start_time": "optional", "source_tier": "optional"},
+  "chunks": [
+    {
+      "cid": "S1",
+      "doc_id": "stable-document-id",
+      "source": "publisher or dataset",
+      "timestamp": "ISO-8601",
+      "title": "optional",
+      "url": "optional",
+      "content": "delimited chunk text"
+    }
+  ],
+  "retrieval_meta": {"k": 8, "latency_ms": 73, "index_version": "v3.2.1"}
+}
+\end{verbatim}
+\end{llmlistingbox}
+
+Verification outputs can follow a similar envelope, explicitly marking which claims were confirmed, corrected, or flagged for human review:
+
+\begin{llmlistingbox}{Verification result envelope (synthesis $\rightarrow$ verification)}
+\label{lst:ch09_verification_envelope}
+\begin{verbatim}
+{
+  "status": "ok | needs_review | failed",
+  "verified_answer": "string (with citations S1..Sk)",
+  "corrections": [
+    {"claim": "string", "action": "corrected|removed", "evidence": ["S2"], "note": "string"}
+  ],
+  "open_questions": [
+    {"question": "string", "reason": "insufficient evidence", "priority": "low|med|high"}
+  ],
+  "confidence": 0.0
+}
+\end{verbatim}
+\end{llmlistingbox}
+
+\subsection{Traceability and Deterministic Replay}
+When multiple agents participate in a response, debugging requires end-to-end traceability across services.
+A common best practice is to propagate a \texttt{request\_id} (and optionally a \texttt{trace\_id}) through every agent call and tool invocation, and to log the minimal set of artifacts needed for replay (e.g., prompt templates, model versions, tool inputs/outputs, and selected context chunks).
+Distributed tracing standards such as OpenTelemetry provide a vendor-neutral model for traces and spans that can be extended with agent-specific attributes (e.g., \texttt{agent.name}, \texttt{llm.tokens}, \texttt{tool.calls}) \cite{OpenTelemetryTraces}.
 
 \section{Agent Roles in Ishtar AI}
 
@@ -271,9 +636,39 @@ The blackboard is a classical AI design where agents collaborate through a share
 
 Recent research shows blackboard approaches can be very effective for LLM multi-agent systems that require deep reasoning \cite{emergentmind,emergentmind2}. In these systems, the blackboard often takes the form of a shared transcript: one agent proposes, another critiques, another revises, until a consensus is reached. This hybrid of structured iteration and flexible interaction outperforms both rigid pipelines and chaotic free-for-all chats.  
 
-In \ishtar{}, the pipeline (ingestion → analysis → verification → conversation) resembles sequential direct messaging. However, a blackboard extension could be envisioned: analysis posts a draft, verification annotates and flags, and revisions occur before finalizing. While not currently deployed due to latency constraints, such iterative collaboration could enhance rigor in research or planning scenarios.  
+In \ishtar{}, the pipeline (ingestion → retrieval → synthesis → verification → safety) resembles sequential direct messaging. However, a blackboard extension could be envisioned: analysis posts a draft, verification annotates and flags, and revisions occur before finalizing. While not currently deployed due to latency constraints, such iterative collaboration could enhance rigor in research or planning scenarios.  
 
-Frameworks like LangGraph \cite{langchain} provide abstractions that blend these patterns: internally, they maintain state akin to a blackboard, but orchestrate execution like direct messaging, and even allow loops for iterative refinement.  
+Frameworks like LangGraph \cite{langchain} provide abstractions that blend these patterns: internally, they maintain state akin to a blackboard, but orchestrate execution like direct messaging, and even allow loops for iterative refinement.
+
+\begin{table}[t]
+\centering
+\caption{Communication patterns in agentic systems: trade-offs and typical use.}
+\label{tab:ch09_comm_patterns}
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}p{3.4cm}X@{}}
+\toprule
+\textbf{Pattern} & \textbf{Strengths} & \textbf{Operational considerations} \\
+\midrule
+Direct messaging &
+Low overhead; predictable latency; straightforward tracing &
+Tight coupling; growth in point-to-point routes; requires careful versioning of agent APIs and strict timeout/retry discipline. \\
+\rowcolor{black!3}
+Message bus (pub/sub) &
+Loose coupling; asynchronous fan-out; smoothing bursts &
+Harder debugging; eventual consistency; requires idempotent consumers and replay semantics; adds infrastructure overhead. \\
+Blackboard architecture &
+Shared global context; supports iterative refinement and multi-step planning &
+Needs write coordination and termination conditions; may serialize work; shared-state security and access control become critical. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent Regardless of pattern, production systems benefit from \textbf{idempotent} agent operations (safe to retry) and \textbf{explicit ordering} semantics for shared state writes.
+Without these guarantees, retries and concurrent updates can create subtle inconsistencies (e.g., a verification correction being overwritten by a late-arriving synthesis draft).
+
+  
 
 \subsection*{Summary}
 Communication patterns must be matched to system scale and requirements. Direct messaging is ideal for small, fixed pipelines; message buses suit distributed, dynamic environments; blackboards enable collaborative reasoning. Many production systems, including \ishtar{}, blend these approaches under an orchestrator that manages complexity.  
@@ -342,7 +737,7 @@ The goal is to choose the simplest strategy that meets requirements, adding comp
 
 The next section will discuss error handling and exception management in orchestrated flows, which is critical for reliability.  
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
@@ -448,6 +843,82 @@ The next section will discuss error handling and exception management in orchest
     \item Escalate to human-in-the-loop review.
 \end{itemize}
 
+
+
+\subsection{Failure Taxonomy for Agentic Workflows}
+Agent pipelines can fail for reasons that are qualitatively different from traditional microservices.
+Some failures are infrastructure-level (timeouts, rate limits), while others are \emph{semantic} (invalid JSON, unsupported claims, policy violations).
+Distinguishing these classes is critical: infrastructure failures warrant retries and backoff, whereas semantic failures typically warrant re-prompting, re-planning, or escalation.
+
+\begin{table}[t]
+\centering
+\caption{Common failure modes in multi-agent systems and recommended orchestrator responses.}
+\label{tab:ch09_agent_failure_taxonomy}
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{3.3cm}X X@{}}
+\toprule
+\textbf{Failure class} & \textbf{Symptoms} & \textbf{Recommended response} \\
+\midrule
+Infrastructure / availability &
+timeouts, 5xx from tools, quota/rate-limit errors &
+Retry with exponential backoff; use circuit breakers; fall back to cached results or degraded mode. \\
+\rowcolor{black!3}
+Schema / parsing &
+non-JSON output when JSON required; missing required fields &
+Re-prompt with stricter formatting; validate with schema; if repeated, route to a more reliable model or escalate. \\
+Semantic / factual &
+claims lack citations; contradictions across agents &
+Invoke verification; request revisions; reduce scope; abstain if evidence is insufficient. \\
+\rowcolor{black!3}
+Policy / safety &
+disallowed tool invocation; sensitive data leakage risk &
+Hard stop; refuse or redact; log policy decision; optionally escalate for human review. \\
+Coordination / looping &
+repeated states, oscillation between agents &
+Loop detection; step budgets; force termination with best-effort answer or human escalation. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{llmlistingbox}{Standardized error envelope for agent outputs}
+\label{lst:ch09_error_envelope}
+\begin{verbatim}
+{
+  "status": "ok | retryable_error | fatal_error | needs_review",
+  "error": {
+    "type": "timeout | rate_limit | schema_invalid | tool_error | policy_violation",
+    "message": "string",
+    "retry_after_ms": 0
+  },
+  "artifacts": {},
+  "metrics": {"tokens_in": 0, "tokens_out": 0, "latency_ms": 0}
+}
+\end{verbatim}
+\end{llmlistingbox}
+
+\begin{llmalgobox}{SafeInvoke: contract-checked agent execution}
+\label{alg:ch09_safeinvoke}
+\small
+\begin{enumerate}[leftmargin=1.4em, itemsep=2pt]
+  \item \textbf{Input:} agent $A$, input payload $x$, budgets $B$, policy $P$
+  \item Enforce $A$ and requested tools $\subseteq P$; attach \texttt{request\_id}/trace fields
+  \item Invoke $A(x)$ with timeout $T$ and max retries $r$
+  \item Validate output against schema; if invalid, re-prompt once with stricter formatting
+  \item If tool call requested:
+    \begin{enumerate}[leftmargin=1.2em, itemsep=1pt]
+      \item Validate tool arguments (types/ranges/allowlist); execute tool in sandbox
+      \item If tool fails, apply backoff and optionally route to alternate tool/provider
+    \end{enumerate}
+  \item If budgets exhausted or loop detected, return \texttt{needs\_review} and escalate
+  \item \textbf{Return:} standardized envelope (Listing~\ref{lst:ch09_error_envelope})
+\end{enumerate}
+\end{llmalgobox}
+
+\noindent Algorithm~\ref{alg:ch09_safeinvoke} is intentionally conservative: it treats schema violations and unsafe tool calls as first-class failures.
+In practice, this wrapper is one of the most effective ways to convert ``agentic behavior'' into an operable production workflow.
+
 \subsection*{Error Handling and Resilience Mechanisms}
 No matter how well-designed a multi-agent system is, things will go wrong: agents might fail to produce an output, tools can error out, the orchestrator might not get a response in time, or agents might produce unsatisfactory results. Robust error handling is therefore a must. Ishtar AI, being mission-critical for journalists, implements several layers of error handling and fallback strategies. Key approaches include:
 
@@ -498,6 +969,48 @@ In that sketch, we try analysis, retry with a simpler prompt if needed, and if v
     \item Cache intermediate results when possible.
 \end{itemize}
 
+
+
+\subsection{A Quantitative View of Latency and Cost}
+Multi-agent orchestration changes the performance model from ``one model call'' to a \emph{critical-path workflow}.
+If a request decomposes into sequential stages $S_1,\dots,S_n$, and each stage executes a set of parallel tasks with latencies $\{L_{i,j}\}$, then the end-to-end latency is approximated by:
+\[
+  L_{\text{e2e}} \approx \sum_{i=1}^{n} \max_j L_{i,j} + L_{\text{overhead}}
+\]
+where $L_{\text{overhead}}$ includes serialization, routing, retries, and tool calls.
+As the number of agent calls increases, tail latency (p95/p99) can dominate user experience, motivating strict timeouts and early termination in non-critical branches.
+
+Similarly, cost is governed by token usage across all calls:
+\[
+  C_{\text{req}} \propto \sum_{k=1}^{m} (\text{tokens}_{k}^{\text{in}} + \text{tokens}_{k}^{\text{out}})
+\]
+where $m$ is the number of model invocations. This makes \emph{budget governance} (step budgets, token budgets, tool-call budgets) a first-class requirement.
+
+\begin{table}[t]
+\centering
+\caption{Core performance metrics for agentic systems and their operational interpretation.}
+\label{tab:ch09_agent_performance_metrics}
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{3.5cm}X@{}}
+\toprule
+\textbf{Metric} & \textbf{Why it matters} \\
+\midrule
+End-to-end latency (p50/p95/p99) & Captures user experience; p95/p99 reveal coordination overhead and retry storms. \\
+\rowcolor{black!3}
+Tokens per request (in/out) & Primary driver of cost; also correlates with long-context failure risk and truncation. \\
+Tool-call count and latency & Indicates whether the agent is overusing tools; highlights slow dependencies (search, DB). \\
+\rowcolor{black!3}
+Retry rate / circuit-breaker opens & Proxy for dependency health and robustness; rising values often precede incidents. \\
+Loop count / replan count & Detects oscillation; helps enforce bounded agent behavior and step budgets. \\
+\rowcolor{black!3}
+Cache hit rate (context packs, tool results) & Key lever for both latency and cost, especially for repeated or trending queries. \\
+Abstention / escalation rate & Measures how often the system fails safely (abstains) versus producing low-quality output. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \subsection*{Performance Considerations in Multi-Agent Orchestration}
 Employing multiple agents introduces performance considerations that single-agent systems might not face. We need to ensure the benefits of multi-agent parallelism and specialization are not negated by overheads like communication latency or redundant computation. Some key performance factors:
 
@@ -532,12 +1045,128 @@ Recognizing bottlenecks is crucial. For example, if analysis (with retrieval + L
 
 In practice, a combination of these is used. For example, \ishtar{} uses caching of RAG results and dynamic batching via \texttt{vLLM} for model inference to improve throughput and latency. They also likely employ quantization or smaller model variants for certain agents to keep things snappy (e.g., the safety agent might use a slightly smaller model than synthesis, to reduce response time for the final answer without significant quality loss). Another angle is end-to-end optimization: sometimes you can skip an agent entirely to save time. If the synthesis agent already produced a fully correct answer with citations, maybe the verification agent just quickly scans it without heavy processing. This can be done by a confidence estimator – essentially, if synthesis has high confidence, skip verification to reduce latency, or do a lighter check. Finally, concurrency control: orchestrator needs to handle multiple simultaneous user requests. It should not serialize all users through one pipeline needlessly. Instead, each user query triggers an independent pipeline (with possibly shared agent pools). K8s or threading can handle running multiple requests. Ensuring thread safety in orchestrator (no global mutable state without locks) is important so that one user’s data doesn’t bleed into another’s. Performance tuning in multi-agent systems often requires an iterative approach: profile -> identify bottleneck -> optimize that (via code, model, or scaling) -> repeat. What’s unique here is the interplay between agents, which means sometimes optimizing the system means adjusting how agents communicate or the order they run, not just optimizing a single model.
 
-\section{Security in Multi-Agent Systems}
+
+
+\section{Testing, Evaluation, and Observability for Agentic Systems}
+\label{sec:agent-eval}
+Multi-agent orchestration increases surface area: more prompts, more tools, more intermediate artifacts, and more failure modes.
+Consequently, evaluation must move beyond single-response ``golden answers'' toward \emph{workflow-level} testing that covers intermediate contracts, tool correctness, and policy compliance.
+This section provides a practical evaluation framework aligned with LLMOps release discipline (Chapter~\ref{ch:testing}).
+
+\subsection{Evaluation Dimensions}
+Agentic systems should be evaluated along at least four dimensions:
+\begin{enumerate}[leftmargin=1.5em, itemsep=2pt]
+  \item \textbf{Task success:} Did the workflow complete the intended mission (e.g., answer correctness, ticket resolution, report generation)?
+  \item \textbf{Process quality:} Were intermediate steps sensible (e.g., evidence selection, tool choice, verification actions)?
+  \item \textbf{Safety and policy compliance:} Did the system respect tool permissions, PII policies, and refusal requirements?
+  \item \textbf{Operational robustness:} Does the system remain bounded under retries, partial failures, and adversarial inputs?
+\end{enumerate}
+
+\subsection{Benchmarks and Simulated Environments}
+The research community increasingly evaluates LLMs as interactive agents rather than static predictors.
+Benchmarks such as AgentBench and WebArena provide reproducible environments that measure long-horizon decision making and tool use \cite{Liu2023AgentBench,Zhou2023WebArena}.
+Tool-use datasets and evaluators (e.g., ToolLLM/ToolBench) target the specific capability of selecting and invoking APIs correctly \cite{Qin2023ToolLLM}.
+While these benchmarks do not replace domain-specific tests, they provide valuable stress tests for planning, tool invocation, and instruction following.
+
+\subsection{The ``Agentic Test Pyramid''}
+A production test strategy can be organized as a pyramid:
+\begin{itemize}
+  \item \textbf{Contract tests (many, fast):} schema validation, determinism checks, and invariants for each agent output (Table~\ref{tab:ch09_ishtar_agent_contracts}).
+  \item \textbf{Tool simulation tests (some):} run agents against stubbed tools (fixed responses) to test control flow deterministically.
+  \item \textbf{End-to-end scenario tests (few, expensive):} run the full workflow on representative queries with editorial/human evaluation for quality.
+\end{itemize}
+The goal is to catch most regressions at the contract layer, before expensive end-to-end evaluation.
+
+\begin{llmalgobox}{Regression suite for multi-agent workflows}
+\label{alg:ch09_agent_regression_suite}
+\small
+\begin{enumerate}[leftmargin=1.4em, itemsep=2pt]
+  \item Maintain a versioned set of scenarios $\mathcal{D}$ with inputs, expected artifacts, and acceptance criteria
+  \item For each scenario $d \in \mathcal{D}$:
+    \begin{enumerate}[leftmargin=1.2em, itemsep=1pt]
+      \item Run the workflow with tool stubs (deterministic) and record intermediate artifacts
+      \item Validate each agent output against schemas and invariants (contracts)
+      \item Compare key artifacts (e.g., citation IDs, refusal decisions) against expected outcomes
+      \item If failures occur, capture a replay bundle (prompts, model versions, tool I/O, trace)
+    \end{enumerate}
+  \item Gate releases on aggregate metrics (success rate, policy violations, latency budgets)
+\end{enumerate}
+\end{llmalgobox}
+
+\subsection{Observability: Traces, Metrics, and Replay Bundles}
+Observability for agentic systems is most useful when it is \emph{workflow-native}.
+In addition to standard service metrics (latency, errors), teams should log:
+(i) which agents ran and in what order,
+(ii) tool calls and arguments (redacted where necessary),
+(iii) retrieved chunk IDs and index version,
+and (iv) final outcomes (abstain/refuse/answer).
+When combined with distributed tracing, these artifacts enable deterministic replay of failures and dramatically reduce mean time to resolution (MTTR) during incidents \cite{OpenTelemetryTraces}.
+
+\section{Security in Multi-Agent Systems}\label{sec:ch09-security}
 \begin{itemize}
     \item Authenticate agent requests to the orchestrator.
     \item Limit permissions of each agent to only necessary tools and data.
     \item Audit logs of all inter-agent communication.
 \end{itemize}
+
+
+
+\subsection{Threat Modeling Agentic Systems}
+In multi-agent systems, security risk is a function of both \emph{content} and \emph{capability}.
+Agents routinely process untrusted inputs (user prompts, retrieved documents) while also holding privileged capabilities (tool calls, database access, internal APIs).
+This combination creates well-documented vulnerabilities such as prompt injection and indirect prompt injection, where malicious instructions are embedded in data likely to be retrieved at inference time \cite{Greshake2023IndirectPromptInjection}.
+Industry guidance such as the OWASP Top 10 for LLM Applications provides a useful taxonomy for prioritizing controls (prompt injection, insecure output handling, excessive agency, and unbounded consumption, among others) \cite{OWASP2025LLMTop10}.
+
+\begin{table}[t]
+\centering
+\caption{Representative threats in agentic architectures and practical mitigations.}
+\label{tab:ch09_agentic_threats}
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}p{3.3cm}X X@{}}
+\toprule
+\textbf{Threat} & \textbf{Attack surface} & \textbf{Mitigations} \\
+\midrule
+Prompt injection &
+User inputs override instructions or elicit secrets &
+Instruction hierarchy; input delimiting; refusal policies; prompt leakage tests; red-teaming. \\
+\rowcolor{black!3}
+Indirect prompt injection &
+Retrieved data contains hidden instructions that influence tool use &
+Treat retrieved content as untrusted; sanitize/strip markup; constrain tools; require citations; isolate execution. \\
+Tool misuse / excessive agency &
+Agent calls powerful tools beyond intent (e.g., mass queries, deletion) &
+Least-privilege tool assignment; allowlists; argument validation; rate limits; human approval for high-risk actions. \\
+\rowcolor{black!3}
+Data exfiltration &
+Agent leaks PII or proprietary data through outputs or tool calls &
+Output filtering/redaction; access control at retrieval; egress controls; audit logs; encryption at rest/in transit. \\
+Cross-tenant leakage &
+Shared memory/vector store returns data from another tenant &
+Strong ACL filtering at retrieval; per-tenant indexes; rigorous authorization checks; security testing. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{llmlistingbox}{Example tool-allowlist policy (YAML sketch)}
+\label{lst:ch09_tool_allowlist}
+\begin{verbatim}
+agents:
+  retrieval:
+    tools: ["vector_search", "keyword_search"]
+  synthesis:
+    tools: []   # generation only
+  verification:
+    tools: ["vector_search"]
+  safety:
+    tools: ["pii_redactor"]
+
+global:
+  max_tool_calls_per_request: 8
+  high_risk_tools_require_human: ["db_write", "email_send"]
+\end{verbatim}
+\end{llmlistingbox}
 
 \subsection*{Security and Governance in Multi-Agent Systems}
 Security in multi-agent LLM systems spans authentication, authorization, and auditing of agent interactions, as well as safeguarding data and compliance with policies. With multiple components communicating, the attack surface can increase, so we must design with a defense-in-depth mindset. Key aspects include:
@@ -585,7 +1214,44 @@ In summary, multi-agent systems require careful governance: ensuring each agent 
 \end{enumerate}
 
 \subsection*{Case Study: Orchestrating Ishtar AI's Pipeline}
-To ground the concepts above, let's walk through the orchestration pipeline of Ishtar AI in detail, following the sequence of agents and the orchestrator's decisions. Ishtar's mission is to ingest diverse real-time conflict data and provide verified, context-rich intelligence to journalists on demand. We will consider a typical user query scenario and illustrate how the multi-agent system processes it end-to-end. \emph{Figure: Illustrative multi-agent workflow with a rule-based orchestrator (router) coordinating specialized agents. In this example, a user's request is routed first to a "Researcher" agent which gathers information (possibly using tools like web search), then handed to a "Chart Generator" agent to produce a visual, before delivering a final answer. Similarly, Ishtar's orchestrator routes tasks to Retrieval, Synthesis, Verification, Safety, and optional Translation agents in sequence or in parallel as needed.}
+To ground the concepts above, let's walk through the orchestration pipeline of Ishtar AI in detail, following the sequence of agents and the orchestrator's decisions. Ishtar's mission is to ingest diverse real-time conflict data and provide verified, context-rich intelligence to journalists on demand. We will consider a typical user query scenario and illustrate how the multi-agent system processes it end-to-end.
+
+\begin{figure}[t]
+\centering
+\begin{llmfigbox}
+\begin{tikzpicture}[node distance=1.1cm and 1.4cm, every node/.style={font=\small}]
+% Top row
+\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm] (ingest) {Ingestion};
+\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm, right=of ingest] (retr) {Retrieval};
+\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm, right=of retr] (synth) {Synthesis};
+
+% Bottom row
+\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm, below=of synth] (verify) {Verification};
+\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm, left=of verify] (safety) {Safety};
+\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm, left=of safety] (deliver) {Delivery};
+
+% Orchestrator
+\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm, below=of retr, xshift=-3.2cm] (orch) {Orchestrator\\(router + budgets)};
+
+% Arrows with artifacts
+\draw[->] (ingest) -- node[above]{chunks + metadata} (retr);
+\draw[->] (retr) -- node[above]{context pack} (synth);
+\draw[->] (synth) -- node[right]{draft + citations} (verify);
+\draw[->] (verify) -- node[below]{verified answer} (safety);
+\draw[->] (safety) -- node[below]{user response} (deliver);
+
+% Orchestrator control edges (dashed)
+\draw[->, dashed] (orch) -- (retr);
+\draw[->, dashed] (orch) -- (synth);
+\draw[->, dashed] (orch) -- (verify);
+\draw[->, dashed] (orch) -- (safety);
+\end{tikzpicture}
+\end{llmfigbox}
+\caption{\ishtar{} multi-agent pipeline with explicit handoffs and artifacts. The orchestrator enforces workflow order, budgets, and policy gates; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations.}
+\label{fig:ch09_ishtar_agent_pipeline}
+\end{figure}
+
+In this example, a user's request is routed first to a "Researcher" agent which gathers information (possibly using tools like web search), then handed to a "Chart Generator" agent to produce a visual, before delivering a final answer. Similarly, Ishtar's orchestrator routes tasks to Retrieval, Synthesis, Verification, Safety, and optional Translation agents in sequence or in parallel as needed.
 
 \textbf{Step 0: Continuous Data Ingestion.} Independently of any user query, the ingestion agent is running (possibly on a schedule or event-triggered). For instance, every hour it checks for new reports from sources A, B, C. Suppose at 9:00 AM it fetched a new conflict report about Region X and updated the vector store. By 9:05 AM, the vector store is refreshed with this latest info, and the ingestion agent logs an event “New document on Region X ingested.” This means when a query comes about “Region X”, the system is prepared to answer with up-to-date data. The orchestrator doesn’t actively do anything in this step; it’s a background process. If one wanted, the ingestion could publish an event that gets logged or triggers a pre-analysis, but in our straightforward design, it simply updates memory.
 
@@ -647,18 +1313,13 @@ To conclude the case study, consider a scenario where verification finds a serio
 \section{Best Practices Checklist}
 
 \ChecklistBox{
-\small
-\setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\textbf{Checklist Item} & \textbf{Description} \\
-\midrule
-\textbf{Define Agent Roles Clearly} & Clearly define agent roles and responsibilities. Each agent should have a single well-defined purpose and scope of responsibility to avoid confusion or duplicated work. \\
-\textbf{Choose Communication Patterns} & Choose communication patterns that match system scale and complexity. Use direct calls for simple systems; consider message buses or shared memory for larger, more complex agent ecosystems. \\
-\textbf{Implement Robust Error Handling} & Implement robust error handling and fallbacks. Plan retries for transient issues and alternate paths for more serious failures. Use heartbeat checks or timeouts to detect stuck agents. \\
-\textbf{Monitor Inter-Agent Performance} & Monitor inter-agent performance and optimize for minimal latency. Collect metrics on each agent's response time and identify bottlenecks. Use parallelism where possible and keep inter-agent communication payloads lean. \\
-\textbf{Secure All Channels} & Secure all channels of communication. Apply authentication for agent communications, encrypt data in transit, and restrict each agent's access rights. Regularly audit who/what can invoke each agent. \\
-\end{tabularx}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+\item \textbf{Define Agent Roles Clearly:} Clearly define agent roles and responsibilities. Each agent should have a single well-defined purpose and scope of responsibility to avoid confusion or duplicated work.
+\item \textbf{Choose Communication Patterns:} Choose communication patterns that match system scale and complexity. Use direct calls for simple systems; consider message buses or shared memory for larger, more complex agent ecosystems.
+\item \textbf{Implement Robust Error Handling:} Implement robust error handling and fallbacks. Plan retries for transient issues and alternate paths for more serious failures. Use heartbeat checks or timeouts to detect stuck agents.
+\item \textbf{Monitor Inter-Agent Performance:} Monitor inter-agent performance and optimize for minimal latency. Collect metrics on each agent's response time and identify bottlenecks. Use parallelism where possible and keep inter-agent communication payloads lean.
+\item \textbf{Secure All Channels:} Secure all channels of communication. Apply authentication for agent communications, encrypt data in transit, and restrict each agent's access rights. Regularly audit who/what can invoke each agent.
+\end{itemize}
 }
 
 Multi-agent architectures bring modularity, scalability, and resilience to LLM applications. For \ishtar{}, orchestration ensures that specialized capabilities—data ingestion, analysis, verification, and communication—work in concert to deliver timely, accurate, and context-rich information.
@@ -667,22 +1328,17 @@ Multi-agent architectures bring modularity, scalability, and resilience to LLM a
 Designing and operating a multi-agent LLM system is complex, but following best practices can guide practitioners to success. Below is a checklist of recommended practices, distilled from the concepts and the Ishtar AI case study:
 
 \ChecklistBox{
-\small
-\setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\textbf{Checklist Item} & \textbf{Description} \\
-\midrule
-\textbf{Define Agent Roles and Boundaries} & Each agent should have a single well-defined purpose and scope of responsibility. Avoid overlapping duties that could cause confusion or duplicated work. For example, only the verification agent should fact-check; the synthesis agent should not try to verify its own output beyond basic sanity. This clarity makes the system easier to maintain and extend. \\
-\textbf{Choose Communication Patterns to Match Scale} & Use direct calls or sequential chains for simple, small-scale systems; consider message buses or shared memory for larger, more complex agent ecosystems. Don't over-engineer: a straightforward orchestrator function may suffice for up to a handful of agents. As you grow, evaluate if an event-driven or blackboard approach is needed for flexibility. Ensure your choice supports the required concurrency. \\
-\textbf{Start Simple, Add Dynamism Carefully} & Begin with a rule-based flow (or a few static flows for different query types). This allows baseline functionality and easier debugging. If/when adding dynamic LLM-driven orchestration, thoroughly test it in sandbox scenarios. Make sure to put constraints on an LLM orchestrator (e.g., allowed actions, timeouts) to avoid it going haywire. Log its decisions for review. \\
-\textbf{Implement Robust Error Handling} & Assume agents will fail or produce bad outputs occasionally. Plan retries for transient issues and alternate paths for more serious failures. For instance, have a default response if the pipeline cannot complete ("Sorry, I cannot answer that right now."). Use heartbeat checks or timeouts to detect stuck agents. If certain data is missing, perhaps integrate a fallback knowledge source or escalate to human review. Regularly simulate failures in a staging environment to ensure your fallbacks work as intended. \\
-\textbf{Monitor and Optimize Performance} & Collect metrics on each agent's response time and the overall latency. Identify bottlenecks – if one agent is significantly slower, consider scaling it out (more instances), optimizing its prompt or model, or caching its results. Keep inter-agent communication payloads lean (don't pass huge data if not necessary). Use parallelism where possible: e.g., the orchestrator might fetch documents and call an agent concurrently to save time. Also monitor token usage per agent to manage cost (multi-agent systems can use more total tokens; ensure the value justifies this). \\
-\textbf{Secure All Channels and Enforce Permissions} & Apply authentication for agent communications, encrypt data in transit, and restrict each agent's access rights. For example, if using cloud secrets (API keys for tools), scope them to the agent that needs them. Regularly audit who/what can invoke each agent. Ensure that logs or debug UIs that display agent internals are secured (they might contain sensitive info). If using a UI to visualize LangGraph \cite{langchain} or traces, guard it behind authentication. \\
-\textbf{Continuous Testing} & Test each agent in isolation (unit tests with synthetic inputs and checking outputs). Then test the whole pipeline (integration tests) with various scenarios: normal queries, edge cases, failure injection (e.g., make the analysis agent return an empty result and see if verification handles it). Include dynamic behavior in tests: if using an LLM orchestrator, test its decision-making deterministically if possible (maybe fix a random seed or use stubbed responses). Having a suite of regression tests (like the canary prompts in Ishtar) helps catch when a model update or prompt tweak breaks part of the chain. \\
-\textbf{Logging and Transparency} & Maintain detailed logs of agent actions and decisions. Not only is this critical for debugging, but in an academic or enterprise context it provides traceability (why was a particular answer given?). Tools like LangChain's tracing \cite{blogLangChain}, OpenTelemetry, or custom logs with unique IDs for each query can tie together the multi-agent steps. Transparency is also a selling point: for instance, Ishtar could show the journalist which sources were used (coming from the multi-agent process) to build trust. \\
-\textbf{Iterate with Human Feedback} & Use feedback from users to refine the system. If journalists often correct or ask follow-ups on certain details, analyze whether the analysis agent could be improved or if a new agent role is needed (e.g., a "Clarification Agent"). Multi-agent setups offer modular points for improvement – maybe the verification prompt needs adjusting if it misses certain errors, or the conversation agent needs to be more concise if users often ask for summaries. Continuous improvement can be done agent by agent without disrupting the whole system, which is a boon of the modular design. \\
-\end{tabularx}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+\item \textbf{Define Agent Roles and Boundaries:} Each agent should have a single well-defined purpose and scope of responsibility. Avoid overlapping duties that could cause confusion or duplicated work. For example, only the verification agent should fact-check; the synthesis agent should not try to verify its own output beyond basic sanity. This clarity makes the system easier to maintain and extend.
+\item \textbf{Choose Communication Patterns to Match Scale:} Use direct calls or sequential chains for simple, small-scale systems; consider message buses or shared memory for larger, more complex agent ecosystems. Don't over-engineer: a straightforward orchestrator function may suffice for up to a handful of agents. As you grow, evaluate if an event-driven or blackboard approach is needed for flexibility. Ensure your choice supports the required concurrency.
+\item \textbf{Start Simple, Add Dynamism Carefully:} Begin with a rule-based flow (or a few static flows for different query types). This allows baseline functionality and easier debugging. If/when adding dynamic LLM-driven orchestration, thoroughly test it in sandbox scenarios. Make sure to put constraints on an LLM orchestrator (e.g., allowed actions, timeouts) to avoid it going haywire. Log its decisions for review.
+\item \textbf{Implement Robust Error Handling:} Assume agents will fail or produce bad outputs occasionally. Plan retries for transient issues and alternate paths for more serious failures. For instance, have a default response if the pipeline cannot complete ("Sorry, I cannot answer that right now."). Use heartbeat checks or timeouts to detect stuck agents. If certain data is missing, perhaps integrate a fallback knowledge source or escalate to human review. Regularly simulate failures in a staging environment to ensure your fallbacks work as intended.
+\item \textbf{Monitor and Optimize Performance:} Collect metrics on each agent's response time and the overall latency. Identify bottlenecks – if one agent is significantly slower, consider scaling it out (more instances), optimizing its prompt or model, or caching its results. Keep inter-agent communication payloads lean (don't pass huge data if not necessary). Use parallelism where possible: e.g., the orchestrator might fetch documents and call an agent concurrently to save time. Also monitor token usage per agent to manage cost (multi-agent systems can use more total tokens; ensure the value justifies this).
+\item \textbf{Secure All Channels and Enforce Permissions:} Apply authentication for agent communications, encrypt data in transit, and restrict each agent's access rights. For example, if using cloud secrets (API keys for tools), scope them to the agent that needs them. Regularly audit who/what can invoke each agent. Ensure that logs or debug UIs that display agent internals are secured (they might contain sensitive info). If using a UI to visualize LangGraph \cite{langchain} or traces, guard it behind authentication.
+\item \textbf{Continuous Testing:} Test each agent in isolation (unit tests with synthetic inputs and checking outputs). Then test the whole pipeline (integration tests) with various scenarios: normal queries, edge cases, failure injection (e.g., make the analysis agent return an empty result and see if verification handles it). Include dynamic behavior in tests: if using an LLM orchestrator, test its decision-making deterministically if possible (maybe fix a random seed or use stubbed responses). Having a suite of regression tests (like the canary prompts in Ishtar) helps catch when a model update or prompt tweak breaks part of the chain.
+\item \textbf{Logging and Transparency:} Maintain detailed logs of agent actions and decisions. Not only is this critical for debugging, but in an academic or enterprise context it provides traceability (why was a particular answer given?). Tools like LangChain's tracing \cite{blogLangChain}, OpenTelemetry, or custom logs with unique IDs for each query can tie together the multi-agent steps. Transparency is also a selling point: for instance, Ishtar could show the journalist which sources were used (coming from the multi-agent process) to build trust.
+\item \textbf{Iterate with Human Feedback:} Use feedback from users to refine the system. If journalists often correct or ask follow-ups on certain details, analyze whether the analysis agent could be improved or if a new agent role is needed (e.g., a "Clarification Agent"). Multi-agent setups offer modular points for improvement – maybe the verification prompt needs adjusting if it misses certain errors, or the conversation agent needs to be more concise if users often ask for summaries. Continuous improvement can be done agent by agent without disrupting the whole system, which is a boon of the modular design.
+\end{itemize}
 }
 
 By adhering to these practices, one can manage the complexity of multi-agent systems and harness their power effectively. Multi-agent LLM systems, as exemplified by Ishtar AI, combine specialization with orchestration to deliver better results than a monolithic approach. The journey involves careful planning, iterative tuning, and vigilant operation, but the end result is a more powerful and reliable AI application that can tackle sophisticated, real-world tasks in a robust manner.
@@ -691,3 +1347,136 @@ By adhering to these practices, one can manage the complexity of multi-agent sys
   segment=\therefsegment,
   resetnumbers=true
 ]
+
+
+\medskip
+\noindent\textbf{Connecting orchestration to evaluation and governance.}
+Multi-agent architectures make LLM systems more modular and auditable, but they also introduce workflow-level failure modes that must be managed with disciplined engineering.
+The contract-first patterns in Section~\ref{sec:agent-contracts} (schemas, error envelopes, traceability) directly support the testing and evaluation framework in Chapter~\ref{ch:testing}, where regression suites, adversarial tests, and release gates convert non-deterministic model behavior into measurable system quality.
+Similarly, the security controls in Section~\ref{sec:ch09-security} align with the governance and responsible deployment principles discussed in Chapter~\ref{ch:ethics}.
+
+\section*{Chapter Summary}
+This chapter described how multi-agent architectures extend LLM applications into coordinated, tool-augmented workflows and why specialization, parallelism, and explicit verification gates improve reliability.
+We introduced core building blocks---agents, orchestrators, memory layers, and tools---and emphasized \emph{agent contracts} as the foundation for safe handoffs, deterministic routing, and auditability.
+We compared communication patterns (direct messaging, message bus, and blackboard), surveyed orchestration strategies (rule-based, dynamic, hierarchical), and presented bounded patterns such as planner--executor and critic--reviser loops.
+Finally, we covered operational requirements for production deployments: error handling, performance/cost governance, security threat modeling, and evaluation/observability practices that enable regression testing and incident debugging.
+In subsequent chapters, these orchestration foundations are integrated with end-to-end LLMOps discipline for testing, deployment, monitoring, and governance.
+
+% =========================================================
+% New citations added in this Chapter 9 revision (BibLaTeX)
+% Paste these entries into your project's .bib file.
+% (If a key already exists in your .bib, do not duplicate it.)
+% =========================================================
+% @book{Wooldridge2009MultiAgent,
+%   author    = {Wooldridge, Michael},
+%   title     = {An Introduction to MultiAgent Systems},
+%   edition   = {2},
+%   publisher = {John Wiley \& Sons},
+%   year      = {2009},
+%   isbn      = {978-0470519462}
+% }
+%
+% @article{Yao2022ReAct,
+%   author  = {Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Narasimhan, Karthik and Cao, Yuan},
+%   title   = {ReAct: Synergizing Reasoning and Acting in Language Models},
+%   year    = {2022},
+%   journal = {arXiv preprint arXiv:2210.03629},
+%   doi     = {10.48550/arXiv.2210.03629}
+% }
+%
+% @article{Schick2023Toolformer,
+%   author  = {Schick, Timo and Dwivedi-Yu, Jane and Dess{\`i}, Roberto and Raileanu, Roberta and Lomeli, Maria and Zettlemoyer, Luke and Cancedda, Nicola and Scialom, Thomas},
+%   title   = {Toolformer: Language Models Can Teach Themselves to Use Tools},
+%   year    = {2023},
+%   journal = {arXiv preprint arXiv:2302.04761},
+%   doi     = {10.48550/arXiv.2302.04761}
+% }
+%
+% @article{Shen2023HuggingGPT,
+%   author  = {Shen, Yongliang and Song, Kaitao and Tan, Xu and Li, Dongsheng and Lu, Weiming and Zhuang, Yueting},
+%   title   = {HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face},
+%   year    = {2023},
+%   journal = {arXiv preprint arXiv:2303.17580},
+%   doi     = {10.48550/arXiv.2303.17580}
+% }
+%
+% @article{Wu2023AutoGen,
+%   author  = {Wu, Qingyun and Bansal, Gagan and Zhang, Jieyu and Wu, Yiran and Li, Beibin and Zhu, Erkang and Jiang, Li and Zhang, Xiaoyun and Zhang, Shaokun and Liu, Jiale and Awadallah, Ahmed Hassan and White, Ryen W. and Burger, Doug and Wang, Chi},
+%   title   = {AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation},
+%   year    = {2023},
+%   journal = {arXiv preprint arXiv:2308.08155},
+%   doi     = {10.48550/arXiv.2308.08155}
+% }
+%
+% @article{Yao2023TreeOfThoughts,
+%   author  = {Yao, Shunyu and Yu, Dian and Zhao, Jeffrey and Shafran, Izhak and Griffiths, Thomas L. and Cao, Yuan and Narasimhan, Karthik},
+%   title   = {Tree of Thoughts: Deliberate Problem Solving with Large Language Models},
+%   year    = {2023},
+%   journal = {arXiv preprint arXiv:2305.10601},
+%   doi     = {10.48550/arXiv.2305.10601}
+% }
+%
+% @article{Shinn2023Reflexion,
+%   author  = {Shinn, Noah and Cassano, Federico and Berman, Edward and Gopinath, Ashwin and Narasimhan, Karthik and Yao, Shunyu},
+%   title   = {Reflexion: Language Agents with Verbal Reinforcement Learning},
+%   year    = {2023},
+%   journal = {arXiv preprint arXiv:2303.11366},
+%   doi     = {10.48550/arXiv.2303.11366}
+% }
+%
+% @article{Park2023GenerativeAgents,
+%   author  = {Park, Joon Sung and O'Brien, Joseph C. and Cai, Carrie Jun and Morris, Meredith Ringel and Liang, Percy and Bernstein, Michael S.},
+%   title   = {Generative Agents: Interactive Simulacra of Human Behavior},
+%   year    = {2023},
+%   journal = {arXiv preprint arXiv:2304.03442},
+%   doi     = {10.48550/arXiv.2304.03442}
+% }
+%
+% @article{Greshake2023IndirectPromptInjection,
+%   author  = {Greshake, Kai and Abdelnabi, Sahar and Mishra, Shailesh and Fritz, Mario and Endres, Christoph and Holz, Thorsten},
+%   title   = {Not What You{\textquoteright}ve Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection},
+%   year    = {2023},
+%   journal = {arXiv preprint arXiv:2302.12173},
+%   doi     = {10.48550/arXiv.2302.12173}
+% }
+%
+% @article{Liu2023AgentBench,
+%   author  = {Liu, Xiao and Yu, Hao and Zhang, Hanchen and Xu, Yifan and Lei, Xuanyu and Lai, Hanyu and Gu, Yu and Ding, Hangliang and Men, Kaiwen and Yang, Kejuan and Zhang, Shudan and Deng, Xiang and Zeng, Aohan and Du, Zhengxiao and Zhang, Chenhui and Shen, Sheng and Zhang, Tianjun and Su, Yu and Sun, Huan and Huang, Minlie and Dong, Yuxiao and Tang, Jie},
+%   title   = {AgentBench: Evaluating LLMs as Agents},
+%   year    = {2023},
+%   journal = {arXiv preprint arXiv:2308.03688},
+%   doi     = {10.48550/arXiv.2308.03688}
+% }
+%
+% @article{Zhou2023WebArena,
+%   author  = {Zhou, Shuyan and Xu, Frank F. and Zhu, Hao and Zhou, Xuhui and Lo, Robert and Sridhar, Abishek and Cheng, Xianyi and Ou, Tianyue and Bisk, Yonatan and Fried, Daniel and Alon, Uri and Neubig, Graham},
+%   title   = {WebArena: A Realistic Web Environment for Building Autonomous Agents},
+%   year    = {2023},
+%   journal = {arXiv preprint arXiv:2307.13854},
+%   doi     = {10.48550/arXiv.2307.13854}
+% }
+%
+% @article{Qin2023ToolLLM,
+%   author  = {Qin, Yujia and Liang, Shihao and Ye, Yining and Zhu, Kunlun and Yan, Lan and Lu, Yaxi and Lin, Yankai and Cong, Xin and Tang, Xiangru and Qian, Bill and Zhao, Sihan and Hong, Lauren and Tian, Runchu and Xie, Ruobing and Zhou, Jie and Gerstein, Mark and Li, Dahai and Liu, Zhiyuan and Sun, Maosong},
+%   title   = {ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs},
+%   year    = {2023},
+%   journal = {arXiv preprint arXiv:2307.16789},
+%   doi     = {10.48550/arXiv.2307.16789}
+% }
+%
+% @online{OpenTelemetryTraces,
+%   author  = {{OpenTelemetry Project}},
+%   title   = {OpenTelemetry Specification: Trace},
+%   year    = {2025},
+%   url     = {https://opentelemetry.io/docs/specs/otel/trace/},
+%   urldate = {2026-01-05}
+% }
+%
+% @online{OWASP2025LLMTop10,
+%   author  = {{OWASP Foundation}},
+%   title   = {OWASP Top 10 for Large Language Model Applications (v2025)},
+%   year    = {2024},
+%   url     = {https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf},
+%   urldate = {2026-01-05}
+% }
+

@@ -8,54 +8,101 @@
 \newlabel{refsegment:020}{{9}{269}{Multi-Agent Architectures and Orchestration}{chapter.9}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {9.1}Introduction}{270}{section.9.1}\protected@file@percent }
 \newlabel{sec:ch9-introduction}{{9.1}{270}{Introduction}{section.9.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.2}Why Multi-Agent Systems?}{270}{section.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.3}Core Components of Multi-Agent Architectures}{272}{section.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.1}Agents}{272}{subsection.9.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.2}Orchestrator}{273}{subsection.9.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.3}Memory: Episodic and Semantic Memory}{273}{subsection.9.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.4}External Tools and APIs}{274}{subsection.9.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.4}Agent Roles in Ishtar AI}{274}{section.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.1}Ingestion Agent}{274}{subsection.9.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.2}Retrieval Agent}{275}{subsection.9.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.3}Synthesis Agent}{275}{subsection.9.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.4}Verification Agent}{276}{subsection.9.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.5}Safety Agent}{276}{subsection.9.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.6}Translation Agent (Optional)}{277}{subsection.9.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.5}Communication Patterns}{278}{section.9.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.1}Direct Messaging}{278}{subsection.9.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.2}Message Bus (Pub/Sub)}{278}{subsection.9.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.3}Blackboard Architecture}{279}{subsection.9.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.6}Orchestration Strategies}{280}{section.9.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.1}Rule-Based Orchestration}{280}{subsection.9.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.2}Dynamic Orchestration (LLM-driven)}{281}{subsection.9.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.3}Hierarchical Orchestration}{281}{subsection.9.6.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9.1}{\ignorespaces Contrasting orchestration strategies in multi-agent systems. (\textbf  {a}) \emph  {Rule-Based}: fixed, testable pipelines with explicit branches (retrieval → synthesis → verification → safety). (\textbf  {b}) \emph  {Dynamic (LLM-driven)}: an LLM planner routes tasks at runtime, enabling adaptive flows and feedback. (\textbf  {c}) \emph  {Hierarchical}: a supervisor delegates to sub-teams (which may orchestrate further sub-agents) and aggregates results. \ishtar  {} primarily uses a rule-based pipeline today, with potential evolution toward dynamic and hierarchical patterns for complex scenarios.}}{283}{figure.9.1}\protected@file@percent }
-\newlabel{fig:ch09_orchestration_strategies}{{9.1}{283}{Contrasting orchestration strategies in multi-agent systems. (\textbf {a}) \emph {Rule-Based}: fixed, testable pipelines with explicit branches (retrieval → synthesis → verification → safety). (\textbf {b}) \emph {Dynamic (LLM-driven)}: an LLM planner routes tasks at runtime, enabling adaptive flows and feedback. (\textbf {c}) \emph {Hierarchical}: a supervisor delegates to sub-teams (which may orchestrate further sub-agents) and aggregates results. \ishtar {} primarily uses a rule-based pipeline today, with potential evolution toward dynamic and hierarchical patterns for complex scenarios}{figure.9.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.7}Error Handling and Fallbacks}{283}{section.9.7}\protected@file@percent }
-\newlabel{sec:errorhandling}{{9.7}{283}{Error Handling and Fallbacks}{section.9.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.8}Performance Considerations}{286}{section.9.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.9}Security in Multi-Agent Systems}{289}{section.9.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.10}Case Study: Orchestrating Ishtar AI}{292}{section.9.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.1}Workflow}{292}{subsection.9.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.2}Benefits}{296}{subsection.9.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.11}Best Practices Checklist}{296}{section.9.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{From classic MAS to modern LLM agents.}{270}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Operational perspective.}{271}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.2}Why Multi-Agent Systems?}{271}{section.9.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9.1}{\ignorespaces Monolithic vs.\ multi-agent LLM architectures: operational trade-offs.}}{273}{table.9.1}\protected@file@percent }
+\newlabel{tab:ch09_monolithic_vs_multiagent}{{9.1}{273}{Monolithic vs.\ multi-agent LLM architectures: operational trade-offs}{table.9.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.3}Core Components of Multi-Agent Architectures}{273}{section.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.1}Common Orchestration Patterns in Practice}{273}{subsection.9.3.1}\protected@file@percent }
+\newlabel{sec:orch-patterns}{{9.3.1}{273}{Common Orchestration Patterns in Practice}{subsection.9.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Planner--executor (plan-and-execute).}{274}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Critic--reviser (iterative refinement).}{274}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Search-based deliberation.}{274}{section*.41}\protected@file@percent }
+\newlabel{alg:ch09_budgeted_orchestration}{{9.1}{275}{Search-based deliberation}{llmalgorithm.9.1}{}}
+\newlabel{lst:ch09_langgraph_sketch}{{9.1}{276}{Search-based deliberation}{llmlisting.9.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.2}Agents}{276}{subsection.9.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9.1}{\ignorespaces Control-plane and data-plane separation in an agentic LLM architecture. The orchestrator enforces routing decisions, budgets, and policies; agents implement scoped capabilities; shared memory provides a consistent state substrate; external tools provide grounded capabilities.}}{277}{figure.9.1}\protected@file@percent }
+\newlabel{fig:ch09_agentic_control_plane}{{9.1}{277}{Control-plane and data-plane separation in an agentic LLM architecture. The orchestrator enforces routing decisions, budgets, and policies; agents implement scoped capabilities; shared memory provides a consistent state substrate; external tools provide grounded capabilities}{figure.9.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.3}Orchestrator}{278}{subsection.9.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.4}Memory: Episodic and Semantic Memory}{279}{subsection.9.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.5}External Tools and APIs}{279}{subsection.9.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.4}Agent Contracts, Schemas, and Handoffs}{280}{section.9.4}\protected@file@percent }
+\newlabel{sec:agent-contracts}{{9.4}{280}{Agent Contracts, Schemas, and Handoffs}{section.9.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.1}Contracts as the Unit of Interoperability}{280}{subsection.9.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.2}Evidence Interfaces and the ``Context Pack''}{280}{subsection.9.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9.2}{\ignorespaces Example interface contracts for core \ishtar  {} agents. Contracts define inputs/outputs, invariants, and operational metrics.}}{281}{table.9.2}\protected@file@percent }
+\newlabel{tab:ch09_ishtar_agent_contracts}{{9.2}{281}{Example interface contracts for core \ishtar {} agents. Contracts define inputs/outputs, invariants, and operational metrics}{table.9.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.3}Structured Output Envelopes}{281}{subsection.9.4.3}\protected@file@percent }
+\newlabel{lst:ch09_context_pack_schema}{{9.2}{282}{Structured Output Envelopes}{llmlisting.9.2}{}}
+\newlabel{lst:ch09_verification_envelope}{{9.3}{282}{Structured Output Envelopes}{llmlisting.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.4}Traceability and Deterministic Replay}{282}{subsection.9.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.5}Agent Roles in Ishtar AI}{283}{section.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.1}Ingestion Agent}{283}{subsection.9.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.2}Retrieval Agent}{283}{subsection.9.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.3}Synthesis Agent}{284}{subsection.9.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.4}Verification Agent}{285}{subsection.9.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.5}Safety Agent}{285}{subsection.9.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.6}Translation Agent (Optional)}{286}{subsection.9.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.6}Communication Patterns}{286}{section.9.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.1}Direct Messaging}{287}{subsection.9.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.2}Message Bus (Pub/Sub)}{287}{subsection.9.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.3}Blackboard Architecture}{288}{subsection.9.6.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9.3}{\ignorespaces Communication patterns in agentic systems: trade-offs and typical use.}}{289}{table.9.3}\protected@file@percent }
+\newlabel{tab:ch09_comm_patterns}{{9.3}{289}{Communication patterns in agentic systems: trade-offs and typical use}{table.9.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.7}Orchestration Strategies}{289}{section.9.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.7.1}Rule-Based Orchestration}{289}{subsection.9.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.7.2}Dynamic Orchestration (LLM-driven)}{290}{subsection.9.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.7.3}Hierarchical Orchestration}{291}{subsection.9.7.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9.2}{\ignorespaces Contrasting orchestration strategies in multi-agent systems. (\textbf  {a}) \emph  {Rule-Based}: fixed, testable pipelines with explicit branches (retrieval → synthesis → verification → safety). (\textbf  {b}) \emph  {Dynamic (LLM-driven)}: an LLM planner routes tasks at runtime, enabling adaptive flows and feedback. (\textbf  {c}) \emph  {Hierarchical}: a supervisor delegates to sub-teams (which may orchestrate further sub-agents) and aggregates results. \ishtar  {} primarily uses a rule-based pipeline today, with potential evolution toward dynamic and hierarchical patterns for complex scenarios.}}{292}{figure.9.2}\protected@file@percent }
+\newlabel{fig:ch09_orchestration_strategies}{{9.2}{292}{Contrasting orchestration strategies in multi-agent systems. (\textbf {a}) \emph {Rule-Based}: fixed, testable pipelines with explicit branches (retrieval → synthesis → verification → safety). (\textbf {b}) \emph {Dynamic (LLM-driven)}: an LLM planner routes tasks at runtime, enabling adaptive flows and feedback. (\textbf {c}) \emph {Hierarchical}: a supervisor delegates to sub-teams (which may orchestrate further sub-agents) and aggregates results. \ishtar {} primarily uses a rule-based pipeline today, with potential evolution toward dynamic and hierarchical patterns for complex scenarios}{figure.9.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.8}Error Handling and Fallbacks}{292}{section.9.8}\protected@file@percent }
+\newlabel{sec:errorhandling}{{9.8}{292}{Error Handling and Fallbacks}{section.9.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9.4}{\ignorespaces Common failure modes in multi-agent systems and recommended orchestrator responses.}}{293}{table.9.4}\protected@file@percent }
+\newlabel{tab:ch09_agent_failure_taxonomy}{{9.4}{293}{Common failure modes in multi-agent systems and recommended orchestrator responses}{table.9.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.8.1}Failure Taxonomy for Agentic Workflows}{293}{subsection.9.8.1}\protected@file@percent }
+\newlabel{lst:ch09_error_envelope}{{9.4}{293}{Failure Taxonomy for Agentic Workflows}{llmlisting.9.4}{}}
+\newlabel{alg:ch09_safeinvoke}{{9.2}{294}{Failure Taxonomy for Agentic Workflows}{llmalgorithm.9.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.9}Performance Considerations}{297}{section.9.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.9.1}A Quantitative View of Latency and Cost}{297}{subsection.9.9.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9.5}{\ignorespaces Core performance metrics for agentic systems and their operational interpretation.}}{298}{table.9.5}\protected@file@percent }
+\newlabel{tab:ch09_agent_performance_metrics}{{9.5}{298}{Core performance metrics for agentic systems and their operational interpretation}{table.9.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.10}Testing, Evaluation, and Observability for Agentic Systems}{300}{section.9.10}\protected@file@percent }
+\newlabel{sec:agent-eval}{{9.10}{300}{Testing, Evaluation, and Observability for Agentic Systems}{section.9.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.1}Evaluation Dimensions}{300}{subsection.9.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.2}Benchmarks and Simulated Environments}{301}{subsection.9.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.3}The ``Agentic Test Pyramid''}{301}{subsection.9.10.3}\protected@file@percent }
+\newlabel{alg:ch09_agent_regression_suite}{{9.3}{301}{The ``Agentic Test Pyramid''}{llmalgorithm.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.4}Observability: Traces, Metrics, and Replay Bundles}{302}{subsection.9.10.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.11}Security in Multi-Agent Systems}{302}{section.9.11}\protected@file@percent }
+\newlabel{sec:ch09-security}{{9.11}{302}{Security in Multi-Agent Systems}{section.9.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.11.1}Threat Modeling Agentic Systems}{302}{subsection.9.11.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9.6}{\ignorespaces Representative threats in agentic architectures and practical mitigations.}}{303}{table.9.6}\protected@file@percent }
+\newlabel{tab:ch09_agentic_threats}{{9.6}{303}{Representative threats in agentic architectures and practical mitigations}{table.9.6}{}}
+\newlabel{lst:ch09_tool_allowlist}{{9.5}{303}{Threat Modeling Agentic Systems}{llmlisting.9.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.12}Case Study: Orchestrating Ishtar AI}{306}{section.9.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.12.1}Workflow}{306}{subsection.9.12.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9.3}{\ignorespaces \ishtar  {} multi-agent pipeline with explicit handoffs and artifacts. The orchestrator enforces workflow order, budgets, and policy gates; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations.}}{307}{figure.9.3}\protected@file@percent }
+\newlabel{fig:ch09_ishtar_agent_pipeline}{{9.3}{307}{\ishtar {} multi-agent pipeline with explicit handoffs and artifacts. The orchestrator enforces workflow order, budgets, and policy gates; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations}{figure.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.12.2}Benefits}{310}{subsection.9.12.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.13}Best Practices Checklist}{311}{section.9.13}\protected@file@percent }
 \@setckpt{ch09-agents-orchestration}{
-\setcounter{page}{299}
+\setcounter{page}{315}
 \setcounter{equation}{0}
 \setcounter{enumi}{6}
-\setcounter{enumii}{0}
+\setcounter{enumii}{4}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
 \setcounter{footnote}{0}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{3}
-\setcounter{section}{11}
+\setcounter{section}{13}
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{1}
-\setcounter{table}{0}
+\setcounter{figure}{3}
+\setcounter{table}{6}
 \setcounter{chapter}{9}
 \setcounter{theorem}{0}
 \setcounter{case}{0}
@@ -97,7 +144,7 @@
 \setcounter{ALG@tmpcounter}{0}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{42}
+\setcounter{tcolorbox@number}{51}
 \setcounter{tcbrastercolumn}{1}
 \setcounter{tcbrasterrow}{1}
 \setcounter{tcbrasternum}{1}
@@ -218,8 +265,10 @@
 \setcounter{bbx:relatedcount}{0}
 \setcounter{bbx:relatedtotal}{0}
 \setcounter{section@level}{1}
-\setcounter{Item}{90}
+\setcounter{Item}{123}
 \setcounter{Hfootnote}{2}
 \setcounter{bookmark@seq@number}{0}
 \setcounter{lstlisting}{0}
+\setcounter{llmalgorithm}{3}
+\setcounter{llmlisting}{5}
 }
