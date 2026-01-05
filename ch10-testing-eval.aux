@@ -15,41 +15,99 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.3.1}Unit Testing}{326}{subsection.10.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.3.2}Integration Testing}{326}{subsection.10.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.3.3}End-to-End Testing}{326}{subsection.10.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10.1}{\ignorespaces Testing pyramid prioritization balances feedback speed with coverage depth. Lower layers (unit tests) run frequently and provide fast feedback for frequently changing artifacts; upper layers (end-to-end, adversarial) run less often but validate system-level behavior and security. This pyramid structure enables teams to catch regressions early while maintaining comprehensive validation.}}{327}{figure.10.1}\protected@file@percent }
+\newlabel{fig:ch10_testing_pyramid}{{10.1}{327}{Testing pyramid prioritization balances feedback speed with coverage depth. Lower layers (unit tests) run frequently and provide fast feedback for frequently changing artifacts; upper layers (end-to-end, adversarial) run less often but validate system-level behavior and security. This pyramid structure enables teams to catch regressions early while maintaining comprehensive validation}{figure.10.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.3.4}Adversarial Testing}{327}{subsection.10.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10.4}Evaluation Metrics}{331}{section.10.4}\protected@file@percent }
-\newlabel{sec:ch10-evaluation-metrics}{{10.4}{331}{Evaluation Metrics}{section.10.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.4.1}Quantitative Metrics}{331}{subsection.10.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.4.2}Qualitative Metrics}{332}{subsection.10.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10.5}Automated Evaluation Techniques}{334}{section.10.5}\protected@file@percent }
-\newlabel{sec:ch10-automated-evaluation-techniques}{{10.5}{334}{Automated Evaluation Techniques}{section.10.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.5.1}Golden Datasets}{334}{subsection.10.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.5.2}LLM-as-a-Judge}{334}{subsection.10.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.5.3}Semantic Similarity Metrics}{334}{subsection.10.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.5.4}Modern Evaluation Tooling and Standards}{337}{subsection.10.5.4}\protected@file@percent }
-\newlabel{sec:ch10-modern-eval}{{10.5.4}{337}{Modern Evaluation Tooling and Standards}{subsection.10.5.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.5.4.1}System-level eval harnesses.}{337}{subsubsection.10.5.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.5.4.2}Benchmark taxonomies and multi-metric evaluation.}{337}{subsubsection.10.5.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.5.4.3}RAG and evidence-grounded evaluation.}{337}{subsubsection.10.5.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.5.4.4}Security-oriented testing.}{338}{subsubsection.10.5.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10.6}Human-in-the-Loop Evaluation}{338}{section.10.6}\protected@file@percent }
-\newlabel{sec:ch10-human-in-the-loop-evaluation}{{10.6}{338}{Human-in-the-Loop Evaluation}{section.10.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10.7}Robustness Testing}{340}{section.10.7}\protected@file@percent }
-\newlabel{sec:ch10-robustness-testing}{{10.7}{340}{Robustness Testing}{section.10.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.7.1}Load Testing}{340}{subsection.10.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.7.2}Fault Injection}{341}{subsection.10.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.7.3}Prompt Injection Defense}{341}{subsection.10.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10.8}Regression Testing in CI/CD}{343}{section.10.8}\protected@file@percent }
-\newlabel{sec:ch10-regression-testing-in-ci-cd}{{10.8}{343}{Regression Testing in CI/CD}{section.10.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10.9}Resilience Strategies}{345}{section.10.9}\protected@file@percent }
-\newlabel{sec:ch10-resilience-strategies}{{10.9}{345}{Resilience Strategies}{section.10.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10.10}Case Study: Testing Ishtar AI}{347}{section.10.10}\protected@file@percent }
-\newlabel{sec:ch10-case-study-testing-ishtar-ai}{{10.10}{347}{Case Study: Testing Ishtar AI}{section.10.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.10.1}Test Suite}{347}{subsection.10.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.10.2}Outcomes}{347}{subsection.10.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {10.11}Best Practices Checklist}{348}{section.10.11}\protected@file@percent }
-\newlabel{sec:ch10-best-practices-checklist}{{10.11}{348}{Best Practices Checklist}{section.10.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{A practical testing pyramid for LLM systems.}{327}{section*.81}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Behavioral coverage beats ``average score'' optimization.}{327}{section*.82}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10.1}{\ignorespaces Test layer selection determines coverage and feedback speed. Different layers (unit, integration, end-to-end, adversarial) validate different aspects: unit tests catch component regressions early; integration tests verify cross-component behavior; end-to-end tests validate user workflows; adversarial tests ensure security. Understanding what each layer validates helps teams design comprehensive test suites.}}{328}{table.10.1}\protected@file@percent }
+\newlabel{tab:ch10_test_layers}{{10.1}{328}{Test layer selection determines coverage and feedback speed. Different layers (unit, integration, end-to-end, adversarial) validate different aspects: unit tests catch component regressions early; integration tests verify cross-component behavior; end-to-end tests validate user workflows; adversarial tests ensure security. Understanding what each layer validates helps teams design comprehensive test suites}{table.10.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{From exact oracles to property-based oracles.}{333}{section*.88}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metamorphic testing for LLM workflows.}{333}{section*.89}\protected@file@percent }
+\newlabel{alg:ch10_metamorphic_testing}{{10.1}{334}{Metamorphic testing for LLM workflows}{llmalgorithm.10.1}{}}
+\newlabel{lst:ch10_metamorphic_py}{{10.1}{334}{Metamorphic testing for LLM workflows}{llmlisting.10.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.4}Evaluation Metrics}{335}{section.10.4}\protected@file@percent }
+\newlabel{sec:ch10-evaluation-metrics}{{10.4}{335}{Evaluation Metrics}{section.10.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4.1}Quantitative Metrics}{335}{subsection.10.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4.2}Qualitative Metrics}{335}{subsection.10.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Slice-based reporting is non-negotiable.}{335}{section*.91}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10.2}{\ignorespaces Evaluation scorecard design determines release decisions and quality monitoring. A balanced scorecard covers multiple dimensions (correctness, faithfulness, safety, style, latency, cost), enabling teams to detect regressions across different quality aspects. In practice, teams should define a small set of \emph  {release gates} (hard thresholds) that block deployments, and a broader set of \emph  {monitoring metrics} (trend alerts) that signal gradual degradation.}}{336}{table.10.2}\protected@file@percent }
+\newlabel{tab:ch10_scorecard}{{10.2}{336}{Evaluation scorecard design determines release decisions and quality monitoring. A balanced scorecard covers multiple dimensions (correctness, faithfulness, safety, style, latency, cost), enabling teams to detect regressions across different quality aspects. In practice, teams should define a small set of \emph {release gates} (hard thresholds) that block deployments, and a broader set of \emph {monitoring metrics} (trend alerts) that signal gradual degradation}{table.10.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.5}Automated Evaluation Techniques}{338}{section.10.5}\protected@file@percent }
+\newlabel{sec:ch10-automated-evaluation-techniques}{{10.5}{338}{Automated Evaluation Techniques}{section.10.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.5.1}Golden Datasets}{338}{subsection.10.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.5.2}LLM-as-a-Judge}{338}{subsection.10.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.5.3}Semantic Similarity Metrics}{338}{subsection.10.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rubric scoring vs.\ pairwise preference.}{340}{section*.97}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Known judge biases and how to mitigate them.}{341}{section*.98}\protected@file@percent }
+\newlabel{alg:ch10_llm_judge_calibration}{{10.2}{341}{Known judge biases and how to mitigate them}{llmalgorithm.10.2}{}}
+\newlabel{lst:ch10_judge_prompt}{{10.2}{342}{Known judge biases and how to mitigate them}{llmlisting.10.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Operational guidance.}{342}{section*.99}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.5.4}Modern Evaluation Tooling and Standards}{343}{subsection.10.5.4}\protected@file@percent }
+\newlabel{sec:ch10-modern-eval}{{10.5.4}{343}{Modern Evaluation Tooling and Standards}{subsection.10.5.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.5.4.1}System-level eval harnesses.}{343}{subsubsection.10.5.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.5.4.2}Benchmark taxonomies and multi-metric evaluation.}{343}{subsubsection.10.5.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.5.4.3}RAG and evidence-grounded evaluation.}{344}{subsubsection.10.5.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {10.5.4.4}Security-oriented testing.}{344}{subsubsection.10.5.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.5.5}Statistical Treatment and Confidence}{344}{subsection.10.5.5}\protected@file@percent }
+\newlabel{sec:ch10-statistical-confidence}{{10.5.5}{344}{Statistical Treatment and Confidence}{subsection.10.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Confidence intervals for noisy metrics.}{344}{section*.101}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Paired comparisons beat unpaired comparisons.}{344}{section*.102}\protected@file@percent }
+\newlabel{alg:ch10_bootstrap_gate}{{10.3}{345}{Paired comparisons beat unpaired comparisons}{llmalgorithm.10.3}{}}
+\newlabel{lst:ch10_bootstrap_py}{{10.3}{345}{Paired comparisons beat unpaired comparisons}{llmlisting.10.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical note on non-determinism.}{345}{section*.103}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10.6}Human-in-the-Loop Evaluation}{346}{section.10.6}\protected@file@percent }
+\newlabel{sec:ch10-human-in-the-loop-evaluation}{{10.6}{346}{Human-in-the-Loop Evaluation}{section.10.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.6.1}Rubrics, Reliability, and Adjudication}{348}{subsection.10.6.1}\protected@file@percent }
+\newlabel{sec:ch10-hitl-rubrics}{{10.6.1}{348}{Rubrics, Reliability, and Adjudication}{subsection.10.6.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Adjudication and ``golden'' labels.}{348}{section*.113}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10.3}{\ignorespaces Rubric design enables consistent human evaluation and LLM judge calibration. For evidence-grounded journalism assistance (Ishtar AI), ``hard fails'' correspond to non-negotiable constraints (faithfulness, safety violations) that block release; ``soft scores'' capture gradations of quality (correctness, attribution, neutrality, clarity) that guide improvements. This rubric structure converts subjective quality judgments into measurable, actionable signals.}}{349}{table.10.3}\protected@file@percent }
+\newlabel{tab:ch10_ishtar_rubric}{{10.3}{349}{Rubric design enables consistent human evaluation and LLM judge calibration. For evidence-grounded journalism assistance (Ishtar AI), ``hard fails'' correspond to non-negotiable constraints (faithfulness, safety violations) that block release; ``soft scores'' capture gradations of quality (correctness, attribution, neutrality, clarity) that guide improvements. This rubric structure converts subjective quality judgments into measurable, actionable signals}{table.10.3}{}}
+\newlabel{alg:ch10_hitl_round}{{10.4}{349}{Adjudication and ``golden'' labels}{llmalgorithm.10.4}{}}
+\newlabel{lst:ch10_annotation_schema}{{10.4}{350}{Adjudication and ``golden'' labels}{llmlisting.10.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Connecting human evaluation to automation.}{350}{section*.114}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10.7}Robustness Testing}{350}{section.10.7}\protected@file@percent }
+\newlabel{sec:ch10-robustness-testing}{{10.7}{350}{Robustness Testing}{section.10.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.7.1}Load Testing}{350}{subsection.10.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.7.2}Fault Injection}{350}{subsection.10.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.7.3}Prompt Injection Defense}{350}{subsection.10.7.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10.4}{\ignorespaces Fault injection matrix enables systematic chaos testing and resilience validation. For an LLM+RAG system, each row defines a reusable experiment with explicit success criteria, enabling teams to verify that failures degrade gracefully rather than catastrophically. This matrix structure converts ad hoc chaos testing into a repeatable, auditable resilience validation process.}}{353}{table.10.4}\protected@file@percent }
+\newlabel{tab:ch10_fault_injection_matrix}{{10.4}{353}{Fault injection matrix enables systematic chaos testing and resilience validation. For an LLM+RAG system, each row defines a reusable experiment with explicit success criteria, enabling teams to verify that failures degrade gracefully rather than catastrophically. This matrix structure converts ad hoc chaos testing into a repeatable, auditable resilience validation process}{table.10.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{A minimal chaos experiment template.}{353}{section*.120}\protected@file@percent }
+\newlabel{lst:ch10_load_test}{{10.5}{354}{A minimal chaos experiment template}{llmlisting.10.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.8}Regression Testing in CI/CD}{354}{section.10.8}\protected@file@percent }
+\newlabel{sec:ch10-regression-testing-in-ci-cd}{{10.8}{354}{Regression Testing in CI/CD}{section.10.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.8.1}Tiered Evaluation Gates and Release Criteria}{356}{subsection.10.8.1}\protected@file@percent }
+\newlabel{sec:ch10-tiered-gates}{{10.8.1}{356}{Tiered Evaluation Gates and Release Criteria}{subsection.10.8.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.2}{\ignorespaces Tiered evaluation gates integrate LLM evaluation into CI/CD. Fast gates protect developer velocity; full gates protect releases; canaries detect residual regressions in production.}}{357}{figure.10.2}\protected@file@percent }
+\newlabel{fig:ch10_tiered_gates}{{10.2}{357}{Tiered evaluation gates integrate LLM evaluation into CI/CD. Fast gates protect developer velocity; full gates protect releases; canaries detect residual regressions in production}{figure.10.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10.5}{\ignorespaces Tiered evaluation plan balances feedback speed with coverage depth. Different gate tiers (pre-merge smoke, nightly regression, pre-release full, canary) run at different cadences and cover different scopes, enabling fast developer feedback while ensuring comprehensive validation before release. ``Critical'' gates should be small, stable, and directly tied to known failure modes to maximize signal-to-noise ratio.}}{357}{table.10.5}\protected@file@percent }
+\newlabel{tab:ch10_tiered_plan}{{10.5}{357}{Tiered evaluation plan balances feedback speed with coverage depth. Different gate tiers (pre-merge smoke, nightly regression, pre-release full, canary) run at different cadences and cover different scopes, enabling fast developer feedback while ensuring comprehensive validation before release. ``Critical'' gates should be small, stable, and directly tied to known failure modes to maximize signal-to-noise ratio}{table.10.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Connecting gates to statistical evidence.}{357}{section*.132}\protected@file@percent }
+\newlabel{lst:ch10_ci_eval}{{10.6}{358}{Connecting gates to statistical evidence}{llmlisting.10.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.9}Resilience Strategies}{358}{section.10.9}\protected@file@percent }
+\newlabel{sec:ch10-resilience-strategies}{{10.9}{358}{Resilience Strategies}{section.10.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10.6}{\ignorespaces Failure mode taxonomy enables systematic resilience engineering. By mapping failure modes (provider outages, retrieval degradation, schema breakage, injection attacks, latency blow-ups) to detection signals and mitigations, teams can design proactive defenses rather than reactive fixes. This taxonomy converts ad hoc incident response into a structured resilience framework.}}{361}{table.10.6}\protected@file@percent }
+\newlabel{tab:ch10_failure_modes}{{10.6}{361}{Failure mode taxonomy enables systematic resilience engineering. By mapping failure modes (provider outages, retrieval degradation, schema breakage, injection attacks, latency blow-ups) to detection signals and mitigations, teams can design proactive defenses rather than reactive fixes. This taxonomy converts ad hoc incident response into a structured resilience framework}{table.10.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.9.1}Failure Modes and Mitigations}{361}{subsection.10.9.1}\protected@file@percent }
+\newlabel{sec:ch10-failure-modes-mitigations}{{10.9.1}{361}{Failure Modes and Mitigations}{subsection.10.9.1}{}}
+\newlabel{lst:ch10_circuit_breaker}{{10.7}{361}{Failure Modes and Mitigations}{llmlisting.10.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.3}{\ignorespaces Evaluation loop design enables continuous quality improvement. Production logs seed incident tests, converting failures into regression tests; curated datasets feed an offline evaluation runner for systematic validation; aggregated reports become CI/CD gates and dashboards, enabling data-driven release decisions. This closed-loop approach ensures that production observations drive quality improvements.}}{362}{figure.10.3}\protected@file@percent }
+\newlabel{fig:ch10_ishtar_eval_loop}{{10.3}{362}{Evaluation loop design enables continuous quality improvement. Production logs seed incident tests, converting failures into regression tests; curated datasets feed an offline evaluation runner for systematic validation; aggregated reports become CI/CD gates and dashboards, enabling data-driven release decisions. This closed-loop approach ensures that production observations drive quality improvements}{figure.10.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.10}Case Study: Testing Ishtar AI}{362}{section.10.10}\protected@file@percent }
+\newlabel{sec:ch10-case-study-testing-ishtar-ai}{{10.10}{362}{Case Study: Testing Ishtar AI}{section.10.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.10.1}Test Suite}{362}{subsection.10.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation architecture.}{362}{section*.142}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Slice design.}{362}{section*.143}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.10.2}Outcomes}{362}{subsection.10.10.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10.7}{\ignorespaces Outcome metrics demonstrate systematic quality improvement through iterative evaluation. Ishtar AI's metrics show how prompt hardening and evidence-grounding reduce hallucination rates, while systematic evaluation detects performance regressions early. These outcomes validate that continuous evaluation converts production observations into measurable quality improvements.}}{363}{table.10.7}\protected@file@percent }
+\newlabel{tab:ch10_ishtar_outcomes}{{10.7}{363}{Outcome metrics demonstrate systematic quality improvement through iterative evaluation. Ishtar AI's metrics show how prompt hardening and evidence-grounding reduce hallucination rates, while systematic evaluation detects performance regressions early. These outcomes validate that continuous evaluation converts production observations into measurable quality improvements}{table.10.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Representative impact on quality and operations.}{363}{section*.144}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Lessons learned.}{363}{section*.145}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10.11}Best Practices Checklist}{363}{section.10.11}\protected@file@percent }
+\newlabel{sec:ch10-best-practices-checklist}{{10.11}{363}{Best Practices Checklist}{section.10.11}{}}
 \@setckpt{ch10-testing-eval}{
-\setcounter{page}{350}
+\setcounter{page}{366}
 \setcounter{equation}{0}
 \setcounter{enumi}{6}
 \setcounter{enumii}{4}
@@ -63,8 +121,8 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{0}
-\setcounter{table}{0}
+\setcounter{figure}{3}
+\setcounter{table}{7}
 \setcounter{chapter}{10}
 \setcounter{theorem}{0}
 \setcounter{case}{0}
@@ -106,7 +164,7 @@
 \setcounter{ALG@tmpcounter}{0}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{51}
+\setcounter{tcolorbox@number}{62}
 \setcounter{tcbrastercolumn}{1}
 \setcounter{tcbrasterrow}{1}
 \setcounter{tcbrasternum}{1}
@@ -227,10 +285,10 @@
 \setcounter{bbx:relatedcount}{0}
 \setcounter{bbx:relatedtotal}{0}
 \setcounter{section@level}{1}
-\setcounter{Item}{123}
+\setcounter{Item}{148}
 \setcounter{Hfootnote}{2}
 \setcounter{bookmark@seq@number}{0}
 \setcounter{lstlisting}{0}
-\setcounter{llmalgorithm}{0}
-\setcounter{llmlisting}{0}
+\setcounter{llmalgorithm}{4}
+\setcounter{llmlisting}{7}
 }
