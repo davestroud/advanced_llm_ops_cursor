@@ -362,7 +362,7 @@ Low to moderate; can affect long-context fidelity. &
 };
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Memory accounting enables capacity planning and batch size optimization. Use precision $b$ from Table~\ref{tab:quantization-comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets. This accounting prevents OOM errors and helps teams understand memory headroom for batching and context length.}
+\caption{Memory accounting enables capacity planning and batch size optimization. Use precision $b$ from Table~\ref{tab:ch07_quantization_comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets. This accounting prevents OOM errors and helps teams understand memory headroom for batching and context length.}
 \label{fig:ch07_memory_cheatsheet}
 \end{figure}
 
@@ -440,7 +440,7 @@ There are different batching strategies. \textit{Static batching} uses a fixed b
 
 Continuous batching is an even more advanced form where, during autoregressive generation, new token requests from other queries can be interwoven into the ongoing processing of existing batches. For example, while one batch of sequences is generating token $t$, a new request that arrives can start being processed for its token $t$ in the next step, rather than waiting for the batch to finish all tokens. This is implemented in vLLM’s scheduler, effectively creating a conveyor belt of requests \cite{Kwon2023vLLM}. The benefit is maximizing throughput at high load with minimal queuing latency.
 
-That said, batching has trade-offs: it increases the latency for each individual request (because of the waiting time to form a batch and the fact that all in a batch finish together, meaning a small request might be delayed behind a large one in the same batch). The optimal batch size or waiting time is a tuning knob: too small batches and we under-utilize the GPU; too large or waiting too long and we hurt tail latency. Continuous monitoring of batch utilization is important. In practice, many deployments start with a small maximum batch size (say 8 or 16) and adjust based on observed GPU utilization. If the GPU has spare room, increasing batch size can yield higher throughput (up to a point of diminishing returns where overheads or memory limits kick in). Indeed, throughput $\Theta$ often scales sub-linearly with batch size $B$; a typical curve might show strong gains up to a moderate $B$ then flattening as the GPU saturates (see Fig.~\ref{fig:throughput-vs-batch} for a representative throughput vs.\ batch size curve).
+That said, batching has trade-offs: it increases the latency for each individual request (because of the waiting time to form a batch and the fact that all in a batch finish together, meaning a small request might be delayed behind a large one in the same batch). The optimal batch size or waiting time is a tuning knob: too small batches and we under-utilize the GPU; too large or waiting too long and we hurt tail latency. Continuous monitoring of batch utilization is important. In practice, many deployments start with a small maximum batch size (say 8 or 16) and adjust based on observed GPU utilization. If the GPU has spare room, increasing batch size can yield higher throughput (up to a point of diminishing returns where overheads or memory limits kick in). Indeed, throughput $\Theta$ often scales sub-linearly with batch size $B$; a typical curve might show strong gains up to a moderate $B$ then flattening as the GPU saturates (see Fig.~\ref{fig:ch07_throughput_vs_batch} for a representative throughput vs.\ batch size curve).
 
 \begin{figure}[htbp]
 \centering
@@ -1011,7 +1011,7 @@ These formulas link low-level engineering decisions (e.g., quantization, batchin
 \subsection{Inference Engines and Serving Runtimes}
 \label{sec:inference-engines}
 
-A number of specialized inference engines have been developed to serve LLMs efficiently. Here we compare three widely used runtimes for decoder-based LLM inference in the cloud: vLLM, Hugging Face Text Generation Inference (TGI), and NVIDIA TensorRT-LLM. Each runtime embodies a distinct approach to batching, memory management, and kernel optimization. Table~\ref{tab:runtimes} provides a qualitative comparison, focused on decoder-only use cases since they remain the most challenging to serve at scale. Table~\ref{tab:runtimes} provides a qualitative comparison drawn from public documentation and reported benchmarks; validate with your own workloads.
+A number of specialized inference engines have been developed to serve LLMs efficiently. Here we compare three widely used runtimes for decoder-based LLM inference in the cloud: vLLM, Hugging Face Text Generation Inference (TGI), and NVIDIA TensorRT-LLM. Each runtime embodies a distinct approach to batching, memory management, and kernel optimization. Table~\ref{tab:ch07_runtimes} provides a qualitative comparison, focused on decoder-only use cases since they remain the most challenging to serve at scale. Table~\ref{tab:ch07_runtimes} provides a qualitative comparison drawn from public documentation and reported benchmarks; validate with your own workloads.
 
 \begin{table}[htbp]
   \centering

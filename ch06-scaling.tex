@@ -1201,7 +1201,7 @@ Private backbones and smart routing let providers forward requests to a near-opt
 \medskip
 \noindent\textbf{Summary.} Geographic scaling reduces user-perceived latency and meets local policies at the cost of added operational complexity. It is the outermost layer of scale: after optimizing single- and multi-node serving, the final frontier is scaling across continents.
 
-Fig.~\ref{fig:geo-scaling-inset} depicts a typical multi-region serving topology with geo-routing, regional caches, and failover paths.
+Fig.~\ref{fig:ch06_geo_scaling_inset} depicts a typical multi-region serving topology with geo-routing, regional caches, and failover paths.
 
 \begin{figure}[htbp]
 \centering
@@ -1273,7 +1273,7 @@ Multi-region H100 clusters with automated scaling policies, caching layers, and 
 
 In the mature stage, \ishtar{} became a multi-region, multi-tier deployment. We upgraded to clusters of H100 GPUs for core serving, as the model had grown to 70B with a 32k context. Each region (US-East, EU-West, APAC) had a cluster with auto-provisioning via Terraform and Kubernetes. We implemented the hybrid scaling strategy: a baseline of high-end GPUs always running for low latency, plus the ability to burst with additional GPUs (including spot instances) during events. Caching was now multi-layer: a Redis global response cache (shared by all pods in a region) and a distributed embedding cache using a vector DB for the document index. We had also introduced speculative decoding in this stage (running a 6B draft model alongside), which gave roughly a 1.5$\times$ speedup on long text generation. The system employed sophisticated autoscaling signals including predictive triggers for known events (as discussed in Section~\ref{sec:scaling-event-autoscaling}). Multi-tenancy was in effect: the platform served both our internal journalists and external API consumers, with priority scheduling ensuring the internal users (journalists) had reserved capacity during crunch time. By the time of this mature setup, \ishtar{} was sustaining peaks of $\sim$100 requests per second with median latency $<\!800$\,ms and p99 around 2\,s, across a user base spanning three continents. The scalability groundwork --- everything from model optimizations to geo-distributed clusters --- allowed it to handle major news surges (10$\times$ traffic in minutes) without failing. This final architecture reflects many best practices we have covered: mixed vertical/horizontal scaling, distributed inference techniques, aggressive batching, autoscaling, caching layers, and cost-awareness (spot instances, multi-model routing for efficiency).
 
-Fig.~\ref{fig:ishtar-timeline} summarizes the evolution of \ishtar{} from a single-GPU prototype to a multi-region, multi-tier production deployment.
+Fig.~\ref{fig:ch06_ishtar_timeline} summarizes the evolution of \ishtar{} from a single-GPU prototype to a multi-region, multi-tier production deployment.
 
 \begin{figure}[htbp]
 \centering
