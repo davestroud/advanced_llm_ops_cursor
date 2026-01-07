@@ -697,16 +697,32 @@ Systems that simply append long chat history risk exceeding token budgets and di
 
 \subsection{A Practical Prompt Template}
 A concise template that works well in production is:
-\begin{quote}\small
-\textbf{SYSTEM:} You are an assistant that answers using provided evidence.\\
-\textbf{QUESTION:} \emph{<user question>}\\
-\textbf{CONTEXT:}\\
-{[}1{]} <title / source / date>\\
-<passage>\\
-{[}2{]} <title / source / date>\\
-<passage>\\
-\textbf{INSTRUCTIONS:} Answer the QUESTION using only CONTEXT. Cite sources as [1], [2]. If insufficient evidence, say ``I don't know.''\\
-\end{quote}
+
+\begin{tcolorbox}[
+  title={\textbf{Practical Prompt Template for RAG}},
+  colback=teal!5,
+  colframe=teal!40!black,
+  colbacktitle=teal!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=12pt,
+  after skip=12pt
+]
+\small
+\ttfamily
+\textbf{SYSTEM:} You are an assistant that answers using provided evidence.\\[2pt]
+\textbf{QUESTION:} \emph{<user question>}\\[2pt]
+\textbf{CONTEXT:}\\[2pt]
+[1] <title / source / date>\\
+<passage>\\[2pt]
+[2] <title / source / date>\\
+<passage>\\[2pt]
+\textbf{INSTRUCTIONS:} Answer the QUESTION using only CONTEXT. Cite sources as [1], [2]. If insufficient evidence, say ``I don't know.''
+\end{tcolorbox}
+
 This template makes the evidence boundaries explicit and gives the model a stable citation format.
 
 \subsubsection*{Summary}
