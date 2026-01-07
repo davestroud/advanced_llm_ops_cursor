@@ -781,23 +781,23 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
   \begin{llmfigbox}
   \begin{tikzpicture}[
     >=Stealth,
-    node distance=0.6cm and 0.9cm,
-    cloud/.style={ellipse, draw=blue!60!black, fill=blue!15, thick,
-      minimum width=3.6cm, minimum height=1.8cm, align=center, font=\small\bfseries},
-    az/.style={rectangle, draw=green!60!black, fill=green!10, thick,
-      rounded corners=5pt, minimum width=3.7cm, minimum height=4.3cm},
-    k8s/.style={rectangle, draw=purple!60!black, fill=purple!10, thick,
-      rounded corners=3pt, minimum width=2.9cm, minimum height=1.2cm, align=center, font=\footnotesize\bfseries},
-    gpu/.style={rectangle, draw=orange!70!black, fill=orange!15, thick,
-      rounded corners=3pt, minimum width=1.55cm, minimum height=0.72cm, align=center, font=\footnotesize},
-    service/.style={rectangle, draw=teal!60!black, fill=teal!10, thick,
-      rounded corners=3pt, minimum width=1.9cm, minimum height=0.78cm, align=center, font=\footnotesize},
-    security/.style={rectangle, draw=red!60!black, fill=red!10, thick,
-      rounded corners=3pt, minimum width=1.7cm, minimum height=0.72cm, align=center, font=\footnotesize\bfseries},
-    network/.style={rectangle, draw=cyan!60!black, fill=cyan!10, thick,
-      rounded corners=3pt, minimum width=2.9cm, minimum height=0.95cm, align=center, font=\footnotesize\bfseries},
-    arrow/.style={->, thick, draw=black!60, line width=0.95pt},
-    dasharrow/.style={->, thick, dashed, draw=teal!60!black, line width=0.95pt}
+    node distance=6mm and 9mm,
+    cloud/.style={ellipse, draw=black!60, fill=gray!15, line width=0.8pt,
+      minimum width=36mm, minimum height=18mm, align=center, font=\small\bfseries, inner sep=4pt},
+    az/.style={rectangle, draw=black!60, fill=gray!10, line width=0.8pt,
+      rounded corners=5pt, minimum width=37mm, minimum height=43mm},
+    k8s/.style={rectangle, draw=black!60, fill=gray!10, line width=0.8pt,
+      rounded corners=3pt, minimum width=29mm, minimum height=12mm, align=center, font=\footnotesize\bfseries, inner sep=4pt},
+    gpu/.style={rectangle, draw=black!70, fill=gray!15, line width=0.8pt,
+      rounded corners=3pt, minimum width=15.5mm, minimum height=7.2mm, align=center, font=\footnotesize, inner sep=4pt},
+    service/.style={rectangle, draw=black!60, fill=gray!10, line width=0.8pt,
+      rounded corners=3pt, minimum width=19mm, minimum height=7.8mm, align=center, font=\footnotesize, inner sep=4pt},
+    security/.style={rectangle, draw=black!70, fill=gray!10, line width=0.8pt,
+      rounded corners=3pt, minimum width=17mm, minimum height=7.2mm, align=center, font=\footnotesize\bfseries, inner sep=4pt},
+    network/.style={rectangle, draw=black!60, fill=gray!10, line width=0.8pt,
+      rounded corners=3pt, minimum width=29mm, minimum height=9.5mm, align=center, font=\footnotesize\bfseries, inner sep=4pt},
+    arrow/.style={-{Latex}, line width=0.8pt, draw=black!60},
+    dasharrow/.style={-{Latex}, line width=0.8pt, dashed, draw=black!50}
   ]
 
     % Top layers
@@ -811,8 +811,8 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
     \node[az, below=1.15cm of gateway, xshift=-3.9cm] (az1) {};
     \node[az, below=1.15cm of gateway, xshift= 3.9cm] (az2) {};
 
-    \node[font=\small\bfseries, color=green!70!black, above=3pt of az1.north] (az1lbl) {AZ-1};
-    \node[font=\small\bfseries, color=green!70!black, above=3pt of az2.north] (az2lbl) {AZ-2};
+    \node[font=\small\bfseries, color=black!70, above=3pt of az1.north] (az1lbl) {AZ-1};
+    \node[font=\small\bfseries, color=black!70, above=3pt of az2.north] (az2lbl) {AZ-2};
 
     % K8s clusters
     \node[k8s] (k8s1) at ($(az1.center)+(0,0.65)$) {K8s Cluster};

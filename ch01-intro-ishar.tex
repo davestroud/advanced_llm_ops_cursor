@@ -90,44 +90,45 @@ Reliability is also a concern: when a subcomponent fails (retriever times out, a
 \begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
-  node distance=1cm and 2.2cm,
-  % Component styles
-  user/.style={ellipse, draw=blue!70!black, fill=blue!8, thick, minimum width=1.8cm, minimum height=0.9cm, align=center, font=\footnotesize\bfseries},
-  orchestrator/.style={rectangle, draw=red!60!black, fill=red!8, thick, rounded corners=4pt, minimum width=3.2cm, minimum height=1.1cm, align=center, font=\footnotesize\bfseries},
-  retriever/.style={rectangle, draw=teal!70!black, fill=teal!8, thick, rounded corners=4pt, minimum width=2.5cm, minimum height=0.9cm, align=center, font=\footnotesize},
-  knowledge/.style={rectangle, draw=green!70!black, fill=green!8, thick, rounded corners=4pt, minimum width=2.4cm, minimum height=1cm, align=center, font=\footnotesize},
-  llm/.style={rectangle, draw=orange!70!black, fill=orange!8, thick, rounded corners=4pt, minimum width=2.3cm, minimum height=1.1cm, align=center, font=\footnotesize\bfseries},
-  tool/.style={rectangle, draw=red!70!black, fill=red!8, thick, rounded corners=4pt, minimum width=2.2cm, minimum height=0.9cm, align=center, font=\footnotesize},
-  response/.style={ellipse, draw=blue!70!black, fill=blue!8, thick, minimum width=1.8cm, minimum height=0.9cm, align=center, font=\footnotesize\bfseries},
-  failure/.style={circle, draw=red!70!black, fill=red!15, thick, minimum size=0.5cm},
-  % Arrow styles
-  mainflow/.style={->, thick, color=black!70},
-  fallback/.style={->, dashed, thick, color=red!70!black},
-  toolflow/.style={->, thick, color=brown!70!black},
-  retrieval/.style={->, thick, color=teal!70!black},
-  queryflow/.style={->, thick, color=blue!70!black},
+  node distance=10mm and 22mm,
+  every node/.style={font=\footnotesize},
+  % Component styles (grayscale-safe with line styles)
+  user/.style={ellipse, draw=black!70, fill=gray!10, line width=0.8pt, minimum width=18mm, minimum height=9mm, align=center, font=\footnotesize\bfseries},
+  orchestrator/.style={rectangle, draw=black!70, fill=gray!20, line width=0.8pt, rounded corners=4pt, minimum width=32mm, minimum height=11mm, align=center, font=\footnotesize\bfseries},
+  retriever/.style={rectangle, draw=black!60, fill=gray!10, line width=0.8pt, rounded corners=4pt, minimum width=25mm, minimum height=9mm, align=center, font=\footnotesize},
+  knowledge/.style={rectangle, draw=black!60, fill=gray!10, line width=0.8pt, rounded corners=4pt, minimum width=24mm, minimum height=10mm, align=center, font=\footnotesize},
+  llm/.style={rectangle, draw=black!70, fill=gray!15, line width=0.8pt, rounded corners=4pt, minimum width=23mm, minimum height=11mm, align=center, font=\footnotesize\bfseries},
+  tool/.style={rectangle, draw=black!60, fill=gray!10, line width=0.8pt, rounded corners=4pt, minimum width=22mm, minimum height=9mm, align=center, font=\footnotesize},
+  response/.style={ellipse, draw=black!70, fill=gray!10, line width=0.8pt, minimum width=18mm, minimum height=9mm, align=center, font=\footnotesize\bfseries},
+  failure/.style={circle, draw=black!70, fill=gray!15, line width=0.8pt, minimum size=5mm},
+  % Arrow styles (grayscale-safe with line styles)
+  mainflow/.style={-{Latex}, line width=0.8pt, color=black!70},
+  fallback/.style={-{Latex}, dashed, line width=0.8pt, color=black!50},
+  toolflow/.style={-{Latex}, line width=0.8pt, color=black!60},
+  retrieval/.style={-{Latex}, line width=0.8pt, color=black!60},
+  queryflow/.style={-{Latex}, line width=0.8pt, color=black!70},
   label/.style={font=\footnotesize, color=black!60}
 ]
 
 % User and Response (top level)
 \node[user] (user) {User};
-\node[response, right=4.2cm of user] (response) {Response};
+\node[response, right=42mm of user] (response) {Response};
 
 % Orchestrator (center)
-\node[orchestrator, below=1.6cm of user] (orchestrator) {\begin{tabular}{c}Orchestrator\\\tiny LLM Application\end{tabular}};
+\node[orchestrator, below=16mm of user] (orchestrator) {\begin{tabular}{c}Orchestrator\\\footnotesize LLM Application\end{tabular}};
 
 % Retriever and Knowledge Base (left side)
-\node[retriever, below left=1.4cm and 1.8cm of orchestrator] (retriever) {\begin{tabular}{c}Retriever\\\tiny (Vector DB)\end{tabular}};
-\node[knowledge, below=1.2cm of retriever] (knowledge) {\begin{tabular}{c}Knowledge Base\\\tiny (Documents)\end{tabular}};
+\node[retriever, below left=14mm and 18mm of orchestrator] (retriever) {\begin{tabular}{c}Retriever\\\footnotesize (Vector DB)\end{tabular}};
+\node[knowledge, below=12mm of retriever] (knowledge) {\begin{tabular}{c}Knowledge Base\\\footnotesize (Documents)\end{tabular}};
 
 % LLM Model (right side)
-\node[llm, below right=1.4cm and 1.8cm of orchestrator] (llm) {LLM Model};
+\node[llm, below right=14mm and 18mm of orchestrator] (llm) {LLM Model};
 
 % External Tool (below LLM)
-\node[tool, below=1.2cm of llm] (tool) {\begin{tabular}{c}External Tool\\\tiny / API\end{tabular}};
+\node[tool, below=12mm of llm] (tool) {\begin{tabular}{c}External Tool\\\footnotesize / API\end{tabular}};
 
 % Failure indicator
-\node[failure, left=0.7cm of retriever] (failure) {\textcolor{red!70!black}{\textbf{×}}};
+\node[failure, left=7mm of retriever] (failure) {\textbf{×}};
 
 % Main flow: User → Orchestrator → Response
 \draw[queryflow] (user) -- node[label, above, pos=0.5] {User Query} (orchestrator);
@@ -140,15 +141,15 @@ Reliability is also a concern: when a subcomponent fails (retriever times out, a
 \draw[retrieval] (retriever) -- node[label, right, pos=0.5] {docs} (orchestrator);
 
 % Failure indicator connection
-\draw[->, dashed, thick, color=red!70!black] (retriever) -- (failure);
-\node[font=\footnotesize, color=black!60, left=0.2cm of failure] {Failure};
+\draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (retriever) -- (failure);
+\node[font=\footnotesize, color=black!60, left=2mm of failure] {Failure};
 
 % LLM flow: Orchestrator → LLM (dashed for model interaction)
 \draw[fallback] (orchestrator) -- node[label, right, pos=0.5] {Assemble prompt \& call model} (llm);
 \draw[fallback] (llm) -- node[label, left, pos=0.5] {LLM answer} (orchestrator);
 
 % Fallback: Orchestrator → LLM (skip retrieval)
-\draw[fallback] (orchestrator) to[out=0,in=180, looseness=1.0] node[label, above, pos=0.5] {\tiny Fallback: skip retrieval} (llm);
+\draw[fallback] (orchestrator) to[out=0,in=180, looseness=1.0] node[label, above, pos=0.5, font=\footnotesize] {Fallback: skip retrieval} (llm);
 
 % Tool flow: LLM → Tool
 \draw[toolflow] (llm) -- node[label, right, pos=0.5] {Tool call (if needed)} (tool);
@@ -325,12 +326,12 @@ control stack spanning input handling, retrieval governance, tool security, and 
   \begin{llmfigbox}
   \begin{tikzpicture}[
     >=Stealth,
-    % Box styles - simplified and clearer
-    surface/.style={rectangle, draw=blue!70!black, fill=blue!10, thick, rounded corners=4pt, minimum width=2.5cm, minimum height=1.2cm, align=center, font=\small},
-    threat/.style={rectangle, draw=red!70!black, fill=red!12, thick, rounded corners=4pt, minimum width=2.5cm, minimum height=1cm, align=center, font=\small},
-    control/.style={rectangle, draw=green!70!black, fill=green!10, thick, rounded corners=4pt, minimum width=2.5cm, minimum height=1.2cm, align=center, font=\small},
-    crosscut/.style={rectangle, draw=purple!70!black, fill=purple!8, thick, rounded corners=4pt, minimum width=14cm, minimum height=0.8cm, align=center, font=\footnotesize},
-    arrow/.style={->, thick, color=black!70}
+    % Box styles (grayscale-safe with line styles)
+    surface/.style={rectangle, draw=black!70, fill=gray!10, line width=0.8pt, rounded corners=4pt, minimum width=25mm, minimum height=12mm, align=center, font=\small},
+    threat/.style={rectangle, draw=black!70, fill=gray!12, line width=0.8pt, rounded corners=4pt, minimum width=25mm, minimum height=10mm, align=center, font=\small},
+    control/.style={rectangle, draw=black!70, fill=gray!10, line width=0.8pt, rounded corners=4pt, minimum width=25mm, minimum height=12mm, align=center, font=\small},
+    crosscut/.style={rectangle, draw=black!70, fill=gray!8, line width=0.8pt, rounded corners=4pt, minimum width=140mm, minimum height=8mm, align=center, font=\footnotesize},
+    arrow/.style={-{Latex}, line width=0.8pt, color=black!70}
   ]
 
   % Use explicit coordinates to ensure no overlap
@@ -342,10 +343,10 @@ control stack spanning input handling, retrieval governance, tool security, and 
   \node[surface] (output) at (14,8) {\begin{tabular}{c}\textbf{Model output}\\\footnotesize Answer text\\Citations\\Logs\end{tabular}};
 
   % Flow arrows between surfaces
-  \draw[->, thick, color=blue!60!black] (input.east) -- (prompt.west);
-  \draw[->, thick, color=blue!60!black] (prompt.east) -- (retrieval.west);
-  \draw[->, thick, color=blue!60!black] (retrieval.east) -- (tools.west);
-  \draw[->, thick, color=blue!60!black] (tools.east) -- (output.west);
+  \draw[-{Latex}, line width=0.8pt, color=black!60] (input.east) -- (prompt.west);
+  \draw[-{Latex}, line width=0.8pt, color=black!60] (prompt.east) -- (retrieval.west);
+  \draw[-{Latex}, line width=0.8pt, color=black!60] (retrieval.east) -- (tools.west);
+  \draw[-{Latex}, line width=0.8pt, color=black!60] (tools.east) -- (output.west);
 
   % Middle layer: Threats
   \node[threat] (inj) at (1.75,5.5) {\begin{tabular}{c}\textbf{Prompt injection}\\\footnotesize User text overrides\\instructions\end{tabular}};
@@ -354,13 +355,13 @@ control stack spanning input handling, retrieval governance, tool security, and 
   \node[threat] (misuse) at (12.25,5.5) {\begin{tabular}{c}\textbf{Tool misuse}\\\footnotesize (confused deputy)\\\footnotesize Unsafe side effects\end{tabular}};
   \node[threat] (leak) at (15.75,5.5) {\begin{tabular}{c}\textbf{Output leakage}\\\footnotesize (PII/secrets)\\\footnotesize Sensitive content\end{tabular}};
 
-  % Arrows from surfaces to threats
-  \draw[arrow, color=red!70!black] (input.south) -- (inj.north);
-  \draw[arrow, color=red!70!black] (prompt.south) -- (inj.north);
-  \draw[arrow, color=red!70!black] (prompt.south) -- (bypass.north);
-  \draw[arrow, color=red!70!black] (retrieval.south) -- (exfil.north);
-  \draw[arrow, color=red!70!black] (tools.south) -- (misuse.north);
-  \draw[arrow, color=red!70!black] (output.south) -- (leak.north);
+  % Arrows from surfaces to threats (dashed for distinction)
+  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (input.south) -- (inj.north);
+  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (prompt.south) -- (inj.north);
+  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (prompt.south) -- (bypass.north);
+  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (retrieval.south) -- (exfil.north);
+  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (tools.south) -- (misuse.north);
+  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (output.south) -- (leak.north);
 
   % Cross-cutting element
   \node[crosscut] (tracing) at (7,3) {\textbf{Cross-cutting:} structured tracing + audit logs (prompt IDs, retrieved doc IDs, tool calls, policy decisions) for incident response and rollback};
@@ -372,24 +373,24 @@ control stack spanning input handling, retrieval governance, tool security, and 
   \node[control] (toolsec) at (12.25,0.5) {\begin{tabular}{c}\textbf{Tool security}\\\footnotesize Allow-list tools\\Argument validation\\Sandbox side effects\end{tabular}};
   \node[control] (outctrl) at (15.75,0.5) {\begin{tabular}{c}\textbf{Output controls}\\\footnotesize PII/secret redaction\\Citation requirements\\Rate limits \& HITL\end{tabular}};
 
-  % Arrows from threats to controls
-  \draw[arrow, color=green!70!black] (inj.south) -- (sanitize.north);
-  \draw[arrow, color=green!70!black] (bypass.south) -- (hierarchy.north);
-  \draw[arrow, color=green!70!black] (exfil.south) -- (governance.north);
-  \draw[arrow, color=green!70!black] (misuse.south) -- (toolsec.north);
-  \draw[arrow, color=green!70!black] (leak.south) -- (outctrl.north);
+  % Arrows from threats to controls (solid for distinction)
+  \draw[-{Latex}, line width=0.8pt, color=black!70] (inj.south) -- (sanitize.north);
+  \draw[-{Latex}, line width=0.8pt, color=black!70] (bypass.south) -- (hierarchy.north);
+  \draw[-{Latex}, line width=0.8pt, color=black!70] (exfil.south) -- (governance.north);
+  \draw[-{Latex}, line width=0.8pt, color=black!70] (misuse.south) -- (toolsec.north);
+  \draw[-{Latex}, line width=0.8pt, color=black!70] (leak.south) -- (outctrl.north);
 
-  % Cross-cutting connections (dashed)
-  \draw[->, dashed, thick, color=purple!70!black] ($(tracing.north west)!0.1!(tracing.north east)$) to[out=90,in=-90] (inj);
-  \draw[->, dashed, thick, color=purple!70!black] ($(tracing.north west)!0.3!(tracing.north east)$) to[out=90,in=-90] (bypass);
-  \draw[->, dashed, thick, color=purple!70!black] ($(tracing.north west)!0.5!(tracing.north east)$) to[out=90,in=-90] (exfil);
-  \draw[->, dashed, thick, color=purple!70!black] ($(tracing.north west)!0.7!(tracing.north east)$) to[out=90,in=-90] (misuse);
-  \draw[->, dashed, thick, color=purple!70!black] ($(tracing.north east)$) to[out=90,in=-90] (leak);
+  % Cross-cutting connections (dotted for distinction)
+  \draw[-{Latex}, dotted, line width=0.8pt, color=black!50] ($(tracing.north west)!0.1!(tracing.north east)$) to[out=90,in=-90] (inj);
+  \draw[-{Latex}, dotted, line width=0.8pt, color=black!50] ($(tracing.north west)!0.3!(tracing.north east)$) to[out=90,in=-90] (bypass);
+  \draw[-{Latex}, dotted, line width=0.8pt, color=black!50] ($(tracing.north west)!0.5!(tracing.north east)$) to[out=90,in=-90] (exfil);
+  \draw[-{Latex}, dotted, line width=0.8pt, color=black!50] ($(tracing.north west)!0.7!(tracing.north east)$) to[out=90,in=-90] (misuse);
+  \draw[-{Latex}, dotted, line width=0.8pt, color=black!50] ($(tracing.north east)$) to[out=90,in=-90] (leak);
 
-  % Layer labels
-  \node[font=\normalsize\bfseries, color=blue!70!black, above=0.3cm of input, anchor=west, xshift=-0.5cm] {Threat surfaces};
-  \node[font=\normalsize\bfseries, color=red!70!black, above=0.2cm of inj, anchor=west, xshift=-0.5cm] {Threats (what can go wrong)};
-  \node[font=\normalsize\bfseries, color=green!70!black, below=0.2cm of sanitize, anchor=west, xshift=-0.5cm] {Controls (what you implement)};
+  % Layer labels (grayscale-safe)
+  \node[font=\normalsize\bfseries, color=black!70, above=3mm of input, anchor=west, xshift=-5mm] {Threat surfaces};
+  \node[font=\normalsize\bfseries, color=black!70, above=2mm of inj, anchor=west, xshift=-5mm] {Threats (what can go wrong)};
+  \node[font=\normalsize\bfseries, color=black!70, below=2mm of sanitize, anchor=west, xshift=-5mm] {Controls (what you implement)};
 
   \end{tikzpicture}
   \end{llmfigbox}

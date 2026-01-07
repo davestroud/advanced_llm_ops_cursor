@@ -98,9 +98,11 @@ A production RAG system consists of \emph{offline} components (ingestion, cleani
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}[node distance=2.6cm, auto,
-    block/.style={rectangle, draw, fill=blue!10, rounded corners, minimum height=1cm, minimum width=2.8cm, align=center},
-    arrow/.style={->, thick}
+\begin{tikzpicture}[
+    node distance=18mm,
+    auto,
+    block/.style={rectangle, draw=black!70, fill=gray!10, rounded corners, minimum height=10mm, minimum width=28mm, align=center, inner sep=4pt, font=\small},
+    arrow/.style={-{Latex}, line width=0.8pt}
 ]
 \node[block] (q) {User query};
 \node[block, right of=q] (qp) {Query processing\\ \footnotesize rewrite, filters};
@@ -108,7 +110,7 @@ A production RAG system consists of \emph{offline} components (ingestion, cleani
 \node[block, right of=ret] (rr) {Rerank \& filter\\ \footnotesize cross-encoder, RRF};
 \node[block, right of=rr] (pack) {Context packer\\ \footnotesize dedupe, trim, cite};
 \node[block, right of=pack] (gen) {LLM generation};
-\node[block, below of=gen, node distance=1.6cm] (ans) {Answer + citations};
+\node[block, below of=gen, node distance=16mm] (ans) {Answer + citations};
 
 \draw[arrow] (q) -- (qp);
 \draw[arrow] (qp) -- (ret);
@@ -333,9 +335,11 @@ Ingestion quality and freshness determine RAG quality. Treat ingestion as a vers
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}[node distance=1.8cm, auto,
-    block/.style={rectangle, draw, fill=blue!10, rounded corners, minimum height=1cm, minimum width=3cm, align=center},
-    arrow/.style={->, thick}
+\begin{tikzpicture}[
+    node distance=18mm,
+    auto,
+    block/.style={rectangle, draw=black!70, fill=gray!10, rounded corners, minimum height=10mm, minimum width=30mm, align=center, inner sep=4pt, font=\small},
+    arrow/.style={-{Latex}, line width=0.8pt}
 ]
 
 % Nodes
@@ -873,9 +877,11 @@ This section illustrates an evidence-first RAG design for \ishtar{}, a crisis in
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}[node distance=1.7cm, auto,
-    block/.style={rectangle, draw, fill=gray!6, rounded corners, minimum height=1cm, minimum width=3.1cm, align=center},
-    arrow/.style={->, thick}
+\begin{tikzpicture}[
+    node distance=17mm,
+    auto,
+    block/.style={rectangle, draw=black!70, fill=gray!6, rounded corners, minimum height=10mm, minimum width=31mm, align=center, inner sep=4pt, font=\small},
+    arrow/.style={-{Latex}, line width=0.8pt}
 ]
 \node[block] (src) {Trusted sources\\ \footnotesize (news, NGOs, bulletins)};
 \node[block, below of=src] (ing) {Ingestion \& chunking\\ \footnotesize normalize + metadata};

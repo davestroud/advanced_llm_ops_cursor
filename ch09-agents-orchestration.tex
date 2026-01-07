@@ -274,32 +274,37 @@ graph.add_conditional_edge(
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}[node distance=1.2cm and 1.7cm, every node/.style={font=\small}]
-\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm] (ui) {User /\\Client};
+\begin{tikzpicture}[
+  node distance=12mm and 18mm,
+  every node/.style={font=\small},
+  box/.style={draw, rounded corners, align=center, inner sep=4pt},
+  arrow/.style={-{Latex}, line width=0.8pt}
+]
+\node[box, minimum width=28mm, minimum height=10mm] (ui) {User /\\Client};
 
-\node[draw, rounded corners, align=center, minimum width=3.8cm, minimum height=1.0cm, below=of ui] (orch) {Orchestrator\\(routing, budgets, policy)};
+\node[box, minimum width=32mm, minimum height=12mm, below=of ui] (orch) {Orchestrator\\(routing, budgets, policy)};
 
-\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm, left=of orch] (retr) {Retrieval\\Agent};
-\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm, right=of orch] (synth) {Synthesis\\Agent};
+\node[box, minimum width=28mm, minimum height=10mm, left=of orch] (retr) {Retrieval\\Agent};
+\node[box, minimum width=28mm, minimum height=10mm, right=of orch] (synth) {Synthesis\\Agent};
 
-\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm, below=of retr] (ver) {Verification\\Agent};
-\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm, below=of synth] (safe) {Safety\\Agent};
+\node[box, minimum width=28mm, minimum height=10mm, below=of retr] (ver) {Verification\\Agent};
+\node[box, minimum width=28mm, minimum height=10mm, below=of synth] (safe) {Safety\\Agent};
 
-\node[draw, rounded corners, align=center, minimum width=3.3cm, minimum height=0.9cm, below=of orch, yshift=-1.0cm] (mem) {Shared Memory\\(episodic + semantic)};
+\node[box, minimum width=32mm, minimum height=10mm, below=of orch, yshift=-12mm] (mem) {Shared Memory\\(episodic + semantic)};
 
-\node[draw, rounded corners, align=center, minimum width=3.3cm, minimum height=0.9cm, below=of mem] (tools) {External Tools\\(search, DBs, APIs)};
+\node[box, minimum width=32mm, minimum height=10mm, below=of mem] (tools) {External Tools\\(search, DBs, APIs)};
 
-\draw[->] (ui) -- (orch);
-\draw[->] (orch) -- (retr);
-\draw[->] (orch) -- (synth);
-\draw[->] (retr) -- (ver);
-\draw[->] (synth) -- (safe);
-\draw[->] (orch) -- (mem);
-\draw[->] (retr) -- (mem);
-\draw[->] (synth) -- (mem);
-\draw[->] (ver) -- (mem);
-\draw[->] (safe) -- (mem);
-\draw[->] (mem) -- (tools);
+\draw[arrow] (ui) -- (orch);
+\draw[arrow] (orch) -- (retr);
+\draw[arrow] (orch) -- (synth);
+\draw[arrow] (retr) -- (ver);
+\draw[arrow] (synth) -- (safe);
+\draw[arrow] (orch) -- (mem);
+\draw[arrow] (retr) -- (mem);
+\draw[arrow] (synth) -- (mem);
+\draw[arrow] (ver) -- (mem);
+\draw[arrow] (safe) -- (mem);
+\draw[arrow] (mem) -- (tools);
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Control-plane and data-plane separation enables reliable multi-agent orchestration. The orchestrator enforces routing decisions, budgets, and policies (control plane), while agents implement scoped capabilities and shared memory provides a consistent state substrate (data plane). This separation allows policy changes without modifying agent logic, enabling auditable, testable multi-agent systems. External tools provide grounded capabilities that extend agent functionality.}
@@ -1230,32 +1235,38 @@ To ground the concepts above, let's walk through the orchestration pipeline of I
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}[node distance=1.1cm and 1.4cm, every node/.style={font=\small}]
+\begin{tikzpicture}[
+  node distance=10mm and 15mm,
+  every node/.style={font=\small},
+  box/.style={draw, rounded corners, align=center, inner sep=4pt},
+  arrow/.style={-{Latex}, line width=0.8pt},
+  arrowDashed/.style={-{Latex}, line width=0.8pt, dashed}
+]
 % Top row
-\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm] (ingest) {Ingestion};
-\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm, right=of ingest] (retr) {Retrieval};
-\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm, right=of retr] (synth) {Synthesis};
+\node[box, minimum width=24mm, minimum height=9mm] (ingest) {Ingestion};
+\node[box, minimum width=24mm, minimum height=9mm, right=of ingest] (retr) {Retrieval};
+\node[box, minimum width=24mm, minimum height=9mm, right=of retr] (synth) {Synthesis};
 
 % Bottom row
-\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm, below=of synth] (verify) {Verification};
-\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm, left=of verify] (safety) {Safety};
-\node[draw, rounded corners, align=center, minimum width=2.2cm, minimum height=0.85cm, left=of safety] (deliver) {Delivery};
+\node[box, minimum width=24mm, minimum height=9mm, below=of synth] (verify) {Verification};
+\node[box, minimum width=24mm, minimum height=9mm, left=of verify] (safety) {Safety};
+\node[box, minimum width=24mm, minimum height=9mm, left=of safety] (deliver) {Delivery};
 
 % Orchestrator
-\node[draw, rounded corners, align=center, minimum width=2.8cm, minimum height=0.9cm, below=of retr, xshift=-3.2cm] (orch) {Orchestrator\\(router + budgets)};
+\node[box, minimum width=28mm, minimum height=10mm, below=of retr, xshift=-32mm] (orch) {Orchestrator\\(router + budgets)};
 
 % Arrows with artifacts
-\draw[->] (ingest) -- node[above]{chunks + metadata} (retr);
-\draw[->] (retr) -- node[above]{context pack} (synth);
-\draw[->] (synth) -- node[right]{draft + citations} (verify);
-\draw[->] (verify) -- node[below]{verified answer} (safety);
-\draw[->] (safety) -- node[below]{user response} (deliver);
+\draw[arrow] (ingest) -- node[above, font=\footnotesize]{chunks + metadata} (retr);
+\draw[arrow] (retr) -- node[above, font=\footnotesize]{context pack} (synth);
+\draw[arrow] (synth) -- node[right, font=\footnotesize]{draft + citations} (verify);
+\draw[arrow] (verify) -- node[below, font=\footnotesize]{verified answer} (safety);
+\draw[arrow] (safety) -- node[below, font=\footnotesize]{user response} (deliver);
 
 % Orchestrator control edges (dashed)
-\draw[->, dashed] (orch) -- (retr);
-\draw[->, dashed] (orch) -- (synth);
-\draw[->, dashed] (orch) -- (verify);
-\draw[->, dashed] (orch) -- (safety);
+\draw[arrowDashed] (orch) -- (retr);
+\draw[arrowDashed] (orch) -- (synth);
+\draw[arrowDashed] (orch) -- (verify);
+\draw[arrowDashed] (orch) -- (safety);
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{\ishtar{} multi-agent pipeline demonstrates production-ready orchestration patterns. The orchestrator enforces workflow order, budgets, and policy gates, ensuring reliable execution; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations. This pipeline structure enables traceability, error handling, and quality assurance by making each handoff explicit and verifiable.}

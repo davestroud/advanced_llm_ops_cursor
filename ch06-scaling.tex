@@ -1116,12 +1116,13 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  node distance=7mm and 9mm,
-  box/.style={draw, rounded corners, thick, align=center, minimum width=2.9cm, minimum height=0.9cm, fill=gray!5},
-  hot/.style={draw, rounded corners, thick, align=center, minimum width=3.2cm, minimum height=0.9cm, fill=orange!12},
-  dist/.style={draw, rounded corners, thick, align=center, minimum width=3.2cm, minimum height=0.9cm, fill=blue!7},
-  stor/.style={draw, rounded corners, thick, align=center, minimum width=3.2cm, minimum height=0.9cm, fill=green!10},
-  arr/.style={-{Stealth[length=2.6mm]}, thick}
+  node distance=10mm and 15mm,
+  every node/.style={font=\small},
+  box/.style={draw=black!70, rounded corners, line width=0.8pt, align=center, minimum width=29mm, minimum height=9mm, fill=gray!5, inner sep=4pt},
+  hot/.style={draw=black!70, rounded corners, line width=0.8pt, align=center, minimum width=32mm, minimum height=9mm, fill=gray!12, inner sep=4pt},
+  dist/.style={draw=black!70, rounded corners, line width=0.8pt, align=center, minimum width=32mm, minimum height=9mm, fill=gray!7, inner sep=4pt},
+  stor/.style={draw=black!70, rounded corners, line width=0.8pt, align=center, minimum width=32mm, minimum height=9mm, fill=gray!10, inner sep=4pt},
+  arr/.style={-{Latex}, line width=0.8pt}
 ]
 
 % Row 1: Query & Router
@@ -1161,8 +1162,8 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 \draw[arr] (sh3) -- (merge);
 
 % Embedding cache notes/edges
-\node[align=left, font=\small] (note) at ($(embcache.north)+(0,1.0)$) {reuse vectors on\\ identical chunks};
-\draw[-{Stealth[length=2.0mm]}, thick] (note.south) -- (embcache.north);
+\node[align=left, font=\small] (note) at ($(embcache.north)+(0,10mm)$) {reuse vectors on\\ identical chunks};
+\draw[-{Latex}, line width=0.8pt] (note.south) -- (embcache.north);
 
 % Merge to generator
 \draw[arr] (merge) -- (gen);
@@ -1229,14 +1230,15 @@ Fig.~\ref{fig:ch06_geo_scaling_inset} depicts a typical multi-region serving top
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  node distance=6mm and 12mm,
-  region/.style={draw, rounded corners, thick, minimum width=2.9cm, minimum height=1.0cm, align=center, fill=gray!5},
-  user/.style={draw, rounded corners, thick, minimum width=2.2cm, minimum height=0.8cm, align=center, fill=green!8},
-  arr/.style={-{Stealth[length=2.6mm]}, thick},
-  fail/.style={-{Stealth[length=2.6mm]}, thick, dashed, color=red!70}
+  node distance=10mm and 15mm,
+  every node/.style={font=\small},
+  region/.style={draw=black!70, rounded corners, line width=0.8pt, minimum width=29mm, minimum height=10mm, align=center, fill=gray!5, inner sep=4pt},
+  user/.style={draw=black!70, rounded corners, line width=0.8pt, minimum width=22mm, minimum height=8mm, align=center, fill=gray!8, inner sep=4pt},
+  arr/.style={-{Latex}, line width=0.8pt},
+  fail/.style={-{Latex}, line width=0.8pt, dashed, color=black!50}
 ]
 % Schematic world frame (purely illustrative)
-\node[draw, rounded corners, thick, minimum width=11.5cm, minimum height=5.2cm, fill=blue!2] (frame) {};
+\node[draw=black!70, rounded corners, line width=0.8pt, minimum width=115mm, minimum height=52mm, fill=gray!2] (frame) {};
 
 % Regions (left-to-right placement)
 \node[region, anchor=west] (na) at ($(frame.west)+(0.6,0)$) {North America\\(NA cluster)};
