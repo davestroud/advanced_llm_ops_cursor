@@ -52,52 +52,51 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.6.6}Security Baselines}{270}{subsection.8.6.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {8.7}Retriever Strategies}{270}{section.8.7}\protected@file@percent }
 \newlabel{sec:rag-retriever-strategies}{{8.7}{270}{Retriever Strategies}{section.8.7}{}}
-\newlabel{RF1}{271}
-\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints.}}{271}{table.8.1}\protected@file@percent }
-\newlabel{tab:ch08_vector_index_comparison_landscape}{{8.1}{271}{Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints}{table.8.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.1}Dense Retrieval (Semantic Search)}{272}{subsection.8.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.2}Sparse Retrieval (Lexical / Keyword Search)}{272}{subsection.8.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.3}Hybrid Retrieval}{272}{subsection.8.7.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8.2}{\ignorespaces Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements.}}{273}{table.8.2}\protected@file@percent }
-\newlabel{tab:ch08_retriever_strategies}{{8.2}{273}{Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements}{table.8.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.4}Modern Retrieval Patterns: Fusion, Late Interaction, and HyDE}{274}{subsection.8.7.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.5}Query Rewriting and Expansion}{274}{subsection.8.7.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.8}Augmenting the Prompt}{274}{section.8.8}\protected@file@percent }
-\newlabel{sec:rag-augmenting-the-prompt}{{8.8}{274}{Augmenting the Prompt}{section.8.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.1}Context Budgeting and Selection}{274}{subsection.8.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.2}Ordering, Grouping, and Separators}{275}{subsection.8.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.3}Prompt Instructions and Abstention}{275}{subsection.8.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.4}Citations and Attribution}{276}{subsection.8.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.5}Multi-Turn Conversations}{276}{subsection.8.8.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.6}A Practical Prompt Template}{276}{subsection.8.8.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.9}Evaluation of RAG Pipelines}{277}{section.8.9}\protected@file@percent }
-\newlabel{sec:rag-metrics}{{8.9}{277}{Evaluation of RAG Pipelines}{section.8.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.1}Retrieval Quality}{277}{subsection.8.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.2}Generation Faithfulness and Answer Relevance}{277}{subsection.8.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.3}Citation Accuracy and Attribution}{278}{subsection.8.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.4}Latency, Throughput, and Cost}{278}{subsection.8.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.5}Failure Modes and Regression Testing}{278}{subsection.8.9.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.10}Performance Optimization in RAG}{279}{section.8.10}\protected@file@percent }
-\newlabel{sec:rag-performance-optimization-in-rag}{{8.10}{279}{Performance Optimization in RAG}{section.8.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.1}Decompose and Measure}{279}{subsection.8.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.2}Retrieval-Side Optimizations}{279}{subsection.8.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.3}Prompt and Context Optimizations}{280}{subsection.8.10.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.4}Generation-Side Optimizations}{280}{subsection.8.10.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.11}Security and Compliance}{281}{section.8.11}\protected@file@percent }
-\newlabel{sec:rag-security-and-compliance}{{8.11}{281}{Security and Compliance}{section.8.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.1}Access Control and Tenant Isolation}{281}{subsection.8.11.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.2}Data Protection: Encryption, Retention, and Deletion}{281}{subsection.8.11.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.3}Prompt Injection and Untrusted Content}{281}{subsection.8.11.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.4}Auditability and Monitoring}{282}{subsection.8.11.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.12}Case Study: Ishtar AI's RAG Pipeline}{282}{section.8.12}\protected@file@percent }
-\newlabel{sec:rag-case-study-ishtar-ai-s-rag-pipeline}{{8.12}{282}{Case Study: Ishtar AI's RAG Pipeline}{section.8.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.1}Overview}{282}{subsection.8.12.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.2}Architecture}{282}{subsection.8.12.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces \ishtar  {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users.}}{283}{figure.8.3}\protected@file@percent }
-\newlabel{fig:ch08_ishtar_rag}{{8.3}{283}{\ishtar {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users}{figure.8.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.3}Operational Outcomes}{283}{subsection.8.12.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.13}Best Practices Checklist}{284}{section.8.13}\protected@file@percent }
-\newlabel{sec:rag-best-practices-checklist}{{8.13}{284}{Best Practices Checklist}{section.8.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.1}Dense Retrieval (Semantic Search)}{271}{subsection.8.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.2}Sparse Retrieval (Lexical / Keyword Search)}{271}{subsection.8.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.3}Hybrid Retrieval}{271}{subsection.8.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.4}Modern Retrieval Patterns: Fusion, Late Interaction, and HyDE}{272}{subsection.8.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.5}Query Rewriting and Expansion}{272}{subsection.8.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.8}Augmenting the Prompt}{272}{section.8.8}\protected@file@percent }
+\newlabel{sec:rag-augmenting-the-prompt}{{8.8}{272}{Augmenting the Prompt}{section.8.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.1}Context Budgeting and Selection}{272}{subsection.8.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.2}Ordering, Grouping, and Separators}{273}{subsection.8.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.3}Prompt Instructions and Abstention}{273}{subsection.8.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.4}Citations and Attribution}{274}{subsection.8.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.5}Multi-Turn Conversations}{274}{subsection.8.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.6}A Practical Prompt Template}{274}{subsection.8.8.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.9}Evaluation of RAG Pipelines}{275}{section.8.9}\protected@file@percent }
+\newlabel{sec:rag-metrics}{{8.9}{275}{Evaluation of RAG Pipelines}{section.8.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.1}Retrieval Quality}{275}{subsection.8.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.2}Generation Faithfulness and Answer Relevance}{275}{subsection.8.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.3}Citation Accuracy and Attribution}{276}{subsection.8.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.4}Latency, Throughput, and Cost}{276}{subsection.8.9.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.5}Failure Modes and Regression Testing}{276}{subsection.8.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.10}Performance Optimization in RAG}{277}{section.8.10}\protected@file@percent }
+\newlabel{sec:rag-performance-optimization-in-rag}{{8.10}{277}{Performance Optimization in RAG}{section.8.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.1}Decompose and Measure}{277}{subsection.8.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.2}Retrieval-Side Optimizations}{277}{subsection.8.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.3}Prompt and Context Optimizations}{278}{subsection.8.10.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.4}Generation-Side Optimizations}{278}{subsection.8.10.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.11}Security and Compliance}{279}{section.8.11}\protected@file@percent }
+\newlabel{sec:rag-security-and-compliance}{{8.11}{279}{Security and Compliance}{section.8.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.1}Access Control and Tenant Isolation}{279}{subsection.8.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.2}Data Protection: Encryption, Retention, and Deletion}{279}{subsection.8.11.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.3}Prompt Injection and Untrusted Content}{279}{subsection.8.11.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.4}Auditability and Monitoring}{280}{subsection.8.11.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.12}Case Study: Ishtar AI's RAG Pipeline}{280}{section.8.12}\protected@file@percent }
+\newlabel{sec:rag-case-study-ishtar-ai-s-rag-pipeline}{{8.12}{280}{Case Study: Ishtar AI's RAG Pipeline}{section.8.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.1}Overview}{280}{subsection.8.12.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.2}Architecture}{280}{subsection.8.12.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces \ishtar  {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users.}}{281}{figure.8.3}\protected@file@percent }
+\newlabel{fig:ch08_ishtar_rag}{{8.3}{281}{\ishtar {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users}{figure.8.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.3}Operational Outcomes}{281}{subsection.8.12.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.13}Best Practices Checklist}{282}{section.8.13}\protected@file@percent }
+\newlabel{sec:rag-best-practices-checklist}{{8.13}{282}{Best Practices Checklist}{section.8.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints.}}{286}{table.8.1}\protected@file@percent }
+\newlabel{tab:ch08_vector_index_comparison_landscape}{{8.1}{286}{Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints}{table.8.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.2}{\ignorespaces Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements.}}{287}{table.8.2}\protected@file@percent }
+\newlabel{tab:ch08_retriever_strategies}{{8.2}{287}{Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements}{table.8.2}{}}
 \@setckpt{ch08-rag}{
 \setcounter{page}{288}
 \setcounter{equation}{0}
@@ -144,7 +143,7 @@
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
 \setcounter{nlinenum}{0}
-\setcounter{r@tfl@t}{1}
+\setcounter{r@tfl@t}{0}
 \setcounter{lstnumber}{1}
 \setcounter{algorithm}{0}
 \setcounter{ALG@line}{0}

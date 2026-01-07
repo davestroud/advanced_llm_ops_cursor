@@ -468,20 +468,20 @@ Two pragmatic additions improve real-world resilience. First, rate limit and ano
 \subsubsection*{Summary}
 Vector DB selection is an engineering trade-off across recall, latency, and operational complexity. For most teams, the practical objective is not perfect nearest-neighbor recall but consistently retrieving answer-bearing evidence under strict latency SLOs.
 
-\begin{sidewaystable}
+\begin{table}[t]
 \centering
 \caption{Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints.}
 \label{tab:ch08_vector_index_comparison_landscape}
 \begin{threeparttable}
 \small
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.12}
-\begin{tabularx}{\textwidth}{%
-  >{\raggedright\arraybackslash}p{2.6cm}  % Index Type
-  >{\raggedright\arraybackslash}p{2.6cm}  % Recall
-  >{\raggedright\arraybackslash}p{2.8cm}  % Latency
-  >{\raggedright\arraybackslash}p{2.8cm}  % Memory
-  >{\raggedright\arraybackslash}p{2.8cm}  % Scale
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{0.95\linewidth}{%
+  >{\raggedright\arraybackslash}p{2.2cm}  % Index Type
+  >{\raggedright\arraybackslash}p{2.0cm}  % Recall
+  >{\raggedright\arraybackslash}p{2.3cm}  % Latency
+  >{\raggedright\arraybackslash}p{2.3cm}  % Memory
+  >{\raggedright\arraybackslash}p{2.3cm}  % Scale
   X                                        % Notes (flex)
 }
 \toprule
@@ -533,7 +533,7 @@ Compose strengths: e.g., IVF narrows candidates; PQ compresses; HNSW refines. Us
 \end{tablenotes}
 
 \end{threeparttable}
-\end{sidewaystable}
+\end{table}
 
 \section{Retriever Strategies}
 \label{sec:rag-retriever-strategies}
