@@ -89,7 +89,7 @@ A cornerstone of LLM CI/CD is integrating automated evaluation suites into the p
 \end{tabularx}
 \end{table}
 
-To operationalize these principles, evaluation pipelines are typically organized into distinct stages, each with specific objectives, metrics, and tooling. Table~\ref{tab:eval_stages} summarizes the staged evaluation approach, showing how different evaluation suites run at different points in the CI/CD pipeline to balance speed, coverage, and cost.
+To operationalize these principles, evaluation pipelines are typically organized into distinct stages, each with specific objectives, metrics, and tooling. Table~\ref{tab:ch04_eval_stages} summarizes the staged evaluation approach, showing how different evaluation suites run at different points in the CI/CD pipeline to balance speed, coverage, and cost.
 
 \begin{table}[t]
 \centering
@@ -126,7 +126,7 @@ LangSmith prod evals; Phoenix dashboards; Evidently; NannyML drift detectors \\
 \end{tabularx}
 \end{table}
 
-The staged evaluation approach creates a continuous loop that feeds production insights back into the development cycle. Fig.~\ref{fig:eval_stages_pipeline} illustrates this flow, showing how evaluation stages connect commit events to deployment gates, with feedback loops that surface production issues back to the repository for remediation.
+The staged evaluation approach creates a continuous loop that feeds production insights back into the development cycle. Fig.~\ref{fig:ch04_eval_stages_pipeline} illustrates this flow, showing how evaluation stages connect commit events to deployment gates, with feedback loops that surface production issues back to the repository for remediation.
 
 \vspace{1em} % adjust: 1em ~ one line of text, 2em more space
 
@@ -550,7 +550,7 @@ The following checklist condenses the chapter into a concrete ``definition of do
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
   \item \textbf{Release unit defined and versioned.} Prompt templates, model IDs (and fine-tune checkpoints where applicable), retrieval index snapshots, tool schemas, and safety policies are versioned and promotable together.
-  \item \textbf{Staged evaluation implemented.} Pre-merge smoke suite, post-merge regression gates, nightly adversarial/fairness suite, and canary/shadow online evaluation (Table~\ref{tab:eval_stages}).
+  \item \textbf{Staged evaluation implemented.} Pre-merge smoke suite, post-merge regression gates, nightly adversarial/fairness suite, and canary/shadow online evaluation (Table~\ref{tab:ch04_eval_stages}).
   \item \textbf{Safety and security probes included.} Prompt-injection/jailbreak, PII leakage, insecure output handling, and tool-abuse scenarios aligned with OWASP LLM Top-10 and NIST risk guidance \cite{owasp_llm,nist_genai_profile}.
   \item \textbf{Promotion is statistically justified.} Paired tests and confidence intervals are used for go/no-go decisions; results are reported by slice and include failing examples \cite{koehn2004,mcnemar1947}.
   \item \textbf{Progressive delivery and rollback are automated.} Canary/blue--green rollout with automated analysis hooks and clear rollback triggers \cite{argo_rollouts_overview,argo_rollouts_canary,argo_rollouts_bluegreen}.

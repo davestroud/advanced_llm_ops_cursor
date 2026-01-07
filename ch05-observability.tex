@@ -236,7 +236,7 @@ Close the loop by wiring selected fields directly into alerting and automated gu
 
 To make the preceding patterns concrete, consider an example observability stack used by \ishtar. The design principle is to treat OpenTelemetry as the backbone and to maintain a clear mapping from each signal type to the operational question it answers: Prometheus/OpenMetrics metrics answer ``how bad and how widespread is the issue?''; tracing answers ``where is the latency/cost/error coming from?''; and semantic evaluators answer ``is the system still correct and safe?''
 
-Table~\ref{tab:ishtar_obs_stack} summarizes a minimal-but-extensible stack composition.
+Table~\ref{tab:ch05_ishtar_obs_stack} summarizes a minimal-but-extensible stack composition.
 
 \begin{table}[t]
 \centering

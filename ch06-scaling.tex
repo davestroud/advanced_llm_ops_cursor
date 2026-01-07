@@ -140,7 +140,7 @@ Whenever a capacity estimate is wrong, the most common failure mode is missing a
 \subsection{GPU Partitioning and Multi-Tenancy}\label{sec:gpu-partitioning}
 At moderate scales, a common efficiency problem is \emph{under-filled GPUs}: many requests or tenants do not require an entire high-end accelerator. NVIDIA Multi-Instance GPU (MIG) partitions supported GPUs into multiple isolated GPU instances with dedicated memory and compute resources, enabling higher overall utilization while providing stronger quality-of-service isolation for mixed workloads \cite{nvidia_mig_guide}. In LLM serving, MIG is most effective for smaller models, embedding services, and low-throughput inference workloads where per-tenant isolation and predictable latency are more important than maximum batch size. For large models or long-context workloads, full-GPU access is often preferable to preserve batching headroom and KV-cache capacity.
 
-Scaling LLM deployments can follow multiple dimensions, each with distinct architectural, cost, and operational trade-offs. The primary approaches are vertical scaling, horizontal scaling, and hybrid scaling, which we discuss in turn. Fig.~\ref{fig:scaling-dimensions} provides a schematic overview of these three strategies, while Table~\ref{tab:scaling-matrix} summarizes their comparative characteristics.
+Scaling LLM deployments can follow multiple dimensions, each with distinct architectural, cost, and operational trade-offs. The primary approaches are vertical scaling, horizontal scaling, and hybrid scaling, which we discuss in turn. Fig.~\ref{fig:ch06_scaling_dimensions} provides a schematic overview of these three strategies, while Table~\ref{tab:ch06_scaling_matrix} summarizes their comparative characteristics.
 
 \subsection{Vertical Scaling}
 \label{sec:scaling-vertical}
@@ -529,7 +529,7 @@ Pipeline parallelism partitions the model into sequential stages (contiguous lay
 
 \subsubsection{Case in \ishtar{}.} In the \ishtar{} deployment of the LLaMA-3.1-70B model, a hybrid of tensor and pipeline parallelism was used. Tensor parallelism accelerated per-layer GEMMs across 8 A100 GPUs via NVLink, while pipeline parallelism split the model into 4 sequential stages. This enabled 32k-token context windows without exceeding memory budgets, sustaining sub-second latency for 90\% of queries during breaking news events:\cite{frugalgpt_2023}.
 
-Table~\ref{tab:distributed-inference} compares common distributed inference techniques and highlights their dominant trade-offs in latency, throughput, and communication cost.
+Table~\ref{tab:ch06_distributed_inference} compares common distributed inference techniques and highlights their dominant trade-offs in latency, throughput, and communication cost.
 
 \begin{table}[htbp]
 \centering
@@ -557,7 +557,7 @@ Best use cases & Huge models that cannot fit a single GPU. & Wide layers (large 
 \end{tabularx}
 \end{table}
 
-Fig.~\ref{fig:parallelism} provides a compact view of how model, tensor, and pipeline parallelism split parameters and computation across devices.
+Fig.~\ref{fig:ch06_parallelism} provides a compact view of how model, tensor, and pipeline parallelism split parameters and computation across devices.
 
 \begin{figure}[htbp]
 \centering
@@ -781,7 +781,7 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 \medskip
 \noindent\textbf{Summary.} Autoscaling an LLM deployment is a delicate balance: react quickly enough to maintain SLOs, avoid oscillations and unnecessary cost, and anticipate cold starts. Combining reactive metrics with proactive event signals is state of the art. In our \ishtar{} deployment, the hybrid approach (load forecasts + calendar events) enabled rapid yet stable scale-outs (6 to 28 GPU replicas in under 2 minutes) without breaching latency targets.
 
-Fig.~\ref{fig:autoscale-target-tracking} illustrates a token-aware target-tracking loop for autoscaling inference replicas under bursty demand.
+Fig.~\ref{fig:ch06_autoscale_target_tracking} illustrates a token-aware target-tracking loop for autoscaling inference replicas under bursty demand.
 
 \begin{figure}[htbp]
 \centering
@@ -831,7 +831,7 @@ Fig.~\ref{fig:autoscale-target-tracking} illustrates a token-aware target-tracki
 \label{fig:ch06_autoscale_target_tracking}
 \end{figure}
 
-Fig.~\ref{fig:autoscale-event-based} shows an event-driven autoscaling workflow that uses external triggers to pre-warm capacity ahead of traffic spikes.
+Fig.~\ref{fig:ch06_autoscale_event_based} shows an event-driven autoscaling workflow that uses external triggers to pre-warm capacity ahead of traffic spikes.
 
 \begin{figure}[htbp]
 \centering
@@ -948,7 +948,7 @@ By hashing retrieved document chunks and caching embeddings in a pgvector-enable
 \medskip
 \noindent\textbf{Summary.} Caching at both the response level and the embedding level contributed to the overall scalability of \ishtar{}. By avoiding recomputation, we effectively obtained more throughput from each GPU and served more users with the same hardware. The trade-off is additional complexity (key design, invalidation, persistence), but with careful engineering the benefits far outweigh the overhead.
 
-Fig.~\ref{fig:caching-flow} summarizes where common caching layers sit in the LLM request path and how they reduce repeated work.
+Fig.~\ref{fig:ch06_caching_flow} summarizes where common caching layers sit in the LLM request path and how they reduce repeated work.
 
 \begin{figure}[htbp]
 \centering
@@ -1088,7 +1088,7 @@ Scaling RAG in \ishtar{} meant scaling the vector search backend alongside the m
 \medskip
 \noindent\textbf{Summary.} Scaling RAG is a multidimensional challenge: IR-side scaling (index sharding, ANN, hot tiers, caching) must go hand-in-hand with LLM-side scaling (batching, KV management, and context-efficient prompting). Marrying these efficiently is an active area of systems research.
 
-Fig.~\ref{fig:rag-two-tier} sketches a practical two-tier RAG serving layout that separates hot and cold data while keeping latency predictable.
+Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layout that separates hot and cold data while keeping latency predictable.
 
 \begin{figure}[htbp]
 \centering
