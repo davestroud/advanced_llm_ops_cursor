@@ -747,52 +747,48 @@ The next section will discuss error handling and exception management in orchest
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  node distance=11mm and 15mm,
-  every node/.style={font=\footnotesize},
-  box/.style={draw, rounded corners, minimum width=24mm, minimum height=9mm, align=center, inner sep=3pt},
+  node distance=12mm and 18mm,
+  every node/.style={font=\small},
+  box/.style={draw, rounded corners, minimum width=28mm, minimum height=10mm, align=center, inner sep=4pt},
   agent/.style={box, fill=gray!10},
   ctrl/.style={box, fill=gray!20},
-  decision/.style={diamond, draw, aspect=2.5, inner sep=3pt, align=center, font=\footnotesize},
-  arrow/.style={-{Latex}, line width=0.7pt},
-  title/.style={font=\bfseries\footnotesize}
+  decision/.style={diamond, draw, aspect=2.8, inner sep=4pt, align=center, font=\small},
+  arrow/.style={-{Latex}, line width=0.8pt},
+  title/.style={font=\bfseries\small}
 ]
 
-% --- Panel containers using relative positioning --------------------------------
-% Panel A (Rule-Based) - positioned relative to origin
-\node[draw, rounded corners, inner sep=6mm, minimum width=6.2cm, minimum height=5.2cm] (panelA) {};
-\node[title, anchor=west] at ([yshift=-3mm]panelA.north west) {(a) Rule-Based Orchestration};
+% --- Panel A: Rule-Based Orchestration ----------------------------------------
+\node[draw, rounded corners, inner sep=8mm, minimum width=5.8cm, minimum height=6cm] (panelA) {};
+\node[title, anchor=west] at ([yshift=-4mm]panelA.north west) {(a) Rule-Based Orchestration};
 
-% Panel B (Dynamic) - positioned to the right of Panel A
-\node[draw, rounded corners, inner sep=6mm, minimum width=6.2cm, minimum height=5.2cm, right=7mm of panelA.east, anchor=west] (panelB) {};
-\node[title, anchor=west] at ([yshift=-3mm]panelB.north west) {(b) Dynamic (LLM-driven) Orchestration};
-
-% Panel C (Hierarchical) - positioned to the right of Panel B
-\node[draw, rounded corners, inner sep=6mm, minimum width=6.2cm, minimum height=5.2cm, right=7mm of panelB.east, anchor=west] (panelC) {};
-\node[title, anchor=west] at ([yshift=-3mm]panelC.north west) {(c) Hierarchical Orchestration};
-
-% --- (a) Rule-Based -----------------------------------------------------------
-\node[ctrl] (rb_ctrl) at ([xshift=10mm, yshift=10mm]panelA.west) {Orchestrator\\(Fixed Rules)};
-\node[agent, right=17mm of rb_ctrl] (rb_r) {Retrieval\\Agent};
-\node[agent, right=15mm of rb_r] (rb_s) {Synthesis\\Agent};
-\node[agent, right=15mm of rb_s] (rb_v) {Verification\\Agent};
-\node[agent, right=15mm of rb_v] (rb_safe) {Safety\\Agent};
+% Rule-Based flow (vertical layout for clarity)
+\node[ctrl] (rb_ctrl) at ([xshift=12mm, yshift=12mm]panelA.west) {Orchestrator\\(Fixed Rules)};
+\node[agent, below=14mm of rb_ctrl] (rb_r) {Retrieval\\Agent};
+\node[agent, below=12mm of rb_r] (rb_s) {Synthesis\\Agent};
+\node[agent, below=12mm of rb_s] (rb_v) {Verification\\Agent};
+\node[agent, below=12mm of rb_v] (rb_safe) {Safety\\Agent};
 
 \draw[arrow] (rb_ctrl) -- (rb_r);
 \draw[arrow] (rb_r) -- (rb_s);
 \draw[arrow] (rb_s) -- (rb_v);
 \draw[arrow] (rb_v) -- (rb_safe);
 
-\node[decision, below=16mm of rb_v] (rb_cond) {Result\\OK?};
+% Decision branch
+\node[decision, right=20mm of rb_v] (rb_cond) {Result\\OK?};
 \draw[arrow] (rb_v) -- (rb_cond);
-\draw[arrow] (rb_cond) -| node[pos=0.35, below, font=\tiny]{no} ([yshift=-2mm]rb_s.south);
-\draw[arrow] (rb_cond) |- node[pos=0.35, right, font=\tiny]{yes} ([yshift=-2mm]rb_safe.south);
+\draw[arrow] (rb_cond) |- node[pos=0.4, above, font=\footnotesize]{yes} (rb_safe);
+\draw[arrow] (rb_cond) |- node[pos=0.6, below, font=\footnotesize]{no} (rb_s);
 
-% --- (b) Dynamic (LLM-driven) -------------------------------------------------
-\node[ctrl] (dyn_ctrl) at ([xshift=10mm, yshift=10mm]panelB.west) {LLM Orchestrator\\(Planner/Router)};
-\node[agent, right=19mm of dyn_ctrl, yshift=11mm] (dyn_s1) {Synthesis\\Agent A};
-\node[agent, right=19mm of dyn_ctrl, yshift=-11mm] (dyn_s2) {Synthesis\\Agent B};
-\node[agent, right=15mm of dyn_s1] (dyn_v1) {Verification\\Agent};
-\node[agent, right=15mm of dyn_s2] (dyn_safe) {Safety\\Agent};
+% --- Panel B: Dynamic (LLM-driven) Orchestration -----------------------------
+\node[draw, rounded corners, inner sep=8mm, minimum width=5.8cm, minimum height=6cm, right=8mm of panelA.east, anchor=west] (panelB) {};
+\node[title, anchor=west] at ([yshift=-4mm]panelB.north west) {(b) Dynamic (LLM-driven) Orchestration};
+
+% Dynamic flow
+\node[ctrl] (dyn_ctrl) at ([xshift=12mm, yshift=12mm]panelB.west) {LLM Orchestrator\\(Planner/Router)};
+\node[agent, below left=14mm and 8mm of dyn_ctrl] (dyn_s1) {Synthesis\\Agent A};
+\node[agent, below right=14mm and 8mm of dyn_ctrl] (dyn_s2) {Synthesis\\Agent B};
+\node[agent, below=12mm of dyn_s1] (dyn_v1) {Verification\\Agent};
+\node[agent, below=12mm of dyn_v1] (dyn_safe) {Safety\\Agent};
 
 \draw[arrow] (dyn_ctrl) -- (dyn_s1);
 \draw[arrow] (dyn_ctrl) -- (dyn_s2);
@@ -800,33 +796,37 @@ The next section will discuss error handling and exception management in orchest
 \draw[arrow] (dyn_s2) -- (dyn_v1);
 \draw[arrow] (dyn_v1) -- (dyn_safe);
 
-% dynamic feedback loop
-\node[decision, below=14mm of dyn_v1] (dyn_cond) {Discrepancy?};
+% Feedback loop
+\node[decision, right=18mm of dyn_v1] (dyn_cond) {Discrepancy?};
 \draw[arrow] (dyn_v1) -- (dyn_cond);
-\draw[arrow] (dyn_cond) -| node[pos=0.35, below, font=\tiny]{yes} ([yshift=-2mm]dyn_ctrl.south);
-\draw[arrow] (dyn_cond) |- node[pos=0.35, right, font=\tiny]{no} ([yshift=-2mm]dyn_safe.south);
+\draw[arrow] (dyn_cond) |- node[pos=0.5, above, font=\footnotesize]{yes} ([xshift=5mm]dyn_ctrl.east);
+\draw[arrow] (dyn_cond) |- node[pos=0.4, below, font=\footnotesize]{no} (dyn_safe);
 
-% --- (c) Hierarchical ---------------------------------------------------------
-\node[ctrl] (hier_sup) at ([xshift=10mm, yshift=14mm]panelC.west) {Supervisor\\Agent};
+% --- Panel C: Hierarchical Orchestration --------------------------------------
+\node[draw, rounded corners, inner sep=8mm, minimum width=5.8cm, minimum height=6cm, right=8mm of panelB.east, anchor=west] (panelC) {};
+\node[title, anchor=west] at ([yshift=-4mm]panelC.north west) {(c) Hierarchical Orchestration};
 
-\node[agent, below left=14mm and 9mm of hier_sup] (team1) {Team A\\Lead};
-\node[agent, below right=14mm and 9mm of hier_sup] (team2) {Team B\\Lead};
+% Hierarchical flow
+\node[ctrl] (hier_sup) at ([xshift=12mm, yshift=16mm]panelC.west) {Supervisor\\Agent};
+
+\node[agent, below left=16mm and 10mm of hier_sup] (team1) {Team A\\Lead};
+\node[agent, below right=16mm and 10mm of hier_sup] (team2) {Team B\\Lead};
 
 \draw[arrow] (hier_sup) -- (team1);
 \draw[arrow] (hier_sup) -- (team2);
 
-\node[agent, below=14mm of team1, xshift=-15mm] (t1a) {Sub-Agent\\A1};
-\node[agent, below=14mm of team1, xshift=15mm] (t1b) {Sub-Agent\\A2};
-\node[agent, below=14mm of team2, xshift=-15mm] (t2a) {Sub-Agent\\B1};
-\node[agent, below=14mm of team2, xshift=15mm] (t2b) {Sub-Agent\\B2};
+\node[agent, below=14mm of team1, xshift=-16mm] (t1a) {Sub-Agent\\A1};
+\node[agent, below=14mm of team1, xshift=16mm] (t1b) {Sub-Agent\\A2};
+\node[agent, below=14mm of team2, xshift=-16mm] (t2a) {Sub-Agent\\B1};
+\node[agent, below=14mm of team2, xshift=16mm] (t2b) {Sub-Agent\\B2};
 
 \draw[arrow] (team1) -- (t1a);
 \draw[arrow] (team1) -- (t1b);
 \draw[arrow] (team2) -- (t2a);
 \draw[arrow] (team2) -- (t2b);
 
-% aggregation back to supervisor
-\node[agent, right=13mm of team2] (merge) {Aggregation/\\Synthesis};
+% Aggregation
+\node[agent, right=15mm of team2] (merge) {Aggregation/\\Synthesis};
 \draw[arrow] (t1a) |- (merge);
 \draw[arrow] (t1b) |- (merge);
 \draw[arrow] (t2a) |- (merge);
