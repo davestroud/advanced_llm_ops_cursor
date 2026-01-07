@@ -381,55 +381,55 @@ Table~\ref{tab:ch08_vector_index_comparison_landscape} provides a detailed compa
 \label{tab:ch08_vector_index_comparison_landscape}
 \begin{threeparttable}
 \footnotesize
-\setlength{\tabcolsep}{2.5pt}
-\renewcommand{\arraystretch}{1.2}
-\begin{tabularx}{0.95\linewidth}{%
-  >{\raggedright\arraybackslash}p{1.8cm}  % Index Type
-  >{\raggedright\arraybackslash}p{1.6cm}  % Recall
-  >{\raggedright\arraybackslash}p{2.0cm}  % Latency
-  >{\raggedright\arraybackslash}p{2.0cm}  % Memory
-  >{\raggedright\arraybackslash}p{2.0cm}  % Scale
-  X                                        % Notes (flex)
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{%
+  >{\raggedright\arraybackslash}p{1.4cm}  % Index Type
+  >{\raggedright\arraybackslash}p{1.2cm}  % Recall
+  >{\raggedright\arraybackslash}p{1.6cm}  % Latency
+  >{\raggedright\arraybackslash}p{1.6cm}  % Memory
+  >{\raggedright\arraybackslash}p{1.6cm}  % Scale
+  >{\raggedright\arraybackslash}X  % Notes
 }
 \toprule
-\textbf{Index Type} & \textbf{Recall (typ.)} & \textbf{Latency (typ.)} & \textbf{Memory Footprint} & \textbf{Scale Suitability} & \textbf{Notes / Tunables \& Use Cases} \\
+\textbf{Index Type} & \textbf{Recall} & \textbf{Latency} & \textbf{Memory} & \textbf{Scale} & \textbf{Notes / Tunables \& Use Cases} \\
 \midrule
 \textbf{Flat (Exact)} &
 100\% &
-Highest (linear scan); improved with GPU &
-Baseline; no extra structures &
-Small–mid (up to $\sim$10\textsuperscript{5}–10\textsuperscript{6} with GPU) &
+Highest (linear scan); GPU helps &
+Baseline &
+Small–mid ($\sim$10\textsuperscript{5}–10\textsuperscript{6} with GPU) &
 Pros: exact, simple; gold standard for eval. Cons: poor scaling. Use for small corpora, eval baselines, or latency-insensitive tasks. Tunables: batch size, GPU use. \cite{Johnson2019FAISS} \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 
 \textbf{HNSW} &
-$\sim$90–95\% (tunable to $\uparrow$) &
-Very low; sub-10–50\,ms common &
-High (graph links add overhead) &
+$\sim$90–95\% (tunable $\uparrow$) &
+Very low; sub-10–50\,ms &
+High (graph links) &
 Mid–large (10\textsuperscript{6}–10\textsuperscript{8}); RAM-bound &
 Pros: excellent speed/recall trade-off; robust default in many DBs. Cons: memory heavy; build time. Tunables: \texttt{M}, \texttt{efConstruction}, \texttt{efSearch}. Great general-purpose ANN for RAG. \cite{Malkov2018HNSW} \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 
 \textbf{IVF} &
 High (depends on probes) &
-Low–moderate; searches subset of clusters &
-Moderate; depends on centroids &
-Large (10\textsuperscript{7}+); disk-friendly variants &
+Low–moderate; searches subset &
+Moderate &
+Large (10\textsuperscript{7}+); disk-friendly &
 Pros: tunable speed/recall via \texttt{nlist}/\texttt{nprobe}. Cons: may miss NNs in other cells. Tunables: \texttt{nlist} (clusters), \texttt{nprobe} (probed cells). Good for tens of millions+. \cite{Johnson2019FAISS} \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 
 \textbf{PQ} &
 Moderate (compression loss) &
-Low–moderate; fast distance on codes &
+Low–moderate; fast distance &
 Very low (byte codes) &
-Very large (10\textsuperscript{8}–10\textsuperscript{9}+); cost-optimized &
+Very large (10\textsuperscript{8}–10\textsuperscript{9}+) &
 Pros: drastic memory savings; enables billion-scale. Cons: recall drops vs. full precision. Often combined with IVF (IVF-PQ) or residual PQ. Tunables: code size, subquantizers. \cite{Jegou2011PQ,Johnson2019FAISS} \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 
 \textbf{Hybrids} (e.g., IVF+PQ, IVF+HNSW) &
 High (balanced) &
 Low; tuned per layer &
-Moderate–high (depends) &
+Moderate–high &
 Very large; flexible &
 Compose strengths: e.g., IVF narrows candidates; PQ compresses; HNSW refines. Use when you need sub-100\,ms on 100M–1B vectors with manageable RAM. \cite{Johnson2019FAISS,Malkov2018HNSW,Jegou2011PQ} \\
 \bottomrule
