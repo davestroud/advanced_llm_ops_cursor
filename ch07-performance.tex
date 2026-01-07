@@ -166,12 +166,13 @@ In modern LLMOps, 8-bit quantization is widely adopted for inference, and resear
 
 \begin{table}[t]
 \centering
-\small
+\footnotesize
 \caption{Quantization scheme selection trades off accuracy, speed, and memory. INT8 provides 2$\times$ speedup with minimal accuracy loss; 4-bit quantization enables 4$\times$ memory reduction but requires calibration; FP8 offers native hardware support on H100. Choose based on model sensitivity, hardware capabilities, and accuracy requirements.}
 \label{tab:ch07_quantization_comparison}
-\renewcommand{\arraystretch}{1.3}
-\setlength{\tabcolsep}{7pt}
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X@{}}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+\resizebox{0.95\linewidth}{!}{%
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.6cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{3.8cm}@{}}
 \toprule
 \textbf{Scheme} & \textbf{Typical Memory Reduction} & \textbf{Speed Gain} & \textbf{Accuracy Impact} & \textbf{Hardware Compatibility} \\
 \midrule
@@ -183,7 +184,8 @@ FP8 & $\sim$50\% vs.\ FP16 & Moderate--High (on supported HW) & Minimal--Low & N
 \midrule
 Mixed Precision & Variable & Variable & Tunable trade-off & Framework-dependent; often combines FP16, FP8, and INT8 in compatible layers. \\
 \bottomrule
-\end{tabularx}
+\end{tabular}%
+}
 \end{table}
 
 \subsection{Pruning}
