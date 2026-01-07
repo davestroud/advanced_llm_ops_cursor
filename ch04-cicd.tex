@@ -319,7 +319,9 @@ Unlike conventional microservices, LLM behavior depends on a triad of artifacts-
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{enumerate}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
 \item \textbf{Shadow:} Mirror 5--10\% of representative traffic to the candidate; disable real side effects; validate latency/cost curves and online evaluator distributions against baseline.  
@@ -361,7 +363,9 @@ Modern observability platforms bridge CI/CD with runtime monitoring. They provid
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
   \item \textbf{LangSmith:} Enterprise-grade debugging, tracing, prompt evaluation, and dataset replay for LLM apps.
@@ -441,7 +445,9 @@ Modern LLM applications often involve multi-step chains or agent graphs. A promp
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{enumerate}[leftmargin=1.5em, itemsep=4pt, topsep=2pt, label=(\roman*)]
 \item \textbf{Pre-merge:} run structural/unit tests (template render, JSON Schema validate), static guard checks (injection patterns, PII clauses), and 50--200 deterministic cases for smoke validation \cite{promptfoo}.  
@@ -472,7 +478,9 @@ In sum, structured prompt testing elevates prompts from craft to engineering: ve
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 Multi-agent systems require CI/CD extensions:
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
@@ -511,7 +519,9 @@ Multi-agent graphs risk \emph{runaway loops} (planner--retriever ping-pong), pro
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{enumerate}[leftmargin=1.5em, itemsep=4pt, topsep=2pt, label=(\roman*)]
 \item \textbf{Record--replay dataset:} Materialize $N$ recent production traces that cover golden paths and risky slices (privacy, safety, long-context). Persist retrieval snapshots and tool outcomes.  
@@ -546,7 +556,9 @@ The following checklist condenses the chapter into a concrete ``definition of do
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
   \item \textbf{Release unit defined and versioned.} Prompt templates, model IDs (and fine-tune checkpoints where applicable), retrieval index snapshots, tool schemas, and safety policies are versioned and promotable together.

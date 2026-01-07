@@ -227,16 +227,17 @@ In practice, LLM applications behave like composed systems: a single user reques
 A useful mental model is to treat observability as an \emph{evidence ledger} for each response: record the exact prompt template and parameters, the evidence retrieved (with identifiers and timestamps), the tool calls performed, and the model configuration (provider, version, temperature/top-$p$, context length). These traces support three production-critical workflows: (i) incident response (rapid attribution and rollback), (ii) continuous evaluation (turning production failures into regression tests), and (iii) governance (audit trails for safety, privacy, and policy compliance).
 
 \begin{tcolorbox}[
-  enhanced,
+  title={\textbf{Effective LLM observability includes:}},
   colback=blue!5,
   colframe=blue!40!black,
-  colbacktitle=blue!25,
+  colbacktitle=blue!20,
   coltitle=black,
-  title={Effective LLM observability includes:},
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=4mm, right=4mm, top=3mm, bottom=3mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=2pt]
   \item \textbf{Structured tracing:} capturing prompt versions, retrieved passages, tool-call inputs/outputs, and model parameters for reproducibility.
@@ -1446,19 +1447,17 @@ This introductory chapter has sketched the landscape of LLMOps and introduced \i
 \begin{figure}[t]
 \centering
 \begin{tcolorbox}[
-  enhanced,
-  width=\linewidth,
-  colback=blue!2,
-  colframe=blue!50!black,
+  title={\textbf{What to watch in LLMOps (quick reference)}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
   coltitle=black,
-  title={What to watch in LLMOps (quick reference)},
   fonttitle=\bfseries,
   boxrule=0.7pt,
-  rounded corners,
-  sharp corners=south,
-  borderline west={2pt}{0pt}{blue!60!black},
-  left=6mm, right=4mm, top=3mm, bottom=3mm,
-  drop shadow=black!15!white
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \small
 \setlist[itemize]{leftmargin=1.5em,itemsep=2pt,topsep=2pt}

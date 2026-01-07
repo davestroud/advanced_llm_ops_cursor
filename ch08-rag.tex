@@ -186,13 +186,13 @@ Single-stage RAG performs one retrieval and one generation pass:
 \texttt{query $\rightarrow$ retrieval $\rightarrow$ prompt augmentation $\rightarrow$ generation}.
 This pattern is easy to implement and tune, and works well when answers are localized to a small number of passages.
 
-\textbf{Strengths:}
+\textbf{Strengths:}  
 \begin{itemize}
     \item Low latency and low operational complexity.
     \item Strong performance for fact-based questions when retrieval recall is high.
 \end{itemize}
 
-\textbf{Limitations:}
+\textbf{Limitations:}  
 \begin{itemize}
     \item Struggles with multi-hop questions that require multiple evidence sets.
     \item Brittle when the first retrieval misses answer-bearing context.
@@ -225,14 +225,16 @@ In practice, ingestion is the boundary between data engineering and model infere
 
 \begin{tcolorbox}[
   title={\textbf{Engineering sidebar: A minimal ingestion contract}},
-  colback=gray!6,
-  colframe=gray!45!black,
-  colbacktitle=gray!18,
+  colback=gray!5,
+  colframe=gray!60!black,
+  colbacktitle=gray!20,
   coltitle=black,
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \small
 At minimum, store the following fields per chunk:
@@ -284,7 +286,9 @@ Token-window chunking with overlap is a common baseline, while structural chunki
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \small
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
@@ -382,14 +386,16 @@ Sharding distributes vectors across nodes so that index memory and query through
 
 \begin{tcolorbox}[
   title={\textbf{Engineering sidebar: Designing shard keys for RAG}},
-  colback=yellow!6,
-  colframe=yellow!45!black,
+  colback=yellow!5,
+  colframe=yellow!40!black,
   colbacktitle=yellow!20,
   coltitle=black,
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \small
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
@@ -418,14 +424,16 @@ A vector index is almost always a \emph{derived} artifact: it can be rebuilt fro
 
 \begin{tcolorbox}[
   title={\textbf{Engineering sidebar: Blue/green re-indexing pattern}},
-  colback=blue!4,
-  colframe=blue!35!black,
-  colbacktitle=blue!18,
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
   coltitle=black,
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \small
 \begin{enumerate}[leftmargin=1.8em, itemsep=3pt]
@@ -534,13 +542,13 @@ Retriever strategy determines the \emph{evidence set} the generator sees, and th
 \subsection{Dense Retrieval (Semantic Search)}
 Dense retrieval embeds queries and documents into a shared vector space and retrieves by similarity \cite{Karpukhin2020DPR}. It excels at semantic matching (synonyms, paraphrases) and works well for natural-language queries.
 
-\textbf{Advantages:}
+\textbf{Advantages:}  
 \begin{itemize}
     \item Robust to vocabulary mismatch (e.g., paraphrases).
     \item Effective for multilingual and heterogeneous corpora when embeddings are well trained.
 \end{itemize}
 
-\textbf{Limitations:}
+\textbf{Limitations:}  
 \begin{itemize}
     \item Can underperform on rare terms, IDs, and numbers.
     \item May require reranking to reach high precision at top-$k$ \cite{Thakur2021BEIR}.
@@ -549,13 +557,13 @@ Dense retrieval embeds queries and documents into a shared vector space and retr
 \subsection{Sparse Retrieval (Lexical / Keyword Search)}
 Sparse retrieval methods such as BM25 represent text with sparse term weights and rank by lexical overlap \cite{robertson2009bm25}. They remain highly effective for exact matches: names, product codes, dates, and domain-specific terminology.
 
-\textbf{Advantages:}
+\textbf{Advantages:}  
 \begin{itemize}
     \item Strong precision for exact terms and constrained queries.
     \item Interpretable and easy to debug (term-level contributions).
 \end{itemize}
 
-\textbf{Limitations:}
+\textbf{Limitations:}  
 \begin{itemize}
     \item Brittle to synonymy and paraphrasing.
     \item Requires careful tokenization and normalization for noisy corpora.

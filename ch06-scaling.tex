@@ -158,7 +158,9 @@ A vertically scaled node offers increased per-instance throughput and reduced la
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Lower latency:} A more powerful GPU provides more tensor cores, faster memory (e.g., HBM3), and higher interconnect bandwidth, all of which reduce inference time per request.
@@ -176,7 +178,9 @@ A vertically scaled node offers increased per-instance throughput and reduced la
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{High costs:} Premium hardware like the latest H100 or GH200 Grace Hopper Superchips is extremely expensive (both capital expenditure and on-demand cloud pricing). For instance, the NVIDIA GH200 combines a Hopper GPU with 96--144\,GB of HBM3e memory \cite{supermicro.com}, enabling unprecedented single-node model sizes but at significant cost.
@@ -209,7 +213,9 @@ Horizontal scaling increases capacity by adding more nodes (e.g., multiple GPU s
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Elasticity:} Capacity can be scaled out or in based on demand, without hardware replacement. This makes it easier to handle bursty workloads by temporarily adding more nodes.
@@ -227,7 +233,9 @@ Horizontal scaling increases capacity by adding more nodes (e.g., multiple GPU s
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Increased complexity:} Horizontal scaling requires distributed inference frameworks (e.g., PyTorch TensorParallel, DeepSpeed, Megatron-LM, vLLM, or Petals) and orchestration logic for load balancing. Engineering effort is needed to manage inter-node communication, distributed state (like KV caches per node), and aggregate monitoring.
@@ -255,7 +263,9 @@ Hybrid scaling combines vertical and horizontal strategies to optimize for both 
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Performance--cost balance:} Hybrid deployments can achieve low latency for critical interactions (by using a few very powerful nodes) without overprovisioning expensive hardware for all workloads.
@@ -273,7 +283,9 @@ Hybrid scaling combines vertical and horizontal strategies to optimize for both 
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
     \item \textbf{Operational complexity:} Hybrid scaling introduces a multi-tier architecture. Sophisticated orchestration is needed to route requests intelligently (often involving a gateway that inspects requests or a scheduler that knows the capabilities of each tier).
@@ -432,7 +444,9 @@ Model parallelism partitions the model across multiple GPUs, with each device st
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt]
   \item \textbf{Interconnect bandwidth:} Effective model parallelism requires high-bandwidth, low-latency interconnects such as NVIDIA NVLink or InfiniBand to avoid communication bottlenecks.
@@ -468,7 +482,9 @@ Tensor parallelism divides the computation within a layer---especially large mat
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt]
   \item \textbf{Use cases:} Tensor parallelism is useful when individual layers are too large for a single GPU, or when per-layer throughput must be increased.
@@ -504,7 +520,9 @@ Pipeline parallelism partitions the model into sequential stages (contiguous lay
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt]
   \item Pipeline parallelism fits larger models without replicating weights on every GPU.
@@ -707,7 +725,9 @@ Bin-pack requests by expected prompt+decode tokens onto GPU types (e.g., H100 fo
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=4pt]
   \item \textbf{Signals:} Load ($\lambda$ and moving averages of $\mathbb{E}[\ell_{\text{prompt}}],\ \mathbb{E}[\ell_{\text{decode}}]$), Capacity ($\hat{\Theta}$ tokens/s per GPU), Utilization/Queueing ($U, W_q, Q$), and KV pressure.
@@ -760,7 +780,9 @@ By integrating the newsroom editorial calendar with its autoscaler, \ishtar{} in
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 Metrics-based policies are reactive by nature. Event-based autoscaling anticipates load changes and is critical when cold starts are long or spikes are predictable. Examples include:
 

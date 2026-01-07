@@ -190,14 +190,16 @@ This simple math underscores two things: (1) newer hardware can indeed reduce ma
 
 \begin{tcolorbox}[
   title={\textbf{Cost Modeling Example: Comparing GPU Options}},
-  colback=orange!8,
-  colframe=orange!60!black,
-  colbacktitle=orange!25,
+  colback=orange!5,
+  colframe=orange!40!black,
+  colbacktitle=orange!20,
   coltitle=black,
   fonttitle=\bfseries,
-  boxrule=0.8pt,
+  boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 In practice, cost modeling often involves simulating different deployment scenarios. For example, if you expect \textbf{100 requests per second} each generating \textbf{200 tokens}, that is \textbf{20k tokens/sec throughput} needed. How many GPUs of type X are required to sustain that?
 
@@ -1221,7 +1223,9 @@ To conclude the chapter, we present condensed best practices and checklists for 
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \small
 \setlength{\tabcolsep}{6pt}
@@ -1265,7 +1269,9 @@ To conclude the chapter, we present condensed best practices and checklists for 
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \small
 \setlength{\tabcolsep}{6pt}
@@ -1309,7 +1315,9 @@ To conclude the chapter, we present condensed best practices and checklists for 
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=3mm, right=3mm, top=3mm, bottom=3mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
 ]
 \small
 \setlength{\tabcolsep}{6pt}

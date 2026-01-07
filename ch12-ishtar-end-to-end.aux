@@ -1,117 +1,117 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {12}Case Study Conclusion -- Implementing \ishtar  {} End-to-End}{401}{chapter.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {12}Case Study Conclusion -- Implementing \ishtar  {} End-to-End}{421}{chapter.12}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{refsegment:025}{{12}{401}{Case Study Conclusion -- Implementing \ishtar {} End-to-End}{chapter.12}{}}
-\newlabel{ch:case-study}{{12}{401}{Case Study Conclusion -- Implementing \ishtar {} End-to-End}{chapter.12}{}}
-\newlabel{refsegment:026}{{12}{401}{Case Study Conclusion -- Implementing \ishtar {} End-to-End}{chapter.12}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12.1}Introduction}{402}{section.12.1}\protected@file@percent }
-\newlabel{sec:ch12-introduction}{{12.1}{402}{Introduction}{section.12.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.1.1}Synthesis Across the Four-Part Structure}{402}{subsection.12.1.1}\protected@file@percent }
-\newlabel{sec:ishtar-four-part-synthesis}{{12.1.1}{402}{Synthesis Across the Four-Part Structure}{subsection.12.1.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12.2}Overview of \ishtar  {}}{403}{section.12.2}\protected@file@percent }
-\newlabel{sec:ishtar-overview}{{12.2}{403}{Overview of \ishtar {}}{section.12.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.2.1}Problem framing and threat model}{403}{subsection.12.2.1}\protected@file@percent }
-\newlabel{sec:ishtar-problem-framing}{{12.2.1}{403}{Problem framing and threat model}{subsection.12.2.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.2.2}Functional and non-functional requirements}{404}{subsection.12.2.2}\protected@file@percent }
-\newlabel{sec:ishtar-requirements}{{12.2.2}{404}{Functional and non-functional requirements}{subsection.12.2.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12.3}Architecture recap}{404}{section.12.3}\protected@file@percent }
-\newlabel{sec:ishtar-arch}{{12.3}{404}{Architecture recap}{section.12.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {12.1}{\ignorespaces End-to-end requirements drive architectural decisions and operational priorities. \ishtar  {}'s requirements emphasize latency (sub-second responses), accuracy (verified facts), and scalability (traffic surges). These requirements determine infrastructure choices, evaluation strategies, and monitoring priorities throughout the system design.}}{405}{table.12.1}\protected@file@percent }
-\newlabel{tab:ch12_ishtar_requirements}{{12.1}{405}{End-to-end requirements drive architectural decisions and operational priorities. \ishtar {}'s requirements emphasize latency (sub-second responses), accuracy (verified facts), and scalability (traffic surges). These requirements determine infrastructure choices, evaluation strategies, and monitoring priorities throughout the system design}{table.12.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12.4}Implementation steps}{405}{section.12.4}\protected@file@percent }
-\newlabel{sec:ishtar-implementation-ch12}{{12.4}{405}{Implementation steps}{section.12.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12.1}{\ignorespaces End-to-end \ishtar  {} architecture demonstrates production-ready LLMOps integration. Background ingestion continuously updates a document store and vector index, ensuring freshness. Online query handling performs authenticated retrieval-augmented generation, followed by verification and safety post-processing, under end-to-end tracing and monitoring. This architecture illustrates how ingestion, retrieval, orchestration, and observability integrate into a complete production system.}}{406}{figure.12.1}\protected@file@percent }
-\newlabel{fig:ch12_ishtar_architecture_ch12}{{12.1}{406}{End-to-end \ishtar {} architecture demonstrates production-ready LLMOps integration. Background ingestion continuously updates a document store and vector index, ensuring freshness. Online query handling performs authenticated retrieval-augmented generation, followed by verification and safety post-processing, under end-to-end tracing and monitoring. This architecture illustrates how ingestion, retrieval, orchestration, and observability integrate into a complete production system}{figure.12.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.1}Step 1: Platform and infrastructure}{406}{subsection.12.4.1}\protected@file@percent }
-\newlabel{sec:ishtar-step-infra}{{12.4.1}{406}{Step 1: Platform and infrastructure}{subsection.12.4.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1.1}Cluster design}{406}{subsubsection.12.4.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1.2}Infrastructure-as-code}{407}{subsubsection.12.4.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1.3}GPU scheduling and serving pods}{407}{subsubsection.12.4.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.2}Step 2: Data ingestion pipeline}{408}{subsection.12.4.2}\protected@file@percent }
-\newlabel{sec:ishtar-step-ingestion}{{12.4.2}{408}{Step 2: Data ingestion pipeline}{subsection.12.4.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2.1}Connector layer}{408}{subsubsection.12.4.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2.2}Normalization, de-duplication, and metadata}{408}{subsubsection.12.4.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2.3}Safety preprocessing at ingestion}{408}{subsubsection.12.4.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2.4}Chunking}{409}{subsubsection.12.4.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.3}Step 3: Knowledge base and vector index}{409}{subsection.12.4.3}\protected@file@percent }
-\newlabel{sec:ishtar-step-kb}{{12.4.3}{409}{Step 3: Knowledge base and vector index}{subsection.12.4.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3.1}Embedding service}{409}{subsubsection.12.4.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3.2}Index selection and tuning}{409}{subsubsection.12.4.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3.3}Metadata schema}{409}{subsubsection.12.4.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3.4}Snapshots and rollback}{410}{subsubsection.12.4.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.4}Step 4: Retrieval-Augmented Generation (RAG)}{410}{subsection.12.4.4}\protected@file@percent }
-\newlabel{sec:ishtar-step-rag}{{12.4.4}{410}{Step 4: Retrieval-Augmented Generation (RAG)}{subsection.12.4.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4.1}Retrieval and reranking}{410}{subsubsection.12.4.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4.2}Context assembly}{410}{subsubsection.12.4.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4.3}Prompt contract and citation format}{410}{subsubsection.12.4.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.5}Step 5: Multi-agent orchestration}{411}{subsection.12.4.5}\protected@file@percent }
-\newlabel{sec:ishtar-step-agents}{{12.4.5}{411}{Step 5: Multi-agent orchestration}{subsection.12.4.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5.1}Agent roles}{411}{subsubsection.12.4.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5.2}Controller pattern}{411}{subsubsection.12.4.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5.3}Worked walkthrough: a single query trace}{412}{subsubsection.12.4.5.3}\protected@file@percent }
-\newlabel{sec:ishtar-query-trace}{{12.4.5.3}{412}{Worked walkthrough: a single query trace}{subsubsection.12.4.5.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5.4}Fallbacks and human escalation}{412}{subsubsection.12.4.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.6}Step 6: CI/CD and evaluation gates}{413}{subsection.12.4.6}\protected@file@percent }
-\newlabel{sec:ishtar-step-cicd}{{12.4.6}{413}{Step 6: CI/CD and evaluation gates}{subsection.12.4.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.6.1}What gets versioned}{413}{subsubsection.12.4.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.6.2}Release pipeline (conceptual)}{413}{subsubsection.12.4.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.6.3}Evaluation metrics}{413}{subsubsection.12.4.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.7}Step 7: Observability and feedback loops}{414}{subsection.12.4.7}\protected@file@percent }
-\newlabel{sec:ishtar-step-observability}{{12.4.7}{414}{Step 7: Observability and feedback loops}{subsection.12.4.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.7.1}Span taxonomy and trace fields}{414}{subsubsection.12.4.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.7.2}Quality artifacts in logs}{414}{subsubsection.12.4.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.7.3}Closing the loop}{414}{subsubsection.12.4.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {12.5}Operational practices}{415}{section.12.5}\protected@file@percent }
-\newlabel{sec:ishtar-ops}{{12.5}{415}{Operational practices}{section.12.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.5.1}Monitoring, SLOs, and incident response}{415}{subsection.12.5.1}\protected@file@percent }
-\newlabel{sec:ishtar-monitoring-ops}{{12.5.1}{415}{Monitoring, SLOs, and incident response}{subsection.12.5.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.5.2}Change management for a socio-technical system}{415}{subsection.12.5.2}\protected@file@percent }
-\newlabel{sec:ishtar-change-mgmt}{{12.5.2}{415}{Change management for a socio-technical system}{subsection.12.5.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.5.3}Periodic retraining and embedding refresh}{415}{subsection.12.5.3}\protected@file@percent }
-\newlabel{sec:ishtar-retraining}{{12.5.3}{415}{Periodic retraining and embedding refresh}{subsection.12.5.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.5.4}Knowledge-base maintenance}{416}{subsection.12.5.4}\protected@file@percent }
-\newlabel{sec:ishtar-kb-maintenance}{{12.5.4}{416}{Knowledge-base maintenance}{subsection.12.5.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12.6}Ethical safeguards}{416}{section.12.6}\protected@file@percent }
-\newlabel{sec:ishtar-ethics}{{12.6}{416}{Ethical safeguards}{section.12.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.6.1}Bias mitigation}{416}{subsection.12.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.6.2}Transparency and explainability}{416}{subsection.12.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.6.3}Privacy and safety of information}{416}{subsection.12.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.6.4}Hallucination and misinformation safeguards}{417}{subsection.12.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.6.5}Human-in-the-loop and editorial oversight}{417}{subsection.12.6.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {12.7}Performance outcomes}{417}{section.12.7}\protected@file@percent }
-\newlabel{sec:ishtar-perf}{{12.7}{417}{Performance outcomes}{section.12.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.7.1}Latency and throughput}{417}{subsection.12.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.7.2}Accuracy and usefulness}{417}{subsection.12.7.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {12.2}{\ignorespaces Performance outcomes validate architectural decisions and optimization strategies. \ishtar  {}'s results demonstrate that systematic optimization (quantization, caching, autoscaling) achieves target latency and cost goals. These outcomes provide benchmarks for similar LLM deployments and validate the end-to-end LLMOps approach.}}{418}{table.12.2}\protected@file@percent }
-\newlabel{tab:ch12_ishtar_outcomes}{{12.2}{418}{Performance outcomes validate architectural decisions and optimization strategies. \ishtar {}'s results demonstrate that systematic optimization (quantization, caching, autoscaling) achieves target latency and cost goals. These outcomes provide benchmarks for similar LLM deployments and validate the end-to-end LLMOps approach}{table.12.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.7.3}Operational reliability and cost}{418}{subsection.12.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {12.8}Lessons learned}{418}{section.12.8}\protected@file@percent }
-\newlabel{sec:ishtar-lessons}{{12.8}{418}{Lessons learned}{section.12.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.1}Data quality is paramount}{419}{subsubsection.12.8.0.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.2}Modular architecture enables parallel work}{419}{subsubsection.12.8.0.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.3}Prompts require governance}{419}{subsubsection.12.8.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.4}Monitoring and tracing are indispensable}{419}{subsubsection.12.8.0.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.5}5.\ Agentic verification improves quality but increases complexity.}{419}{subsubsection.12.8.0.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.6}6.\ User interaction drives trust.}{419}{subsubsection.12.8.0.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.7}7.\ Continuous improvement is the default mode.}{419}{subsubsection.12.8.0.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.8}8.\ Tech-stack choices are trade-offs.}{420}{subsubsection.12.8.0.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.9}9.\ Domain expertise is required.}{420}{subsubsection.12.8.0.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.10}10.\ Ethical vigilance is ongoing.}{420}{subsubsection.12.8.0.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {12.8.1}End-to-end checklist}{420}{subsection.12.8.1}\protected@file@percent }
-\newlabel{sec:ishtar-checklist}{{12.8.1}{420}{End-to-end checklist}{subsection.12.8.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {12.9}Future directions}{421}{section.12.9}\protected@file@percent }
-\newlabel{sec:ishtar-future}{{12.9}{421}{Future directions}{section.12.9}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.1}1.\ Model upgrades and specialization.}{421}{subsubsection.12.9.0.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.2}2.\ Enhanced retrieval (semantic + symbolic).}{421}{subsubsection.12.9.0.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.3}3.\ More adaptive multi-agent planning.}{421}{subsubsection.12.9.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.4}4.\ Continual learning and feedback use.}{421}{subsubsection.12.9.0.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.5}5.\ Evaluation innovation.}{421}{subsubsection.12.9.0.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.6}Conclusion.}{422}{subsubsection.12.9.0.6}\protected@file@percent }
-\newlabel{sec:ishtar-summary}{{12.9.0.6}{422}{Chapter Summary}{section*.148}{}}
+\newlabel{refsegment:025}{{12}{421}{Case Study Conclusion -- Implementing \ishtar {} End-to-End}{chapter.12}{}}
+\newlabel{ch:case-study}{{12}{421}{Case Study Conclusion -- Implementing \ishtar {} End-to-End}{chapter.12}{}}
+\newlabel{refsegment:026}{{12}{421}{Case Study Conclusion -- Implementing \ishtar {} End-to-End}{chapter.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.1}Introduction}{422}{section.12.1}\protected@file@percent }
+\newlabel{sec:ch12-introduction}{{12.1}{422}{Introduction}{section.12.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.1.1}Synthesis Across the Four-Part Structure}{422}{subsection.12.1.1}\protected@file@percent }
+\newlabel{sec:ishtar-four-part-synthesis}{{12.1.1}{422}{Synthesis Across the Four-Part Structure}{subsection.12.1.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.2}Overview of \ishtar  {}}{423}{section.12.2}\protected@file@percent }
+\newlabel{sec:ishtar-overview}{{12.2}{423}{Overview of \ishtar {}}{section.12.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.2.1}Problem framing and threat model}{423}{subsection.12.2.1}\protected@file@percent }
+\newlabel{sec:ishtar-problem-framing}{{12.2.1}{423}{Problem framing and threat model}{subsection.12.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.2.2}Functional and non-functional requirements}{424}{subsection.12.2.2}\protected@file@percent }
+\newlabel{sec:ishtar-requirements}{{12.2.2}{424}{Functional and non-functional requirements}{subsection.12.2.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.3}Architecture recap}{424}{section.12.3}\protected@file@percent }
+\newlabel{sec:ishtar-arch}{{12.3}{424}{Architecture recap}{section.12.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12.1}{\ignorespaces End-to-end requirements drive architectural decisions and operational priorities. \ishtar  {}'s requirements emphasize latency (sub-second responses), accuracy (verified facts), and scalability (traffic surges). These requirements determine infrastructure choices, evaluation strategies, and monitoring priorities throughout the system design.}}{425}{table.12.1}\protected@file@percent }
+\newlabel{tab:ch12_ishtar_requirements}{{12.1}{425}{End-to-end requirements drive architectural decisions and operational priorities. \ishtar {}'s requirements emphasize latency (sub-second responses), accuracy (verified facts), and scalability (traffic surges). These requirements determine infrastructure choices, evaluation strategies, and monitoring priorities throughout the system design}{table.12.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.4}Implementation steps}{425}{section.12.4}\protected@file@percent }
+\newlabel{sec:ishtar-implementation-ch12}{{12.4}{425}{Implementation steps}{section.12.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12.1}{\ignorespaces End-to-end \ishtar  {} architecture demonstrates production-ready LLMOps integration. Background ingestion continuously updates a document store and vector index, ensuring freshness. Online query handling performs authenticated retrieval-augmented generation, followed by verification and safety post-processing, under end-to-end tracing and monitoring. This architecture illustrates how ingestion, retrieval, orchestration, and observability integrate into a complete production system.}}{426}{figure.12.1}\protected@file@percent }
+\newlabel{fig:ch12_ishtar_architecture_ch12}{{12.1}{426}{End-to-end \ishtar {} architecture demonstrates production-ready LLMOps integration. Background ingestion continuously updates a document store and vector index, ensuring freshness. Online query handling performs authenticated retrieval-augmented generation, followed by verification and safety post-processing, under end-to-end tracing and monitoring. This architecture illustrates how ingestion, retrieval, orchestration, and observability integrate into a complete production system}{figure.12.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.1}Step 1: Platform and infrastructure}{426}{subsection.12.4.1}\protected@file@percent }
+\newlabel{sec:ishtar-step-infra}{{12.4.1}{426}{Step 1: Platform and infrastructure}{subsection.12.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1.1}Cluster design}{426}{subsubsection.12.4.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1.2}Infrastructure-as-code}{427}{subsubsection.12.4.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.1.3}GPU scheduling and serving pods}{427}{subsubsection.12.4.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.2}Step 2: Data ingestion pipeline}{428}{subsection.12.4.2}\protected@file@percent }
+\newlabel{sec:ishtar-step-ingestion}{{12.4.2}{428}{Step 2: Data ingestion pipeline}{subsection.12.4.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2.1}Connector layer}{428}{subsubsection.12.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2.2}Normalization, de-duplication, and metadata}{428}{subsubsection.12.4.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2.3}Safety preprocessing at ingestion}{428}{subsubsection.12.4.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.2.4}Chunking}{429}{subsubsection.12.4.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.3}Step 3: Knowledge base and vector index}{429}{subsection.12.4.3}\protected@file@percent }
+\newlabel{sec:ishtar-step-kb}{{12.4.3}{429}{Step 3: Knowledge base and vector index}{subsection.12.4.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3.1}Embedding service}{429}{subsubsection.12.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3.2}Index selection and tuning}{429}{subsubsection.12.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3.3}Metadata schema}{429}{subsubsection.12.4.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.3.4}Snapshots and rollback}{430}{subsubsection.12.4.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.4}Step 4: Retrieval-Augmented Generation (RAG)}{430}{subsection.12.4.4}\protected@file@percent }
+\newlabel{sec:ishtar-step-rag}{{12.4.4}{430}{Step 4: Retrieval-Augmented Generation (RAG)}{subsection.12.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4.1}Retrieval and reranking}{430}{subsubsection.12.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4.2}Context assembly}{430}{subsubsection.12.4.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.4.3}Prompt contract and citation format}{430}{subsubsection.12.4.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.5}Step 5: Multi-agent orchestration}{431}{subsection.12.4.5}\protected@file@percent }
+\newlabel{sec:ishtar-step-agents}{{12.4.5}{431}{Step 5: Multi-agent orchestration}{subsection.12.4.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5.1}Agent roles}{431}{subsubsection.12.4.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5.2}Controller pattern}{431}{subsubsection.12.4.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5.3}Worked walkthrough: a single query trace}{432}{subsubsection.12.4.5.3}\protected@file@percent }
+\newlabel{sec:ishtar-query-trace}{{12.4.5.3}{432}{Worked walkthrough: a single query trace}{subsubsection.12.4.5.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.5.4}Fallbacks and human escalation}{432}{subsubsection.12.4.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.6}Step 6: CI/CD and evaluation gates}{433}{subsection.12.4.6}\protected@file@percent }
+\newlabel{sec:ishtar-step-cicd}{{12.4.6}{433}{Step 6: CI/CD and evaluation gates}{subsection.12.4.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.6.1}What gets versioned}{433}{subsubsection.12.4.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.6.2}Release pipeline (conceptual)}{433}{subsubsection.12.4.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.6.3}Evaluation metrics}{433}{subsubsection.12.4.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.4.7}Step 7: Observability and feedback loops}{434}{subsection.12.4.7}\protected@file@percent }
+\newlabel{sec:ishtar-step-observability}{{12.4.7}{434}{Step 7: Observability and feedback loops}{subsection.12.4.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.7.1}Span taxonomy and trace fields}{434}{subsubsection.12.4.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.7.2}Quality artifacts in logs}{434}{subsubsection.12.4.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.4.7.3}Closing the loop}{434}{subsubsection.12.4.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12.5}Operational practices}{435}{section.12.5}\protected@file@percent }
+\newlabel{sec:ishtar-ops}{{12.5}{435}{Operational practices}{section.12.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.5.1}Monitoring, SLOs, and incident response}{435}{subsection.12.5.1}\protected@file@percent }
+\newlabel{sec:ishtar-monitoring-ops}{{12.5.1}{435}{Monitoring, SLOs, and incident response}{subsection.12.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.5.2}Change management for a socio-technical system}{435}{subsection.12.5.2}\protected@file@percent }
+\newlabel{sec:ishtar-change-mgmt}{{12.5.2}{435}{Change management for a socio-technical system}{subsection.12.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.5.3}Periodic retraining and embedding refresh}{435}{subsection.12.5.3}\protected@file@percent }
+\newlabel{sec:ishtar-retraining}{{12.5.3}{435}{Periodic retraining and embedding refresh}{subsection.12.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.5.4}Knowledge-base maintenance}{436}{subsection.12.5.4}\protected@file@percent }
+\newlabel{sec:ishtar-kb-maintenance}{{12.5.4}{436}{Knowledge-base maintenance}{subsection.12.5.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.6}Ethical safeguards}{436}{section.12.6}\protected@file@percent }
+\newlabel{sec:ishtar-ethics}{{12.6}{436}{Ethical safeguards}{section.12.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.6.1}Bias mitigation}{436}{subsection.12.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.6.2}Transparency and explainability}{436}{subsection.12.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.6.3}Privacy and safety of information}{436}{subsection.12.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.6.4}Hallucination and misinformation safeguards}{437}{subsection.12.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.6.5}Human-in-the-loop and editorial oversight}{437}{subsection.12.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12.7}Performance outcomes}{437}{section.12.7}\protected@file@percent }
+\newlabel{sec:ishtar-perf}{{12.7}{437}{Performance outcomes}{section.12.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.7.1}Latency and throughput}{437}{subsection.12.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.7.2}Accuracy and usefulness}{437}{subsection.12.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12.2}{\ignorespaces Performance outcomes validate architectural decisions and optimization strategies. \ishtar  {}'s results demonstrate that systematic optimization (quantization, caching, autoscaling) achieves target latency and cost goals. These outcomes provide benchmarks for similar LLM deployments and validate the end-to-end LLMOps approach.}}{438}{table.12.2}\protected@file@percent }
+\newlabel{tab:ch12_ishtar_outcomes}{{12.2}{438}{Performance outcomes validate architectural decisions and optimization strategies. \ishtar {}'s results demonstrate that systematic optimization (quantization, caching, autoscaling) achieves target latency and cost goals. These outcomes provide benchmarks for similar LLM deployments and validate the end-to-end LLMOps approach}{table.12.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.7.3}Operational reliability and cost}{438}{subsection.12.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12.8}Lessons learned}{438}{section.12.8}\protected@file@percent }
+\newlabel{sec:ishtar-lessons}{{12.8}{438}{Lessons learned}{section.12.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.1}Data quality is paramount}{439}{subsubsection.12.8.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.2}Modular architecture enables parallel work}{439}{subsubsection.12.8.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.3}Prompts require governance}{439}{subsubsection.12.8.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.4}Monitoring and tracing are indispensable}{439}{subsubsection.12.8.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.5}5.\ Agentic verification improves quality but increases complexity.}{439}{subsubsection.12.8.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.6}6.\ User interaction drives trust.}{439}{subsubsection.12.8.0.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.7}7.\ Continuous improvement is the default mode.}{439}{subsubsection.12.8.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.8}8.\ Tech-stack choices are trade-offs.}{440}{subsubsection.12.8.0.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.9}9.\ Domain expertise is required.}{440}{subsubsection.12.8.0.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.8.0.10}10.\ Ethical vigilance is ongoing.}{440}{subsubsection.12.8.0.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.8.1}End-to-end checklist}{440}{subsection.12.8.1}\protected@file@percent }
+\newlabel{sec:ishtar-checklist}{{12.8.1}{440}{End-to-end checklist}{subsection.12.8.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.9}Future directions}{441}{section.12.9}\protected@file@percent }
+\newlabel{sec:ishtar-future}{{12.9}{441}{Future directions}{section.12.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.1}1.\ Model upgrades and specialization.}{441}{subsubsection.12.9.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.2}2.\ Enhanced retrieval (semantic + symbolic).}{441}{subsubsection.12.9.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.3}3.\ More adaptive multi-agent planning.}{441}{subsubsection.12.9.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.4}4.\ Continual learning and feedback use.}{441}{subsubsection.12.9.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.5}5.\ Evaluation innovation.}{441}{subsubsection.12.9.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {12.9.0.6}Conclusion.}{442}{subsubsection.12.9.0.6}\protected@file@percent }
+\newlabel{sec:ishtar-summary}{{12.9.0.6}{442}{Chapter Summary}{section*.159}{}}
 \@setckpt{ch12-ishtar-end-to-end}{
-\setcounter{page}{423}
+\setcounter{page}{444}
 \setcounter{equation}{0}
 \setcounter{enumi}{3}
 \setcounter{enumii}{4}
@@ -183,7 +183,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{0}
+\setcounter{instcount}{1331}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}
@@ -197,7 +197,7 @@
 \setcounter{refsegment}{26}
 \setcounter{maxextratitle}{0}
 \setcounter{maxextratitleyear}{0}
-\setcounter{maxextraname}{0}
+\setcounter{maxextraname}{9}
 \setcounter{maxextradate}{0}
 \setcounter{maxextraalpha}{0}
 \setcounter{abbrvpenalty}{50}
