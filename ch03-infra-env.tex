@@ -148,7 +148,7 @@ N_{\text{in}} \times L \; + \; N_{\text{out}} \times L , \label{eq:costptok}
 \]
 where $L$ is the number of Transformer layers, and noting that each output token also involves attention over all prior tokens. Thus longer prompts or longer outputs linearly increase compute and latency, which linearly increases cost. This is why many LLM API providers charge separately for input tokens vs.\ output tokens—they both consume cycles.
 
-From an infrastructure owner's perspective, tracking cost per 1k tokens is very useful. Table~\ref{tab:cost-per-token} illustrates this with concrete examples comparing GPU options under different utilization scenarios.
+From an infrastructure owner's perspective, tracking cost per 1k tokens is very useful. Table~\ref{tab:ch03_cost_per_token} illustrates this with concrete examples comparing GPU options under different utilization scenarios.
 
 \begin{table}[t]
   \centering
@@ -343,7 +343,7 @@ In sum, caching and quantization techniques both serve to get more out of hardwa
 
 \subsection{Worked Example: Cost per Million Tokens Across Accelerators}
 
-To make the abstract formulas more tangible, Table~\ref{tab:costcompare} provides a back-of-the-envelope comparison of cost per million tokens across common accelerators. 
+To make the abstract formulas more tangible, Table~\ref{tab:ch03_costcompare} provides a back-of-the-envelope comparison of cost per million tokens across common accelerators. 
 We assume on-demand cloud pricing (as of early 2025) and sustained throughput figures taken from public benchmarks and vendor reports. 
 The effective cost per million tokens is calculated using Equation~\ref{eq:costptok}. 
 
@@ -456,7 +456,7 @@ There are several popular IaC tools, each with pros and cons. The most relevant 
   Limitations: Helm manages applications within clusters, not base cloud infrastructure~\cite{nvidia-k8s-device-plugin}.
 \end{itemize}
 
-In practice, LLMOps stacks often combine these tools. For instance, \ishtar{} uses Terraform to provision cloud resources (VMs, networks, EKS clusters) and Helm to deploy LLM services onto those clusters. A summary is shown in Table~\ref{tab:iaccompare}.
+In practice, LLMOps stacks often combine these tools. For instance, \ishtar{} uses Terraform to provision cloud resources (VMs, networks, EKS clusters) and Helm to deploy LLM services onto those clusters. A summary is shown in Table~\ref{tab:ch03_iaccompare}.
 
 \begin{table}[t]
   \centering
