@@ -213,80 +213,80 @@ A prime example is LoRA (Low-Rank Adaptation) \cite{Hu2022LoRA}, which freezes t
 
 From a production perspective, parameter-efficient fine-tuning is valuable because it allows one to deploy a single large pre-trained model and quickly specialize it to multiple tasks or domains by swapping in small adapter weights. For instance, if \ishtar{} needs to adapt its LLM for finance news vs.\ sports news, it could train separate LoRA adapters for each domain and load the appropriate adapter at inference based on context. The base model remains common (and quantized for speed), while the adapters are lightweight (often just a few tens of megabytes). This modular approach avoids duplicating full model instances, saving memory and deployment cost when serving multiple use-cases. The trade-off is a slight increase in code complexity (to manage adapters) and a potential slight reduction in absolute accuracy compared to fine-tuning the whole model, but in practice the efficiency gains are well worth it. Studies show LoRA fine-tuned models reach within one or two points of full fine-tuning on many benchmarks \cite{Hu2022LoRA}, making them very attractive for real-world use.
 
-\begin{sidewaystable}
+\begin{table}[t]
 \centering
+\footnotesize
 \caption{Compression and adaptation techniques enable efficient LLM deployment. Quantization reduces memory and increases speed; distillation transfers knowledge to smaller models; LoRA enables parameter-efficient fine-tuning. Choose based on deployment constraints, accuracy requirements, and update frequency.}
 \label{tab:ch07_compression_summary}
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.1}
-\small
-\begin{tabularx}{\linewidth}{@{}%
-    >{\bfseries}p{3.0cm}
-    p{3.2cm}
-    p{2.8cm}
-    p{2.6cm}
-    p{2.8cm}
-    X
-@{}}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{0.95\linewidth}{!}{%
+\begin{tabular}{@{}>{\raggedright\arraybackslash\bfseries}p{2.3cm}
+                  >{\raggedright\arraybackslash}p{2.5cm}
+                  >{\raggedright\arraybackslash}p{2.0cm}
+                  >{\raggedright\arraybackslash}p{1.8cm}
+                  >{\raggedright\arraybackslash}p{1.9cm}
+                  >{\raggedright\arraybackslash}p{3.0cm}@{}}
 \toprule
-Technique &
-What it changes &
-Typical memory reduction &
-Speed impact &
-Quality impact &
-Hardware / framework notes and when to use \\
+\textbf{Technique} &
+\textbf{What it changes} &
+\textbf{Typical memory reduction} &
+\textbf{Speed impact} &
+\textbf{Quality impact} &
+\textbf{Hardware / framework notes and when to use} \\
 \midrule
 Quantization (INT8/FP8/4-bit) &
 Numeric precision of weights (and sometimes activations/KV cache). &
 $\sim$50\% (INT8/FP8) to $\sim$75\% (4-bit) vs.\ FP16. &
 Moderate to high (esp.\ on supported HW). &
 Low to moderate, task dependent; often minimal with calibration. &
-\makecell[l]{INT8 broadly supported; FP8 on H100; 4-bit via GPTQ/AWQ/bitsandbytes.\\Use to fit models on fewer/smaller GPUs and cut cost/latency with small accuracy loss.} \\
+INT8 broadly supported; FP8 on H100; 4-bit via GPTQ/AWQ/bitsandbytes. Use to fit models on fewer/smaller GPUs and cut cost/latency with small accuracy loss. \\
 \addlinespace[2pt]
 Pruning (structured / unstructured) &
 Removes parameters: neurons, heads, filters (structured) or individual weights (unstructured). &
 20--50\% commonly (higher with careful retraining). &
-\makecell[l]{Structured: tangible latency gains;\\Unstructured: speedups only with sparse kernels.} &
+Structured: tangible latency gains; Unstructured: speedups only with sparse kernels. &
 Low to moderate if retrained; risk rises with aggressive sparsity. &
-\makecell[l]{Structured works well on dense runtimes; unstructured needs sparse-friendly libraries/HW.\\Use to trim over-parameterized models; fine-tune post-pruning.} \\
+Structured works well on dense runtimes; unstructured needs sparse-friendly libraries/HW. Use to trim over-parameterized models; fine-tune post-pruning. \\
 \addlinespace[2pt]
 Knowledge Distillation &
-Trains a smaller student to mimic a larger teacher’s outputs/representations. &
+Trains a smaller student to mimic a larger teacher's outputs/representations. &
 Up to 2--10$\times$ depending on student size. &
 High (student is smaller/faster). &
 Low to moderate if done well; may underperform teacher on long-tail cases. &
-\makecell[l]{Framework-agnostic. Use to create compact production models with teacher-like behavior and lower TCO.} \\
+Framework-agnostic. Use to create compact production models with teacher-like behavior and lower TCO. \\
 \addlinespace[2pt]
 Efficient Fine-Tuning (LoRA/QLoRA) &
 Adds low-rank adapters; base weights frozen (optionally quantized in QLoRA). &
 Training-time VRAM reduction (2--4$\times$+); inference size unchanged unless combined with other methods. &
 Neutral for inference (adapters add tiny overhead). &
 Comparable to full FT for many tasks with enough data/steps. &
-\makecell[l]{Excellent for task adaptation on limited GPUs; pair with quantization/distillation for deployment gains.} \\
+Excellent for task adaptation on limited GPUs; pair with quantization/distillation for deployment gains. \\
 \addlinespace[2pt]
 Weight Sharing / Tying &
 Shares parameters across layers or embeddings/softmax. &
 10--30\% depending on architecture. &
 Neutral to moderate speed gains (smaller model). &
 Low to moderate; architecture-dependent. &
-\makecell[l]{Requires architectural support; best applied during pretraining or major refactors.} \\
+Requires architectural support; best applied during pretraining or major refactors. \\
 \addlinespace[2pt]
 Mixture-of-Experts (Sparse MoE) &
 Activates a subset of expert blocks per token (routing). &
 Effective compute per token reduced for a given parameter count. &
 High throughput per cost when routing is efficient. &
 Maintains quality with proper routing/load balance. &
-\makecell[l]{Needs specialized runtimes/cluster comms. Use to scale parameters without proportional compute growth.} \\
+Needs specialized runtimes/cluster comms. Use to scale parameters without proportional compute growth. \\
 \addlinespace[2pt]
 KV-Cache Compression (quantize/prune) &
 Reduces precision or size of attention KV cache at inference. &
 30--60\% KV memory cut typical (method-dependent). &
 Lower latency via better batching/longer contexts. &
 Low to moderate; can affect long-context fidelity. &
-\makecell[l]{Pairs well with long contexts and high concurrency; test for degradation on long-range tasks.} \\
+Pairs well with long contexts and high concurrency; test for degradation on long-range tasks. \\
 \bottomrule
-\end{tabularx}
-\end{sidewaystable}
+\end{tabular}%
+}
+\end{table}
 
 \begin{figure}[htbp]
 \centering
