@@ -1,144 +1,144 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Performance Optimization Strategies for LLMs}{213}{chapter.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Performance Optimization Strategies for LLMs}{215}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{refsegment:015}{{7}{213}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
-\newlabel{ch:performance}{{7}{213}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
-\newlabel{refsegment:016}{{7}{213}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Introduction}{214}{section.7.1}\protected@file@percent }
-\newlabel{sec:ch7-introduction}{{7.1}{214}{Introduction}{section.7.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Why Optimization Matters}{214}{section.7.2}\protected@file@percent }
-\newlabel{sec:perf-why}{{7.2}{214}{Why Optimization Matters}{section.7.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.3}Model-Level Optimization Techniques}{215}{section.7.3}\protected@file@percent }
-\newlabel{sec:perf-model}{{7.3}{215}{Model-Level Optimization Techniques}{section.7.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Quantization}{215}{subsection.7.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Performance optimization techniques deliver substantial gains but require careful selection. Quantization, batching, and caching can each provide 2--4$\times $ improvements, but gains are multiplicative and depend on workload characteristics. Understanding these improvement ranges helps teams prioritize optimization efforts and set realistic performance targets. See Sections~\ref {sec:perf-model}--\ref {sec:perf-system} and Section~\ref {sec:perf-prompt} for detailed discussions and implementation guidance.}}{216}{figure.7.1}\protected@file@percent }
-\newlabel{fig:ch07_opt_gains_callout}{{7.1}{216}{Performance optimization techniques deliver substantial gains but require careful selection. Quantization, batching, and caching can each provide 2--4$\times $ improvements, but gains are multiplicative and depend on workload characteristics. Understanding these improvement ranges helps teams prioritize optimization efforts and set realistic performance targets. See Sections~\ref {sec:perf-model}--\ref {sec:perf-system} and Section~\ref {sec:perf-prompt} for detailed discussions and implementation guidance}{figure.7.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Optimization techniques deliver substantial latency improvements when applied systematically. Batching amortizes overhead, KV-cache engineering reduces memory access, and quantization increases compute speed. Combined, these techniques can reduce latency by 2--4$\times $, but gains are multiplicative and depend on workload characteristics. Absolute values vary by model, hardware, and traffic mix.}}{216}{figure.7.2}\protected@file@percent }
-\newlabel{fig:ch07_latency_before_after}{{7.2}{216}{Optimization techniques deliver substantial latency improvements when applied systematically. Batching amortizes overhead, KV-cache engineering reduces memory access, and quantization increases compute speed. Combined, these techniques can reduce latency by 2--4$\times $, but gains are multiplicative and depend on workload characteristics. Absolute values vary by model, hardware, and traffic mix}{figure.7.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Pruning}{217}{subsection.7.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Quantization scheme selection trades off accuracy, speed, and memory. INT8 provides 2$\times $ speedup with minimal accuracy loss; 4-bit quantization enables 4$\times $ memory reduction but requires calibration; FP8 offers native hardware support on H100. Choose based on model sensitivity, hardware capabilities, and accuracy requirements.}}{218}{table.7.1}\protected@file@percent }
-\newlabel{tab:ch07_quantization_comparison}{{7.1}{218}{Quantization scheme selection trades off accuracy, speed, and memory. INT8 provides 2$\times $ speedup with minimal accuracy loss; 4-bit quantization enables 4$\times $ memory reduction but requires calibration; FP8 offers native hardware support on H100. Choose based on model sensitivity, hardware capabilities, and accuracy requirements}{table.7.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.3}Knowledge Distillation}{219}{subsection.7.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.4}Efficient Fine-Tuning}{219}{subsection.7.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture.}}{220}{figure.7.3}\protected@file@percent }
-\newlabel{fig:ch07_quant_throughput_bars}{{7.3}{220}{Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture}{figure.7.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Memory accounting enables capacity planning and batch size optimization. Use precision $b$ from Table~\ref {tab:ch07_quantization_comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets. This accounting prevents OOM errors and helps teams understand memory headroom for batching and context length.}}{220}{figure.7.4}\protected@file@percent }
-\newlabel{fig:ch07_memory_cheatsheet}{{7.4}{220}{Memory accounting enables capacity planning and batch size optimization. Use precision $b$ from Table~\ref {tab:ch07_quantization_comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets. This accounting prevents OOM errors and helps teams understand memory headroom for batching and context length}{figure.7.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces Compression and adaptation techniques enable efficient LLM deployment. Quantization reduces memory and increases speed; distillation transfers knowledge to smaller models; LoRA enables parameter-efficient fine-tuning. Choose based on deployment constraints, accuracy requirements, and update frequency.}}{221}{table.7.2}\protected@file@percent }
-\newlabel{tab:ch07_compression_summary}{{7.2}{221}{Compression and adaptation techniques enable efficient LLM deployment. Quantization reduces memory and increases speed; distillation transfers knowledge to smaller models; LoRA enables parameter-efficient fine-tuning. Choose based on deployment constraints, accuracy requirements, and update frequency}{table.7.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.4}Inference Engine Optimization}{221}{section.7.4}\protected@file@percent }
-\newlabel{sec:perf-engine}{{7.4}{221}{Inference Engine Optimization}{section.7.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces Precision selection determines memory requirements and deployment feasibility. Lower precision (INT8, 4-bit) dramatically reduces memory, enabling larger models on fixed hardware or higher batch sizes. However, precision reduction may impact accuracy, requiring careful evaluation. Understanding these trade-offs enables teams to optimize memory usage while maintaining quality.}}{222}{table.7.3}\protected@file@percent }
-\newlabel{tab:ch07_mem_vs_precision}{{7.3}{222}{Precision selection determines memory requirements and deployment feasibility. Lower precision (INT8, 4-bit) dramatically reduces memory, enabling larger models on fixed hardware or higher batch sizes. However, precision reduction may impact accuracy, requiring careful evaluation. Understanding these trade-offs enables teams to optimize memory usage while maintaining quality}{table.7.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Specialized Runtimes}{222}{subsection.7.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Operator Fusion}{223}{subsection.7.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Paged Attention}{224}{subsection.7.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7.5}System-Level Optimization}{224}{section.7.5}\protected@file@percent }
-\newlabel{sec:perf-system}{{7.5}{224}{System-Level Optimization}{section.7.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints.}}{225}{table.7.4}\protected@file@percent }
-\newlabel{tab:ch07_engine_bench}{{7.4}{225}{Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints}{table.7.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.1}Batching Strategies}{225}{subsection.7.5.1}\protected@file@percent }
-\newlabel{sec:perf-batching}{{7.5.1}{225}{Batching Strategies}{subsection.7.5.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces Throughput scaling with batch size reveals optimization opportunities and limits. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. Understanding this saturation point helps teams optimize batch sizes, but in production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}}{226}{figure.7.5}\protected@file@percent }
-\newlabel{fig:ch07_throughput_vs_batch}{{7.5}{226}{Throughput scaling with batch size reveals optimization opportunities and limits. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. Understanding this saturation point helps teams optimize batch sizes, but in production, the optimal $B$ is constrained by latency SLOs and KV-cache memory}{figure.7.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.2}Asynchronous Processing}{227}{subsection.7.5.2}\protected@file@percent }
-\newlabel{sec:perf-async}{{7.5.2}{227}{Asynchronous Processing}{subsection.7.5.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.3}Caching}{227}{subsection.7.5.3}\protected@file@percent }
-\newlabel{sec:perf-cache}{{7.5.3}{227}{Caching}{subsection.7.5.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.6}Prompt Optimization}{229}{section.7.6}\protected@file@percent }
-\newlabel{sec:perf-prompt}{{7.6}{229}{Prompt Optimization}{section.7.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.1}Reducing Context Size}{229}{subsection.7.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.2}Template Efficiency}{230}{subsection.7.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.3}Compression of Retrieved Context}{231}{subsection.7.6.3}\protected@file@percent }
-\newlabel{sec:perf-rag-compression}{{7.6.3}{231}{Compression of Retrieved Context}{subsection.7.6.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.4}Speculative Decoding}{232}{subsection.7.6.4}\protected@file@percent }
-\newlabel{sec:perf-speculative}{{7.6.4}{232}{Speculative Decoding}{subsection.7.6.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.7}Hardware Utilization Tuning}{232}{section.7.7}\protected@file@percent }
-\newlabel{sec:perf-hw}{{7.7}{232}{Hardware Utilization Tuning}{section.7.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.1}GPU Profiling}{232}{subsection.7.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.2}Mixed Precision}{233}{subsection.7.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.3}Concurrency Tuning}{234}{subsection.7.7.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces Kernel-time profiling identifies optimization opportunities and validates improvements. Comparing breakdowns before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute) reveals which optimizations deliver the largest gains. This profiling guides optimization prioritization and helps teams understand where further improvements are possible. Percentages vary by model, sequence length, and runtime.}}{235}{table.7.5}\protected@file@percent }
-\newlabel{tab:ch07_profiling_breakdown}{{7.5}{235}{Kernel-time profiling identifies optimization opportunities and validates improvements. Comparing breakdowns before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute) reveals which optimizations deliver the largest gains. This profiling guides optimization prioritization and helps teams understand where further improvements are possible. Percentages vary by model, sequence length, and runtime}{table.7.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.8}Performance Testing and Benchmarking}{235}{section.7.8}\protected@file@percent }
-\newlabel{sec:perf-benchmark}{{7.8}{235}{Performance Testing and Benchmarking}{section.7.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.9}Case Study: Optimizing Ishtar AI}{236}{section.7.9}\protected@file@percent }
-\newlabel{sec:perf-ishtar-case}{{7.9}{236}{Case Study: Optimizing Ishtar AI}{section.7.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Latency CDF reveals tail latency behavior critical for user experience. While p50 latency determines average user experience, p95/p99 percentiles expose tail latency that frustrates users and violates SLOs. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix, making CDF analysis essential for capacity planning and optimization prioritization.}}{237}{figure.7.6}\protected@file@percent }
-\newlabel{fig:ch07_latency_cdf}{{7.6}{237}{Latency CDF reveals tail latency behavior critical for user experience. While p50 latency determines average user experience, p95/p99 percentiles expose tail latency that frustrates users and violates SLOs. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix, making CDF analysis essential for capacity planning and optimization prioritization}{figure.7.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.7}{\ignorespaces Cost per token varies significantly across inference engines and deployment configurations. Engine selection, hardware choice, and utilization levels can create 2--5$\times $ cost differences. When cost differences exceed 30\%, engine choice becomes a primary cost optimization lever, especially at scale. See Section~\ref {sec:perf-cost-per-token} for detailed cost modeling. Absolute values depend on hardware pricing, utilization, and batch/sequence lengths.}}{237}{figure.7.7}\protected@file@percent }
-\newlabel{fig:ch07_cost_per_1k_by_engine}{{7.7}{237}{Cost per token varies significantly across inference engines and deployment configurations. Engine selection, hardware choice, and utilization levels can create 2--5$\times $ cost differences. When cost differences exceed 30\%, engine choice becomes a primary cost optimization lever, especially at scale. See Section~\ref {sec:perf-cost-per-token} for detailed cost modeling. Absolute values depend on hardware pricing, utilization, and batch/sequence lengths}{figure.7.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.1}Initial Performance}{237}{subsection.7.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.2}Optimizations Applied}{238}{subsection.7.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.1}Model quantization to INT8/4-bit.}{238}{subsubsection.7.9.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.2}Inference engine swap (vLLM with dynamic batching).}{238}{subsubsection.7.9.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.3}Prompt and context optimization (RAG compression).}{239}{subsubsection.7.9.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.4}Asynchronous API and streaming.}{239}{subsubsection.7.9.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.3}Results}{239}{subsection.7.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.3.1}Alternate configurations considered.}{240}{subsubsection.7.9.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7.10}Best Practices Checklist (Quick)}{240}{section.7.10}\protected@file@percent }
-\newlabel{sec:perf-checklist-quick}{{7.10}{240}{Best Practices Checklist (Quick)}{section.7.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces \ishtar  {} optimization KPIs demonstrate systematic improvement through targeted techniques. Comparing before vs.\ after metrics (latency, throughput, cost) validates that optimization strategies deliver measurable gains. These KPIs provide benchmarks for similar deployments and illustrate how systematic optimization achieves production goals. Values are representative of the case study scenario and depend on workload and hardware.}}{241}{table.7.6}\protected@file@percent }
-\newlabel{tab:ch07_ishtar_kpis}{{7.6}{241}{\ishtar {} optimization KPIs demonstrate systematic improvement through targeted techniques. Comparing before vs.\ after metrics (latency, throughput, cost) validates that optimization strategies deliver measurable gains. These KPIs provide benchmarks for similar deployments and illustrate how systematic optimization achieves production goals. Values are representative of the case study scenario and depend on workload and hardware}{table.7.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.11}Best Practices Checklist}{241}{section.7.11}\protected@file@percent }
-\newlabel{sec:perf-checklist}{{7.11}{241}{Best Practices Checklist}{section.7.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.12}Extended Material}{242}{section.7.12}\protected@file@percent }
-\newlabel{sec:perf-extended}{{7.12}{242}{Extended Material}{section.7.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.1}Architectural Variants and Cloud Deployment Trade-offs}{242}{subsection.7.12.1}\protected@file@percent }
-\newlabel{sec:perf-variants}{{7.12.1}{242}{Architectural Variants and Cloud Deployment Trade-offs}{subsection.7.12.1}{}}
-\newlabel{sec:arch-variants}{{7.12.1}{242}{Architectural Variants and Cloud Deployment Trade-offs}{subsection.7.12.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.2}Encoder-Only (Masked LM)}{243}{subsection.7.12.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.3}Decoder-Only (Autoregressive LM)}{243}{subsection.7.12.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.4}Mixture-of-Experts (MoE)}{244}{subsection.7.12.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.4.1}Guideline.}{245}{subsubsection.7.12.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.5}Complexity and Scaling: Cost Models and Memory Formulas}{245}{subsection.7.12.5}\protected@file@percent }
-\newlabel{sec:perf-cost-models}{{7.12.5}{245}{Complexity and Scaling: Cost Models and Memory Formulas}{subsection.7.12.5}{}}
-\newlabel{sec:complexity-scaling}{{7.12.5}{245}{Complexity and Scaling: Cost Models and Memory Formulas}{subsection.7.12.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.6}Attention and KV Cache}{245}{subsection.7.12.6}\protected@file@percent }
-\newlabel{sec:perf-attention-kv-cache}{{7.12.6}{245}{Attention and KV Cache}{subsection.7.12.6}{}}
-\newlabel{eq:kv-layer}{{7.2}{245}{Attention and KV Cache}{equation.7.2}{}}
-\newlabel{eq:kv-total}{{7.3}{245}{Attention and KV Cache}{equation.7.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.6.1}Worked Example.}{246}{subsubsection.7.12.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.7}Throughput and Utilization}{246}{subsection.7.12.7}\protected@file@percent }
-\newlabel{eq:throughput-main}{{7.4}{246}{Throughput and Utilization}{equation.7.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.7.1}Interpretation.}{246}{subsubsection.7.12.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.8}Cost per 1{,}000 Tokens}{247}{subsection.7.12.8}\protected@file@percent }
-\newlabel{sec:perf-cost-per-token}{{7.12.8}{247}{Cost per 1{,}000 Tokens}{subsection.7.12.8}{}}
-\newlabel{eq:cost-k}{{7.5}{247}{Cost per 1{,}000 Tokens}{equation.7.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.8.1}Worked Example.}{247}{subsubsection.7.12.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.9}Inference Engines and Serving Runtimes}{247}{subsection.7.12.9}\protected@file@percent }
-\newlabel{sec:inference-engines}{{7.12.9}{247}{Inference Engines and Serving Runtimes}{subsection.7.12.9}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.9.1}Practice notes.}{247}{subsubsection.7.12.9.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces Architectural variant selection determines cost, latency, and operational complexity. Different deployment patterns (serverless, containerized, edge) optimize for different scenarios: serverless reduces operational overhead but may increase latency; containerized provides control but requires infrastructure management. Choose based on traffic patterns, latency requirements, and team capabilities.}}{248}{table.7.7}\protected@file@percent }
-\newlabel{tab:ch07_arch_comparison}{{7.7}{248}{Architectural variant selection determines cost, latency, and operational complexity. Different deployment patterns (serverless, containerized, edge) optimize for different scenarios: serverless reduces operational overhead but may increase latency; containerized provides control but requires infrastructure management. Choose based on traffic patterns, latency requirements, and team capabilities}{table.7.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.9.2}Discussion.}{248}{subsubsection.7.12.9.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7.8}{\ignorespaces Serving runtime selection determines operational complexity and performance characteristics. Different runtimes optimize for different deployment scenarios: some prioritize ease of use, others focus on maximum throughput or lowest latency. Choose based on team expertise, scale requirements, and operational constraints.}}{249}{table.7.8}\protected@file@percent }
-\newlabel{tab:ch07_runtimes}{{7.8}{249}{Serving runtime selection determines operational complexity and performance characteristics. Different runtimes optimize for different deployment scenarios: some prioritize ease of use, others focus on maximum throughput or lowest latency. Choose based on team expertise, scale requirements, and operational constraints}{table.7.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.10}Cloud-Native Optimization Patterns}{249}{subsection.7.12.10}\protected@file@percent }
-\newlabel{sec:perf-cloud-native}{{7.12.10}{249}{Cloud-Native Optimization Patterns}{subsection.7.12.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.11}Right-Sizing and Instance Mix}{249}{subsection.7.12.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.12}Autoscaling and Queuing}{250}{subsection.7.12.12}\protected@file@percent }
-\newlabel{sec:perf-autoscaling-queue}{{7.12.12}{250}{Autoscaling and Queuing}{subsection.7.12.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.13}Model Parallelism vs.\ Replication}{250}{subsection.7.12.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.14}I/O and Storage}{250}{subsection.7.12.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.15}LangChain-Centric Performance Engineering}{250}{subsection.7.12.15}\protected@file@percent }
-\newlabel{sec:perf-langchain}{{7.12.15}{250}{LangChain-Centric Performance Engineering}{subsection.7.12.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.16}Tracing, Telemetry, and Token Accounting}{250}{subsection.7.12.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.17}Caching and Deterministic Subchains}{250}{subsection.7.12.17}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.18}Model Routing and Cascades}{251}{subsection.7.12.18}\protected@file@percent }
-\newlabel{sec:perf-model-routing}{{7.12.18}{251}{Model Routing and Cascades}{subsection.7.12.18}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.19}Failure Budgeting and Retries}{251}{subsection.7.12.19}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.20}Extended Case Study: Ishtar AI}{251}{subsection.7.12.20}\protected@file@percent }
-\newlabel{sec:perf-ishtar-extended}{{7.12.20}{251}{Extended Case Study: Ishtar AI}{subsection.7.12.20}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.1}Setup.}{251}{subsubsection.7.12.20.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.2}Interventions.}{251}{subsubsection.7.12.20.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.3}Outcomes.}{251}{subsubsection.7.12.20.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.21}Implementation Checklist (Addendum)}{251}{subsection.7.12.21}\protected@file@percent }
-\newlabel{sec:perf-impl-checklist}{{7.12.21}{251}{Implementation Checklist (Addendum)}{subsection.7.12.21}{}}
+\newlabel{refsegment:015}{{7}{215}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
+\newlabel{ch:performance}{{7}{215}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
+\newlabel{refsegment:016}{{7}{215}{Performance Optimization Strategies for LLMs}{chapter.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Introduction}{216}{section.7.1}\protected@file@percent }
+\newlabel{sec:ch7-introduction}{{7.1}{216}{Introduction}{section.7.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Why Optimization Matters}{216}{section.7.2}\protected@file@percent }
+\newlabel{sec:perf-why}{{7.2}{216}{Why Optimization Matters}{section.7.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Model-Level Optimization Techniques}{217}{section.7.3}\protected@file@percent }
+\newlabel{sec:perf-model}{{7.3}{217}{Model-Level Optimization Techniques}{section.7.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.1}Quantization}{217}{subsection.7.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Performance optimization techniques deliver substantial gains but require careful selection. Quantization, batching, and caching can each provide 2--4$\times $ improvements, but gains are multiplicative and depend on workload characteristics. Understanding these improvement ranges helps teams prioritize optimization efforts and set realistic performance targets. See Sections~\ref {sec:perf-model}--\ref {sec:perf-system} and Section~\ref {sec:perf-prompt} for detailed discussions and implementation guidance.}}{218}{figure.7.1}\protected@file@percent }
+\newlabel{fig:ch07_opt_gains_callout}{{7.1}{218}{Performance optimization techniques deliver substantial gains but require careful selection. Quantization, batching, and caching can each provide 2--4$\times $ improvements, but gains are multiplicative and depend on workload characteristics. Understanding these improvement ranges helps teams prioritize optimization efforts and set realistic performance targets. See Sections~\ref {sec:perf-model}--\ref {sec:perf-system} and Section~\ref {sec:perf-prompt} for detailed discussions and implementation guidance}{figure.7.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Optimization techniques deliver substantial latency improvements when applied systematically. Batching amortizes overhead, KV-cache engineering reduces memory access, and quantization increases compute speed. Combined, these techniques can reduce latency by 2--4$\times $, but gains are multiplicative and depend on workload characteristics. Absolute values vary by model, hardware, and traffic mix.}}{218}{figure.7.2}\protected@file@percent }
+\newlabel{fig:ch07_latency_before_after}{{7.2}{218}{Optimization techniques deliver substantial latency improvements when applied systematically. Batching amortizes overhead, KV-cache engineering reduces memory access, and quantization increases compute speed. Combined, these techniques can reduce latency by 2--4$\times $, but gains are multiplicative and depend on workload characteristics. Absolute values vary by model, hardware, and traffic mix}{figure.7.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.2}Pruning}{219}{subsection.7.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.1}{\ignorespaces Quantization scheme selection trades off accuracy, speed, and memory. INT8 provides 2$\times $ speedup with minimal accuracy loss; 4-bit quantization enables 4$\times $ memory reduction but requires calibration; FP8 offers native hardware support on H100. Choose based on model sensitivity, hardware capabilities, and accuracy requirements.}}{220}{table.7.1}\protected@file@percent }
+\newlabel{tab:ch07_quantization_comparison}{{7.1}{220}{Quantization scheme selection trades off accuracy, speed, and memory. INT8 provides 2$\times $ speedup with minimal accuracy loss; 4-bit quantization enables 4$\times $ memory reduction but requires calibration; FP8 offers native hardware support on H100. Choose based on model sensitivity, hardware capabilities, and accuracy requirements}{table.7.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.3}Knowledge Distillation}{221}{subsection.7.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3.4}Efficient Fine-Tuning}{221}{subsection.7.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture.}}{222}{figure.7.3}\protected@file@percent }
+\newlabel{fig:ch07_quant_throughput_bars}{{7.3}{222}{Illustrative throughput gains from quantization on A100/H100 (normalized to FP16). FP8 is native on H100; 4-bit performance varies by toolkit and model architecture}{figure.7.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.4}{\ignorespaces Memory accounting enables capacity planning and batch size optimization. Use precision $b$ from Table~\ref {tab:ch07_quantization_comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets. This accounting prevents OOM errors and helps teams understand memory headroom for batching and context length.}}{222}{figure.7.4}\protected@file@percent }
+\newlabel{fig:ch07_memory_cheatsheet}{{7.4}{222}{Memory accounting enables capacity planning and batch size optimization. Use precision $b$ from Table~\ref {tab:ch07_quantization_comparison} and model dimensions from your architecture to size weights and KV cache before setting batch/sequence budgets. This accounting prevents OOM errors and helps teams understand memory headroom for batching and context length}{figure.7.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.2}{\ignorespaces Compression and adaptation techniques enable efficient LLM deployment. Quantization reduces memory and increases speed; distillation transfers knowledge to smaller models; LoRA enables parameter-efficient fine-tuning. Choose based on deployment constraints, accuracy requirements, and update frequency.}}{223}{table.7.2}\protected@file@percent }
+\newlabel{tab:ch07_compression_summary}{{7.2}{223}{Compression and adaptation techniques enable efficient LLM deployment. Quantization reduces memory and increases speed; distillation transfers knowledge to smaller models; LoRA enables parameter-efficient fine-tuning. Choose based on deployment constraints, accuracy requirements, and update frequency}{table.7.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}Inference Engine Optimization}{223}{section.7.4}\protected@file@percent }
+\newlabel{sec:perf-engine}{{7.4}{223}{Inference Engine Optimization}{section.7.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.3}{\ignorespaces Precision selection determines memory requirements and deployment feasibility. Lower precision (INT8, 4-bit) dramatically reduces memory, enabling larger models on fixed hardware or higher batch sizes. However, precision reduction may impact accuracy, requiring careful evaluation. Understanding these trade-offs enables teams to optimize memory usage while maintaining quality.}}{224}{table.7.3}\protected@file@percent }
+\newlabel{tab:ch07_mem_vs_precision}{{7.3}{224}{Precision selection determines memory requirements and deployment feasibility. Lower precision (INT8, 4-bit) dramatically reduces memory, enabling larger models on fixed hardware or higher batch sizes. However, precision reduction may impact accuracy, requiring careful evaluation. Understanding these trade-offs enables teams to optimize memory usage while maintaining quality}{table.7.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Specialized Runtimes}{224}{subsection.7.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Operator Fusion}{225}{subsection.7.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Paged Attention}{226}{subsection.7.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}System-Level Optimization}{226}{section.7.5}\protected@file@percent }
+\newlabel{sec:perf-system}{{7.5}{226}{System-Level Optimization}{section.7.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints.}}{227}{table.7.4}\protected@file@percent }
+\newlabel{tab:ch07_engine_bench}{{7.4}{227}{Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints}{table.7.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.1}Batching Strategies}{227}{subsection.7.5.1}\protected@file@percent }
+\newlabel{sec:perf-batching}{{7.5.1}{227}{Batching Strategies}{subsection.7.5.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces Throughput scaling with batch size reveals optimization opportunities and limits. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. Understanding this saturation point helps teams optimize batch sizes, but in production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}}{228}{figure.7.5}\protected@file@percent }
+\newlabel{fig:ch07_throughput_vs_batch}{{7.5}{228}{Throughput scaling with batch size reveals optimization opportunities and limits. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. Understanding this saturation point helps teams optimize batch sizes, but in production, the optimal $B$ is constrained by latency SLOs and KV-cache memory}{figure.7.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.2}Asynchronous Processing}{229}{subsection.7.5.2}\protected@file@percent }
+\newlabel{sec:perf-async}{{7.5.2}{229}{Asynchronous Processing}{subsection.7.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5.3}Caching}{229}{subsection.7.5.3}\protected@file@percent }
+\newlabel{sec:perf-cache}{{7.5.3}{229}{Caching}{subsection.7.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.6}Prompt Optimization}{231}{section.7.6}\protected@file@percent }
+\newlabel{sec:perf-prompt}{{7.6}{231}{Prompt Optimization}{section.7.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.1}Reducing Context Size}{231}{subsection.7.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.2}Template Efficiency}{232}{subsection.7.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.3}Compression of Retrieved Context}{233}{subsection.7.6.3}\protected@file@percent }
+\newlabel{sec:perf-rag-compression}{{7.6.3}{233}{Compression of Retrieved Context}{subsection.7.6.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.4}Speculative Decoding}{234}{subsection.7.6.4}\protected@file@percent }
+\newlabel{sec:perf-speculative}{{7.6.4}{234}{Speculative Decoding}{subsection.7.6.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.7}Hardware Utilization Tuning}{234}{section.7.7}\protected@file@percent }
+\newlabel{sec:perf-hw}{{7.7}{234}{Hardware Utilization Tuning}{section.7.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.1}GPU Profiling}{234}{subsection.7.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.2}Mixed Precision}{235}{subsection.7.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.3}Concurrency Tuning}{236}{subsection.7.7.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces Kernel-time profiling identifies optimization opportunities and validates improvements. Comparing breakdowns before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute) reveals which optimizations deliver the largest gains. This profiling guides optimization prioritization and helps teams understand where further improvements are possible. Percentages vary by model, sequence length, and runtime.}}{237}{table.7.5}\protected@file@percent }
+\newlabel{tab:ch07_profiling_breakdown}{{7.5}{237}{Kernel-time profiling identifies optimization opportunities and validates improvements. Comparing breakdowns before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute) reveals which optimizations deliver the largest gains. This profiling guides optimization prioritization and helps teams understand where further improvements are possible. Percentages vary by model, sequence length, and runtime}{table.7.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.8}Performance Testing and Benchmarking}{237}{section.7.8}\protected@file@percent }
+\newlabel{sec:perf-benchmark}{{7.8}{237}{Performance Testing and Benchmarking}{section.7.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.9}Case Study: Optimizing Ishtar AI}{238}{section.7.9}\protected@file@percent }
+\newlabel{sec:perf-ishtar-case}{{7.9}{238}{Case Study: Optimizing Ishtar AI}{section.7.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Latency CDF reveals tail latency behavior critical for user experience. While p50 latency determines average user experience, p95/p99 percentiles expose tail latency that frustrates users and violates SLOs. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix, making CDF analysis essential for capacity planning and optimization prioritization.}}{239}{figure.7.6}\protected@file@percent }
+\newlabel{fig:ch07_latency_cdf}{{7.6}{239}{Latency CDF reveals tail latency behavior critical for user experience. While p50 latency determines average user experience, p95/p99 percentiles expose tail latency that frustrates users and violates SLOs. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix, making CDF analysis essential for capacity planning and optimization prioritization}{figure.7.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.7}{\ignorespaces Cost per token varies significantly across inference engines and deployment configurations. Engine selection, hardware choice, and utilization levels can create 2--5$\times $ cost differences. When cost differences exceed 30\%, engine choice becomes a primary cost optimization lever, especially at scale. See Section~\ref {sec:perf-cost-per-token} for detailed cost modeling. Absolute values depend on hardware pricing, utilization, and batch/sequence lengths.}}{239}{figure.7.7}\protected@file@percent }
+\newlabel{fig:ch07_cost_per_1k_by_engine}{{7.7}{239}{Cost per token varies significantly across inference engines and deployment configurations. Engine selection, hardware choice, and utilization levels can create 2--5$\times $ cost differences. When cost differences exceed 30\%, engine choice becomes a primary cost optimization lever, especially at scale. See Section~\ref {sec:perf-cost-per-token} for detailed cost modeling. Absolute values depend on hardware pricing, utilization, and batch/sequence lengths}{figure.7.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.1}Initial Performance}{239}{subsection.7.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.2}Optimizations Applied}{240}{subsection.7.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.1}Model quantization to INT8/4-bit.}{240}{subsubsection.7.9.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.2}Inference engine swap (vLLM with dynamic batching).}{240}{subsubsection.7.9.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.3}Prompt and context optimization (RAG compression).}{241}{subsubsection.7.9.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.4}Asynchronous API and streaming.}{241}{subsubsection.7.9.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.3}Results}{241}{subsection.7.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.3.1}Alternate configurations considered.}{242}{subsubsection.7.9.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.10}Best Practices Checklist (Quick)}{242}{section.7.10}\protected@file@percent }
+\newlabel{sec:perf-checklist-quick}{{7.10}{242}{Best Practices Checklist (Quick)}{section.7.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces \ishtar  {} optimization KPIs demonstrate systematic improvement through targeted techniques. Comparing before vs.\ after metrics (latency, throughput, cost) validates that optimization strategies deliver measurable gains. These KPIs provide benchmarks for similar deployments and illustrate how systematic optimization achieves production goals. Values are representative of the case study scenario and depend on workload and hardware.}}{243}{table.7.6}\protected@file@percent }
+\newlabel{tab:ch07_ishtar_kpis}{{7.6}{243}{\ishtar {} optimization KPIs demonstrate systematic improvement through targeted techniques. Comparing before vs.\ after metrics (latency, throughput, cost) validates that optimization strategies deliver measurable gains. These KPIs provide benchmarks for similar deployments and illustrate how systematic optimization achieves production goals. Values are representative of the case study scenario and depend on workload and hardware}{table.7.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.11}Best Practices Checklist}{243}{section.7.11}\protected@file@percent }
+\newlabel{sec:perf-checklist}{{7.11}{243}{Best Practices Checklist}{section.7.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.12}Extended Material}{244}{section.7.12}\protected@file@percent }
+\newlabel{sec:perf-extended}{{7.12}{244}{Extended Material}{section.7.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.1}Architectural Variants and Cloud Deployment Trade-offs}{244}{subsection.7.12.1}\protected@file@percent }
+\newlabel{sec:perf-variants}{{7.12.1}{244}{Architectural Variants and Cloud Deployment Trade-offs}{subsection.7.12.1}{}}
+\newlabel{sec:arch-variants}{{7.12.1}{244}{Architectural Variants and Cloud Deployment Trade-offs}{subsection.7.12.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.2}Encoder-Only (Masked LM)}{245}{subsection.7.12.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.3}Decoder-Only (Autoregressive LM)}{245}{subsection.7.12.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.4}Mixture-of-Experts (MoE)}{246}{subsection.7.12.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.4.1}Guideline.}{247}{subsubsection.7.12.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.5}Complexity and Scaling: Cost Models and Memory Formulas}{247}{subsection.7.12.5}\protected@file@percent }
+\newlabel{sec:perf-cost-models}{{7.12.5}{247}{Complexity and Scaling: Cost Models and Memory Formulas}{subsection.7.12.5}{}}
+\newlabel{sec:complexity-scaling}{{7.12.5}{247}{Complexity and Scaling: Cost Models and Memory Formulas}{subsection.7.12.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.6}Attention and KV Cache}{247}{subsection.7.12.6}\protected@file@percent }
+\newlabel{sec:perf-attention-kv-cache}{{7.12.6}{247}{Attention and KV Cache}{subsection.7.12.6}{}}
+\newlabel{eq:kv-layer}{{7.2}{247}{Attention and KV Cache}{equation.7.2}{}}
+\newlabel{eq:kv-total}{{7.3}{247}{Attention and KV Cache}{equation.7.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.6.1}Worked Example.}{248}{subsubsection.7.12.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.7}Throughput and Utilization}{248}{subsection.7.12.7}\protected@file@percent }
+\newlabel{eq:throughput-main}{{7.4}{248}{Throughput and Utilization}{equation.7.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.7.1}Interpretation.}{248}{subsubsection.7.12.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.8}Cost per 1{,}000 Tokens}{249}{subsection.7.12.8}\protected@file@percent }
+\newlabel{sec:perf-cost-per-token}{{7.12.8}{249}{Cost per 1{,}000 Tokens}{subsection.7.12.8}{}}
+\newlabel{eq:cost-k}{{7.5}{249}{Cost per 1{,}000 Tokens}{equation.7.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.8.1}Worked Example.}{249}{subsubsection.7.12.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.9}Inference Engines and Serving Runtimes}{249}{subsection.7.12.9}\protected@file@percent }
+\newlabel{sec:inference-engines}{{7.12.9}{249}{Inference Engines and Serving Runtimes}{subsection.7.12.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.9.1}Practice notes.}{249}{subsubsection.7.12.9.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.7}{\ignorespaces Architectural variant selection determines cost, latency, and operational complexity. Different deployment patterns (serverless, containerized, edge) optimize for different scenarios: serverless reduces operational overhead but may increase latency; containerized provides control but requires infrastructure management. Choose based on traffic patterns, latency requirements, and team capabilities.}}{250}{table.7.7}\protected@file@percent }
+\newlabel{tab:ch07_arch_comparison}{{7.7}{250}{Architectural variant selection determines cost, latency, and operational complexity. Different deployment patterns (serverless, containerized, edge) optimize for different scenarios: serverless reduces operational overhead but may increase latency; containerized provides control but requires infrastructure management. Choose based on traffic patterns, latency requirements, and team capabilities}{table.7.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.9.2}Discussion.}{250}{subsubsection.7.12.9.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7.8}{\ignorespaces Serving runtime selection determines operational complexity and performance characteristics. Different runtimes optimize for different deployment scenarios: some prioritize ease of use, others focus on maximum throughput or lowest latency. Choose based on team expertise, scale requirements, and operational constraints.}}{251}{table.7.8}\protected@file@percent }
+\newlabel{tab:ch07_runtimes}{{7.8}{251}{Serving runtime selection determines operational complexity and performance characteristics. Different runtimes optimize for different deployment scenarios: some prioritize ease of use, others focus on maximum throughput or lowest latency. Choose based on team expertise, scale requirements, and operational constraints}{table.7.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.10}Cloud-Native Optimization Patterns}{251}{subsection.7.12.10}\protected@file@percent }
+\newlabel{sec:perf-cloud-native}{{7.12.10}{251}{Cloud-Native Optimization Patterns}{subsection.7.12.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.11}Right-Sizing and Instance Mix}{251}{subsection.7.12.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.12}Autoscaling and Queuing}{252}{subsection.7.12.12}\protected@file@percent }
+\newlabel{sec:perf-autoscaling-queue}{{7.12.12}{252}{Autoscaling and Queuing}{subsection.7.12.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.13}Model Parallelism vs.\ Replication}{252}{subsection.7.12.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.14}I/O and Storage}{252}{subsection.7.12.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.15}LangChain-Centric Performance Engineering}{252}{subsection.7.12.15}\protected@file@percent }
+\newlabel{sec:perf-langchain}{{7.12.15}{252}{LangChain-Centric Performance Engineering}{subsection.7.12.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.16}Tracing, Telemetry, and Token Accounting}{252}{subsection.7.12.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.17}Caching and Deterministic Subchains}{252}{subsection.7.12.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.18}Model Routing and Cascades}{253}{subsection.7.12.18}\protected@file@percent }
+\newlabel{sec:perf-model-routing}{{7.12.18}{253}{Model Routing and Cascades}{subsection.7.12.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.19}Failure Budgeting and Retries}{253}{subsection.7.12.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.20}Extended Case Study: Ishtar AI}{253}{subsection.7.12.20}\protected@file@percent }
+\newlabel{sec:perf-ishtar-extended}{{7.12.20}{253}{Extended Case Study: Ishtar AI}{subsection.7.12.20}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.1}Setup.}{253}{subsubsection.7.12.20.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.2}Interventions.}{253}{subsubsection.7.12.20.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.12.20.3}Outcomes.}{253}{subsubsection.7.12.20.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.12.21}Implementation Checklist (Addendum)}{253}{subsection.7.12.21}\protected@file@percent }
+\newlabel{sec:perf-impl-checklist}{{7.12.21}{253}{Implementation Checklist (Addendum)}{subsection.7.12.21}{}}
 \@setckpt{ch07-performance}{
-\setcounter{page}{255}
+\setcounter{page}{257}
 \setcounter{equation}{5}
 \setcounter{enumi}{4}
 \setcounter{enumii}{0}

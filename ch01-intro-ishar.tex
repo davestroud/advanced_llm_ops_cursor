@@ -1087,9 +1087,129 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
 \subsection{Architecture Overview}
 At a high level, \ishtar{} is composed of modular components working in concert, as illustrated in Fig.~\ref{fig:ch01_ishtar_arch_main}. The pipeline integrates ingestion, retrieval, multi-agent orchestration, inference, and observability.
 
-\begin{figure}[tb]
+% ----------------------------------------------------------------------
+% FIGURE: Ishtar reference architecture (comprehensive pipeline diagram)
+% Preamble requirements (once): \usepackage{tikz} and
+% \usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+% ----------------------------------------------------------------------
+\begin{figure}[t]
 \centering
-% \includegraphics[width=0.85\textwidth]{ishtar-arch.pdf}
+\begin{llmfigbox}
+\begin{tikzpicture}[
+  font=\small,
+  node distance=8mm and 6mm,
+  % Color styles for different components
+  source/.style={ellipse, fill=blue!15, draw=blue!50!black, line width=0.6pt, 
+                 minimum width=20mm, minimum height=10mm, align=center, inner sep=3pt},
+  ingest/.style={rectangle, fill=cyan!15, draw=cyan!50!black, rounded corners=3pt,
+                 line width=0.6pt, minimum width=24mm, minimum height=12mm, align=center, inner sep=4pt},
+  vector/.style={cylinder, fill=teal!15, draw=teal!50!black, line width=0.6pt,
+                 shape aspect=0.3, minimum width=20mm, minimum height=16mm, align=center, inner sep=3pt},
+  rag/.style={rectangle, fill=purple!15, draw=purple!50!black, rounded corners=3pt,
+              line width=0.6pt, minimum width=28mm, minimum height=14mm, align=center, inner sep=4pt},
+  agent/.style={rectangle, fill=green!15, draw=green!50!black, rounded corners=3pt,
+                line width=0.6pt, minimum width=22mm, minimum height=10mm, align=center, inner sep=3pt},
+  orchestrator/.style={rectangle, fill=orange!15, draw=orange!50!black, rounded corners=3pt,
+                       line width=0.7pt, minimum width=30mm, minimum height=12mm, align=center, inner sep=4pt, font=\small\bfseries},
+  gpu/.style={rectangle, fill=red!15, draw=red!50!black, rounded corners=3pt,
+              line width=0.6pt, minimum width=26mm, minimum height=14mm, align=center, inner sep=4pt},
+  response/.style={ellipse, fill=gray!15, draw=gray!50!black, line width=0.6pt,
+                  minimum width=22mm, minimum height=10mm, align=center, inner sep=3pt},
+  obs/.style={rectangle, fill=yellow!10, draw=black!30, rounded corners=2pt, dashed,
+              line width=0.5pt, minimum width=140mm, minimum height=8mm, align=center, inner sep=3pt, font=\footnotesize},
+  arrow/.style={-{Stealth[length=2.5mm,width=2mm]}, line width=0.7pt, color=black!70},
+  arrowthin/.style={-{Stealth[length=2mm,width=1.5mm]}, line width=0.5pt, color=black!60}
+]
+
+% ========== LEFT LANE: Data Sources & Ingestion ==========
+% Data sources
+\node[source] (news) {News wires\\\& reports};
+\node[source, below=of news] (ngo) {NGO\\bulletins};
+\node[source, below=of ngo] (social) {Social media\\(vetted)};
+
+% Ingestion agents
+\node[ingest, right=of news] (ingest1) {Ingestion\\Agent 1};
+\node[ingest, right=of ngo] (ingest2) {Ingestion\\Agent 2};
+\node[ingest, right=of social] (ingest3) {Ingestion\\Agent 3};
+
+% Vector database
+\node[vector, right=of ingest2, yshift=8mm] (vectordb) {Vector\\Database};
+
+% ========== MIDDLE LANE: RAG & Multi-Agent ==========
+% Query input
+\node[source, right=of vectordb, yshift=15mm] (query) {Journalist\\Query};
+
+% RAG retrieval
+\node[rag, below=of query] (retrieval) {RAG\\Retrieval};
+
+% Multi-agent orchestration
+\node[orchestrator, below=of retrieval] (orchestrator) {Orchestrator};
+
+% Agents
+\node[agent, below left=of orchestrator, xshift=-5mm] (summarizer) {Summarizer};
+\node[agent, below=of orchestrator] (factchecker) {Fact-Checker};
+\node[agent, below right=of orchestrator, xshift=5mm] (refiner) {Refiner};
+
+% ========== RIGHT LANE: GPU Inference & Response ==========
+% GPU inference cluster
+\node[gpu, right=of orchestrator] (gpu1) {GPU\\Node 1};
+\node[gpu, right=of factchecker] (gpu2) {GPU\\Node 2};
+
+% Response
+\node[response, right=of gpu1, yshift=-8mm] (response) {Response\\+ Citations};
+
+% ========== ARROWS: Data Flow ==========
+% Sources to ingestion
+\draw[arrowthin] (news.east) -- (ingest1.west);
+\draw[arrowthin] (ngo.east) -- (ingest2.west);
+\draw[arrowthin] (social.east) -- (ingest3.west);
+
+% Ingestion to vector database
+\draw[arrowthin] (ingest1.east) -- (vectordb.west);
+\draw[arrowthin] (ingest2.east) -- (vectordb.west);
+\draw[arrowthin] (ingest3.east) -- (vectordb.west);
+
+% Query to RAG
+\draw[arrow] (query.south) -- (retrieval.north);
+
+% RAG to vector database (retrieval)
+\draw[arrowthin, dashed] (retrieval.west) -- (vectordb.east);
+
+% RAG to orchestrator
+\draw[arrow] (retrieval.south) -- (orchestrator.north);
+
+% Orchestrator to agents
+\draw[arrowthin] (orchestrator.south west) -- (summarizer.north);
+\draw[arrowthin] (orchestrator.south) -- (factchecker.north);
+\draw[arrowthin] (orchestrator.south east) -- (refiner.north);
+
+% Agents to GPU
+\draw[arrow] (summarizer.east) -- (gpu1.west);
+\draw[arrow] (factchecker.east) -- (gpu2.west);
+\draw[arrow] (refiner.east) -- (gpu1.west);
+
+% GPU to response
+\draw[arrow] (gpu1.east) -- (response.west);
+\draw[arrowthin] (gpu2.east) -- (response.west);
+
+% ========== OBSERVABILITY LAYER ==========
+% Top observability band
+\node[obs, fit=(news) (vectordb) (query) (retrieval) (orchestrator) (gpu1) (response),
+      yshift=22mm, label={[anchor=center, font=\small\bfseries]center:Observability \& Telemetry}] (obstop) {};
+
+% Bottom observability band  
+\node[obs, fit=(news) (vectordb) (query) (retrieval) (orchestrator) (gpu1) (response),
+      yshift=-22mm, label={[anchor=center, font=\small\bfseries]center:Traces, Metrics, Logs}] (obsbot) {};
+
+% Observability connections (subtle dotted lines to show cross-cutting)
+\draw[arrowthin, dotted, color=black!30] ([xshift=-2mm]obstop.south) -- ([xshift=-2mm]vectordb.north);
+\draw[arrowthin, dotted, color=black!30] (obstop.south) -- (retrieval.north);
+\draw[arrowthin, dotted, color=black!30] ([xshift=2mm]obstop.south) -- ([xshift=2mm]orchestrator.north);
+\draw[arrowthin, dotted, color=black!30] ([xshift=-2mm]obsbot.north) -- ([xshift=-2mm]orchestrator.south);
+\draw[arrowthin, dotted, color=black!30] (obsbot.north) -- (gpu1.south);
+
+\end{tikzpicture}
+\end{llmfigbox}
 \caption{\ishtar{} reference architecture demonstrates production-ready LLMOps patterns. The pipeline integrates data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages. This architecture balances accuracy (via RAG), reliability (via multi-agent verification), and scalability (via GPU inference), serving as a template for similar deployments.}
 \label{fig:ch01_ishtar_arch_main}
 \end{figure}

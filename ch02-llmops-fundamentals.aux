@@ -1,86 +1,86 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}LLMOps Fundamentals and Key Concepts}{43}{chapter.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}LLMOps Fundamentals and Key Concepts}{45}{chapter.2}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{refsegment:05}{{2}{43}{LLMOps Fundamentals and Key Concepts}{chapter.2}{}}
-\newlabel{ch:llmops-fundamentals}{{2}{43}{LLMOps Fundamentals and Key Concepts}{chapter.2}{}}
-\newlabel{refsegment:06}{{2}{43}{LLMOps Fundamentals and Key Concepts}{chapter.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Introduction}{44}{section.2.1}\protected@file@percent }
-\newlabel{sec:ch2-introduction}{{2.1}{44}{Introduction}{section.2.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}What is LLMOps?}{45}{section.2.2}\protected@file@percent }
-\newlabel{sec:ch2-what-is-llmops}{{2.2}{45}{What is LLMOps?}{section.2.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Definition}{45}{subsection.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Why LLMOps is Different from MLOps}{45}{subsection.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.1}Massive scale and structural complexity}{45}{subsubsection.2.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.2}Probabilistic output behavior}{46}{subsubsection.2.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.3}Finite context window constraints}{46}{subsubsection.2.2.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.4}Ethical and reliability risks}{46}{subsubsection.2.2.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.5}Supporting Equations (Capacity, Cost, and Complexity)}{47}{subsubsection.2.2.2.5}\protected@file@percent }
-\newlabel{sec:ch2-supporting-equations}{{2.2.2.5}{47}{Supporting Equations (Capacity, Cost, and Complexity)}{subsubsection.2.2.2.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.6}Parameter memory (inference)}{47}{subsubsection.2.2.2.6}\protected@file@percent }
-\newlabel{eq:param-mem}{{2.1}{47}{Parameter memory (inference)}{equation.2.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.7}KV-cache memory (inference)}{48}{subsubsection.2.2.2.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.8}Serving efficiency and KV-cache management}{48}{subsubsection.2.2.2.8}\protected@file@percent }
-\newlabel{eq:kv-cache}{{2.2}{48}{Serving efficiency and KV-cache management}{equation.2.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.9}Activation memory (training/fine-tuning)}{48}{subsubsection.2.2.2.9}\protected@file@percent }
-\newlabel{eq:act-mem}{{2.3}{48}{Activation memory (training/fine-tuning)}{equation.2.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.10}Per-layer FLOPs (forward)}{49}{subsubsection.2.2.2.10}\protected@file@percent }
-\newlabel{eq:flops-layer}{{2.4}{49}{Per-layer FLOPs (forward)}{equation.2.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.11}Attention complexity}{49}{subsubsection.2.2.2.11}\protected@file@percent }
-\newlabel{eq:attn-complexity}{{2.5}{49}{Attention complexity}{equation.2.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.12}Throughput and batching}{50}{subsubsection.2.2.2.12}\protected@file@percent }
-\newlabel{eq:latency}{{2.6}{50}{Throughput and batching}{equation.2.6}{}}
-\newlabel{eq:throughput}{{2.7}{50}{Throughput and batching}{equation.2.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.13}Temperature and determinism}{51}{subsubsection.2.2.2.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.14}Illustrative Diagrams}{51}{subsubsection.2.2.2.14}\protected@file@percent }
-\newlabel{sec:ch2-illustrative-diagrams}{{2.2.2.14}{51}{Illustrative Diagrams}{subsubsection.2.2.2.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Transformer architecture determines inference memory and compute requirements. The attention mechanism, FFN layers, and residual paths each contribute to memory (dominated by parameters and KV cache, Eq.~\ref {eq:param-mem}, \ref {eq:kv-cache}) and compute cost (scales with Eq.~\ref {eq:flops-layer}). Understanding these components enables capacity planning and optimization decisions.}}{52}{figure.2.1}\protected@file@percent }
-\newlabel{fig:ch02_transformer_block}{{2.1}{52}{Transformer architecture\index {Transformer!architecture} determines inference memory and compute requirements. The attention mechanism\index {attention!mechanism}, FFN layers\index {FFN}, and residual paths\index {residual connection} each contribute to memory (dominated by parameters and KV cache, Eq.~\ref {eq:param-mem}, \ref {eq:kv-cache}) and compute cost (scales with Eq.~\ref {eq:flops-layer}). Understanding these components enables capacity planning and optimization decisions}{figure.2.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Attention cost grows quadratically with context length $T$ (solid), outpacing linear strategies (dashed). This motivates paged attention, local attention, and RAG to manage long contexts in production.}}{53}{figure.2.2}\protected@file@percent }
-\newlabel{fig:ch02_quadratic_attn}{{2.2}{53}{Attention cost grows quadratically with context length $T$ (solid), outpacing linear strategies (dashed). This motivates paged attention\index {attention!paged}, local attention\index {attention!local}, and RAG to manage long contexts in production}{figure.2.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Empirical growth in Transformer-based model size (log scale). Parameter counts have increased by orders of magnitude, driving distinct operational constraints in memory, compute, and cost.}}{53}{figure.2.3}\protected@file@percent }
-\newlabel{fig:ch02_llm_scale}{{2.3}{53}{Empirical growth in Transformer-based model size (log scale). Parameter counts have increased by orders of magnitude, driving distinct operational constraints in memory, compute, and cost}{figure.2.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Core Components of an LLMOps Pipeline}{53}{section.2.3}\protected@file@percent }
-\newlabel{sec:ch2-core-components}{{2.3}{53}{Core Components of an LLMOps Pipeline}{section.2.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Throughput vs.\ TTFT trade-off determines batching strategy and capacity planning. Larger batches ($B$) amortize TTFT overhead, improving throughput, but real systems saturate due to kernel/IO limits before reaching theoretical maximums. Understanding this trade-off helps teams optimize batch sizes for their latency requirements. Using Eq.~\ref {eq:throughput} with $N{=}120$ tokens/request and $\tau _1{=}\SI {0.02}{s/token}$ provides planning guidelines, not guarantees.}}{54}{figure.2.4}\protected@file@percent }
-\newlabel{fig:ch02_ttft_throughput}{{2.4}{54}{Throughput vs.\ TTFT trade-off determines batching strategy and capacity planning. Larger batches ($B$) amortize TTFT overhead, improving throughput, but real systems saturate due to kernel/IO limits before reaching theoretical maximums. Understanding this trade-off helps teams optimize batch sizes for their latency requirements. Using Eq.~\ref {eq:throughput} with $N{=}120$ tokens/request and $\tau _1{=}\SI {0.02}{s/token}$ provides planning guidelines, not guarantees}{figure.2.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}Key Concepts in LLMOps}{56}{section.2.4}\protected@file@percent }
-\newlabel{sec:ch2-key-concepts}{{2.4}{56}{Key Concepts in LLMOps}{section.2.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Prompt Engineering}{56}{subsection.2.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Retrieval-Augmented Generation (RAG)}{57}{subsection.2.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Tool Calling and Structured Outputs}{57}{subsection.2.4.3}\protected@file@percent }
-\newlabel{sec:ch2-tool-calling}{{2.4.3}{57}{Tool Calling and Structured Outputs}{subsection.2.4.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3.1}Ops implications}{58}{subsubsection.2.4.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Evaluation Metrics}{58}{subsection.2.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.4.1}Evaluation Frameworks and Tooling}{59}{subsubsection.2.4.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}Human Feedback and Alignment}{59}{subsection.2.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.6}Security, Privacy, and Threat Modeling}{60}{subsection.2.4.6}\protected@file@percent }
-\newlabel{sec:ch2-security}{{2.4.6}{60}{Security, Privacy, and Threat Modeling}{subsection.2.4.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.6.1}Operational controls}{60}{subsubsection.2.4.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Transformer Architecture Foundations for LLMOps}{60}{subsection.2.4.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.1}Self-attention and multi-head attention}{61}{subsubsection.2.4.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.2}Positional encodings}{61}{subsubsection.2.4.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.3}Feed-forward networks (FFN)}{62}{subsubsection.2.4.7.3}\protected@file@percent }
-\newlabel{eq:ffn-formula}{{2.13}{62}{Feed-forward networks (FFN)}{equation.2.13}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.4}Residual connections and LayerNorm}{63}{subsubsection.2.4.7.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.5}Worked example (KV-cache sizing)}{64}{subsubsection.2.4.7.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.6}Rule-of-thumb parameter memory}{65}{subsubsection.2.4.7.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Parameter memory requirements determine deployment feasibility and hardware selection. Memory scales linearly with parameter count, making large models (70B+) require multi-GPU deployments even with quantization. Understanding these requirements enables teams to plan infrastructure investments and choose appropriate model sizes for their constraints.}}{65}{table.2.1}\protected@file@percent }
-\newlabel{tab:ch02_param_memory}{{2.1}{65}{Parameter memory requirements determine deployment feasibility and hardware selection. Memory scales linearly with parameter count, making large models (70B+) require multi-GPU deployments even with quantization. Understanding these requirements enables teams to plan infrastructure investments and choose appropriate model sizes for their constraints}{table.2.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}The LLM Lifecycle}{66}{section.2.5}\protected@file@percent }
-\newlabel{sec:ch2-lifecycle}{{2.5}{66}{The LLM Lifecycle}{section.2.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Governance and Risk Management}{66}{subsection.2.5.1}\protected@file@percent }
-\newlabel{sec:ch2-governance}{{2.5.1}{66}{Governance and Risk Management}{subsection.2.5.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1.1}LLMOps linkage}{66}{subsubsection.2.5.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.6}Tools and Frameworks}{68}{section.2.6}\protected@file@percent }
-\newlabel{sec:ch2-tools}{{2.6}{68}{Tools and Frameworks}{section.2.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.7}Ishtar AI: A Running Example}{69}{section.2.7}\protected@file@percent }
-\newlabel{sec:ch2-ishtar-running-example}{{2.7}{69}{Ishtar AI: A Running Example}{section.2.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.1}A concrete query trace}{69}{subsubsection.2.7.0.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.2}Release gates for reliability}{70}{subsubsection.2.7.0.2}\protected@file@percent }
+\newlabel{refsegment:05}{{2}{45}{LLMOps Fundamentals and Key Concepts}{chapter.2}{}}
+\newlabel{ch:llmops-fundamentals}{{2}{45}{LLMOps Fundamentals and Key Concepts}{chapter.2}{}}
+\newlabel{refsegment:06}{{2}{45}{LLMOps Fundamentals and Key Concepts}{chapter.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Introduction}{46}{section.2.1}\protected@file@percent }
+\newlabel{sec:ch2-introduction}{{2.1}{46}{Introduction}{section.2.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}What is LLMOps?}{47}{section.2.2}\protected@file@percent }
+\newlabel{sec:ch2-what-is-llmops}{{2.2}{47}{What is LLMOps?}{section.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Definition}{47}{subsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Why LLMOps is Different from MLOps}{47}{subsection.2.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.1}Massive scale and structural complexity}{47}{subsubsection.2.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.2}Probabilistic output behavior}{48}{subsubsection.2.2.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.3}Finite context window constraints}{48}{subsubsection.2.2.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.4}Ethical and reliability risks}{48}{subsubsection.2.2.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.5}Supporting Equations (Capacity, Cost, and Complexity)}{49}{subsubsection.2.2.2.5}\protected@file@percent }
+\newlabel{sec:ch2-supporting-equations}{{2.2.2.5}{49}{Supporting Equations (Capacity, Cost, and Complexity)}{subsubsection.2.2.2.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.6}Parameter memory (inference)}{49}{subsubsection.2.2.2.6}\protected@file@percent }
+\newlabel{eq:param-mem}{{2.1}{49}{Parameter memory (inference)}{equation.2.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.7}KV-cache memory (inference)}{50}{subsubsection.2.2.2.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.8}Serving efficiency and KV-cache management}{50}{subsubsection.2.2.2.8}\protected@file@percent }
+\newlabel{eq:kv-cache}{{2.2}{50}{Serving efficiency and KV-cache management}{equation.2.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.9}Activation memory (training/fine-tuning)}{50}{subsubsection.2.2.2.9}\protected@file@percent }
+\newlabel{eq:act-mem}{{2.3}{50}{Activation memory (training/fine-tuning)}{equation.2.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.10}Per-layer FLOPs (forward)}{51}{subsubsection.2.2.2.10}\protected@file@percent }
+\newlabel{eq:flops-layer}{{2.4}{51}{Per-layer FLOPs (forward)}{equation.2.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.11}Attention complexity}{51}{subsubsection.2.2.2.11}\protected@file@percent }
+\newlabel{eq:attn-complexity}{{2.5}{51}{Attention complexity}{equation.2.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.12}Throughput and batching}{52}{subsubsection.2.2.2.12}\protected@file@percent }
+\newlabel{eq:latency}{{2.6}{52}{Throughput and batching}{equation.2.6}{}}
+\newlabel{eq:throughput}{{2.7}{52}{Throughput and batching}{equation.2.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.13}Temperature and determinism}{53}{subsubsection.2.2.2.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2.14}Illustrative Diagrams}{53}{subsubsection.2.2.2.14}\protected@file@percent }
+\newlabel{sec:ch2-illustrative-diagrams}{{2.2.2.14}{53}{Illustrative Diagrams}{subsubsection.2.2.2.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Transformer architecture determines inference memory and compute requirements. The attention mechanism, FFN layers, and residual paths each contribute to memory (dominated by parameters and KV cache, Eq.~\ref {eq:param-mem}, \ref {eq:kv-cache}) and compute cost (scales with Eq.~\ref {eq:flops-layer}). Understanding these components enables capacity planning and optimization decisions.}}{54}{figure.2.1}\protected@file@percent }
+\newlabel{fig:ch02_transformer_block}{{2.1}{54}{Transformer architecture\index {Transformer!architecture} determines inference memory and compute requirements. The attention mechanism\index {attention!mechanism}, FFN layers\index {FFN}, and residual paths\index {residual connection} each contribute to memory (dominated by parameters and KV cache, Eq.~\ref {eq:param-mem}, \ref {eq:kv-cache}) and compute cost (scales with Eq.~\ref {eq:flops-layer}). Understanding these components enables capacity planning and optimization decisions}{figure.2.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Attention cost grows quadratically with context length $T$ (solid), outpacing linear strategies (dashed). This motivates paged attention, local attention, and RAG to manage long contexts in production.}}{55}{figure.2.2}\protected@file@percent }
+\newlabel{fig:ch02_quadratic_attn}{{2.2}{55}{Attention cost grows quadratically with context length $T$ (solid), outpacing linear strategies (dashed). This motivates paged attention\index {attention!paged}, local attention\index {attention!local}, and RAG to manage long contexts in production}{figure.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Empirical growth in Transformer-based model size (log scale). Parameter counts have increased by orders of magnitude, driving distinct operational constraints in memory, compute, and cost.}}{55}{figure.2.3}\protected@file@percent }
+\newlabel{fig:ch02_llm_scale}{{2.3}{55}{Empirical growth in Transformer-based model size (log scale). Parameter counts have increased by orders of magnitude, driving distinct operational constraints in memory, compute, and cost}{figure.2.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Core Components of an LLMOps Pipeline}{55}{section.2.3}\protected@file@percent }
+\newlabel{sec:ch2-core-components}{{2.3}{55}{Core Components of an LLMOps Pipeline}{section.2.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Throughput vs.\ TTFT trade-off determines batching strategy and capacity planning. Larger batches ($B$) amortize TTFT overhead, improving throughput, but real systems saturate due to kernel/IO limits before reaching theoretical maximums. Understanding this trade-off helps teams optimize batch sizes for their latency requirements. Using Eq.~\ref {eq:throughput} with $N{=}120$ tokens/request and $\tau _1{=}\SI {0.02}{s/token}$ provides planning guidelines, not guarantees.}}{56}{figure.2.4}\protected@file@percent }
+\newlabel{fig:ch02_ttft_throughput}{{2.4}{56}{Throughput vs.\ TTFT trade-off determines batching strategy and capacity planning. Larger batches ($B$) amortize TTFT overhead, improving throughput, but real systems saturate due to kernel/IO limits before reaching theoretical maximums. Understanding this trade-off helps teams optimize batch sizes for their latency requirements. Using Eq.~\ref {eq:throughput} with $N{=}120$ tokens/request and $\tau _1{=}\SI {0.02}{s/token}$ provides planning guidelines, not guarantees}{figure.2.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Key Concepts in LLMOps}{58}{section.2.4}\protected@file@percent }
+\newlabel{sec:ch2-key-concepts}{{2.4}{58}{Key Concepts in LLMOps}{section.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Prompt Engineering}{58}{subsection.2.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Retrieval-Augmented Generation (RAG)}{59}{subsection.2.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Tool Calling and Structured Outputs}{59}{subsection.2.4.3}\protected@file@percent }
+\newlabel{sec:ch2-tool-calling}{{2.4.3}{59}{Tool Calling and Structured Outputs}{subsection.2.4.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3.1}Ops implications}{60}{subsubsection.2.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Evaluation Metrics}{60}{subsection.2.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.4.1}Evaluation Frameworks and Tooling}{61}{subsubsection.2.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}Human Feedback and Alignment}{61}{subsection.2.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.6}Security, Privacy, and Threat Modeling}{62}{subsection.2.4.6}\protected@file@percent }
+\newlabel{sec:ch2-security}{{2.4.6}{62}{Security, Privacy, and Threat Modeling}{subsection.2.4.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.6.1}Operational controls}{62}{subsubsection.2.4.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Transformer Architecture Foundations for LLMOps}{62}{subsection.2.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.1}Self-attention and multi-head attention}{63}{subsubsection.2.4.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.2}Positional encodings}{63}{subsubsection.2.4.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.3}Feed-forward networks (FFN)}{64}{subsubsection.2.4.7.3}\protected@file@percent }
+\newlabel{eq:ffn-formula}{{2.13}{64}{Feed-forward networks (FFN)}{equation.2.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.4}Residual connections and LayerNorm}{65}{subsubsection.2.4.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.5}Worked example (KV-cache sizing)}{66}{subsubsection.2.4.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.6}Rule-of-thumb parameter memory}{67}{subsubsection.2.4.7.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Parameter memory requirements determine deployment feasibility and hardware selection. Memory scales linearly with parameter count, making large models (70B+) require multi-GPU deployments even with quantization. Understanding these requirements enables teams to plan infrastructure investments and choose appropriate model sizes for their constraints.}}{67}{table.2.1}\protected@file@percent }
+\newlabel{tab:ch02_param_memory}{{2.1}{67}{Parameter memory requirements determine deployment feasibility and hardware selection. Memory scales linearly with parameter count, making large models (70B+) require multi-GPU deployments even with quantization. Understanding these requirements enables teams to plan infrastructure investments and choose appropriate model sizes for their constraints}{table.2.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}The LLM Lifecycle}{68}{section.2.5}\protected@file@percent }
+\newlabel{sec:ch2-lifecycle}{{2.5}{68}{The LLM Lifecycle}{section.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Governance and Risk Management}{68}{subsection.2.5.1}\protected@file@percent }
+\newlabel{sec:ch2-governance}{{2.5.1}{68}{Governance and Risk Management}{subsection.2.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1.1}LLMOps linkage}{68}{subsubsection.2.5.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Tools and Frameworks}{70}{section.2.6}\protected@file@percent }
+\newlabel{sec:ch2-tools}{{2.6}{70}{Tools and Frameworks}{section.2.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Ishtar AI: A Running Example}{71}{section.2.7}\protected@file@percent }
+\newlabel{sec:ch2-ishtar-running-example}{{2.7}{71}{Ishtar AI: A Running Example}{section.2.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.1}A concrete query trace}{71}{subsubsection.2.7.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.2}Release gates for reliability}{72}{subsubsection.2.7.0.2}\protected@file@percent }
 \@setckpt{ch02-llmops-fundamentals}{
-\setcounter{page}{73}
+\setcounter{page}{75}
 \setcounter{equation}{26}
 \setcounter{enumi}{5}
 \setcounter{enumii}{0}
