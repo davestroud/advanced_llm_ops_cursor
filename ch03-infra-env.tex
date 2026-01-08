@@ -986,9 +986,9 @@ The choice of deployment model depends on workload profiles, user distribution, 
   lbl/.style={font=\small\bfseries, inner sep=3pt},
   res/.style={rectangle, rounded corners=3pt, draw=black!70, thick, minimum width=14mm, minimum height=9mm, font=\footnotesize, align=center},
   arrow/.style={-{Latex}, line width=0.9pt},
-  cloud/.style={box, fill=blue!20, draw=blue!70!black, minimum width=45mm, minimum height=55mm, inner sep=6pt},
-  vpc/.style={box, fill=cyan!25, draw=cyan!70!black, inner sep=5pt},
-  onprem/.style={box, fill=gray!18, draw=gray!70!black, minimum width=45mm, minimum height=55mm, inner sep=6pt},
+  cloud/.style={box, fill=blue!20, draw=blue!70!black, minimum width=42mm, minimum height=48mm, inner sep=5pt},
+  vpc/.style={box, fill=cyan!25, draw=cyan!70!black, inner sep=4pt},
+  onprem/.style={box, fill=gray!18, draw=gray!70!black, minimum width=42mm, minimum height=48mm, inner sep=5pt},
   k8s/.style={box, fill=green!20, draw=green!70!black, inner sep=5pt},
   lb/.style={res, fill=orange!25, draw=orange!70!black},
   gw/.style={res, fill=teal!25, draw=teal!70!black},
@@ -997,13 +997,13 @@ The choice of deployment model depends on workload profiles, user distribution, 
 ]
 
 % ================== Row anchors (vertical stacking) ==================
-\node (row1) at (0, 50mm) {};  % Top: Cloud-Native
+\node (row1) at (0, 38mm) {};  % Top: Cloud-Native
 \node (row2) at (0, 0) {};     % Middle: Hybrid
-\node (row3) at (0, -50mm) {}; % Bottom: Multi-Cluster
+\node (row3) at (0, -38mm) {}; % Bottom: Multi-Cluster
 
 % ================== (A) CLOUD-NATIVE (Top) ==================
 \node[cloud, label={[lbl, above=6mm]Cloud-Native}] (cloudA) at (row1) {};
-\node[vpc, minimum width=38mm, minimum height=42mm, label={[font=\footnotesize\bfseries, above=4mm]VPC}] (vpcA) at (cloudA.center) {};
+\node[vpc, minimum width=36mm, minimum height=38mm, label={[font=\footnotesize\bfseries, above=3mm]VPC}] (vpcA) at (cloudA.center) {};
 \node[lb, minimum width=18mm, minimum height=10mm, align=center] (apigwA) at ($(vpcA.north) + (0, -8mm)$) {API\\GW};
 \node[k8s, minimum width=32mm, minimum height=12mm, label={[font=\footnotesize\bfseries, above=3mm]K8s}] (k8sA) at ($(vpcA.center) + (0, -2mm)$) {};
 \node[gpu, minimum width=14mm] (gpuA1) at ($(k8sA.south) + (-10mm, -10mm)$) {GPU};
@@ -1021,7 +1021,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \node[store, minimum width=20mm, align=center] (vecB) at ($(premB.south) + (0, -12mm)$) {Vector\\DB};
 
 \node[cloud] (cloudB) at ($(row2) + (30mm, 0)$) {};
-\node[vpc, minimum width=38mm, minimum height=42mm, label={[font=\footnotesize\bfseries, above=4mm]Cloud VPC}] (vpcB) at (cloudB.center) {};
+\node[vpc, minimum width=36mm, minimum height=38mm, label={[font=\footnotesize\bfseries, above=3mm]Cloud VPC}] (vpcB) at (cloudB.center) {};
 \node[lb, minimum width=18mm, minimum height=10mm, align=center] (apigwB) at ($(vpcB.north) + (0, -8mm)$) {API\\GW};
 \node[k8s, minimum width=32mm, minimum height=12mm, label={[font=\footnotesize\bfseries, above=3mm]Cloud K8s}] (k8sBcloud) at ($(vpcB.center) + (0, -2mm)$) {};
 \node[gpu, minimum width=14mm] (gpuB3) at ($(k8sBcloud.south) + (-10mm, -10mm)$) {GPU};
@@ -1040,12 +1040,12 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \node[cloud, label={[lbl, above=6mm]Multi-Cluster / Multi-Region}] (cloudC) at (row3) {};
 \node[lb, minimum width=20mm, minimum height=10mm, align=center] (glbC) at ($(cloudC.north) + (0, -6mm)$) {Global\\LB/DNS};
 
-\node[vpc, minimum width=34mm, minimum height=42mm, label={[font=\footnotesize\bfseries, above=4mm]Region A}] (vpcC1) at ($(cloudC.center) + (-14mm, -4mm)$) {};
+\node[vpc, minimum width=32mm, minimum height=38mm, label={[font=\footnotesize\bfseries, above=3mm]Region A}] (vpcC1) at ($(cloudC.center) + (-14mm, -3mm)$) {};
 \node[k8s, minimum width=28mm, minimum height=12mm, label={[font=\footnotesize\bfseries, above=3mm]K8s A}] (k8sC1) at ($(vpcC1.center) + (0, 4mm)$) {};
 \node[gpu, minimum width=14mm] (gpuC1) at ($(k8sC1.south) + (-10mm, -10mm)$) {GPU};
 \node[gpu, minimum width=14mm] (gpuC2) at ($(k8sC1.south) + (10mm, -10mm)$) {GPU};
 
-\node[vpc, minimum width=34mm, minimum height=42mm, label={[font=\footnotesize\bfseries, above=4mm]Region B}] (vpcC2) at ($(cloudC.center) + (14mm, -4mm)$) {};
+\node[vpc, minimum width=32mm, minimum height=38mm, label={[font=\footnotesize\bfseries, above=3mm]Region B}] (vpcC2) at ($(cloudC.center) + (14mm, -3mm)$) {};
 \node[k8s, minimum width=28mm, minimum height=12mm, label={[font=\footnotesize\bfseries, above=3mm]K8s B}] (k8sC2) at ($(vpcC2.center) + (0, 4mm)$) {};
 \node[gpu, minimum width=14mm] (gpuC3) at ($(k8sC2.south) + (-10mm, -10mm)$) {GPU};
 \node[gpu, minimum width=14mm] (gpuC4) at ($(k8sC2.south) + (10mm, -10mm)$) {GPU};
@@ -1055,7 +1055,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \draw[arrow, gray!70, dashed, line width=1.2pt] (k8sC1) -- node[font=\footnotesize, align=center, midway, above, sloped] {spillover/\\failover} (k8sC2);
 
 % ================== Clean legend (below all patterns) ==================
-\node[box, fill=white!95, draw=black!50, rounded corners=4pt, minimum width=0.95\linewidth, minimum height=20mm, inner sep=7pt] (legend) at ($(row3) + (0, -40mm)$) {};
+\node[box, fill=white!95, draw=black!50, rounded corners=4pt, minimum width=0.95\linewidth, minimum height=18mm, inner sep=6pt] (legend) at ($(row3) + (0, -32mm)$) {};
 
 \node[cloud, minimum width=14mm, minimum height=9mm] (L1) at ($(legend.west) + (14mm, 6mm)$) {};
 \node[font=\footnotesize, right=4mm of L1.east, anchor=west] {Cloud/Region};
@@ -1122,65 +1122,55 @@ Autoscaling reduced monthly GPU costs by $\sim$30\%. During one surge, scaling t
 \subsection{Hybrid Integration}
 The on-prem L4 cluster processes $\sim$200 articles/minute, embedding and tagging content before exporting results via VPN to the AWS cluster. This ensures sensitive raw data remains on-prem, while embeddings and generated summaries (lower compliance risk) reside in the cloud. This hybrid setup fulfills regulatory constraints while maintaining scalability.
 
-\subsection{Lessons Learned}
-Ishtar’s infrastructure demonstrates key principles of advanced LLMOps:
-\begin{itemize}
-  \item \textbf{Heterogeneous hardware} matched to workload type.
-  \item \textbf{IaC-driven deployments} for reproducibility and compliance~\cite{srivatsa2024-iac-llm,terraform-docs}.
-  \item \textbf{Container orchestration} for resource allocation and monitoring.
-  \item \textbf{Autoscaling policies} that reduce cost while meeting SLA targets.
-  \item \textbf{Advanced inference optimizations} (batching, caching, quantization).
-\end{itemize}
-Future plans include a European cluster for GDPR compliance and model routing (e.g., Smoothie) to offload simpler queries to a distilled model. Overall, Ishtar illustrates how rigorous LLMOps practices yield both technical robustness and economic efficiency.
-
-
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  scale=0.9, every node/.style={transform shape},
-  box/.style={rectangle, rounded corners, draw=black, thick, align=center, font=\small},
-  gpu/.style={rectangle, rounded corners=2pt, draw=black, very thick,
-              minimum width=12mm, minimum height=6mm, font=\small, align=center},
-  arrow/.style={-{Stealth[length=2.5mm,width=1.8mm]}, very thick},
-  lbl/.style={font=\small}
+  font=\small,
+  >=Stealth,
+  node distance=8mm and 10mm,
+  box/.style={rectangle, rounded corners=4pt, draw=black!70, thick, align=center},
+  gpu/.style={rectangle, rounded corners=3pt, draw=black!70, thick,
+              minimum width=14mm, minimum height=8mm, font=\footnotesize, align=center},
+  arrow/.style={-{Latex}, line width=0.9pt},
+  lbl/.style={font=\small\bfseries}
 ]
 
 % ============= On-Prem =============
-\node[box, fill=gray!15, minimum width=38mm, minimum height=28mm,
+\node[box, fill=gray!18, minimum width=42mm, minimum height=32mm,
       label={[lbl]above:{\textbf{On-Prem (L4 Cluster)}}}] (onprem) {};
-\node[gpu, fill=violet!25] (l4a) at ([yshift=5mm]onprem.center) {L4 GPU};
-\node[gpu, fill=violet!25, right=3mm of l4a] (l4b) {L4 GPU};
-\node[box, fill=yellow!25, below=4mm of onprem.center, align=center] (embed) {Embeddings /\\NER Tagging};
+\node[gpu, fill=purple!25] (l4a) at ([yshift=6mm]onprem.center) {L4 GPU};
+\node[gpu, fill=purple!25, right=4mm of l4a] (l4b) {L4 GPU};
+\node[box, fill=yellow!25, below=6mm of onprem.center, align=center, minimum width=30mm, minimum height=10mm] (embed) {Embeddings /\\NER Tagging};
 \draw[arrow, gray!70] (l4a) -- (embed);
 \draw[arrow, gray!70] (l4b) -- (embed);
 
 % VPN to cloud
-\node[box, fill=teal!25, minimum width=12mm, minimum height=6mm,
-      right=8mm of onprem.east] (vpn) {VPN};
+\node[box, fill=teal!25, minimum width=16mm, minimum height=10mm,
+      right=10mm of onprem.east] (vpn) {VPN};
 
 \draw[arrow, teal!80] (onprem.east) -- (vpn.west);
 
 % ============= Cloud Baseline A100 =============
-\node[box, fill=blue!10, minimum width=48mm, minimum height=36mm,
-      right=12mm of vpn, label={[lbl]above:{\textbf{Cloud (AWS EKS)}}}] (cloud) {};
+\node[box, fill=blue!20, minimum width=52mm, minimum height=50mm,
+      right=14mm of vpn, label={[lbl]above:{\textbf{Cloud (AWS EKS)}}}] (cloud) {};
 
-\node[box, fill=green!10, minimum width=42mm, minimum height=14mm,
-      above=2mm of cloud.south, anchor=south, label={[lbl]above:{Baseline Node Group}}] (a100group) {};
-\node[gpu, fill=violet!25] (a100a) at ([xshift=-10mm]a100group.center) {A100};
-\node[gpu, fill=violet!25] (a100b) at ([xshift= 10mm]a100group.center) {A100};
+\node[box, fill=green!20, minimum width=46mm, minimum height=16mm,
+      above=4mm of cloud.south, anchor=south, label={[font=\footnotesize\bfseries]above:{Baseline Node Group}}] (a100group) {};
+\node[gpu, fill=purple!25] (a100a) at ([xshift=-12mm]a100group.center) {A100};
+\node[gpu, fill=purple!25] (a100b) at ([xshift=12mm]a100group.center) {A100};
 
-\node[box, fill=green!10, minimum width=42mm, minimum height=14mm,
-      above=2mm of a100group.north, anchor=south, label={[lbl]above:{Autoscaling Node Group}}] (h100group) {};
-\node[gpu, fill=violet!40] (h100a) at ([xshift=-10mm]h100group.center) {H100};
-\node[gpu, fill=violet!40] (h100b) at ([xshift= 10mm]h100group.center) {H100};
+\node[box, fill=green!20, minimum width=46mm, minimum height=16mm,
+      above=4mm of a100group.north, anchor=south, label={[font=\footnotesize\bfseries]above:{Autoscaling Node Group}}] (h100group) {};
+\node[gpu, fill=purple!40] (h100a) at ([xshift=-12mm]h100group.center) {H100};
+\node[gpu, fill=purple!40] (h100b) at ([xshift=12mm]h100group.center) {H100};
 
 % Serving pods
-\node[box, fill=orange!25, above=2mm of h100group.north, anchor=south,
-      minimum width=42mm, minimum height=10mm] (serving) {Model Serving Pods (TGI / vLLM)};
+\node[box, fill=orange!25, above=4mm of h100group.north, anchor=south,
+      minimum width=46mm, minimum height=12mm] (serving) {Model Serving Pods (TGI / vLLM)};
 
 % Terraform + K8s control
-\node[box, fill=blue!25, minimum width=28mm, minimum height=8mm,
+\node[box, fill=blue!25, minimum width=32mm, minimum height=10mm,
       above=6mm of serving.north] (iac) {Terraform + ArgoCD + K8s Autoscaling};
 
 \draw[arrow, orange!80] (a100a.north) -- (serving.south);
@@ -1191,19 +1181,30 @@ Future plans include a European cluster for GDPR compliance and model routing (e
 \draw[arrow, teal!80] (vpn.east) -- (cloud.west);
 
 % ============= Legend =============
-\node[box, fill=white, draw=black, very thick, inner sep=1mm,
-      below=10mm of cloud.south, minimum width=0.9\linewidth] (legend) {};
+\node[box, fill=white!95, draw=black!50, very thick, inner sep=4pt,
+      below=12mm of cloud.south, minimum width=0.9\linewidth, minimum height=14mm] (legend) {};
 
-\node[gpu, fill=violet!25, minimum width=8mm, minimum height=5mm, label={[lbl]right:L4 / A100 GPU}] (L1) at ($(legend.west) + (0.5cm, 0.15cm)$) {};
-\node[gpu, fill=violet!40, minimum width=8mm, minimum height=5mm, label={[lbl]right:H100 GPU}] (L2) at ($(L1.east) + (2cm, 0)$) {};
-\node[box, fill=orange!25, minimum width=8mm, minimum height=5mm, label={[lbl]right:Serving Pods}] (L3) at ($(L2.east) + (2cm, 0)$) {};
-\node[box, fill=blue!25, minimum width=8mm, minimum height=5mm, label={[lbl]right:IaC / Control Plane}] (L4) at ($(L3.east) + (2cm, 0)$) {};
+\node[gpu, fill=purple!25, minimum width=10mm, minimum height=6mm, label={[font=\footnotesize]right:L4 / A100 GPU}] (L1) at ($(legend.west) + (8mm, 0)$) {};
+\node[gpu, fill=purple!40, minimum width=10mm, minimum height=6mm, label={[font=\footnotesize]right:H100 GPU}] (L2) at ($(L1.east) + (25mm, 0)$) {};
+\node[box, fill=orange!25, minimum width=10mm, minimum height=6mm, label={[font=\footnotesize]right:Serving Pods}] (L3) at ($(L2.east) + (25mm, 0)$) {};
+\node[box, fill=blue!25, minimum width=10mm, minimum height=6mm, label={[font=\footnotesize]right:IaC / Control Plane}] (L4) at ($(L3.east) + (25mm, 0)$) {};
 
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{Hybrid infrastructure enables cost optimization and operational flexibility for \ishtar{}. On-prem L4 GPUs handle embeddings and preprocessing, reducing cloud costs for predictable workloads; AWS EKS hosts baseline A100s and autoscaling H100s for summarization, providing elasticity for variable traffic. Terraform, ArgoCD, and Kubernetes manage deployments and scaling, demonstrating how infrastructure-as-code and GitOps enable reliable hybrid operations.}
 \label{fig:ch03_ishtar_infra}
 \end{figure}
+
+\subsection{Lessons Learned}
+Ishtar’s infrastructure demonstrates key principles of advanced LLMOps:
+\begin{itemize}
+  \item \textbf{Heterogeneous hardware} matched to workload type.
+  \item \textbf{IaC-driven deployments} for reproducibility and compliance~\cite{srivatsa2024-iac-llm,terraform-docs}.
+  \item \textbf{Container orchestration} for resource allocation and monitoring.
+  \item \textbf{Autoscaling policies} that reduce cost while meeting SLA targets.
+  \item \textbf{Advanced inference optimizations} (batching, caching, quantization).
+\end{itemize}
+Future plans include a European cluster for GDPR compliance and model routing (e.g., Smoothie) to offload simpler queries to a distilled model. Overall, Ishtar illustrates how rigorous LLMOps practices yield both technical robustness and economic efficiency.
 
 
 % ==================================================================
