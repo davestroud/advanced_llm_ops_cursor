@@ -153,21 +153,21 @@ Sampling temperature\index{temperature!sampling} $\tau$ is a decoding hyperparam
     \begin{tikzpicture}[
       font=\small,
       >=Stealth,
-      node distance=9mm,
-      box/.style={draw, rounded corners, minimum width=35mm, minimum height=9mm, align=center, inner sep=4pt}
+      node distance=11mm,
+      box/.style={draw, rounded corners, minimum width=40mm, minimum height=11mm, align=center, inner sep=5pt}
     ]
         % Nodes (grayscale-safe with different fills)
         \node[box, fill=gray!10] (input) {Input (tokens)};
         \node[box, fill=gray!15, below=of input] (mha) {Multi-Head Attention};
-        \node[box, fill=gray!10, below=7mm of mha] (addnorm1) {Add \& Norm};
-        \node[box, fill=gray!20, below=7mm of addnorm1] (ffn) {Feed-Forward Network};
-        \node[box, fill=gray!10, below=7mm of ffn] (addnorm2) {Add \& Norm};
-        \node[box, fill=gray!10, below=9mm of addnorm2] (output) {Hidden States / Next Block};
+        \node[box, fill=gray!10, below=9mm of mha] (addnorm1) {Add \& Norm};
+        \node[box, fill=gray!20, below=9mm of addnorm1] (ffn) {Feed-Forward Network};
+        \node[box, fill=gray!10, below=9mm of ffn] (addnorm2) {Add \& Norm};
+        \node[box, fill=gray!10, below=11mm of addnorm2] (output) {Hidden States / Next Block};
 
         % Arrows
-        \draw[-{Latex}, line width=0.8pt] (input) -- (mha);
-        \draw[-{Latex}, line width=0.8pt] (mha) -- (addnorm1);
-        \draw[-{Latex}, line width=0.8pt] (addnorm1) -- (ffn);
+        \draw[-{Latex}, line width=1pt] (input) -- (mha);
+        \draw[-{Latex}, line width=1pt] (mha) -- (addnorm1);
+        \draw[-{Latex}, line width=1pt] (addnorm1) -- (ffn);
         \draw[-{Latex}, line width=0.8pt] (ffn) -- (addnorm2);
         \draw[-{Latex}, line width=0.8pt] (addnorm2) -- (output);
 

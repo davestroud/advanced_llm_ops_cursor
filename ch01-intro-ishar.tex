@@ -90,24 +90,24 @@ Reliability\index{reliability} is also a concern: when a subcomponent fails (ret
 \begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
-  node distance=10mm and 22mm,
-  every node/.style={font=\footnotesize},
+  node distance=12mm and 24mm,
+  every node/.style={font=\small},
   % Component styles (grayscale-safe with line styles)
-  user/.style={ellipse, draw=black!70, fill=gray!10, line width=0.8pt, minimum width=18mm, minimum height=9mm, align=center, font=\footnotesize\bfseries},
-  orchestrator/.style={rectangle, draw=black!70, fill=gray!20, line width=0.8pt, rounded corners=4pt, minimum width=32mm, minimum height=11mm, align=center, font=\footnotesize\bfseries},
-  retriever/.style={rectangle, draw=black!60, fill=gray!10, line width=0.8pt, rounded corners=4pt, minimum width=25mm, minimum height=9mm, align=center, font=\footnotesize},
-  knowledge/.style={rectangle, draw=black!60, fill=gray!10, line width=0.8pt, rounded corners=4pt, minimum width=24mm, minimum height=10mm, align=center, font=\footnotesize},
-  llm/.style={rectangle, draw=black!70, fill=gray!15, line width=0.8pt, rounded corners=4pt, minimum width=23mm, minimum height=11mm, align=center, font=\footnotesize\bfseries},
-  tool/.style={rectangle, draw=black!60, fill=gray!10, line width=0.8pt, rounded corners=4pt, minimum width=22mm, minimum height=9mm, align=center, font=\footnotesize},
-  response/.style={ellipse, draw=black!70, fill=gray!10, line width=0.8pt, minimum width=18mm, minimum height=9mm, align=center, font=\footnotesize\bfseries},
-  failure/.style={circle, draw=black!70, fill=gray!15, line width=0.8pt, minimum size=5mm},
+  user/.style={ellipse, draw=black!70, fill=gray!10, line width=1pt, minimum width=22mm, minimum height=11mm, align=center, font=\small\bfseries},
+  orchestrator/.style={rectangle, draw=black!70, fill=gray!20, line width=1pt, rounded corners=4pt, minimum width=38mm, minimum height=13mm, align=center, font=\small\bfseries},
+  retriever/.style={rectangle, draw=black!60, fill=gray!10, line width=1pt, rounded corners=4pt, minimum width=30mm, minimum height=11mm, align=center, font=\small},
+  knowledge/.style={rectangle, draw=black!60, fill=gray!10, line width=1pt, rounded corners=4pt, minimum width=28mm, minimum height=12mm, align=center, font=\small},
+  llm/.style={rectangle, draw=black!70, fill=gray!15, line width=1pt, rounded corners=4pt, minimum width=28mm, minimum height=13mm, align=center, font=\small\bfseries},
+  tool/.style={rectangle, draw=black!60, fill=gray!10, line width=1pt, rounded corners=4pt, minimum width=26mm, minimum height=11mm, align=center, font=\small},
+  response/.style={ellipse, draw=black!70, fill=gray!10, line width=1pt, minimum width=22mm, minimum height=11mm, align=center, font=\small\bfseries},
+  failure/.style={circle, draw=black!70, fill=gray!15, line width=1pt, minimum size=6mm},
   % Arrow styles (grayscale-safe with line styles)
-  mainflow/.style={-{Latex}, line width=0.8pt, color=black!70},
-  fallback/.style={-{Latex}, dashed, line width=0.8pt, color=black!50},
-  toolflow/.style={-{Latex}, line width=0.8pt, color=black!60},
-  retrieval/.style={-{Latex}, line width=0.8pt, color=black!60},
-  queryflow/.style={-{Latex}, line width=0.8pt, color=black!70},
-  label/.style={font=\footnotesize, color=black!60}
+  mainflow/.style={-{Latex}, line width=1pt, color=black!70},
+  fallback/.style={-{Latex}, dashed, line width=1pt, color=black!50},
+  toolflow/.style={-{Latex}, line width=1pt, color=black!60},
+  retrieval/.style={-{Latex}, line width=1pt, color=black!60},
+  queryflow/.style={-{Latex}, line width=1pt, color=black!70},
+  label/.style={font=\small, color=black!60}
 ]
 
 % User and Response (top level)
@@ -115,20 +115,20 @@ Reliability\index{reliability} is also a concern: when a subcomponent fails (ret
 \node[response, right=42mm of user] (response) {Response};
 
 % Orchestrator (center)
-\node[orchestrator, below=16mm of user] (orchestrator) {\begin{tabular}{c}Orchestrator\\\footnotesize LLM Application\end{tabular}};
+\node[orchestrator, below=18mm of user] (orchestrator) {\begin{tabular}{c}Orchestrator\\\small LLM Application\end{tabular}};
 
 % Retriever and Knowledge Base (left side)
-\node[retriever, below left=14mm and 18mm of orchestrator] (retriever) {\begin{tabular}{c}Retriever\\\footnotesize (Vector DB)\end{tabular}};
-\node[knowledge, below=12mm of retriever] (knowledge) {\begin{tabular}{c}Knowledge Base\\\footnotesize (Documents)\end{tabular}};
+\node[retriever, below left=16mm and 20mm of orchestrator] (retriever) {\begin{tabular}{c}Retriever\\\small (Vector DB)\end{tabular}};
+\node[knowledge, below=14mm of retriever] (knowledge) {\begin{tabular}{c}Knowledge Base\\\small (Documents)\end{tabular}};
 
 % LLM Model (right side)
-\node[llm, below right=14mm and 18mm of orchestrator] (llm) {LLM Model};
+\node[llm, below right=16mm and 20mm of orchestrator] (llm) {LLM Model};
 
 % External Tool (below LLM)
-\node[tool, below=12mm of llm] (tool) {\begin{tabular}{c}External Tool\\\footnotesize / API\end{tabular}};
+\node[tool, below=14mm of llm] (tool) {\begin{tabular}{c}External Tool\\\small / API\end{tabular}};
 
 % Failure indicator
-\node[failure, left=7mm of retriever] (failure) {\textbf{×}};
+\node[failure, left=8mm of retriever] (failure) {\textbf{×}};
 
 % Main flow: User → Orchestrator → Response
 \draw[queryflow] (user) -- node[label, above, pos=0.5] {User Query} (orchestrator);
@@ -141,15 +141,15 @@ Reliability\index{reliability} is also a concern: when a subcomponent fails (ret
 \draw[retrieval] (retriever) -- node[label, right, pos=0.5] {docs} (orchestrator);
 
 % Failure indicator connection
-\draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (retriever) -- (failure);
-\node[font=\footnotesize, color=black!60, left=2mm of failure] {Failure};
+\draw[-{Latex}, dashed, line width=1pt, color=black!50] (retriever) -- (failure);
+\node[font=\small, color=black!60, left=3mm of failure] {Failure};
 
 % LLM flow: Orchestrator → LLM (dashed for model interaction)
 \draw[fallback] (orchestrator) -- node[label, right, pos=0.5] {Assemble prompt \& call model} (llm);
 \draw[fallback] (llm) -- node[label, left, pos=0.5] {LLM answer} (orchestrator);
 
 % Fallback: Orchestrator → LLM (skip retrieval)
-\draw[fallback] (orchestrator) to[out=0,in=180, looseness=1.0] node[label, above, pos=0.5, font=\footnotesize] {Fallback: skip retrieval} (llm);
+\draw[fallback] (orchestrator) to[out=0,in=180, looseness=1.0] node[label, above, pos=0.5, font=\small] {Fallback: skip retrieval} (llm);
 
 % Tool flow: LLM → Tool
 \draw[toolflow] (llm) -- node[label, right, pos=0.5] {Tool call (if needed)} (tool);
@@ -1043,15 +1043,15 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
 \node[band, minimum width=0.95\linewidth, minimum height=70mm] (bandbox) {};
 
 % Top row: 4 boxes (Ingestion, Retrieval, Agents, Serving)
-\node[seg,cIngest] (ing) at ([xshift=-60mm,yshift=12mm]bandbox.center) {Ingestion\\\scriptsize (feeds, ETL)};
-\node[seg,cRAG, right=of ing] (rag) {Retrieval\\\scriptsize (RAG)};
-\node[seg,cAgent, right=of rag] (agent) {Agents\\\scriptsize (orchestration)};
-\node[seg,cServe, right=of agent] (serve) {Serving\\\scriptsize (GPU/TPU)};
+\node[seg,cIngest] (ing) at ([xshift=-60mm,yshift=12mm]bandbox.center) {Ingestion\\\footnotesize (feeds, ETL)};
+\node[seg,cRAG, right=of ing] (rag) {Retrieval\\\footnotesize (RAG)};
+\node[seg,cAgent, right=of rag] (agent) {Agents\\\footnotesize (orchestration)};
+\node[seg,cServe, right=of agent] (serve) {Serving\\\footnotesize (GPU/TPU)};
 
 % Bottom row: 3 boxes (Observability, Testing, Ethics) - centered, more spacing from top
-\node[seg,cObs] (obs) at ([xshift=-40mm,yshift=-20mm]bandbox.center) {Observability\\\scriptsize (traces, SLOs)};
-\node[seg,cTest, right=of obs] (test) {Testing\\\scriptsize (eval/robust)};
-\node[seg,cEth, right=of test] (eth) {Ethics\\\scriptsize (governance)};
+\node[seg,cObs] (obs) at ([xshift=-40mm,yshift=-20mm]bandbox.center) {Observability\\\footnotesize (traces, SLOs)};
+\node[seg,cTest, right=of obs] (test) {Testing\\\footnotesize (eval/robust)};
+\node[seg,cEth, right=of test] (eth) {Ethics\\\footnotesize (governance)};
 
 % Chapter labels above top row segments - increased spacing
 \node[note, above=7mm of ing] (ingC) {Ch.~\ref{ch:infra}, \ref{ch:performance}};
@@ -1071,12 +1071,12 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
 
 % End-to-End label positioned at top right - moved down to avoid chapter labels
 \node[e2e, anchor=north east] at ([xshift=-4mm,yshift=-2mm]bandbox.north east)
-  {\textbf{End-to-End:} \scriptsize \ishtar{} $\rightarrow$ Ch.~\ref{ch:case-study}};
+  {\textbf{End-to-End:} \footnotesize \ishtar{} $\rightarrow$ Ch.~\ref{ch:case-study}};
 
 % Mapping note at bottom left - moved up to avoid bottom edge
 \node[note, anchor=north west] at ([xshift=4mm,yshift=-2mm]bandbox.south west)
   {Map these segments to Fig.~\ref{fig:ch01_ishtar_arch_main}:\\
-   \scriptsize Ingestion$\to$left lane; Retrieval$\to$RAG block; Agents$\to$controller; Serving$\to$inference; Observability$\to$telemetry; Testing/Ethics$\to$cross-cutting.};
+   \footnotesize Ingestion$\to$left lane; Retrieval$\to$RAG block; Agents$\to$controller; Serving$\to$inference; Observability$\to$telemetry; Testing/Ethics$\to$cross-cutting.};
 
 \end{tikzpicture}
 \end{llmfigbox}
@@ -1288,7 +1288,7 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
 
 % Journalist queries node (positioned to the right of funnel)
 \node[journalist] (journalist) [right=of funnel]
-      {\textbf{Journalist queries}\\\scriptsize (questions and tasks)};
+      {\textbf{Journalist queries}\\\footnotesize (questions and tasks)};
 
 % Arrows from bubbles to funnel
 \draw[arrowthin] (news.east) -- (funnel.west);

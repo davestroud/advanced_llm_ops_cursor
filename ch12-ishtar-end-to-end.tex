@@ -215,12 +215,12 @@ Fig.~\ref{fig:ch12_ishtar_architecture_ch12} depicts the end-to-end flows. The d
 \node[note, anchor=west] at ([xshift=4mm]querylane.north west) {\textbf{Online query handling (interactive path)}};
 
 % Ingestion lane nodes
-\node[box, anchor=west] (sources) at ([xshift=6mm]inglane.west) {Sources\\\scriptsize (news, NGO,\\social, health)};
-\node[box, right=6mm of sources] (ingest) {Ingestion\\\scriptsize parse \& normalize};
-\node[box, right=6mm of ingest] (scrub) {Safety preprocessing\\\scriptsize PII/coord scrubbing};
-\node[box, right=6mm of scrub] (chunkembed) {Chunk \& embed\\\scriptsize batch GPU/CPU};
-\node[box, right=6mm of chunkembed] (docstore) {Doc store\\\scriptsize text + metadata};
-\node[box, right=6mm of docstore] (vec) {Vector index\\\scriptsize FAISS/HNSW};
+\node[box, anchor=west] (sources) at ([xshift=6mm]inglane.west) {Sources\\\footnotesize (news, NGO,\\social, health)};
+\node[box, right=6mm of sources] (ingest) {Ingestion\\\footnotesize parse \& normalize};
+\node[box, right=6mm of ingest] (scrub) {Safety preprocessing\\\footnotesize PII/coord scrubbing};
+\node[box, right=6mm of scrub] (chunkembed) {Chunk \& embed\\\footnotesize batch GPU/CPU};
+\node[box, right=6mm of chunkembed] (docstore) {Doc store\\\footnotesize text + metadata};
+\node[box, right=6mm of docstore] (vec) {Vector index\\\footnotesize FAISS/HNSW};
 
 \draw[arrow] (sources) -- (ingest);
 \draw[arrow] (ingest) -- (scrub);
@@ -229,13 +229,13 @@ Fig.~\ref{fig:ch12_ishtar_architecture_ch12} depicts the end-to-end flows. The d
 \draw[arrow] (chunkembed) -- (vec);
 
 % Query lane nodes
-\node[box, anchor=west] (user) at ([xshift=6mm]querylane.west) {Journalist\\\scriptsize query/UI};
-\node[box, right=6mm of user] (gateway) {API gateway\\\scriptsize auth \& rate limits};
-\node[box, right=6mm of gateway] (controller) {Orchestrator\\\scriptsize agent controller};
-\node[box, right=6mm of controller] (retr) {Retriever\\\scriptsize ANN + filters};
-\node[box, right=6mm of retr] (llm) {LLM serving\\\scriptsize vLLM/TGI};
-\node[box, right=6mm of llm] (agents) {Post-processing\\\scriptsize verify \& safety};
-\node[box, right=6mm of agents] (resp) {Answer\\\scriptsize citations + disclaimers};
+\node[box, anchor=west] (user) at ([xshift=6mm]querylane.west) {Journalist\\\footnotesize query/UI};
+\node[box, right=6mm of user] (gateway) {API gateway\\\footnotesize auth \& rate limits};
+\node[box, right=6mm of gateway] (controller) {Orchestrator\\\footnotesize agent controller};
+\node[box, right=6mm of controller] (retr) {Retriever\\\footnotesize ANN + filters};
+\node[box, right=6mm of retr] (llm) {LLM serving\\\footnotesize vLLM/TGI};
+\node[box, right=6mm of llm] (agents) {Post-processing\\\footnotesize verify \& safety};
+\node[box, right=6mm of agents] (resp) {Answer\\\footnotesize citations + disclaimers};
 
 \draw[arrow] (user) -- (gateway);
 \draw[arrow] (gateway) -- (controller);

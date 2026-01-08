@@ -781,8 +781,8 @@ The next section will discuss error handling and exception management in orchest
 % Decision branch
 \node[decision, right=20mm of rb_v] (rb_cond) {Result\\OK?};
 \draw[arrow] (rb_v) -- (rb_cond);
-\draw[arrow] (rb_cond) |- node[pos=0.4, above, font=\footnotesize]{yes} (rb_safe);
-\draw[arrow] (rb_cond) |- node[pos=0.6, below, font=\footnotesize]{no} (rb_s);
+\draw[arrow] (rb_cond) |- node[pos=0.4, above, font=\small]{yes} (rb_safe);
+\draw[arrow] (rb_cond) |- node[pos=0.6, below, font=\small]{no} (rb_s);
 
 % --- Panel B: Dynamic (LLM-driven) Orchestration -----------------------------
 \node[draw, rounded corners, inner sep=8mm, minimum width=5.8cm, minimum height=6cm, right=8mm of panelA.east, anchor=west] (panelB) {};
@@ -804,8 +804,8 @@ The next section will discuss error handling and exception management in orchest
 % Feedback loop
 \node[decision, right=18mm of dyn_v1] (dyn_cond) {Discrepancy?};
 \draw[arrow] (dyn_v1) -- (dyn_cond);
-\draw[arrow] (dyn_cond) |- node[pos=0.5, above, font=\footnotesize]{yes} ([xshift=5mm]dyn_ctrl.east);
-\draw[arrow] (dyn_cond) |- node[pos=0.4, below, font=\footnotesize]{no} (dyn_safe);
+\draw[arrow] (dyn_cond) |- node[pos=0.5, above, font=\small]{yes} ([xshift=5mm]dyn_ctrl.east);
+\draw[arrow] (dyn_cond) |- node[pos=0.4, below, font=\small]{no} (dyn_safe);
 
 % --- Panel C: Hierarchical Orchestration --------------------------------------
 \node[draw, rounded corners, inner sep=8mm, minimum width=5.8cm, minimum height=6cm, right=8mm of panelB.east, anchor=west] (panelC) {};
@@ -1256,11 +1256,11 @@ To ground the concepts above, let's walk through the orchestration pipeline of I
 \node[box, minimum width=28mm, minimum height=10mm, below=of retr, xshift=-32mm] (orch) {Orchestrator\\(router + budgets)};
 
 % Arrows with artifacts
-\draw[arrow] (ingest) -- node[above, font=\footnotesize]{chunks + metadata} (retr);
-\draw[arrow] (retr) -- node[above, font=\footnotesize]{context pack} (synth);
-\draw[arrow] (synth) -- node[right, font=\footnotesize]{draft + citations} (verify);
-\draw[arrow] (verify) -- node[below, font=\footnotesize]{verified answer} (safety);
-\draw[arrow] (safety) -- node[below, font=\footnotesize]{user response} (deliver);
+\draw[arrow] (ingest) -- node[above, font=\small]{chunks + metadata} (retr);
+\draw[arrow] (retr) -- node[above, font=\small]{context pack} (synth);
+\draw[arrow] (synth) -- node[right, font=\small]{draft + citations} (verify);
+\draw[arrow] (verify) -- node[below, font=\small]{verified answer} (safety);
+\draw[arrow] (safety) -- node[below, font=\small]{user response} (deliver);
 
 % Orchestrator control edges (dashed)
 \draw[arrowDashed] (orch) -- (retr);

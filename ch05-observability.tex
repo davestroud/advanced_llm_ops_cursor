@@ -84,16 +84,16 @@ Finally, LLM observability has a governance dimension. Logs often contain user t
 \begin{llmfigbox}
 \begin{tikzpicture}[
   layer/.style={rectangle, rounded corners, draw=black, very thick,
-                minimum width=42mm, minimum height=10mm,
+                minimum width=48mm, minimum height=12mm,
                 align=center, fill=gray!10},
   arrow/.style={-{Stealth[length=3mm,width=2mm]}, very thick},
-  note/.style={font=\footnotesize, align=center}
+  note/.style={font=\small, align=center}
 ]
 
 % Layers
-\node[layer] (system) {System Telemetry\\[2pt]\footnotesize GPU/CPU util., memory, latency, throughput};
-\node[layer, below=of system,yshift=-4mm] (model) {Model Telemetry\\[2pt]\footnotesize Tokens/request, hallucination rate, factuality checks};
-\node[layer, below=of model,yshift=-4mm] (pipeline) {Pipeline Telemetry\\[2pt]\footnotesize Prompt traces, retrieval hits, multi-agent orchestration};
+\node[layer] (system) {System Telemetry\\[2pt]\small GPU/CPU util., memory, latency, throughput};
+\node[layer, below=of system,yshift=-6mm] (model) {Model Telemetry\\[2pt]\small Tokens/request, hallucination rate, factuality checks};
+\node[layer, below=of model,yshift=-6mm] (pipeline) {Pipeline Telemetry\\[2pt]\small Prompt traces, retrieval hits, multi-agent orchestration};
 
 % Flow arrows
 \draw[arrow] (system.south) -- (model.north);
