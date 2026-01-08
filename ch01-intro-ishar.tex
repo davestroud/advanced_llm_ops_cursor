@@ -1,4 +1,4 @@
-\chapter{Introduction to LLMOps and the Ishtar AI Case Study}
+\chapter{Introduction to LLMOps and the Ishtar AI Case Study}\index{Ishtar AI|(}
 \label{ch:intro}
 \newrefsegment
 
@@ -41,29 +41,29 @@ This chapter introduces LLMOps as the operational discipline for running LLM-pow
 
 \label{sec:intro}
 
-Large Language Models (LLMs) have rapidly evolved from research curiosities into production-grade tools that are transforming how we work. Once strictly experimental, these models now power applications ranging from document drafting and code generation to data analysis and creative content creation—effectively becoming critical infrastructure for knowledge work. This success owes much to the powerful Transformer architecture introduced in 2017 \cite{Vaswani2017attention}, which enabled unprecedented scaling of model capabilities.
+Large Language Models (LLMs)\index{LLM|see{Large Language Model}}\index{Large Language Model} have rapidly evolved from research curiosities into production-grade tools that are transforming how we work. Once strictly experimental, these models now power applications ranging from document drafting and code generation to data analysis and creative content creation—effectively becoming critical infrastructure for knowledge work. This success owes much to the powerful Transformer\index{Transformer} architecture introduced in 2017 \cite{Vaswani2017attention}, which enabled unprecedented scaling of model capabilities.
 To give a sense of scale, OpenAI's ChatGPT reached one million users in just five days and 100 million users within two months of launch—the fastest-growing consumer application in history \cite{stylefactory,reuters}. By early 2025, 95\% of companies in the United States reported using generative AI in some form \cite{bain}, with daily queries to LLM-powered services numbering in the billions. This unprecedented adoption underscores that the central challenge is no longer merely building powerful models, but deploying and maintaining them effectively in production.
 What has changed is not simply the \emph{capability} of language models, but their \emph{position} in the software stack. LLMs increasingly function as a universal interface layer: they translate natural language intent into structured actions (queries, code, workflows), and they mediate access to organizational knowledge through retrieval and tool use. In this role, LLMs behave less like a single ``model artifact'' and more like an adaptive runtime component—one that interacts with external systems, evolves through prompt and policy updates, and must be governed like any other piece of critical infrastructure.
 This shift creates a new operational reality. In classical machine learning, production reliability often boils down to model versioning, data pipelines, and periodic retraining. In contrast, LLM-powered systems depend on a much larger surface area of evolving components: system prompts, few-shot examples, safety policies, decoding parameters, retrieval corpora, vector indices, and tool schemas \cite{liu2023promptSurvey,holtzman2020curious}. A change in any one of these layers can materially alter outputs—often in subtle ways not captured by standard unit tests. As a result, teams must treat LLM systems as \emph{composed systems} whose overall behavior emerges from the interaction of multiple components rather than from the base model alone.
 Moreover, the definition of ``quality'' for LLM applications is multi-dimensional. Traditional ML models can be evaluated against crisp labels or numeric metrics. LLM systems, however, must be assessed across criteria such as factual accuracy, groundedness, instruction adherence, safety, tone, and usefulness. These properties are highly context-dependent and can vary by user segment, domain, or even time of day. This complexity necessitates continuous evaluation frameworks (offline regression suites, LLM-as-judge rubrics, online telemetry) rather than one-time model validation \cite{edge2025llmops}.
 Finally, widespread deployment increases the stakes of failure. When an LLM is integrated into customer support, enterprise search, legal or compliance workflows, or newsroom operations, errors can propagate quickly: hallucinated claims may be mistaken for policy, incorrect citations can erode user trust, and prompt-injection vulnerabilities could expose sensitive data \cite{assemblyAI2023decoding}. The operational problem is therefore not only performance and cost, but also governance, security, and accountability. In practice, this means establishing careful release gates, observability pipelines, audit trails, and incident response playbooks tailored to LLM behavior.
 In short, the rapid adoption of LLMs marks a transition from treating ``models as features'' to treating ``models as platforms.'' The organizations that succeed with AI will not be those that merely plug in the most capable model, but those that develop the operational discipline to run LLM-powered systems reliably—controlling cost and latency, continuously measuring quality, defending against new threats, and iterating safely as models and knowledge sources evolve.
-The remainder of this chapter introduces the foundational principles, workflows, and terminology of LLMOps (Large Language Model Operations). We clarify not just the what of LLMOps, but also the why—why new approaches and tools are needed specifically for LLMs, and how they build on (or differ from) established MLOps practices. To make these concepts concrete, we will also introduce Ishtar AI as a running case study: a mission-critical LLM application for journalists in conflict zones, which will serve as a continuous reference throughout the book.
+The remainder of this chapter introduces the foundational principles, workflows, and terminology of LLMOps\index{LLMOps|(} (Large Language Model Operations). We clarify not just the what of LLMOps, but also the why—why new approaches and tools are needed specifically for LLMs, and how they build on (or differ from) established MLOps\index{MLOps|see{LLMOps}} practices. To make these concepts concrete, we will also introduce Ishtar AI\index{Ishtar AI|(} as a running case study: a mission-critical LLM application for journalists in conflict zones, which will serve as a continuous reference throughout the book.
 
 \section{Operational Challenges}
 \label{sec:operational-challenges}
 Taking these massive models from demo to production introduces a host of operational hurdles that go far beyond those of traditional software or even classical machine learning systems. Smaller ML models can often be deployed on a single server with straightforward CI/CD and basic monitoring practices. In contrast, LLM deployments demand specialized infrastructure, rigorous orchestration, and new approaches to observability. The challenges span multiple dimensions:
 
 \subsection{Compute Economics: Cost, Latency, and Capacity}
-LLM inference is fundamentally more expensive than most classical ML workloads because each request consumes substantial compute and memory bandwidth, and because request \emph{shape} (prompt length, output length, and concurrency) drives non-linear resource usage (e.g., KV-cache pressure under long contexts). In production, the binding question is rarely ``can we run the model?'' but rather ``can we run it \emph{reliably}, \emph{quickly}, and \emph{affordably} under peak load?''
+LLM inference\index{inference} is fundamentally more expensive than most classical ML workloads because each request consumes substantial compute and memory bandwidth, and because request \emph{shape} (prompt length, output length, and concurrency) drives non-linear resource usage (e.g., KV-cache\index{KV-cache} pressure under long contexts). In production, the binding question is rarely ``can we run the model?'' but rather ``can we run it \emph{reliably}, \emph{quickly}, and \emph{affordably} under peak load?''
 
-In practice, teams must manage a three-way tradeoff between \emph{latency}, \emph{throughput}, and \emph{cost}. A practical way to operationalize this is to manage a \emph{latency budget} and an \emph{economics budget} simultaneously. End-to-end latency should be decomposed by stage (tokenization/policy checks, retrieval, model prefill/decoding, post-processing), and reported by tail percentiles (p95/p99), not only averages. In interactive systems, \emph{time-to-first-token (TTFT)} is often the dominant user-perceived metric, while \emph{tokens-per-second (TPOT)} determines how quickly the response completes. Tail latency matters because a small fraction of slow requests can degrade user experience disproportionately, and because burst traffic patterns can cause queue buildup that pushes p99 latency far beyond p50.
+In practice, teams must manage a three-way tradeoff between \emph{latency}\index{latency}, \emph{throughput}\index{throughput}, and \emph{cost}\index{cost!optimization}. A practical way to operationalize this is to manage a \emph{latency budget}\index{latency!budget} and an \emph{economics budget} simultaneously. End-to-end latency should be decomposed by stage (tokenization/policy checks, retrieval, model prefill/decoding, post-processing), and reported by tail percentiles (p95/p99), not only averages. In interactive systems, \emph{time-to-first-token (TTFT)}\index{TTFT|see{Time-to-First-Token}}\index{Time-to-First-Token} is often the dominant user-perceived metric, while \emph{tokens-per-second (TPOT)}\index{tokens-per-second} determines how quickly the response completes. Tail latency\index{latency!tail} matters because a small fraction of slow requests can degrade user experience disproportionately, and because burst traffic patterns can cause queue buildup that pushes p99 latency far beyond p50.
 
 Production systems therefore require:
 \begin{itemize}
   \item \textbf{Explicit latency budgets:} decomposing end-to-end response time into retrieval, prompt assembly, model compute, and post-processing.
-  \item \textbf{Capacity planning:} forecasting peak concurrency, long-tail requests, and burst behavior; sizing GPU fleets or managed endpoints accordingly.
-  \item \textbf{Cost controls:} caching, batching, quantization, and model routing (e.g., small/fast model for routine tasks; larger model for complex reasoning) to maintain sustainable cost per successful outcome.
+  \item \textbf{Capacity planning:}\index{capacity planning} forecasting peak concurrency, long-tail requests, and burst behavior; sizing GPU\index{GPU} fleets or managed endpoints accordingly.
+  \item \textbf{Cost controls:} caching\index{caching}, batching\index{batching}, quantization\index{quantization}, and model routing\index{routing!model} (e.g., small/fast model for routine tasks; larger model for complex reasoning) to maintain sustainable cost per successful outcome.
 \end{itemize}
 
 \begin{figure}[t]
@@ -74,15 +74,15 @@ Production systems therefore require:
 \end{figure}
 
 \subsection{Serving Infrastructure and Systems Engineering}
-Even with managed APIs, LLM-powered applications behave like distributed systems. Deploying an LLM is closer to operating a distributed system than deploying a single model artifact. A single user query may traverse multiple components—retrieval, reranking, tool calls, safety checks, and the model itself—each introducing failure modes and latency variance \cite{edge2025llmops}. Even when using managed endpoints, production systems require careful design across multiple layers:
+Even with managed APIs, LLM-powered applications behave like distributed systems\index{distributed system}. Deploying an LLM is closer to operating a distributed system than deploying a single model artifact. A single user query may traverse multiple components—retrieval\index{retrieval}, reranking\index{reranking}, tool calls\index{tool calling}, safety checks, and the model itself—each introducing failure modes and latency variance \cite{edge2025llmops}. Even when using managed endpoints, production systems require careful design across multiple layers:
 
 \begin{itemize}
-  \item \textbf{GPU scheduling and utilization:} maximizing utilization often demands batching, quantization, and careful selection of serving runtimes.
-  \item \textbf{Context window constraints:} prompt length, retrieved context, and tool outputs must be managed to avoid truncation, runaway costs, or degraded quality. Systems must implement truncation or segmentation strategies for long contexts \cite{liu2023promptSurvey}.
-  \item \textbf{Multi-region resilience:} high availability frequently requires regional redundancy, intelligent routing, and graceful degradation when capacity is constrained.
+  \item \textbf{GPU scheduling and utilization:}\index{GPU!scheduling} maximizing utilization often demands batching, quantization, and careful selection of serving runtimes\index{serving!runtime}.
+  \item \textbf{Context window constraints:}\index{context window} prompt length, retrieved context, and tool outputs must be managed to avoid truncation, runaway costs, or degraded quality. Systems must implement truncation or segmentation strategies for long contexts \cite{liu2023promptSurvey}.
+  \item \textbf{Multi-region resilience:}\index{multi-region deployment} high availability\index{high availability} frequently requires regional redundancy, intelligent routing, and graceful degradation\index{graceful degradation} when capacity is constrained.
 \end{itemize}
 
-Reliability is also a concern: when a subcomponent fails (retriever times out, a tool API is down, or the model hits a rate limit), the overall system should gracefully degrade (e.g., use cached or partial results, fall back to a simpler response) rather than fail catastrophically.
+Reliability\index{reliability} is also a concern: when a subcomponent fails (retriever times out, a tool API is down, or the model hits a rate limit), the overall system should gracefully degrade (e.g., use cached or partial results, fall back to a simpler response) rather than fail catastrophically.
 
 % Preamble requirements: \usepackage{tikz} and \usetikzlibrary{arrows.meta,positioning}
 \begin{figure}[t]
@@ -157,28 +157,28 @@ Reliability is also a concern: when a subcomponent fails (retriever times out, a
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{LLM application architecture determines reliability and capability. This RAG-based design enables grounded responses through retrieval, fallback mechanisms ensure graceful degradation, and tool integration extends model capabilities. This architecture pattern balances accuracy (via retrieval), reliability (via fallbacks), and functionality (via tools) for production deployments.}
+\caption{LLM application architecture\index{architecture!LLM application} determines reliability and capability. This RAG\index{RAG|see{Retrieval-Augmented Generation}}\index{Retrieval-Augmented Generation|(}-based design enables grounded responses through retrieval, fallback mechanisms ensure graceful degradation, and tool integration extends model capabilities. This architecture pattern balances accuracy (via retrieval), reliability (via fallbacks), and functionality (via tools) for production deployments.}
 \label{fig:ch01_architecture}
 \end{figure}
 
 \subsection{Data and Knowledge Drift (Especially in RAG)}
 LLM behavior in production depends not only on the base model but also on the
-\emph{inference-time evidence} it is conditioned on. In Retrieval-Augmented Generation (RAG),
+\emph{inference-time evidence} it is conditioned on. In Retrieval-Augmented Generation (RAG)\index{Retrieval-Augmented Generation},
 the system's effective knowledge is an evolving composite of (i) the underlying corpus,
-(ii) the embedding model and indexing configuration used to represent that corpus,
+(ii) the embedding model\index{embedding!model} and indexing configuration\index{indexing} used to represent that corpus,
 and (iii) the retrieval and filtering policies that determine what evidence is eligible.
-As these layers change, drift can \emph{silently} degrade answer quality: the system may
-continue returning fluent responses while groundedness, citation fidelity, and trustworthiness erode.
+As these layers change, drift\index{drift!data}\index{drift!knowledge} can \emph{silently} degrade answer quality: the system may
+continue returning fluent responses while groundedness\index{groundedness}, citation fidelity\index{citation!fidelity}, and trustworthiness erode.
 Critically, retrieval failures are often silent: the system may return HTTP 200 and appear healthy
-while producing ungrounded or outdated answers, making drift detection a semantic rather than
+while producing ungrounded or outdated answers, making drift detection\index{drift!detection} a semantic rather than
 infrastructure problem.
 
 Unlike static software logic, LLM applications are highly sensitive to shifting data distributions,
 evolving user behavior, and changing external knowledge sources. Production robustness requires
 explicit mechanisms for drift detection and remediation. Three distinct drift modes require
-different monitoring and remediation strategies: \emph{index drift} occurs when embeddings and
-vector indices become stale as corpora evolve; \emph{embedding drift} happens when the embedding
-model itself changes or when the semantic representation shifts; and \emph{permission drift} occurs
+different monitoring and remediation strategies: \emph{index drift}\index{drift!index} occurs when embeddings and
+vector indices\index{vector index} become stale as corpora evolve; \emph{embedding drift}\index{drift!embedding} happens when the embedding
+model itself changes or when the semantic representation shifts; and \emph{permission drift}\index{drift!permission} occurs
 when authorization and provenance rules evolve, requiring the retriever to enforce updated access
 controls at retrieval time.
 
@@ -210,22 +210,22 @@ canary evaluations, and auditable index snapshots (Fig.~\ref{fig:ch01_rag_drift_
 \end{figure}
 
 \subsection{Evaluation: From Single Metrics to Behavioral Guarantees}
-Traditional ML systems often rely on offline metrics (AUC, RMSE) and periodic monitoring. Classical ML systems can often be validated with offline metrics and periodic retraining. LLM systems require a richer notion of quality that includes correctness, groundedness, safety, and style. Because outputs are open-ended, evaluation becomes an ongoing engineering discipline. LLM systems demand continuous evaluation because behavior depends on prompts, retrieved context, decoding parameters, and tool availability. The operational challenge is to make evaluation \emph{systematic}:
+Traditional ML systems often rely on offline metrics (AUC, RMSE) and periodic monitoring. Classical ML systems can often be validated with offline metrics and periodic retraining. LLM systems require a richer notion of quality that includes correctness, groundedness, safety, and style. Because outputs are open-ended, evaluation\index{evaluation} becomes an ongoing engineering discipline. LLM systems demand continuous evaluation\index{evaluation!continuous} because behavior depends on prompts, retrieved context, decoding parameters, and tool availability. The operational challenge is to make evaluation \emph{systematic}:
 
 \begin{itemize}
-  \item \textbf{Regression suites:} ``golden'' prompts and expected properties (e.g., includes citations, refuses unsafe requests, follows schema) to catch behavioral regressions. Golden sets and regression suites provide curated test prompts and expected properties (groundedness, citation correctness, refusal behavior) for repeatable checks.
-  \item \textbf{LLM-as-judge scoring:} scalable rubric-based evaluation, calibrated with human review to manage judge instability and bias. Scalable evaluation is often necessary, but introduces new risks (judge bias, instability) requiring calibration and spot-checking.
-  \item \textbf{Production telemetry:} online signals such as user correction rates, citation click-through, escalation to human review, and ``helpfulness'' ratings. In addition to offline tests, production systems need telemetry such as rerank scores, citation click-through, and user satisfaction proxies.
+  \item \textbf{Regression suites:}\index{regression testing} ``golden'' prompts and expected properties (e.g., includes citations, refuses unsafe requests, follows schema) to catch behavioral regressions. Golden sets\index{golden set} and regression suites provide curated test prompts and expected properties (groundedness, citation correctness, refusal behavior) for repeatable checks.
+  \item \textbf{LLM-as-judge scoring:}\index{LLM-as-judge} scalable rubric-based evaluation, calibrated with human review to manage judge instability and bias. Scalable evaluation is often necessary, but introduces new risks (judge bias, instability) requiring calibration and spot-checking.
+  \item \textbf{Production telemetry:}\index{telemetry} online signals such as user correction rates, citation click-through, escalation to human review, and ``helpfulness'' ratings. In addition to offline tests, production systems need telemetry such as rerank scores, citation click-through, and user satisfaction proxies.
 \end{itemize}
 
-Effective evaluation requires \emph{slice-based} analysis: measuring performance across domain slices (e.g., technical vs. general knowledge), temporal slices (recent vs. historical queries), and risk slices (high-stakes vs. low-stakes interactions). This slice-aware approach helps identify regressions that aggregate metrics might mask.
+Effective evaluation requires \emph{slice-based}\index{evaluation!slice-based} analysis: measuring performance across domain slices (e.g., technical vs. general knowledge), temporal slices (recent vs. historical queries), and risk slices (high-stakes vs. low-stakes interactions). This slice-aware approach helps identify regressions that aggregate metrics might mask.
 
 \subsection{Observability and Debuggability}
-Traditional monitoring focuses on uptime, CPU, and error rates. LLM systems require observability that captures \emph{semantic} and \emph{behavioral} properties, because a generative system can return HTTP~200 while producing an ungrounded, unsafe, or policy-violating answer. In classic production systems, engineers debug failures through logs, traces, and metrics. In LLM systems, you must additionally observe the \emph{semantic path} of a request: what context was retrieved, what instructions were applied, what tools were invoked, and how the model responded.
+Traditional monitoring\index{monitoring} focuses on uptime, CPU, and error rates. LLM systems require observability\index{observability} that captures \emph{semantic} and \emph{behavioral} properties, because a generative system can return HTTP~200 while producing an ungrounded, unsafe, or policy-violating answer. In classic production systems, engineers debug failures through logs, traces\index{tracing}, and metrics. In LLM systems, you must additionally observe the \emph{semantic path} of a request: what context was retrieved, what instructions were applied, what tools were invoked, and how the model responded.
 
-In practice, LLM applications behave like composed systems: a single user request may traverse routing logic, retrieval, reranking, multi-step prompting, tool calls, and post-processing. Failures are therefore frequently \emph{cross-layer} (e.g., a retrieval miss causing hallucination, or a tool timeout causing a partial answer that still looks fluent). The operational goal is not merely to detect that an error occurred, but to explain \emph{why} an output was produced and \emph{which component} (prompt, retriever, tool, model version, or safety layer) drove the observed behavior.
+In practice, LLM applications behave like composed systems: a single user request may traverse routing logic, retrieval, reranking, multi-step prompting\index{prompting!multi-step}, tool calls, and post-processing. Failures are therefore frequently \emph{cross-layer} (e.g., a retrieval miss causing hallucination\index{hallucination}, or a tool timeout causing a partial answer that still looks fluent). The operational goal is not merely to detect that an error occurred, but to explain \emph{why} an output was produced and \emph{which component} (prompt, retriever, tool, model version, or safety layer) drove the observed behavior.
 
-A useful mental model is to treat observability as an \emph{evidence ledger} for each response: record the exact prompt template and parameters, the evidence retrieved (with identifiers and timestamps), the tool calls performed, and the model configuration (provider, version, temperature/top-$p$, context length). These traces support three production-critical workflows: (i) incident response (rapid attribution and rollback), (ii) continuous evaluation (turning production failures into regression tests), and (iii) governance (audit trails for safety, privacy, and policy compliance).
+A useful mental model is to treat observability as an \emph{evidence ledger} for each response: record the exact prompt template\index{prompt!template} and parameters, the evidence retrieved (with identifiers and timestamps), the tool calls performed, and the model configuration (provider, version, temperature/top-$p$\index{temperature}\index{top-p}, context length). These traces support three production-critical workflows: (i) incident response\index{incident response} (rapid attribution and rollback), (ii) continuous evaluation (turning production failures into regression tests), and (iii) governance\index{governance} (audit trails for safety, privacy, and policy compliance).
 
 \begin{tcolorbox}[
   title={\textbf{Effective LLM observability includes:}},
@@ -241,9 +241,9 @@ A useful mental model is to treat observability as an \emph{evidence ledger} for
   after skip=6pt
 ]
 \begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item \textbf{Structured tracing:} capturing prompt versions, retrieved passages, tool-call inputs/outputs, and model parameters for reproducibility.
-  \item \textbf{Behavioral monitoring:} hallucination indicators, refusal rates, toxicity filter triggers, and citation coverage.
-  \item \textbf{Root-cause isolation:} distinguishing whether a failure arose from retrieval, prompt assembly, tool output, or the model itself.
+  \item \textbf{Structured tracing:}\index{tracing!structured} capturing prompt versions\index{prompt!versioning}, retrieved passages, tool-call inputs/outputs, and model parameters for reproducibility.
+  \item \textbf{Behavioral monitoring:}\index{monitoring!behavioral} hallucination indicators, refusal rates\index{refusal rate}, toxicity filter\index{toxicity filter} triggers, and citation coverage\index{citation!coverage}.
+  \item \textbf{Root-cause isolation:}\index{root-cause analysis} distinguishing whether a failure arose from retrieval, prompt assembly, tool output, or the model itself.
 \end{itemize}
 \end{tcolorbox}
 
@@ -394,20 +394,20 @@ control stack spanning input handling, retrieval governance, tool security, and 
 
   \end{tikzpicture}
   \end{llmfigbox}
-  \caption{Security architecture for tool- and retrieval-augmented LLM systems requires defense-in-depth. Threats (prompt injection, policy bypass, retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization, instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing as a cross-cutting requirement for incident response and rollback. This threat model guides security architecture decisions and demonstrates why traditional application security is insufficient for LLM systems.}
+  \caption{Security architecture\index{security!architecture} for tool- and retrieval-augmented LLM systems requires defense-in-depth\index{defense-in-depth}. Threats (prompt injection, policy bypass\index{policy bypass}, retrieval-based exfiltration\index{data exfiltration}, tool misuse\index{tool misuse}, and output leakage\index{output leakage}) map to concrete controls (input sanitization\index{input sanitization}, instruction hierarchy\index{instruction hierarchy}, retrieval governance\index{retrieval!governance}, tool sandboxing\index{sandboxing}, and output redaction\index{output redaction}), with audit-grade tracing\index{audit trail} as a cross-cutting requirement for incident response and rollback. This threat model guides security architecture decisions and demonstrates why traditional application security is insufficient for LLM systems.}
   \label{fig:ch01_llm_threat_model}
 \end{figure}
 \end{landscape}
 
 \subsection{Change Management and Release Discipline}
-Finally, LLM systems change frequently: prompts evolve, models are upgraded, retrieval corpora update, and tool schemas shift. Without disciplined release processes, teams risk unintentional regressions. Mature LLMOps introduces:
+Finally, LLM systems change frequently: prompts evolve, models are upgraded, retrieval corpora update, and tool schemas shift. Without disciplined release processes\index{release process}, teams risk unintentional regressions. Mature LLMOps introduces:
 \begin{itemize}
-  \item \textbf{Versioning of prompts and policies:} treating prompts like code, with reviews, diffs, and rollback.
+  \item \textbf{Versioning of prompts and policies:}\index{versioning!prompt} treating prompts like code, with reviews, diffs, and rollback.
   \item \textbf{Release gates:} automated evaluation thresholds that must pass before deployment.
   \item \textbf{Incident response:} playbooks for model regressions, safety failures, or external dependency outages.
 \end{itemize}
 
-Change management in LLMOps requires \emph{bundle versioning}: promoting model versions, prompt templates, retrieval indices, and tool schemas together as atomic units. This ensures that a deployment includes all compatible components and enables clean rollback when regressions occur. For example, a new model version may require updated prompt templates and a refreshed retrieval index; bundling these changes together prevents partial deployments that could cause silent failures.
+Change management\index{change management} in LLMOps requires \emph{bundle versioning}\index{versioning!bundle}: promoting model versions\index{model!version}, prompt templates, retrieval indices, and tool schemas together as atomic units. This ensures that a deployment includes all compatible components and enables clean rollback when regressions occur. For example, a new model version may require updated prompt templates and a refreshed retrieval index; bundling these changes together prevents partial deployments that could cause silent failures.
 
 Together, these dimensions explain why LLM deployments require a distinct operational mindset. LLMOps is the set of practices that makes these systems reliable in the real world: controlling cost and latency, continuously measuring quality, defending against new threats, and enabling rapid iteration without sacrificing safety or trust.
 
@@ -419,7 +419,7 @@ LLMOps therefore formalizes the practices required to run these systems with rel
 % Requires in preamble (once): \usepackage{tabularx,booktabs,threeparttable}
 \begin{table}[t]
 \centering\small
-\caption{LLMOps extends MLOps in four critical dimensions that require new operational practices. Scale introduces memory and cost constraints; complexity demands semantic observability; variability requires prompt and retrieval testing; risk necessitates safety gates and policy enforcement. Understanding these extensions helps teams anticipate operational challenges and plan infrastructure investments.}
+\caption{LLMOps extends MLOps in four critical dimensions that require new operational practices. Scale introduces memory\index{memory} and cost constraints; complexity demands semantic observability; variability requires prompt and retrieval testing; risk necessitates safety gates\index{safety gate} and policy enforcement\index{policy enforcement}. Understanding these extensions helps teams anticipate operational challenges and plan infrastructure investments.}
 \label{tab:ch01_llmops_extends_mlops}
 \setlength{\tabcolsep}{8pt}
 \renewcommand{\arraystretch}{1.4}
@@ -718,9 +718,9 @@ This book is organized into four parts that follow the lifecycle of an LLM-based
 Part~I establishes the conceptual and infrastructural baseline required to reason about LLM systems in production.
 \begin{itemize}
   \item \textbf{Chapter~\ref{ch:llmops-fundamentals}: LLMOps Fundamentals and Key Concepts.}
-  Defines LLMOps and distinguishes it from classical MLOps; introduces prompts, retrieval-augmented generation (RAG), evaluation, and alignment as first-class operational concerns.
+  Defines LLMOps and distinguishes it from classical MLOps; introduces prompts\index{prompt}, retrieval-augmented generation (RAG), evaluation, and alignment\index{alignment} as first-class operational concerns.
   \item \textbf{Chapter~\ref{ch:infra}: Infrastructure and Environment.}
-  Develops the infrastructure layer for LLM workloads, including accelerator selection, containerization, Kubernetes orchestration, and infrastructure-as-code patterns for reproducible deployments.
+  Develops the infrastructure layer for LLM workloads, including accelerator selection\index{accelerator}, containerization\index{containerization}, Kubernetes\index{Kubernetes} orchestration, and infrastructure-as-code\index{Infrastructure-as-Code} patterns for reproducible deployments.
 \end{itemize}
 
 \medskip
@@ -728,11 +728,11 @@ Part~I establishes the conceptual and infrastructural baseline required to reaso
 Part~II focuses on the practices that enable safe iteration and reliable operation under real traffic.
 \begin{itemize}
   \item \textbf{Chapter~\ref{ch:cicd}: Continuous Integration and Deployment.}
-  Presents CI/CD patterns tailored to LLM systems, including regression suites for prompts and retrieval behavior, deployment strategies (canary, shadow, rollback), and release gates for quality and safety.
+  Presents CI/CD\index{CI/CD} patterns tailored to LLM systems, including regression suites for prompts and retrieval behavior, deployment strategies\index{deployment!strategy} (canary\index{canary deployment}, shadow\index{shadow deployment}, rollback\index{rollback}), and release gates\index{release gate} for quality and safety.
   \item \textbf{Chapter~\ref{ch:monitoring}: Monitoring and Observability.}
   Introduces LLM observability as semantic instrumentation---tracing prompts, retrieval, and tool calls---alongside system telemetry to support debugging, governance, and continuous improvement.
   \item \textbf{Chapter~\ref{ch:scaling}: Scaling Up LLM Deployments.}
-  Covers capacity planning, autoscaling strategies, latency/throughput trade-offs, and cost-aware operation under bursty workloads and long-context regimes.
+  Covers capacity planning, autoscaling\index{autoscaling} strategies, latency/throughput trade-offs, and cost-aware operation under bursty workloads and long-context regimes.
 \end{itemize}
 
 \medskip
@@ -740,11 +740,11 @@ Part~II focuses on the practices that enable safe iteration and reliable operati
 Part~III develops advanced techniques for efficiency and capability, with emphasis on retrieval and multi-step systems.
 \begin{itemize}
   \item \textbf{Chapter~\ref{ch:performance}: Performance Optimization.}
-  Surveys model- and system-level optimizations including quantization, distillation, inference-runtime selection, batching, and KV-cache management.
+  Surveys model- and system-level optimizations including quantization, distillation\index{distillation}, inference-runtime selection\index{inference engine}, batching, and KV-cache management\index{KV-cache!management}.
   \item \textbf{Chapter~\ref{ch:rag}: Retrieval-Augmented Generation.}
-  Provides comprehensive coverage of RAG design---embedding models, vector databases, chunking, reranking, evaluation, and operational controls for freshness and drift.
+  Provides comprehensive coverage of RAG design---embedding models, vector databases\index{vector database}, chunking\index{chunking}, reranking, evaluation, and operational controls for freshness and drift.
   \item \textbf{Chapter~\ref{ch:multiagent}: Multi-Agent Architectures and Orchestration.}
-  Explores agent design patterns, coordination mechanisms, orchestration frameworks, and failure handling for tool-augmented, multi-step workflows.
+  Explores agent\index{agent} design patterns, coordination mechanisms, orchestration frameworks\index{orchestration!framework}, and failure handling\index{error handling} for tool-augmented, multi-step workflows.
 \end{itemize}
 
 \medskip
@@ -752,11 +752,11 @@ Part~III develops advanced techniques for efficiency and capability, with emphas
 Part~IV addresses rigorous evaluation and responsible deployment, culminating in an end-to-end reference implementation.
 \begin{itemize}
   \item \textbf{Chapter~\ref{ch:testing}: Testing, Evaluation, and Robustness.}
-  Surveys evaluation methodologies (offline and online), adversarial testing, regression control, and reliability under distribution shift.
+  Surveys evaluation methodologies (offline and online), adversarial testing\index{adversarial testing}, regression control, and reliability under distribution shift\index{distribution shift}.
   \item \textbf{Chapter~\ref{ch:ethics}: Ethics and Responsible Deployment.}
-  Covers privacy, safety, bias mitigation, transparency, and governance frameworks, emphasizing operational controls and auditability.
+  Covers privacy\index{privacy}, safety\index{safety}, bias mitigation\index{bias!mitigation}, transparency\index{transparency}, and governance frameworks, emphasizing operational controls and auditability\index{auditability}.
   \item \textbf{Chapter~\ref{ch:case-study}: End-to-End Case Study.}
-  Integrates the preceding material through \ishtar{}'s complete lifecycle---from ingestion and retrieval through serving, monitoring, and release discipline.
+  Integrates the preceding material through \ishtar{}'s complete lifecycle---from ingestion\index{ingestion} and retrieval through serving\index{serving}, monitoring, and release discipline.
 \end{itemize}
 
 \medskip
@@ -1085,17 +1085,17 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 The architecture is organized into the following stages.
 
 \subsubsection{Data Ingestion}
-A set of ingestion agents continuously pull data streams. One monitors news wires and battlefield reports, another ingests NGO bulletins via feeds or email, and another collects signals from curated social media accounts. Each agent normalizes incoming data into semantically meaningful chunks (including metadata such as source, timestamp, geography, and confidence) and embeds them into a vector database (e.g., Pinecone, Weaviate). This forms the evidence store used by downstream retrieval.
+A set of ingestion agents\index{agent!ingestion} continuously pull data streams. One monitors news wires and battlefield reports, another ingests NGO bulletins via feeds or email, and another collects signals from curated social media accounts. Each agent normalizes incoming data into semantically meaningful chunks (including metadata such as source, timestamp, geography, and confidence) and embeds them into a vector database\index{vector database} (e.g., Pinecone\index{Pinecone}, Weaviate\index{Weaviate}). This forms the evidence store used by downstream retrieval.
 
 \subsubsection{Retrieval-Augmented Generation (RAG)}
-When a query arrives, \ishtar{} embeds the question and retrieves relevant evidence from the vector database. A reranking step prioritizes high-quality sources, and the top results are injected into the generation prompt \cite{mdpi}. This grounds outputs in retrieved evidence, reduces hallucination risk, and enables citation (e.g., ``according to an observer report published this morning \ldots'').
+When a query arrives, \ishtar{} embeds the question and retrieves relevant evidence from the vector database. A reranking\index{reranking} step prioritizes high-quality sources, and the top results are injected into the generation prompt \cite{mdpi}. This grounds outputs in retrieved evidence, reduces hallucination risk, and enables citation\index{citation} (e.g., ``according to an observer report published this morning \ldots'').
 
 \subsubsection{Multi-Agent Orchestration}
-Rather than relying on a monolithic model, \ishtar{} coordinates specialized agents:
+Rather than relying on a monolithic model, \ishtar{} coordinates specialized agents\index{agent!specialized}:
 \begin{itemize}
-  \item a \emph{Summarizer} that synthesizes retrieved evidence into a draft answer,
-  \item a \emph{Fact-Checker} that verifies claims against sources and may invoke external verification tools,
-  \item a \emph{Refiner} that improves clarity, structure, and safety compliance.
+  \item a \emph{Summarizer}\index{agent!summarizer} that synthesizes retrieved evidence into a draft answer,
+  \item a \emph{Fact-Checker}\index{agent!fact-checker} that verifies claims against sources and may invoke external verification tools,
+  \item a \emph{Refiner}\index{agent!refiner} that improves clarity, structure, and safety compliance.
 \end{itemize}
 Agents communicate through a controller (prompt chaining or a graph-based orchestrator), improving modularity and maintainability.
 

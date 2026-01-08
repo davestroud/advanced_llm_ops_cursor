@@ -1,6 +1,7 @@
 \chapter{Retrieval-Augmented Generation (RAG) – Integrating Knowledge Bases}
 \label{ch:rag}
 \newrefsegment
+\index{Retrieval-Augmented Generation|see{RAG}}
 
 % ----------------------------
 % Chapter 8 — Abstract (online)
@@ -56,7 +57,7 @@ This chapter provides a comprehensive guide to RAG in LLMOps, exploring architec
 
 \section{Why RAG is Essential for LLMOps}
 \label{sec:rag-why-rag-is-essential-for-llmops}
-Retrieval-Augmented Generation (RAG) is best understood as a \emph{system design pattern}: instead of asking an LLM to answer from parametric memory alone, we attach a retrieval layer that supplies task-relevant evidence at inference time \cite{Lewis2020RAG,Guu2020REALM}. In LLMOps, this design has two major consequences:
+Retrieval-Augmented Generation (RAG)\index{RAG} is best understood as a \emph{system design pattern}: instead of asking an LLM to answer from parametric memory alone, we attach a retrieval layer that supplies task-relevant evidence at inference time \cite{Lewis2020RAG,Guu2020REALM}. In LLMOps, this design has two major consequences:
 
 \begin{itemize}
     \item \textbf{Knowledge becomes updateable.} You can improve answers by updating the corpus (and its index) rather than re-training the base model.
@@ -93,7 +94,7 @@ RAG is essential to LLMOps because it makes knowledge \emph{updatable}, answers 
 
 \section{Core Components of a RAG System}
 \label{sec:rag-core-components-of-a-rag-system}
-A production RAG system consists of \emph{offline} components (ingestion, cleaning, chunking, embedding, indexing) and \emph{online} components (query processing, retrieval, reranking, context construction, and generation). Fig.~\ref{fig:ch08_rag_querytime} summarizes the online query-time loop.
+A production RAG system\index{RAG!system} consists of \emph{offline} components (ingestion\index{ingestion}, cleaning\index{cleaning}, chunking\index{chunking}, embedding\index{embedding}, indexing\index{indexing}) and \emph{online} components (query processing\index{query processing}, retrieval\index{retrieval}, reranking\index{reranking}, context construction\index{context!construction}, and generation\index{generation}). Fig.~\ref{fig:ch08_rag_querytime} summarizes the online query-time loop.
 
 \begin{figure}[t]
 \centering
@@ -127,24 +128,24 @@ A production RAG system consists of \emph{offline} components (ingestion, cleani
 The remainder of this section walks through the main building blocks and the operational concerns attached to each.
 
 \subsection{Document Ingestion}
-Document ingestion collects, normalizes, and enriches knowledge sources to populate the retrieval corpus. In production, ingestion is not a one-time job: it is a continuously running subsystem responsible for freshness, quality, and provenance \cite{Pryon2023}. Typical steps include:
+Document ingestion\index{ingestion!document} collects, normalizes, and enriches knowledge sources to populate the retrieval corpus\index{corpus}. In production, ingestion is not a one-time job: it is a continuously running subsystem responsible for freshness\index{freshness}, quality\index{quality}, and provenance\index{provenance} \cite{Pryon2023}. Typical steps include:
 \begin{itemize}
-    \item \textbf{Acquisition}: file sync, crawlers, API connectors, and event streams.
-    \item \textbf{Normalization}: HTML/PDF extraction, encoding fixes, language detection, and format conversion.
-    \item \textbf{Quality gates}: deduplication, spam filtering, and minimum-content checks.
-    \item \textbf{Metadata enrichment}: timestamps, source identifiers, access control tags, and reliability scores.
+    \item \textbf{Acquisition\index{acquisition}:} file sync, crawlers\index{crawler}, API connectors\index{API connector}, and event streams\index{event stream}.
+    \item \textbf{Normalization\index{normalization}:} HTML/PDF extraction\index{extraction}, encoding fixes, language detection\index{language detection}, and format conversion\index{format conversion}.
+    \item \textbf{Quality gates\index{quality gate}:} deduplication\index{deduplication}, spam filtering\index{spam filtering}, and minimum-content checks.
+    \item \textbf{Metadata enrichment\index{metadata!enrichment}:} timestamps, source identifiers, access control tags\index{access control}, and reliability scores\index{reliability score}.
 \end{itemize}
-For \ishtar{}, ingestion emphasizes timeliness and source reliability (e.g., prioritizing official bulletins and trusted news wires for critical facts).
+For \ishtar{}, ingestion emphasizes timeliness and source reliability\index{reliability!source} (e.g., prioritizing official bulletins and trusted news wires for critical facts).
 
 \subsection{Chunking and Passage Construction}
-RAG retrieval operates on \emph{chunks}, not entire documents. Chunking should preserve semantic coherence and include enough local context to support answer synthesis. Common strategies include structural chunking (by headings/sections), token-window chunking (fixed size with overlap), or hybrid approaches that respect both structure and size constraints. Chunking decisions directly affect retrieval quality and prompt efficiency, and should be treated as versioned configuration alongside the embedding model.
+RAG retrieval operates on \emph{chunks}\index{chunk}, not entire documents. Chunking\index{chunking} should preserve semantic coherence\index{semantic coherence} and include enough local context to support answer synthesis\index{synthesis}. Common strategies include structural chunking\index{chunking!structural} (by headings/sections), token-window chunking\index{chunking!token-window} (fixed size with overlap\index{overlap}), or hybrid approaches\index{chunking!hybrid} that respect both structure and size constraints. Chunking decisions directly affect retrieval quality and prompt efficiency, and should be treated as versioned configuration alongside the embedding model.
 
 \subsection{Embedding Generation}
-Each chunk is mapped to a vector representation so that semantic similarity search becomes possible. Dense retrieval models (e.g., dual encoders) learn representations where semantically related texts lie nearby in vector space \cite{Karpukhin2020DPR}. In practice:
+Each chunk is mapped to a vector representation\index{vector representation} so that semantic similarity search\index{similarity search} becomes possible. Dense retrieval models\index{retrieval!dense} (e.g., dual encoders\index{dual encoder}) learn representations where semantically related texts lie nearby in vector space\index{vector space} \cite{Karpukhin2020DPR}. In practice:
 \begin{itemize}
-    \item Use \textbf{the same embedding model} for both document and query embeddings.
-    \item Batch embedding jobs to reduce cost and improve throughput.
-    \item Recompute embeddings when either the embedding model changes or chunking logic changes.
+    \item Use \textbf{the same embedding model\index{embedding!model}} for both document and query embeddings\index{embedding!query}.
+    \item Batch embedding jobs\index{embedding!batch} to reduce cost and improve throughput.
+    \item Recompute embeddings\index{embedding!recomputation} when either the embedding model changes or chunking logic changes.
 \end{itemize}
 
 \subsection{Vector Store (Index + Metadata)}

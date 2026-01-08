@@ -59,7 +59,7 @@ This informs our exploration of LLMOps infrastructure, positioning it not simply
 
 % ==================================================================
 % ==================================================================
-\section{Hardware Selection for LLM Workloads}
+\section{Hardware Selection for LLM Workloads}\index{hardware!selection}
 \label{sec:infra-hardware-bench}
 Screenshot 2026-01-02 at 14.38.02
 Selecting optimal hardware for LLM training and inference is a multi-dimensional decision involving performance, scalability, and cost considerations. 
@@ -97,7 +97,7 @@ where $T$ is the sequence length and $\alpha$ the bytes per element (e.g., 2 for
 
 This linear dependence means that long-context or high-concurrency serving can easily become memory-bound. For example, a single 13B-parameter model (like LLaMA-13B with 40 layers and 40 heads of dimension 128) will require on the order of 1–2 GB of GPU memory per 1024 tokens of context \textit{per request} in FP16 precision.\footnote{Empirical estimates from practitioner reports indicate $\sim$10–15 GB just for KV caches when serving a batch of eight concurrent requests at 1024-token contexts.} Caching and memory management strategies (see \S\ref{sec:infra-hardware-bench}) are therefore central to efficient operations.
 
-\subsection{GPU Architectures and Choices}
+\subsection{GPU Architectures and Choices}\index{GPU!architecture}
 \label{sec:infra-hardware-gpu}
 
 NVIDIA GPUs remain the dominant hardware for LLM workloads in 2024–2025. The NVIDIA L4 offers excellent per-watt efficiency for smaller models, embeddings, and lightweight inference; the A100 was the mainstream workhorse for both training and inference in the early 2020s; and the H100 (Hopper architecture) introduces new low-precision math (FP8), significantly higher memory bandwidth, and other architectural improvements targeting Transformer models. 
@@ -122,7 +122,7 @@ The H100 generally outperforms the A100 across both training and inference, than
 
 The A100 remains widely available and is still highly capable. Its 80 GB variant is valuable for long-context inference or hosting multiple models simultaneously (where memory capacity is critical). Meanwhile, the smaller NVIDIA L4 (24 GB) offers superb efficiency for less demanding tasks: running quantized 7B–13B models for embeddings or classification, or servicing low-latency interactive jobs where throughput needs are moderate. In heterogeneous fleets, L4s excel at ``small jobs'' with an attractive cost and power profile.
 
-\subsection{TPU Architectures and Considerations}
+\subsection{TPU Architectures and Considerations}\index{TPU!architecture}
 \label{sec:infra-hardware-tpu}
 
 
@@ -132,7 +132,7 @@ Google’s Tensor Processing Units (TPUs) provide an alternative accelerator opt
 In batch-heavy deployments (e.g., serving many requests in parallel), TPU v4 pods can reduce cost-per-token by an estimated 20–30\% compared to GPU clusters. Their drawbacks are ecosystem maturity (PyTorch support is still catching up to JAX/TF) and availability (primarily limited to Google Cloud). Newer TPUs like the TPU v5e (announced 2024) are explicitly aimed at inference with a focus on throughput per dollar. Google reports that TPU v5e offers a 2.3$\times$ price-performance improvement over TPU v4 for LLM training, and early results show inference efficiency gains as well (e.g., continuous batching and sliding window attention via JetStream). In one reported example, a TPU v5e-8 (8 chips) achieved $\sim$4{,}783 tokens/s serving a LLaMA-2 7B model with INT8 quantization—roughly on par with a cluster of 4–8 high-end GPUs but at lower cost.
 
 % ==================================================================
-\section{Cost Modeling and Economics}
+\section{Cost Modeling and Economics}\index{cost!modeling}
 \label{sec:infra-cost}
 
 Building and operating LLM infrastructure at scale brings significant costs. In this section, we dive deeper into modeling those costs and techniques to optimize them. We cover the economics of token generation, the impact of batch size on utilization, and how caching and quantization influence cost.
@@ -376,7 +376,7 @@ This worked example shows that raw hourly prices can be misleading. A seemingly 
 
 
 % ==================================================================
-\section{Infrastructure-as-Code (IaC) for LLMOps}
+\section{Infrastructure-as-Code (IaC) for LLMOps}\index{Infrastructure-as-Code}
 \label{sec:iac}
 
 Automating and codifying infrastructure is essential for reliability and scalability. 
@@ -558,12 +558,12 @@ Collectively, these practices ensure that IaC in LLMOps environments is reproduc
 
 
 % ==================================================================
-\section{Containerization and Orchestration}
+\section{Containerization and Orchestration}\index{Docker}\index{containerization}\index{orchestration}
 \label{sec:orchestration}
 
 Most LLM deployments nowadays use containerization (e.g., Docker images) for the software environment, and orchestration (usually Kubernetes) to manage container scheduling, scaling, and networking. This section discusses specific considerations for running LLM workloads in containers and under orchestration.
 
-\subsection{Kubernetes for LLMs}
+\subsection{Kubernetes for LLMs}\index{Kubernetes}
 \label{sec:orchestration-k8s}
 
 Kubernetes (K8s) has become a popular platform to deploy inference services because it provides a uniform way to manage resources, perform rollouts, and recover from failures. Running LLM services on K8s, especially on GPU nodes, introduces a few special considerations:
@@ -627,7 +627,7 @@ In summary, Kubernetes handles most scheduling for LLM deployments out-of-the-bo
 
 
 % ==================================================================
-\section{Model Serving Infrastructure}
+\section{Model Serving Infrastructure}\index{serving!infrastructure}
 \label{sec:serving}
 
 Building a high-performance serving stack for Large Language Models (LLMs) involves choosing the right software framework to host the model and handle inference requests. Standard web application servers are not sufficient: LLM serving must manage large model weights, optimize GPU utilization (via batching, quantization, or kernel fusion), and often support streaming outputs. In this section, we discuss established serving frameworks alongside novel methods for boosting inference efficiency.

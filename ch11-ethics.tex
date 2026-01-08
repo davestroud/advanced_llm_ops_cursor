@@ -46,9 +46,9 @@ This chapter introduces the ethical and responsible practices required to operat
 
 \section{Introduction}
 \label{sec:ch11-introduction}
-As large language models (LLMs) become integral to decision-making, communication, and knowledge dissemination, the ethical stakes rise sharply. Ethical and responsible LLMOps ensures that these models are designed, deployed, and maintained in ways that align with societal values, legal requirements, and organizational principles. 
+As large language models (LLMs) become integral to decision-making, communication, and knowledge dissemination, the ethical stakes rise sharply. Ethical\index{ethics} and responsible LLMOps\index{responsible AI} ensures that these models are designed, deployed, and maintained in ways that align with societal values, legal requirements, and organizational principles. 
 
-For \ishtar{}, which supports journalists in conflict zones, ethical operations are not optional—they are foundational to maintaining trust and safety.
+For \ishtar{}, which supports journalists in conflict zones, ethical operations are not optional—they are foundational to maintaining trust\index{trust} and safety.
 
 \section{Why Ethics in LLMOps Matters}\label{sec:ethics-why}
 
@@ -70,13 +70,13 @@ This taxonomy highlights that ethical risks come from many sources---the data, t
 
 \section{Key Ethical Principles}\label{sec:ethics-principles}
 
-To address the risks outlined in the previous section, practitioners have converged on several core principles for ethical AI and LLM operations. These principles provide a framework to guide decision-making throughout the LLM lifecycle \cite{bcg2023,iapp2023}. The following subsections outline the five most widely recognized principles: transparency, accountability, fairness, privacy, and safety.
+To address the risks outlined in the previous section, practitioners have converged on several core principles for ethical AI\index{ethics!principles} and LLM operations. These principles provide a framework\index{ethics!framework} to guide decision-making throughout the LLM lifecycle \cite{bcg2023,iapp2023}. The following subsections outline the five most widely recognized principles: transparency\index{transparency}, accountability\index{accountability}, fairness\index{fairness}, privacy\index{privacy}, and safety\index{safety}.
 
 \subsection{Transparency}
 
-Transparency means being open about how the model works, what data it was trained on, what its capabilities and limitations are, and when or where it is being used. In practice, this involves disclosing to users that they are interacting with an AI system (not a human), and communicating the known weaknesses or uncertainties in the model’s output.  
+Transparency\index{transparency} means being open about how the model works, what data it was trained on, what its capabilities and limitations are, and when or where it is being used. In practice, this involves disclosing to users that they are interacting with an AI system (not a human), and communicating the known weaknesses or uncertainties in the model's output.  
 
-\textbf{Model Cards and Documentation:} A common industry practice to foster transparency is the use of model cards \cite{iapp2023}. Model cards are concise documents accompanying a model that describe its intended use, training data, performance evaluation, and ethical considerations. First proposed in 2018 as a standardized transparency report for AI systems, they are now widely adopted. Leading organizations release model cards for their LLMs—for example, Meta’s LLaMA 2 and OpenAI’s GPT-series include detailed cards describing data sources, performance benchmarks, and known biases \cite{iapp2023}. These cards help users and stakeholders understand the context in which the model is reliable and often contain sections on intended use, subgroup evaluation metrics, and safe usage recommendations.  
+\textbf{Model Cards\index{model card} and Documentation:} A common industry practice to foster transparency is the use of model cards \cite{iapp2023}. Model cards are concise documents accompanying a model that describe its intended use, training data, performance evaluation, and ethical considerations. First proposed in 2018 as a standardized transparency report for AI systems, they are now widely adopted. Leading organizations release model cards for their LLMs—for example, Meta's LLaMA 2\index{LLaMA} and OpenAI's GPT-series\index{GPT} include detailed cards describing data sources, performance benchmarks, and known biases \cite{iapp2023}. These cards help users and stakeholders understand the context in which the model is reliable and often contain sections on intended use, subgroup evaluation metrics, and safe usage recommendations.  
 
 \textbf{Data Transparency:} Transparency also extends to documenting the provenance of training data. For example, an LLM trained primarily on 2019–2021 web data may lack knowledge of later events and may reflect biases prevalent during that timeframe. Ethical operators should disclose such details to help users contextualize outputs. In retrieval-augmented generation (RAG) systems, source provenance and citation disclosure are critical transparency mechanisms, as detailed in Chapter~\ref{ch:rag}.  
 
@@ -98,13 +98,13 @@ Accountability ensures that identifiable individuals or organizations take respo
 
 \subsection{Fairness}
 
-Fairness in LLMOps refers to treating users and groups equitably and avoiding systematic disadvantage or offense. Bias can lead to both representational harms (e.g., stereotyping) and allocational harms (e.g., denial of resources or opportunities) \cite{ar5iv_labs}.  
+Fairness\index{fairness} in LLMOps refers to treating users and groups equitably and avoiding systematic disadvantage or offense. Bias\index{bias} can lead to both representational harms\index{harm!representational} (e.g., stereotyping) and allocational harms\index{harm!allocational} (e.g., denial of resources or opportunities) \cite{ar5iv_labs}.  
 
 \textbf{Sources of Bias:} Bias can emerge at several stages \cite{ar5iv_labs,aclanthology2023}:
 \begin{itemize}
-    \item \emph{Training Data Bias:} Imbalances in source data can cause skewed outputs. For example, training predominantly on Western sources may under-represent perspectives from the Global South.
-    \item \emph{Reinforcement Bias:} Human raters in RLHF may unintentionally inject cultural or stylistic preferences.
-    \item \emph{Prompt Bias:} User inputs can themselves create biased outputs, especially when questions are leading or adversarial.
+    \item \emph{Training Data Bias\index{bias!training data}:} Imbalances in source data can cause skewed outputs. For example, training predominantly on Western sources may under-represent perspectives from the Global South.
+    \item \emph{Reinforcement Bias\index{bias!reinforcement}:} Human raters in RLHF\index{RLHF} may unintentionally inject cultural or stylistic preferences.
+    \item \emph{Prompt Bias\index{bias!prompt}:} User inputs can themselves create biased outputs, especially when questions are leading or adversarial.
 \end{itemize}
 
 \textbf{Mitigation Strategies:} Techniques include data curation and augmentation, use of bias benchmarks and evaluation tools, and targeted fine-tuning or alignment strategies \cite{aclanthology2023}. Mitigation methods span:

@@ -117,11 +117,11 @@ The following sections explore concrete strategies for optimization across three
 \label{fig:ch07_latency_before_after}
 \end{figure}
 
-\section{Model-Level Optimization Techniques}
+\section{Model-Level Optimization Techniques}\index{optimization!model-level}
 \label{sec:perf-model}
 Model-level optimizations involve making the model itself more efficient, often by reducing size or complexity while preserving accuracy. Key techniques include quantization, pruning, knowledge distillation, and parameter-efficient fine-tuning. These methods typically trade a small amount of model fidelity for significant gains in speed and memory footprint.
 
-\subsection{Quantization}
+\subsection{Quantization}\index{quantization}
 Quantization reduces the precision of model weights---and sometimes activations---from higher-precision formats such as FP16 (16-bit floating point) to lower-precision representations like INT8, FP8, or even 4-bit integers. By using fewer bits to represent each parameter, the model’s memory footprint shrinks and arithmetic operations execute faster, often enabling deployment on smaller or fewer devices.
 
 Lower numerical precision also enables the use of specialized hardware instructions (tensor cores) that can dramatically increase throughput. Modern accelerators provide substantially higher arithmetic throughput at INT8/INT4 (and, on newer devices, FP8) than at FP16/BF16, which is why quantization and mixed precision can yield large tokens/s gains when supported by kernels and hardware \cite{Dettmers2022LLMint8,Xiao2023SmoothQuant,NVIDIA2023Hopper}. In practice, quantization can deliver substantial benefits. For example, applying 4-bit post-training quantization (e.g., GPTQ) to a 13B-parameter model has enabled it to be served on a single GPU instead of two, with only minor accuracy degradation \cite{Frantar2023GPTQ}. Smaller memory requirements also reduce energy consumption per query, which can be significant at scale. Quantization can apply not only to the model weights but also to auxiliary structures like the Transformer’s key/value (KV) cache---quantizing the KV cache to 8-bit precision can further lower memory usage and improve latency, albeit with a potential impact on accuracy.
@@ -203,7 +203,7 @@ Two common approaches are:
 
 In practice, pruning can remove 20--50\% of parameters with minimal quality impact, particularly in over-parameterized models. Many vision and language models retain performance after significant pruning, especially if followed by fine-tuning or calibration to recover accuracy. Structured pruning often delivers latency gains without specialized hardware (since entire units are removed, the model actually shrinks), while unstructured pruning primarily reduces memory footprint unless sparse computation is supported. However, aggressive pruning may degrade generalization or harm performance on out-of-distribution inputs, so it must be evaluated carefully. Recent research demonstrates that even large GPT-scale models can be pruned to at least 50\% sparsity in one shot with negligible effect on perplexity \cite{Frantar2023SparseGPT}, especially when using weight-reconstruction algorithms to preserve important information.
 
-\subsection{Knowledge Distillation}
+\subsection{Knowledge Distillation}\index{distillation}
 Knowledge distillation transfers knowledge from a large ``teacher'' model to a smaller ``student'' model by training the student to match the teacher's outputs or intermediate representations \cite{Hinton2015Distillation}. This enables deployment of lighter, faster models that approximate the behavior of state-of-the-art LLMs while dramatically reducing inference cost. Distillation can be done on the logits (output distributions) or even at the hidden layer level. The student model effectively learns to mimic the teacher’s function in a compressed form.
 
 In the context of LLMs, distillation has been used to create compact models that still perform well on language tasks. For example, DistilBERT \cite{Sanh2019DistilBERT} distilled a BERT$_{\text{base}}$ (110M parameters) down to a 66M-parameter model that retained over 97\% of BERT’s language understanding capabilities while running $\sim$2$\times$ faster. Similar approaches can produce smaller versions of GPT-style models for faster inference. The trade-off is that the student may not capture all the nuances of the teacher, potentially reducing accuracy slightly on complex tasks. However, distillation tends to preserve performance on the teacher’s focal tasks, especially if the training dataset is chosen carefully (e.g., using a large set of queries and the teacher’s generated answers to train the student).
@@ -372,7 +372,7 @@ FP16 requires multi-GPU (tensor/pipeline parallel); INT8/FP8 fits on single H100
 \label{fig:ch07_memory_cheatsheet}
 \end{figure}
 
-\section{Inference Engine Optimization}
+\section{Inference Engine Optimization}\index{inference engine!optimization}
 \label{sec:perf-engine}
 While model-level methods make the model inherently lighter or faster, inference engine optimizations focus on \emph{how} the model is executed at runtime. This includes using specialized software and libraries to maximize throughput on given hardware, fusing operations to reduce overhead, and managing memory more intelligently during inference.
 

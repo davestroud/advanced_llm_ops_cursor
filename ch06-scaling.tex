@@ -51,7 +51,7 @@ Scaling a Large Language Model deployment is a multifaceted challenge. While tra
 
 In this chapter, we present a detailed guide to scaling LLM systems from prototype to global production, with \ishtar{} as our primary reference case.
 
-\section{The Scaling Problem in LLMOps}
+\section{The Scaling Problem in LLMOps}\index{scaling}
 \label{sec:scaling-problem}
 Scaling a Large Language Model deployment is a multifaceted challenge. While traditional applications often scale linearly with additional compute resources, LLM-based systems face unique constraints: massive model sizes, GPU memory limits, high operational costs, and variable demand patterns. These factors make even high-performance GPU servers struggle under LLM workloads \cite{vllm2023}. As a result, scaling LLM deployments has become a major focus in both industry and academia—nearly every recent ML systems conference now features dedicated sessions on LLM serving and optimization \cite{vllm2023}. Groundbreaking models like ChatGPT have demonstrated unprecedented utility and demand, but their inference is slow and resource-intensive: for example, generating each token may require reading on the order of a terabyte of model weights \cite{google2022_chip}. In this chapter, we present a detailed guide to scaling LLM systems from prototype to global production, with \ishtar{} as our primary reference case:\cite{vllm_pagedattention}.
 
@@ -142,7 +142,7 @@ At moderate scales, a common efficiency problem is \emph{under-filled GPUs}: man
 
 Scaling LLM deployments can follow multiple dimensions, each with distinct architectural, cost, and operational trade-offs. The primary approaches are vertical scaling, horizontal scaling, and hybrid scaling, which we discuss in turn. Fig.~\ref{fig:ch06_scaling_dimensions} provides a schematic overview of these three strategies, while Table~\ref{tab:ch06_scaling_matrix} summarizes their comparative characteristics.
 
-\subsection{Vertical Scaling}
+\subsection{Vertical Scaling}\index{scaling!vertical}
 \label{sec:scaling-vertical}
 Vertical scaling refers to increasing the computational capacity of a single node by upgrading to more powerful hardware---for example, moving from NVIDIA A100 GPUs to H100 GPUs, or doubling a GPU’s memory from 40\,GB to 80\,GB. In essence, the server gets ``bigger and faster,'' allowing it to handle more demanding workloads.
 
@@ -195,7 +195,7 @@ Vertical scaling is ideal when the model size or context length cannot be effici
 \subsubsection{Case in \ishtar{}}
 During early deployments, \ishtar{} leveraged vertical scaling by upgrading from A100-40GB to A100-80GB instances. This allowed the system to serve 32k-token context windows without model sharding. The result was a 35\% reduction in median latency (measured via A/B comparison over a 2-week period), achieved without the engineering overhead of distributed inference---albeit at the cost of a 28\% increase in GPU spend (based on on-demand pricing for the upgraded instance types).
 
-\subsection{Horizontal Scaling}
+\subsection{Horizontal Scaling}\index{scaling!horizontal}
 \label{sec:scaling-horizontal}
 Horizontal scaling increases capacity by adding more nodes (e.g., multiple GPU servers) and distributing workloads across them. In LLM deployments, horizontal scale typically involves one or a combination of:
 \begin{itemize}
@@ -667,7 +667,7 @@ By employing continuous batching with $\Delta \in [8,20]$\,ms, WSRT scheduling, 
 
 % ------------------------------------------------------------
 
-\section{Autoscaling Strategies}
+\section{Autoscaling Strategies}\index{autoscaling}
 \label{sec:autoscaling}
 Autoscaling is the mechanism by which the system automatically adjusts the number of running model replicas (or the resources allocated to them) based on current load and performance metrics. In LLMOps, autoscaling is complicated by factors like long model load times, stateful sessions (KV caches tied to replicas), and unpredictable workload bursts. Two broad approaches are metrics-based autoscaling and event-based (or schedule-based) autoscaling, often used in combination.
 
@@ -913,7 +913,7 @@ Fig.~\ref{fig:ch06_autoscale_event_based} shows an event-driven autoscaling work
 
 % ------------------------------------------------------------
 
-\section{Caching for Scale}
+\section{Caching for Scale}\index{caching}
 \label{sec:caching}
 Caching avoids recomputation for repeated work, reducing both latency and GPU load. In LLM systems, we consider two main types: response caching (caching model outputs for identical queries) and embedding caching (caching vector embeddings for identical pieces of text, to accelerate retrieval-augmented generation, \textsc{RAG}). Effective caching can significantly improve scalability by serving a portion of requests from memory instead of using scarce GPU cycles.
 

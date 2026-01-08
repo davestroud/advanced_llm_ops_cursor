@@ -65,7 +65,7 @@ Each of these artifacts functions as a \emph{behavioral contract}: a specificati
 
 This chapter shows how to build CI/CD pipelines that catch behavioral regressions—validating that prompts maintain safety boundaries, that retrieval configs preserve groundedness, and that agent graphs handle dependencies correctly. These validation gates connect directly to comprehensive testing practices covered in Chapter~\ref{ch:testing}, which provides deeper coverage of evaluation frameworks, robustness testing, and adversarial validation. Together, CI/CD gates and testing frameworks ensure that behavioral contracts are enforced before deployment and monitored after release.
 
-\section{Continuous Evaluation to Catch Regressions and Hallucinations}
+\section{Continuous Evaluation to Catch Regressions and Hallucinations}\index{evaluation!continuous}\index{regression testing}
 \label{sec:cicd-continuous-eval}
 A cornerstone of LLM CI/CD is integrating automated evaluation suites into the pipeline---not only to catch functional regressions, but to detect hallucinations, safety drift, and retrieval failures before they reach users. Because LLM behavior is stochastic and highly sensitive to prompts, retrieval context, and tool configuration, continuous evaluation must be designed as a staged, cost-aware loop rather than a single offline score \cite{helm2022}.
 
@@ -267,7 +267,7 @@ Prompt robustness evaluation extends beyond task prompts to system-level instruc
 
 The overall workflow thus becomes a cycle of targeted adaptation balanced by systematic evaluation. Fine-tuning should not be treated as a one-off event but rather as an iterative process embedded within the CI/CD pipeline: data is curated, models are tuned with parameter-efficient methods when possible, evaluation suites are executed across multiple slices, and results are logged and compared against both domain and general baselines. This perspective reflects the growing consensus that fine-tuning is as much an operational discipline as it is a modeling technique, requiring careful instrumentation, governance, and continuous monitoring.
 
-\section{Deployment Strategies: Canary, Blue-Green, and Rollback}
+\section{Deployment Strategies: Canary, Blue-Green, and Rollback}\index{deployment!strategy}\index{canary deployment}\index{blue-green deployment}\index{rollback}
 \label{sec:cicd-deploy-strategies}
 \subsection{Progressive Delivery Controllers for Kubernetes}
 For Kubernetes-native rollouts, progressive delivery controllers provide first-class primitives for canary and blue-green releases, traffic shifting, and automated analysis gates. Argo Rollouts is a widely used controller that extends standard \texttt{Deployment} behavior with canary and blue-green strategies, experiments, and metric-based promotion/rollback hooks \cite{argo_rollouts_overview,argo_rollouts_canary,argo_rollouts_bluegreen}. For LLM services, these controllers are particularly valuable because they can couple release progression to LLM-specific guardrails (e.g., eval pass rates, tool-call success, safety-trigger rates) rather than only CPU/memory health.

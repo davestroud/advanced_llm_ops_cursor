@@ -126,19 +126,19 @@ This chapter introduces a practical testing and evaluation discipline for LLM-po
 
 \section{Introduction}
 \label{sec:ch10-introduction}
-Testing and evaluation are essential to building trust in LLM systems. For mission-critical applications such as \ishtar{}, quality cannot be assumed—it must be continuously validated against well-defined criteria. In modern LLM Operations (LLMOps), where model outputs are nondeterministic and context-dependent \cite{arxivEval,bytexEval}, a rigorous testing regimen is the only way to ensure reliability.  
+Testing\index{testing} and evaluation\index{evaluation} are essential to building trust in LLM systems. For mission-critical applications such as \ishtar{}, quality cannot be assumed—it must be continuously validated against well-defined criteria. In modern LLM Operations (LLMOps), where model outputs are nondeterministic and context-dependent \cite{arxivEval,bytexEval}, a rigorous testing regimen\index{testing!regimen} is the only way to ensure reliability\index{reliability}.  
 
-This chapter provides a comprehensive treatment of methodologies, metrics, and practices for evaluating LLM-based applications and ensuring robustness against failures, regressions, and adversarial inputs. We cover multiple levels of testing (from unit prompts to full-system end-to-end tests), delve into quantitative and qualitative evaluation metrics (and how tools like RAGAS and LangSmith implement them), and discuss strategies for adversarial robustness and resilience. An expanded case study on \ishtar{} illustrates how these principles come together in practice, and a detailed best-practices checklist concludes the chapter, distilling lessons for advanced LLMOps practitioners.
+This chapter provides a comprehensive treatment of methodologies, metrics, and practices for evaluating LLM-based applications and ensuring robustness\index{robustness} against failures, regressions\index{regression}, and adversarial inputs\index{adversarial input}. We cover multiple levels of testing (from unit prompts\index{testing!unit} to full-system end-to-end tests\index{testing!end-to-end}), delve into quantitative and qualitative evaluation metrics (and how tools like RAGAS\index{RAGAS} and LangSmith\index{LangSmith} implement them), and discuss strategies for adversarial robustness\index{robustness!adversarial} and resilience\index{resilience}. An expanded case study on \ishtar{} illustrates how these principles come together in practice, and a detailed best-practices checklist concludes the chapter, distilling lessons for advanced LLMOps practitioners.
 
 \section{The Importance of Testing in LLMOps}
 \label{sec:ch10-the-importance-of-testing-in-llmops}
 
 LLM outputs are inherently variable. Even with the same input, different model runs can yield different results. Testing in LLMOps must therefore:
 \begin{itemize}
-    \item Validate correctness and factuality.
-    \item Detect regressions in behavior over time.
-    \item Assess safety and compliance.
-    \item Evaluate performance under varying loads.
+    \item Validate correctness\index{correctness} and factuality\index{factuality}.
+    \item Detect regressions\index{regression!detection} in behavior over time.
+    \item Assess safety\index{safety!testing} and compliance\index{compliance}.
+    \item Evaluate performance\index{performance!testing} under varying loads\index{load testing}.
 \end{itemize}
 
 \subsection*{At a Glance: The Importance of Testing in LLMOps}
@@ -303,7 +303,7 @@ A key benefit of unit tests is fast, targeted feedback during development. If a 
 
 Unit tests for LLM systems should cover both “happy path” cases (expected inputs) and edge cases. This includes adversarial or unusual inputs at the unit level: e.g., test a name parsing prompt with edge cases like empty input or extremely long names, or test a retrieval function with a query containing typos. By building a battery of small tests for each component, we can catch prompt template bugs (such as missing instructions or incorrect few-shot examples), logic errors in data preprocessing, and other issues before they propagate into full system failures \cite{arxivEval}.  
 
-Modern LLMOps tooling supports this: for example, the Promptfoo framework allows writing unit tests for each step of a LangChain or agent workflow, by executing one prompt at a time and checking its output against expectations \cite{promptfoo1,promptfoo2}. Table~\ref{tab:ch10_unit_test_examples} provides concrete examples of unit tests for different component types. Listing~\ref{lst:ch10_unit_test_example} shows a Python implementation example. In sum, unit testing ensures each part of the LLM pipeline "does the right thing" in isolation, laying the groundwork for reliable system assembly.
+Modern LLMOps tooling supports this: for example, the Promptfoo\index{Promptfoo} framework allows writing unit tests for each step of a LangChain\index{LangChain} or agent workflow, by executing one prompt at a time and checking its output against expectations \cite{promptfoo1,promptfoo2}. Table~\ref{tab:ch10_unit_test_examples} provides concrete examples of unit tests for different component types. Listing~\ref{lst:ch10_unit_test_example} shows a Python implementation example. In sum, unit testing ensures each part of the LLM pipeline "does the right thing" in isolation, laying the groundwork for reliable system assembly.
 
 \begin{llmlistingbox}{Unit test example for prompt template validation (Python)}
 \label{lst:ch10_unit_test_example}
@@ -385,7 +385,7 @@ In practice, integration testing often reveals edge cases in data flow: e.g., th
 
 Another example: test that a conversation agent plus a separate fact-checking agent together correctly flag a false statement. The integrated test would feed a deliberately incorrect fact to the system and assert that the fact-checking agent catches it and the final output is a correction or refusal, rather than blindly repeating the false claim.  
 
-Integration tests, in summary, ensure that the LLM application as a whole – with all its moving parts – functions as designed. They validate the "glue" between components: data formats, interface contracts, and sequential operations. As LLM pipelines grow complex (with retrievers, multiple prompts, external APIs, etc.), integration testing becomes essential to prevent component mismatch errors and to verify emergent behaviors (like an agent loop properly terminating). Modern test harnesses and orchestrators (e.g. LangChain's testing utilities \cite{langchainPython}, \cite{arxivEval}) can facilitate launching such end-to-end sequences in test mode.
+Integration tests\index{testing!integration}, in summary, ensure that the LLM application as a whole – with all its moving parts – functions as designed. They validate the "glue" between components: data formats, interface contracts, and sequential operations. As LLM pipelines grow complex (with retrievers, multiple prompts, external APIs, etc.), integration testing becomes essential to prevent component mismatch errors and to verify emergent behaviors (like an agent loop properly terminating). Modern test harnesses\index{test harness} and orchestrators (e.g. LangChain's testing utilities \cite{langchainPython}, \cite{arxivEval}) can facilitate launching such end-to-end sequences in test mode.
 Table~\ref{tab:ch10_integration_test_scenarios} outlines common integration test scenarios. Listing~\ref{lst:ch10_integration_test_example} provides a concrete Python example.
 
 \begin{llmlistingbox}{Integration test example for RAG chain (Python)}
@@ -469,7 +469,7 @@ One valuable form of end-to-end test for conversational systems is multi-turn di
 
 Another E2E scenario is testing how the system handles a sequence of tool calls and user inputs in an agent loop (like a user asking for a weather forecast, the agent calls a weather API, then responds). The entire loop from user query to API call to final answer can be executed in a test to verify correctness and error handling (e.g., simulate the API returning an error and see if the agent apologizes gracefully).  
 
-Implementing end-to-end tests often requires a staging environment that mirrors production: the model (or a smaller proxy model) running with the actual prompt configurations, a copy of the database or external services (or mocks that mimic their responses), and all orchestrations (agents, chains) enabled. This can be complex, but frameworks are emerging. For instance, the Promptfoo tool allows developers to write a script that invokes the entire chain given an input and then to assert properties of the final output \cite{promptfoo1,promptfoo2}. Similarly, LangSmith (LangChain’s eval platform) lets one define a dataset of inputs and run the full application on them, logging all intermediate steps for analysis \cite{langsmithDocs1,langsmithDocs2}.  
+Implementing end-to-end tests often requires a staging environment\index{staging environment} that mirrors production: the model (or a smaller proxy model) running with the actual prompt configurations, a copy of the database or external services (or mocks\index{mock} that mimic their responses), and all orchestrations (agents, chains) enabled. This can be complex, but frameworks are emerging. For instance, the Promptfoo tool allows developers to write a script that invokes the entire chain given an input and then to assert properties of the final output \cite{promptfoo1,promptfoo2}. Similarly, LangSmith\index{LangSmith} (LangChain's eval platform) lets one define a dataset of inputs and run the full application on them, logging all intermediate steps for analysis \cite{langsmithDocs1,langsmithDocs2}.  
 
 The key is that end-to-end tests treat the system as a black box – focusing on what the user receives – thereby validating the orchestration logic in addition to component behaviors. End-to-end testing is particularly important for user acceptance: it helps ensure that performance measured in isolation translates into a good user outcome. It can catch high-level issues like inconsistent tone, latency spikes, or broken formatting.  
 
@@ -671,7 +671,7 @@ We categorize metrics into quantitative (numeric measures such as accuracy or la
 \midrule
 Correctness &
 Task success against known references &
-Exact match, F1, execution accuracy &
+Exact match\index{exact match}, F1\index{F1}, execution accuracy\index{accuracy!execution} &
 No statistically significant drop vs baseline \\
 \midrule
 Faithfulness / grounding &
@@ -691,7 +691,7 @@ Mean rubric $\geq$ target; win-rate $\geq$ baseline \\
 \midrule
 Latency \& reliability &
 Operational performance under expected load &
-p50/p95 latency, error rate, timeouts &
+p50\index{p50}/p95\index{p95} latency, error rate\index{error rate}, timeouts\index{timeout} &
 p95 within SLO; error rate within SLO \\
 \midrule
 Cost \& efficiency &

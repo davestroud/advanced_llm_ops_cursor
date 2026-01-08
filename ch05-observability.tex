@@ -50,7 +50,7 @@ Monitoring and observability are critical pillars of LLMOps. For Large Language 
 
 In this chapter, we explore the principles, architecture, and practical techniques for achieving comprehensive observability in LLM-powered systems, focusing on the LangChain ecosystem and integrating recent survey findings, runtime evaluation patterns, and RAG-specific metrics, with \ishtar{} as our running example.
 
-\section{Why Monitoring is Different for LLMs}
+\section{Why Monitoring is Different for LLMs}\index{monitoring!LLM}
 \label{sec:why-monitoring-is-different-for-llms}
 Traditional application monitoring focuses on CPU, memory, request latency, and error rates. LLM applications require additional layers beyond these basics:
 \begin{itemize}
@@ -110,7 +110,7 @@ Finally, LLM observability has a governance dimension. Logs often contain user t
 \label{fig:ch05_telemetry_layers}
 \end{figure}
 
-\section{RAG-Specific Metrics and Drift Monitoring}
+\section{RAG-Specific Metrics and Drift Monitoring}\index{RAG!monitoring}\index{drift!monitoring}
 \label{sec:rag-specific-metrics-and-drift-monitoring}
 Retrieval-Augmented Generation (RAG) introduces unique observability needs. Beyond standard recall@K or mean reciprocal rank (MRR), practitioners track:
 \begin{itemize}
