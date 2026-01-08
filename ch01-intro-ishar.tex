@@ -1133,16 +1133,15 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
                      minimum height=12mm, inner sep=4pt, align=center, font=\small}
 ]
 
-% Start with first bubble, then position others relative to it
-\node[bubble,cNews] (news) {News wires\\\& reports};
-\node[bubble,cNGO, right=of news] (ngo) {NGO bulletins};
-\node[bubble,cSocial, below=of news] (social) {Social media\\(vetted)};
-\node[bubble,cHealth, below=of ngo] (health) {Public health\\\& infrastructure};
-
-% Hub container fitted around the four bubbles
-\node[hub, fit=(news) (ngo) (social) (health), 
-      minimum width=90mm, minimum height=60mm, inner sep=8mm] (group) {};
+% Hub container positioned first
+\node[hub, minimum width=90mm, minimum height=60mm] (group) {};
 \node[black!50, font=\small] at ([yshift=-8pt]group.north) {Curated external evidence (ingested and vetted)};
+
+% Position bubbles relative to hub center in a 2x2 grid
+\node[bubble,cNews] (news) at ([xshift=-22mm,yshift=10mm]group.center) {News wires\\\& reports};
+\node[bubble,cNGO] (ngo) at ([xshift=22mm,yshift=10mm]group.center) {NGO bulletins};
+\node[bubble,cSocial] (social) at ([xshift=-22mm,yshift=-10mm]group.center) {Social media\\(vetted)};
+\node[bubble,cHealth] (health) at ([xshift=22mm,yshift=-10mm]group.center) {Public health\\\& infrastructure};
 
 % Connection lines between bubbles (subtle)
 \draw[black!10, line width=2pt] (news) -- (ngo);
