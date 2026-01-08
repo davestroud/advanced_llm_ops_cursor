@@ -1097,65 +1097,67 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \begin{llmfigbox}
 \begin{tikzpicture}[
   font=\small,
-  node distance=7mm and 5mm,
-  % Color styles for different components - more compact sizes
+  node distance=6mm and 3mm,
+  scale=0.85,
+  transform shape,
+  % Color styles for different components - compact sizes
   source/.style={ellipse, fill=blue!20, draw=blue!60!black, line width=0.7pt, 
-                 minimum width=18mm, minimum height=9mm, align=center, inner sep=3pt},
+                 minimum width=16mm, minimum height=8mm, align=center, inner sep=2pt},
   ingest/.style={rectangle, fill=cyan!20, draw=cyan!60!black, rounded corners=4pt,
-                 line width=0.7pt, minimum width=20mm, minimum height=10mm, align=center, inner sep=3pt},
+                 line width=0.7pt, minimum width=18mm, minimum height=9mm, align=center, inner sep=2pt},
   vector/.style={cylinder, fill=teal!20, draw=teal!60!black, line width=0.7pt,
-                 shape aspect=0.3, minimum width=20mm, minimum height=14mm, align=center, inner sep=3pt},
+                 shape aspect=0.3, minimum width=18mm, minimum height=12mm, align=center, inner sep=2pt},
   rag/.style={rectangle, fill=purple!20, draw=purple!60!black, rounded corners=4pt,
-              line width=0.7pt, minimum width=24mm, minimum height=12mm, align=center, inner sep=3pt},
+              line width=0.7pt, minimum width=22mm, minimum height=11mm, align=center, inner sep=2pt},
   agent/.style={rectangle, fill=green!20, draw=green!60!black, rounded corners=4pt,
-                line width=0.7pt, minimum width=20mm, minimum height=9mm, align=center, inner sep=2pt},
+                line width=0.7pt, minimum width=18mm, minimum height=8mm, align=center, inner sep=2pt},
   orchestrator/.style={rectangle, fill=orange!20, draw=orange!60!black, rounded corners=4pt,
-                       line width=0.8pt, minimum width=26mm, minimum height=11mm, align=center, inner sep=3pt, font=\small\bfseries},
+                       line width=0.8pt, minimum width=24mm, minimum height=10mm, align=center, inner sep=2pt, font=\small\bfseries},
   gpu/.style={rectangle, fill=red!20, draw=red!60!black, rounded corners=4pt,
-              line width=0.7pt, minimum width=22mm, minimum height=12mm, align=center, inner sep=3pt},
+              line width=0.7pt, minimum width=20mm, minimum height=11mm, align=center, inner sep=2pt},
   response/.style={ellipse, fill=gray!20, draw=gray!60!black, line width=0.7pt,
-                  minimum width=20mm, minimum height=9mm, align=center, inner sep=3pt},
+                  minimum width=18mm, minimum height=8mm, align=center, inner sep=2pt},
   obs/.style={rectangle, fill=yellow!8, draw=black!25, rounded corners=3pt, dashed,
-              line width=0.6pt, inner sep=3pt, font=\footnotesize},
-  arrow/.style={-{Stealth[length=2.2mm,width=1.8mm]}, line width=0.7pt, color=black!75},
-  arrowthin/.style={-{Stealth[length=1.8mm,width=1.4mm]}, line width=0.5pt, color=black!60}
+              line width=0.6pt, inner sep=2pt, font=\footnotesize},
+  arrow/.style={-{Stealth[length=2mm,width=1.6mm]}, line width=0.7pt, color=black!75},
+  arrowthin/.style={-{Stealth[length=1.6mm,width=1.2mm]}, line width=0.5pt, color=black!60}
 ]
 
 % ========== LEFT LANE: Data Sources & Ingestion ==========
-% Data sources (left column) - start from center and work out
+% Data sources (left column)
 \node[source] (news) {News wires\\\& reports};
 \node[source, below=of news] (ngo) {NGO\\bulletins};
 \node[source, below=of ngo] (social) {Social media\\(vetted)};
 
-% Ingestion agents (middle-left column)
+% Ingestion agents
 \node[ingest, right=of news] (ingest1) {Ingestion\\Agent 1};
 \node[ingest, right=of ngo] (ingest2) {Ingestion\\Agent 2};
 \node[ingest, right=of social] (ingest3) {Ingestion\\Agent 3};
 
-% Vector database (center-left)
+% Vector database
 \node[vector, right=of ingest2] (vectordb) {Vector\\Database};
 
 % ========== MIDDLE LANE: RAG & Multi-Agent ==========
-% Query input (top center)
-\node[source, right=of vectordb, yshift=8mm] (query) {Journalist\\Query};
+% Query input
+\node[source, right=of vectordb, yshift=7mm] (query) {Journalist\\Query};
 
-% RAG retrieval (center)
+% RAG retrieval
 \node[rag, right=of vectordb] (retrieval) {RAG\\Retrieval};
 
-% Multi-agent orchestration (below RAG)
-\node[orchestrator, right=of vectordb, yshift=-8mm] (orchestrator) {Orchestrator};
+% Multi-agent orchestration
+\node[orchestrator, right=of vectordb, yshift=-7mm] (orchestrator) {Orchestrator};
 
-% Agents (below orchestrator)
-\node[agent, below left=of orchestrator, xshift=-3mm] (summarizer) {Summarizer};
+% Agents
+\node[agent, below left=of orchestrator, xshift=-2mm] (summarizer) {Summarizer};
 \node[agent, below=of orchestrator] (factchecker) {Fact-Checker};
-\node[agent, below right=of orchestrator, xshift=3mm] (refiner) {Refiner};
+\node[agent, below right=of orchestrator, xshift=2mm] (refiner) {Refiner};
 
 % ========== RIGHT LANE: GPU Inference & Response ==========
 % GPU inference cluster
 \node[gpu, right=of orchestrator] (gpu1) {GPU\\Node 1};
 \node[gpu, right=of factchecker] (gpu2) {GPU\\Node 2};
 
-% Response (far right)
+% Response
 \node[response, right=of gpu1] (response) {Response\\+ Citations};
 
 % ========== ARROWS: Data Flow ==========
@@ -1195,12 +1197,12 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 % ========== OBSERVABILITY LAYER ==========
 % Top observability band - positioned after all nodes are defined
 \node[obs, fit=(news) (social) (ingest1) (ingest3) (vectordb) (query) (retrieval) (orchestrator) (summarizer) (refiner) (gpu1) (gpu2) (response),
-      inner xsep=2mm, inner ysep=2mm, yshift=28mm,
+      inner xsep=3mm, inner ysep=2mm, yshift=25mm,
       label={[anchor=center, font=\small\bfseries, text=black!80]center:Observability \& Telemetry}] (obstop) {};
 
 % Bottom observability band
 \node[obs, fit=(news) (social) (ingest1) (ingest3) (vectordb) (query) (retrieval) (orchestrator) (summarizer) (refiner) (gpu1) (gpu2) (response),
-      inner xsep=2mm, inner ysep=2mm, yshift=-38mm,
+      inner xsep=3mm, inner ysep=2mm, yshift=-35mm,
       label={[anchor=center, font=\small\bfseries, text=black!80]center:Traces, Metrics, Logs}] (obsbot) {};
 
 % Observability connections (subtle dotted lines)
