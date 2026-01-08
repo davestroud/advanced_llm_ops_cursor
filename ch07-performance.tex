@@ -65,10 +65,10 @@ For \ishtar{}, performance bottlenecks directly translate to reduced utility and
 
 The following sections explore concrete strategies for optimization across three layers: \textbf{model-level techniques} (such as quantization, pruning, and knowledge distillation), \textbf{inference engine tuning} (including specialized runtimes, operator fusion, and memory management), and \textbf{system-level approaches} (like batching, caching, and concurrency tuning). Each layer offers distinct levers for improving throughput, reducing latency, and lowering cost---and when combined, they can transform an LLM deployment from barely sustainable to highly performant at scale.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}
+\begin{tikzpicture}[font=\small]
 \node[draw, rounded corners, thick, fill=gray!5, align=left, inner sep=4mm, text width=0.88\linewidth]{
 \textbf{Practical gains from common optimizations}\\[2pt]
 \begin{itemize}\setlength\itemsep{0.3em}
@@ -87,10 +87,10 @@ The following sections explore concrete strategies for optimization across three
 \end{figure}
 
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}
+\begin{tikzpicture}[font=\small]
 \begin{axis}[
     width=14cm, height=5.0cm,
     ybar=0.25,
@@ -292,10 +292,10 @@ Pairs well with long contexts and high concurrency; test for degradation on long
 }
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}
+\begin{tikzpicture}[font=\small]
 \begin{axis}[
   width=14cm, height=5.6cm,
   ybar=0.3, bar width=12pt,
@@ -354,10 +354,10 @@ FP16 requires multi-GPU (tensor/pipeline parallel); INT8/FP8 fits on single H100
 \footnotesize\emph{Notes}: Values exclude activations, KV cache, and framework overheads. For inference with long contexts or high concurrency, KV memory can exceed weights; see Eq.~\eqref{eq:kv-total} and Section~\ref{sec:perf-attention-kv-cache} for sizing guidelines.
 \end{table}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}
+\begin{tikzpicture}[font=\small]
 \node[draw, rounded corners, thick, fill=gray!5, align=left, inner sep=4mm, text width=0.88\linewidth]{
 \textbf{Sizing cheat-sheet (inference memory)}\\[2pt]
 \begin{itemize}\setlength\itemsep{0.3em}
@@ -448,10 +448,10 @@ Continuous batching is an even more advanced form where, during autoregressive g
 
 That said, batching has trade-offs: it increases the latency for each individual request (because of the waiting time to form a batch and the fact that all in a batch finish together, meaning a small request might be delayed behind a large one in the same batch). The optimal batch size or waiting time is a tuning knob: too small batches and we under-utilize the GPU; too large or waiting too long and we hurt tail latency. Continuous monitoring of batch utilization is important. In practice, many deployments start with a small maximum batch size (say 8 or 16) and adjust based on observed GPU utilization. If the GPU has spare room, increasing batch size can yield higher throughput (up to a point of diminishing returns where overheads or memory limits kick in). Indeed, throughput $\Theta$ often scales sub-linearly with batch size $B$; a typical curve might show strong gains up to a moderate $B$ then flattening as the GPU saturates (see Fig.~\ref{fig:ch07_throughput_vs_batch} for a representative throughput vs.\ batch size curve).
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}
+\begin{tikzpicture}[font=\small]
 \begin{axis}[
   width=14cm, height=5.2cm,
   xlabel={Batch size $B$},
@@ -664,10 +664,10 @@ Finally, benchmarking is not one-time. In CI/CD, having automated performance re
 
 In summary, rigorous performance testing gives confidence that optimizations are working and that the system will meet its SLOs (Service Level Objectives) under expected and peak loads. For \ishtar{}, this process ensured that when a sudden surge of traffic came (like a major news event), the system’s performance had already been vetted for that scenario.
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}
+\begin{tikzpicture}[font=\small]
 \begin{axis}[
   width=14cm, height=5.6cm,
   xlabel={Latency (ms)},
@@ -711,10 +711,10 @@ x   y
 \label{fig:ch07_latency_cdf}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}
+\begin{tikzpicture}[font=\small]
 \begin{axis}[
   width=14cm, height=5.6cm,
   ybar=0.35, bar width=12pt,
