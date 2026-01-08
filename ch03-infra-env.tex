@@ -996,13 +996,13 @@ The choice of deployment model depends on workload profiles, user distribution, 
   store/.style={res, fill=yellow!25, draw=yellow!70!black}
 ]
 
-% ================== Column anchors (much wider spacing) ==================
-\node (col1) at (-65mm, 0) {};
-\node (col2) at (0, 0) {};
-\node (col3) at (65mm, 0) {};
+% ================== Row anchors (vertical stacking) ==================
+\node (row1) at (0, 50mm) {};  % Top: Cloud-Native
+\node (row2) at (0, 0) {};     % Middle: Hybrid
+\node (row3) at (0, -50mm) {}; % Bottom: Multi-Cluster
 
-% ================== (A) CLOUD-NATIVE ==================
-\node[cloud, label={[lbl, above=6mm]Cloud-Native}] (cloudA) at (col1) {};
+% ================== (A) CLOUD-NATIVE (Top) ==================
+\node[cloud, label={[lbl, above=6mm]Cloud-Native}] (cloudA) at (row1) {};
 \node[vpc, minimum width=38mm, minimum height=42mm, label={[font=\footnotesize\bfseries, above=4mm]VPC}] (vpcA) at (cloudA.center) {};
 \node[lb, minimum width=18mm, minimum height=10mm, align=center] (apigwA) at ($(vpcA.north) + (0, -8mm)$) {API\\GW};
 \node[k8s, minimum width=32mm, minimum height=12mm, label={[font=\footnotesize\bfseries, above=3mm]K8s}] (k8sA) at ($(vpcA.center) + (0, -2mm)$) {};
@@ -1013,14 +1013,14 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \draw[arrow, orange!80!black] (apigwA) -- (k8sA);
 \draw[arrow, purple!80!black] (k8sA) -- (objA);
 
-% ================== (B) HYBRID ==================
-\node[onprem, label={[lbl, above=6mm]Hybrid}] (premB) at ($(col2) + (-22mm, 0)$) {};
+% ================== (B) HYBRID (Middle) ==================
+\node[onprem, label={[lbl, above=6mm]Hybrid}] (premB) at ($(row2) + (-30mm, 0)$) {};
 \node[k8s, minimum width=32mm, minimum height=12mm, label={[font=\footnotesize\bfseries, above=3mm]On-Prem K8s}] (k8sBprem) at ($(premB.center) + (0, 4mm)$) {};
 \node[gpu, minimum width=14mm] (gpuB1) at ($(k8sBprem.south) + (-10mm, -10mm)$) {GPU};
 \node[gpu, minimum width=14mm] (gpuB2) at ($(k8sBprem.south) + (10mm, -10mm)$) {GPU};
 \node[store, minimum width=20mm, align=center] (vecB) at ($(premB.south) + (0, -12mm)$) {Vector\\DB};
 
-\node[cloud] (cloudB) at ($(col2) + (22mm, 0)$) {};
+\node[cloud] (cloudB) at ($(row2) + (30mm, 0)$) {};
 \node[vpc, minimum width=38mm, minimum height=42mm, label={[font=\footnotesize\bfseries, above=4mm]Cloud VPC}] (vpcB) at (cloudB.center) {};
 \node[lb, minimum width=18mm, minimum height=10mm, align=center] (apigwB) at ($(vpcB.north) + (0, -8mm)$) {API\\GW};
 \node[k8s, minimum width=32mm, minimum height=12mm, label={[font=\footnotesize\bfseries, above=3mm]Cloud K8s}] (k8sBcloud) at ($(vpcB.center) + (0, -2mm)$) {};
@@ -1036,8 +1036,8 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \draw[arrow, purple!80!black] (k8sBprem) -- (vecB);
 \draw[arrow, orange!80!black] (apigwB) -- (k8sBcloud);
 
-% ================== (C) MULTI-CLUSTER ==================
-\node[cloud, label={[lbl, above=6mm]Multi-Cluster / Multi-Region}] (cloudC) at (col3) {};
+% ================== (C) MULTI-CLUSTER (Bottom) ==================
+\node[cloud, label={[lbl, above=6mm]Multi-Cluster / Multi-Region}] (cloudC) at (row3) {};
 \node[lb, minimum width=20mm, minimum height=10mm, align=center] (glbC) at ($(cloudC.north) + (0, -6mm)$) {Global\\LB/DNS};
 
 \node[vpc, minimum width=34mm, minimum height=42mm, label={[font=\footnotesize\bfseries, above=4mm]Region A}] (vpcC1) at ($(cloudC.center) + (-14mm, -4mm)$) {};
@@ -1055,7 +1055,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \draw[arrow, gray!70, dashed, line width=1.2pt] (k8sC1) -- node[font=\footnotesize, align=center, midway, above, sloped] {spillover/\\failover} (k8sC2);
 
 % ================== Clean legend (below all patterns) ==================
-\node[box, fill=white!95, draw=black!50, rounded corners=4pt, minimum width=0.95\linewidth, minimum height=20mm, inner sep=7pt] (legend) at ($(cloudB.south) + (0, -35mm)$) {};
+\node[box, fill=white!95, draw=black!50, rounded corners=4pt, minimum width=0.95\linewidth, minimum height=20mm, inner sep=7pt] (legend) at ($(row3) + (0, -40mm)$) {};
 
 \node[cloud, minimum width=14mm, minimum height=9mm] (L1) at ($(legend.west) + (14mm, 6mm)$) {};
 \node[font=\footnotesize, right=4mm of L1.east, anchor=west] {Cloud/Region};
@@ -1083,7 +1083,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 
 \end{tikzpicture}
 \end{llmfigbox}
-\caption{Deployment pattern selection determines operational complexity and cost structure. \textbf{Cloud-Native} (left) maximizes elasticity and reduces operational overhead but may increase costs at scale. \textbf{Hybrid} (middle) balances on-premise control with cloud flexibility, optimizing for cost and compliance. \textbf{Multi-Cluster} (right) enables geographic distribution and failover but increases management complexity. Choose based on scale, compliance requirements, and operational capabilities.}
+\caption{Deployment pattern selection determines operational complexity and cost structure. \textbf{Cloud-Native} (top) maximizes elasticity and reduces operational overhead but may increase costs at scale. \textbf{Hybrid} (middle) balances on-premise control with cloud flexibility, optimizing for cost and compliance. \textbf{Multi-Cluster} (bottom) enables geographic distribution and failover but increases management complexity. Choose based on scale, compliance requirements, and operational capabilities.}
 \label{fig:ch03_deploy_patterns_balanced}
 \end{figure}
 
