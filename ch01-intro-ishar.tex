@@ -1039,42 +1039,42 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
                   inner sep=4pt, align=left, font=\small}
 ]
 
-% Band container - larger to accommodate stacked boxes
-\node[band, minimum width=0.95\linewidth, minimum height=55mm] (bandbox) {};
+% Band container - larger to accommodate stacked boxes with proper spacing
+\node[band, minimum width=0.95\linewidth, minimum height=70mm] (bandbox) {};
 
 % Top row: 4 boxes (Ingestion, Retrieval, Agents, Serving)
-\node[seg,cIngest] (ing) at ([xshift=-60mm,yshift=8mm]bandbox.center) {Ingestion\\\scriptsize (feeds, ETL)};
+\node[seg,cIngest] (ing) at ([xshift=-60mm,yshift=12mm]bandbox.center) {Ingestion\\\scriptsize (feeds, ETL)};
 \node[seg,cRAG, right=of ing] (rag) {Retrieval\\\scriptsize (RAG)};
 \node[seg,cAgent, right=of rag] (agent) {Agents\\\scriptsize (orchestration)};
 \node[seg,cServe, right=of agent] (serve) {Serving\\\scriptsize (GPU/TPU)};
 
-% Bottom row: 3 boxes (Observability, Testing, Ethics) - centered
-\node[seg,cObs] (obs) at ([xshift=-40mm,yshift=-12mm]bandbox.center) {Observability\\\scriptsize (traces, SLOs)};
+% Bottom row: 3 boxes (Observability, Testing, Ethics) - centered, more spacing from top
+\node[seg,cObs] (obs) at ([xshift=-40mm,yshift=-20mm]bandbox.center) {Observability\\\scriptsize (traces, SLOs)};
 \node[seg,cTest, right=of obs] (test) {Testing\\\scriptsize (eval/robust)};
 \node[seg,cEth, right=of test] (eth) {Ethics\\\scriptsize (governance)};
 
-% Chapter labels above top row segments
-\node[note, above=5mm of ing] (ingC) {Ch.~\ref{ch:infra}, \ref{ch:performance}};
-\node[note, above=5mm of rag] (ragC) {Ch.~\ref{ch:rag}};
-\node[note, above=5mm of agent] (agtC) {Ch.~\ref{ch:multiagent}};
-\node[note, above=5mm of serve] (srvC) {Ch.~\ref{ch:infra}, \ref{ch:performance}};
+% Chapter labels above top row segments - increased spacing
+\node[note, above=7mm of ing] (ingC) {Ch.~\ref{ch:infra}, \ref{ch:performance}};
+\node[note, above=7mm of rag] (ragC) {Ch.~\ref{ch:rag}};
+\node[note, above=7mm of agent] (agtC) {Ch.~\ref{ch:multiagent}};
+\node[note, above=7mm of serve] (srvC) {Ch.~\ref{ch:infra}, \ref{ch:performance}};
 
-% Chapter labels above bottom row segments
-\node[note, above=5mm of obs] (obsC) {Ch.~\ref{ch:monitoring}};
-\node[note, above=5mm of test] (tstC) {Ch.~\ref{ch:testing}};
-\node[note, above=5mm of eth] (ethC) {Ch.~\ref{ch:ethics}};
+% Chapter labels above bottom row segments - increased spacing
+\node[note, above=7mm of obs] (obsC) {Ch.~\ref{ch:monitoring}};
+\node[note, above=7mm of test] (tstC) {Ch.~\ref{ch:testing}};
+\node[note, above=7mm of eth] (ethC) {Ch.~\ref{ch:ethics}};
 
 % Arrows from segments to chapter labels
 \foreach \a/\b in {ing/ingC, rag/ragC, agent/agtC, serve/srvC, obs/obsC, test/tstC, eth/ethC}{
   \draw[arrow] (\a.north) -- (\b.south);
 }
 
-% End-to-End label positioned at top right
-\node[e2e, anchor=north east] at ([xshift=-4mm,yshift=-4mm]bandbox.north east)
+% End-to-End label positioned at top right - moved down to avoid chapter labels
+\node[e2e, anchor=north east] at ([xshift=-4mm,yshift=-2mm]bandbox.north east)
   {\textbf{End-to-End:} \scriptsize \ishtar{} $\rightarrow$ Ch.~\ref{ch:case-study}};
 
-% Mapping note at bottom left
-\node[note, anchor=north west] at ([xshift=4mm,yshift=-4mm]bandbox.south west)
+% Mapping note at bottom left - moved up to avoid bottom edge
+\node[note, anchor=north west] at ([xshift=4mm,yshift=-2mm]bandbox.south west)
   {Map these segments to Fig.~\ref{fig:ch01_ishtar_arch_main}:\\
    \scriptsize Ingestion$\to$left lane; Retrieval$\to$RAG block; Agents$\to$controller; Serving$\to$inference; Observability$\to$telemetry; Testing/Ethics$\to$cross-cutting.};
 
