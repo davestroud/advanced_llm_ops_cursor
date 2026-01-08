@@ -979,103 +979,104 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
+  font=\small,
   >=Stealth,
-  node distance=0.4cm and 0.5cm,
-  box/.style={rectangle, rounded corners=3pt, draw=black!70, thick, align=center},
-  lbl/.style={font=\small\bfseries, inner sep=2pt},
-  res/.style={rectangle, rounded corners=2pt, draw=black!70, thick, minimum width=8mm, minimum height=5mm, font=\footnotesize, align=center},
-  arrow/.style={->, thick, line width=1pt},
-  cloud/.style={box, fill=blue!12, draw=blue!60!black, minimum width=3.2cm, minimum height=2.2cm, inner sep=3pt},
-  vpc/.style={box, fill=blue!20, draw=blue!70!black, inner sep=2pt},
-  onprem/.style={box, fill=gray!12, draw=gray!60!black, minimum width=3.2cm, minimum height=2.2cm, inner sep=3pt},
-  k8s/.style={box, fill=green!12, draw=green!60!black, inner sep=2pt},
-  lb/.style={res, fill=orange!20, draw=orange!70!black},
-  gw/.style={res, fill=teal!20, draw=teal!70!black},
-  gpu/.style={res, fill=violet!20, draw=violet!70!black},
-  store/.style={res, fill=yellow!20, draw=yellow!70!black}
+  node distance=8mm and 12mm,
+  box/.style={rectangle, rounded corners=4pt, draw=black!70, thick, align=center},
+  lbl/.style={font=\small\bfseries, inner sep=3pt},
+  res/.style={rectangle, rounded corners=3pt, draw=black!70, thick, minimum width=12mm, minimum height=7mm, font=\footnotesize, align=center},
+  arrow/.style={-{Latex}, line width=0.9pt},
+  cloud/.style={box, fill=blue!20, draw=blue!70!black, minimum width=42mm, minimum height=32mm, inner sep=5pt},
+  vpc/.style={box, fill=cyan!25, draw=cyan!70!black, inner sep=4pt},
+  onprem/.style={box, fill=gray!18, draw=gray!70!black, minimum width=42mm, minimum height=32mm, inner sep=5pt},
+  k8s/.style={box, fill=green!20, draw=green!70!black, inner sep=4pt},
+  lb/.style={res, fill=orange!25, draw=orange!70!black},
+  gw/.style={res, fill=teal!25, draw=teal!70!black},
+  gpu/.style={res, fill=purple!25, draw=purple!70!black},
+  store/.style={res, fill=yellow!25, draw=yellow!70!black}
 ]
 
-% ================== Column anchors (properly spaced) ==================
-\node (col1) at (-4.5, 0) {};
+% ================== Column anchors (much wider spacing) ==================
+\node (col1) at (-65mm, 0) {};
 \node (col2) at (0, 0) {};
-\node (col3) at (4.5, 0) {};
+\node (col3) at (65mm, 0) {};
 
 % ================== (A) CLOUD-NATIVE ==================
-\node[cloud, label={[lbl, above=0.3cm]Cloud-Native}] (cloudA) at (col1) {};
-\node[vpc, minimum width=2.6cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]VPC}] (vpcA) at (cloudA.center) {};
-\node[lb, minimum width=1cm, minimum height=0.5cm, align=center] (apigwA) at ($(vpcA.north) + (0, -0.3cm)$) {API\\GW};
-\node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\footnotesize\bfseries, above=0.1cm]K8s}] (k8sA) at ($(vpcA.center) + (0, -0.2cm)$) {};
-\node[gpu, minimum width=0.7cm] (gpuA1) at ($(k8sA.south) + (-0.4cm, -0.25cm)$) {GPU};
-\node[gpu, minimum width=0.7cm] (gpuA2) at ($(k8sA.south) + (0.4cm, -0.25cm)$) {GPU};
-\node[store, minimum width=1cm, align=center] (objA) at ($(gpuA1.south) + (0.4cm, -0.3cm)$) {Object\\Store};
+\node[cloud, label={[lbl, above=5mm]Cloud-Native}] (cloudA) at (col1) {};
+\node[vpc, minimum width=36mm, minimum height=24mm, label={[font=\footnotesize\bfseries, above=3mm]VPC}] (vpcA) at (cloudA.center) {};
+\node[lb, minimum width=16mm, minimum height=8mm, align=center] (apigwA) at ($(vpcA.north) + (0, -5mm)$) {API\\GW};
+\node[k8s, minimum width=30mm, minimum height=10mm, label={[font=\footnotesize\bfseries, above=2mm]K8s}] (k8sA) at ($(vpcA.center) + (0, -3mm)$) {};
+\node[gpu, minimum width=12mm] (gpuA1) at ($(k8sA.south) + (-8mm, -5mm)$) {GPU};
+\node[gpu, minimum width=12mm] (gpuA2) at ($(k8sA.south) + (8mm, -5mm)$) {GPU};
+\node[store, minimum width=18mm, align=center] (objA) at ($(vpcA.south) + (0, -8mm)$) {Object\\Store};
 
 \draw[arrow, orange!80!black] (apigwA) -- (k8sA);
-\draw[arrow, violet!80!black] (k8sA) -- (objA);
+\draw[arrow, purple!80!black] (k8sA) -- (objA);
 
 % ================== (B) HYBRID ==================
-\node[onprem, label={[lbl, above=0.3cm]Hybrid}] (premB) at ($(col2) + (-1.2cm, 0)$) {};
-\node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\footnotesize\bfseries, above=0.1cm]On-Prem K8s}] (k8sBprem) at ($(premB.center) + (0, 0.1cm)$) {};
-\node[gpu, minimum width=0.7cm] (gpuB1) at ($(k8sBprem.south) + (-0.4cm, -0.25cm)$) {GPU};
-\node[gpu, minimum width=0.7cm] (gpuB2) at ($(k8sBprem.south) + (0.4cm, -0.25cm)$) {GPU};
-\node[store, minimum width=1cm, align=center] (vecB) at ($(gpuB1.south) + (0.4cm, -0.3cm)$) {Vector\\DB};
+\node[onprem, label={[lbl, above=5mm]Hybrid}] (premB) at ($(col2) + (-22mm, 0)$) {};
+\node[k8s, minimum width=30mm, minimum height=10mm, label={[font=\footnotesize\bfseries, above=2mm]On-Prem K8s}] (k8sBprem) at ($(premB.center) + (0, 2mm)$) {};
+\node[gpu, minimum width=12mm] (gpuB1) at ($(k8sBprem.south) + (-8mm, -5mm)$) {GPU};
+\node[gpu, minimum width=12mm] (gpuB2) at ($(k8sBprem.south) + (8mm, -5mm)$) {GPU};
+\node[store, minimum width=18mm, align=center] (vecB) at ($(premB.south) + (0, -8mm)$) {Vector\\DB};
 
-\node[cloud] (cloudB) at ($(col2) + (1.2cm, 0)$) {};
-\node[vpc, minimum width=2.6cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]Cloud VPC}] (vpcB) at (cloudB.center) {};
-\node[lb, minimum width=1cm, minimum height=0.5cm, align=center] (apigwB) at ($(vpcB.north) + (0, -0.3cm)$) {API\\GW};
-\node[k8s, minimum width=2.2cm, minimum height=0.7cm, label={[font=\footnotesize\bfseries, above=0.1cm]Cloud K8s}] (k8sBcloud) at ($(vpcB.center) + (0, -0.2cm)$) {};
-\node[gpu, minimum width=0.7cm] (gpuB3) at ($(k8sBcloud.south) + (-0.4cm, -0.25cm)$) {GPU};
-\node[gpu, minimum width=0.7cm] (gpuB4) at ($(k8sBcloud.south) + (0.4cm, -0.25cm)$) {GPU};
+\node[cloud] (cloudB) at ($(col2) + (22mm, 0)$) {};
+\node[vpc, minimum width=36mm, minimum height=24mm, label={[font=\footnotesize\bfseries, above=3mm]Cloud VPC}] (vpcB) at (cloudB.center) {};
+\node[lb, minimum width=16mm, minimum height=8mm, align=center] (apigwB) at ($(vpcB.north) + (0, -5mm)$) {API\\GW};
+\node[k8s, minimum width=30mm, minimum height=10mm, label={[font=\footnotesize\bfseries, above=2mm]Cloud K8s}] (k8sBcloud) at ($(vpcB.center) + (0, -3mm)$) {};
+\node[gpu, minimum width=12mm] (gpuB3) at ($(k8sBcloud.south) + (-8mm, -5mm)$) {GPU};
+\node[gpu, minimum width=12mm] (gpuB4) at ($(k8sBcloud.south) + (8mm, -5mm)$) {GPU};
 
-\node[gw, minimum width=0.9cm, minimum height=0.5cm] (vpnL) at ($(premB.east) + (0.3cm, 0)$) {VPN};
-\node[gw, minimum width=0.9cm, minimum height=0.5cm] (vpnR) at ($(cloudB.west) + (-0.3cm, 0)$) {VPN};
+\node[gw, minimum width=14mm, minimum height=8mm] (vpnL) at ($(premB.east) + (5mm, 0)$) {VPN};
+\node[gw, minimum width=14mm, minimum height=8mm] (vpnR) at ($(cloudB.west) + (-5mm, 0)$) {VPN};
 
 \draw[arrow, teal!80!black] (k8sBprem) -- (vpnL);
 \draw[arrow, teal!80!black] (vpnR) -- (k8sBcloud);
 \draw[arrow, gray!70, dashed, line width=1.2pt] (vpnL) -- node[font=\footnotesize, align=center, midway, above] {Direct\\Connect} (vpnR);
-\draw[arrow, violet!80!black] (k8sBprem) -- (vecB);
+\draw[arrow, purple!80!black] (k8sBprem) -- (vecB);
 \draw[arrow, orange!80!black] (apigwB) -- (k8sBcloud);
 
 % ================== (C) MULTI-CLUSTER ==================
-\node[cloud, label={[lbl, above=0.3cm]Multi-Cluster / Multi-Region}] (cloudC) at (col3) {};
-\node[lb, minimum width=1.2cm, minimum height=0.5cm, align=center] (glbC) at ($(cloudC.north) + (0, -0.2cm)$) {Global\\LB/DNS};
+\node[cloud, label={[lbl, above=5mm]Multi-Cluster / Multi-Region}] (cloudC) at (col3) {};
+\node[lb, minimum width=18mm, minimum height=8mm, align=center] (glbC) at ($(cloudC.north) + (0, -4mm)$) {Global\\LB/DNS};
 
-\node[vpc, minimum width=2.4cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]Region A}] (vpcC1) at ($(cloudC.center) + (-0.7cm, -0.1cm)$) {};
-\node[k8s, minimum width=2cm, minimum height=0.7cm, label={[font=\footnotesize\bfseries, above=0.1cm]K8s A}] (k8sC1) at ($(vpcC1.center) + (0, 0.1cm)$) {};
-\node[gpu, minimum width=0.7cm] (gpuC1) at ($(k8sC1.south) + (-0.35cm, -0.25cm)$) {GPU};
-\node[gpu, minimum width=0.7cm] (gpuC2) at ($(k8sC1.south) + (0.35cm, -0.25cm)$) {GPU};
+\node[vpc, minimum width=32mm, minimum height=24mm, label={[font=\footnotesize\bfseries, above=3mm]Region A}] (vpcC1) at ($(cloudC.center) + (-12mm, -2mm)$) {};
+\node[k8s, minimum width=26mm, minimum height=10mm, label={[font=\footnotesize\bfseries, above=2mm]K8s A}] (k8sC1) at ($(vpcC1.center) + (0, 2mm)$) {};
+\node[gpu, minimum width=12mm] (gpuC1) at ($(k8sC1.south) + (-8mm, -5mm)$) {GPU};
+\node[gpu, minimum width=12mm] (gpuC2) at ($(k8sC1.south) + (8mm, -5mm)$) {GPU};
 
-\node[vpc, minimum width=2.4cm, minimum height=1.6cm, label={[font=\footnotesize\bfseries, above=0.15cm]Region B}] (vpcC2) at ($(cloudC.center) + (0.7cm, -0.1cm)$) {};
-\node[k8s, minimum width=2cm, minimum height=0.7cm, label={[font=\footnotesize\bfseries, above=0.1cm]K8s B}] (k8sC2) at ($(vpcC2.center) + (0, 0.1cm)$) {};
-\node[gpu, minimum width=0.7cm] (gpuC3) at ($(k8sC2.south) + (-0.35cm, -0.25cm)$) {GPU};
-\node[gpu, minimum width=0.7cm] (gpuC4) at ($(k8sC2.south) + (0.35cm, -0.25cm)$) {GPU};
+\node[vpc, minimum width=32mm, minimum height=24mm, label={[font=\footnotesize\bfseries, above=3mm]Region B}] (vpcC2) at ($(cloudC.center) + (12mm, -2mm)$) {};
+\node[k8s, minimum width=26mm, minimum height=10mm, label={[font=\footnotesize\bfseries, above=2mm]K8s B}] (k8sC2) at ($(vpcC2.center) + (0, 2mm)$) {};
+\node[gpu, minimum width=12mm] (gpuC3) at ($(k8sC2.south) + (-8mm, -5mm)$) {GPU};
+\node[gpu, minimum width=12mm] (gpuC4) at ($(k8sC2.south) + (8mm, -5mm)$) {GPU};
 
-\draw[arrow, orange!80!black] (glbC) -- ($(glbC) + (-0.7cm, -0.5cm)$) -- (k8sC1);
-\draw[arrow, orange!80!black] (glbC) -- ($(glbC) + (0.7cm, -0.5cm)$) -- (k8sC2);
+\draw[arrow, orange!80!black] (glbC) -- ($(glbC) + (-12mm, -8mm)$) -- (k8sC1);
+\draw[arrow, orange!80!black] (glbC) -- ($(glbC) + (12mm, -8mm)$) -- (k8sC2);
 \draw[arrow, gray!70, dashed, line width=1.2pt] (k8sC1) -- node[font=\footnotesize, align=center, midway, above, sloped] {spillover/\\failover} (k8sC2);
 
 % ================== Clean legend (below all patterns) ==================
-\node[box, fill=white!95, draw=black!50, rounded corners=4pt, minimum width=14cm, minimum height=1.2cm, inner sep=4pt] (legend) at ($(cloudB.south) + (0, -1.8cm)$) {};
+\node[box, fill=white!95, draw=black!50, rounded corners=4pt, minimum width=0.95\linewidth, minimum height=18mm, inner sep=6pt] (legend) at ($(cloudB.south) + (0, -28mm)$) {};
 
-\node[cloud, minimum width=8mm, minimum height=5mm] (L1) at ($(legend.west) + (0.8cm, 0.25cm)$) {};
-\node[font=\footnotesize, right=0.15cm of L1.east, anchor=west] {Cloud/Region};
+\node[cloud, minimum width=12mm, minimum height=8mm] (L1) at ($(legend.west) + (12mm, 5mm)$) {};
+\node[font=\footnotesize, right=3mm of L1.east, anchor=west] {Cloud/Region};
 
-\node[vpc, minimum width=8mm, minimum height=5mm] (L2) at ($(L1.east) + (1cm, 0)$) {};
-\node[font=\footnotesize, right=0.15cm of L2.east, anchor=west] {VPC};
+\node[vpc, minimum width=12mm, minimum height=8mm] (L2) at ($(L1.east) + (18mm, 0)$) {};
+\node[font=\footnotesize, right=3mm of L2.east, anchor=west] {VPC};
 
-\node[k8s, minimum width=8mm, minimum height=5mm] (L3) at ($(L2.east) + (1cm, 0)$) {};
-\node[font=\footnotesize, right=0.15cm of L3.east, anchor=west] {K8s};
+\node[k8s, minimum width=12mm, minimum height=8mm] (L3) at ($(L2.east) + (18mm, 0)$) {};
+\node[font=\footnotesize, right=3mm of L3.east, anchor=west] {K8s};
 
-\node[gpu, minimum width=8mm, minimum height=5mm] (L4) at ($(L3.east) + (1cm, 0)$) {};
-\node[font=\footnotesize, right=0.15cm of L4.east, anchor=west] {GPU Node};
+\node[gpu, minimum width=12mm, minimum height=8mm] (L4) at ($(L3.east) + (18mm, 0)$) {};
+\node[font=\footnotesize, right=3mm of L4.east, anchor=west] {GPU Node};
 
-\node[lb, minimum width=8mm, minimum height=5mm] (L5) at ($(L1) + (0, -0.5cm)$) {};
-\node[font=\footnotesize, right=0.15cm of L5.east, anchor=west] {API GW/LB};
+\node[lb, minimum width=12mm, minimum height=8mm] (L5) at ($(L1) + (0, -8mm)$) {};
+\node[font=\footnotesize, right=3mm of L5.east, anchor=west] {API GW/LB};
 
-\node[gw, minimum width=8mm, minimum height=5mm] (L6) at ($(L2) + (0, -0.5cm)$) {};
-\node[font=\footnotesize, right=0.15cm of L6.east, anchor=west] {VPN/Direct Connect};
+\node[gw, minimum width=12mm, minimum height=8mm] (L6) at ($(L2) + (0, -8mm)$) {};
+\node[font=\footnotesize, right=3mm of L6.east, anchor=west] {VPN/Direct Connect};
 
-\node[store, minimum width=8mm, minimum height=5mm] (L7) at ($(L3) + (0, -0.5cm)$) {};
-\node[font=\footnotesize, right=0.15cm of L7.east, anchor=west] {Object/Vector Store};
+\node[store, minimum width=12mm, minimum height=8mm] (L7) at ($(L3) + (0, -8mm)$) {};
+\node[font=\footnotesize, right=3mm of L7.east, anchor=west] {Object/Vector Store};
 
 \end{tikzpicture}
 \end{llmfigbox}
