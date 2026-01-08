@@ -120,11 +120,16 @@
 % ==========================================================
 % Figure fitting helpers (SNmono-safe)
 % ==========================================================
-\newcommand{\LLMFigMaxWidth}{\linewidth}
-\newcommand{\LLMFigMaxHeight}{0.82\textheight}
+% Maximum figure dimensions: allows figures to be 15% wider than linewidth
+% and up to 90% of page height. These values can be adjusted per-figure
+% if needed by redefining \LLMFigMaxWidth or \LLMFigMaxHeight locally.
+\newcommand{\LLMFigMaxWidth}{1.15\linewidth}
+\newcommand{\LLMFigMaxHeight}{0.9\textheight}
 
 % A wrapper that scales DOWN to fit the Springer textblock,
 % and prevents overly-tall diagrams from spilling off the page.
+% Note: adjustbox scales content proportionally, so increasing TikZ sizes
+% will be visible up to these maximum constraints.
 \newenvironment{llmfigbox}{%
   \begin{adjustbox}{max width=\LLMFigMaxWidth, max totalheight=\LLMFigMaxHeight, center}%
 }{%
