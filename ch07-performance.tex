@@ -92,7 +92,7 @@ The following sections explore concrete strategies for optimization across three
 \begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
-    width=0.9\linewidth, height=5.0cm,
+    width=14cm, height=5.0cm,
     ybar=0.25,
     bar width=10pt,
     symbolic x coords={p50,p95,p99},
@@ -297,7 +297,7 @@ Pairs well with long contexts and high concurrency; test for degradation on long
 \begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
-  width=0.92\linewidth, height=5.6cm,
+  width=14cm, height=5.6cm,
   ybar=0.3, bar width=12pt,
   symbolic x coords={FP16,INT8,FP8,4-bit},
   xtick=data,
@@ -453,7 +453,7 @@ That said, batching has trade-offs: it increases the latency for each individual
 \begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
-  width=0.92\linewidth, height=5.2cm,
+  width=14cm, height=5.2cm,
   xlabel={Batch size $B$},
   ylabel={Throughput (normalized)},
   xmin=1, xmax=32,
@@ -669,7 +669,7 @@ In summary, rigorous performance testing gives confidence that optimizations are
 \begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
-  width=0.92\linewidth, height=5.6cm,
+  width=14cm, height=5.6cm,
   xlabel={Latency (ms)},
   ylabel={CDF},
   xmin=0, xmax=4000,
@@ -716,7 +716,7 @@ x   y
 \begin{llmfigbox}
 \begin{tikzpicture}
 \begin{axis}[
-  width=0.92\linewidth, height=5.6cm,
+  width=14cm, height=5.6cm,
   ybar=0.35, bar width=12pt,
   symbolic x coords={PyTorch,TGI,vLLM,TensorRT-LLM},
   xtick=data,
