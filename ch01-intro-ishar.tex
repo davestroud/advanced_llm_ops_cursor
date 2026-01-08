@@ -1097,7 +1097,6 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \begin{llmfigbox}
 \begin{tikzpicture}[
   font=\small,
-  node distance=8mm and 4mm,
   % Color styles for different components
   source/.style={ellipse, fill=blue!20, draw=blue!60!black, line width=0.7pt, 
                  minimum width=20mm, minimum height=10mm, align=center, inner sep=3pt},
@@ -1116,47 +1115,48 @@ At a high level, \ishtar{} is composed of modular components working in concert,
   response/.style={ellipse, fill=gray!20, draw=gray!60!black, line width=0.7pt,
                   minimum width=22mm, minimum height=10mm, align=center, inner sep=3pt},
   obs/.style={rectangle, fill=yellow!8, draw=black!25, rounded corners=3pt, dashed,
-              line width=0.6pt, inner sep=3pt, font=\footnotesize},
+              line width=0.6pt, inner sep=2pt, font=\footnotesize},
   arrow/.style={-{Stealth[length=2.2mm,width=1.8mm]}, line width=0.7pt, color=black!75},
   arrowthin/.style={-{Stealth[length=1.8mm,width=1.4mm]}, line width=0.5pt, color=black!60}
 ]
 
+% Use explicit coordinates - compact layout centered around origin
 % ========== LEFT COLUMN: Data Sources & Ingestion ==========
-% Data sources (stacked vertically, left side) - more compact
-\node[source] (news) at (-35mm, 18mm) {News wires\\\& reports};
-\node[source] (ngo) at (-35mm, 0mm) {NGO\\bulletins};
-\node[source] (social) at (-35mm, -18mm) {Social media\\(vetted)};
+% Data sources (stacked vertically, left side)
+\node[source] (news) at (-25mm, 12mm) {News wires\\\& reports};
+\node[source] (ngo) at (-25mm, 0mm) {NGO\\bulletins};
+\node[source] (social) at (-25mm, -12mm) {Social media\\(vetted)};
 
 % Ingestion agents (middle-left)
-\node[ingest] (ingest1) at (-15mm, 18mm) {Ingestion\\Agent 1};
-\node[ingest] (ingest2) at (-15mm, 0mm) {Ingestion\\Agent 2};
-\node[ingest] (ingest3) at (-15mm, -18mm) {Ingestion\\Agent 3};
+\node[ingest] (ingest1) at (-8mm, 12mm) {Ingestion\\Agent 1};
+\node[ingest] (ingest2) at (-8mm, 0mm) {Ingestion\\Agent 2};
+\node[ingest] (ingest3) at (-8mm, -12mm) {Ingestion\\Agent 3};
 
 % Vector database (center-left, below)
-\node[vector] (vectordb) at (-15mm, -35mm) {Vector\\Database};
+\node[vector] (vectordb) at (-8mm, -26mm) {Vector\\Database};
 
 % ========== CENTER COLUMN: Query, RAG & Orchestration ==========
 % Query input (top center)
-\node[source] (query) at (5mm, 22mm) {Journalist\\Query};
+\node[source] (query) at (12mm, 16mm) {Journalist\\Query};
 
 % RAG retrieval (center)
-\node[rag] (retrieval) at (5mm, 0mm) {RAG\\Retrieval};
+\node[rag] (retrieval) at (12mm, 0mm) {RAG\\Retrieval};
 
 % Multi-agent orchestration (below RAG)
-\node[orchestrator] (orchestrator) at (5mm, -22mm) {Orchestrator};
+\node[orchestrator] (orchestrator) at (12mm, -16mm) {Orchestrator};
 
 % Agents (below orchestrator, compact row)
-\node[agent] (summarizer) at (-8mm, -38mm) {Summarizer};
-\node[agent] (factchecker) at (5mm, -38mm) {Fact-Checker};
-\node[agent] (refiner) at (18mm, -38mm) {Refiner};
+\node[agent] (summarizer) at (4mm, -28mm) {Summarizer};
+\node[agent] (factchecker) at (12mm, -28mm) {Fact-Checker};
+\node[agent] (refiner) at (20mm, -28mm) {Refiner};
 
 % ========== RIGHT COLUMN: GPU & Response ==========
 % GPU inference cluster
-\node[gpu] (gpu1) at (35mm, -12mm) {GPU\\Node 1};
-\node[gpu] (gpu2) at (35mm, -32mm) {GPU\\Node 2};
+\node[gpu] (gpu1) at (38mm, -8mm) {GPU\\Node 1};
+\node[gpu] (gpu2) at (38mm, -24mm) {GPU\\Node 2};
 
 % Response (right of GPU)
-\node[response] (response) at (55mm, -22mm) {Response\\+ Citations};
+\node[response] (response) at (55mm, -16mm) {Response\\+ Citations};
 
 % ========== ARROWS: Data Flow ==========
 % Sources to ingestion (horizontal)
@@ -1193,21 +1193,21 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \draw[arrowthin] (gpu2.east) -- (response.west);
 
 % ========== OBSERVABILITY LAYER ==========
-% Top observability band - positioned after all nodes are defined
+% Top observability band - positioned after all nodes are defined, tighter spacing
 \node[obs, fit=(news) (social) (ingest1) (ingest3) (vectordb) (query) (retrieval) (orchestrator) (summarizer) (refiner) (gpu1) (gpu2) (response),
-      inner xsep=3mm, inner ysep=2mm, yshift=25mm,
+      inner xsep=2mm, inner ysep=1.5mm, yshift=18mm,
       label={[anchor=center, font=\small\bfseries, text=black!80]center:Observability \& Telemetry}] (obstop) {};
 
-% Bottom observability band
+% Bottom observability band - tighter spacing
 \node[obs, fit=(news) (social) (ingest1) (ingest3) (vectordb) (query) (retrieval) (orchestrator) (summarizer) (refiner) (gpu1) (gpu2) (response),
-      inner xsep=3mm, inner ysep=2mm, yshift=-35mm,
+      inner xsep=2mm, inner ysep=1.5mm, yshift=-26mm,
       label={[anchor=center, font=\small\bfseries, text=black!80]center:Traces, Metrics, Logs}] (obsbot) {};
 
 % Observability connections (subtle dotted lines)
-\draw[arrowthin, dotted, color=black!35] ([xshift=-5mm]obstop.south) -- ([xshift=-5mm]vectordb.north);
+\draw[arrowthin, dotted, color=black!35] ([xshift=-2mm]obstop.south) -- ([xshift=-2mm]vectordb.north);
 \draw[arrowthin, dotted, color=black!35] (obstop.south) -- (retrieval.north);
-\draw[arrowthin, dotted, color=black!35] ([xshift=5mm]obstop.south) -- ([xshift=5mm]orchestrator.north);
-\draw[arrowthin, dotted, color=black!35] ([xshift=-5mm]obsbot.north) -- ([xshift=-5mm]orchestrator.south);
+\draw[arrowthin, dotted, color=black!35] ([xshift=2mm]obstop.south) -- ([xshift=2mm]orchestrator.north);
+\draw[arrowthin, dotted, color=black!35] ([xshift=-2mm]obsbot.north) -- ([xshift=-2mm]orchestrator.south);
 \draw[arrowthin, dotted, color=black!35] (obsbot.north) -- (gpu1.south);
 
 \end{tikzpicture}
