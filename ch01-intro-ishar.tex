@@ -1013,7 +1013,7 @@ Journalists in conflict zones face an overwhelming flow of information and life-
 The goal is to provide fact-checked, context-aware summaries and answers. For example, a journalist under deadline might ask: \emph{``What is the latest on ceasefire negotiations, and how credible are reports of violations in the northern region?''} \ishtar{} retrieves relevant evidence (official statements, observer reports, incident logs) and generates a structured response with citations. Because misinformation in conflict settings can have severe consequences, \ishtar{} emphasizes safeguards against hallucinations, bias, and inflammatory outputs.
 
 % ----------------------------------------------------------------------
-% FIGURE: Call-out band (redesigned with larger boxes and better spacing)
+% FIGURE: Call-out band (redesigned with stacked layout and larger boxes)
 % Preamble requirements (once): \usepackage{tikz} and
 % \usetikzlibrary{arrows.meta,positioning,fit,calc}
 % ----------------------------------------------------------------------
@@ -1022,7 +1022,7 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
 \begin{llmfigbox}
 \begin{tikzpicture}[
   font=\small,
-  node distance=6mm and 4mm,
+  node distance=8mm and 6mm,
   cIngest/.style={fill=blue!18,   draw=blue!55!black},
   cRAG/.style   ={fill=teal!18,   draw=teal!55!black},
   cAgent/.style ={fill=green!16,  draw=green!55!black},
@@ -1031,34 +1031,38 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
   cTest/.style  ={fill=red!14,    draw=red!60!black},
   cEth/.style   ={fill=orange!18, draw=orange!65!black},
   band/.style   ={draw=black!20, rounded corners=5pt, fill=black!2},
-  seg/.style    ={rounded corners=3pt, minimum width=28mm, minimum height=12mm,
-                  inner sep=4pt, align=center, line width=0.6pt, font=\small},
+  seg/.style    ={rounded corners=3pt, minimum width=38mm, minimum height=16mm,
+                  inner sep=5pt, align=center, line width=0.6pt, font=\small},
   arrow/.style  ={-{Stealth[length=2.2mm,width=1.8mm]}, line width=0.5pt},
   note/.style   ={font=\small, align=center, text=black!70},
   e2e/.style    ={draw=black!40, rounded corners=3pt, fill=black!3, 
                   inner sep=4pt, align=left, font=\small}
 ]
 
-% Band container - larger to accommodate bigger boxes
-\node[band, minimum width=0.95\linewidth, minimum height=35mm] (bandbox) {};
+% Band container - larger to accommodate stacked boxes
+\node[band, minimum width=0.95\linewidth, minimum height=55mm] (bandbox) {};
 
-% Segment boxes positioned with proper spacing - start from left edge
-\node[seg,cIngest, anchor=west] (ing) at ([xshift=6mm]bandbox.west) {Ingestion\\\scriptsize (feeds, ETL)};
+% Top row: 4 boxes (Ingestion, Retrieval, Agents, Serving)
+\node[seg,cIngest] (ing) at ([xshift=-60mm,yshift=8mm]bandbox.center) {Ingestion\\\scriptsize (feeds, ETL)};
 \node[seg,cRAG, right=of ing] (rag) {Retrieval\\\scriptsize (RAG)};
 \node[seg,cAgent, right=of rag] (agent) {Agents\\\scriptsize (orchestration)};
 \node[seg,cServe, right=of agent] (serve) {Serving\\\scriptsize (GPU/TPU)};
-\node[seg,cObs, right=of serve] (obs) {Observability\\\scriptsize (traces, SLOs)};
+
+% Bottom row: 3 boxes (Observability, Testing, Ethics) - centered
+\node[seg,cObs] (obs) at ([xshift=-40mm,yshift=-12mm]bandbox.center) {Observability\\\scriptsize (traces, SLOs)};
 \node[seg,cTest, right=of obs] (test) {Testing\\\scriptsize (eval/robust)};
 \node[seg,cEth, right=of test] (eth) {Ethics\\\scriptsize (governance)};
 
-% Chapter labels above segments with proper spacing
-\node[note, above=4mm of ing] (ingC) {Ch.~\ref{ch:infra}, \ref{ch:performance}};
-\node[note, above=4mm of rag] (ragC) {Ch.~\ref{ch:rag}};
-\node[note, above=4mm of agent] (agtC) {Ch.~\ref{ch:multiagent}};
-\node[note, above=4mm of serve] (srvC) {Ch.~\ref{ch:infra}, \ref{ch:performance}};
-\node[note, above=4mm of obs] (obsC) {Ch.~\ref{ch:monitoring}};
-\node[note, above=4mm of test] (tstC) {Ch.~\ref{ch:testing}};
-\node[note, above=4mm of eth] (ethC) {Ch.~\ref{ch:ethics}};
+% Chapter labels above top row segments
+\node[note, above=5mm of ing] (ingC) {Ch.~\ref{ch:infra}, \ref{ch:performance}};
+\node[note, above=5mm of rag] (ragC) {Ch.~\ref{ch:rag}};
+\node[note, above=5mm of agent] (agtC) {Ch.~\ref{ch:multiagent}};
+\node[note, above=5mm of serve] (srvC) {Ch.~\ref{ch:infra}, \ref{ch:performance}};
+
+% Chapter labels above bottom row segments
+\node[note, above=5mm of obs] (obsC) {Ch.~\ref{ch:monitoring}};
+\node[note, above=5mm of test] (tstC) {Ch.~\ref{ch:testing}};
+\node[note, above=5mm of eth] (ethC) {Ch.~\ref{ch:ethics}};
 
 % Arrows from segments to chapter labels
 \foreach \a/\b in {ing/ingC, rag/ragC, agent/agtC, serve/srvC, obs/obsC, test/tstC, eth/ethC}{
