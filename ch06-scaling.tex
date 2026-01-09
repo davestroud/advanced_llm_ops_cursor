@@ -895,21 +895,21 @@ Fig.~\ref{fig:ch06_autoscale_event_based} shows an event-driven autoscaling work
 };
 \addlegendentry{Metrics-based (reactive, reference)}
 
-% Horizontal line for single-replica capacity - more visible
+% Horizontal line for single-replica capacity - more visible, moved further right
 \addplot+[domain=0:100, samples=2, gray!70!black, dashdotted, ultra thick, line width=1.2pt] {430};
-\node[gray!70!black, font=\normalsize] at (axis cs:6,470) {$\gamma\,\hat{C}$ per replica};
+\node[gray!70!black, font=\normalsize] at (axis cs:12,470) {$\gamma\,\hat{C}$ per replica};
 
-% Event trigger annotation - larger font, better visibility
-\node[anchor=south west, align=left, font=\normalsize\bfseries, text=green!80!black] at (axis cs:18,640) {\textbf{Event trigger}\\(calendar/schedule)};
-\draw[->,>=stealth,ultra thick, green!80!black, line width=1.2pt] (axis cs:18,620) -- (axis cs:22,600);
+% Event trigger annotation - moved further left and up to avoid overlap
+\node[anchor=south west, align=left, font=\normalsize\bfseries, text=green!80!black] at (axis cs:2,750) {\textbf{Event trigger}\\(calendar/schedule)};
+\draw[->,>=stealth,ultra thick, green!80!black, line width=1.2pt] (axis cs:2,730) -- (axis cs:20,600);
 
-% Pre-warm annotation - larger font, better visibility
-\node[anchor=east, align=right, font=\normalsize\bfseries, text=green!80!black] at (axis cs:23,820) {Pre-warm\\ahead of spike};
-\draw[->,>=stealth,ultra thick, green!80!black, line width=1.2pt] (axis cs:23,800) -- (axis cs:25,860);
+% Pre-warm annotation - moved further right and up to avoid overlap
+\node[anchor=east, align=right, font=\normalsize\bfseries, text=green!80!black] at (axis cs:28,950) {Pre-warm\\ahead of spike};
+\draw[->,>=stealth,ultra thick, green!80!black, line width=1.2pt] (axis cs:28,930) -- (axis cs:25,860);
 
-% Spike annotation - larger font, better visibility
-\node[anchor=west, font=\normalsize\bfseries, text=blue!80!black] at (axis cs:31,680) {spike};
-\draw[->,>=stealth,ultra thick, blue!80!black, line width=1.2pt] (axis cs:28,650) -- (axis cs:32,600);
+% Spike annotation - moved further right to avoid overlap
+\node[anchor=west, font=\normalsize\bfseries, text=blue!80!black] at (axis cs:35,750) {spike};
+\draw[->,>=stealth,ultra thick, blue!80!black, line width=1.2pt] (axis cs:33,720) -- (axis cs:32,600);
 
 \end{axis}
 \end{tikzpicture}
