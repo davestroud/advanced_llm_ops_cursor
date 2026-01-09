@@ -351,12 +351,11 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
   every node/.style={font=\small},
   box/.style={
     rectangle,
-    draw=black!60,
-    line width=0.8pt,
-    minimum width=2.8cm,
-    minimum height=1.2cm,
+    draw=none,
+    minimum width=2.4cm,
+    minimum height=1cm,
     align=center,
-    inner sep=6pt,
+    inner sep=4pt,
     rounded corners=3pt
   },
   arrow/.style={->, >=Stealth, line width=0.8pt, draw=black!70},
@@ -365,19 +364,19 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
     draw=none,
     fill=none,
     align=left,
-    text width=3.8cm,
-    inner sep=3pt,
+    text width=3.2cm,
+    inner sep=2pt,
     font=\footnotesize
   }
 ]
 
 % --- Vertical scaling (left column) ---
 \node[box, fill=gray!12] (v1) at (0,3) {\textbf{A100-40GB}\\\small GPU Node};
-\node[box, fill=gray!20, below=10mm of v1] (v2) {\textbf{A100-80GB}\\\small GPU Node};
-\node[box, fill=gray!28, below=10mm of v2] (v3) {\textbf{H100-80GB}\\\small GPU Node};
+\node[box, fill=gray!20, below=8mm of v1] (v2) {\textbf{A100-80GB}\\\small GPU Node};
+\node[box, fill=gray!28, below=8mm of v2] (v3) {\textbf{H100-80GB}\\\small GPU Node};
 
-\node[labelbox, right=12mm of v2] (vlabel) {
-  \textbf{Vertical Scaling}\\[2pt]
+\node[labelbox, right=10mm of v2] (vlabel) {
+  \textbf{Vertical Scaling}\\[1pt]
   \small Upgrading a single node with more powerful GPUs and memory.
 };
 
@@ -387,11 +386,11 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
 
 % --- Horizontal scaling (top right) ---
 \node[box, fill=gray!12] (h1) at (7,3) {\small GPU Node};
-\node[box, fill=gray!18, right=10mm of h1] (h2) {\small GPU Node};
-\node[box, fill=gray!24, right=10mm of h2] (h3) {\small GPU Node};
+\node[box, fill=gray!18, right=8mm of h1] (h2) {\small GPU Node};
+\node[box, fill=gray!24, right=8mm of h2] (h3) {\small GPU Node};
 
-\node[labelbox, below=8mm of h2] (hlabel) {
-  \textbf{Horizontal Scaling}\\[2pt]
+\node[labelbox, below=6mm of h2] (hlabel) {
+  \textbf{Horizontal Scaling}\\[1pt]
   \small Adding more nodes and distributing requests.
 };
 
@@ -402,11 +401,11 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
 
 % --- Hybrid scaling (bottom right) ---
 \node[box, fill=gray!18] (hy1) at (7,0) {\small\textbf{H100}\\\small Node};
-\node[box, fill=gray!12, right=10mm of hy1] (hy2) {\small\textbf{A100}\\\small Node};
-\node[box, fill=gray!8, right=10mm of hy2] (hy3) {\small\textbf{CPU}\\\small Pool};
+\node[box, fill=gray!12, right=8mm of hy1] (hy2) {\small\textbf{A100}\\\small Node};
+\node[box, fill=gray!8, right=8mm of hy2] (hy3) {\small\textbf{CPU}\\\small Pool};
 
-\node[labelbox, below=8mm of hy2] (hylabel) {
-  \textbf{Hybrid Scaling}\\[2pt]
+\node[labelbox, below=6mm of hy2] (hylabel) {
+  \textbf{Hybrid Scaling}\\[1pt]
   \small Mixing high-end GPUs with cheaper GPUs/CPUs for different tiers.
 };
 
