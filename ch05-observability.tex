@@ -337,11 +337,11 @@ High-fidelity traces require stable correlation across boundaries. Every request
 };
 
 % --- Arrows from TRACE to spans ---
-\draw[arrow] (trace.east) -- ++(8mm,0) |- (llm.west);
-\draw[arrow] (trace.east) -- ++(8mm,0) |- (retr.west);
-\draw[arrow] (trace.east) -- ++(8mm,0) |- (tool.west);
-\draw[arrow] (trace.east) -- ++(8mm,0) |- (parser.west);
-\draw[arrow] (trace.east) -- ++(8mm,0) |- (guard.west);
+\draw[arrow] (trace.east) -- ++(10mm,0) |- (llm.west);
+\draw[arrow] (trace.east) -- ++(10mm,0) |- (retr.west);
+\draw[arrow] (trace.east) -- ++(10mm,0) |- (tool.west);
+\draw[arrow] (trace.east) -- ++(10mm,0) |- (parser.west);
+\draw[arrow] (trace.east) -- ++(10mm,0) |- (guard.west);
 
 % --- Legend / Notes panel ---
 \node[rectangle, rounded corners=3pt, draw=panelgray, fill=panelgray!5,
