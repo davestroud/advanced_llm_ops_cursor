@@ -74,9 +74,21 @@
 % Standard callout boxes
 % ----------------------------
 \newcommand{\BestPracticeBox}[1]{%
-  \par\addvspace{12pt}%
-  \begin{svgraybox}\textbf{Best Practice.} #1\end{svgraybox}%
-  \par\addvspace{12pt}%
+  \begin{tcolorbox}[
+    title={\textbf{Best Practice}},
+    colback=green!5,
+    colframe=green!40!black,
+    colbacktitle=green!20,
+    coltitle=black,
+    fonttitle=\bfseries,
+    boxrule=0.7pt,
+    arc=4pt,
+    left=5mm, right=5mm, top=4mm, bottom=4mm,
+    before skip=6pt,
+    after skip=6pt
+  ]
+  #1
+  \end{tcolorbox}%
 }
 \newcommand{\PitfallBox}[1]{%
   \par\addvspace{12pt}%
