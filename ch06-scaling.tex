@@ -802,8 +802,6 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 \medskip
 \noindent\textbf{Summary.} Autoscaling an LLM deployment is a delicate balance: react quickly enough to maintain SLOs, avoid oscillations and unnecessary cost, and anticipate cold starts. Combining reactive metrics with proactive event signals is state of the art. In our \ishtar{} deployment, the hybrid approach (load forecasts + calendar events) enabled rapid yet stable scale-outs (6 to 28 GPU replicas in under 2 minutes) without breaching latency targets.
 
-Fig.~\ref{fig:ch06_autoscale_target_tracking} illustrates a token-aware target-tracking loop for autoscaling inference replicas under bursty demand.
-
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
@@ -856,8 +854,6 @@ Fig.~\ref{fig:ch06_autoscale_target_tracking} illustrates a token-aware target-t
 \label{fig:ch06_autoscale_target_tracking}
 \end{figure}
 
-Fig.~\ref{fig:ch06_autoscale_event_based} shows an event-driven autoscaling workflow that uses external triggers to pre-warm capacity ahead of traffic spikes.
-
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
@@ -899,16 +895,16 @@ Fig.~\ref{fig:ch06_autoscale_event_based} shows an event-driven autoscaling work
 \addplot+[domain=0:100, samples=2, gray!70!black, dashdotted, ultra thick, line width=1.2pt] {430};
 \node[gray!70!black, font=\normalsize] at (axis cs:12,470) {$\gamma\,\hat{C}$ per replica};
 
-% Event trigger annotation - moved further left and up to avoid overlap
-\node[anchor=south west, align=left, font=\normalsize\bfseries, text=green!80!black] at (axis cs:2,750) {\textbf{Event trigger}\\(calendar/schedule)};
+% Event trigger annotation - moved further left and up to avoid overlap, less bold
+\node[anchor=south west, align=left, font=\normalsize, text=green!80!black] at (axis cs:2,750) {Event trigger\\(calendar/schedule)};
 \draw[->,>=stealth,ultra thick, green!80!black, line width=1.2pt] (axis cs:2,730) -- (axis cs:20,600);
 
-% Pre-warm annotation - moved further right and up to avoid overlap
-\node[anchor=east, align=right, font=\normalsize\bfseries, text=green!80!black] at (axis cs:28,950) {Pre-warm\\ahead of spike};
+% Pre-warm annotation - moved further right and up to avoid overlap, less bold
+\node[anchor=east, align=right, font=\normalsize, text=green!80!black] at (axis cs:28,950) {Pre-warm\\ahead of spike};
 \draw[->,>=stealth,ultra thick, green!80!black, line width=1.2pt] (axis cs:28,930) -- (axis cs:25,860);
 
-% Spike annotation - moved further right to avoid overlap
-\node[anchor=west, font=\normalsize\bfseries, text=blue!80!black] at (axis cs:35,750) {spike};
+% Spike annotation - moved further right to avoid overlap, less bold
+\node[anchor=west, font=\normalsize, text=blue!80!black] at (axis cs:35,750) {spike};
 \draw[->,>=stealth,ultra thick, blue!80!black, line width=1.2pt] (axis cs:33,720) -- (axis cs:32,600);
 
 \end{axis}

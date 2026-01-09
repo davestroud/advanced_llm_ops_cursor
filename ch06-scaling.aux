@@ -105,10 +105,10 @@
 \newlabel{fig:ch06_autoscale_target_tracking}{{6.3}{192}{Metrics-based autoscaling reduces over-provisioning while maintaining SLOs. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma $ by adjusting replicas $N(t)$. This reactive approach works well for steady traffic but may lag behind sudden spikes, making it suitable for predictable workloads with moderate variability}{figure.6.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6.7}Caching for Scale}{192}{section.6.7}\protected@file@percent }
 \newlabel{sec:caching}{{6.7}{192}{Caching for Scale}{section.6.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.1}Response Caching}{192}{subsection.6.7.1}\protected@file@percent }
+\newlabel{sec:scaling-response-caching}{{6.7.1}{192}{Response Caching}{subsection.6.7.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Event-based autoscaling eliminates cold-start penalties for predictable traffic patterns. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph  {before} demand spikes arrive, leveraging calendar events or scheduled triggers. This approach pays off when cold-start latency exceeds 30 seconds or when traffic spikes are predictable (daily peaks, product launches, news events).}}{193}{figure.6.4}\protected@file@percent }
 \newlabel{fig:ch06_autoscale_event_based}{{6.4}{193}{Event-based autoscaling eliminates cold-start penalties for predictable traffic patterns. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph {before} demand spikes arrive, leveraging calendar events or scheduled triggers. This approach pays off when cold-start latency exceeds 30 seconds or when traffic spikes are predictable (daily peaks, product launches, news events)}{figure.6.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.1}Response Caching}{193}{subsection.6.7.1}\protected@file@percent }
-\newlabel{sec:scaling-response-caching}{{6.7.1}{193}{Response Caching}{subsection.6.7.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.1}Key considerations}{193}{subsubsection.6.7.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.2}Optimizations}{193}{subsubsection.6.7.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.3}Notes and context}{194}{subsubsection.6.7.1.3}\protected@file@percent }
@@ -116,17 +116,17 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.7.2}Embedding Caching}{194}{subsection.6.7.2}\protected@file@percent }
 \newlabel{sec:scaling-embedding-caching}{{6.7.2}{194}{Embedding Caching}{subsection.6.7.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.1}Key considerations}{194}{subsubsection.6.7.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.2}Optimizations}{194}{subsubsection.6.7.2.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Caching strategies reduce latency and cost for repeated content. \textbf  {(a)} Response caching short-circuits identical requests, eliminating inference cost; keys include query, model version, and decoding parameters. \textbf  {(b)} Embedding caching avoids redundant encoder passes for repeated chunks, reducing RAG latency; keys hash content + embedding model identity. Both strategies are essential for cost-effective RAG systems with recurring queries or document reuse.}}{195}{figure.6.5}\protected@file@percent }
 \newlabel{fig:ch06_caching_flow}{{6.5}{195}{Caching strategies reduce latency and cost for repeated content. \textbf {(a)} Response caching short-circuits identical requests, eliminating inference cost; keys include query, model version, and decoding parameters. \textbf {(b)} Embedding caching avoids redundant encoder passes for repeated chunks, reducing RAG latency; keys hash content + embedding model identity. Both strategies are essential for cost-effective RAG systems with recurring queries or document reuse}{figure.6.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.2}Optimizations}{195}{subsubsection.6.7.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.3}Notes and context}{195}{subsubsection.6.7.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.4}Case in \ishtar  {}}{195}{subsubsection.6.7.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.8}Cost-Aware Scaling}{196}{section.6.8}\protected@file@percent }
-\newlabel{sec:cost-aware-scaling}{{6.8}{196}{Cost-Aware Scaling}{section.6.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.8}Cost-Aware Scaling}{195}{section.6.8}\protected@file@percent }
+\newlabel{sec:cost-aware-scaling}{{6.8}{195}{Cost-Aware Scaling}{section.6.8}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.1}Mix instance types}{196}{subsubsection.6.8.0.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.2}Spot/preemptible capacity}{196}{subsubsection.6.8.0.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.3}Autoscale down aggressively}{196}{subsubsection.6.8.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.4}Batching for cost}{197}{subsubsection.6.8.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.4}Batching for cost}{196}{subsubsection.6.8.0.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.5}Multi-model serving and routing}{197}{subsubsection.6.8.0.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.6}Throughput-oriented R\&D}{197}{subsubsection.6.8.0.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.7}Case in \ishtar  {}}{197}{subsubsection.6.8.0.7}\protected@file@percent }
@@ -136,38 +136,38 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.1}Index sharding}{198}{subsubsection.6.9.0.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.2}Approximate nearest neighbor (ANN) search}{198}{subsubsection.6.9.0.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.3}Hot tiers and in-memory caches}{198}{subsubsection.6.9.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.4}Overlap retrieval with generation}{199}{subsubsection.6.9.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.4}Overlap retrieval with generation}{198}{subsubsection.6.9.0.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.5}Recent directions}{199}{subsubsection.6.9.0.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.6}Case in \ishtar  {}}{199}{subsubsection.6.9.0.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.10}Geographic Scaling}{199}{section.6.10}\protected@file@percent }
+\newlabel{sec:geo-scaling}{{6.10}{199}{Geographic Scaling}{section.6.10}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces Two-tier RAG scaling optimizes latency and cost for variable query patterns. A router first probes a \emph  {hot} in-memory/GPU tier for low-latency access; on miss, it falls back to a \emph  {distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator. This architecture balances speed (hot tier) with capacity (distributed tier) for production RAG systems.}}{200}{figure.6.6}\protected@file@percent }
 \newlabel{fig:ch06_rag_two_tier}{{6.6}{200}{Two-tier RAG scaling optimizes latency and cost for variable query patterns. A router first probes a \emph {hot} in-memory/GPU tier for low-latency access; on miss, it falls back to a \emph {distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator. This architecture balances speed (hot tier) with capacity (distributed tier) for production RAG systems}{figure.6.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.10}Geographic Scaling}{200}{section.6.10}\protected@file@percent }
-\newlabel{sec:geo-scaling}{{6.10}{200}{Geographic Scaling}{section.6.10}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.1}Latency and compliance benefits}{200}{subsubsection.6.10.0.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.2}Model placement strategies}{201}{subsubsection.6.10.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.2}Model placement strategies}{200}{subsubsection.6.10.0.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.3}Consistency, versioning, and caches}{201}{subsubsection.6.10.0.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.4}Traffic routing and failover}{201}{subsubsection.6.10.0.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.5}Data compliance controls}{201}{subsubsection.6.10.0.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.6}Edge acceleration vs.\ full serving}{201}{subsubsection.6.10.0.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.7}Decentralized precedent (Petals)}{201}{subsubsection.6.10.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.8}Industrial practice}{201}{subsubsection.6.10.0.8}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Geographic scaling reduces latency and enables data residency compliance. Users are routed to the nearest regional cluster (NA/EU/APAC) for low-latency access and regulatory compliance; dashed links illustrate failover/overflow between regions, ensuring availability during regional outages. This architecture is essential for global deployments with strict latency SLOs or data sovereignty requirements.}}{202}{figure.6.7}\protected@file@percent }
 \newlabel{fig:ch06_geo_scaling_inset}{{6.7}{202}{Geographic scaling reduces latency and enables data residency compliance. Users are routed to the nearest regional cluster (NA/EU/APAC) for low-latency access and regulatory compliance; dashed links illustrate failover/overflow between regions, ensuring availability during regional outages. This architecture is essential for global deployments with strict latency SLOs or data sovereignty requirements}{figure.6.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.8}Industrial practice}{202}{subsubsection.6.10.0.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.9}Networking and future directions}{202}{subsubsection.6.10.0.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.11}Case Study: Scaling Ishtar AI}{203}{section.6.11}\protected@file@percent }
-\newlabel{sec:scaling-ishtar-case-study}{{6.11}{203}{Case Study: Scaling Ishtar AI}{section.6.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.11}Case Study: Scaling Ishtar AI}{202}{section.6.11}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-case-study}{{6.11}{202}{Case Study: Scaling Ishtar AI}{section.6.11}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.11.1}Initial State}{203}{subsection.6.11.1}\protected@file@percent }
 \newlabel{sec:scaling-ishtar-initial}{{6.11.1}{203}{Initial State}{subsection.6.11.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.11.2}Intermediate Stage}{203}{subsection.6.11.2}\protected@file@percent }
 \newlabel{sec:scaling-ishtar-intermediate}{{6.11.2}{203}{Intermediate Stage}{subsection.6.11.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.3}Mature Stage}{203}{subsection.6.11.3}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-mature}{{6.11.3}{203}{Mature Stage}{subsection.6.11.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces \ishtar  {} scaling timeline demonstrates incremental optimization strategies. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling. This evolution illustrates how production systems grow complexity incrementally, adding optimizations as traffic and requirements increase.}}{204}{figure.6.8}\protected@file@percent }
 \newlabel{fig:ch06_ishtar_timeline}{{6.8}{204}{\ishtar {} scaling timeline demonstrates incremental optimization strategies. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling. This evolution illustrates how production systems grow complexity incrementally, adding optimizations as traffic and requirements increase}{figure.6.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.3}Mature Stage}{204}{subsection.6.11.3}\protected@file@percent }
-\newlabel{sec:scaling-ishtar-mature}{{6.11.3}{204}{Mature Stage}{subsection.6.11.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.12}Best Practices Checklist}{205}{section.6.12}\protected@file@percent }
-\newlabel{sec:scaling-best-practices}{{6.12}{205}{Best Practices Checklist}{section.6.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.12}Best Practices Checklist}{204}{section.6.12}\protected@file@percent }
+\newlabel{sec:scaling-best-practices}{{6.12}{204}{Best Practices Checklist}{section.6.12}{}}
 \@setckpt{ch06-scaling}{
-\setcounter{page}{210}
+\setcounter{page}{209}
 \setcounter{equation}{0}
 \setcounter{enumi}{7}
 \setcounter{enumii}{0}
