@@ -283,15 +283,15 @@ High-fidelity traces require stable correlation across boundaries. Every request
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  font=\LARGE,
-  node distance=20mm and 24mm,
-  >=LaTeX,
+  font=\small,
+  node distance=12mm and 16mm,
+  >=Stealth,
   every node/.style={align=left},
-  header/.style={font=\bfseries\ttfamily\LARGE},
-  attr/.style={font=\LARGE},
-  box/.style={rectangle, rounded corners=4pt, very thick, inner sep=10mm, minimum width=100mm, minimum height=30mm},
-  boxwide/.style={rectangle, rounded corners=4pt, very thick, inner sep=10mm, minimum width=105mm, minimum height=32mm},
-  arrow/.style={->, very thick, line width=2pt},
+  header/.style={font=\bfseries\ttfamily\small},
+  attr/.style={font=\small},
+  box/.style={rectangle, rounded corners=4pt, very thick, inner sep=5mm, text width=45mm},
+  boxwide/.style={rectangle, rounded corners=4pt, very thick, inner sep=5mm, text width=0.4\linewidth},
+  arrow/.style={->, very thick, line width=1pt},
   dot/.style={circle, inner sep=2pt, fill=black}
 ]
 
@@ -337,25 +337,25 @@ High-fidelity traces require stable correlation across boundaries. Every request
 };
 
 % --- Arrows from TRACE to spans ---
-\draw[arrow] (trace.east) -- ++(14mm,0) |- (llm.west);
-\draw[arrow] (trace.east) -- ++(14mm,0) |- (retr.west);
-\draw[arrow] (trace.east) -- ++(14mm,0) |- (tool.west);
-\draw[arrow] (trace.east) -- ++(14mm,0) |- (parser.west);
-\draw[arrow] (trace.east) -- ++(14mm,0) |- (guard.west);
+\draw[arrow] (trace.east) -- ++(8mm,0) |- (llm.west);
+\draw[arrow] (trace.east) -- ++(8mm,0) |- (retr.west);
+\draw[arrow] (trace.east) -- ++(8mm,0) |- (tool.west);
+\draw[arrow] (trace.east) -- ++(8mm,0) |- (parser.west);
+\draw[arrow] (trace.east) -- ++(8mm,0) |- (guard.west);
 
 % --- Legend / Notes panel ---
 \node[rectangle, rounded corners=4pt, draw=panelgray, fill=panelgray!5,
-      below=26mm of tool, minimum width=0.95\linewidth, inner sep=8mm, minimum height=22mm] (legend) {%
+      below=16mm of tool, text width=0.95\linewidth, inner sep=5mm] (legend) {%
   \textbf{Naming \& rollups.}\;
   \texttt{llm.call}, \texttt{retriever.search}, \texttt{tool.invoke.<name>}, \texttt{parser.jsonschema}, \texttt{guard.rail}
-  form a stable taxonomy for queryable traces.\\[-4mm]
+  form a stable taxonomy for queryable traces.\\[-2mm]
   \attr{Example rollup: ``P95 latency attributable to \texttt{retriever.search} increased 30\% after build 2025-08-12.''}
 };
 
 % --- Title badge ---
 \node[rectangle, rounded corners=3pt, draw=panelgray, fill=panelgray!8,
-      above left=6mm and -6mm of trace.north east, anchor=south east, inner sep=6mm] (title) {%
-  \bfseries\LARGE Span Taxonomy \& Naming
+      above left=4mm and -4mm of trace.north east, anchor=south east, inner sep=4mm] (title) {%
+  \bfseries\small Span Taxonomy \& Naming
 };
 
 \end{tikzpicture}
