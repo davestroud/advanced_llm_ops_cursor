@@ -135,3 +135,11 @@
 }{%
   \end{adjustbox}%
 }
+
+% A wrapper that centers content without scaling constraints.
+% Use this when you want full control over figure sizing.
+\newenvironment{llmfigboxnoscale}{%
+  \begin{adjustbox}{center}%
+}{%
+  \end{adjustbox}%
+}

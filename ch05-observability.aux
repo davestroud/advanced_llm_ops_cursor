@@ -28,39 +28,39 @@
 \newlabel{tab:ch05_ishtar_obs_stack}{{5.1}{154}{Observability stack design determines debugging speed and incident response capability. \ishtar {}'s stack demonstrates how OpenTelemetry provides shared context (trace IDs, resource attributes) for correlation, while specialized tools deliver operator- and developer-facing views. This layered approach enables both real-time troubleshooting and long-term trend analysis, supporting both reactive incident response and proactive optimization}{table.5.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.1}End-to-end context propagation.}{154}{subsubsection.5.5.0.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.2}Streaming-aware tracing.}{154}{subsubsection.5.5.0.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Span naming taxonomy enables systematic observability and debugging in LLM applications. Stable, descriptive span names (\texttt  {llm.call}, \texttt  {retriever.search}, \texttt  {tool.invoke.<name>}, \texttt  {parser.jsonschema}, \texttt  {guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining readable in tracing UIs. This taxonomy converts ad hoc instrumentation into a searchable, analyzable observability system that supports both debugging and optimization.}}{155}{figure.5.2}\protected@file@percent }
-\newlabel{fig:ch05_span_taxonomy}{{5.2}{155}{Span naming taxonomy enables systematic observability and debugging in LLM applications. Stable, descriptive span names (\texttt {llm.call}, \texttt {retriever.search}, \texttt {tool.invoke.<name>}, \texttt {parser.jsonschema}, \texttt {guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining readable in tracing UIs. This taxonomy converts ad hoc instrumentation into a searchable, analyzable observability system that supports both debugging and optimization}{figure.5.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.3}Variant and experiment tracking.}{155}{subsubsection.5.5.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.4}Sampling and exemplar selection.}{156}{subsubsection.5.5.0.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.5}Multi-agent specifics.}{156}{subsubsection.5.5.0.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.6}What Observability Must Capture for RAG and Agents}{156}{subsubsection.5.5.0.6}\protected@file@percent }
-\newlabel{subsec:observability-rag-agents-bridge}{{5.5.0.6}{156}{What Observability Must Capture for RAG and Agents}{subsubsection.5.5.0.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.7}Quality artifacts in traces.}{157}{subsubsection.5.5.0.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.8}Governance and privacy.}{158}{subsubsection.5.5.0.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.9}Operationalization.}{158}{subsubsection.5.5.0.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.6}Real-Time Dashboards and Live Metrics}{158}{section.5.6}\protected@file@percent }
-\newlabel{sec:real-time-dashboards-and-live-metrics}{{5.6}{158}{Real-Time Dashboards and Live Metrics}{section.5.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Dashboard layout determines operator effectiveness and incident response speed. The three-tier structure separates real-time alerts (tier 1), detailed analysis (tier 2), and historical trends (tier 3), enabling operators to quickly diagnose issues and identify patterns. This layout supports both reactive troubleshooting and proactive optimization.}}{159}{table.5.2}\protected@file@percent }
-\newlabel{tab:ch05_three_tier_layout}{{5.2}{159}{Dashboard layout determines operator effectiveness and incident response speed. The three-tier structure separates real-time alerts (tier 1), detailed analysis (tier 2), and historical trends (tier 3), enabling operators to quickly diagnose issues and identify patterns. This layout supports both reactive troubleshooting and proactive optimization}{table.5.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.7}Automated Quality Checks and Feedback Loops}{160}{section.5.7}\protected@file@percent }
-\newlabel{sec:automated-quality-checks-and-feedback-loops}{{5.7}{160}{Automated Quality Checks and Feedback Loops}{section.5.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.1}Designing evaluators that correlate with human judgment.}{160}{subsubsection.5.7.0.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.2}Claim-level evaluation.}{160}{subsubsection.5.7.0.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.3}Active sampling and triage.}{161}{subsubsection.5.7.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.4}Closing the loop to improvement.}{161}{subsubsection.5.7.0.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.5}Quality SLOs and gating.}{161}{subsubsection.5.7.0.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.6}Guarding against metric gaming and drift.}{161}{subsubsection.5.7.0.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.7}Governance and reproducibility.}{162}{subsubsection.5.7.0.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.8}Alerts, Incident Response, and Resilience}{162}{section.5.8}\protected@file@percent }
-\newlabel{sec:alerts-incident-response-and-resilience}{{5.8}{162}{Alerts, Incident Response, and Resilience}{section.5.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.1}Operational playbooks (minimal, pre-approved actions).}{163}{subsubsection.5.8.0.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.2}Canaries and progressive delivery.}{163}{subsubsection.5.8.0.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.3}Resilience patterns for LLM services.}{163}{subsubsection.5.8.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.4}Preparedness and learning.}{164}{subsubsection.5.8.0.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.9}Historical Analysis and Continuous Improvement}{164}{section.5.9}\protected@file@percent }
-\newlabel{sec:historical-analysis-and-continuous-improvement}{{5.9}{164}{Historical Analysis and Continuous Improvement}{section.5.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.10}Best Practices and Conclusion}{164}{section.5.10}\protected@file@percent }
-\newlabel{sec:best-practices-and-conclusion}{{5.10}{164}{Best Practices and Conclusion}{section.5.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.4}Sampling and exemplar selection.}{155}{subsubsection.5.5.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.5}Multi-agent specifics.}{155}{subsubsection.5.5.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.6}What Observability Must Capture for RAG and Agents}{155}{subsubsection.5.5.0.6}\protected@file@percent }
+\newlabel{subsec:observability-rag-agents-bridge}{{5.5.0.6}{155}{What Observability Must Capture for RAG and Agents}{subsubsection.5.5.0.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.7}Quality artifacts in traces.}{156}{subsubsection.5.5.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.8}Governance and privacy.}{157}{subsubsection.5.5.0.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.0.9}Operationalization.}{157}{subsubsection.5.5.0.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}Real-Time Dashboards and Live Metrics}{157}{section.5.6}\protected@file@percent }
+\newlabel{sec:real-time-dashboards-and-live-metrics}{{5.6}{157}{Real-Time Dashboards and Live Metrics}{section.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Dashboard layout determines operator effectiveness and incident response speed. The three-tier structure separates real-time alerts (tier 1), detailed analysis (tier 2), and historical trends (tier 3), enabling operators to quickly diagnose issues and identify patterns. This layout supports both reactive troubleshooting and proactive optimization.}}{158}{table.5.2}\protected@file@percent }
+\newlabel{tab:ch05_three_tier_layout}{{5.2}{158}{Dashboard layout determines operator effectiveness and incident response speed. The three-tier structure separates real-time alerts (tier 1), detailed analysis (tier 2), and historical trends (tier 3), enabling operators to quickly diagnose issues and identify patterns. This layout supports both reactive troubleshooting and proactive optimization}{table.5.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.7}Automated Quality Checks and Feedback Loops}{159}{section.5.7}\protected@file@percent }
+\newlabel{sec:automated-quality-checks-and-feedback-loops}{{5.7}{159}{Automated Quality Checks and Feedback Loops}{section.5.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.1}Designing evaluators that correlate with human judgment.}{159}{subsubsection.5.7.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.2}Claim-level evaluation.}{159}{subsubsection.5.7.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.3}Active sampling and triage.}{160}{subsubsection.5.7.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.4}Closing the loop to improvement.}{160}{subsubsection.5.7.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.5}Quality SLOs and gating.}{160}{subsubsection.5.7.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.6}Guarding against metric gaming and drift.}{160}{subsubsection.5.7.0.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.0.7}Governance and reproducibility.}{161}{subsubsection.5.7.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.8}Alerts, Incident Response, and Resilience}{161}{section.5.8}\protected@file@percent }
+\newlabel{sec:alerts-incident-response-and-resilience}{{5.8}{161}{Alerts, Incident Response, and Resilience}{section.5.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.1}Operational playbooks (minimal, pre-approved actions).}{162}{subsubsection.5.8.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.2}Canaries and progressive delivery.}{162}{subsubsection.5.8.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.3}Resilience patterns for LLM services.}{162}{subsubsection.5.8.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.0.4}Preparedness and learning.}{163}{subsubsection.5.8.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.9}Historical Analysis and Continuous Improvement}{163}{section.5.9}\protected@file@percent }
+\newlabel{sec:historical-analysis-and-continuous-improvement}{{5.9}{163}{Historical Analysis and Continuous Improvement}{section.5.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.10}Best Practices and Conclusion}{163}{section.5.10}\protected@file@percent }
+\newlabel{sec:best-practices-and-conclusion}{{5.10}{163}{Best Practices and Conclusion}{section.5.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Span naming taxonomy enables systematic observability and debugging in LLM applications. Stable, descriptive span names (\texttt  {llm.call}, \texttt  {retriever.search}, \texttt  {tool.invoke.<name>}, \texttt  {parser.jsonschema}, \texttt  {guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining readable in tracing UIs. This taxonomy converts ad hoc instrumentation into a searchable, analyzable observability system that supports both debugging and optimization.}}{167}{figure.5.2}\protected@file@percent }
+\newlabel{fig:ch05_span_taxonomy}{{5.2}{167}{Span naming taxonomy enables systematic observability and debugging in LLM applications. Stable, descriptive span names (\texttt {llm.call}, \texttt {retriever.search}, \texttt {tool.invoke.<name>}, \texttt {parser.jsonschema}, \texttt {guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining readable in tracing UIs. This taxonomy converts ad hoc instrumentation into a searchable, analyzable observability system that supports both debugging and optimization}{figure.5.2}{}}
 \@setckpt{ch05-observability}{
 \setcounter{page}{168}
 \setcounter{equation}{0}

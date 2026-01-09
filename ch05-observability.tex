@@ -281,7 +281,7 @@ High-fidelity traces require stable correlation across boundaries. Every request
 
 \begin{figure}[t]
 \centering
-\begin{llmfigbox}
+\begin{llmfigboxnoscale}
 \begin{tikzpicture}[
   font=\normalsize,
   node distance=26mm and 28mm,
@@ -357,7 +357,7 @@ High-fidelity traces require stable correlation across boundaries. Every request
 };
 
 \end{tikzpicture}
-\end{llmfigbox}
+\end{llmfigboxnoscale}
 \caption{Span naming taxonomy enables systematic observability and debugging in LLM applications. Stable, descriptive span names (\texttt{llm.call}, \texttt{retriever.search}, \texttt{tool.invoke.<name>}, \texttt{parser.jsonschema}, \texttt{guard.rail}) enable reliable querying, latency attribution, and change-impact analysis while remaining readable in tracing UIs. This taxonomy converts ad hoc instrumentation into a searchable, analyzable observability system that supports both debugging and optimization.}
 \label{fig:ch05_span_taxonomy}
 \end{figure}
