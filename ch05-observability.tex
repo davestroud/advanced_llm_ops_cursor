@@ -283,14 +283,14 @@ High-fidelity traces require stable correlation across boundaries. Every request
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  font=\footnotesize,
-  node distance=18mm and 20mm,
+  font=\small,
+  node distance=22mm and 24mm,
   >=Stealth,
   every node/.style={align=left},
-  header/.style={font=\bfseries\ttfamily\footnotesize},
-  attr/.style={font=\footnotesize},
-  box/.style={rectangle, rounded corners=4pt, very thick, inner sep=6mm, text width=50mm},
-  boxwide/.style={rectangle, rounded corners=4pt, very thick, inner sep=6mm, text width=0.35\linewidth},
+  header/.style={font=\bfseries\ttfamily\small},
+  attr/.style={font=\small},
+  box/.style={rectangle, rounded corners=4pt, very thick, inner sep=7mm, text width=52mm},
+  boxwide/.style={rectangle, rounded corners=4pt, very thick, inner sep=7mm, text width=0.32\linewidth},
   arrow/.style={->, very thick, line width=1pt},
   dot/.style={circle, inner sep=2pt, fill=black}
 ]
@@ -305,7 +305,7 @@ High-fidelity traces require stable correlation across boundaries. Every request
 
 % --- Central TRACE panel ---
 \node[boxwide, fill=panelgray!6, draw=panelgray] (trace) {%
-  \textbf{Trace} (execution waterfall)\\[-2mm]
+  \textbf{Trace} (execution waterfall)\\[1mm]
   \begin{tabular}{@{}l@{}}
     \attr{\(\bullet\) \texttt{trace\_id}, \texttt{span\_id}, \texttt{conversation\_id}}\\
     \attr{\(\bullet\) \texttt{baggage}: tenant/user, privacy class}\\
@@ -314,48 +314,48 @@ High-fidelity traces require stable correlation across boundaries. Every request
 };
 
 % --- Span taxonomy boxes (two columns) ---
-\node[box, fill=llmblue!10, draw=llmblue, right=22mm of trace.north east, anchor=north west] (llm) {%
-  \header{\texttt{llm.call}}\\[-2mm]
+\node[box, fill=llmblue!10, draw=llmblue, right=24mm of trace.north east, anchor=north west] (llm) {%
+  \header{\texttt{llm.call}}\\[1mm]
   \attr{model/version; temperature, $p$; TTFT; tokens/s; token counts}
 };
 \node[box, fill=retrgreen!10, draw=retrgreen, below=of llm] (retr) {%
-  \header{\texttt{retriever.search}}\\[-2mm]
+  \header{\texttt{retriever.search}}\\[1mm]
   \attr{index/version; \texttt{topK}; latency; hit set (doc IDs); re-ranker scores}
 };
 \node[box, fill=toolorange!10, draw=toolorange, below=of retr] (tool) {%
-  \header{\texttt{tool.invoke.<name>}}\\[-2mm]
+  \header{\texttt{tool.invoke.<name>}}\\[1mm]
   \attr{schema version; payload bytes; retries/backoff; downstream status}
 };
 
 \node[box, fill=parserviolet!10, draw=parserviolet, right=of llm] (parser) {%
-  \header{\texttt{parser.jsonschema}}\\[-2mm]
+  \header{\texttt{parser.jsonschema}}\\[1mm]
   \attr{schema ID; failure class: \texttt{missing\_field}, \texttt{type\_mismatch}}
 };
 \node[box, fill=guardred!10, draw=guardred, below=of parser] (guard) {%
-  \header{\texttt{guard.rail}}\\[-2mm]
+  \header{\texttt{guard.rail}}\\[1mm]
   \attr{policy ID; triggers (jailbreak, toxicity); action (block/sanitize/route)}
 };
 
-% --- Arrows from TRACE to spans ---
-\draw[arrow] (trace.east) -- ++(10mm,0) |- (llm.west);
-\draw[arrow] (trace.east) -- ++(10mm,0) |- (retr.west);
-\draw[arrow] (trace.east) -- ++(10mm,0) |- (tool.west);
-\draw[arrow] (trace.east) -- ++(10mm,0) |- (parser.west);
-\draw[arrow] (trace.east) -- ++(10mm,0) |- (guard.west);
+% --- Arrows from TRACE to spans (routed outside boxes) ---
+\draw[arrow] (trace.east) -- ++(12mm,0) coordinate (mid1) -- (mid1 |- llm.west) -- (llm.west);
+\draw[arrow] (trace.east) -- ++(12mm,0) coordinate (mid2) -- (mid2 |- retr.west) -- (retr.west);
+\draw[arrow] (trace.east) -- ++(12mm,0) coordinate (mid3) -- (mid3 |- tool.west) -- (tool.west);
+\draw[arrow] (trace.east) -- ++(12mm,0) coordinate (mid4) -- (mid4 |- parser.west) -- (parser.west);
+\draw[arrow] (trace.east) -- ++(12mm,0) coordinate (mid5) -- (mid5 |- guard.west) -- (guard.west);
 
 % --- Legend / Notes panel ---
 \node[rectangle, rounded corners=4pt, draw=panelgray, fill=panelgray!5,
-      below=18mm of tool, text width=0.95\linewidth, inner sep=6mm] (legend) {%
+      below=20mm of tool, text width=0.95\linewidth, inner sep=7mm] (legend) {%
   \textbf{Naming \& rollups.}\;
   \texttt{llm.call}, \texttt{retriever.search}, \texttt{tool.invoke.<name>}, \texttt{parser.jsonschema}, \texttt{guard.rail}
-  form a stable taxonomy for queryable traces.\\[-2mm]
+  form a stable taxonomy for queryable traces.\\[1mm]
   \attr{Example rollup: ``P95 latency attributable to \texttt{retriever.search} increased 30\% after build 2025-08-12.''}
 };
 
 % --- Title badge ---
 \node[rectangle, rounded corners=3pt, draw=panelgray, fill=panelgray!8,
-      above left=5mm and -5mm of trace.north east, anchor=south east, inner sep=5mm] (title) {%
-  \bfseries\footnotesize Span Taxonomy \& Naming
+      above left=6mm and -6mm of trace.north east, anchor=south east, inner sep=6mm] (title) {%
+  \bfseries\small Span Taxonomy \& Naming
 };
 
 \end{tikzpicture}
