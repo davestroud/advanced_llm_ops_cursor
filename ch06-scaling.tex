@@ -1119,45 +1119,50 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  node distance=8mm and 12mm,
+  node distance=10mm and 14mm,
   every node/.style={font=\small},
-  box/.style={draw=none, rounded corners, align=center, minimum width=25mm, minimum height=8mm, fill=gray!5, inner sep=3pt},
-  hot/.style={draw=none, rounded corners, align=center, minimum width=27mm, minimum height=8mm, fill=gray!12, inner sep=3pt},
-  dist/.style={draw=none, rounded corners, align=center, minimum width=27mm, minimum height=8mm, fill=gray!7, inner sep=3pt},
-  stor/.style={draw=none, rounded corners, align=center, minimum width=27mm, minimum height=8mm, fill=gray!10, inner sep=3pt},
-  arr/.style={-{Latex}, line width=0.8pt}
+  box/.style={draw=none, rounded corners=4pt, align=center, minimum width=28mm, minimum height=10mm, fill=blue!10, inner sep=4pt},
+  router/.style={draw=none, rounded corners=4pt, align=center, minimum width=32mm, minimum height=10mm, fill=orange!15, inner sep=4pt},
+  hot/.style={draw=none, rounded corners=4pt, align=center, minimum width=32mm, minimum height=10mm, fill=red!20, inner sep=4pt},
+  dist/.style={draw=none, rounded corners=4pt, align=center, minimum width=28mm, minimum height=10mm, fill=green!15, inner sep=4pt},
+  stor/.style={draw=none, rounded corners=4pt, align=center, minimum width=36mm, minimum height=10mm, fill=purple!15, inner sep=4pt},
+  merge/.style={draw=none, rounded corners=4pt, align=center, minimum width=32mm, minimum height=10mm, fill=cyan!15, inner sep=4pt},
+  gen/.style={draw=none, rounded corners=4pt, align=center, minimum width=32mm, minimum height=10mm, fill=yellow!20, inner sep=4pt},
+  arr/.style={-{Latex}, line width=1pt, draw=black!70},
+  arrhit/.style={-{Latex}, line width=1pt, draw=green!70!black},
+  arrmiss/.style={-{Latex}, line width=1pt, draw=red!70!black, dashed}
 ]
 
 % Row 1: Query & Router
 \node[box] (q) {User Query};
-\node[box, right=of q] (route) {RAG Router\\(Query parse + features)};
+\node[router, right=of q] (route) {RAG Router\\(Query parse + features)};
 
 % Row 2: Hot tier + cache
-\node[hot, below=of route] (hotidx) {Hot Tier Index\\(in-memory / GPU)};
-\node[stor, right=of hotidx, xshift=8mm] (embcache) {Precomputed Embedding Cache\\(hash(content) $\to$ vector)};
+\node[hot, below=12mm of route] (hotidx) {Hot Tier Index\\(in-memory / GPU)};
+\node[stor, right=of hotidx, xshift=10mm] (embcache) {Precomputed Embedding Cache\\(hash(content) $\to$ vector)};
 
 % Row 3: Sharded backend
-\node[dist, below left=11mm and -2mm of hotidx] (sh1) {Shard 1};
-\node[dist, below=11mm of hotidx] (sh2) {Shard 2};
-\node[dist, below right=11mm and -2mm of hotidx] (sh3) {Shard 3};
+\node[dist, below left=14mm and -3mm of hotidx] (sh1) {Shard 1};
+\node[dist, below=14mm of hotidx] (sh2) {Shard 2};
+\node[dist, below right=14mm and -3mm of hotidx] (sh3) {Shard 3};
 
 % Row 4: Merge + rank + generator
-\node[box, below=15mm of sh2] (merge) {Merge \& (Re)Rank\\(ANN results aggregate)};
-\node[box, right=20mm of merge] (gen) {Generator (LLM)\\(assemble context + decode)};
+\node[merge, below=18mm of sh2] (merge) {Merge \& (Re)Rank\\(ANN results aggregate)};
+\node[gen, right=22mm of merge] (gen) {Generator (LLM)\\(assemble context + decode)};
 
 % Edges: query path
 \draw[arr] (q) -- (route);
 
 % Hot tier lookup
-\draw[arr] (route) -- node[pos=0.5,right,sloped]{first lookup} (hotidx);
+\draw[arr] (route) -- node[pos=0.5,right,sloped,font=\footnotesize]{first lookup} (hotidx);
 
-% Hit path from hot to merge
-\draw[arr] (hotidx) -- node[pos=0.5,left]{hit} (merge);
+% Hit path from hot to merge (green for success)
+\draw[arrhit] (hotidx) -- node[pos=0.5,left,font=\footnotesize\bfseries]{hit} (merge);
 
-% Miss path to shards
-\draw[arr] (hotidx.west) .. controls +(-2.0,0.0) and +(0.0,1.2) .. node[pos=0.29,above]{miss} (sh1.north);
-\draw[arr] (hotidx) -- (sh2.north);
-\draw[arr] (hotidx.east) .. controls +(2.0,0.0) and +(0.0,1.2) .. (sh3.north);
+% Miss path to shards (red dashed for miss)
+\draw[arrmiss] (hotidx.west) .. controls +(-2.5,0.0) and +(0.0,1.5) .. node[pos=0.3,above,font=\footnotesize\bfseries]{miss} (sh1.north);
+\draw[arrmiss] (hotidx) -- (sh2.north);
+\draw[arrmiss] (hotidx.east) .. controls +(2.5,0.0) and +(0.0,1.5) .. (sh3.north);
 
 % Shards back to merge
 \draw[arr] (sh1) -- (merge);
@@ -1165,15 +1170,15 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 \draw[arr] (sh3) -- (merge);
 
 % Embedding cache notes/edges
-\node[align=left, font=\small] (note) at ($(embcache.north)+(0,10mm)$) {reuse vectors on\\ identical chunks};
-\draw[-{Latex}, line width=0.8pt] (note.south) -- (embcache.north);
+\node[align=left, font=\footnotesize, text=purple!70!black] (note) at ($(embcache.north)+(0,12mm)$) {reuse vectors on\\ identical chunks};
+\draw[-{Latex}, line width=0.8pt, draw=purple!70!black] (note.south) -- (embcache.north);
 
 % Merge to generator
 \draw[arr] (merge) -- (gen);
 
-% Legend box (compact)
-\node[draw, rounded corners, thick, align=left, anchor=north west, fill=white, inner sep=2mm] at ($(q.north west)+(-1.0,1.0)$) (leg) {%
-\textbf{Two-tier RAG}\\[1pt]
+% Legend box - moved to bottom right to avoid overlap
+\node[draw=black!40, rounded corners=4pt, thick, align=left, anchor=south east, fill=white!95, inner sep=4pt, text width=7cm] at ($(gen.south east)+(2mm,-2mm)$) (leg) {%
+\textbf{Two-tier RAG}\\[2pt]
 \textbf{Hot tier:} recent/popular items in RAM/GPU\\
 \textbf{Fallback:} parallel ANN on sharded index\\
 \textbf{Cache:} precomputed embeddings (hash$\to$vec)\\
