@@ -1123,7 +1123,7 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
   every node/.style={font=\small},
   box/.style={draw=none, rounded corners=4pt, align=center, minimum width=28mm, minimum height=10mm, fill=blue!10, inner sep=4pt},
   router/.style={draw=none, rounded corners=4pt, align=center, minimum width=32mm, minimum height=10mm, fill=orange!15, inner sep=4pt},
-  hot/.style={draw=none, rounded corners=4pt, align=center, minimum width=32mm, minimum height=10mm, fill=red!20, inner sep=4pt},
+  hot/.style={draw=none, rounded corners=4pt, align=center, minimum width=36mm, minimum height=12mm, fill=red!20, inner sep=5pt},
   dist/.style={draw=none, rounded corners=4pt, align=center, minimum width=28mm, minimum height=10mm, fill=green!15, inner sep=4pt},
   stor/.style={draw=none, rounded corners=4pt, align=center, minimum width=36mm, minimum height=10mm, fill=purple!15, inner sep=4pt},
   merge/.style={draw=none, rounded corners=4pt, align=center, minimum width=32mm, minimum height=10mm, fill=cyan!15, inner sep=4pt},
@@ -1138,7 +1138,7 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 \node[router, right=of q] (route) {RAG Router\\(Query parse + features)};
 
 % Row 2: Hot tier + cache
-\node[hot, below=12mm of route] (hotidx) {Hot Tier Index\\(in-memory / GPU)};
+\node[hot, below=12mm of route] (hotidx) {Hot Tier Index\\\small(in-memory / GPU)};
 \node[stor, right=of hotidx, xshift=10mm] (embcache) {Precomputed Embedding Cache\\(hash(content) $\to$ vector)};
 
 % Row 3: Sharded backend
@@ -1176,8 +1176,8 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 % Merge to generator
 \draw[arr] (merge) -- (gen);
 
-% Legend box - moved to bottom right to avoid overlap
-\node[draw=black!40, rounded corners=4pt, thick, align=left, anchor=south east, fill=white!95, inner sep=4pt, text width=7cm] at ($(gen.south east)+(2mm,-2mm)$) (leg) {%
+% Legend box - moved further right to avoid covering boxes
+\node[draw=black!40, rounded corners=4pt, thick, align=left, anchor=south east, fill=white!95, inner sep=4pt, text width=7cm] at ($(gen.south east)+(25mm,-2mm)$) (leg) {%
 \textbf{Two-tier RAG}\\[2pt]
 \textbf{Hot tier:} recent/popular items in RAM/GPU\\
 \textbf{Fallback:} parallel ANN on sharded index\\
