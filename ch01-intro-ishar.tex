@@ -90,17 +90,17 @@ Reliability\index{reliability} is also a concern: when a subcomponent fails (ret
 \begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
-  node distance=12mm and 24mm,
+  node distance=10mm and 20mm,
   every node/.style={font=\small},
   % Component styles (grayscale-safe with line styles)
-  user/.style={ellipse, draw=black!70, fill=gray!10, line width=1pt, minimum width=22mm, minimum height=11mm, align=center, font=\small\bfseries},
-  orchestrator/.style={rectangle, draw=black!70, fill=gray!20, line width=1pt, rounded corners=4pt, minimum width=38mm, minimum height=13mm, align=center, font=\small\bfseries},
-  retriever/.style={rectangle, draw=black!60, fill=gray!10, line width=1pt, rounded corners=4pt, minimum width=30mm, minimum height=11mm, align=center, font=\small},
-  knowledge/.style={rectangle, draw=black!60, fill=gray!10, line width=1pt, rounded corners=4pt, minimum width=28mm, minimum height=12mm, align=center, font=\small},
-  llm/.style={rectangle, draw=black!70, fill=gray!15, line width=1pt, rounded corners=4pt, minimum width=28mm, minimum height=13mm, align=center, font=\small\bfseries},
-  tool/.style={rectangle, draw=black!60, fill=gray!10, line width=1pt, rounded corners=4pt, minimum width=26mm, minimum height=11mm, align=center, font=\small},
-  response/.style={ellipse, draw=black!70, fill=gray!10, line width=1pt, minimum width=22mm, minimum height=11mm, align=center, font=\small\bfseries},
-  failure/.style={circle, draw=black!70, fill=gray!15, line width=1pt, minimum size=6mm},
+  user/.style={ellipse, draw=none, fill=gray!10, minimum width=18mm, minimum height=9mm, align=center, font=\small\bfseries},
+  orchestrator/.style={rectangle, draw=none, fill=gray!20, rounded corners=4pt, minimum width=32mm, minimum height=11mm, align=center, font=\small\bfseries},
+  retriever/.style={rectangle, draw=none, fill=gray!10, rounded corners=4pt, minimum width=25mm, minimum height=9mm, align=center, font=\small},
+  knowledge/.style={rectangle, draw=none, fill=gray!10, rounded corners=4pt, minimum width=24mm, minimum height=10mm, align=center, font=\small},
+  llm/.style={rectangle, draw=none, fill=gray!15, rounded corners=4pt, minimum width=24mm, minimum height=11mm, align=center, font=\small\bfseries},
+  tool/.style={rectangle, draw=none, fill=gray!10, rounded corners=4pt, minimum width=22mm, minimum height=9mm, align=center, font=\small},
+  response/.style={ellipse, draw=none, fill=gray!10, minimum width=18mm, minimum height=9mm, align=center, font=\small\bfseries},
+  failure/.style={circle, draw=none, fill=gray!15, minimum size=5mm},
   % Arrow styles (grayscale-safe with line styles)
   mainflow/.style={-{Latex}, line width=1pt, color=black!70},
   fallback/.style={-{Latex}, dashed, line width=1pt, color=black!50},
@@ -112,23 +112,23 @@ Reliability\index{reliability} is also a concern: when a subcomponent fails (ret
 
 % User and Response (top level)
 \node[user] (user) {User};
-\node[response, right=42mm of user] (response) {Response};
+\node[response, right=36mm of user] (response) {Response};
 
 % Orchestrator (center)
-\node[orchestrator, below=18mm of user] (orchestrator) {\begin{tabular}{c}Orchestrator\\\small LLM Application\end{tabular}};
+\node[orchestrator, below=14mm of user] (orchestrator) {\begin{tabular}{c}Orchestrator\\\small LLM Application\end{tabular}};
 
 % Retriever and Knowledge Base (left side)
-\node[retriever, below left=16mm and 20mm of orchestrator] (retriever) {\begin{tabular}{c}Retriever\\\small (Vector DB)\end{tabular}};
-\node[knowledge, below=14mm of retriever] (knowledge) {\begin{tabular}{c}Knowledge Base\\\small (Documents)\end{tabular}};
+\node[retriever, below left=12mm and 16mm of orchestrator] (retriever) {\begin{tabular}{c}Retriever\\\small (Vector DB)\end{tabular}};
+\node[knowledge, below=10mm of retriever] (knowledge) {\begin{tabular}{c}Knowledge Base\\\small (Documents)\end{tabular}};
 
 % LLM Model (right side)
-\node[llm, below right=16mm and 20mm of orchestrator] (llm) {LLM Model};
+\node[llm, below right=12mm and 16mm of orchestrator] (llm) {LLM Model};
 
 % External Tool (below LLM)
-\node[tool, below=14mm of llm] (tool) {\begin{tabular}{c}External Tool\\\small / API\end{tabular}};
+\node[tool, below=10mm of llm] (tool) {\begin{tabular}{c}External Tool\\\small / API\end{tabular}};
 
 % Failure indicator
-\node[failure, left=8mm of retriever] (failure) {\textbf{×}};
+\node[failure, left=6mm of retriever] (failure) {\textbf{×}};
 
 % Main flow: User → Orchestrator → Response
 \draw[queryflow] (user) -- node[label, above, pos=0.5] {User Query} (orchestrator);
@@ -327,10 +327,10 @@ control stack spanning input handling, retrieval governance, tool security, and 
   \begin{tikzpicture}[
     >=Stealth,
     % Box styles (grayscale-safe with line styles)
-    surface/.style={rectangle, draw=black!70, fill=gray!10, line width=0.8pt, rounded corners=4pt, minimum width=25mm, minimum height=12mm, align=center, font=\small},
-    threat/.style={rectangle, draw=black!70, fill=gray!12, line width=0.8pt, rounded corners=4pt, minimum width=25mm, minimum height=10mm, align=center, font=\small},
-    control/.style={rectangle, draw=black!70, fill=gray!10, line width=0.8pt, rounded corners=4pt, minimum width=25mm, minimum height=12mm, align=center, font=\small},
-    crosscut/.style={rectangle, draw=black!70, fill=gray!8, line width=0.8pt, rounded corners=4pt, minimum width=140mm, minimum height=8mm, align=center, font=\footnotesize},
+    surface/.style={rectangle, draw=none, fill=gray!10, rounded corners=4pt, minimum width=22mm, minimum height=10mm, align=center, font=\small},
+    threat/.style={rectangle, draw=none, fill=gray!12, rounded corners=4pt, minimum width=22mm, minimum height=8mm, align=center, font=\small},
+    control/.style={rectangle, draw=none, fill=gray!10, rounded corners=4pt, minimum width=22mm, minimum height=10mm, align=center, font=\small},
+    crosscut/.style={rectangle, draw=none, fill=gray!8, rounded corners=4pt, minimum width=120mm, minimum height=7mm, align=center, font=\footnotesize},
     arrow/.style={-{Latex}, line width=0.8pt, color=black!70}
   ]
 
@@ -493,13 +493,13 @@ By the early 2020s, however, the rise of \textbf{foundation models}—especially
   >=Stealth,
   font=\small,
   % --- Color palette (muted, print-friendly) ---
-  milestoneA/.style={fill=blue!20, draw=blue!50!black},
-  milestoneB/.style={fill=teal!20, draw=teal!50!black},
-  milestoneC/.style={fill=orange!20, draw=orange!60!black},
-  milestoneD/.style={fill=purple!18, draw=purple!60!black},
-  ribbonA/.style={fill=blue!12, draw=blue!30!black},
-  ribbonB/.style={fill=teal!12, draw=teal!30!black},
-  ribbonC/.style={fill=orange!12, draw=orange!40!black},
+  milestoneA/.style={fill=blue!20, draw=none},
+  milestoneB/.style={fill=teal!20, draw=none},
+  milestoneC/.style={fill=orange!20, draw=none},
+  milestoneD/.style={fill=purple!18, draw=none},
+  ribbonA/.style={fill=blue!12, draw=none},
+  ribbonB/.style={fill=teal!12, draw=none},
+  ribbonC/.style={fill=orange!12, draw=none},
   axis/.style={draw=black!70, line width=0.4pt},
   tick/.style={draw=black!60, line width=0.3pt},
   label/.style={inner sep=2.2pt, rounded corners=2pt, align=center},
@@ -634,11 +634,11 @@ systems engineering, where memory, latency, and cost must be co-optimized (Fig.~
   \begin{llmfigbox}
   \begin{tikzpicture}[
     >=Stealth,
-    node distance=0.8cm and 2cm,
+    node distance=0.7cm and 1.7cm,
     % Box styles - simplified
-    constraint/.style={rectangle, draw=red!70!black, fill=red!10, thick, rounded corners=4pt, minimum width=2.5cm, minimum height=1cm, align=center, font=\footnotesize\bfseries},
-    slo/.style={rectangle, draw=blue!70!black, fill=blue!10, thick, rounded corners=4pt, minimum width=2.2cm, minimum height=0.9cm, align=center, font=\footnotesize\bfseries},
-    lever/.style={rectangle, draw=green!70!black, fill=green!10, thick, rounded corners=4pt, minimum width=2.2cm, minimum height=0.8cm, align=center, font=\footnotesize\bfseries},
+    constraint/.style={rectangle, draw=none, fill=red!10, rounded corners=4pt, minimum width=2.1cm, minimum height=0.85cm, align=center, font=\footnotesize\bfseries},
+    slo/.style={rectangle, draw=none, fill=blue!10, rounded corners=4pt, minimum width=1.9cm, minimum height=0.75cm, align=center, font=\footnotesize\bfseries},
+    lever/.style={rectangle, draw=none, fill=green!10, rounded corners=4pt, minimum width=1.9cm, minimum height=0.7cm, align=center, font=\footnotesize\bfseries},
     arrow/.style={->, thick, color=black!60}
   ]
 
@@ -842,9 +842,9 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
   % --- Styles (Springer-friendly, B/W) ---
   phase/.style={
     rectangle, rounded corners=2pt,
-    draw=black, semithick, fill=gray!10,
-    text width=30mm, % narrower to avoid extreme scaling
-    minimum height=11mm, inner sep=3pt,
+    draw=none, fill=gray!10,
+    text width=26mm, % narrower to avoid extreme scaling
+    minimum height=9mm, inner sep=2pt,
     align=center, font=\footnotesize
   },
   arrow/.style={-Stealth, semithick},
@@ -863,13 +863,13 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 };
 
 % ---- Second row: RAG and Agents ----
-\node[phase, below=12mm of perf] (rag) {RAG\\(Ch.~\ref{ch:rag})};
-\node[phase, right=5mm of rag] (orch) {Multi‑Agent\\(Ch.~\ref{ch:multiagent})};
+\node[phase, below=10mm of perf] (rag) {RAG\\(Ch.~\ref{ch:rag})};
+\node[phase, right=4mm of rag] (orch) {Multi‑Agent\\(Ch.~\ref{ch:multiagent})};
 
 % ---- Bottom row placed relative to second row ----
-\node[phase, below=12mm of rag]   (test)   {Testing \& Robustness\\(Ch.~\ref{ch:testing})};
-\node[phase, right=5mm of test]   (ethics) {Ethics \& Governance\\(Ch.~\ref{ch:ethics})};
-\node[phase, right=5mm of ethics] (case)   {Case Study\\(Ch.~\ref{ch:case-study})};
+\node[phase, below=10mm of rag]   (test)   {Testing \& Robustness\\(Ch.~\ref{ch:testing})};
+\node[phase, right=4mm of test]   (ethics) {Ethics \& Governance\\(Ch.~\ref{ch:ethics})};
+\node[phase, right=4mm of ethics] (case)   {Case Study\\(Ch.~\ref{ch:case-study})};
 
 % ---- Top row flow ----
 \draw[arrow] (fund) -- (infra);
@@ -1023,24 +1023,24 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
 \begin{tikzpicture}[
   font=\small,
   node distance=8mm and 6mm,
-  cIngest/.style={fill=blue!18,   draw=blue!55!black},
-  cRAG/.style   ={fill=teal!18,   draw=teal!55!black},
-  cAgent/.style ={fill=green!16,  draw=green!55!black},
-  cServe/.style ={fill=cyan!16,   draw=cyan!60!black},
-  cObs/.style   ={fill=purple!16, draw=purple!60!black},
-  cTest/.style  ={fill=red!14,    draw=red!60!black},
-  cEth/.style   ={fill=orange!18, draw=orange!65!black},
-  band/.style   ={draw=black!20, rounded corners=5pt, fill=black!2},
-  seg/.style    ={rounded corners=3pt, minimum width=38mm, minimum height=16mm,
-                  inner sep=5pt, align=center, line width=0.6pt, font=\small},
+  cIngest/.style={fill=blue!18,   draw=none},
+  cRAG/.style   ={fill=teal!18,   draw=none},
+  cAgent/.style ={fill=green!16,  draw=none},
+  cServe/.style ={fill=cyan!16,   draw=none},
+  cObs/.style   ={fill=purple!16, draw=none},
+  cTest/.style  ={fill=red!14,    draw=none},
+  cEth/.style   ={fill=orange!18, draw=none},
+  band/.style   ={draw=none, rounded corners=5pt, fill=black!2},
+  seg/.style    ={rounded corners=3pt, minimum width=32mm, minimum height=13mm,
+                  inner sep=4pt, align=center, font=\small},
   arrow/.style  ={-{Stealth[length=2.2mm,width=1.8mm]}, line width=0.5pt},
   note/.style   ={font=\small, align=center, text=black!70},
-  e2e/.style    ={draw=black!40, rounded corners=3pt, fill=black!3, 
-                  inner sep=4pt, align=left, font=\small}
+  e2e/.style    ={draw=none, rounded corners=3pt, fill=black!3, 
+                  inner sep=3pt, align=left, font=\small}
 ]
 
 % Band container - larger to accommodate stacked boxes with proper spacing
-\node[band, minimum width=0.95\linewidth, minimum height=70mm] (bandbox) {};
+\node[band, minimum width=0.95\linewidth, minimum height=60mm] (bandbox) {};
 
 % Top row: 4 boxes (Ingestion, Retrieval, Agents, Serving)
 \node[seg,cIngest] (ing) at ([xshift=-60mm,yshift=12mm]bandbox.center) {Ingestion\\\footnotesize (feeds, ETL)};
@@ -1098,24 +1098,24 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \begin{tikzpicture}[
   font=\small,
   % Color styles for different components
-  source/.style={ellipse, fill=blue!20, draw=blue!60!black, line width=0.7pt, 
-                 minimum width=20mm, minimum height=10mm, align=center, inner sep=3pt},
-  ingest/.style={rectangle, fill=cyan!20, draw=cyan!60!black, rounded corners=4pt,
-                 line width=0.7pt, minimum width=22mm, minimum height=11mm, align=center, inner sep=3pt},
-  vector/.style={cylinder, fill=teal!20, draw=teal!60!black, line width=0.7pt,
-                 shape aspect=0.3, minimum width=22mm, minimum height=15mm, align=center, inner sep=3pt},
-  rag/.style={rectangle, fill=purple!20, draw=purple!60!black, rounded corners=4pt,
-              line width=0.7pt, minimum width=26mm, minimum height=13mm, align=center, inner sep=3pt},
-  agent/.style={rectangle, fill=green!20, draw=green!60!black, rounded corners=4pt,
-                line width=0.7pt, minimum width=20mm, minimum height=10mm, align=center, inner sep=2pt},
-  orchestrator/.style={rectangle, fill=orange!20, draw=orange!60!black, rounded corners=4pt,
-                       line width=0.8pt, minimum width=28mm, minimum height=12mm, align=center, inner sep=3pt, font=\small\bfseries},
-  gpu/.style={rectangle, fill=red!20, draw=red!60!black, rounded corners=4pt,
-              line width=0.7pt, minimum width=24mm, minimum height=13mm, align=center, inner sep=3pt},
-  response/.style={ellipse, fill=gray!20, draw=gray!60!black, line width=0.7pt,
-                  minimum width=22mm, minimum height=10mm, align=center, inner sep=3pt},
-  obs/.style={rectangle, fill=yellow!8, draw=black!25, rounded corners=3pt, dashed,
-              line width=0.6pt, inner sep=2pt, font=\footnotesize},
+  source/.style={ellipse, fill=blue!20, draw=none, 
+                 minimum width=17mm, minimum height=8mm, align=center, inner sep=2pt},
+  ingest/.style={rectangle, fill=cyan!20, draw=none, rounded corners=4pt,
+                 minimum width=19mm, minimum height=9mm, align=center, inner sep=2pt},
+  vector/.style={cylinder, fill=teal!20, draw=none,
+                 shape aspect=0.3, minimum width=19mm, minimum height=13mm, align=center, inner sep=2pt},
+  rag/.style={rectangle, fill=purple!20, draw=none, rounded corners=4pt,
+              minimum width=22mm, minimum height=11mm, align=center, inner sep=2pt},
+  agent/.style={rectangle, fill=green!20, draw=none, rounded corners=4pt,
+                minimum width=17mm, minimum height=8mm, align=center, inner sep=2pt},
+  orchestrator/.style={rectangle, fill=orange!20, draw=none, rounded corners=4pt,
+                       minimum width=24mm, minimum height=10mm, align=center, inner sep=2pt, font=\small\bfseries},
+  gpu/.style={rectangle, fill=red!20, draw=none, rounded corners=4pt,
+              minimum width=20mm, minimum height=11mm, align=center, inner sep=2pt},
+  response/.style={ellipse, fill=gray!20, draw=none,
+                  minimum width=19mm, minimum height=8mm, align=center, inner sep=2pt},
+  obs/.style={rectangle, fill=yellow!8, draw=none, rounded corners=3pt, dashed,
+              inner sep=2pt, font=\footnotesize},
   arrow/.style={-{Stealth[length=2.2mm,width=1.8mm]}, line width=0.7pt, color=black!75},
   arrowthin/.style={-{Stealth[length=1.8mm,width=1.4mm]}, line width=0.5pt, color=black!60}
 ]
@@ -1253,29 +1253,29 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
 \begin{tikzpicture}[
   font=\small,
   node distance=10mm and 15mm,
-  cNews/.style  ={fill=blue!18,  draw=blue!55!black},
-  cNGO/.style   ={fill=teal!18,  draw=teal!55!black},
-  cSocial/.style={fill=purple!16,draw=purple!60!black},
-  cHealth/.style={fill=orange!18,draw=orange!65!black},
-  hub/.style    ={draw=black!25, rounded corners=5pt, fill=black!2},
-  bubble/.style ={circle, minimum size=18mm, inner sep=3pt, line width=0.6pt, align=center, font=\small},
+  cNews/.style  ={fill=blue!18,  draw=none},
+  cNGO/.style   ={fill=teal!18,  draw=none},
+  cSocial/.style={fill=purple!16,draw=none},
+  cHealth/.style={fill=orange!18,draw=none},
+  hub/.style    ={draw=none, rounded corners=5pt, fill=black!2},
+  bubble/.style ={circle, minimum size=15mm, inner sep=2pt, align=center, font=\small},
   arrowthin/.style={-{Stealth[length=2mm,width=1.6mm]}, line width=0.5pt},
   note/.style   ={font=\small, align=left, text=black!70},
-  funnel/.style ={draw=black!30, fill=black!4, rounded corners=3pt, inner sep=4pt,
-                  minimum width=26mm, minimum height=10mm, align=center, font=\small},
-  journalist/.style={draw=black!60, rounded corners=4pt, fill=black!1, 
-                     minimum height=12mm, inner sep=4pt, align=center, font=\small}
+  funnel/.style ={draw=none, fill=black!4, rounded corners=3pt, inner sep=3pt,
+                  minimum width=22mm, minimum height=8mm, align=center, font=\small},
+  journalist/.style={draw=none, rounded corners=4pt, fill=black!1, 
+                     minimum height=10mm, inner sep=3pt, align=center, font=\small}
 ]
 
 % Hub container positioned first
-\node[hub, minimum width=90mm, minimum height=60mm] (group) {};
-\node[black!50, font=\small] at ([yshift=-8pt]group.north) {Curated external evidence (ingested and vetted)};
+\node[hub, minimum width=75mm, minimum height=50mm] (group) {};
+\node[black!50, font=\small] at ([yshift=-6pt]group.north) {Curated external evidence (ingested and vetted)};
 
 % Position bubbles relative to hub center in a 2x2 grid
-\node[bubble,cNews] (news) at ([xshift=-22mm,yshift=10mm]group.center) {News wires\\\& reports};
-\node[bubble,cNGO] (ngo) at ([xshift=22mm,yshift=10mm]group.center) {NGO bulletins};
-\node[bubble,cSocial] (social) at ([xshift=-22mm,yshift=-10mm]group.center) {Social media\\(vetted)};
-\node[bubble,cHealth] (health) at ([xshift=22mm,yshift=-10mm]group.center) {Public health\\\& infrastructure};
+\node[bubble,cNews] (news) at ([xshift=-18mm,yshift=8mm]group.center) {News wires\\\& reports};
+\node[bubble,cNGO] (ngo) at ([xshift=18mm,yshift=8mm]group.center) {NGO bulletins};
+\node[bubble,cSocial] (social) at ([xshift=-18mm,yshift=-8mm]group.center) {Social media\\(vetted)};
+\node[bubble,cHealth] (health) at ([xshift=18mm,yshift=-8mm]group.center) {Public health\\\& infrastructure};
 
 % Connection lines between bubbles (subtle)
 \draw[black!10, line width=2pt] (news) -- (ngo);
@@ -1284,7 +1284,7 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
 \draw[black!10, line width=2pt] (ngo) -- (health);
 
 % RAG retrieval node (positioned to the right of the hub)
-\node[funnel] (funnel) at ([xshift=45mm]group.east) {RAG retrieval};
+\node[funnel] (funnel) at ([xshift=38mm]group.east) {RAG retrieval};
 
 % Journalist queries node (positioned to the right of funnel)
 \node[journalist] (journalist) [right=of funnel]

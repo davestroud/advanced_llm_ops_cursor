@@ -69,7 +69,7 @@ The following sections explore concrete strategies for optimization across three
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[font=\small]
-\node[draw, rounded corners, thick, fill=gray!5, align=left, inner sep=5mm, text width=0.95\linewidth]{
+\node[draw=none, rounded corners, fill=gray!5, align=left, inner sep=4mm, text width=0.95\linewidth]{
 \textbf{Practical gains from common optimizations}\\[2pt]
 \begin{itemize}\setlength\itemsep{0.3em}
   \item \textbf{Quantization (INT8/FP8/4-bit):} $\sim$2$\times$ reduction in parameter memory; 1.3--2.0$\times$ higher tokens/s on supported hardware (model-dependent) \cite{Xiao2023SmoothQuant,Frantar2023GPTQ,Lin2023AWQ,NVIDIA2023Hopper}.
@@ -358,7 +358,7 @@ FP16 requires multi-GPU (tensor/pipeline parallel); INT8/FP8 fits on single H100
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[font=\small]
-\node[draw, rounded corners, thick, fill=gray!5, align=left, inner sep=5mm, text width=0.95\linewidth]{
+\node[draw=none, rounded corners, fill=gray!5, align=left, inner sep=4mm, text width=0.95\linewidth]{
 \textbf{Sizing cheat-sheet (inference memory)}\\[2pt]
 \begin{itemize}\setlength\itemsep{0.3em}
   \item \emph{Weights (per replica)}: $\displaystyle M_{\text{weights}} \approx P \times b$, where $P$ is parameter count and $b$ is bytes/weight (e.g., FP16$=2$, INT8/FP8$=1$, 4-bit$=0.5$).

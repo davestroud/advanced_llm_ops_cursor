@@ -1115,12 +1115,12 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  node distance=10mm and 15mm,
+  node distance=8mm and 12mm,
   every node/.style={font=\small},
-  box/.style={draw=black!70, rounded corners, line width=0.8pt, align=center, minimum width=29mm, minimum height=9mm, fill=gray!5, inner sep=4pt},
-  hot/.style={draw=black!70, rounded corners, line width=0.8pt, align=center, minimum width=32mm, minimum height=9mm, fill=gray!12, inner sep=4pt},
-  dist/.style={draw=black!70, rounded corners, line width=0.8pt, align=center, minimum width=32mm, minimum height=9mm, fill=gray!7, inner sep=4pt},
-  stor/.style={draw=black!70, rounded corners, line width=0.8pt, align=center, minimum width=32mm, minimum height=9mm, fill=gray!10, inner sep=4pt},
+  box/.style={draw=none, rounded corners, align=center, minimum width=25mm, minimum height=8mm, fill=gray!5, inner sep=3pt},
+  hot/.style={draw=none, rounded corners, align=center, minimum width=27mm, minimum height=8mm, fill=gray!12, inner sep=3pt},
+  dist/.style={draw=none, rounded corners, align=center, minimum width=27mm, minimum height=8mm, fill=gray!7, inner sep=3pt},
+  stor/.style={draw=none, rounded corners, align=center, minimum width=27mm, minimum height=8mm, fill=gray!10, inner sep=3pt},
   arr/.style={-{Latex}, line width=0.8pt}
 ]
 
@@ -1229,15 +1229,15 @@ Fig.~\ref{fig:ch06_geo_scaling_inset} depicts a typical multi-region serving top
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  node distance=10mm and 15mm,
+  node distance=8mm and 12mm,
   every node/.style={font=\small},
-  region/.style={draw=black!70, rounded corners, line width=0.8pt, minimum width=29mm, minimum height=10mm, align=center, fill=gray!5, inner sep=4pt},
-  user/.style={draw=black!70, rounded corners, line width=0.8pt, minimum width=22mm, minimum height=8mm, align=center, fill=gray!8, inner sep=4pt},
+  region/.style={draw=none, rounded corners, minimum width=25mm, minimum height=8mm, align=center, fill=gray!5, inner sep=3pt},
+  user/.style={draw=none, rounded corners, minimum width=19mm, minimum height=7mm, align=center, fill=gray!8, inner sep=3pt},
   arr/.style={-{Latex}, line width=0.8pt},
   fail/.style={-{Latex}, line width=0.8pt, dashed, color=black!50}
 ]
 % Schematic world frame (purely illustrative)
-\node[draw=black!70, rounded corners, line width=0.8pt, minimum width=115mm, minimum height=52mm, fill=gray!2] (frame) {};
+\node[draw=none, rounded corners, minimum width=100mm, minimum height=45mm, fill=gray!2] (frame) {};
 
 % Regions (left-to-right placement)
 \node[region, anchor=west] (na) at ($(frame.west)+(0.6,0)$) {North America\\(NA cluster)};
@@ -1303,7 +1303,7 @@ Fig.~\ref{fig:ch06_ishtar_timeline} summarizes the evolution of \ishtar{} from a
 \begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
-  milestone/.style={draw, rounded corners, thick, align=left, minimum width=4.8cm, minimum height=0.95cm, fill=gray!5, inner sep=3pt},
+  milestone/.style={draw=none, rounded corners, align=left, minimum width=4.1cm, minimum height=0.8cm, fill=gray!5, inner sep=2pt},
   label/.style={font=\small, align=left}
 ]
 

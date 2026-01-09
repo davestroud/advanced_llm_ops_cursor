@@ -275,9 +275,9 @@ graph.add_conditional_edge(
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  node distance=12mm and 18mm,
+  node distance=10mm and 15mm,
   every node/.style={font=\small},
-  box/.style={draw, rounded corners, align=center, inner sep=4pt},
+  box/.style={draw=none, rounded corners, align=center, inner sep=3pt},
   arrow/.style={-{Latex}, line width=0.8pt}
 ]
 \node[box, minimum width=28mm, minimum height=10mm] (ui) {User /\\Client};
@@ -752,26 +752,26 @@ The next section will discuss error handling and exception management in orchest
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  node distance=12mm and 18mm,
+  node distance=10mm and 15mm,
   every node/.style={font=\small},
-  box/.style={draw, rounded corners, minimum width=28mm, minimum height=10mm, align=center, inner sep=4pt},
+  box/.style={draw=none, rounded corners, minimum width=24mm, minimum height=8mm, align=center, inner sep=3pt},
   agent/.style={box, fill=gray!10},
   ctrl/.style={box, fill=gray!20},
-  decision/.style={diamond, draw, aspect=2.8, inner sep=4pt, align=center, font=\small},
+  decision/.style={diamond, draw=none, aspect=2.8, inner sep=3pt, align=center, font=\small},
   arrow/.style={-{Latex}, line width=0.8pt},
   title/.style={font=\bfseries\small}
 ]
 
 % --- Panel A: Rule-Based Orchestration ----------------------------------------
-\node[draw, rounded corners, inner sep=8mm, minimum width=5.8cm, minimum height=6cm] (panelA) {};
-\node[title, anchor=west] at ([yshift=-4mm]panelA.north west) {(a) Rule-Based Orchestration};
+\node[draw=none, rounded corners, inner sep=6mm, minimum width=5.0cm, minimum height=5.2cm] (panelA) {};
+\node[title, anchor=west] at ([yshift=-3mm]panelA.north west) {(a) Rule-Based Orchestration};
 
 % Rule-Based flow (vertical layout for clarity)
-\node[ctrl] (rb_ctrl) at ([xshift=12mm, yshift=12mm]panelA.west) {Orchestrator\\(Fixed Rules)};
-\node[agent, below=14mm of rb_ctrl] (rb_r) {Retrieval\\Agent};
-\node[agent, below=12mm of rb_r] (rb_s) {Synthesis\\Agent};
-\node[agent, below=12mm of rb_s] (rb_v) {Verification\\Agent};
-\node[agent, below=12mm of rb_v] (rb_safe) {Safety\\Agent};
+\node[ctrl] (rb_ctrl) at ([xshift=10mm, yshift=10mm]panelA.west) {Orchestrator\\(Fixed Rules)};
+\node[agent, below=12mm of rb_ctrl] (rb_r) {Retrieval\\Agent};
+\node[agent, below=10mm of rb_r] (rb_s) {Synthesis\\Agent};
+\node[agent, below=10mm of rb_s] (rb_v) {Verification\\Agent};
+\node[agent, below=10mm of rb_v] (rb_safe) {Safety\\Agent};
 
 \draw[arrow] (rb_ctrl) -- (rb_r);
 \draw[arrow] (rb_r) -- (rb_s);
@@ -785,8 +785,8 @@ The next section will discuss error handling and exception management in orchest
 \draw[arrow] (rb_cond) |- node[pos=0.6, below, font=\small]{no} (rb_s);
 
 % --- Panel B: Dynamic (LLM-driven) Orchestration -----------------------------
-\node[draw, rounded corners, inner sep=8mm, minimum width=5.8cm, minimum height=6cm, right=8mm of panelA.east, anchor=west] (panelB) {};
-\node[title, anchor=west] at ([yshift=-4mm]panelB.north west) {(b) Dynamic (LLM-driven) Orchestration};
+\node[draw=none, rounded corners, inner sep=6mm, minimum width=5.0cm, minimum height=5.2cm, right=7mm of panelA.east, anchor=west] (panelB) {};
+\node[title, anchor=west] at ([yshift=-3mm]panelB.north west) {(b) Dynamic (LLM-driven) Orchestration};
 
 % Dynamic flow
 \node[ctrl] (dyn_ctrl) at ([xshift=12mm, yshift=12mm]panelB.west) {LLM Orchestrator\\(Planner/Router)};
@@ -808,8 +808,8 @@ The next section will discuss error handling and exception management in orchest
 \draw[arrow] (dyn_cond) |- node[pos=0.4, below, font=\small]{no} (dyn_safe);
 
 % --- Panel C: Hierarchical Orchestration --------------------------------------
-\node[draw, rounded corners, inner sep=8mm, minimum width=5.8cm, minimum height=6cm, right=8mm of panelB.east, anchor=west] (panelC) {};
-\node[title, anchor=west] at ([yshift=-4mm]panelC.north west) {(c) Hierarchical Orchestration};
+\node[draw=none, rounded corners, inner sep=6mm, minimum width=5.0cm, minimum height=5.2cm, right=7mm of panelB.east, anchor=west] (panelC) {};
+\node[title, anchor=west] at ([yshift=-3mm]panelC.north west) {(c) Hierarchical Orchestration};
 
 % Hierarchical flow
 \node[ctrl] (hier_sup) at ([xshift=12mm, yshift=16mm]panelC.west) {Supervisor\\Agent};
@@ -1238,7 +1238,7 @@ To ground the concepts above, let's walk through the orchestration pipeline of I
 \begin{tikzpicture}[
   node distance=10mm and 15mm,
   every node/.style={font=\small},
-  box/.style={draw, rounded corners, align=center, inner sep=4pt},
+  box/.style={draw=none, rounded corners, align=center, inner sep=3pt},
   arrow/.style={-{Latex}, line width=0.8pt},
   arrowDashed/.style={-{Latex}, line width=0.8pt, dashed}
 ]

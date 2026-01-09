@@ -778,22 +778,22 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
   \begin{tikzpicture}[
     font=\small,
     >=Stealth,
-    node distance=12mm and 18mm,
+    node distance=10mm and 15mm,
     % Color-coded styles for better visual identification
-    cloud/.style={ellipse, draw=blue!70!black, fill=blue!20, line width=1pt,
-      minimum width=50mm, minimum height=26mm, align=center, font=\small\bfseries, inner sep=7pt},
-    az/.style={rectangle, draw=cyan!60!black, fill=cyan!12, line width=1pt,
-      rounded corners=5pt, minimum width=55mm, minimum height=70mm},
-    k8s/.style={rectangle, draw=purple!70!black, fill=purple!20, line width=1pt,
-      rounded corners=3pt, minimum width=42mm, minimum height=18mm, align=center, font=\small\bfseries, inner sep=7pt},
-    gpu/.style={rectangle, draw=orange!70!black, fill=orange!25, line width=1pt,
-      rounded corners=3pt, minimum width=26mm, minimum height=13mm, align=center, font=\small, inner sep=5pt},
-    service/.style={rectangle, draw=teal!70!black, fill=teal!20, line width=1pt,
-      rounded corners=3pt, minimum width=30mm, minimum height=13mm, align=center, font=\small, inner sep=6pt},
-    security/.style={rectangle, draw=red!70!black, fill=red!18, line width=1pt,
-      rounded corners=3pt, minimum width=28mm, minimum height=13mm, align=center, font=\small\bfseries, inner sep=6pt},
-    network/.style={rectangle, draw=cyan!70!black, fill=cyan!20, line width=1pt,
-      rounded corners=3pt, minimum width=42mm, minimum height=15mm, align=center, font=\small\bfseries, inner sep=6pt},
+    cloud/.style={ellipse, draw=none, fill=blue!20,
+      minimum width=42mm, minimum height=22mm, align=center, font=\small\bfseries, inner sep=5pt},
+    az/.style={rectangle, draw=none, fill=cyan!12,
+      rounded corners=5pt, minimum width=48mm, minimum height=60mm},
+    k8s/.style={rectangle, draw=none, fill=purple!20,
+      rounded corners=3pt, minimum width=36mm, minimum height=15mm, align=center, font=\small\bfseries, inner sep=5pt},
+    gpu/.style={rectangle, draw=none, fill=orange!25,
+      rounded corners=3pt, minimum width=22mm, minimum height=11mm, align=center, font=\small, inner sep=4pt},
+    service/.style={rectangle, draw=none, fill=teal!20,
+      rounded corners=3pt, minimum width=26mm, minimum height=11mm, align=center, font=\small, inner sep=4pt},
+    security/.style={rectangle, draw=none, fill=red!18,
+      rounded corners=3pt, minimum width=24mm, minimum height=11mm, align=center, font=\small\bfseries, inner sep=4pt},
+    network/.style={rectangle, draw=none, fill=cyan!20,
+      rounded corners=3pt, minimum width=36mm, minimum height=13mm, align=center, font=\small\bfseries, inner sep=4pt},
     arrow/.style={-{Latex}, line width=1pt, draw=black!70},
     dasharrow/.style={-{Latex}, line width=1pt, dashed, draw=black!60}
   ]
@@ -981,19 +981,19 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \begin{tikzpicture}[
   font=\small,
   >=Stealth,
-  node distance=12mm and 16mm,
-  box/.style={rectangle, rounded corners=4pt, draw=black!70, thick, align=center},
-  lbl/.style={font=\small\bfseries, inner sep=4pt},
-  res/.style={rectangle, rounded corners=3pt, draw=black!70, thick, minimum width=18mm, minimum height=11mm, font=\small, align=center},
+  node distance=10mm and 14mm,
+  box/.style={rectangle, rounded corners=4pt, draw=none, align=center},
+  lbl/.style={font=\small\bfseries, inner sep=3pt},
+  res/.style={rectangle, rounded corners=3pt, draw=none, minimum width=15mm, minimum height=9mm, font=\small, align=center},
   arrow/.style={-{Latex}, line width=1pt},
-  cloud/.style={box, fill=blue!20, draw=blue!70!black, minimum width=48mm, minimum height=52mm, inner sep=6pt},
-  vpc/.style={box, fill=cyan!25, draw=cyan!70!black, inner sep=5pt},
-  onprem/.style={box, fill=gray!18, draw=gray!70!black, minimum width=48mm, minimum height=52mm, inner sep=6pt},
-  k8s/.style={box, fill=green!20, draw=green!70!black, inner sep=6pt},
-  lb/.style={res, fill=orange!25, draw=orange!70!black},
-  gw/.style={res, fill=teal!25, draw=teal!70!black},
-  gpu/.style={res, fill=purple!25, draw=purple!70!black},
-  store/.style={res, fill=yellow!25, draw=yellow!70!black}
+  cloud/.style={box, fill=blue!20, minimum width=42mm, minimum height=45mm, inner sep=5pt},
+  vpc/.style={box, fill=cyan!25, inner sep=4pt},
+  onprem/.style={box, fill=gray!18, minimum width=42mm, minimum height=45mm, inner sep=5pt},
+  k8s/.style={box, fill=green!20, inner sep=5pt},
+  lb/.style={res, fill=orange!25},
+  gw/.style={res, fill=teal!25},
+  gpu/.style={res, fill=purple!25},
+  store/.style={res, fill=yellow!25}
 ]
 
 % ================== Row anchors (vertical stacking) ==================
@@ -1055,7 +1055,7 @@ The choice of deployment model depends on workload profiles, user distribution, 
 \draw[arrow, gray!70, dashed, line width=1.3pt] (k8sC1) -- node[font=\small, align=center, midway, above, sloped] {spillover/\\failover} (k8sC2);
 
 % ================== Clean legend (below all patterns) ==================
-\node[box, fill=white!95, draw=black!50, rounded corners=4pt, minimum width=0.95\linewidth, minimum height=20mm, inner sep=7pt] (legend) at ($(row3) + (0, -36mm)$) {};
+\node[box, fill=white!95, draw=none, rounded corners=4pt, minimum width=0.95\linewidth, minimum height=18mm, inner sep=5pt] (legend) at ($(row3) + (0, -32mm)$) {};
 
 \node[cloud, minimum width=16mm, minimum height=11mm] (L1) at ($(legend.west) + (16mm, 7mm)$) {};
 \node[font=\small, right=5mm of L1.east, anchor=west] {Cloud/Region};
@@ -1128,50 +1128,50 @@ The on-prem L4 cluster processes $\sim$200 articles/minute, embedding and taggin
 \begin{tikzpicture}[
   font=\small,
   >=Stealth,
-  node distance=10mm and 12mm,
-  box/.style={rectangle, rounded corners=4pt, draw=black!70, thick, align=center},
-  gpu/.style={rectangle, rounded corners=3pt, draw=black!70, thick,
-              minimum width=18mm, minimum height=10mm, font=\small, align=center},
+  node distance=8mm and 10mm,
+  box/.style={rectangle, rounded corners=4pt, draw=none, align=center},
+  gpu/.style={rectangle, rounded corners=3pt, draw=none,
+              minimum width=15mm, minimum height=8mm, font=\small, align=center},
   arrow/.style={-{Latex}, line width=1pt},
   lbl/.style={font=\small\bfseries}
 ]
 
 % ============= On-Prem =============
-\node[box, fill=gray!18, minimum width=48mm, minimum height=36mm,
+\node[box, fill=gray!18, minimum width=40mm, minimum height=30mm,
       label={[lbl]above:{\textbf{On-Prem (L4 Cluster)}}}] (onprem) {};
-\node[gpu, fill=purple!25] (l4a) at ([yshift=7mm]onprem.center) {L4 GPU};
-\node[gpu, fill=purple!25, right=5mm of l4a] (l4b) {L4 GPU};
-\node[box, fill=yellow!25, below=7mm of onprem.center, align=center, minimum width=34mm, minimum height=12mm] (embed) {Embeddings /\\NER Tagging};
+\node[gpu, fill=purple!25] (l4a) at ([yshift=6mm]onprem.center) {L4 GPU};
+\node[gpu, fill=purple!25, right=4mm of l4a] (l4b) {L4 GPU};
+\node[box, fill=yellow!25, below=6mm of onprem.center, align=center, minimum width=28mm, minimum height=10mm] (embed) {Embeddings /\\NER Tagging};
 \draw[arrow, gray!70] (l4a) -- (embed);
 \draw[arrow, gray!70] (l4b) -- (embed);
 
 % VPN to cloud
-\node[box, fill=teal!25, minimum width=20mm, minimum height=12mm,
-      right=12mm of onprem.east] (vpn) {VPN};
+\node[box, fill=teal!25, minimum width=17mm, minimum height=10mm,
+      right=10mm of onprem.east] (vpn) {VPN};
 
 \draw[arrow, teal!80] (onprem.east) -- (vpn.west);
 
 % ============= Cloud Baseline A100 =============
-\node[box, fill=blue!20, minimum width=58mm, minimum height=56mm,
-      right=16mm of vpn, label={[lbl]above:{\textbf{Cloud (AWS EKS)}}}] (cloud) {};
+\node[box, fill=blue!20, minimum width=50mm, minimum height=48mm,
+      right=14mm of vpn, label={[lbl]above:{\textbf{Cloud (AWS EKS)}}}] (cloud) {};
 
-\node[box, fill=green!20, minimum width=52mm, minimum height=18mm,
-      above=5mm of cloud.south, anchor=south, label={[font=\small\bfseries]above:{Baseline Node Group}}] (a100group) {};
-\node[gpu, fill=purple!25] (a100a) at ([xshift=-14mm]a100group.center) {A100};
-\node[gpu, fill=purple!25] (a100b) at ([xshift=14mm]a100group.center) {A100};
+\node[box, fill=green!20, minimum width=44mm, minimum height=15mm,
+      above=4mm of cloud.south, anchor=south, label={[font=\small\bfseries]above:{Baseline Node Group}}] (a100group) {};
+\node[gpu, fill=purple!25] (a100a) at ([xshift=-12mm]a100group.center) {A100};
+\node[gpu, fill=purple!25] (a100b) at ([xshift=12mm]a100group.center) {A100};
 
-\node[box, fill=green!20, minimum width=52mm, minimum height=18mm,
-      above=5mm of a100group.north, anchor=south, label={[font=\small\bfseries]above:{Autoscaling Node Group}}] (h100group) {};
-\node[gpu, fill=purple!40] (h100a) at ([xshift=-14mm]h100group.center) {H100};
-\node[gpu, fill=purple!40] (h100b) at ([xshift=14mm]h100group.center) {H100};
+\node[box, fill=green!20, minimum width=44mm, minimum height=15mm,
+      above=4mm of a100group.north, anchor=south, label={[font=\small\bfseries]above:{Autoscaling Node Group}}] (h100group) {};
+\node[gpu, fill=purple!40] (h100a) at ([xshift=-12mm]h100group.center) {H100};
+\node[gpu, fill=purple!40] (h100b) at ([xshift=12mm]h100group.center) {H100};
 
 % Serving pods
-\node[box, fill=orange!25, above=5mm of h100group.north, anchor=south,
-      minimum width=52mm, minimum height=14mm] (serving) {Model Serving Pods (TGI / vLLM)};
+\node[box, fill=orange!25, above=4mm of h100group.north, anchor=south,
+      minimum width=44mm, minimum height=12mm] (serving) {Model Serving Pods (TGI / vLLM)};
 
 % Terraform + K8s control
-\node[box, fill=blue!25, minimum width=36mm, minimum height=12mm,
-      above=7mm of serving.north] (iac) {Terraform + ArgoCD + K8s Autoscaling};
+\node[box, fill=blue!25, minimum width=30mm, minimum height=10mm,
+      above=6mm of serving.north] (iac) {Terraform + ArgoCD + K8s Autoscaling};
 
 \draw[arrow, orange!80] (a100a.north) -- (serving.south);
 \draw[arrow, orange!80] (h100a.north) -- (serving.south);
@@ -1181,8 +1181,8 @@ The on-prem L4 cluster processes $\sim$200 articles/minute, embedding and taggin
 \draw[arrow, teal!80] (vpn.east) -- (cloud.west);
 
 % ============= Legend =============
-\node[box, fill=white!95, draw=black!50, very thick, inner sep=5pt,
-      below=14mm of cloud.south, minimum width=0.9\linewidth, minimum height=16mm] (legend) {};
+\node[box, fill=white!95, draw=none, inner sep=4pt,
+      below=12mm of cloud.south, minimum width=0.9\linewidth, minimum height=14mm] (legend) {};
 
 \node[gpu, fill=purple!25, minimum width=12mm, minimum height=8mm, label={[font=\small]right:L4 / A100 GPU}] (L1) at ($(legend.west) + (10mm, 0)$) {};
 \node[gpu, fill=purple!40, minimum width=12mm, minimum height=8mm, label={[font=\small]right:H100 GPU}] (L2) at ($(L1.east) + (28mm, 0)$) {};

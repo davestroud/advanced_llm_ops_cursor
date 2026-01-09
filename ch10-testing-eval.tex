@@ -258,7 +258,7 @@ Fig.~\ref{fig:ch10_test_coverage_matrix} visualizes this coverage matrix approac
 % Grid cells
 \foreach \x in {0,1,2} {
   \foreach \y in {0,1,2} {
-    \draw[fill=gray!20, draw=black!40] (\x*2.5,\y*1.5) rectangle (\x*2.5+2.2,\y*1.5+1.2);
+    \draw[fill=gray!20, draw=none] (\x*2.5,\y*1.5) rectangle (\x*2.5+2.2,\y*1.5+1.2);
   }
 }
 
@@ -273,16 +273,16 @@ Fig.~\ref{fig:ch10_test_coverage_matrix} visualizes this coverage matrix approac
 \node[anchor=east] at (-0.2,-0.9) {Minimum};
 
 % Coverage markers (example coverage pattern)
-\filldraw[fill=blue!60, draw=black!70] (0.3,1.8) rectangle (1.9,2.7);
-\filldraw[fill=blue!60, draw=black!70] (2.8,1.8) rectangle (4.4,2.7);
-\filldraw[fill=blue!60, draw=black!70] (5.3,0.3) rectangle (6.9,1.2);
-\filldraw[fill=blue!60, draw=black!70] (0.3,-0.6) rectangle (1.9,0.3);
+\filldraw[fill=blue!60, draw=none] (0.3,1.8) rectangle (1.9,2.7);
+\filldraw[fill=blue!60, draw=none] (2.8,1.8) rectangle (4.4,2.7);
+\filldraw[fill=blue!60, draw=none] (5.3,0.3) rectangle (6.9,1.2);
+\filldraw[fill=blue!60, draw=none] (0.3,-0.6) rectangle (1.9,0.3);
 
 % Legend
 \node[anchor=west] at (7.5,2.5) {\textbf{Coverage:}};
-\draw[fill=blue!60, draw=black!70] (7.5,1.8) rectangle (7.9,2.2);
+\draw[fill=blue!60, draw=none] (7.5,1.8) rectangle (7.9,2.2);
 \node[anchor=west] at (8.1,2.0) {Tested};
-\draw[fill=gray!20, draw=black!40] (7.5,1.2) rectangle (7.9,1.6);
+\draw[fill=gray!20, draw=none] (7.5,1.2) rectangle (7.9,1.6);
 \node[anchor=west] at (8.1,1.4) {Not tested};
 \end{tikzpicture}
 \end{llmfigbox}
@@ -709,20 +709,20 @@ Fig.~\ref{fig:ch10_metrics_dashboard} shows how multiple metrics are visualized 
 \begin{llmfigbox}
 \begin{tikzpicture}[font=\small]
 % Dashboard layout
-\draw[fill=gray!5, draw=black!30] (0,0) rectangle (10,6);
+\draw[fill=gray!5, draw=none] (0,0) rectangle (10,6);
 \node[anchor=north west] at (0.2,5.8) {\textbf{Evaluation Metrics Dashboard}};
 
 % Time series plots (simplified)
-\draw[fill=white, draw=black!40] (0.5,4.5) rectangle (4.5,5.5);
+\draw[fill=white, draw=none] (0.5,4.5) rectangle (4.5,5.5);
 \node[anchor=center] at (2.5,5.0) {Correctness Trend};
 
-\draw[fill=white, draw=black!40] (5.5,4.5) rectangle (9.5,5.5);
+\draw[fill=white, draw=none] (5.5,4.5) rectangle (9.5,5.5);
 \node[anchor=center] at (7.5,5.0) {Faithfulness Trend};
 
-\draw[fill=white, draw=black!40] (0.5,2.5) rectangle (4.5,3.5);
+\draw[fill=white, draw=none] (0.5,2.5) rectangle (4.5,3.5);
 \node[anchor=center] at (2.5,3.0) {Latency Trend};
 
-\draw[fill=white, draw=black!40] (5.5,2.5) rectangle (9.5,3.5);
+\draw[fill=white, draw=none] (5.5,2.5) rectangle (9.5,3.5);
 \node[anchor=center] at (7.5,3.0) {Cost Trend};
 
 % Trend indicators
@@ -1631,10 +1631,10 @@ In practice, not all evaluation runs can be executed on every commit: comprehens
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[font=\small, node distance=10mm]
-\node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=8mm] (pr) {Pull Request\\(fast gate)};
-\node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=8mm, right=of pr] (merge) {Merge to main\\(nightly gate)};
-\node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=8mm, right=of merge] (release) {Pre-release\\(full gate)};
-\node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=8mm, right=of release] (canary) {Canary + monitor\\(online gate)};
+\node[draw=none, rounded corners, align=center, minimum width=2.7cm, minimum height=7mm] (pr) {Pull Request\\(fast gate)};
+\node[draw=none, rounded corners, align=center, minimum width=2.7cm, minimum height=7mm, right=of pr] (merge) {Merge to main\\(nightly gate)};
+\node[draw=none, rounded corners, align=center, minimum width=2.7cm, minimum height=7mm, right=of merge] (release) {Pre-release\\(full gate)};
+\node[draw=none, rounded corners, align=center, minimum width=2.7cm, minimum height=7mm, right=of release] (canary) {Canary + monitor\\(online gate)};
 
 \draw[->] (pr) -- node[above]{smoke eval} (merge);
 \draw[->] (merge) -- node[above]{full eval suite} (release);
@@ -1857,10 +1857,10 @@ All three are version-controlled and executed through a single evaluation harnes
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[font=\small, node distance=10mm]
-\node[draw, rounded corners, align=center, minimum width=3.5cm, minimum height=8mm] (logs) {Production logs\\(sampled, labeled)};
-\node[draw, rounded corners, align=center, minimum width=3.5cm, minimum height=8mm, right=of logs] (datasets) {Eval datasets\\golden + incidents + slices};
-\node[draw, rounded corners, align=center, minimum width=3.5cm, minimum height=8mm, right=of datasets] (runner) {Eval runner\\(offline)};
-\node[draw, rounded corners, align=center, minimum width=3.5cm, minimum height=8mm, right=of runner] (report) {Report + gates\\CI/CD decision};
+\node[draw=none, rounded corners, align=center, minimum width=3.0cm, minimum height=7mm] (logs) {Production logs\\(sampled, labeled)};
+\node[draw=none, rounded corners, align=center, minimum width=3.0cm, minimum height=7mm, right=of logs] (datasets) {Eval datasets\\golden + incidents + slices};
+\node[draw=none, rounded corners, align=center, minimum width=3.0cm, minimum height=7mm, right=of datasets] (runner) {Eval runner\\(offline)};
+\node[draw=none, rounded corners, align=center, minimum width=3.0cm, minimum height=7mm, right=of runner] (report) {Report + gates\\CI/CD decision};
 
 \draw[->] (logs) -- node[above]{curate} (datasets);
 \draw[->] (datasets) -- node[above]{execute} (runner);

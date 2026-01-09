@@ -100,9 +100,9 @@ A production RAG system\index{RAG!system} consists of \emph{offline} components 
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-    node distance=18mm,
+    node distance=14mm,
     auto,
-    block/.style={rectangle, draw=black!70, fill=gray!10, rounded corners, minimum height=10mm, minimum width=28mm, align=center, inner sep=4pt, font=\small},
+    block/.style={rectangle, draw=none, fill=gray!10, rounded corners, minimum height=8mm, minimum width=24mm, align=center, inner sep=3pt, font=\small},
     arrow/.style={-{Latex}, line width=0.8pt}
 ]
 \node[block] (q) {User query};
@@ -337,9 +337,9 @@ Ingestion quality and freshness determine RAG quality. Treat ingestion as a vers
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-    node distance=18mm,
+    node distance=14mm,
     auto,
-    block/.style={rectangle, draw=black!70, fill=gray!10, rounded corners, minimum height=10mm, minimum width=30mm, align=center, inner sep=4pt, font=\small},
+    block/.style={rectangle, draw=none, fill=gray!10, rounded corners, minimum height=8mm, minimum width=26mm, align=center, inner sep=3pt, font=\small},
     arrow/.style={-{Latex}, line width=0.8pt}
 ]
 
@@ -879,9 +879,9 @@ This section illustrates an evidence-first RAG design for \ishtar{}, a crisis in
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-    node distance=17mm,
+    node distance=14mm,
     auto,
-    block/.style={rectangle, draw=black!70, fill=gray!6, rounded corners, minimum height=10mm, minimum width=31mm, align=center, inner sep=4pt, font=\small},
+    block/.style={rectangle, draw=none, fill=gray!6, rounded corners, minimum height=8mm, minimum width=27mm, align=center, inner sep=3pt, font=\small},
     arrow/.style={-{Latex}, line width=0.8pt}
 ]
 \node[block] (src) {Trusted sources\\ \footnotesize (news, NGOs, bulletins)};
