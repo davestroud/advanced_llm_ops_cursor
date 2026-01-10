@@ -83,26 +83,32 @@ Finally, LLM observability has a governance dimension. Logs often contain user t
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  layer/.style={rectangle, rounded corners, draw=none,
-                minimum width=40mm, minimum height=10mm,
-                align=center, fill=gray!10},
-  arrow/.style={-{Stealth[length=3mm,width=2mm]}, very thick},
-  note/.style={font=\small, align=center}
+  system/.style={rectangle, rounded corners=4pt, draw=none,
+                 minimum width=50mm, minimum height=14mm,
+                 align=center, fill=blue!15, inner sep=4pt},
+  model/.style={rectangle, rounded corners=4pt, draw=none,
+                minimum width=50mm, minimum height=14mm,
+                align=center, fill=green!15, inner sep=4pt},
+  pipeline/.style={rectangle, rounded corners=4pt, draw=none,
+                   minimum width=50mm, minimum height=14mm,
+                   align=center, fill=orange!15, inner sep=4pt},
+  arrow/.style={-{Stealth[length=3.5mm,width=2.5mm]}, very thick, draw=black!70},
+  note/.style={font=\footnotesize, align=left, text width=35mm}
 ]
 
-% Layers
-\node[layer] (system) {System Telemetry\\[2pt]\small GPU/CPU util., memory, latency, throughput};
-\node[layer, below=of system,yshift=-6mm] (model) {Model Telemetry\\[2pt]\small Tokens/request, hallucination rate, factuality checks};
-\node[layer, below=of model,yshift=-6mm] (pipeline) {Pipeline Telemetry\\[2pt]\small Prompt traces, retrieval hits, multi-agent orchestration};
+% Layers with distinct colors
+\node[system] (system) {\textbf{System Telemetry}\\[3pt]\footnotesize GPU/CPU util., memory, latency, throughput};
+\node[model, below=of system, yshift=-8mm] (model) {\textbf{Model Telemetry}\\[3pt]\footnotesize Tokens/request, hallucination rate, factuality checks};
+\node[pipeline, below=of model, yshift=-8mm] (pipeline) {\textbf{Pipeline Telemetry}\\[3pt]\footnotesize Prompt traces, retrieval hits, multi-agent orchestration};
 
 % Flow arrows
 \draw[arrow] (system.south) -- (model.north);
 \draw[arrow] (model.south) -- (pipeline.north);
 
-% Context annotations
-\node[note, right=15mm of system.east] {Traditional infra metrics};
-\node[note, right=15mm of model.east] {LLM-specific quality \& cost signals};
-\node[note, right=15mm of pipeline.east] {End-to-end lineage across agents};
+% Context annotations with better positioning
+\node[note, right=18mm of system.east, anchor=west] {Traditional infra metrics};
+\node[note, right=18mm of model.east, anchor=west] {LLM-specific quality \& cost signals};
+\node[note, right=18mm of pipeline.east, anchor=west] {End-to-end lineage across agents};
 
 \end{tikzpicture}
 \end{llmfigbox}
