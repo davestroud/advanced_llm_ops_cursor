@@ -1246,23 +1246,23 @@ Fig.~\ref{fig:ch06_geo_scaling_inset} depicts a typical multi-region serving top
 \begin{tikzpicture}[
   node distance=8mm and 12mm,
   every node/.style={font=\small},
-  region/.style={draw=none, rounded corners, minimum width=25mm, minimum height=8mm, align=center, fill=gray!5, inner sep=3pt},
-  user/.style={draw=none, rounded corners, minimum width=19mm, minimum height=7mm, align=center, fill=gray!8, inner sep=3pt},
+  region/.style={draw=none, rounded corners=4pt, minimum width=25mm, minimum height=8mm, align=center, inner sep=3pt},
+  user/.style={draw=none, rounded corners=4pt, minimum width=19mm, minimum height=7mm, align=center, inner sep=3pt},
   arr/.style={-{Latex}, line width=0.8pt},
   fail/.style={-{Latex}, line width=0.8pt, dashed, color=black!50}
 ]
 % Schematic world frame (purely illustrative)
 \node[draw=none, rounded corners, minimum width=100mm, minimum height=45mm, fill=gray!2] (frame) {};
 
-% Regions (left-to-right placement)
-\node[region, anchor=west] (na) at ($(frame.west)+(0.6,0)$) {North America\\(NA cluster)};
-\node[region] (eu) at ($(frame.center)+(0,1.0)$) {Europe\\(EU cluster)};
-\node[region, anchor=east] (ap) at ($(frame.east)+(-0.6,0)$) {Asia-Pacific\\(APAC cluster)};
+% Regions (left-to-right placement) - with colors
+\node[region, fill=blue!15, anchor=west] (na) at ($(frame.west)+(0.6,0)$) {North America\\(NA cluster)};
+\node[region, fill=green!15] (eu) at ($(frame.center)+(0,1.0)$) {Europe\\(EU cluster)};
+\node[region, fill=orange!15, anchor=east] (ap) at ($(frame.east)+(-0.6,0)$) {Asia-Pacific\\(APAC cluster)};
 
-% Users (example clients)
-\node[user, above=of na] (userna) {Users (NA)};
-\node[user, above=of eu] (usereu) {Users (EU)};
-\node[user, above=of ap] (userap) {Users (APAC)};
+% Users (example clients) - matching region colors
+\node[user, fill=blue!8, above=of na] (userna) {Users (NA)};
+\node[user, fill=green!8, above=of eu] (usereu) {Users (EU)};
+\node[user, fill=orange!8, above=of ap] (userap) {Users (APAC)};
 
 % Primary routing (nearest region)
 \draw[arr] (userna) -- node[pos=0.5,right]{nearest} (na.north);
@@ -1274,10 +1274,10 @@ Fig.~\ref{fig:ch06_geo_scaling_inset} depicts a typical multi-region serving top
 \draw[fail] (eu.east) .. controls +(1.2,-0.4) and +(-1.2,-0.4) .. (ap.west) node[pos=0.52,below,sloped] {\small failover};
 \draw[fail] (na.south east) .. controls +(1.4,-1.2) and +(-1.4,-1.2) .. (ap.south west) node[pos=0.5,below,sloped] {\small overflow};
 
-% Compliance / geofencing note
-\node[draw, rounded corners, align=left, anchor=south west, fill=white, inner sep=2mm]
-at ($(frame.south west)+(0.35,0.35)$) {\small
-\textbf{Notes}\\
+% Compliance / geofencing note - moved to lower left, separated from main content
+\node[draw=black!40, rounded corners=4pt, align=left, anchor=north west, fill=white!95, inner sep=4mm]
+at ($(frame.south west)+(0.2,-0.5)$) {\small
+\textbf{Notes}\\[2pt]
 -- Geo-aware routing (latency)\\
 -- Regional data residency\\
 -- Per-region caches \& failover
