@@ -290,18 +290,16 @@ High-fidelity traces require stable correlation across boundaries. Every request
 \begin{llmfigbox}
 \begin{tikzpicture}[
   font=\small,
-  node distance=14mm and 16mm,
+  node distance=12mm and 18mm,
   >=Stealth,
   every node/.style={align=left},
   header/.style={font=\bfseries\ttfamily\small},
-  attr/.style={font=\small},
-  box/.style={rectangle, rounded corners=4pt, draw=none, inner sep=4mm, text width=45mm},
-  boxwide/.style={rectangle, rounded corners=4pt, draw=none, inner sep=4mm, text width=0.25\linewidth},
-  arrow/.style={->, thick, line width=1pt},
-  dot/.style={circle, inner sep=1.5pt, fill=black}
+  box/.style={rectangle, rounded corners=5pt, draw=none, inner sep=5mm, text width=48mm, minimum height=16mm},
+  boxwide/.style={rectangle, rounded corners=5pt, draw=none, inner sep=5mm, text width=0.28\linewidth, minimum height=20mm},
+  arrow/.style={->, very thick, line width=1.2pt, draw=black!60}
 ]
 
-% --- Color palette (muted, Springer-friendly) ---
+% --- Enhanced color palette ---
 \definecolor{llmblue}{RGB}{44,102,146}
 \definecolor{retrgreen}{RGB}{34,139,96}
 \definecolor{toolorange}{RGB}{201,111,29}
@@ -309,56 +307,58 @@ High-fidelity traces require stable correlation across boundaries. Every request
 \definecolor{guardred}{RGB}{173,63,60}
 \definecolor{panelgray}{RGB}{90,90,90}
 
-% --- Central TRACE panel ---
-\node[boxwide, fill=panelgray!6] (trace) {%
-  \textbf{Trace} (execution waterfall)\\[1mm]
-  \(\bullet\) \texttt{trace\_id}, \texttt{span\_id}, \texttt{conversation\_id}\\[0.5mm]
-  \(\bullet\) \texttt{baggage}: tenant/user, privacy class\\[0.5mm]
+% --- Central TRACE panel (defined first so other nodes can reference it) ---
+\node[boxwide, fill=panelgray!8] (trace) {%
+  \textbf{Trace} (execution waterfall)\\[2mm]
+  \footnotesize
+  \(\bullet\) \texttt{trace\_id}, \texttt{span\_id}, \texttt{conversation\_id}\\[1mm]
+  \(\bullet\) \texttt{baggage}: tenant/user, privacy class\\[1mm]
   \(\bullet\) rollup fields for P50/P95 latency, tokens, cost
 };
 
-% --- Span taxonomy boxes (two columns) ---
-\node[box, fill=llmblue!10, right=20mm of trace.north east, anchor=north west] (llm) {%
-  \header{\texttt{llm.call}}\\[1mm]
-  model/version; temperature, $p$; TTFT; tokens/s; token counts
+% --- Top row: llm.call and retriever.search (above trace) ---
+\node[box, fill=llmblue!12, above=22mm of trace.north, xshift=-24mm] (llm) {%
+  \header{\texttt{llm.call}}\\[2mm]
+  \footnotesize model/version; temperature, $p$; TTFT; tokens/s; token counts
 };
-\node[box, fill=retrgreen!10, below=of llm] (retr) {%
-  \header{\texttt{retriever.search}}\\[1mm]
-  index/version; \texttt{topK}; latency; hit set (doc IDs); re-ranker scores
-};
-\node[box, fill=toolorange!10, below=of retr] (tool) {%
-  \header{\texttt{tool.invoke.<name>}}\\[1mm]
-  schema version; payload bytes; retries/backoff; downstream status
+\node[box, fill=retrgreen!12, above=22mm of trace.north, xshift=24mm] (retr) {%
+  \header{\texttt{retriever.search}}\\[2mm]
+  \footnotesize index/version; \texttt{topK}; latency; hit set (doc IDs); re-ranker scores
 };
 
-\node[box, fill=parserviolet!10, right=of llm] (parser) {%
-  \header{\texttt{parser.jsonschema}}\\[1mm]
-  schema ID; failure class: \texttt{missing\_field}, \texttt{type\_mismatch}
+% --- Bottom row: tool, parser, guard ---
+\node[box, fill=toolorange!12, below=22mm of trace.south, xshift=-48mm] (tool) {%
+  \header{\texttt{tool.invoke.<name>}}\\[2mm]
+  \footnotesize schema version; payload bytes; retries/backoff; downstream status
 };
-\node[box, fill=guardred!10, below=of parser] (guard) {%
-  \header{\texttt{guard.rail}}\\[1mm]
-  policy ID; triggers (jailbreak, toxicity); action (block/sanitize/route)
+\node[box, fill=parserviolet!12, below=22mm of trace.south] (parser) {%
+  \header{\texttt{parser.jsonschema}}\\[2mm]
+  \footnotesize schema ID; failure class: \texttt{missing\_field}, \texttt{type\_mismatch}
+};
+\node[box, fill=guardred!12, below=22mm of trace.south, xshift=48mm] (guard) {%
+  \header{\texttt{guard.rail}}\\[2mm]
+  \footnotesize policy ID; triggers (jailbreak, toxicity); action (block/sanitize/route)
 };
 
-% --- Arrows from TRACE to spans (routed completely outside boxes) ---
-\draw[arrow] (trace.east) -- ++(10mm,0) coordinate (mid1) -- (mid1 |- llm.west) -- (llm.west);
-\draw[arrow] (trace.east) -- ++(10mm,0) coordinate (mid2) -- (mid2 |- retr.west) -- (retr.west);
-\draw[arrow] (trace.east) -- ++(10mm,0) coordinate (mid3) -- (mid3 |- tool.west) -- (tool.west);
-\draw[arrow] (trace.east) -- ++(10mm,0) coordinate (mid4) -- (mid4 |- parser.west) -- (parser.west);
-\draw[arrow] (trace.east) -- ++(10mm,0) coordinate (mid5) -- (mid5 |- guard.west) -- (guard.west);
+% --- Arrows from TRACE to spans (clean routing) ---
+\draw[arrow] (trace.north) .. controls +(0,8mm) and +(-8mm,0) .. (llm.south);
+\draw[arrow] (trace.north) .. controls +(0,8mm) and +(8mm,0) .. (retr.south);
+\draw[arrow] (trace.south) .. controls +(0,-8mm) and +(-8mm,0) .. (tool.north);
+\draw[arrow] (trace.south) .. controls +(0,-8mm) and +(0,0) .. (parser.north);
+\draw[arrow] (trace.south) .. controls +(0,-8mm) and +(8mm,0) .. (guard.north);
 
 % --- Legend / Notes panel ---
-\node[rectangle, rounded corners=4pt, draw=none, fill=panelgray!5,
-      below=16mm of tool, text width=0.9\linewidth, inner sep=4mm] (legend) {%
+\node[rectangle, rounded corners=5pt, draw=none, fill=panelgray!6,
+      below=20mm of tool.south, text width=0.92\linewidth, inner sep=5mm, anchor=north] (legend) {%
   \textbf{Naming \& rollups.}\;
   \texttt{llm.call}, \texttt{retriever.search}, \texttt{tool.invoke.<name>}, \texttt{parser.jsonschema}, \texttt{guard.rail}
-  form a stable taxonomy for queryable traces.\\[1mm]
-  Example rollup: ``P95 latency attributable to \texttt{retriever.search} increased 30\% after build 2025-08-12.''
+  form a stable taxonomy for queryable traces.\\[1.5mm]
+  \textit{Example rollup:} ``P95 latency attributable to \texttt{retriever.search} increased 30\% after build 2025-08-12.''
 };
 
-% --- Title badge ---
-\node[rectangle, rounded corners=3pt, draw=none, fill=panelgray!8,
-      above left=4mm and -4mm of trace.north east, anchor=south east, inner sep=4mm] (title) {%
+% --- Title badge (positioned at top) ---
+\node[rectangle, rounded corners=4pt, draw=none, fill=panelgray!10,
+      above=4mm of llm.north, anchor=south, inner sep=5mm] (title) {%
   \bfseries\small Span Taxonomy \& Naming
 };
 
