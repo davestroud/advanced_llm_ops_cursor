@@ -1318,10 +1318,10 @@ Fig.~\ref{fig:ch06_ishtar_timeline} summarizes the evolution of \ishtar{} from a
 \begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
-  milestone/.style={draw=none, rounded corners=4pt, align=left, minimum width=4.1cm, minimum height=0.8cm, inner sep=3pt},
-  initial/.style={milestone, fill=blue!15},
-  intermediate/.style={milestone, fill=green!15},
-  mature/.style={milestone, fill=orange!15},
+  milestone/.style={draw=none, rounded corners=4pt, align=left, inner sep=3pt},
+  initial/.style={milestone, fill=blue!15, minimum width=4.1cm, minimum height=0.8cm},
+  intermediate/.style={milestone, fill=green!15, minimum width=4.3cm, minimum height=1.0cm},
+  mature/.style={milestone, fill=orange!15, minimum width=4.5cm, minimum height=1.0cm},
   label/.style={font=\small, align=left}
 ]
 
@@ -1337,9 +1337,9 @@ $\bullet$ Tiered models \& spot for cost-awareness
 % Timeline axis
 \draw[thick] (0,0) -- (15,0);
 
-% Ticks
-\foreach \x/\name in {0/Initial, 7/Intermediate, 14/Mature}
-  \draw[thick] (\x,0.15) -- (\x,-0.15) node[below=2mm,font=\bfseries] {\name};
+% Ticks (without labels - labels will be on arrows)
+\foreach \x in {0, 7, 14}
+  \draw[thick] (\x,0.15) -- (\x,-0.15);
 
 % Milestones (boxes) - with colors
 \node[initial, anchor=north west] (m0) at (-0.2,-1.8) {%
@@ -1363,10 +1363,10 @@ $\bullet$ Tiered models \& spot for cost-awareness
 -- Redis response cache \& vector DB embeddings\\
 -- Speculative decoding; predictive autoscaling};
 
-% Connectors (from ticks to boxes)
-\draw[->, thick] (0,-0.2) -- (m0.north west);
-\draw[->, thick] (7,-0.2) -- (m1.north);
-\draw[->, thick] (14,-0.2) -- (m2.north east);
+% Connectors (from ticks to boxes) - with labels to the right of arrows
+\draw[->, thick] (0,-0.2) -- (m0.north west) node[pos=0.5,right=2mm,font=\bfseries] {Initial Stage};
+\draw[->, thick] (7,-0.2) -- (m1.north) node[pos=0.5,right=2mm,font=\bfseries] {Intermediate};
+\draw[->, thick] (14,-0.2) -- (m2.north east) node[pos=0.5,right=2mm,font=\bfseries] {Mature};
 
 \end{tikzpicture}
 \end{llmfigbox}
