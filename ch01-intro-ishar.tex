@@ -88,26 +88,34 @@ Reliability\index{reliability} is also a concern: when a subcomponent fails (ret
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
+% Color definitions
+\definecolor{userblue}{RGB}{44,102,146}
+\definecolor{orchestratorgreen}{RGB}{34,139,96}
+\definecolor{retrieverorange}{RGB}{201,111,29}
+\definecolor{knowledgepurple}{RGB}{123,88,163}
+\definecolor{llmred}{RGB}{173,63,60}
+\definecolor{toolteal}{RGB}{0,128,128}
+\definecolor{responseviolet}{RGB}{153,102,204}
 \begin{tikzpicture}[
   >=Stealth,
-  node distance=10mm and 20mm,
+  node distance=12mm and 22mm,
   every node/.style={font=\small},
-  % Component styles (grayscale-safe with line styles)
-  user/.style={ellipse, draw=none, fill=gray!10, minimum width=18mm, minimum height=9mm, align=center, font=\small\bfseries},
-  orchestrator/.style={rectangle, draw=none, fill=gray!20, rounded corners=4pt, minimum width=32mm, minimum height=11mm, align=center, font=\small\bfseries},
-  retriever/.style={rectangle, draw=none, fill=gray!10, rounded corners=4pt, minimum width=25mm, minimum height=9mm, align=center, font=\small},
-  knowledge/.style={rectangle, draw=none, fill=gray!10, rounded corners=4pt, minimum width=24mm, minimum height=10mm, align=center, font=\small},
-  llm/.style={rectangle, draw=none, fill=gray!15, rounded corners=4pt, minimum width=24mm, minimum height=11mm, align=center, font=\small\bfseries},
-  tool/.style={rectangle, draw=none, fill=gray!10, rounded corners=4pt, minimum width=22mm, minimum height=9mm, align=center, font=\small},
-  response/.style={ellipse, draw=none, fill=gray!10, minimum width=18mm, minimum height=9mm, align=center, font=\small\bfseries},
-  failure/.style={circle, draw=none, fill=gray!15, minimum size=5mm},
-  % Arrow styles (grayscale-safe with line styles)
-  mainflow/.style={-{Latex}, line width=1pt, color=black!70},
-  fallback/.style={-{Latex}, dashed, line width=1pt, color=black!50},
-  toolflow/.style={-{Latex}, line width=1pt, color=black!60},
-  retrieval/.style={-{Latex}, line width=1pt, color=black!60},
-  queryflow/.style={-{Latex}, line width=1pt, color=black!70},
-  label/.style={font=\small, color=black!60}
+  % Component styles with color coding
+  user/.style={ellipse, draw=none, fill=userblue!15, minimum width=20mm, minimum height=10mm, align=center, font=\small\bfseries},
+  orchestrator/.style={rectangle, draw=none, fill=orchestratorgreen!15, rounded corners=5pt, minimum width=34mm, minimum height=12mm, align=center, font=\small\bfseries},
+  retriever/.style={rectangle, draw=none, fill=retrieverorange!15, rounded corners=5pt, minimum width=27mm, minimum height=10mm, align=center, font=\small},
+  knowledge/.style={rectangle, draw=none, fill=knowledgepurple!15, rounded corners=5pt, minimum width=26mm, minimum height=11mm, align=center, font=\small},
+  llm/.style={rectangle, draw=none, fill=llmred!15, rounded corners=5pt, minimum width=26mm, minimum height=12mm, align=center, font=\small\bfseries},
+  tool/.style={rectangle, draw=none, fill=toolteal!15, rounded corners=5pt, minimum width=24mm, minimum height=10mm, align=center, font=\small},
+  response/.style={ellipse, draw=none, fill=responseviolet!15, minimum width=20mm, minimum height=10mm, align=center, font=\small\bfseries},
+  failure/.style={circle, draw=none, fill=red!20, minimum size=6mm},
+  % Arrow styles - enhanced
+  mainflow/.style={-{Latex}, line width=1.2pt, color=black!70},
+  fallback/.style={-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1.2pt, color=black!60},
+  toolflow/.style={-{Latex}, line width=1.2pt, color=toolteal!70!black},
+  retrieval/.style={-{Latex}, line width=1.2pt, color=retrieverorange!70!black},
+  queryflow/.style={-{Latex}, line width=1.2pt, color=userblue!70!black},
+  label/.style={font=\footnotesize, color=black!70}
 ]
 
 % User and Response (top level)
@@ -141,8 +149,8 @@ Reliability\index{reliability} is also a concern: when a subcomponent fails (ret
 \draw[retrieval] (retriever) -- node[label, right, pos=0.5] {docs} (orchestrator);
 
 % Failure indicator connection
-\draw[-{Latex}, dashed, line width=1pt, color=black!50] (retriever) -- (failure);
-\node[font=\small, color=black!60, left=3mm of failure] {Failure};
+\draw[-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1.2pt, color=red!60] (retriever) -- (failure);
+\node[font=\footnotesize\bfseries, color=red!70!black, left=3mm of failure] {Failure};
 
 % LLM flow: Orchestrator → LLM (dashed for model interaction)
 \draw[fallback] (orchestrator) -- node[label, right, pos=0.5] {Assemble prompt \& call model} (llm);
@@ -324,14 +332,19 @@ control stack spanning input handling, retrieval governance, tool security, and 
 \begin{figure}[t]
   \centering
   \begin{llmfigbox}
+  % Color definitions
+  \definecolor{surfaceblue}{RGB}{44,102,146}
+  \definecolor{threatred}{RGB}{173,63,60}
+  \definecolor{controlgreen}{RGB}{34,139,96}
+  \definecolor{crosscutpurple}{RGB}{123,88,163}
   \begin{tikzpicture}[
     >=Stealth,
-    % Box styles (grayscale-safe with line styles)
-    surface/.style={rectangle, draw=none, fill=gray!10, rounded corners=4pt, minimum width=22mm, minimum height=10mm, align=center, font=\small},
-    threat/.style={rectangle, draw=none, fill=gray!12, rounded corners=4pt, minimum width=22mm, minimum height=8mm, align=center, font=\small},
-    control/.style={rectangle, draw=none, fill=gray!10, rounded corners=4pt, minimum width=22mm, minimum height=10mm, align=center, font=\small},
-    crosscut/.style={rectangle, draw=none, fill=gray!8, rounded corners=4pt, minimum width=120mm, minimum height=7mm, align=center, font=\footnotesize},
-    arrow/.style={-{Latex}, line width=0.8pt, color=black!70}
+    % Box styles with color coding
+    surface/.style={rectangle, draw=none, fill=surfaceblue!12, rounded corners=5pt, minimum width=24mm, minimum height=11mm, align=center, font=\small},
+    threat/.style={rectangle, draw=none, fill=threatred!12, rounded corners=5pt, minimum width=24mm, minimum height=9mm, align=center, font=\small},
+    control/.style={rectangle, draw=none, fill=controlgreen!12, rounded corners=5pt, minimum width=24mm, minimum height=11mm, align=center, font=\small},
+    crosscut/.style={rectangle, draw=none, fill=crosscutpurple!10, rounded corners=5pt, minimum width=120mm, minimum height=8mm, align=center, font=\footnotesize},
+    arrow/.style={-{Latex}, line width=1pt, color=black!70}
   ]
 
   % Use explicit coordinates to ensure no overlap
@@ -343,10 +356,10 @@ control stack spanning input handling, retrieval governance, tool security, and 
   \node[surface] (output) at (14,8) {\begin{tabular}{c}\textbf{Model output}\\\footnotesize Answer text\\Citations\\Logs\end{tabular}};
 
   % Flow arrows between surfaces
-  \draw[-{Latex}, line width=0.8pt, color=black!60] (input.east) -- (prompt.west);
-  \draw[-{Latex}, line width=0.8pt, color=black!60] (prompt.east) -- (retrieval.west);
-  \draw[-{Latex}, line width=0.8pt, color=black!60] (retrieval.east) -- (tools.west);
-  \draw[-{Latex}, line width=0.8pt, color=black!60] (tools.east) -- (output.west);
+  \draw[-{Latex}, line width=1.2pt, color=surfaceblue!70!black] (input.east) -- (prompt.west);
+  \draw[-{Latex}, line width=1.2pt, color=surfaceblue!70!black] (prompt.east) -- (retrieval.west);
+  \draw[-{Latex}, line width=1.2pt, color=surfaceblue!70!black] (retrieval.east) -- (tools.west);
+  \draw[-{Latex}, line width=1.2pt, color=surfaceblue!70!black] (tools.east) -- (output.west);
 
   % Middle layer: Threats
   \node[threat] (inj) at (1.75,5.5) {\begin{tabular}{c}\textbf{Prompt injection}\\\footnotesize User text overrides\\instructions\end{tabular}};
@@ -356,12 +369,12 @@ control stack spanning input handling, retrieval governance, tool security, and 
   \node[threat] (leak) at (15.75,5.5) {\begin{tabular}{c}\textbf{Output leakage}\\\footnotesize (PII/secrets)\\\footnotesize Sensitive content\end{tabular}};
 
   % Arrows from surfaces to threats (dashed for distinction)
-  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (input.south) -- (inj.north);
-  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (prompt.south) -- (inj.north);
-  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (prompt.south) -- (bypass.north);
-  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (retrieval.south) -- (exfil.north);
-  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (tools.south) -- (misuse.north);
-  \draw[-{Latex}, dashed, line width=0.8pt, color=black!50] (output.south) -- (leak.north);
+  \draw[-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=threatred!60] (input.south) -- (inj.north);
+  \draw[-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=threatred!60] (prompt.south) -- (inj.north);
+  \draw[-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=threatred!60] (prompt.south) -- (bypass.north);
+  \draw[-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=threatred!60] (retrieval.south) -- (exfil.north);
+  \draw[-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=threatred!60] (tools.south) -- (misuse.north);
+  \draw[-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=threatred!60] (output.south) -- (leak.north);
 
   % Cross-cutting element
   \node[crosscut] (tracing) at (7,3) {\textbf{Cross-cutting:} structured tracing + audit logs (prompt IDs, retrieved doc IDs, tool calls, policy decisions) for incident response and rollback};
@@ -374,18 +387,18 @@ control stack spanning input handling, retrieval governance, tool security, and 
   \node[control] (outctrl) at (15.75,0.5) {\begin{tabular}{c}\textbf{Output controls}\\\footnotesize PII/secret redaction\\Citation requirements\\Rate limits \& HITL\end{tabular}};
 
   % Arrows from threats to controls (solid for distinction)
-  \draw[-{Latex}, line width=0.8pt, color=black!70] (inj.south) -- (sanitize.north);
-  \draw[-{Latex}, line width=0.8pt, color=black!70] (bypass.south) -- (hierarchy.north);
-  \draw[-{Latex}, line width=0.8pt, color=black!70] (exfil.south) -- (governance.north);
-  \draw[-{Latex}, line width=0.8pt, color=black!70] (misuse.south) -- (toolsec.north);
-  \draw[-{Latex}, line width=0.8pt, color=black!70] (leak.south) -- (outctrl.north);
+  \draw[-{Latex}, line width=1.2pt, color=controlgreen!70!black] (inj.south) -- (sanitize.north);
+  \draw[-{Latex}, line width=1.2pt, color=controlgreen!70!black] (bypass.south) -- (hierarchy.north);
+  \draw[-{Latex}, line width=1.2pt, color=controlgreen!70!black] (exfil.south) -- (governance.north);
+  \draw[-{Latex}, line width=1.2pt, color=controlgreen!70!black] (misuse.south) -- (toolsec.north);
+  \draw[-{Latex}, line width=1.2pt, color=controlgreen!70!black] (leak.south) -- (outctrl.north);
 
   % Cross-cutting connections (dotted for distinction)
-  \draw[-{Latex}, dotted, line width=0.8pt, color=black!50] ($(tracing.north west)!0.1!(tracing.north east)$) to[out=90,in=-90] (inj);
-  \draw[-{Latex}, dotted, line width=0.8pt, color=black!50] ($(tracing.north west)!0.3!(tracing.north east)$) to[out=90,in=-90] (bypass);
-  \draw[-{Latex}, dotted, line width=0.8pt, color=black!50] ($(tracing.north west)!0.5!(tracing.north east)$) to[out=90,in=-90] (exfil);
-  \draw[-{Latex}, dotted, line width=0.8pt, color=black!50] ($(tracing.north west)!0.7!(tracing.north east)$) to[out=90,in=-90] (misuse);
-  \draw[-{Latex}, dotted, line width=0.8pt, color=black!50] ($(tracing.north east)$) to[out=90,in=-90] (leak);
+  \draw[-{Latex}, dotted, line width=1pt, color=crosscutpurple!60] ($(tracing.north west)!0.1!(tracing.north east)$) to[out=90,in=-90] (inj);
+  \draw[-{Latex}, dotted, line width=1pt, color=crosscutpurple!60] ($(tracing.north west)!0.3!(tracing.north east)$) to[out=90,in=-90] (bypass);
+  \draw[-{Latex}, dotted, line width=1pt, color=crosscutpurple!60] ($(tracing.north west)!0.5!(tracing.north east)$) to[out=90,in=-90] (exfil);
+  \draw[-{Latex}, dotted, line width=1pt, color=crosscutpurple!60] ($(tracing.north west)!0.7!(tracing.north east)$) to[out=90,in=-90] (misuse);
+  \draw[-{Latex}, dotted, line width=1pt, color=crosscutpurple!60] ($(tracing.north east)$) to[out=90,in=-90] (leak);
 
   % Layer labels (grayscale-safe)
   \node[font=\normalsize\bfseries, color=black!70, above=3mm of input, anchor=west, xshift=-5mm] {Threat surfaces};
@@ -632,14 +645,18 @@ systems engineering, where memory, latency, and cost must be co-optimized (Fig.~
 \begin{figure}[t]
   \centering
   \begin{llmfigbox}
+  % Color definitions
+  \definecolor{constraintred}{RGB}{173,63,60}
+  \definecolor{sloblue}{RGB}{44,102,146}
+  \definecolor{levergreen}{RGB}{34,139,96}
   \begin{tikzpicture}[
     >=Stealth,
-    node distance=0.7cm and 1.7cm,
-    % Box styles - simplified
-    constraint/.style={rectangle, draw=none, fill=red!10, rounded corners=4pt, minimum width=2.1cm, minimum height=0.85cm, align=center, font=\footnotesize\bfseries},
-    slo/.style={rectangle, draw=none, fill=blue!10, rounded corners=4pt, minimum width=1.9cm, minimum height=0.75cm, align=center, font=\footnotesize\bfseries},
-    lever/.style={rectangle, draw=none, fill=green!10, rounded corners=4pt, minimum width=1.9cm, minimum height=0.7cm, align=center, font=\footnotesize\bfseries},
-    arrow/.style={->, thick, color=black!60}
+    node distance=0.8cm and 1.8cm,
+    % Box styles - enhanced
+    constraint/.style={rectangle, draw=none, fill=constraintred!15, rounded corners=5pt, minimum width=2.3cm, minimum height=0.95cm, align=center, font=\footnotesize\bfseries},
+    slo/.style={rectangle, draw=none, fill=sloblue!15, rounded corners=5pt, minimum width=2.1cm, minimum height=0.85cm, align=center, font=\footnotesize\bfseries},
+    lever/.style={rectangle, draw=none, fill=levergreen!15, rounded corners=5pt, minimum width=2.1cm, minimum height=0.8cm, align=center, font=\footnotesize\bfseries},
+    arrow/.style={->, very thick, line width=1.2pt}
   ]
 
   % Left column: Constraints (with formulas integrated)
@@ -658,27 +675,27 @@ systems engineering, where memory, latency, and cost must be co-optimized (Fig.~
   \node[lever] (batch) at (3.5,-1.5) {Batching \& Scheduling};
 
   % Main flow arrows: Constraints -> SLOs -> Levers (simplified, fewer arrows)
-  \draw[arrow, color=red!70!black] (param.east) -- (ttft.west);
-  \draw[arrow, color=red!70!black] (param.east) -- (parallel.west);
+  \draw[arrow, color=constraintred!70!black] (param.east) -- (ttft.west);
+  \draw[arrow, color=constraintred!70!black] (param.east) -- (parallel.west);
   
-  \draw[arrow, color=orange!70!black] (context.east) -- (ttft.west);
-  \draw[arrow, color=orange!70!black] (context.east) -- (tput.west);
+  \draw[arrow, color=constraintred!60!black] (context.east) -- (ttft.west);
+  \draw[arrow, color=constraintred!60!black] (context.east) -- (tput.west);
   
-  \draw[arrow, color=purple!70!black] (kv.east) -- (tput.west);
+  \draw[arrow, color=constraintred!50!black] (kv.east) -- (tput.west);
   
-  \draw[arrow, color=blue!70!black] (ttft.east) -- (parallel.west);
-  \draw[arrow, color=blue!70!black] (tput.east) -- (quant.west);
-  \draw[arrow, color=blue!70!black] (tput.east) -- (batch.west);
-  \draw[arrow, color=blue!70!black] (cost.east) -- (quant.west);
+  \draw[arrow, color=sloblue!70!black] (ttft.east) -- (parallel.west);
+  \draw[arrow, color=sloblue!70!black] (tput.east) -- (quant.west);
+  \draw[arrow, color=sloblue!70!black] (tput.east) -- (batch.west);
+  \draw[arrow, color=sloblue!70!black] (cost.east) -- (quant.west);
   
-  \draw[arrow, color=green!70!black] (parallel.west) -- (cost.east);
-  \draw[arrow, color=green!70!black] (quant.west) -- (cost.east);
-  \draw[arrow, color=green!70!black] (batch.west) -- (tput.east);
+  \draw[arrow, color=levergreen!70!black] (parallel.west) -- (cost.east);
+  \draw[arrow, color=levergreen!70!black] (quant.west) -- (cost.east);
+  \draw[arrow, color=levergreen!70!black] (batch.west) -- (tput.east);
 
   % Column labels (simpler, no braces)
-  \node[font=\small\bfseries, color=red!70!black, above=0.4cm of param] {Constraints};
-  \node[font=\small\bfseries, color=blue!70!black, above=0.4cm of ttft] {SLOs};
-  \node[font=\small\bfseries, color=green!70!black, above=0.4cm of parallel] {Levers};
+  \node[font=\small\bfseries, color=constraintred!80!black, above=0.5cm of param] {Constraints};
+  \node[font=\small\bfseries, color=sloblue!80!black, above=0.5cm of ttft] {SLOs};
+  \node[font=\small\bfseries, color=levergreen!80!black, above=0.5cm of parallel] {Levers};
 
   \end{tikzpicture}
   \end{llmfigbox}
@@ -837,39 +854,51 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
+% Color definitions for lifecycle phases
+\definecolor{fundblue}{RGB}{44,102,146}
+\definecolor{infragreen}{RGB}{34,139,96}
+\definecolor{cicdorange}{RGB}{201,111,29}
+\definecolor{monpurple}{RGB}{123,88,163}
+\definecolor{scaleviolet}{RGB}{153,102,204}
+\definecolor{perfred}{RGB}{173,63,60}
+\definecolor{ragteal}{RGB}{0,128,128}
+\definecolor{orchcyan}{RGB}{0,139,139}
+\definecolor{testyellow}{RGB}{255,193,7}
+\definecolor{ethicspink}{RGB}{219,112,147}
+\definecolor{casebrown}{RGB}{139,69,19}
 \begin{tikzpicture}[
   >=Stealth,
-  % --- Styles (Springer-friendly, B/W) ---
+  % --- Enhanced Styles with color coding ---
   phase/.style={
-    rectangle, rounded corners=2pt,
-    draw=none, fill=gray!10,
-    text width=26mm, % narrower to avoid extreme scaling
-    minimum height=9mm, inner sep=2pt,
-    align=center, font=\footnotesize
+    rectangle, rounded corners=5pt,
+    draw=none,
+    text width=26mm,
+    minimum height=10mm, inner sep=4pt,
+    align=center, font=\footnotesize\bfseries
   },
-  arrow/.style={-Stealth, semithick},
-  feedback/.style={-Stealth, dashed, semithick},
+  arrow/.style={-Stealth, very thick, line width=1.2pt, color=black!70},
+  feedback/.style={-Stealth, dashed, dash pattern=on 4pt off 2pt, very thick, line width=1.2pt, color=black!60},
   note/.style={font=\small, align=center}
 ]
 
 % ---- Top row in a matrix (clean alignment) ----
 \matrix (top) [row sep=0mm, column sep=5mm] {
-  \node[phase] (fund) {LLMOps Fundamentals\\(Ch.~\ref{ch:llmops-fundamentals})}; &
-  \node[phase] (infra) {Infrastructure \& Environment\\(Ch.~\ref{ch:infra})}; &
-  \node[phase] (cicd)  {CI/CD\\(Ch.~\ref{ch:cicd})}; &
-  \node[phase] (mon)   {Monitoring\\(Ch.~\ref{ch:monitoring})}; &
-  \node[phase] (scale) {Scaling\\(Ch.~\ref{ch:scaling})}; &
-  \node[phase] (perf)  {Performance\\(Ch.~\ref{ch:performance})}; \\
+  \node[phase, fill=fundblue!15] (fund) {LLMOps Fundamentals\\(Ch.~\ref{ch:llmops-fundamentals})}; &
+  \node[phase, fill=infragreen!15] (infra) {Infrastructure \& Environment\\(Ch.~\ref{ch:infra})}; &
+  \node[phase, fill=cicdorange!15] (cicd)  {CI/CD\\(Ch.~\ref{ch:cicd})}; &
+  \node[phase, fill=monpurple!15] (mon)   {Monitoring\\(Ch.~\ref{ch:monitoring})}; &
+  \node[phase, fill=scaleviolet!15] (scale) {Scaling\\(Ch.~\ref{ch:scaling})}; &
+  \node[phase, fill=perfred!15] (perf)  {Performance\\(Ch.~\ref{ch:performance})}; \\
 };
 
 % ---- Second row: RAG and Agents ----
-\node[phase, below=10mm of perf] (rag) {RAG\\(Ch.~\ref{ch:rag})};
-\node[phase, right=4mm of rag] (orch) {Multi‑Agent\\(Ch.~\ref{ch:multiagent})};
+\node[phase, fill=ragteal!15, below=10mm of perf] (rag) {RAG\\(Ch.~\ref{ch:rag})};
+\node[phase, fill=orchcyan!15, right=4mm of rag] (orch) {Multi‑Agent\\(Ch.~\ref{ch:multiagent})};
 
 % ---- Bottom row placed relative to second row ----
-\node[phase, below=10mm of rag]   (test)   {Testing \& Robustness\\(Ch.~\ref{ch:testing})};
-\node[phase, right=4mm of test]   (ethics) {Ethics \& Governance\\(Ch.~\ref{ch:ethics})};
-\node[phase, right=4mm of ethics] (case)   {Case Study\\(Ch.~\ref{ch:case-study})};
+\node[phase, fill=testyellow!15, below=10mm of rag]   (test)   {Testing \& Robustness\\(Ch.~\ref{ch:testing})};
+\node[phase, fill=ethicspink!15, right=4mm of test]   (ethics) {Ethics \& Governance\\(Ch.~\ref{ch:ethics})};
+\node[phase, fill=casebrown!15, right=4mm of ethics] (case)   {Case Study\\(Ch.~\ref{ch:case-study})};
 
 % ---- Top row flow ----
 \draw[arrow] (fund) -- (infra);

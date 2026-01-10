@@ -199,28 +199,37 @@ Fig.~\ref{fig:ch12_ishtar_architecture_ch12} depicts the end-to-end flows. The d
 \begin{figure}[tb]
 \centering
 \begin{llmfigbox}
+% Color definitions
+\definecolor{ingestblue}{RGB}{44,102,146}
+\definecolor{querygreen}{RGB}{34,139,96}
+\definecolor{sourceorange}{RGB}{201,111,29}
+\definecolor{processpurple}{RGB}{123,88,163}
+\definecolor{storeviolet}{RGB}{153,102,204}
+\definecolor{retrievered}{RGB}{173,63,60}
+\definecolor{llmteal}{RGB}{0,128,128}
+\definecolor{agentcyan}{RGB}{0,139,139}
 \begin{tikzpicture}[
   font=\small,
-  box/.style={draw=none, rounded corners=4pt, fill=black!2, align=center, minimum height=8mm, inner sep=2pt},
-  lane/.style={draw=none, rounded corners=6pt, fill=black!1},
-  arrow/.style={-{Stealth[length=2.2mm,width=1.8mm]}, line width=0.6pt, draw=black!70},
-  dashedarrow/.style={-{Stealth[length=2.2mm,width=1.8mm]}, dashed, line width=0.6pt, draw=black!55},
-  note/.style={font=\small, text=black!70, align=left}
+  box/.style={draw=none, rounded corners=5pt, align=center, minimum height=9mm, inner sep=4pt, font=\small\bfseries},
+  lane/.style={draw=none, rounded corners=6pt},
+  arrow/.style={-{Stealth[length=2.5mm,width=2mm]}, line width=1.2pt, color=black!70},
+  dashedarrow/.style={-{Stealth[length=2.5mm,width=2mm]}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=black!60},
+  note/.style={font=\small\bfseries, text=black!80, align=left}
 ]
 
 % Lanes
-\node[lane, minimum width=0.95\linewidth, minimum height=26mm] (inglane) {};
-\node[lane, minimum width=0.95\linewidth, minimum height=30mm, below=8mm of inglane] (querylane) {};
-\node[note, anchor=west] at ([xshift=4mm]inglane.north west) {\textbf{Continuous ingestion \& indexing (background)}};
-\node[note, anchor=west] at ([xshift=4mm]querylane.north west) {\textbf{Online query handling (interactive path)}};
+\node[lane, fill=ingestblue!8, minimum width=0.95\linewidth, minimum height=28mm] (inglane) {};
+\node[lane, fill=querygreen!8, minimum width=0.95\linewidth, minimum height=32mm, below=9mm of inglane] (querylane) {};
+\node[note, anchor=west] at ([xshift=5mm]inglane.north west) {Continuous ingestion \& indexing (background)};
+\node[note, anchor=west] at ([xshift=5mm]querylane.north west) {Online query handling (interactive path)};
 
 % Ingestion lane nodes
-\node[box, anchor=west] (sources) at ([xshift=6mm]inglane.west) {Sources\\\footnotesize (news, NGO,\\social, health)};
-\node[box, right=6mm of sources] (ingest) {Ingestion\\\footnotesize parse \& normalize};
-\node[box, right=6mm of ingest] (scrub) {Safety preprocessing\\\footnotesize PII/coord scrubbing};
-\node[box, right=6mm of scrub] (chunkembed) {Chunk \& embed\\\footnotesize batch GPU/CPU};
-\node[box, right=6mm of chunkembed] (docstore) {Doc store\\\footnotesize text + metadata};
-\node[box, right=6mm of docstore] (vec) {Vector index\\\footnotesize FAISS/HNSW};
+\node[box, fill=sourceorange!15, anchor=west] (sources) at ([xshift=7mm]inglane.west) {Sources\\\footnotesize (news, NGO,\\social, health)};
+\node[box, fill=processpurple!15, right=7mm of sources] (ingest) {Ingestion\\\footnotesize parse \& normalize};
+\node[box, fill=processpurple!15, right=7mm of ingest] (scrub) {Safety preprocessing\\\footnotesize PII/coord scrubbing};
+\node[box, fill=processpurple!15, right=7mm of scrub] (chunkembed) {Chunk \& embed\\\footnotesize batch GPU/CPU};
+\node[box, fill=storeviolet!15, right=7mm of chunkembed] (docstore) {Doc store\\\footnotesize text + metadata};
+\node[box, fill=storeviolet!15, right=7mm of docstore] (vec) {Vector index\\\footnotesize FAISS/HNSW};
 
 \draw[arrow] (sources) -- (ingest);
 \draw[arrow] (ingest) -- (scrub);
@@ -229,13 +238,13 @@ Fig.~\ref{fig:ch12_ishtar_architecture_ch12} depicts the end-to-end flows. The d
 \draw[arrow] (chunkembed) -- (vec);
 
 % Query lane nodes
-\node[box, anchor=west] (user) at ([xshift=6mm]querylane.west) {Journalist\\\footnotesize query/UI};
-\node[box, right=6mm of user] (gateway) {API gateway\\\footnotesize auth \& rate limits};
-\node[box, right=6mm of gateway] (controller) {Orchestrator\\\footnotesize agent controller};
-\node[box, right=6mm of controller] (retr) {Retriever\\\footnotesize ANN + filters};
-\node[box, right=6mm of retr] (llm) {LLM serving\\\footnotesize vLLM/TGI};
-\node[box, right=6mm of llm] (agents) {Post-processing\\\footnotesize verify \& safety};
-\node[box, right=6mm of agents] (resp) {Answer\\\footnotesize citations + disclaimers};
+\node[box, fill=querygreen!15, anchor=west] (user) at ([xshift=7mm]querylane.west) {Journalist\\\footnotesize query/UI};
+\node[box, fill=querygreen!15, right=7mm of user] (gateway) {API gateway\\\footnotesize auth \& rate limits};
+\node[box, fill=querygreen!15, right=7mm of gateway] (controller) {Orchestrator\\\footnotesize agent controller};
+\node[box, fill=retrievered!15, right=7mm of controller] (retr) {Retriever\\\footnotesize ANN + filters};
+\node[box, fill=llmteal!15, right=7mm of retr] (llm) {LLM serving\\\footnotesize vLLM/TGI};
+\node[box, fill=agentcyan!15, right=7mm of llm] (agents) {Post-processing\\\footnotesize verify \& safety};
+\node[box, fill=querygreen!15, right=7mm of agents] (resp) {Answer\\\footnotesize citations + disclaimers};
 
 \draw[arrow] (user) -- (gateway);
 \draw[arrow] (gateway) -- (controller);

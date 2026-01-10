@@ -239,10 +239,12 @@ In summary, it is best to operate GPUs at a batch size that still meets your lat
       xmin=-5, xmax=140,
       ymin=0, ymax=12000,
       grid=major,
-      grid style={gray!20},
+      grid style={gray!30, line width=0.4pt},
+      minor grid style={gray!15, line width=0.25pt},
       axis lines=left,
-      axis line style={thick, color=black!70},
+      axis line style={line width=1pt, color=black!70},
       tick style={thick, color=black!70},
+      tick align=outside,
       xlabel style={font=\normalsize\bfseries, color=black!80, yshift=4pt},
       ylabel style={font=\normalsize\bfseries, color=black!80, xshift=-4pt},
       xtick={0,16,32,48,64,80,96,112,128},
@@ -285,6 +287,7 @@ In summary, it is best to operate GPUs at a batch size that still meets your lat
       % Main throughput curve (diminishing returns) - thick blue line
       \addplot[
         very thick,
+        line width=1.8pt,
         color=blue!70!black,
         smooth,
         domain=1:140,
@@ -1120,69 +1123,78 @@ The on-prem L4 cluster processes $\sim$200 articles/minute, embedding and taggin
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
+% Color definitions
+\definecolor{onpremgray}{RGB}{128,128,128}
+\definecolor{gpupurple}{RGB}{123,88,163}
+\definecolor{embedyellow}{RGB}{255,193,7}
+\definecolor{vpnteal}{RGB}{0,128,128}
+\definecolor{cloudblue}{RGB}{44,102,146}
+\definecolor{nodegreen}{RGB}{34,139,96}
+\definecolor{servingorange}{RGB}{201,111,29}
+\definecolor{iacblue}{RGB}{0,102,204}
 \begin{tikzpicture}[
   font=\small,
   >=Stealth,
-  node distance=8mm and 10mm,
-  box/.style={rectangle, rounded corners=4pt, draw=none, align=center},
-  gpu/.style={rectangle, rounded corners=3pt, draw=none,
-              minimum width=15mm, minimum height=8mm, font=\small, align=center},
-  arrow/.style={-{Latex}, line width=1pt},
+  node distance=9mm and 12mm,
+  box/.style={rectangle, rounded corners=5pt, draw=none, align=center},
+  gpu/.style={rectangle, rounded corners=4pt, draw=none,
+              minimum width=16mm, minimum height=9mm, font=\small\bfseries, align=center},
+  arrow/.style={-{Latex}, line width=1.2pt},
   lbl/.style={font=\small\bfseries}
 ]
 
 % ============= On-Prem =============
-\node[box, fill=gray!18, minimum width=40mm, minimum height=30mm,
+\node[box, fill=onpremgray!15, minimum width=42mm, minimum height=32mm,
       label={[lbl]above:{\textbf{On-Prem (L4 Cluster)}}}] (onprem) {};
-\node[gpu, fill=purple!25] (l4a) at ([yshift=6mm]onprem.center) {L4 GPU};
-\node[gpu, fill=purple!25, right=4mm of l4a] (l4b) {L4 GPU};
-\node[box, fill=yellow!25, below=6mm of onprem.center, align=center, minimum width=28mm, minimum height=10mm] (embed) {Embeddings /\\NER Tagging};
-\draw[arrow, gray!70] (l4a) -- (embed);
-\draw[arrow, gray!70] (l4b) -- (embed);
+\node[gpu, fill=gpupurple!20] (l4a) at ([yshift=6mm]onprem.center) {L4 GPU};
+\node[gpu, fill=gpupurple!20, right=5mm of l4a] (l4b) {L4 GPU};
+\node[box, fill=embedyellow!20, below=6mm of onprem.center, align=center, minimum width=30mm, minimum height=11mm] (embed) {Embeddings /\\NER Tagging};
+\draw[arrow, color=black!70] (l4a) -- (embed);
+\draw[arrow, color=black!70] (l4b) -- (embed);
 
 % VPN to cloud
-\node[box, fill=teal!25, minimum width=17mm, minimum height=10mm,
-      right=10mm of onprem.east] (vpn) {VPN};
+\node[box, fill=vpnteal!20, minimum width=18mm, minimum height=11mm,
+      right=12mm of onprem.east] (vpn) {VPN};
 
-\draw[arrow, teal!80] (onprem.east) -- (vpn.west);
+\draw[arrow, color=vpnteal!70!black] (onprem.east) -- (vpn.west);
 
 % ============= Cloud Baseline A100 =============
-\node[box, fill=blue!20, minimum width=50mm, minimum height=48mm,
-      right=14mm of vpn, label={[lbl]above:{\textbf{Cloud (AWS EKS)}}}] (cloud) {};
+\node[box, fill=cloudblue!15, minimum width=52mm, minimum height=50mm,
+      right=16mm of vpn, label={[lbl]above:{\textbf{Cloud (AWS EKS)}}}] (cloud) {};
 
-\node[box, fill=green!20, minimum width=44mm, minimum height=15mm,
-      above=4mm of cloud.south, anchor=south, label={[font=\small\bfseries]above:{Baseline Node Group}}] (a100group) {};
-\node[gpu, fill=purple!25] (a100a) at ([xshift=-12mm]a100group.center) {A100};
-\node[gpu, fill=purple!25] (a100b) at ([xshift=12mm]a100group.center) {A100};
+\node[box, fill=nodegreen!15, minimum width=46mm, minimum height=16mm,
+      above=5mm of cloud.south, anchor=south, label={[font=\small\bfseries]above:{Baseline Node Group}}] (a100group) {};
+\node[gpu, fill=gpupurple!20] (a100a) at ([xshift=-13mm]a100group.center) {A100};
+\node[gpu, fill=gpupurple!20] (a100b) at ([xshift=13mm]a100group.center) {A100};
 
-\node[box, fill=green!20, minimum width=44mm, minimum height=15mm,
-      above=4mm of a100group.north, anchor=south, label={[font=\small\bfseries]above:{Autoscaling Node Group}}] (h100group) {};
-\node[gpu, fill=purple!40] (h100a) at ([xshift=-12mm]h100group.center) {H100};
-\node[gpu, fill=purple!40] (h100b) at ([xshift=12mm]h100group.center) {H100};
+\node[box, fill=nodegreen!15, minimum width=46mm, minimum height=16mm,
+      above=5mm of a100group.north, anchor=south, label={[font=\small\bfseries]above:{Autoscaling Node Group}}] (h100group) {};
+\node[gpu, fill=gpupurple!30] (h100a) at ([xshift=-13mm]h100group.center) {H100};
+\node[gpu, fill=gpupurple!30] (h100b) at ([xshift=13mm]h100group.center) {H100};
 
 % Serving pods
-\node[box, fill=orange!25, above=4mm of h100group.north, anchor=south,
-      minimum width=44mm, minimum height=12mm] (serving) {Model Serving Pods (TGI / vLLM)};
+\node[box, fill=servingorange!20, above=5mm of h100group.north, anchor=south,
+      minimum width=46mm, minimum height=13mm] (serving) {Model Serving Pods (TGI / vLLM)};
 
 % Terraform + K8s control
-\node[box, fill=blue!25, minimum width=30mm, minimum height=10mm,
-      above=6mm of serving.north] (iac) {Terraform + ArgoCD + K8s Autoscaling};
+\node[box, fill=iacblue!20, minimum width=32mm, minimum height=11mm,
+      above=7mm of serving.north] (iac) {Terraform + ArgoCD + K8s Autoscaling};
 
-\draw[arrow, orange!80] (a100a.north) -- (serving.south);
-\draw[arrow, orange!80] (h100a.north) -- (serving.south);
-\draw[arrow, blue!70] (iac.south) -- (serving.north);
+\draw[arrow, color=servingorange!70!black] (a100a.north) -- (serving.south);
+\draw[arrow, color=servingorange!70!black] (h100a.north) -- (serving.south);
+\draw[arrow, color=iacblue!70!black] (iac.south) -- (serving.north);
 
 % VPN arrow into cloud workloads
-\draw[arrow, teal!80] (vpn.east) -- (cloud.west);
+\draw[arrow, color=vpnteal!70!black] (vpn.east) -- (cloud.west);
 
 % ============= Legend =============
 \node[box, fill=white!95, draw=none, inner sep=4pt,
       below=12mm of cloud.south, minimum width=0.9\linewidth, minimum height=14mm] (legend) {};
 
-\node[gpu, fill=purple!25, minimum width=12mm, minimum height=8mm, label={[font=\small]right:L4 / A100 GPU}] (L1) at ($(legend.west) + (10mm, 0)$) {};
-\node[gpu, fill=purple!40, minimum width=12mm, minimum height=8mm, label={[font=\small]right:H100 GPU}] (L2) at ($(L1.east) + (28mm, 0)$) {};
-\node[box, fill=orange!25, minimum width=12mm, minimum height=8mm, label={[font=\small]right:Serving Pods}] (L3) at ($(L2.east) + (28mm, 0)$) {};
-\node[box, fill=blue!25, minimum width=12mm, minimum height=8mm, label={[font=\small]right:IaC / Control Plane}] (L4) at ($(L3.east) + (28mm, 0)$) {};
+\node[gpu, fill=gpupurple!20, minimum width=13mm, minimum height=9mm, label={[font=\small]right:L4 / A100 GPU}] (L1) at ($(legend.west) + (10mm, 0)$) {};
+\node[gpu, fill=gpupurple!30, minimum width=13mm, minimum height=9mm, label={[font=\small]right:H100 GPU}] (L2) at ($(L1.east) + (28mm, 0)$) {};
+\node[box, fill=servingorange!20, minimum width=13mm, minimum height=9mm, label={[font=\small]right:Serving Pods}] (L3) at ($(L2.east) + (28mm, 0)$) {};
+\node[box, fill=iacblue!20, minimum width=13mm, minimum height=9mm, label={[font=\small]right:IaC / Control Plane}] (L4) at ($(L3.east) + (28mm, 0)$) {};
 
 \end{tikzpicture}
 \end{llmfigbox}

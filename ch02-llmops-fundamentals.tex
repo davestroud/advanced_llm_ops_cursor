@@ -150,30 +150,35 @@ Sampling temperature\index{temperature!sampling} $\tau$ is a decoding hyperparam
     \centering
     \begin{llmfigbox}
     % --- Transformer Block Schematic (TikZ) ---
+    % Color definitions
+    \definecolor{inputblue}{RGB}{44,102,146}
+    \definecolor{attentionorange}{RGB}{201,111,29}
+    \definecolor{normgreen}{RGB}{34,139,96}
+    \definecolor{ffnpurple}{RGB}{123,88,163}
     \begin{tikzpicture}[
       font=\small,
       >=Stealth,
-      node distance=9mm,
-      box/.style={draw=none, rounded corners, minimum width=34mm, minimum height=9mm, align=center, inner sep=4pt}
+      node distance=10mm,
+      box/.style={draw=none, rounded corners=5pt, minimum width=36mm, minimum height=10mm, align=center, inner sep=5pt, font=\small\bfseries}
     ]
-        % Nodes (grayscale-safe with different fills)
-        \node[box, fill=gray!10] (input) {Input (tokens)};
-        \node[box, fill=gray!15, below=of input] (mha) {Multi-Head Attention};
-        \node[box, fill=gray!10, below=9mm of mha] (addnorm1) {Add \& Norm};
-        \node[box, fill=gray!20, below=9mm of addnorm1] (ffn) {Feed-Forward Network};
-        \node[box, fill=gray!10, below=9mm of ffn] (addnorm2) {Add \& Norm};
-        \node[box, fill=gray!10, below=11mm of addnorm2] (output) {Hidden States / Next Block};
+        % Nodes with color coding
+        \node[box, fill=inputblue!15] (input) {Input (tokens)};
+        \node[box, fill=attentionorange!15, below=of input] (mha) {Multi-Head Attention};
+        \node[box, fill=normgreen!15, below=10mm of mha] (addnorm1) {Add \& Norm};
+        \node[box, fill=ffnpurple!15, below=10mm of addnorm1] (ffn) {Feed-Forward Network};
+        \node[box, fill=normgreen!15, below=10mm of ffn] (addnorm2) {Add \& Norm};
+        \node[box, fill=inputblue!15, below=12mm of addnorm2] (output) {Hidden States / Next Block};
 
-        % Arrows
-        \draw[-{Latex}, line width=1pt] (input) -- (mha);
-        \draw[-{Latex}, line width=1pt] (mha) -- (addnorm1);
-        \draw[-{Latex}, line width=1pt] (addnorm1) -- (ffn);
-        \draw[-{Latex}, line width=0.8pt] (ffn) -- (addnorm2);
-        \draw[-{Latex}, line width=0.8pt] (addnorm2) -- (output);
+        % Arrows - enhanced
+        \draw[-{Latex}, line width=1.2pt, color=black!70] (input) -- (mha);
+        \draw[-{Latex}, line width=1.2pt, color=black!70] (mha) -- (addnorm1);
+        \draw[-{Latex}, line width=1.2pt, color=black!70] (addnorm1) -- (ffn);
+        \draw[-{Latex}, line width=1.2pt, color=black!70] (ffn) -- (addnorm2);
+        \draw[-{Latex}, line width=1.2pt, color=black!70] (addnorm2) -- (output);
 
         % Residual connections (dashed for distinction)
-        \draw[-{Latex}, dashed, line width=0.8pt] ($(input.south west)+(1mm,-1mm)$) -- ++(0,-21mm) -| (addnorm1.west);
-        \draw[-{Latex}, dashed, line width=0.8pt] ($(addnorm1.south west)+(1mm,-1mm)$) -- ++(0,-16mm) -| (addnorm2.west);
+        \draw[-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=black!60] ($(input.south west)+(1mm,-1mm)$) -- ++(0,-22mm) -| (addnorm1.west);
+        \draw[-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=black!60] ($(addnorm1.south west)+(1mm,-1mm)$) -- ++(0,-17mm) -| (addnorm2.west);
 
         % Labels
         \node[align=left, anchor=west] at ($(mha.east)+(1.2,0)$) {Self-attention\\(KV cache affects memory)};
@@ -191,23 +196,30 @@ Sampling temperature\index{temperature!sampling} $\tau$ is a decoding hyperparam
     % --- Quadratic Attention Complexity Plot (pgfplots) ---
     \begin{tikzpicture}[font=\small]
         \begin{axis}[
-            width=0.85\linewidth,
-            height=6cm,
+            width=0.95\linewidth,
+            height=7cm,
             xlabel={Sequence length $T$ (tokens)},
             ylabel={Relative cost (arb. units)},
+            xlabel style={font=\bfseries},
+            ylabel style={font=\bfseries},
             xmin=0, xmax=4096,
             ymin=0, ymax=1.1,
             xtick={0,1024,2048,3072,4096},
             ytick={0,0.25,0.5,0.75,1.0},
-            legend style={at={(0.03,0.97)},anchor=north west, draw=none, fill=none},
-            grid=both,
+            tick align=outside,
+            ticklabel style={font=\footnotesize},
+            grid=major,
+            grid style={gray!30, line width=0.4pt},
+            minor grid style={gray!15, line width=0.25pt},
+            legend style={at={(0.03,0.97)},anchor=north west, draw=none, fill=none, font=\footnotesize, column sep=15pt},
+            axis line style={line width=1pt},
         ]
             % Normalize to max at 4096
-            \addplot+[thick, mark=none, domain=0:4096, samples=200]
+            \addplot+[smooth, very thick, line width=1.8pt, mark=none, domain=0:4096, samples=200, color=red!70!black]
                 {(x^2)/(4096^2)};
             \addlegendentry{$\Theta(T^2)$ attention (Eq.~\ref{eq:attn-complexity})};
 
-            \addplot+[thick, dashed, mark=none, domain=0:4096, samples=200]
+            \addplot+[smooth, dashed, dash pattern=on 4pt off 2pt, very thick, line width=1.8pt, mark=none, domain=0:4096, samples=200, color=blue!70!black]
                 {x/4096};
             \addlegendentry{Linear reference};
 
@@ -224,16 +236,23 @@ Sampling temperature\index{temperature!sampling} $\tau$ is a decoding hyperparam
     % --- Parameter scaling over time (pgfplots) ---
     \begin{tikzpicture}[font=\small]
       \begin{axis}[
-        width=0.85\linewidth, height=6cm,
+        width=0.95\linewidth, height=7cm,
         ymode=log, log basis y=10,
         xlabel={Year}, ylabel={Parameters},
+        xlabel style={font=\bfseries},
+        ylabel style={font=\bfseries},
         xmin=2017, xmax=2022,
         ymin=1e7, ymax=1e12,
         xtick={2017,2018,2020,2022},
         xticklabels={2017, 2018, 2020, 2022},
-        grid=both,
+        tick align=outside,
+        ticklabel style={font=\footnotesize},
+        grid=major,
+        grid style={gray!30, line width=0.4pt},
+        minor grid style={gray!15, line width=0.25pt},
+        axis line style={line width=1pt},
       ]
-        \addplot+[thick, mark=*] coordinates {
+        \addplot+[smooth, very thick, line width=1.8pt, mark=*, mark size=3.5pt, mark options={fill=white, draw=red!70!black, line width=1.2pt}, color=red!70!black] coordinates {
           (2017,6.5e7)   % Transformer (~65M)
           (2018,3.4e8)   % BERT Large (~340M)
           (2020,1.75e11) % GPT-3 (175B)
@@ -321,26 +340,33 @@ Model & Params $P$ & $M_{\text{params}}$ (GB) \\
     \begin{llmfigbox}
     \begin{tikzpicture}[font=\small]
         \begin{axis}[
-            width=0.9\linewidth,
+            width=0.95\linewidth,
             height=7cm,
             xlabel={TTFT $\tau_0$ (s)},
             ylabel={Throughput (tokens/s/GPU)},
+            xlabel style={font=\bfseries},
+            ylabel style={font=\bfseries},
             xmin=0, xmax=2.0,
             ymin=0, ymax=900,
-            grid=both,
-            legend style={at={(0.97,0.97)},anchor=north east, draw=none, fill=none},
+            tick align=outside,
+            ticklabel style={font=\footnotesize},
+            grid=major,
+            grid style={gray!30, line width=0.4pt},
+            minor grid style={gray!15, line width=0.25pt},
+            legend style={at={(0.97,0.97)},anchor=north east, draw=none, fill=none, font=\footnotesize, column sep=15pt},
+            axis line style={line width=1pt},
         ]
             % Constants: N = 120 tokens, tau1 = 0.02 s/token
-            \addplot+[thick, domain=0:2.0, samples=200] {(1*120) / (x + 120*0.02)};
+            \addplot+[smooth, very thick, line width=1.8pt, domain=0:2.0, samples=200, color=blue!70!black] {(1*120) / (x + 120*0.02)};
             \addlegendentry{$B{=}1$};
 
-            \addplot+[thick, domain=0:2.0, samples=200, dashed] {(4*120) / (x + 120*0.02)};
+            \addplot+[smooth, dashed, dash pattern=on 4pt off 2pt, very thick, line width=1.8pt, domain=0:2.0, samples=200, color=green!70!black] {(4*120) / (x + 120*0.02)};
             \addlegendentry{$B{=}4$};
 
-            \addplot+[thick, domain=0:2.0, samples=200, dotted] {(8*120) / (x + 120*0.02)};
+            \addplot+[smooth, dotted, very thick, line width=1.8pt, domain=0:2.0, samples=200, color=orange!70!black] {(8*120) / (x + 120*0.02)};
             \addlegendentry{$B{=}8$};
 
-            \addplot+[thick, domain=0:2.0, samples=200, dashdotted] {(16*120) / (x + 120*0.02)};
+            \addplot+[smooth, dashdotted, very thick, line width=1.8pt, domain=0:2.0, samples=200, color=violet!70!black] {(16*120) / (x + 120*0.02)};
             \addlegendentry{$B{=}16$};
         \end{axis}
     \end{tikzpicture}

@@ -274,25 +274,34 @@ graph.add_conditional_edge(
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
+% Color definitions
+\definecolor{uiblue}{RGB}{44,102,146}
+\definecolor{orchgreen}{RGB}{34,139,96}
+\definecolor{retrorange}{RGB}{201,111,29}
+\definecolor{synthpurple}{RGB}{123,88,163}
+\definecolor{verviolet}{RGB}{153,102,204}
+\definecolor{safered}{RGB}{173,63,60}
+\definecolor{memteal}{RGB}{0,128,128}
+\definecolor{toolcyan}{RGB}{0,139,139}
 \begin{tikzpicture}[
-  node distance=10mm and 15mm,
+  node distance=12mm and 16mm,
   every node/.style={font=\small},
-  box/.style={draw=none, rounded corners, align=center, inner sep=3pt},
-  arrow/.style={-{Latex}, line width=0.8pt}
+  box/.style={draw=none, rounded corners=5pt, align=center, inner sep=5pt, font=\small\bfseries},
+  arrow/.style={-{Latex}, line width=1.2pt, color=black!70}
 ]
-\node[box, minimum width=28mm, minimum height=10mm] (ui) {User /\\Client};
+\node[box, fill=uiblue!15, minimum width=30mm, minimum height=11mm] (ui) {User /\\Client};
 
-\node[box, minimum width=32mm, minimum height=12mm, below=of ui] (orch) {Orchestrator\\(routing, budgets, policy)};
+\node[box, fill=orchgreen!15, minimum width=34mm, minimum height=13mm, below=of ui] (orch) {Orchestrator\\(routing, budgets, policy)};
 
-\node[box, minimum width=28mm, minimum height=10mm, left=of orch] (retr) {Retrieval\\Agent};
-\node[box, minimum width=28mm, minimum height=10mm, right=of orch] (synth) {Synthesis\\Agent};
+\node[box, fill=retrorange!15, minimum width=30mm, minimum height=11mm, left=of orch] (retr) {Retrieval\\Agent};
+\node[box, fill=synthpurple!15, minimum width=30mm, minimum height=11mm, right=of orch] (synth) {Synthesis\\Agent};
 
-\node[box, minimum width=28mm, minimum height=10mm, below=of retr] (ver) {Verification\\Agent};
-\node[box, minimum width=28mm, minimum height=10mm, below=of synth] (safe) {Safety\\Agent};
+\node[box, fill=verviolet!15, minimum width=30mm, minimum height=11mm, below=of retr] (ver) {Verification\\Agent};
+\node[box, fill=safered!15, minimum width=30mm, minimum height=11mm, below=of synth] (safe) {Safety\\Agent};
 
-\node[box, minimum width=32mm, minimum height=10mm, below=of orch, yshift=-12mm] (mem) {Shared Memory\\(episodic + semantic)};
+\node[box, fill=memteal!15, minimum width=34mm, minimum height=11mm, below=of orch, yshift=-14mm] (mem) {Shared Memory\\(episodic + semantic)};
 
-\node[box, minimum width=32mm, minimum height=10mm, below=of mem] (tools) {External Tools\\(search, DBs, APIs)};
+\node[box, fill=toolcyan!15, minimum width=34mm, minimum height=11mm, below=of mem] (tools) {External Tools\\(search, DBs, APIs)};
 
 \draw[arrow] (ui) -- (orch);
 \draw[arrow] (orch) -- (retr);
@@ -751,14 +760,18 @@ The next section will discuss error handling and exception management in orchest
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
+% Color definitions
+\definecolor{agentblue}{RGB}{44,102,146}
+\definecolor{ctrlgreen}{RGB}{34,139,96}
+\definecolor{decisionorange}{RGB}{201,111,29}
 \begin{tikzpicture}[
-  node distance=10mm and 15mm,
+  node distance=11mm and 16mm,
   every node/.style={font=\small},
-  box/.style={draw=none, rounded corners, minimum width=24mm, minimum height=8mm, align=center, inner sep=3pt},
-  agent/.style={box, fill=gray!10},
-  ctrl/.style={box, fill=gray!20},
-  decision/.style={diamond, draw=none, aspect=2.8, inner sep=3pt, align=center, font=\small},
-  arrow/.style={-{Latex}, line width=0.8pt},
+  box/.style={draw=none, rounded corners=5pt, minimum width=26mm, minimum height=9mm, align=center, inner sep=4pt, font=\small\bfseries},
+  agent/.style={box, fill=agentblue!15},
+  ctrl/.style={box, fill=ctrlgreen!15},
+  decision/.style={diamond, draw=none, fill=decisionorange!15, aspect=2.8, inner sep=4pt, align=center, font=\small\bfseries},
+  arrow/.style={-{Latex}, line width=1.2pt, color=black!70},
   title/.style={font=\bfseries\small}
 ]
 
@@ -1235,32 +1248,40 @@ To ground the concepts above, let's walk through the orchestration pipeline of I
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
+% Color definitions
+\definecolor{ingestblue}{RGB}{44,102,146}
+\definecolor{retrorange}{RGB}{201,111,29}
+\definecolor{synthpurple}{RGB}{123,88,163}
+\definecolor{verviolet}{RGB}{153,102,204}
+\definecolor{safered}{RGB}{173,63,60}
+\definecolor{delivergreen}{RGB}{34,139,96}
+\definecolor{orchteal}{RGB}{0,128,128}
 \begin{tikzpicture}[
-  node distance=10mm and 15mm,
+  node distance=12mm and 16mm,
   every node/.style={font=\small},
-  box/.style={draw=none, rounded corners, align=center, inner sep=3pt},
-  arrow/.style={-{Latex}, line width=0.8pt},
-  arrowDashed/.style={-{Latex}, line width=0.8pt, dashed}
+  box/.style={draw=none, rounded corners=5pt, align=center, inner sep=5pt, font=\small\bfseries},
+  arrow/.style={-{Latex}, line width=1.2pt, color=black!70},
+  arrowDashed/.style={-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=black!60}
 ]
 % Top row
-\node[box, minimum width=24mm, minimum height=9mm] (ingest) {Ingestion};
-\node[box, minimum width=24mm, minimum height=9mm, right=of ingest] (retr) {Retrieval};
-\node[box, minimum width=24mm, minimum height=9mm, right=of retr] (synth) {Synthesis};
+\node[box, fill=ingestblue!15, minimum width=26mm, minimum height=10mm] (ingest) {Ingestion};
+\node[box, fill=retrorange!15, minimum width=26mm, minimum height=10mm, right=of ingest] (retr) {Retrieval};
+\node[box, fill=synthpurple!15, minimum width=26mm, minimum height=10mm, right=of retr] (synth) {Synthesis};
 
 % Bottom row
-\node[box, minimum width=24mm, minimum height=9mm, below=of synth] (verify) {Verification};
-\node[box, minimum width=24mm, minimum height=9mm, left=of verify] (safety) {Safety};
-\node[box, minimum width=24mm, minimum height=9mm, left=of safety] (deliver) {Delivery};
+\node[box, fill=verviolet!15, minimum width=26mm, minimum height=10mm, below=of synth] (verify) {Verification};
+\node[box, fill=safered!15, minimum width=26mm, minimum height=10mm, left=of verify] (safety) {Safety};
+\node[box, fill=delivergreen!15, minimum width=26mm, minimum height=10mm, left=of safety] (deliver) {Delivery};
 
 % Orchestrator
-\node[box, minimum width=28mm, minimum height=10mm, below=of retr, xshift=-32mm] (orch) {Orchestrator\\(router + budgets)};
+\node[box, fill=orchteal!15, minimum width=30mm, minimum height=11mm, below=of retr, xshift=-34mm] (orch) {Orchestrator\\(router + budgets)};
 
 % Arrows with artifacts
-\draw[arrow] (ingest) -- node[above, font=\small]{chunks + metadata} (retr);
-\draw[arrow] (retr) -- node[above, font=\small]{context pack} (synth);
-\draw[arrow] (synth) -- node[right, font=\small]{draft + citations} (verify);
-\draw[arrow] (verify) -- node[below, font=\small]{verified answer} (safety);
-\draw[arrow] (safety) -- node[below, font=\small]{user response} (deliver);
+\draw[arrow] (ingest) -- node[above, font=\footnotesize]{chunks + metadata} (retr);
+\draw[arrow] (retr) -- node[above, font=\footnotesize]{context pack} (synth);
+\draw[arrow] (synth) -- node[right, font=\footnotesize]{draft + citations} (verify);
+\draw[arrow] (verify) -- node[below, font=\footnotesize]{verified answer} (safety);
+\draw[arrow] (safety) -- node[below, font=\footnotesize]{user response} (deliver);
 
 % Orchestrator control edges (dashed)
 \draw[arrowDashed] (orch) -- (retr);
