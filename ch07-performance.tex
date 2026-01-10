@@ -805,17 +805,44 @@ In summary, rigorous performance testing gives confidence that optimizations are
 \begin{llmfigbox}
 \begin{tikzpicture}[font=\small]
 \begin{axis}[
-  width=14cm, height=5.6cm,
-  xlabel={Latency (ms)},
-  ylabel={CDF},
-  xmin=0, xmax=4000,
-  ymin=0, ymax=1.05,
-  grid=both, grid style={gray!20},
-  legend style={at={(0.5,1.02)},anchor=south,draw=none,fill=none},
-  tick align=outside
+    width=0.95\linewidth,
+    height=7cm,
+    xlabel={Latency (ms)},
+    ylabel={CDF},
+    xmin=0, xmax=4000,
+    ymin=0, ymax=1.05,
+    grid=major,
+    grid style={gray!30, line width=0.4pt},
+    minor grid style={gray!15, line width=0.25pt},
+    minor x tick num=4,
+    minor y tick num=4,
+    legend style={
+        at={(0.5,1.03)},
+        anchor=south,
+        draw=none,
+        fill=none,
+        font=\small
+    },
+    tick align=outside,
+    tick pos=left,
+    xlabel style={font=\small\bfseries, yshift=3pt},
+    ylabel style={font=\small\bfseries, xshift=-3pt},
+    ticklabel style={font=\small},
+    axis line style={line width=1pt},
+    xtick={0,500,1000,1500,2000,2500,3000,3500,4000},
+    ytick={0,0.2,0.4,0.5,0.6,0.8,0.95,0.99,1.0},
+    yticklabels={0,0.2,0.4,0.5,0.6,0.8,0.95,0.99,1.0}
 ]
-% Example CDF (monotone increasing)
-\addplot+[very thick, blue!70] table{
+% Example CDF (monotone increasing) - enhanced styling
+\addplot+[
+    color=blue!75!black,
+    very thick,
+    line width=1.8pt,
+    mark=*,
+    mark size=2.5pt,
+    mark options={fill=blue!75!black, draw=white, line width=0.4pt},
+    smooth
+] table{
 x   y
 50   0.02
 100  0.06
@@ -830,15 +857,81 @@ x   y
 };
 \addlegendentry{Latency CDF}
 
-% Markers for p50, p95, p99
-\addplot+[domain=0:1, samples=2, red!70, dashed, very thick] coordinates {(420,0) (420,0.5)};
-\node[red!70] at (axis cs:435,0.52) {\small p50};
+% Markers for p50, p95, p99 - enhanced styling
+\addplot+[
+    domain=0:1,
+    samples=2,
+    color=red!75!black,
+    dashed,
+    line width=1.2pt,
+    dash pattern=on 4pt off 2pt
+] coordinates {(420,0) (420,0.5)};
+\addplot+[
+    only marks,
+    mark=square*,
+    mark size=3.5pt,
+    color=red!75!black,
+    mark options={fill=red!75!black, draw=white, line width=0.4pt}
+] coordinates {(420,0) (420,0.5)};
+\node[
+    color=red!75!black,
+    font=\footnotesize\bfseries,
+    fill=white,
+    inner sep=2pt,
+    rounded corners=2pt,
+    draw=red!75!black,
+    line width=0.4pt
+] at (axis cs:450,0.52) {p50};
 
-\addplot+[domain=0:1, samples=2, orange!90, dashed, very thick] coordinates {(2000,0) (2000,0.95)};
-\node[orange!90] at (axis cs:2030,0.97) {\small p95};
+\addplot+[
+    domain=0:1,
+    samples=2,
+    color=orange!80!black,
+    dashed,
+    line width=1.2pt,
+    dash pattern=on 4pt off 2pt
+] coordinates {(2000,0) (2000,0.95)};
+\addplot+[
+    only marks,
+    mark=*,
+    mark size=3.5pt,
+    color=orange!80!black,
+    mark options={fill=orange!80!black, draw=white, line width=0.4pt}
+] coordinates {(2000,0) (2000,0.95)};
+\node[
+    color=orange!80!black,
+    font=\footnotesize\bfseries,
+    fill=white,
+    inner sep=2pt,
+    rounded corners=2pt,
+    draw=orange!80!black,
+    line width=0.4pt
+] at (axis cs:2100,0.97) {p95};
 
-\addplot+[domain=0:1, samples=2, black!70, dashed, very thick] coordinates {(3200,0) (3200,0.99)};
-\node[black!70] at (axis cs:3230,1.01) {\small p99};
+\addplot+[
+    domain=0:1,
+    samples=2,
+    color=gray!70!black,
+    dashed,
+    line width=1.2pt,
+    dash pattern=on 4pt off 2pt
+] coordinates {(3200,0) (3200,0.99)};
+\addplot+[
+    only marks,
+    mark=triangle*,
+    mark size=3.5pt,
+    color=gray!70!black,
+    mark options={fill=gray!70!black, draw=white, line width=0.4pt}
+] coordinates {(3200,0) (3200,0.99)};
+\node[
+    color=gray!70!black,
+    font=\footnotesize\bfseries,
+    fill=white,
+    inner sep=2pt,
+    rounded corners=2pt,
+    draw=gray!70!black,
+    line width=0.4pt
+] at (axis cs:3350,1.01) {p99};
 
 \end{axis}
 \end{tikzpicture}
@@ -852,19 +945,46 @@ x   y
 \begin{llmfigbox}
 \begin{tikzpicture}[font=\small]
 \begin{axis}[
-  width=14cm, height=5.6cm,
-  ybar=0.35, bar width=12pt,
-  symbolic x coords={PyTorch,TGI,vLLM,TensorRT-LLM},
-  xtick=data,
-  ylabel={Cost per 1k tokens (USD)},
-  ymin=0, ymax=0.20,
-  nodes near coords, nodes near coords align={vertical},
-  grid=both, grid style={gray!20},
-  tick align=outside,
-  enlarge x limits=0.05
+    width=0.95\linewidth,
+    height=7cm,
+    ybar=0.4,
+    bar width=18pt,
+    symbolic x coords={PyTorch,TGI,vLLM,TensorRT-LLM},
+    xtick=data,
+    ylabel={Cost per 1k tokens (USD)},
+    xlabel={Inference Engine},
+    ymin=0, ymax=0.20,
+    nodes near coords,
+    nodes near coords align={vertical},
+    nodes near coords style={font=\footnotesize\bfseries},
+    grid=major,
+    grid style={gray!30, line width=0.4pt},
+    minor grid style={gray!15, line width=0.25pt},
+    minor y tick num=4,
+    tick align=outside,
+    tick pos=left,
+    xlabel style={font=\small\bfseries, yshift=3pt},
+    ylabel style={font=\small\bfseries, xshift=-3pt},
+    ticklabel style={font=\small},
+    axis line style={line width=1pt},
+    xticklabel style={font=\small\bfseries},
+    ytick={0,0.05,0.10,0.15,0.20},
+    yticklabels={0,0.05,0.10,0.15,0.20},
+    enlarge x limits=0.08,
+    every node near coord/.append style={
+        fill=white,
+        inner sep=1.5pt,
+        rounded corners=2pt,
+        draw=blue!85!black,
+        line width=0.3pt
+    }
 ]
 % Example costs; replace with your computed values
-\addplot+[fill=blue!55] coordinates {
+\addplot+[
+    fill=blue!75!black,
+    draw=blue!85!black,
+    line width=0.8pt
+] coordinates {
   (PyTorch,0.15) (TGI,0.10) (vLLM,0.07) (TensorRT-LLM,0.05)
 };
 \end{axis}
