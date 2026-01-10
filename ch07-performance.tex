@@ -147,7 +147,8 @@ The following sections explore concrete strategies for optimization across three
 \addplot+[
     fill=red!70!black,
     draw=red!80!black,
-    line width=0.6pt
+    line width=0.6pt,
+    every node near coord/.append style={xshift=4pt}
 ] coordinates {(p50,780) (p95,1800) (p99,3200)};
 \addlegendentry{Before (baseline)}
 
