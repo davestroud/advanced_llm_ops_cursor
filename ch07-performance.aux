@@ -37,8 +37,8 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Paged Attention}{226}{subsection.7.4.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints.}}{227}{table.7.4}\protected@file@percent }
 \newlabel{tab:ch07_engine_bench}{{7.4}{227}{Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints}{table.7.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.5}System-Level Optimization}{227}{section.7.5}\protected@file@percent }
-\newlabel{sec:perf-system}{{7.5}{227}{System-Level Optimization}{section.7.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}System-Level Optimization}{228}{section.7.5}\protected@file@percent }
+\newlabel{sec:perf-system}{{7.5}{228}{System-Level Optimization}{section.7.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.5.1}Batching Strategies}{228}{subsection.7.5.1}\protected@file@percent }
 \newlabel{sec:perf-batching}{{7.5.1}{228}{Batching Strategies}{subsection.7.5.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces Throughput scaling with batch size reveals optimization opportunities and limits. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. Understanding this saturation point helps teams optimize batch sizes, but in production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}}{229}{figure.7.5}\protected@file@percent }
@@ -50,7 +50,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {7.6}Prompt Optimization}{232}{section.7.6}\protected@file@percent }
 \newlabel{sec:perf-prompt}{{7.6}{232}{Prompt Optimization}{section.7.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.6.1}Reducing Context Size}{232}{subsection.7.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.2}Template Efficiency}{232}{subsection.7.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6.2}Template Efficiency}{233}{subsection.7.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.6.3}Compression of Retrieved Context}{233}{subsection.7.6.3}\protected@file@percent }
 \newlabel{sec:perf-rag-compression}{{7.6.3}{233}{Compression of Retrieved Context}{subsection.7.6.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.6.4}Speculative Decoding}{234}{subsection.7.6.4}\protected@file@percent }
@@ -58,23 +58,23 @@
 \@writefile{toc}{\contentsline {section}{\numberline {7.7}Hardware Utilization Tuning}{235}{section.7.7}\protected@file@percent }
 \newlabel{sec:perf-hw}{{7.7}{235}{Hardware Utilization Tuning}{section.7.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.7.1}GPU Profiling}{235}{subsection.7.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.2}Mixed Precision}{235}{subsection.7.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.3}Concurrency Tuning}{236}{subsection.7.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7.8}Performance Testing and Benchmarking}{237}{section.7.8}\protected@file@percent }
-\newlabel{sec:perf-benchmark}{{7.8}{237}{Performance Testing and Benchmarking}{section.7.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.2}Mixed Precision}{236}{subsection.7.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7.3}Concurrency Tuning}{237}{subsection.7.7.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {7.5}{\ignorespaces Kernel-time profiling identifies optimization opportunities and validates improvements. Comparing breakdowns before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute) reveals which optimizations deliver the largest gains. This profiling guides optimization prioritization and helps teams understand where further improvements are possible. Percentages vary by model, sequence length, and runtime.}}{238}{table.7.5}\protected@file@percent }
 \newlabel{tab:ch07_profiling_breakdown}{{7.5}{238}{Kernel-time profiling identifies optimization opportunities and validates improvements. Comparing breakdowns before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute) reveals which optimizations deliver the largest gains. This profiling guides optimization prioritization and helps teams understand where further improvements are possible. Percentages vary by model, sequence length, and runtime}{table.7.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.8}Performance Testing and Benchmarking}{238}{section.7.8}\protected@file@percent }
+\newlabel{sec:perf-benchmark}{{7.8}{238}{Performance Testing and Benchmarking}{section.7.8}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7.6}{\ignorespaces Latency CDF reveals tail latency behavior critical for user experience. While p50 latency determines average user experience, p95/p99 percentiles expose tail latency that frustrates users and violates SLOs. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix, making CDF analysis essential for capacity planning and optimization prioritization.}}{239}{figure.7.6}\protected@file@percent }
 \newlabel{fig:ch07_latency_cdf}{{7.6}{239}{Latency CDF reveals tail latency behavior critical for user experience. While p50 latency determines average user experience, p95/p99 percentiles expose tail latency that frustrates users and violates SLOs. Shape and percentiles vary with model size, prompt length, batching policy, and traffic mix, making CDF analysis essential for capacity planning and optimization prioritization}{figure.7.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.9}Case Study: Optimizing Ishtar AI}{239}{section.7.9}\protected@file@percent }
-\newlabel{sec:perf-ishtar-case}{{7.9}{239}{Case Study: Optimizing Ishtar AI}{section.7.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7.7}{\ignorespaces Cost per token varies significantly across inference engines and deployment configurations. Engine selection, hardware choice, and utilization levels can create 2--5$\times $ cost differences. When cost differences exceed 30\%, engine choice becomes a primary cost optimization lever, especially at scale. See Section~\ref {sec:perf-cost-per-token} for detailed cost modeling. Absolute values depend on hardware pricing, utilization, and batch/sequence lengths.}}{240}{figure.7.7}\protected@file@percent }
 \newlabel{fig:ch07_cost_per_1k_by_engine}{{7.7}{240}{Cost per token varies significantly across inference engines and deployment configurations. Engine selection, hardware choice, and utilization levels can create 2--5$\times $ cost differences. When cost differences exceed 30\%, engine choice becomes a primary cost optimization lever, especially at scale. See Section~\ref {sec:perf-cost-per-token} for detailed cost modeling. Absolute values depend on hardware pricing, utilization, and batch/sequence lengths}{figure.7.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.9}Case Study: Optimizing Ishtar AI}{240}{section.7.9}\protected@file@percent }
+\newlabel{sec:perf-ishtar-case}{{7.9}{240}{Case Study: Optimizing Ishtar AI}{section.7.9}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.9.1}Initial Performance}{240}{subsection.7.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.2}Optimizations Applied}{240}{subsection.7.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.9.2}Optimizations Applied}{241}{subsection.7.9.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.1}Model quantization to INT8/4-bit.}{241}{subsubsection.7.9.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.2}Inference engine swap (vLLM with dynamic batching).}{241}{subsubsection.7.9.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.3}Prompt and context optimization (RAG compression).}{241}{subsubsection.7.9.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.3}Prompt and context optimization (RAG compression).}{242}{subsubsection.7.9.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.4}Asynchronous API and streaming.}{242}{subsubsection.7.9.2.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.9.3}Results}{242}{subsection.7.9.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.3.1}Alternate configurations considered.}{243}{subsubsection.7.9.3.1}\protected@file@percent }

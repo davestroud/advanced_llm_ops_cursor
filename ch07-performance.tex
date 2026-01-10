@@ -363,24 +363,72 @@ Pairs well with long contexts and high concurrency; test for degradation on long
 \begin{llmfigbox}
 \begin{tikzpicture}[font=\small]
 \begin{axis}[
-  width=14cm, height=5.6cm,
-  ybar=0.3, bar width=12pt,
-  symbolic x coords={FP16,INT8,FP8,4-bit},
-  xtick=data,
-  ylabel={Throughput (tokens/s) --- normalized},
-  ymin=0, ymax=2.2,
-  legend style={at={(0.5,1.02)},anchor=south,draw=none,fill=none},
-  nodes near coords, nodes near coords align={vertical},
-  grid=both, grid style={gray!20},
-  tick align=outside,
-  enlarge x limits=0.05
+    width=0.95\linewidth,
+    height=7cm,
+    ybar=0.35,
+    bar width=16pt,
+    symbolic x coords={FP16,INT8,FP8,4-bit},
+    xtick=data,
+    ylabel={Throughput (tokens/s) --- normalized},
+    xlabel={Precision},
+    ymin=0, ymax=2.2,
+    legend style={
+        at={(0.5,1.03)},
+        anchor=south,
+        draw=none,
+        fill=none,
+        font=\small,
+        cells={anchor=center},
+        legend columns=2,
+        column sep=20pt,
+        row sep=3pt
+    },
+    nodes near coords,
+    nodes near coords align={vertical},
+    nodes near coords style={font=\footnotesize\bfseries},
+    grid=major,
+    grid style={gray!30, line width=0.4pt},
+    minor grid style={gray!15, line width=0.25pt},
+    minor y tick num=4,
+    tick align=outside,
+    tick pos=left,
+    xlabel style={font=\small\bfseries, yshift=3pt},
+    ylabel style={font=\small\bfseries, xshift=-3pt},
+    ticklabel style={font=\small},
+    axis line style={line width=1pt},
+    xticklabel style={font=\small\bfseries},
+    ytick={0,0.5,1.0,1.5,2.0},
+    yticklabels={0,0.5,1.0,1.5,2.0},
+    enlarge x limits=0.08
 ]
 % A100 (illustrative)
-\addplot+[fill=blue!55] coordinates {(FP16,1.00) (INT8,1.35) (FP8,1.00) (4-bit,1.55)};
+\addplot+[
+    fill=blue!75!black,
+    draw=blue!85!black,
+    line width=0.8pt,
+    every node near coord/.append style={
+        fill=white,
+        inner sep=1.5pt,
+        rounded corners=2pt,
+        draw=blue!85!black,
+        line width=0.3pt
+    }
+] coordinates {(FP16,1.00) (INT8,1.35) (FP8,1.00) (4-bit,1.55)};
 \addlegendentry{A100 (normalized to FP16)}
 
 % H100 (illustrative)
-\addplot+[fill=orange!70] coordinates {(FP16,1.00) (INT8,1.40) (FP8,1.85) (4-bit,1.70)};
+\addplot+[
+    fill=orange!75!black,
+    draw=orange!85!black,
+    line width=0.8pt,
+    every node near coord/.append style={
+        fill=white,
+        inner sep=1.5pt,
+        rounded corners=2pt,
+        draw=orange!85!black,
+        line width=0.3pt
+    }
+] coordinates {(FP16,1.00) (INT8,1.40) (FP8,1.85) (4-bit,1.70)};
 \addlegendentry{H100 (normalized to FP16)}
 
 \end{axis}
