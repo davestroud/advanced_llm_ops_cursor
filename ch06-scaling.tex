@@ -1318,10 +1318,10 @@ Fig.~\ref{fig:ch06_ishtar_timeline} summarizes the evolution of \ishtar{} from a
 \begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
-  milestone/.style={draw=none, rounded corners=4pt, align=left, inner sep=3pt},
-  initial/.style={milestone, fill=blue!15, minimum width=4.1cm, minimum height=0.8cm},
-  intermediate/.style={milestone, fill=green!15, minimum width=4.3cm, minimum height=1.0cm},
-  mature/.style={milestone, fill=orange!15, minimum width=4.5cm, minimum height=1.0cm},
+  milestone/.style={draw=none, rounded corners=4pt, align=left, inner sep=4pt},
+  initial/.style={milestone, fill=blue!15, minimum width=4.1cm, minimum height=1.1cm},
+  intermediate/.style={milestone, fill=green!15, minimum width=4.3cm, minimum height=1.2cm},
+  mature/.style={milestone, fill=orange!15, minimum width=4.5cm, minimum height=1.2cm},
   label/.style={font=\small, align=left}
 ]
 
@@ -1356,7 +1356,7 @@ $\bullet$ Tiered models \& spot for cost-awareness
 -- Dynamic batching (5--6$\times$ gain)\\
 -- Pod-local response cache; HPA};
 
-\node[mature, anchor=north east] (m2) at (15.2,-1.8) {%
+\node[mature, anchor=north east] (m2) at (15.5,-1.8) {%
 \textbf{Mature Stage}\\
 -- Multi-region H100 clusters (US/EU/APAC)\\
 -- 70B model, 32k context; hybrid scaling\\
