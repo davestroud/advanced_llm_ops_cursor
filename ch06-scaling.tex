@@ -943,7 +943,7 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
     rounded corners=2pt
 ] at (axis cs:15,470) {$\gamma\,\hat{C}$ per replica};
 
-% Event trigger annotation - improved styling
+% Event trigger annotation - improved styling, moved further left and lower
 \node[
     anchor=south west,
     align=left,
@@ -952,16 +952,16 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
     fill=green!10,
     inner sep=3pt,
     rounded corners=3pt
-] at (axis cs:3,780) {\textbf{Event trigger}\\(calendar/schedule)};
+] at (axis cs:1,720) {\textbf{Event trigger}\\(calendar/schedule)};
 \draw[
     ->,
     >=stealth,
     color=green!70!black,
     line width=1pt,
     shorten >=2pt
-] (axis cs:3,760) -- (axis cs:20,600);
+] (axis cs:1,700) -- (axis cs:20,600);
 
-% Pre-warm annotation - improved styling
+% Pre-warm annotation - improved styling, moved further right and higher
 \node[
     anchor=east,
     align=right,
@@ -970,14 +970,14 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
     fill=green!10,
     inner sep=3pt,
     rounded corners=3pt
-] at (axis cs:27,980) {\textbf{Pre-warm}\\ahead of spike};
+] at (axis cs:32,1020) {\textbf{Pre-warm}\\ahead of spike};
 \draw[
     ->,
     >=stealth,
     color=green!70!black,
     line width=1pt,
     shorten >=2pt
-] (axis cs:27,960) -- (axis cs:25,860);
+] (axis cs:32,1000) -- (axis cs:25,860);
 
 % Spike annotation - improved styling
 \node[
