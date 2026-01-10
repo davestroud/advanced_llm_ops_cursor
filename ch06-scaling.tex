@@ -1318,9 +1318,21 @@ Fig.~\ref{fig:ch06_ishtar_timeline} summarizes the evolution of \ishtar{} from a
 \begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
-  milestone/.style={draw=none, rounded corners, align=left, minimum width=4.1cm, minimum height=0.8cm, fill=gray!5, inner sep=2pt},
+  milestone/.style={draw=none, rounded corners=4pt, align=left, minimum width=4.1cm, minimum height=0.8cm, inner sep=3pt},
+  initial/.style={milestone, fill=blue!15},
+  intermediate/.style={milestone, fill=green!15},
+  mature/.style={milestone, fill=orange!15},
   label/.style={font=\small, align=left}
 ]
+
+% Key milestones box - centered at top
+\node[draw=black!40, rounded corners=4pt, thick, align=left, fill=white!95, inner sep=3mm, anchor=north]
+at (7.5,2.2) {\small
+\textbf{Key milestones}\\[2pt]
+$\bullet$ Batching \& caching evolve with scale\\
+$\bullet$ Autoscaling: reactive $\to$ predictive\\
+$\bullet$ Tiered models \& spot for cost-awareness
+};
 
 % Timeline axis
 \draw[thick] (0,0) -- (15,0);
@@ -1329,22 +1341,22 @@ Fig.~\ref{fig:ch06_ishtar_timeline} summarizes the evolution of \ishtar{} from a
 \foreach \x/\name in {0/Initial, 7/Intermediate, 14/Mature}
   \draw[thick] (\x,0.15) -- (\x,-0.15) node[below=2mm,font=\bfseries] {\name};
 
-% Milestones (boxes)
-\node[milestone, anchor=north west] (m0) at (-0.2,-1.8) {%
+% Milestones (boxes) - with colors
+\node[initial, anchor=north west] (m0) at (-0.2,-1.8) {%
 \textbf{Initial Stage}\\
 -- Single GPU server (A100-40\,GB)\\
 -- 13B off-the-shelf model\\
 -- Minimal batching; no caching\\
 -- High latency; prototype focus};
 
-\node[milestone, anchor=north] (m1) at (7,-1.8) {%
+\node[intermediate, anchor=north] (m1) at (7,-1.8) {%
 \textbf{Intermediate Stage}\\
 -- Multiple A100s; K8s load-balancer\\
 -- 30B fine-tuned model; 4--8 replicas\\
 -- Dynamic batching (5--6$\times$ gain)\\
 -- Pod-local response cache; HPA};
 
-\node[milestone, anchor=north east] (m2) at (15.2,-1.8) {%
+\node[mature, anchor=north east] (m2) at (15.2,-1.8) {%
 \textbf{Mature Stage}\\
 -- Multi-region H100 clusters (US/EU/APAC)\\
 -- 70B model, 32k context; hybrid scaling\\
@@ -1355,15 +1367,6 @@ Fig.~\ref{fig:ch06_ishtar_timeline} summarizes the evolution of \ishtar{} from a
 \draw[->, thick] (0,-0.2) -- (m0.north west);
 \draw[->, thick] (7,-0.2) -- (m1.north);
 \draw[->, thick] (14,-0.2) -- (m2.north east);
-
-% Legend
-\node[draw, rounded corners, thick, align=left, fill=white, inner sep=2mm, anchor=north west]
-at (-0.2,1.0) {\small
-\textbf{Key milestones}\\
-$\bullet$ Batching \& caching evolve with scale\\
-$\bullet$ Autoscaling: reactive $\to$ predictive\\
-$\bullet$ Tiered models \& spot for cost-awareness
-};
 
 \end{tikzpicture}
 \end{llmfigbox}
