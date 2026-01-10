@@ -252,6 +252,59 @@ In practice, ingestion is the boundary between data engineering and model infere
 
 \textbf{Stable identifiers and idempotency.} Assign a canonical \texttt{doc\_id} and \texttt{doc\_version}, then derive stable \texttt{chunk\_id}s. Ensure ingestion is idempotent: reprocessing a document should produce the same identifiers (unless the chunking/embedding version changes). This is essential for reliable deletes, deduplication, and audit trails.
 
+\begin{figure}[t]
+\centering
+\begin{llmfigbox}
+\begin{tikzpicture}[
+    node distance=16mm,
+    auto,
+    >=Stealth,
+    block/.style={
+        rectangle,
+        draw=none,
+        rounded corners=5pt,
+        minimum height=14mm,
+        minimum width=32mm,
+        align=center,
+        inner sep=5pt,
+        font=\small
+    },
+    arrow/.style={
+        ->,
+        very thick,
+        line width=1.2pt,
+        draw=black!60
+    }
+]
+% Color definitions
+\definecolor{sourceblue}{RGB}{44,102,146}
+\definecolor{preprocessgreen}{RGB}{34,139,96}
+\definecolor{chunkorange}{RGB}{201,111,29}
+\definecolor{deduppurple}{RGB}{123,88,163}
+\definecolor{metadataviolet}{RGB}{153,102,204}
+\definecolor{vectorred}{RGB}{173,63,60}
+
+% Nodes
+\node[block, fill=sourceblue!15] (sources) {\textbf{Data Sources}\\[2pt]\footnotesize Databases, APIs, Websites,\\RSS, Social Media};
+\node[block, fill=preprocessgreen!15, below=of sources] (preprocess) {\textbf{Preprocessing \& Cleaning}\\[2pt]\footnotesize Format conversion, noise removal,\\translation};
+\node[block, fill=chunkorange!15, below=of preprocess] (chunk) {\textbf{Chunking Strategy}\\[2pt]\footnotesize Paragraphs, sections,\\token windows};
+\node[block, fill=deduppurple!15, below=of chunk] (dedup) {\textbf{Deduplication \& Filtering}\\[2pt]\footnotesize Remove duplicates,\\drop irrelevant data};
+\node[block, fill=metadataviolet!15, below=of dedup] (metadata) {\textbf{Metadata Enrichment}\\[2pt]\footnotesize Timestamps, geotags,\\source reliability};
+\node[block, fill=vectorred!15, below=of metadata] (vector) {\textbf{Vector Store}\\[2pt]\footnotesize FAISS, Pinecone,\\Weaviate, Milvus};
+
+% Arrows
+\draw[arrow] (sources) -- (preprocess);
+\draw[arrow] (preprocess) -- (chunk);
+\draw[arrow] (chunk) -- (dedup);
+\draw[arrow] (dedup) -- (metadata);
+\draw[arrow] (metadata) -- (vector);
+
+\end{tikzpicture}
+\end{llmfigbox}
+\caption{Ingestion pipeline design determines RAG freshness and retrieval quality. Proper preprocessing, chunking, and deduplication prevent stale data and duplicate evidence, while metadata enrichment enables filtering and provenance tracking. This pipeline structure enables reliable, auditable RAG systems.}
+\label{fig:ch08_ingestion_pipeline}
+\end{figure}
+
 \begin{tcolorbox}[
   title={\textbf{Engineering sidebar: A minimal ingestion contract}},
   colback=gray!5,
@@ -358,59 +411,6 @@ Ingestion pipelines should be operated like production data systems:
 
 \subsubsection*{Summary}
 Ingestion quality and freshness determine RAG quality. Treat ingestion as a versioned, observable subsystem with explicit SLAs: "How quickly does new knowledge become retrievable?" is often the most important operational question in production RAG.
-
-\begin{figure}[t]
-\centering
-\begin{llmfigbox}
-\begin{tikzpicture}[
-    node distance=16mm,
-    auto,
-    >=Stealth,
-    block/.style={
-        rectangle,
-        draw=none,
-        rounded corners=5pt,
-        minimum height=14mm,
-        minimum width=32mm,
-        align=center,
-        inner sep=5pt,
-        font=\small
-    },
-    arrow/.style={
-        ->,
-        very thick,
-        line width=1.2pt,
-        draw=black!60
-    }
-]
-% Color definitions
-\definecolor{sourceblue}{RGB}{44,102,146}
-\definecolor{preprocessgreen}{RGB}{34,139,96}
-\definecolor{chunkorange}{RGB}{201,111,29}
-\definecolor{deduppurple}{RGB}{123,88,163}
-\definecolor{metadataviolet}{RGB}{153,102,204}
-\definecolor{vectorred}{RGB}{173,63,60}
-
-% Nodes
-\node[block, fill=sourceblue!15] (sources) {\textbf{Data Sources}\\[2pt]\footnotesize Databases, APIs, Websites,\\RSS, Social Media};
-\node[block, fill=preprocessgreen!15, below=of sources] (preprocess) {\textbf{Preprocessing \& Cleaning}\\[2pt]\footnotesize Format conversion, noise removal,\\translation};
-\node[block, fill=chunkorange!15, below=of preprocess] (chunk) {\textbf{Chunking Strategy}\\[2pt]\footnotesize Paragraphs, sections,\\token windows};
-\node[block, fill=deduppurple!15, below=of chunk] (dedup) {\textbf{Deduplication \& Filtering}\\[2pt]\footnotesize Remove duplicates,\\drop irrelevant data};
-\node[block, fill=metadataviolet!15, below=of dedup] (metadata) {\textbf{Metadata Enrichment}\\[2pt]\footnotesize Timestamps, geotags,\\source reliability};
-\node[block, fill=vectorred!15, below=of metadata] (vector) {\textbf{Vector Store}\\[2pt]\footnotesize FAISS, Pinecone,\\Weaviate, Milvus};
-
-% Arrows
-\draw[arrow] (sources) -- (preprocess);
-\draw[arrow] (preprocess) -- (chunk);
-\draw[arrow] (chunk) -- (dedup);
-\draw[arrow] (dedup) -- (metadata);
-\draw[arrow] (metadata) -- (vector);
-
-\end{tikzpicture}
-\end{llmfigbox}
-\caption{Ingestion pipeline design determines RAG freshness and retrieval quality. Proper preprocessing, chunking, and deduplication prevent stale data and duplicate evidence, while metadata enrichment enables filtering and provenance tracking. This pipeline structure enables reliable, auditable RAG systems.}
-\label{fig:ch08_ingestion_pipeline}
-\end{figure}
 
 \section{Vector Database Considerations}
 \label{sec:rag-vector-database-considerations}
