@@ -595,13 +595,21 @@ At \ishtar{}, early profiling helped us realize that our CPU was the bottleneck 
 \subsection{Mixed Precision}
 Leveraging FP16/BF16 for faster computation without noticeable accuracy loss.
 
-Mixed precision refers to using lower precision arithmetic (16-bit floats, or even 8-bit in some parts) while preserving enough accuracy. Modern GPUs (NVIDIA V100/A100/H100, etc.) have specialized hardware (Tensor Cores) that can multiply matrices in FP16/BF16 very quickly compared to FP32. By default, nearly all LLM inference is done in FP16 these days, as FP32 offers no significant quality benefit for already-trained models but runs slower.
+Mixed precision refers to using lower precision arithmetic (16-bit floats, or even 8-bit in some parts) while preserving enough accuracy. Key considerations include:
 
-BF16 (bfloat16) is an alternative 16-bit format with a wider exponent range, which can be more stable for very large values (common in some intermediate activations). Many models can run in BF16 with zero degradation and it is often the default on TPUs and many newer GPUs. FP16 has a smaller exponent range, which can sometimes cause overflow or underflow in extreme cases, but in practice most models have been trained to FP16 tolerance. Using mixed precision in inference typically means weights are FP16, and computations are FP16 (or BF16) except perhaps certain operations like reductions done in FP32 for stability.
+\begin{itemize}
+\item \textbf{Hardware support:} Modern GPUs (NVIDIA V100/A100/H100, etc.) have specialized hardware (Tensor Cores) that can multiply matrices in FP16/BF16 very quickly compared to FP32. By default, nearly all LLM inference is done in FP16 these days, as FP32 offers no significant quality benefit for already-trained models but runs slower.
 
-From a performance perspective, FP16/BF16 can more than double throughput versus FP32 on many operations, because Tensor Cores operate on 16-bit. On an A100, the theoretical TFLOPS for FP16 Tensor Core operations is roughly 2$\times$ that of FP32; in practice, 1.5--2$\times$ speedups are common. One must be cautious that everything (model weights, model code) is set up for FP16/BF16: if a single layer stays in FP32 (perhaps due to an unchecked operation), it can become a bottleneck. Tools like NVIDIA’s Automatic Mixed Precision (AMP) can help cast operations appropriately.
+\item \textbf{BF16 vs.\ FP16:} BF16 (bfloat16) is an alternative 16-bit format with a wider exponent range, which can be more stable for very large values (common in some intermediate activations). Many models can run in BF16 with zero degradation and it is often the default on TPUs and many newer GPUs. FP16 has a smaller exponent range, which can sometimes cause overflow or underflow in extreme cases, but in practice most models have been trained to FP16 tolerance.
 
-In \ishtar{}’s case, the model was fine-tuned and served entirely in FP16 from the start, which gave good performance. When we later moved to H100 GPUs, we switched to BF16 (since H100 has better BF16 support) and saw no change in outputs, and it integrated nicely with potential FP8 usage. We also experimented with an \emph{FP8+FP16 mixed} mode on H100 (using FP8 for matrix multiply and FP16 for residual additions, etc.), which further improved speed, though at the time we needed to ensure the model’s accuracy remained acceptable. It is likely that production will move toward 8-bit activations in the near future for additional gains.
+\item \textbf{Implementation:} Using mixed precision in inference typically means weights are FP16, and computations are FP16 (or BF16) except perhaps certain operations like reductions done in FP32 for stability.
+
+\item \textbf{Performance benefits:} FP16/BF16 can more than double throughput versus FP32 on many operations, because Tensor Cores operate on 16-bit. On an A100, the theoretical TFLOPS for FP16 Tensor Core operations is roughly 2$\times$ that of FP32; in practice, 1.5--2$\times$ speedups are common.
+
+\item \textbf{Pitfalls:} One must be cautious that everything (model weights, model code) is set up for FP16/BF16: if a single layer stays in FP32 (perhaps due to an unchecked operation), it can become a bottleneck. Tools like NVIDIA's Automatic Mixed Precision (AMP) can help cast operations appropriately.
+
+\item \textbf{\ishtar{} experience:} The model was fine-tuned and served entirely in FP16 from the start, which gave good performance. When we later moved to H100 GPUs, we switched to BF16 (since H100 has better BF16 support) and saw no change in outputs, and it integrated nicely with potential FP8 usage. We also experimented with an \emph{FP8+FP16 mixed} mode on H100 (using FP8 for matrix multiply and FP16 for residual additions, etc.), which further improved speed, though at the time we needed to ensure the model's accuracy remained acceptable. It is likely that production will move toward 8-bit activations in the near future for additional gains.
+\end{itemize}
 
 \subsection{Concurrency Tuning}
 Adjusting thread counts, streams, and batch sizes to match GPU capacity.
