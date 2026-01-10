@@ -43,62 +43,62 @@
 \@writefile{toc}{\contentsline {section}{\numberline {8.6}Vector Database Considerations}{269}{section.8.6}\protected@file@percent }
 \newlabel{sec:rag-vector-database-considerations}{{8.6}{269}{Vector Database Considerations}{section.8.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.6.1}Index Type (Accuracy vs.\ Speed Trade-offs)}{269}{subsection.8.6.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8.2}{\ignorespaces Ingestion pipeline design determines RAG freshness and retrieval quality. Proper preprocessing, chunking, and deduplication prevent stale data and duplicate evidence, while metadata enrichment enables filtering and provenance tracking. This pipeline structure enables reliable, auditable RAG systems.}}{270}{figure.8.2}\protected@file@percent }
-\newlabel{fig:ch08_ingestion_pipeline}{{8.2}{270}{Ingestion pipeline design determines RAG freshness and retrieval quality. Proper preprocessing, chunking, and deduplication prevent stale data and duplicate evidence, while metadata enrichment enables filtering and provenance tracking. This pipeline structure enables reliable, auditable RAG systems}{figure.8.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.6.2}Sharding and Logical Partitioning}{270}{subsection.8.6.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints.}}{271}{table.8.1}\protected@file@percent }
-\newlabel{tab:ch08_vector_index_comparison_landscape}{{8.1}{271}{Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints}{table.8.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints.}}{270}{table.8.1}\protected@file@percent }
+\newlabel{tab:ch08_vector_index_comparison_landscape}{{8.1}{270}{Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints}{table.8.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.6.2}Sharding and Logical Partitioning}{271}{subsection.8.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.6.3}Replication and High Availability}{272}{subsection.8.6.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.6.4}Persistence, Backups, and Re-indexing}{273}{subsection.8.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.6.5}Metadata Filters and Hybrid Queries}{274}{subsection.8.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.6.5}Metadata Filters and Hybrid Queries}{273}{subsection.8.6.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.6.6}Security Baselines}{274}{subsection.8.6.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {8.7}Retriever Strategies}{275}{section.8.7}\protected@file@percent }
 \newlabel{sec:rag-retriever-strategies}{{8.7}{275}{Retriever Strategies}{section.8.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.7.1}Dense Retrieval (Semantic Search)}{275}{subsection.8.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.2}Sparse Retrieval (Lexical / Keyword Search)}{276}{subsection.8.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.2}Sparse Retrieval (Lexical / Keyword Search)}{275}{subsection.8.7.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.7.3}Hybrid Retrieval}{276}{subsection.8.7.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.7.4}Modern Retrieval Patterns: Fusion, Late Interaction, and HyDE}{276}{subsection.8.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.5}Query Rewriting and Expansion}{276}{subsection.8.7.5}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {8.2}{\ignorespaces Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements.}}{277}{table.8.2}\protected@file@percent }
 \newlabel{tab:ch08_retriever_strategies}{{8.2}{277}{Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements}{table.8.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.7.5}Query Rewriting and Expansion}{278}{subsection.8.7.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {8.8}Augmenting the Prompt}{278}{section.8.8}\protected@file@percent }
 \newlabel{sec:rag-augmenting-the-prompt}{{8.8}{278}{Augmenting the Prompt}{section.8.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.8.1}Context Budgeting and Selection}{278}{subsection.8.8.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.8.2}Ordering, Grouping, and Separators}{278}{subsection.8.8.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.8.3}Prompt Instructions and Abstention}{279}{subsection.8.8.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.8.4}Citations and Attribution}{279}{subsection.8.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.5}Multi-Turn Conversations}{280}{subsection.8.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.5}Multi-Turn Conversations}{279}{subsection.8.8.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.8.6}A Practical Prompt Template}{280}{subsection.8.8.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.9}Evaluation of RAG Pipelines}{281}{section.8.9}\protected@file@percent }
-\newlabel{sec:rag-metrics}{{8.9}{281}{Evaluation of RAG Pipelines}{section.8.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.1}Retrieval Quality}{281}{subsection.8.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.9}Evaluation of RAG Pipelines}{280}{section.8.9}\protected@file@percent }
+\newlabel{sec:rag-metrics}{{8.9}{280}{Evaluation of RAG Pipelines}{section.8.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.1}Retrieval Quality}{280}{subsection.8.9.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.9.2}Generation Faithfulness and Answer Relevance}{281}{subsection.8.9.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.9.3}Citation Accuracy and Attribution}{281}{subsection.8.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.4}Latency, Throughput, and Cost}{282}{subsection.8.9.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.4}Latency, Throughput, and Cost}{281}{subsection.8.9.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.9.5}Failure Modes and Regression Testing}{282}{subsection.8.9.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.10}Performance Optimization in RAG}{283}{section.8.10}\protected@file@percent }
-\newlabel{sec:rag-performance-optimization-in-rag}{{8.10}{283}{Performance Optimization in RAG}{section.8.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.1}Decompose and Measure}{283}{subsection.8.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.10}Performance Optimization in RAG}{282}{section.8.10}\protected@file@percent }
+\newlabel{sec:rag-performance-optimization-in-rag}{{8.10}{282}{Performance Optimization in RAG}{section.8.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.1}Decompose and Measure}{282}{subsection.8.10.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.10.2}Retrieval-Side Optimizations}{283}{subsection.8.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.3}Prompt and Context Optimizations}{284}{subsection.8.10.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.3}Prompt and Context Optimizations}{283}{subsection.8.10.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.10.4}Generation-Side Optimizations}{284}{subsection.8.10.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.11}Security and Compliance}{285}{section.8.11}\protected@file@percent }
-\newlabel{sec:rag-security-and-compliance}{{8.11}{285}{Security and Compliance}{section.8.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.1}Access Control and Tenant Isolation}{285}{subsection.8.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.11}Security and Compliance}{284}{section.8.11}\protected@file@percent }
+\newlabel{sec:rag-security-and-compliance}{{8.11}{284}{Security and Compliance}{section.8.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.1}Access Control and Tenant Isolation}{284}{subsection.8.11.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.11.2}Data Protection: Encryption, Retention, and Deletion}{285}{subsection.8.11.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.11.3}Prompt Injection and Untrusted Content}{285}{subsection.8.11.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.11.4}Auditability and Monitoring}{285}{subsection.8.11.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.12}Case Study: Ishtar AI's RAG Pipeline}{286}{section.8.12}\protected@file@percent }
-\newlabel{sec:rag-case-study-ishtar-ai-s-rag-pipeline}{{8.12}{286}{Case Study: Ishtar AI's RAG Pipeline}{section.8.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.12}Case Study: Ishtar AI's RAG Pipeline}{285}{section.8.12}\protected@file@percent }
+\newlabel{sec:rag-case-study-ishtar-ai-s-rag-pipeline}{{8.12}{285}{Case Study: Ishtar AI's RAG Pipeline}{section.8.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.12.1}Overview}{286}{subsection.8.12.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.12.2}Architecture}{286}{subsection.8.12.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.12.3}Operational Outcomes}{286}{subsection.8.12.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces \ishtar  {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users.}}{287}{figure.8.3}\protected@file@percent }
-\newlabel{fig:ch08_ishtar_rag}{{8.3}{287}{\ishtar {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users}{figure.8.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {8.13}Best Practices Checklist}{287}{section.8.13}\protected@file@percent }
 \newlabel{sec:rag-best-practices-checklist}{{8.13}{287}{Best Practices Checklist}{section.8.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.2}{\ignorespaces Ingestion pipeline design determines RAG freshness and retrieval quality. Proper preprocessing, chunking, and deduplication prevent stale data and duplicate evidence, while metadata enrichment enables filtering and provenance tracking. This pipeline structure enables reliable, auditable RAG systems.}}{290}{figure.8.2}\protected@file@percent }
+\newlabel{fig:ch08_ingestion_pipeline}{{8.2}{290}{Ingestion pipeline design determines RAG freshness and retrieval quality. Proper preprocessing, chunking, and deduplication prevent stale data and duplicate evidence, while metadata enrichment enables filtering and provenance tracking. This pipeline structure enables reliable, auditable RAG systems}{figure.8.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces \ishtar  {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users.}}{291}{figure.8.3}\protected@file@percent }
+\newlabel{fig:ch08_ishtar_rag}{{8.3}{291}{\ishtar {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users}{figure.8.3}{}}
 \@setckpt{ch08-rag}{
-\setcounter{page}{291}
+\setcounter{page}{292}
 \setcounter{equation}{0}
 \setcounter{enumi}{5}
 \setcounter{enumii}{0}

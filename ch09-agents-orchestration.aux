@@ -1,94 +1,94 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {9}Multi-Agent Architectures and Orchestration}{291}{chapter.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {9}Multi-Agent Architectures and Orchestration}{293}{chapter.9}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{refsegment:019}{{9}{291}{Multi-Agent Architectures and Orchestration}{chapter.9}{}}
-\newlabel{ch:multiagent}{{9}{291}{Multi-Agent Architectures and Orchestration}{chapter.9}{}}
-\newlabel{refsegment:020}{{9}{291}{Multi-Agent Architectures and Orchestration}{chapter.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.1}Introduction}{292}{section.9.1}\protected@file@percent }
-\newlabel{sec:ch9-introduction}{{9.1}{292}{Introduction}{section.9.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{From classic MAS to modern LLM agents.}{292}{section*.43}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Operational perspective.}{293}{section*.44}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.2}Why Multi-Agent Systems?}{293}{section.9.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9.1}{\ignorespaces Architecture choice (monolithic vs.\ multi-agent) determines operational complexity and reliability. Multi-agent systems enable specialization, explicit verification gates, and fault isolation, but introduce coordination overhead. Choose monolithic for simple tasks with low verification needs; choose multi-agent when specialization, safety gates, or tool-augmented workflows justify the added complexity.}}{295}{table.9.1}\protected@file@percent }
-\newlabel{tab:ch09_monolithic_vs_multiagent}{{9.1}{295}{Architecture choice (monolithic vs.\ multi-agent) determines operational complexity and reliability. Multi-agent systems enable specialization, explicit verification gates, and fault isolation, but introduce coordination overhead. Choose monolithic for simple tasks with low verification needs; choose multi-agent when specialization, safety gates, or tool-augmented workflows justify the added complexity}{table.9.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.3}Core Components of Multi-Agent Architectures}{295}{section.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.1}Common Orchestration Patterns in Practice}{296}{subsection.9.3.1}\protected@file@percent }
-\newlabel{sec:orch-patterns}{{9.3.1}{296}{Common Orchestration Patterns in Practice}{subsection.9.3.1}{}}
-\@writefile{toc}{\contentsline {paragraph}{Planner--executor (plan-and-execute).}{296}{section*.47}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Critic--reviser (iterative refinement).}{296}{section*.48}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Search-based deliberation.}{296}{section*.49}\protected@file@percent }
-\newlabel{alg:ch09_budgeted_orchestration}{{9.1}{297}{Search-based deliberation}{llmalgorithm.9.1}{}}
-\newlabel{lst:ch09_langgraph_sketch}{{9.1}{297}{Search-based deliberation}{llmlisting.9.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.1}{\ignorespaces Control-plane and data-plane separation enables reliable multi-agent orchestration. The orchestrator enforces routing decisions, budgets, and policies (control plane), while agents implement scoped capabilities and shared memory provides a consistent state substrate (data plane). This separation allows policy changes without modifying agent logic, enabling auditable, testable multi-agent systems. External tools provide grounded capabilities that extend agent functionality.}}{298}{figure.9.1}\protected@file@percent }
-\newlabel{fig:ch09_agentic_control_plane}{{9.1}{298}{Control-plane and data-plane separation enables reliable multi-agent orchestration. The orchestrator enforces routing decisions, budgets, and policies (control plane), while agents implement scoped capabilities and shared memory provides a consistent state substrate (data plane). This separation allows policy changes without modifying agent logic, enabling auditable, testable multi-agent systems. External tools provide grounded capabilities that extend agent functionality}{figure.9.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.2}Agents}{298}{subsection.9.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.3}Orchestrator}{299}{subsection.9.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.4}Memory: Episodic and Semantic Memory}{300}{subsection.9.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.5}External Tools and APIs}{301}{subsection.9.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.4}Agent Contracts, Schemas, and Handoffs}{301}{section.9.4}\protected@file@percent }
-\newlabel{sec:agent-contracts}{{9.4}{301}{Agent Contracts, Schemas, and Handoffs}{section.9.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.1}Contracts as the Unit of Interoperability}{301}{subsection.9.4.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9.2}{\ignorespaces Agent contracts enable reliable multi-agent orchestration. By specifying inputs/outputs, invariants, and metrics, contracts allow deterministic validation, error handling, and debugging. This contract-first approach converts non-deterministic agent behavior into testable, auditable production workflows.}}{302}{table.9.2}\protected@file@percent }
-\newlabel{tab:ch09_ishtar_agent_contracts}{{9.2}{302}{Agent contracts enable reliable multi-agent orchestration. By specifying inputs/outputs, invariants, and metrics, contracts allow deterministic validation, error handling, and debugging. This contract-first approach converts non-deterministic agent behavior into testable, auditable production workflows}{table.9.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.2}Evidence Interfaces and the ``Context Pack''}{302}{subsection.9.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.3}Structured Output Envelopes}{303}{subsection.9.4.3}\protected@file@percent }
-\newlabel{lst:ch09_context_pack_schema}{{9.2}{303}{Structured Output Envelopes}{llmlisting.9.2}{}}
-\newlabel{lst:ch09_verification_envelope}{{9.3}{303}{Structured Output Envelopes}{llmlisting.9.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.4}Traceability and Deterministic Replay}{304}{subsection.9.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.5}Agent Roles in Ishtar AI}{304}{section.9.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.1}Ingestion Agent}{304}{subsection.9.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.2}Retrieval Agent}{305}{subsection.9.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.3}Synthesis Agent}{305}{subsection.9.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.4}Verification Agent}{306}{subsection.9.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.5}Safety Agent}{306}{subsection.9.5.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.6}Translation Agent (Optional)}{307}{subsection.9.5.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.6}Communication Patterns}{307}{section.9.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.1}Direct Messaging}{308}{subsection.9.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.2}Message Bus (Pub/Sub)}{308}{subsection.9.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.3}Blackboard Architecture}{309}{subsection.9.6.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9.3}{\ignorespaces Communication pattern selection affects system scalability and debuggability. Direct messaging provides predictable latency but tight coupling; message buses enable loose coupling but harder debugging; blackboard architectures support iterative refinement but require coordination. Choose based on system scale, concurrency needs, and operational requirements.}}{310}{table.9.3}\protected@file@percent }
-\newlabel{tab:ch09_comm_patterns}{{9.3}{310}{Communication pattern selection affects system scalability and debuggability. Direct messaging provides predictable latency but tight coupling; message buses enable loose coupling but harder debugging; blackboard architectures support iterative refinement but require coordination. Choose based on system scale, concurrency needs, and operational requirements}{table.9.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.7}Orchestration Strategies}{310}{section.9.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.7.1}Rule-Based Orchestration}{310}{subsection.9.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.7.2}Dynamic Orchestration (LLM-driven)}{311}{subsection.9.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.7.3}Hierarchical Orchestration}{311}{subsection.9.7.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9.2}{\ignorespaces Orchestration strategy selection determines system adaptability and operational complexity. (\textbf  {a}) \emph  {Rule-Based}: fixed, testable pipelines with explicit branches (retrieval → synthesis → verification → safety) provide predictability and ease of debugging. (\textbf  {b}) \emph  {Dynamic (LLM-driven)}: an LLM planner routes tasks at runtime, enabling adaptive flows and feedback but requiring rigorous testing. (\textbf  {c}) \emph  {Hierarchical}: a supervisor delegates to sub-teams (which may orchestrate further sub-agents) and aggregates results, enabling scalability but increasing coordination overhead. \ishtar  {} primarily uses a rule-based pipeline today, with potential evolution toward dynamic and hierarchical patterns for complex scenarios.}}{313}{figure.9.2}\protected@file@percent }
-\newlabel{fig:ch09_orchestration_strategies}{{9.2}{313}{Orchestration strategy selection determines system adaptability and operational complexity. (\textbf {a}) \emph {Rule-Based}: fixed, testable pipelines with explicit branches (retrieval → synthesis → verification → safety) provide predictability and ease of debugging. (\textbf {b}) \emph {Dynamic (LLM-driven)}: an LLM planner routes tasks at runtime, enabling adaptive flows and feedback but requiring rigorous testing. (\textbf {c}) \emph {Hierarchical}: a supervisor delegates to sub-teams (which may orchestrate further sub-agents) and aggregates results, enabling scalability but increasing coordination overhead. \ishtar {} primarily uses a rule-based pipeline today, with potential evolution toward dynamic and hierarchical patterns for complex scenarios}{figure.9.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {9.4}{\ignorespaces Failure taxonomy enables systematic error handling in multi-agent systems. By categorizing failures (infrastructure, schema, semantic, policy, coordination), orchestrators can apply appropriate responses (retry, re-prompt, escalate, abort). This taxonomy converts ad hoc error handling into a testable, auditable operational policy.}}{314}{table.9.4}\protected@file@percent }
-\newlabel{tab:ch09_agent_failure_taxonomy}{{9.4}{314}{Failure taxonomy enables systematic error handling in multi-agent systems. By categorizing failures (infrastructure, schema, semantic, policy, coordination), orchestrators can apply appropriate responses (retry, re-prompt, escalate, abort). This taxonomy converts ad hoc error handling into a testable, auditable operational policy}{table.9.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.8}Error Handling and Fallbacks}{314}{section.9.8}\protected@file@percent }
-\newlabel{sec:errorhandling}{{9.8}{314}{Error Handling and Fallbacks}{section.9.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.8.1}Failure Taxonomy for Agentic Workflows}{314}{subsection.9.8.1}\protected@file@percent }
-\newlabel{lst:ch09_error_envelope}{{9.4}{315}{Failure Taxonomy for Agentic Workflows}{llmlisting.9.4}{}}
-\newlabel{alg:ch09_safeinvoke}{{9.2}{315}{Failure Taxonomy for Agentic Workflows}{llmalgorithm.9.2}{}}
-\newlabel{lst:ch09_error_handling_flow}{{9.5}{318}{Logging and Monitoring for Failures:}{llmlisting.9.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.9}Performance Considerations}{318}{section.9.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.9.1}A Quantitative View of Latency and Cost}{318}{subsection.9.9.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9.5}{\ignorespaces Performance metrics drive capacity planning and cost governance in agentic systems. End-to-end latency, token usage, tool-call counts, and retry rates reveal bottlenecks and cost drivers. Monitoring these metrics enables proactive scaling, budget enforcement, and optimization decisions.}}{319}{table.9.5}\protected@file@percent }
-\newlabel{tab:ch09_agent_performance_metrics}{{9.5}{319}{Performance metrics drive capacity planning and cost governance in agentic systems. End-to-end latency, token usage, tool-call counts, and retry rates reveal bottlenecks and cost drivers. Monitoring these metrics enables proactive scaling, budget enforcement, and optimization decisions}{table.9.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.10}Testing, Evaluation, and Observability for Agentic Systems}{322}{section.9.10}\protected@file@percent }
-\newlabel{sec:agent-eval}{{9.10}{322}{Testing, Evaluation, and Observability for Agentic Systems}{section.9.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.1}Evaluation Dimensions}{322}{subsection.9.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.2}Benchmarks and Simulated Environments}{323}{subsection.9.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.3}The ``Agentic Test Pyramid''}{323}{subsection.9.10.3}\protected@file@percent }
-\newlabel{alg:ch09_agent_regression_suite}{{9.3}{323}{The ``Agentic Test Pyramid''}{llmalgorithm.9.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.4}Observability: Traces, Metrics, and Replay Bundles}{323}{subsection.9.10.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9.6}{\ignorespaces Threat modeling identifies security risks unique to agentic systems. Prompt injection, tool misuse, and data exfiltration require defense-in-depth controls (input sanitization, least-privilege tool access, output filtering). This threat model guides security architecture decisions and audit requirements.}}{324}{table.9.6}\protected@file@percent }
-\newlabel{tab:ch09_agentic_threats}{{9.6}{324}{Threat modeling identifies security risks unique to agentic systems. Prompt injection, tool misuse, and data exfiltration require defense-in-depth controls (input sanitization, least-privilege tool access, output filtering). This threat model guides security architecture decisions and audit requirements}{table.9.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.11}Security in Multi-Agent Systems}{324}{section.9.11}\protected@file@percent }
-\newlabel{sec:ch09-security}{{9.11}{324}{Security in Multi-Agent Systems}{section.9.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.11.1}Threat Modeling Agentic Systems}{324}{subsection.9.11.1}\protected@file@percent }
-\newlabel{lst:ch09_tool_allowlist}{{9.6}{325}{Threat Modeling Agentic Systems}{llmlisting.9.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.12}Case Study: Orchestrating Ishtar AI}{328}{section.9.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.12.1}Workflow}{328}{subsection.9.12.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9.3}{\ignorespaces \ishtar  {} multi-agent pipeline demonstrates production-ready orchestration patterns. The orchestrator enforces workflow order, budgets, and policy gates, ensuring reliable execution; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations. This pipeline structure enables traceability, error handling, and quality assurance by making each handoff explicit and verifiable.}}{329}{figure.9.3}\protected@file@percent }
-\newlabel{fig:ch09_ishtar_agent_pipeline}{{9.3}{329}{\ishtar {} multi-agent pipeline demonstrates production-ready orchestration patterns. The orchestrator enforces workflow order, budgets, and policy gates, ensuring reliable execution; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations. This pipeline structure enables traceability, error handling, and quality assurance by making each handoff explicit and verifiable}{figure.9.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {9.12.2}Benefits}{332}{subsection.9.12.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9.13}Best Practices Checklist}{333}{section.9.13}\protected@file@percent }
+\newlabel{refsegment:019}{{9}{293}{Multi-Agent Architectures and Orchestration}{chapter.9}{}}
+\newlabel{ch:multiagent}{{9}{293}{Multi-Agent Architectures and Orchestration}{chapter.9}{}}
+\newlabel{refsegment:020}{{9}{293}{Multi-Agent Architectures and Orchestration}{chapter.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.1}Introduction}{294}{section.9.1}\protected@file@percent }
+\newlabel{sec:ch9-introduction}{{9.1}{294}{Introduction}{section.9.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{From classic MAS to modern LLM agents.}{294}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Operational perspective.}{295}{section*.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.2}Why Multi-Agent Systems?}{295}{section.9.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9.1}{\ignorespaces Architecture choice (monolithic vs.\ multi-agent) determines operational complexity and reliability. Multi-agent systems enable specialization, explicit verification gates, and fault isolation, but introduce coordination overhead. Choose monolithic for simple tasks with low verification needs; choose multi-agent when specialization, safety gates, or tool-augmented workflows justify the added complexity.}}{297}{table.9.1}\protected@file@percent }
+\newlabel{tab:ch09_monolithic_vs_multiagent}{{9.1}{297}{Architecture choice (monolithic vs.\ multi-agent) determines operational complexity and reliability. Multi-agent systems enable specialization, explicit verification gates, and fault isolation, but introduce coordination overhead. Choose monolithic for simple tasks with low verification needs; choose multi-agent when specialization, safety gates, or tool-augmented workflows justify the added complexity}{table.9.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.3}Core Components of Multi-Agent Architectures}{297}{section.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.1}Common Orchestration Patterns in Practice}{298}{subsection.9.3.1}\protected@file@percent }
+\newlabel{sec:orch-patterns}{{9.3.1}{298}{Common Orchestration Patterns in Practice}{subsection.9.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Planner--executor (plan-and-execute).}{298}{section*.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Critic--reviser (iterative refinement).}{298}{section*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Search-based deliberation.}{298}{section*.49}\protected@file@percent }
+\newlabel{alg:ch09_budgeted_orchestration}{{9.1}{299}{Search-based deliberation}{llmalgorithm.9.1}{}}
+\newlabel{lst:ch09_langgraph_sketch}{{9.1}{299}{Search-based deliberation}{llmlisting.9.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.1}{\ignorespaces Control-plane and data-plane separation enables reliable multi-agent orchestration. The orchestrator enforces routing decisions, budgets, and policies (control plane), while agents implement scoped capabilities and shared memory provides a consistent state substrate (data plane). This separation allows policy changes without modifying agent logic, enabling auditable, testable multi-agent systems. External tools provide grounded capabilities that extend agent functionality.}}{300}{figure.9.1}\protected@file@percent }
+\newlabel{fig:ch09_agentic_control_plane}{{9.1}{300}{Control-plane and data-plane separation enables reliable multi-agent orchestration. The orchestrator enforces routing decisions, budgets, and policies (control plane), while agents implement scoped capabilities and shared memory provides a consistent state substrate (data plane). This separation allows policy changes without modifying agent logic, enabling auditable, testable multi-agent systems. External tools provide grounded capabilities that extend agent functionality}{figure.9.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.2}Agents}{300}{subsection.9.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.3}Orchestrator}{301}{subsection.9.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.4}Memory: Episodic and Semantic Memory}{302}{subsection.9.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3.5}External Tools and APIs}{303}{subsection.9.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.4}Agent Contracts, Schemas, and Handoffs}{303}{section.9.4}\protected@file@percent }
+\newlabel{sec:agent-contracts}{{9.4}{303}{Agent Contracts, Schemas, and Handoffs}{section.9.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.1}Contracts as the Unit of Interoperability}{303}{subsection.9.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9.2}{\ignorespaces Agent contracts enable reliable multi-agent orchestration. By specifying inputs/outputs, invariants, and metrics, contracts allow deterministic validation, error handling, and debugging. This contract-first approach converts non-deterministic agent behavior into testable, auditable production workflows.}}{304}{table.9.2}\protected@file@percent }
+\newlabel{tab:ch09_ishtar_agent_contracts}{{9.2}{304}{Agent contracts enable reliable multi-agent orchestration. By specifying inputs/outputs, invariants, and metrics, contracts allow deterministic validation, error handling, and debugging. This contract-first approach converts non-deterministic agent behavior into testable, auditable production workflows}{table.9.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.2}Evidence Interfaces and the ``Context Pack''}{304}{subsection.9.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.3}Structured Output Envelopes}{305}{subsection.9.4.3}\protected@file@percent }
+\newlabel{lst:ch09_context_pack_schema}{{9.2}{305}{Structured Output Envelopes}{llmlisting.9.2}{}}
+\newlabel{lst:ch09_verification_envelope}{{9.3}{305}{Structured Output Envelopes}{llmlisting.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4.4}Traceability and Deterministic Replay}{306}{subsection.9.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.5}Agent Roles in Ishtar AI}{306}{section.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.1}Ingestion Agent}{306}{subsection.9.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.2}Retrieval Agent}{307}{subsection.9.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.3}Synthesis Agent}{307}{subsection.9.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.4}Verification Agent}{308}{subsection.9.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.5}Safety Agent}{308}{subsection.9.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5.6}Translation Agent (Optional)}{309}{subsection.9.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.6}Communication Patterns}{309}{section.9.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.1}Direct Messaging}{310}{subsection.9.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.2}Message Bus (Pub/Sub)}{310}{subsection.9.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.6.3}Blackboard Architecture}{311}{subsection.9.6.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9.3}{\ignorespaces Communication pattern selection affects system scalability and debuggability. Direct messaging provides predictable latency but tight coupling; message buses enable loose coupling but harder debugging; blackboard architectures support iterative refinement but require coordination. Choose based on system scale, concurrency needs, and operational requirements.}}{312}{table.9.3}\protected@file@percent }
+\newlabel{tab:ch09_comm_patterns}{{9.3}{312}{Communication pattern selection affects system scalability and debuggability. Direct messaging provides predictable latency but tight coupling; message buses enable loose coupling but harder debugging; blackboard architectures support iterative refinement but require coordination. Choose based on system scale, concurrency needs, and operational requirements}{table.9.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.7}Orchestration Strategies}{312}{section.9.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.7.1}Rule-Based Orchestration}{312}{subsection.9.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.7.2}Dynamic Orchestration (LLM-driven)}{313}{subsection.9.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.7.3}Hierarchical Orchestration}{313}{subsection.9.7.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9.2}{\ignorespaces Orchestration strategy selection determines system adaptability and operational complexity. (\textbf  {a}) \emph  {Rule-Based}: fixed, testable pipelines with explicit branches (retrieval → synthesis → verification → safety) provide predictability and ease of debugging. (\textbf  {b}) \emph  {Dynamic (LLM-driven)}: an LLM planner routes tasks at runtime, enabling adaptive flows and feedback but requiring rigorous testing. (\textbf  {c}) \emph  {Hierarchical}: a supervisor delegates to sub-teams (which may orchestrate further sub-agents) and aggregates results, enabling scalability but increasing coordination overhead. \ishtar  {} primarily uses a rule-based pipeline today, with potential evolution toward dynamic and hierarchical patterns for complex scenarios.}}{315}{figure.9.2}\protected@file@percent }
+\newlabel{fig:ch09_orchestration_strategies}{{9.2}{315}{Orchestration strategy selection determines system adaptability and operational complexity. (\textbf {a}) \emph {Rule-Based}: fixed, testable pipelines with explicit branches (retrieval → synthesis → verification → safety) provide predictability and ease of debugging. (\textbf {b}) \emph {Dynamic (LLM-driven)}: an LLM planner routes tasks at runtime, enabling adaptive flows and feedback but requiring rigorous testing. (\textbf {c}) \emph {Hierarchical}: a supervisor delegates to sub-teams (which may orchestrate further sub-agents) and aggregates results, enabling scalability but increasing coordination overhead. \ishtar {} primarily uses a rule-based pipeline today, with potential evolution toward dynamic and hierarchical patterns for complex scenarios}{figure.9.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9.4}{\ignorespaces Failure taxonomy enables systematic error handling in multi-agent systems. By categorizing failures (infrastructure, schema, semantic, policy, coordination), orchestrators can apply appropriate responses (retry, re-prompt, escalate, abort). This taxonomy converts ad hoc error handling into a testable, auditable operational policy.}}{316}{table.9.4}\protected@file@percent }
+\newlabel{tab:ch09_agent_failure_taxonomy}{{9.4}{316}{Failure taxonomy enables systematic error handling in multi-agent systems. By categorizing failures (infrastructure, schema, semantic, policy, coordination), orchestrators can apply appropriate responses (retry, re-prompt, escalate, abort). This taxonomy converts ad hoc error handling into a testable, auditable operational policy}{table.9.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.8}Error Handling and Fallbacks}{316}{section.9.8}\protected@file@percent }
+\newlabel{sec:errorhandling}{{9.8}{316}{Error Handling and Fallbacks}{section.9.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.8.1}Failure Taxonomy for Agentic Workflows}{316}{subsection.9.8.1}\protected@file@percent }
+\newlabel{lst:ch09_error_envelope}{{9.4}{317}{Failure Taxonomy for Agentic Workflows}{llmlisting.9.4}{}}
+\newlabel{alg:ch09_safeinvoke}{{9.2}{317}{Failure Taxonomy for Agentic Workflows}{llmalgorithm.9.2}{}}
+\newlabel{lst:ch09_error_handling_flow}{{9.5}{320}{Logging and Monitoring for Failures:}{llmlisting.9.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.9}Performance Considerations}{320}{section.9.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.9.1}A Quantitative View of Latency and Cost}{320}{subsection.9.9.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9.5}{\ignorespaces Performance metrics drive capacity planning and cost governance in agentic systems. End-to-end latency, token usage, tool-call counts, and retry rates reveal bottlenecks and cost drivers. Monitoring these metrics enables proactive scaling, budget enforcement, and optimization decisions.}}{321}{table.9.5}\protected@file@percent }
+\newlabel{tab:ch09_agent_performance_metrics}{{9.5}{321}{Performance metrics drive capacity planning and cost governance in agentic systems. End-to-end latency, token usage, tool-call counts, and retry rates reveal bottlenecks and cost drivers. Monitoring these metrics enables proactive scaling, budget enforcement, and optimization decisions}{table.9.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.10}Testing, Evaluation, and Observability for Agentic Systems}{324}{section.9.10}\protected@file@percent }
+\newlabel{sec:agent-eval}{{9.10}{324}{Testing, Evaluation, and Observability for Agentic Systems}{section.9.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.1}Evaluation Dimensions}{324}{subsection.9.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.2}Benchmarks and Simulated Environments}{325}{subsection.9.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.3}The ``Agentic Test Pyramid''}{325}{subsection.9.10.3}\protected@file@percent }
+\newlabel{alg:ch09_agent_regression_suite}{{9.3}{325}{The ``Agentic Test Pyramid''}{llmalgorithm.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.10.4}Observability: Traces, Metrics, and Replay Bundles}{325}{subsection.9.10.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9.6}{\ignorespaces Threat modeling identifies security risks unique to agentic systems. Prompt injection, tool misuse, and data exfiltration require defense-in-depth controls (input sanitization, least-privilege tool access, output filtering). This threat model guides security architecture decisions and audit requirements.}}{326}{table.9.6}\protected@file@percent }
+\newlabel{tab:ch09_agentic_threats}{{9.6}{326}{Threat modeling identifies security risks unique to agentic systems. Prompt injection, tool misuse, and data exfiltration require defense-in-depth controls (input sanitization, least-privilege tool access, output filtering). This threat model guides security architecture decisions and audit requirements}{table.9.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.11}Security in Multi-Agent Systems}{326}{section.9.11}\protected@file@percent }
+\newlabel{sec:ch09-security}{{9.11}{326}{Security in Multi-Agent Systems}{section.9.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.11.1}Threat Modeling Agentic Systems}{326}{subsection.9.11.1}\protected@file@percent }
+\newlabel{lst:ch09_tool_allowlist}{{9.6}{327}{Threat Modeling Agentic Systems}{llmlisting.9.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.12}Case Study: Orchestrating Ishtar AI}{330}{section.9.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.12.1}Workflow}{330}{subsection.9.12.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9.3}{\ignorespaces \ishtar  {} multi-agent pipeline demonstrates production-ready orchestration patterns. The orchestrator enforces workflow order, budgets, and policy gates, ensuring reliable execution; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations. This pipeline structure enables traceability, error handling, and quality assurance by making each handoff explicit and verifiable.}}{331}{figure.9.3}\protected@file@percent }
+\newlabel{fig:ch09_ishtar_agent_pipeline}{{9.3}{331}{\ishtar {} multi-agent pipeline demonstrates production-ready orchestration patterns. The orchestrator enforces workflow order, budgets, and policy gates, ensuring reliable execution; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations. This pipeline structure enables traceability, error handling, and quality assurance by making each handoff explicit and verifiable}{figure.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.12.2}Benefits}{334}{subsection.9.12.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9.13}Best Practices Checklist}{335}{section.9.13}\protected@file@percent }
 \@setckpt{ch09-agents-orchestration}{
-\setcounter{page}{338}
+\setcounter{page}{340}
 \setcounter{equation}{0}
 \setcounter{enumi}{6}
 \setcounter{enumii}{4}
