@@ -1,66 +1,66 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Continuous Integration and Deployment for LLM Systems}{119}{chapter.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Continuous Integration and Deployment for LLM Systems}{121}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{refsegment:09}{{4}{119}{Continuous Integration and Deployment for LLM Systems}{chapter.4}{}}
-\newlabel{ch:cicd}{{4}{119}{Continuous Integration and Deployment for LLM Systems}{chapter.4}{}}
-\newlabel{refsegment:010}{{4}{119}{Continuous Integration and Deployment for LLM Systems}{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Introduction}{120}{section.4.1}\protected@file@percent }
-\newlabel{sec:cicd-intro}{{4.1}{120}{Introduction}{section.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Opening Part II: Deployment Artifacts as Behavioral Contracts}{120}{subsection.4.1.1}\protected@file@percent }
-\newlabel{subsec:cicd-part2-opening}{{4.1.1}{120}{Opening Part II: Deployment Artifacts as Behavioral Contracts}{subsection.4.1.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Continuous Evaluation to Catch Regressions and Hallucinations}{121}{section.4.2}\protected@file@percent }
-\newlabel{sec:cicd-continuous-eval}{{4.2}{121}{Continuous Evaluation to Catch Regressions and Hallucinations}{section.4.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Continuous evaluation principles enable reliable LLM deployments. Automated testing, staged evaluation, and feedback loops convert non-deterministic model behavior into measurable quality gates. These principles ensure that prompt changes, model updates, and retrieval modifications are validated before production release.}}{122}{table.4.1}\protected@file@percent }
-\newlabel{tab:ch04_eval_design_principles}{{4.1}{122}{Continuous evaluation principles enable reliable LLM deployments. Automated testing, staged evaluation, and feedback loops convert non-deterministic model behavior into measurable quality gates. These principles ensure that prompt changes, model updates, and retrieval modifications are validated before production release}{table.4.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Continuous evaluation creates a feedback loop that improves system quality over time. Each stage runs distinct suites and gates, validating changes incrementally; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline. This closed-loop approach converts production observations into regression tests, ensuring that failures become learning opportunities rather than recurring incidents.}}{122}{figure.4.1}\protected@file@percent }
-\newlabel{fig:ch04_eval_stages_pipeline}{{4.1}{122}{Continuous evaluation creates a feedback loop that improves system quality over time. Each stage runs distinct suites and gates, validating changes incrementally; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline. This closed-loop approach converts production observations into regression tests, ensuring that failures become learning opportunities rather than recurring incidents}{figure.4.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Why Continuous Evaluation is Non-Negotiable}{122}{section.4.3}\protected@file@percent }
-\newlabel{sec:cicd-why-continuous-eval}{{4.3}{122}{Why Continuous Evaluation is Non-Negotiable}{section.4.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Staged evaluation enables systematic quality assurance in LLM CI/CD pipelines. Each stage (unit tests, integration tests, canary deployment, shadow mode) runs distinct suites and gates, catching regressions at the earliest possible point. This staged approach reduces risk by validating changes incrementally before full production release. Objectives, metrics, and representative tools at each stage are shown.}}{123}{table.4.2}\protected@file@percent }
-\newlabel{tab:ch04_eval_stages}{{4.2}{123}{Staged evaluation enables systematic quality assurance in LLM CI/CD pipelines. Each stage (unit tests, integration tests, canary deployment, shadow mode) runs distinct suites and gates, catching regressions at the earliest possible point. This staged approach reduces risk by validating changes incrementally before full production release. Objectives, metrics, and representative tools at each stage are shown}{table.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Taxonomy: What to Evaluate and How}{123}{subsection.4.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Model-Graded Evaluation (LLM-as-Judge): Strengths, Caveats, Mitigations}{124}{subsection.4.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Evaluating Groundedness and Hallucination in RAG Systems}{124}{subsection.4.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Adversarial and Metric-Based Checks in CI}{125}{subsection.4.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}Regression and Behavioral Drift Testing}{125}{subsection.4.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.6}Engineering the Eval Pipeline (Best-Practice Blueprint)}{125}{subsection.4.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.6.1}Eval harnesses and registries}{125}{subsubsection.4.3.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.7}Cloud-Native Evaluation Services}{126}{subsection.4.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.8}Operational Monitoring and Drift Response}{126}{subsection.4.3.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.9}Worked Example: CI Gate with Statistical Control}{126}{subsection.4.3.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.10}Cost Management}{127}{subsection.4.3.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.11}Documentation and Compliance}{127}{subsection.4.3.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.12}Tooling Landscape}{127}{subsection.4.3.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Fine-Tuning-Aware Workflows}{128}{section.4.4}\protected@file@percent }
-\newlabel{sec:cicd-finetune}{{4.4}{128}{Fine-Tuning-Aware Workflows}{section.4.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Model and prompt promotion as first-class releases}{128}{subsection.4.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Deployment Strategies: Canary, Blue-Green, and Rollback}{129}{section.4.5}\protected@file@percent }
-\newlabel{sec:cicd-deploy-strategies}{{4.5}{129}{Deployment Strategies: Canary, Blue-Green, and Rollback}{section.4.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Progressive Delivery Controllers for Kubernetes}{129}{subsection.4.5.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Staged risk mitigation reduces deployment risk through incremental validation. Different stages (pre-commit, pre-deploy, canary, full rollout) apply progressively stronger validation, catching issues before they affect all users. This staged approach enables teams to deploy confidently by validating changes at multiple checkpoints, reducing the blast radius of any regressions.}}{129}{table.4.3}\protected@file@percent }
-\newlabel{tab:ch04_deployment_risk_mitigation}{{4.3}{129}{Staged risk mitigation reduces deployment risk through incremental validation. Different stages (pre-commit, pre-deploy, canary, full rollout) apply progressively stronger validation, catching issues before they affect all users. This staged approach enables teams to deploy confidently by validating changes at multiple checkpoints, reducing the blast radius of any regressions}{table.4.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.6}Observability and CI Tooling}{131}{section.4.6}\protected@file@percent }
-\newlabel{sec:cicd-observability-ci}{{4.6}{131}{Observability and CI Tooling}{section.4.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}Supply-Chain Security, Provenance, and Trusted Releases}{131}{subsection.4.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.2}GitHub Actions Hardening and OIDC-Based Cloud Auth}{132}{subsection.4.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.1}From traces to tests}{132}{subsubsection.4.6.2.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Observability tool selection determines debugging speed and incident response capability. Different tools specialize in different aspects: tracing (OpenTelemetry), prompt management (LangSmith), and evaluation (LangFuse). Choose based on existing infrastructure, team needs, and integration requirements.}}{133}{table.4.4}\protected@file@percent }
-\newlabel{tab:ch04_obs_tools}{{4.4}{133}{Observability tool selection determines debugging speed and incident response capability. Different tools specialize in different aspects: tracing (OpenTelemetry), prompt management (LangSmith), and evaluation (LangFuse). Choose based on existing infrastructure, team needs, and integration requirements}{table.4.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.2}The minimal reproducibility contract}{133}{subsubsection.4.6.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.3}Dataset curation via observability}{133}{subsubsection.4.6.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.4}Integrating with CI/CD}{133}{subsubsection.4.6.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.7}Structured Prompt Testing}{134}{section.4.7}\protected@file@percent }
-\newlabel{sec:cicd-structured-prompt-testing}{{4.7}{134}{Structured Prompt Testing}{section.4.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.1}CI/CD for Multi-Agent Systems}{137}{subsection.4.7.1}\protected@file@percent }
-\newlabel{sec:cicd-multi-agent}{{4.7.1}{137}{CI/CD for Multi-Agent Systems}{subsection.4.7.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.2}Practitioner Checklist: Production-Ready LLM CI/CD}{139}{subsection.4.7.2}\protected@file@percent }
-\newlabel{sec:cicd-checklist}{{4.7.2}{139}{Practitioner Checklist: Production-Ready LLM CI/CD}{subsection.4.7.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.8}Conclusion}{141}{section.4.8}\protected@file@percent }
-\newlabel{sec:cicd-conclusion}{{4.8}{141}{Conclusion}{section.4.8}{}}
+\newlabel{refsegment:09}{{4}{121}{Continuous Integration and Deployment for LLM Systems}{chapter.4}{}}
+\newlabel{ch:cicd}{{4}{121}{Continuous Integration and Deployment for LLM Systems}{chapter.4}{}}
+\newlabel{refsegment:010}{{4}{121}{Continuous Integration and Deployment for LLM Systems}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Introduction}{122}{section.4.1}\protected@file@percent }
+\newlabel{sec:cicd-intro}{{4.1}{122}{Introduction}{section.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Opening Part II: Deployment Artifacts as Behavioral Contracts}{122}{subsection.4.1.1}\protected@file@percent }
+\newlabel{subsec:cicd-part2-opening}{{4.1.1}{122}{Opening Part II: Deployment Artifacts as Behavioral Contracts}{subsection.4.1.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Continuous Evaluation to Catch Regressions and Hallucinations}{123}{section.4.2}\protected@file@percent }
+\newlabel{sec:cicd-continuous-eval}{{4.2}{123}{Continuous Evaluation to Catch Regressions and Hallucinations}{section.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Continuous evaluation principles enable reliable LLM deployments. Automated testing, staged evaluation, and feedback loops convert non-deterministic model behavior into measurable quality gates. These principles ensure that prompt changes, model updates, and retrieval modifications are validated before production release.}}{124}{table.4.1}\protected@file@percent }
+\newlabel{tab:ch04_eval_design_principles}{{4.1}{124}{Continuous evaluation principles enable reliable LLM deployments. Automated testing, staged evaluation, and feedback loops convert non-deterministic model behavior into measurable quality gates. These principles ensure that prompt changes, model updates, and retrieval modifications are validated before production release}{table.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Continuous evaluation creates a feedback loop that improves system quality over time. Each stage runs distinct suites and gates, validating changes incrementally; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline. This closed-loop approach converts production observations into regression tests, ensuring that failures become learning opportunities rather than recurring incidents.}}{124}{figure.4.1}\protected@file@percent }
+\newlabel{fig:ch04_eval_stages_pipeline}{{4.1}{124}{Continuous evaluation creates a feedback loop that improves system quality over time. Each stage runs distinct suites and gates, validating changes incrementally; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline. This closed-loop approach converts production observations into regression tests, ensuring that failures become learning opportunities rather than recurring incidents}{figure.4.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Why Continuous Evaluation is Non-Negotiable}{124}{section.4.3}\protected@file@percent }
+\newlabel{sec:cicd-why-continuous-eval}{{4.3}{124}{Why Continuous Evaluation is Non-Negotiable}{section.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Staged evaluation enables systematic quality assurance in LLM CI/CD pipelines. Each stage (unit tests, integration tests, canary deployment, shadow mode) runs distinct suites and gates, catching regressions at the earliest possible point. This staged approach reduces risk by validating changes incrementally before full production release. Objectives, metrics, and representative tools at each stage are shown.}}{125}{table.4.2}\protected@file@percent }
+\newlabel{tab:ch04_eval_stages}{{4.2}{125}{Staged evaluation enables systematic quality assurance in LLM CI/CD pipelines. Each stage (unit tests, integration tests, canary deployment, shadow mode) runs distinct suites and gates, catching regressions at the earliest possible point. This staged approach reduces risk by validating changes incrementally before full production release. Objectives, metrics, and representative tools at each stage are shown}{table.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Taxonomy: What to Evaluate and How}{125}{subsection.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Model-Graded Evaluation (LLM-as-Judge): Strengths, Caveats, Mitigations}{126}{subsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Evaluating Groundedness and Hallucination in RAG Systems}{126}{subsection.4.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Adversarial and Metric-Based Checks in CI}{127}{subsection.4.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}Regression and Behavioral Drift Testing}{127}{subsection.4.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.6}Engineering the Eval Pipeline (Best-Practice Blueprint)}{127}{subsection.4.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.6.1}Eval harnesses and registries}{127}{subsubsection.4.3.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.7}Cloud-Native Evaluation Services}{128}{subsection.4.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.8}Operational Monitoring and Drift Response}{128}{subsection.4.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.9}Worked Example: CI Gate with Statistical Control}{128}{subsection.4.3.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.10}Cost Management}{129}{subsection.4.3.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.11}Documentation and Compliance}{129}{subsection.4.3.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.12}Tooling Landscape}{129}{subsection.4.3.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Fine-Tuning-Aware Workflows}{130}{section.4.4}\protected@file@percent }
+\newlabel{sec:cicd-finetune}{{4.4}{130}{Fine-Tuning-Aware Workflows}{section.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Model and prompt promotion as first-class releases}{130}{subsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Deployment Strategies: Canary, Blue-Green, and Rollback}{131}{section.4.5}\protected@file@percent }
+\newlabel{sec:cicd-deploy-strategies}{{4.5}{131}{Deployment Strategies: Canary, Blue-Green, and Rollback}{section.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Progressive Delivery Controllers for Kubernetes}{131}{subsection.4.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Staged risk mitigation reduces deployment risk through incremental validation. Different stages (pre-commit, pre-deploy, canary, full rollout) apply progressively stronger validation, catching issues before they affect all users. This staged approach enables teams to deploy confidently by validating changes at multiple checkpoints, reducing the blast radius of any regressions.}}{131}{table.4.3}\protected@file@percent }
+\newlabel{tab:ch04_deployment_risk_mitigation}{{4.3}{131}{Staged risk mitigation reduces deployment risk through incremental validation. Different stages (pre-commit, pre-deploy, canary, full rollout) apply progressively stronger validation, catching issues before they affect all users. This staged approach enables teams to deploy confidently by validating changes at multiple checkpoints, reducing the blast radius of any regressions}{table.4.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Observability and CI Tooling}{133}{section.4.6}\protected@file@percent }
+\newlabel{sec:cicd-observability-ci}{{4.6}{133}{Observability and CI Tooling}{section.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}Supply-Chain Security, Provenance, and Trusted Releases}{133}{subsection.4.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.2}GitHub Actions Hardening and OIDC-Based Cloud Auth}{134}{subsection.4.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.1}From traces to tests}{134}{subsubsection.4.6.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Observability tool selection determines debugging speed and incident response capability. Different tools specialize in different aspects: tracing (OpenTelemetry), prompt management (LangSmith), and evaluation (LangFuse). Choose based on existing infrastructure, team needs, and integration requirements.}}{135}{table.4.4}\protected@file@percent }
+\newlabel{tab:ch04_obs_tools}{{4.4}{135}{Observability tool selection determines debugging speed and incident response capability. Different tools specialize in different aspects: tracing (OpenTelemetry), prompt management (LangSmith), and evaluation (LangFuse). Choose based on existing infrastructure, team needs, and integration requirements}{table.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.2}The minimal reproducibility contract}{135}{subsubsection.4.6.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.3}Dataset curation via observability}{135}{subsubsection.4.6.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2.4}Integrating with CI/CD}{135}{subsubsection.4.6.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.7}Structured Prompt Testing}{136}{section.4.7}\protected@file@percent }
+\newlabel{sec:cicd-structured-prompt-testing}{{4.7}{136}{Structured Prompt Testing}{section.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.1}CI/CD for Multi-Agent Systems}{139}{subsection.4.7.1}\protected@file@percent }
+\newlabel{sec:cicd-multi-agent}{{4.7.1}{139}{CI/CD for Multi-Agent Systems}{subsection.4.7.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.2}Practitioner Checklist: Production-Ready LLM CI/CD}{141}{subsection.4.7.2}\protected@file@percent }
+\newlabel{sec:cicd-checklist}{{4.7.2}{141}{Practitioner Checklist: Production-Ready LLM CI/CD}{subsection.4.7.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.8}Conclusion}{142}{section.4.8}\protected@file@percent }
+\newlabel{sec:cicd-conclusion}{{4.8}{142}{Conclusion}{section.4.8}{}}
 \@setckpt{ch04-cicd}{
-\setcounter{page}{144}
+\setcounter{page}{146}
 \setcounter{equation}{0}
 \setcounter{enumi}{5}
 \setcounter{enumii}{0}
@@ -117,7 +117,7 @@
 \setcounter{ALG@tmpcounter}{0}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{21}
+\setcounter{tcolorbox@number}{22}
 \setcounter{tcbrastercolumn}{1}
 \setcounter{tcbrasterrow}{1}
 \setcounter{tcbrasternum}{1}

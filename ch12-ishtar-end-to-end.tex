@@ -800,46 +800,24 @@ Policies and filters require continuous calibration to avoid both under- and ove
 \subsection{End-to-end checklist}
 \label{sec:ishtar-checklist}
 
-\begin{tcolorbox}[
-  title={\textbf{End-to-End Checklist for Production LLM Systems (Ishtar-derived)}},
-  colback=black!5,
-  colframe=black!40!black,
-  colbacktitle=black!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm,
-  before skip=12pt,
-  after skip=12pt
-]
+\ChecklistBox[End-to-End Checklist for Production LLM Systems (Ishtar-derived)]{
 \small
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\rowcolor{black!15}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
-\rowcolor{black!8}
 \textbf{Define Operational Contracts} & Output schema, citation rules, and uncertainty policy are explicit and testable. \\
-\rowcolor{black!3}
 \textbf{Version Everything} & Version prompts, retrieval parameters, tool permissions, model configs, and index snapshots. \\
-\rowcolor{black!8}
 \textbf{Instrument First} & Traces/metrics/logs exist before user launch; alerts map to user impact. \\
-\rowcolor{black!3}
 \textbf{Prefer Recall in Retrieval} & Missing a critical source is worse than retrieving extra context (then rerank). \\
-\rowcolor{black!8}
 \textbf{Make Safety Defense-in-Depth} & Implement ingestion scrubbing + output filtering + refusal logic + audits. \\
-\rowcolor{black!3}
 \textbf{Gate Releases on Evaluation} & Use offline metrics + canary rollouts + rollback automation. \\
-\rowcolor{black!8}
 \textbf{Plan for Bursty Demand} & Implement GPU autoscaling, caching/hot tiers, and priority scheduling for critical users. \\
-\rowcolor{black!3}
 \textbf{Treat Hallucination as a Defect} & Root-cause via traces; fix via data, prompts, or retrieval tuning. \\
-\rowcolor{black!8}
 \textbf{Embed Human Oversight} & Establish escalation paths for high-impact outputs and continuous domain review. \\
 \end{tabularx}
-\end{tcolorbox}
+}
 
 % ---------------------------------------------------------------------
 \section{Future directions}

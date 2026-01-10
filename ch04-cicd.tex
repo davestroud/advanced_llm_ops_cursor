@@ -554,30 +554,23 @@ In summary, multi-agent CI/CD elevates testing and monitoring from \emph{calls} 
 \label{sec:cicd-checklist}
 The following checklist condenses the chapter into a concrete ``definition of done'' for LLM CI/CD. It is intended to be used during design reviews and release readiness reviews.
 
-\begin{tcolorbox}[
-  title={\textbf{Practitioner Checklist: Production-Ready LLM CI/CD}},
-  colback=blue!5,
-  colframe=blue!40!black,
-  colbacktitle=blue!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm,
-  before skip=12pt,
-  after skip=12pt
-]
-\begin{itemize}[leftmargin=1.5em, itemsep=4pt, topsep=2pt]
-  \item \textbf{Release unit defined and versioned.} Prompt templates, model IDs (and fine-tune checkpoints where applicable), retrieval index snapshots, tool schemas, and safety policies are versioned and promotable together.
-  \item \textbf{Staged evaluation implemented.} Pre-merge smoke suite, post-merge regression gates, nightly adversarial/fairness suite, and canary/shadow online evaluation (Table~\ref{tab:ch04_eval_stages}).
-  \item \textbf{Safety and security probes included.} Prompt-injection/jailbreak, PII leakage, insecure output handling, and tool-abuse scenarios aligned with OWASP LLM Top-10 and NIST risk guidance \cite{owasp_llm,nist_genai_profile}.
-  \item \textbf{Promotion is statistically justified.} Paired tests and confidence intervals are used for go/no-go decisions; results are reported by slice and include failing examples \cite{koehn2004,mcnemar1947}.
-  \item \textbf{Progressive delivery and rollback are automated.} Canary/blue--green rollout with automated analysis hooks and clear rollback triggers \cite{argo_rollouts_overview,argo_rollouts_canary,argo_rollouts_bluegreen}.
-  \item \textbf{Observability feeds CI.} Traces, retrieved contexts, and tool-call logs are captured with a replayable contract so production incidents become regression tests \cite{langsmith_eval,phoenix_rag,trulens}.
-  \item \textbf{Supply-chain integrity is enforced.} Provenance and signing (SLSA; signed images and attestations) and secretless cloud auth (OIDC) are required before promotion \cite{slsa_about,slsa_levels,sigstore_cosign,cosign_attestations,gha_oidc_concepts,gha_oidc_cloud}.
-  \item \textbf{Agent graphs are tested as graphs.} Contract tests on edges, golden-path scenarios, and graph-level budgets (steps, tokens, tool ceilings) are enforced for multi-agent systems.
-\end{itemize}
-\end{tcolorbox}
+\ChecklistBox[Practitioner Checklist: Production-Ready LLM CI/CD]{
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\textbf{Release unit defined and versioned} & Prompt templates, model IDs (and fine-tune checkpoints where applicable), retrieval index snapshots, tool schemas, and safety policies are versioned and promotable together. \\
+\textbf{Staged evaluation implemented} & Pre-merge smoke suite, post-merge regression gates, nightly adversarial/fairness suite, and canary/shadow online evaluation (Table~\ref{tab:ch04_eval_stages}). \\
+\textbf{Safety and security probes included} & Prompt-injection/jailbreak, PII leakage, insecure output handling, and tool-abuse scenarios aligned with OWASP LLM Top-10 and NIST risk guidance \cite{owasp_llm,nist_genai_profile}. \\
+\textbf{Promotion is statistically justified} & Paired tests and confidence intervals are used for go/no-go decisions; results are reported by slice and include failing examples \cite{koehn2004,mcnemar1947}. \\
+\textbf{Progressive delivery and rollback are automated} & Canary/blue--green rollout with automated analysis hooks and clear rollback triggers \cite{argo_rollouts_overview,argo_rollouts_canary,argo_rollouts_bluegreen}. \\
+\textbf{Observability feeds CI} & Traces, retrieved contexts, and tool-call logs are captured with a replayable contract so production incidents become regression tests \cite{langsmith_eval,phoenix_rag,trulens}. \\
+\textbf{Supply-chain integrity is enforced} & Provenance and signing (SLSA; signed images and attestations) and secretless cloud auth (OIDC) are required before promotion \cite{slsa_about,slsa_levels,sigstore_cosign,cosign_attestations,gha_oidc_concepts,gha_oidc_cloud}. \\
+\textbf{Agent graphs are tested as graphs} & Contract tests on edges, golden-path scenarios, and graph-level budgets (steps, tokens, tool ceilings) are enforced for multi-agent systems. \\
+\end{tabularx}
+}
 
 \section*{Chapter Summary}
 CI/CD for LLM systems extends traditional pipelines with continuous evaluation, semantic quality gates, and security controls tailored to generative behavior. In addition to code tests, LLM CI enforces regression suites over prompts, retrieval behavior, tool-call contracts, and safety policies. Deployment strategies such as canary and blue-green releases benefit from progressive delivery controllers and automated analysis hooks. Finally, supply-chain provenance (SLSA, signed artifacts, SBOMs) and secure cloud authentication (OIDC) reduce operational risk as systems scale.

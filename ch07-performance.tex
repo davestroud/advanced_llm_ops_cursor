@@ -819,7 +819,7 @@ Overall, this case study underscores that combining model, system, and prompt op
 \section{Best Practices Checklist (Quick)}
 \label{sec:perf-checklist-quick}
 
-\ChecklistBox{
+\ChecklistBox[Best Practices Checklist (Quick)]{
 \small
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.4}
@@ -864,7 +864,7 @@ Cost per 1k tokens (USD) & 1.00   & 0.70   & $\sim$30\% GPU-hour reduction at sa
 
 By synthesizing the above strategies, we can outline a checklist of best practices for optimizing LLM performance, which we found invaluable in the \ishtar{} project:
 
-\ChecklistBox{
+\ChecklistBox[Best Practices Checklist]{
 \small
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.4}
@@ -1143,16 +1143,24 @@ Median latency $\downarrow$ to $\sim1.1$\,s; P95 $\downarrow$ to $\sim2$\,s; thr
 
 \subsection{Implementation Checklist (Addendum)}
 \label{sec:perf-impl-checklist}
-\begin{itemize}
-  \item \textbf{Measure first:} profile TTFT vs.\ $T_0$, tokens/s vs.\ $B$, and KV memory vs.\ precision.
-  \item \textbf{Exploit precision:} FP16/BF16 by default; consider FP8/INT8; quantize KV where acceptable.
-  \item \textbf{Adopt optimized runtimes:} vLLM/TGI/TensorRT-LLM; enable fused attention.
-  \item \textbf{Continuously batch:} tune max batch delay; monitor effective batch size and tail latency.
-  \item \textbf{Cache aggressively:} prompt and embedding caches with TTL/versioning; share across replicas.
-  \item \textbf{Route smartly:} smallest-adequate model first; escalate on uncertainty; log routes.
-  \item \textbf{Scale on tokens:} autoscale by tokens/s and queue depth; keep warm capacity for spikes.
-  \item \textbf{Harden chains:} trace with LangSmith; define degraded modes and retry budgets.
-\end{itemize}
+
+\ChecklistBox[Implementation Checklist]{
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\textbf{Checklist Item} & \textbf{Description} \\
+\midrule
+\textbf{Measure first} & Profile TTFT vs.\ $T_0$, tokens/s vs.\ $B$, and KV memory vs.\ precision. \\
+\textbf{Exploit precision} & FP16/BF16 by default; consider FP8/INT8; quantize KV where acceptable. \\
+\textbf{Adopt optimized runtimes} & vLLM/TGI/TensorRT-LLM; enable fused attention. \\
+\textbf{Continuously batch} & Tune max batch delay; monitor effective batch size and tail latency. \\
+\textbf{Cache aggressively} & Prompt and embedding caches with TTL/versioning; share across replicas. \\
+\textbf{Route smartly} & Smallest-adequate model first; escalate on uncertainty; log routes. \\
+\textbf{Scale on tokens} & Autoscale by tokens/s and queue depth; keep warm capacity for spikes. \\
+\textbf{Harden chains} & Trace with LangSmith; define degraded modes and retry budgets. \\
+\end{tabularx}
+}
 
 \medskip
 \noindent\textbf{Performance Optimization in RAG and Multi-Agent Systems.} The optimization techniques covered in this chapter directly impact retrieval-augmented generation (RAG) pipelines and multi-agent orchestration systems. In RAG deployments (Chapter~\ref{ch:rag}), performance tuning affects multiple components: \emph{retrieval latency} (embedding generation speed, vector search throughput, and reranker inference cost), \emph{context compression overhead} (summarization model inference time when compressing retrieved documents), and \emph{end-to-end pipeline efficiency} (balancing retrieval quality with generation speed). For multi-agent systems (Chapter~\ref{ch:multiagent}), optimization becomes critical because tool calls, inter-agent communication, and coordination overhead compound latency: quantization and batching strategies must account for heterogeneous workloads (some agents may use specialized models), and caching becomes essential to avoid redundant tool invocations. The performance principles established here---measuring bottlenecks, optimizing inference engines, and managing memory efficiently---apply equally to these advanced architectures, where the cost of suboptimal performance scales with system complexity.

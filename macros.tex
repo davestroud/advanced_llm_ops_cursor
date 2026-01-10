@@ -100,10 +100,22 @@
   \begin{svgraybox}\textbf{Definition.} #1\end{svgraybox}%
   \par\addvspace{12pt}%
 }
-\newcommand{\ChecklistBox}[1]{%
-  \par\addvspace{12pt}%
-  \begin{svgraybox}\textbf{Checklist.} #1\end{svgraybox}%
-  \par\addvspace{12pt}%
+\newcommand{\ChecklistBox}[2][Checklist]{%
+  \begin{tcolorbox}[
+    title={\textbf{#1}},
+    colback=blue!5,
+    colframe=blue!40!black,
+    colbacktitle=blue!20,
+    coltitle=black,
+    fonttitle=\bfseries,
+    boxrule=0.7pt,
+    arc=4pt,
+    left=5mm, right=5mm, top=4mm, bottom=4mm,
+    before skip=12pt,
+    after skip=12pt
+  ]
+  #2
+  \end{tcolorbox}%
 }
 \newcommand{\IshtarVignette}[1]{%
   \par\addvspace{12pt}%

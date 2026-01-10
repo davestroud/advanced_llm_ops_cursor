@@ -534,7 +534,7 @@ This ensures that infrastructure knowledge remains accurate, auditable, and acce
 
 A mature Infrastructure-as-Code (IaC) practice for LLMOps requires discipline across the entire lifecycle of infrastructure definition, testing, and deployment. The following checklist captures the essential best practices, each of which should be standard in any production-grade environment.
 
-\ChecklistBox{
+\ChecklistBox[Checklist: Best Practices for IaC in LLMOps]{
 \small
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.4}
@@ -1211,148 +1211,75 @@ To conclude the chapter, we present condensed best practices and checklists for 
 \subsection{Hardware \& Performance Checklist}
 \label{sec:bp-hw}
 
-\begin{tcolorbox}[
-  title={\textbf{Hardware \& Performance Checklist}},
-  colback=blue!5,
-  colframe=blue!40!black,
-  colbacktitle=blue!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm,
-  before skip=12pt,
-  after skip=12pt
-]
+\ChecklistBox[Hardware \& Performance Checklist]{
 \small
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\rowcolor{blue!15}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
-\rowcolor{blue!8}
 \textbf{Ensure Sufficient GPU Memory} & Calculate or empirically measure memory usage (including KV cache) at target sequence lengths. Avoid contexts that trigger out-of-memory errors. For longer contexts, employ higher-memory GPUs (80GB A100/H100) or KV compression. As a rule of thumb, a 13B model consumes $\sim$1.6 GB per 2048 tokens~\cite{vllm-pagedattention,pagedattention_paper}. \\
-\rowcolor{blue!3}
 \textbf{Benchmark Cost-Per-Token} & For each GPU/TPU candidate, benchmark tokens/sec and compute cost per 1k tokens~\cite{fabricated-knowledge-costs,lambda-gpt3-cost}. A more expensive hourly instance may be cheaper per output due to higher throughput. \\
-\rowcolor{blue!8}
 \textbf{Utilization Monitoring} & Keep GPUs busy. If average utilization $<$30\%, increase batch sizes or consolidate jobs. Low utilization = wasted money. \\
-\rowcolor{blue!3}
 \textbf{Batching Tuning} & Determine optimal batch size relative to latency goals. Benchmark throughput/latency curves (e.g., with Hugging Face's scripts) and configure dynamic batching accordingly~\cite{tgi-github,tgi_docs}. \\
-\rowcolor{blue!8}
 \textbf{Adaptive Batching \& Queuing} & Introduce short request queues (10–30 ms) to improve batching without perceptible user impact. Use servers/frameworks that natively support this. \\
-\rowcolor{blue!3}
 \textbf{Profile End-to-End Latency} & Break down latency into preprocessing, model compute, post-processing, and network transfer. Optimize each stage; GPU-accelerate post-processing if necessary. \\
-\rowcolor{blue!8}
 \textbf{Plan for Spikes} & Define peak QPS and establish autoscaling or load-shedding strategies. Test spike scenarios to ensure capacity expansion occurs in time. \\
-\rowcolor{blue!3}
 \textbf{Graceful Degradation} & Employ fallback mechanisms under overload: route to faster, smaller models, or reduce output length. Ensemble routing approaches such as Smoothie illustrate this principle~\cite{smoothie-routing}. \\
-\rowcolor{blue!8}
 \textbf{Log and Analyze Tail Latencies} & Monitor p95/p99 latency for outliers. Identify causes (e.g., long inputs, hardware stalls) and mitigate (reject ultra-long prompts, split jobs). \\
-\rowcolor{blue!3}
 \textbf{Thermal Monitoring} & In on-prem clusters, monitor GPU temperature and power draw. Thermal throttling reduces throughput; adequate cooling and power monitoring are essential. \\
 \end{tabularx}
-\end{tcolorbox}
+}
 
 \subsection{IaC \& DevOps Checklist}
 \label{sec:bp-iac}
 
-\begin{tcolorbox}[
-  title={\textbf{IaC \& DevOps Checklist}},
-  colback=green!5,
-  colframe=green!40!black,
-  colbacktitle=green!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm,
-  before skip=12pt,
-  after skip=12pt
-]
+\ChecklistBox[IaC \& DevOps Checklist]{
 \small
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\rowcolor{green!15}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
-\rowcolor{green!8}
 \textbf{Version Control Everything} & All infrastructure changes should flow through Git; no manual console edits~\cite{terraform-docs,pulumi-docs}. \\
-\rowcolor{green!3}
 \textbf{Use Remote State with Locking} & Use remote state with locking (e.g., S3 + DynamoDB) to avoid conflicts. Storing state remotely with distributed locking ensures that multiple engineers do not make conflicting changes, preventing state corruption. \\
-\rowcolor{green!8}
 \textbf{Modularize Code} & Modularize code for clusters, networking, and node groups. Encapsulation into reusable modules reduces duplication and enforces consistency across environments. \\
-\rowcolor{green!3}
 \textbf{Integrate Automated Checks} & Integrate automated checks: \texttt{terraform plan}, \texttt{tflint}, security scans, and policy-as-code. Automated validation pipelines catch misconfigurations and enforce organizational policies before changes are applied~\cite{opa-docs,sentinel-docs}. \\
-\rowcolor{green!8}
 \textbf{Manage Secrets via Secure Stores} & Manage secrets via secure stores (Vault, Secrets Manager). Sensitive values must never be hardcoded in templates; instead, use secure vaults or cloud-native secret managers to inject values at runtime. \\
-\rowcolor{green!3}
 \textbf{Tag and Name All Resources} & Tag and name all resources for cost and ownership tracking. Consistent tagging supports cost allocation, monitoring, and compliance audits across large-scale LLM deployments. \\
-\rowcolor{green!8}
 \textbf{Ensure Idempotency and Test Rollbacks} & Ensure idempotency and test rollbacks in sandbox environments. Code should safely reapply without side effects. Rollback scenarios must be validated to guarantee disaster recovery capabilities. \\
-\rowcolor{green!3}
 \textbf{Use Multiple Environments} & Use multiple environments (dev, staging, prod) with promotion gates. Changes should flow progressively, with staging as a proving ground before reaching production. Promotion gates provide controlled approvals. \\
-\rowcolor{green!8}
 \textbf{Keep Documentation Co-located} & Keep documentation co-located with code (README, diagrams). Documentation must evolve with the code itself, ensuring that infrastructure knowledge remains accurate and accessible. \\
-\rowcolor{green!3}
 \textbf{Minimize Manual Console Operations} & Minimize manual console operations; backport emergency fixes into IaC immediately. The console should never be the source of truth. If an emergency console change is required, it must be reflected back into the IaC repository at once to avoid drift. \\
 \end{tabularx}
-\end{tcolorbox}
+}
 
 \subsection{Serving \& Scaling Checklist}
 \label{sec:bp-serving}
 
-\begin{tcolorbox}[
-  title={\textbf{Serving \& Scaling Checklist}},
-  colback=orange!5,
-  colframe=orange!40!black,
-  colbacktitle=orange!20,
-  coltitle=black,
-  fonttitle=\bfseries,
-  boxrule=0.7pt,
-  arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm,
-  before skip=12pt,
-  after skip=12pt
-]
+\ChecklistBox[Serving \& Scaling Checklist]{
 \small
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
-\rowcolor{orange!15}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
-\rowcolor{orange!8}
 \textbf{Use Health Probes} & Configure liveness and readiness probes for all LLM pods~\cite{nvidia-k8s-device-plugin}. \\
-\rowcolor{orange!3}
 \textbf{Enable Logging and Tracing} & Integrate tracing (e.g., OpenTelemetry) and correlation IDs. Log major lifecycle events (model load, request timings). \\
-\rowcolor{orange!8}
 \textbf{Batching Enabled} & Verify serving stack batches requests effectively. Enable dynamic batching in frameworks (TGI, Triton, vLLM) and tune batch delays~\cite{tgi-github,vllm-pagedattention}. \\
-\rowcolor{orange!3}
 \textbf{Autoscaling Policies} & Configure horizontal pod autoscalers (by QPS, latency, or custom metrics) and GPU node autoscaling. Test synthetic loads for responsiveness. \\
-\rowcolor{orange!8}
 \textbf{Graceful Shutdown} & Use \texttt{preStop} hooks and termination grace periods to let pods drain requests before eviction. \\
-\rowcolor{orange!3}
 \textbf{Model Rollout Strategy} & Adopt rolling or canary updates. Never replace all pods simultaneously; validate new model quality before full rollout. \\
-\rowcolor{orange!8}
 \textbf{Concurrency Limits} & Enforce maximum concurrent requests per instance. Return "retry later" rather than crashing under overload. \\
-\rowcolor{orange!3}
 \textbf{Resource Requests \& Limits} & Assign accurate CPU/GPU/memory requests so schedulers pack pods appropriately. \\
-\rowcolor{orange!8}
 \textbf{Error Handling} & Implement retries for transient errors. Handle OOMs gracefully (e.g., friendly error or fallback response). \\
-\rowcolor{orange!3}
 \textbf{Secure the Endpoint} & Restrict access with mTLS, network policies, or API gateways. Never expose open model endpoints. \\
-\rowcolor{orange!8}
 \textbf{Observability on Quality} & Track not only performance but also output quality (manual ratings or automated classifiers). Monitor drift. \\
-\rowcolor{orange!3}
 \textbf{Plan for Scaling Limits} & Know cluster scaling ceilings (e.g., max 10 H100 nodes). Plan partitioning or caching before reaching limits. \\
-\rowcolor{orange!8}
 \textbf{Client-Side Rate Limiting} & Apply per-user/API key request limits to prevent misuse and runaway costs. \\
-\rowcolor{orange!3}
 \textbf{Continuous Load Testing} & Periodically stress test systems after major changes (new models, infra updates) to ensure scaling and SLAs hold. \\
 \end{tabularx}
-\end{tcolorbox}
+}
 
 \subsection{Summary}\label{sec:checklists-summary}
 By adhering to these checklists, LLMOps teams can maintain robust, efficient, and secure systems. The LLM infrastructure landscape evolves rapidly—new hardware and inference optimizations emerge constantly—but a disciplined foundation of best practices enables confident adaptation. The next chapters build on this, covering CI/CD for models, monitoring and evaluation, and full lifecycle management, all of which rest upon these infrastructural principles.

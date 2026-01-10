@@ -920,26 +920,19 @@ These outcomes depended less on the base model and more on retrieval quality, me
 \label{sec:rag-best-practices-checklist}
 RAG transforms LLMs from static knowledge stores into dynamic, evidence-grounded systems. The following checklist distills practices that consistently improve reliability in production deployments.
 
-\ChecklistBox{
+\ChecklistBox[Best Practices Checklist]{
 \small
 \setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.35}
-\begin{tabularx}{\linewidth}{@{}p{3.3cm}X@{}}
-\textbf{Area} & \textbf{Practices} \\
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\textbf{Checklist Item} & \textbf{Description} \\
 \midrule
-\textbf{Corpus \& ingestion} &
-Curate reliable sources; normalize and deduplicate; version chunking rules; enrich metadata (time, source, ACL). Monitor ingestion lag and parsing errors. \\
-\textbf{Embeddings \& indexing} &
-Treat embedding model + chunking as a coupled versioned artifact. Plan for re-indexing and backfills. Benchmark ANN parameters against recall and latency SLOs. \\
-\textbf{Retrieval \& reranking} &
-Use hybrid retrieval when queries mix jargon and natural language. Retrieve for recall, rerank for precision. Apply metadata filters for freshness and permissions. \\
-\textbf{Prompt construction} &
-Pack a small, well-delimited evidence set. Include source identifiers and clear abstention instructions. Prefer extractive compression over truncation when possible. \\
-\textbf{Evaluation \& monitoring} &
-Track Recall@k, faithfulness, and citation precision. Maintain regression sets and run them on every change. Log retrieved IDs, prompt sizes, and abstentions. \\
-\textbf{Security \& governance} &
-Enforce access control at retrieval time, encrypt data, retain audit logs, and defend against prompt injection from retrieved text. \\
-\bottomrule
+\textbf{Corpus \& ingestion} & Curate reliable sources; normalize and deduplicate; version chunking rules; enrich metadata (time, source, ACL). Monitor ingestion lag and parsing errors. \\
+\textbf{Embeddings \& indexing} & Treat embedding model + chunking as a coupled versioned artifact. Plan for re-indexing and backfills. Benchmark ANN parameters against recall and latency SLOs. \\
+\textbf{Retrieval \& reranking} & Use hybrid retrieval when queries mix jargon and natural language. Retrieve for recall, rerank for precision. Apply metadata filters for freshness and permissions. \\
+\textbf{Prompt construction} & Pack a small, well-delimited evidence set. Include source identifiers and clear abstention instructions. Prefer extractive compression over truncation when possible. \\
+\textbf{Evaluation \& monitoring} & Track Recall@k, faithfulness, and citation precision. Maintain regression sets and run them on every change. Log retrieved IDs, prompt sizes, and abstentions. \\
+\textbf{Security \& governance} & Enforce access control at retrieval time, encrypt data, retain audit logs, and defend against prompt injection from retrieved text. \\
 \end{tabularx}
 }
 
