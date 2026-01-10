@@ -44,6 +44,33 @@ This chapter covers LLM observability beyond traditional monitoring:
 \end{itemize}
 \end{tcolorbox}
 
+% ------------------------------------------------------------
+% Chapter-local numbered boxes for Listings
+% (Defined here to avoid preamble dependencies.)
+% ------------------------------------------------------------
+\makeatletter
+\@ifundefined{c@llmlisting}{%
+  \newcounter{llmlisting}[chapter]
+  \renewcommand{\thellmlisting}{\thechapter.\arabic{llmlisting}}
+}{}
+\@ifundefined{llmlistingbox}{%
+  \newenvironment{llmlistingbox}[1]{%
+    \refstepcounter{llmlisting}%
+    \begin{tcolorbox}[
+      title={\textbf{Listing \thellmlisting: #1}},
+      colback=black!2,
+      colframe=black!50,
+      colbacktitle=black!12,
+      coltitle=black,
+      fonttitle=\bfseries,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=3mm, right=3mm, top=2mm, bottom=2mm
+    ]
+  }{\end{tcolorbox}}%
+}{}
+\makeatother
+
 \section{Introduction}
 \label{sec:monitoring-intro}
 Monitoring and observability are critical pillars of LLMOps. For Large Language Model applications, visibility extends beyond traditional system health metrics---it must encompass quality of generated outputs, safety compliance, performance under load, and the evolving needs of end-users.
@@ -233,6 +260,135 @@ LLM-specific tracing benefits from a richer span taxonomy than conventional HTTP
 
 Open-source observability stacks such as Prometheus \cite{prometheus_instrumentation} + Grafana \cite{grafana_dashboards}, Loki (for log aggregation), and Jaeger \cite{jaeger_tracing} (for distributed tracing) are commonly used. Elastic Stack (ELK) remains a robust option for centralized indexing and search. Increasingly, teams use LangSmith or Langfuse for structured logging of chains and agents, which can interoperate with these open-source backends through OpenTelemetry \cite{otel_spec}.
 
+Listing~\ref{lst:ch05_prometheus_config} shows a Prometheus configuration for scraping LLM-specific metrics with recording rules for common aggregations.
+
+\begin{llmlistingbox}{Prometheus metrics configuration for LLM observability}
+\label{lst:ch05_prometheus_config}
+\begin{lstlisting}[style=springer]
+# prometheus.yml - Prometheus configuration for LLM metrics
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'ishtar-production'
+    environment: 'production'
+
+# Scrape configurations
+scrape_configs:
+  # LLM inference service metrics
+  - job_name: 'ishtar-llm-inference'
+    scrape_interval: 10s
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['ishtar-llm-inference:8000']
+        labels:
+          service: 'llm-inference'
+          component: 'inference'
+    
+    # Relabeling for better organization
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '(.+):(\d+)'
+        target_label: '__param_target'
+        replacement: '${1}:${2}'
+      - source_labels: [__param_target]
+        target_label: 'instance'
+  
+  # Retrieval service metrics
+  - job_name: 'ishtar-retrieval'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['ishtar-retrieval:8080']
+        labels:
+          service: 'retrieval'
+          component: 'rag'
+  
+  # Tool service metrics
+  - job_name: 'ishtar-tools'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['ishtar-tools:9000']
+        labels:
+          service: 'tools'
+          component: 'orchestration'
+
+# Recording rules for LLM-specific aggregations
+rule_files:
+  - 'llm_recording_rules.yml'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['alertmanager:9093']
+---
+# llm_recording_rules.yml - Recording rules for LLM metrics
+
+groups:
+  - name: llm_latency
+    interval: 30s
+    rules:
+      # Time-to-first-token aggregations
+      - record: ishtar:ttft:p50
+        expr: histogram_quantile(0.50, sum(rate(ishtar_ttft_seconds_bucket[5m])) by (le, service))
+      
+      - record: ishtar:ttft:p95
+        expr: histogram_quantile(0.95, sum(rate(ishtar_ttft_seconds_bucket[5m])) by (le, service))
+      
+      - record: ishtar:ttft:p99
+        expr: histogram_quantile(0.99, sum(rate(ishtar_ttft_seconds_bucket[5m])) by (le, service))
+      
+      # Tokens per second
+      - record: ishtar:tokens_per_second:avg
+        expr: rate(ishtar_tokens_total[5m]) / rate(ishtar_requests_total[5m])
+  
+  - name: llm_quality
+    interval: 1m
+    rules:
+      # Groundedness score aggregations
+      - record: ishtar:groundedness:mean
+        expr: avg(ishtar_groundedness_score) by (service, prompt_version)
+      
+      - record: ishtar:groundedness:p95
+        expr: histogram_quantile(0.95, sum(rate(ishtar_groundedness_score_bucket[5m])) by (le, service))
+      
+      # Citation coverage
+      - record: ishtar:citation_coverage:mean
+        expr: avg(ishtar_citation_coverage) by (service)
+      
+      # Toxicity rate
+      - record: ishtar:toxicity:rate
+        expr: sum(rate(ishtar_toxicity_flags_total[5m])) by (service) / sum(rate(ishtar_requests_total[5m])) by (service)
+  
+  - name: llm_cost
+    interval: 1m
+    rules:
+      # Cost per request
+      - record: ishtar:cost_per_request:avg
+        expr: sum(rate(ishtar_cost_usd_total[5m])) by (service) / sum(rate(ishtar_requests_total[5m])) by (service)
+      
+      # Token cost breakdown
+      - record: ishtar:cost_per_1k_tokens:avg
+        expr: (sum(rate(ishtar_cost_usd_total[5m])) by (service) / sum(rate(ishtar_tokens_total[5m])) by (service)) * 1000
+  
+  - name: retrieval_quality
+    interval: 1m
+    rules:
+      # Retrieval latency
+      - record: ishtar:retrieval_latency:p95
+        expr: histogram_quantile(0.95, sum(rate(ishtar_retrieval_latency_ms_bucket[5m])) by (le, index_version))
+      
+      # Recall@K
+      - record: ishtar:recall_at_k:mean
+        expr: avg(ishtar_recall_at_k) by (index_version, k)
+      
+      # MRR (Mean Reciprocal Rank)
+      - record: ishtar:mrr:mean
+        expr: avg(ishtar_mrr_score) by (index_version)
+\end{lstlisting}
+\end{llmlistingbox}
+
 \medskip
 \noindent\textbf{Structured, schema-first telemetry.}
 In production, \emph{structured} logs (e.g., JSON) with a stable schema are essential. Each record should include a globally unique \texttt{trace\_id}, a \texttt{span\_id} for step-level correlation, and a \texttt{conversation\_id} for session grouping. Recommended fields include: \texttt{prompt\_template\_id} and \texttt{prompt\_version}; \texttt{retrieval\_metadata} (doc IDs, index version, top-\$k\$, re-ranker scores); \texttt{token\_counts} (prompt, completion, total); \texttt{cost\_estimates}; \texttt{latency\_breakdown} (TTFT, TPOT, tool I/O); and \texttt{safety\_signals} (toxicity flags, jailbreak detectors). A clear \texttt{error\_type} taxonomy (e.g., \texttt{provider\_timeout}, \texttt{rate\_limit}, \texttt{tool\_schema\_mismatch}, \texttt{parser\_failure}) shortens mean time to diagnosis by enabling precise aggregation.
@@ -275,9 +431,428 @@ In production, \emph{structured} logs (e.g., JSON) with a stable schema are esse
 \end{tabularx}
 \end{table}
 
+Listing~\ref{lst:ch05_telemetry_schema} shows a complete JSON Schema definition for the standardized telemetry structure, enabling schema validation and preventing telemetry drift.
+
+\begin{llmlistingbox}{JSON Schema for standardized telemetry}
+\label{lst:ch05_telemetry_schema}
+\begin{lstlisting}[style=springer]
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LLM Telemetry Schema",
+  "version": "1.2.0",
+  "description": "Standardized telemetry schema for LLM pipeline observability",
+  
+  "type": "object",
+  "required": [
+    "trace_id",
+    "span_id",
+    "conversation_id",
+    "prompt_template_id",
+    "prompt_version",
+    "token_counts",
+    "latency_breakdown"
+  ],
+  
+  "properties": {
+    "trace_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Globally unique identifier for the request trace"
+    },
+    
+    "span_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Step-level correlation identifier within trace"
+    },
+    
+    "conversation_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Session grouping identifier for multi-turn conversations"
+    },
+    
+    "prompt_telemetry": {
+      "type": "object",
+      "required": ["template_id", "version"],
+      "properties": {
+        "template_id": {
+          "type": "string",
+          "description": "Versioned identifier for prompt template"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Semantic version of prompt template"
+        },
+        "system_message_hash": {
+          "type": "string",
+          "description": "SHA256 hash of system message (for privacy)"
+        },
+        "user_query_hash": {
+          "type": "string",
+          "description": "SHA256 hash of user query (for privacy)"
+        },
+        "decoding_params": {
+          "type": "object",
+          "properties": {
+            "temperature": {"type": "number"},
+            "top_p": {"type": "number"},
+            "max_tokens": {"type": "integer"}
+          }
+        }
+      }
+    },
+    
+    "retrieval_metadata": {
+      "type": "object",
+      "properties": {
+        "index_version": {
+          "type": "string",
+          "description": "Version of vector index used"
+        },
+        "top_k": {
+          "type": "integer",
+          "description": "Number of candidates retrieved"
+        },
+        "retrieved_doc_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Document identifiers retrieved"
+        },
+        "retrieval_scores": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Similarity scores for retrieved documents"
+        },
+        "reranker_scores": {
+          "type": "array",
+          "items": {"type": "number"},
+          "description": "Re-ranker scores after retrieval"
+        },
+        "retrieval_latency_ms": {
+          "type": "number",
+          "description": "Retrieval latency in milliseconds"
+        }
+      }
+    },
+    
+    "token_counts": {
+      "type": "object",
+      "required": ["prompt", "completion", "total"],
+      "properties": {
+        "prompt": {
+          "type": "integer",
+          "description": "Number of input tokens"
+        },
+        "completion": {
+          "type": "integer",
+          "description": "Number of output tokens"
+        },
+        "total": {
+          "type": "integer",
+          "description": "Total tokens (prompt + completion)"
+        }
+      }
+    },
+    
+    "cost_estimates": {
+      "type": "object",
+      "properties": {
+        "input_cost_usd": {
+          "type": "number",
+          "description": "Cost for input tokens in USD"
+        },
+        "output_cost_usd": {
+          "type": "number",
+          "description": "Cost for output tokens in USD"
+        },
+        "total_cost_usd": {
+          "type": "number",
+          "description": "Total cost in USD"
+        }
+      }
+    },
+    
+    "latency_breakdown": {
+      "type": "object",
+      "required": ["ttft_ms", "tpot_ms"],
+      "properties": {
+        "ttft_ms": {
+          "type": "number",
+          "description": "Time-to-first-token in milliseconds"
+        },
+        "tpot_ms": {
+          "type": "number",
+          "description": "Time-per-output-token in milliseconds"
+        },
+        "total_latency_ms": {
+          "type": "number",
+          "description": "End-to-end latency"
+        },
+        "tool_io_latency_ms": {
+          "type": "number",
+          "description": "Tool I/O latency"
+        }
+      }
+    },
+    
+    "safety_signals": {
+      "type": "object",
+      "properties": {
+        "toxicity_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Toxicity score from detector"
+        },
+        "hallucination_flags": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of hallucination flags"
+        },
+        "jailbreak_detected": {
+          "type": "boolean",
+          "description": "Whether jailbreak attempt detected"
+        },
+        "policy_violations": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of policy violations"
+        }
+      }
+    },
+    
+    "error_type": {
+      "type": "string",
+      "enum": [
+        "provider_timeout",
+        "rate_limit",
+        "tool_schema_mismatch",
+        "parser_failure",
+        "retrieval_timeout",
+        "model_error",
+        "unknown"
+      ],
+      "description": "Categorized error type"
+    },
+    
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp"
+    }
+  }
+}
+\end{lstlisting}
+\end{llmlistingbox}
+
 \medskip
 \noindent\textbf{Privacy by design.}
 Privacy-by-design is non-negotiable. Apply layered redaction before persistence: deterministic masking for PII (emails, phone numbers, addresses), hashing for quasi-identifiers, and content truncation limits for long inputs/outputs. For sensitive domains, replace full prompts with \emph{token-level features} (length, entropy, stopword ratio) and store only minimal exemplars under strict retention. Encrypt logs at rest with key rotation, segregate access by role, and attach data-handling labels (e.g., \texttt{contains\_pii=true}) to each span to enforce routing to compliant stores. Where feasible, perform redaction client-side so raw data never enters central log pipelines.
+
+Listing~\ref{lst:ch05_opentelemetry} demonstrates OpenTelemetry instrumentation for LLM inference calls with proper span creation, attributes, and context propagation.
+
+\begin{llmlistingbox}{OpenTelemetry instrumentation for LLM calls}
+\label{lst:ch05_opentelemetry}
+\begin{lstlisting}[language=Python, style=springer]
+#!/usr/bin/env python3
+"""
+OpenTelemetry instrumentation for LLM inference calls.
+Demonstrates span creation, attributes, and context propagation.
+"""
+
+from opentelemetry import trace
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
+from opentelemetry.baggage import set_baggage, get_baggage
+import time
+from typing import Dict, Any, Optional
+
+# Initialize tracer
+resource = Resource.create({
+    "service.name": "ishtar-llm-inference",
+    "service.version": "1.3.0",
+    "deployment.environment": "production"
+})
+
+trace.set_tracer_provider(TracerProvider(resource=resource))
+tracer = trace.get_tracer(__name__)
+
+# Configure exporter
+otlp_exporter = OTLPSpanExporter(
+    endpoint="http://otel-collector:4317",
+    insecure=True
+)
+span_processor = BatchSpanProcessor(otlp_exporter)
+trace.get_tracer_provider().add_span_processor(span_processor)
+
+def instrument_llm_call(
+    model_name: str,
+    prompt_template_id: str,
+    prompt_version: str,
+    user_query: str,
+    decoding_params: Dict[str, Any],
+    conversation_id: Optional[str] = None
+) -> Dict[str, Any]:
+    """
+    Instrument an LLM call with OpenTelemetry tracing.
+    
+    Args:
+        model_name: Name of the LLM model
+        prompt_template_id: Template identifier
+        prompt_version: Template version
+        user_query: User's query
+        decoding_params: Decoding parameters (temperature, top_p, etc.)
+        conversation_id: Optional conversation ID for session grouping
+    
+    Returns:
+        Model response with trace context
+    """
+    # Create span for LLM call
+    with tracer.start_as_current_span(
+        "llm.call",
+        attributes={
+            "llm.model": model_name,
+            "llm.prompt_template_id": prompt_template_id,
+            "llm.prompt_version": prompt_version,
+            "llm.temperature": decoding_params.get("temperature", 0.0),
+            "llm.top_p": decoding_params.get("top_p", 1.0),
+            "llm.max_tokens": decoding_params.get("max_tokens", 1000),
+        }
+    ) as span:
+        # Set baggage for conversation tracking
+        if conversation_id:
+            set_baggage("conversation_id", conversation_id)
+        
+        # Record prompt hash (for privacy)
+        import hashlib
+        prompt_hash = hashlib.sha256(user_query.encode()).hexdigest()[:16]
+        span.set_attribute("llm.prompt_hash", prompt_hash)
+        
+        # Simulate LLM call
+        start_time = time.time()
+        response = call_llm_api(model_name, user_query, decoding_params)
+        end_time = time.time()
+        
+        # Record token counts
+        input_tokens = response.get("input_tokens", 0)
+        output_tokens = response.get("output_tokens", 0)
+        total_tokens = input_tokens + output_tokens
+        
+        span.set_attribute("llm.input_tokens", input_tokens)
+        span.set_attribute("llm.output_tokens", output_tokens)
+        span.set_attribute("llm.total_tokens", total_tokens)
+        
+        # Record latency breakdown
+        ttft = response.get("ttft_ms", 0)
+        tpot = response.get("tpot_ms", 0)
+        total_latency = (end_time - start_time) * 1000
+        
+        span.set_attribute("llm.ttft_ms", ttft)
+        span.set_attribute("llm.tpot_ms", tpot)
+        span.set_attribute("llm.total_latency_ms", total_latency)
+        
+        # Record cost estimate
+        cost = estimate_cost(input_tokens, output_tokens, model_name)
+        span.set_attribute("llm.cost_usd", cost)
+        
+        # Record safety signals
+        if "toxicity_score" in response:
+            span.set_attribute("llm.toxicity_score", response["toxicity_score"])
+        if "hallucination_flags" in response:
+            span.set_attribute("llm.hallucination_count", len(response["hallucination_flags"]))
+        
+        # Set span status
+        if response.get("error"):
+            span.record_exception(Exception(response["error"]))
+            span.set_status(trace.Status(trace.StatusCode.ERROR, response["error"]))
+        else:
+            span.set_status(trace.Status(trace.StatusCode.OK))
+        
+        return response
+
+def instrument_retrieval(
+    index_version: str,
+    query: str,
+    top_k: int
+) -> Dict[str, Any]:
+    """
+    Instrument a retrieval call with OpenTelemetry tracing.
+    """
+    with tracer.start_as_current_span(
+        "retriever.search",
+        attributes={
+            "retrieval.index_version": index_version,
+            "retrieval.top_k": top_k,
+            "retrieval.query_hash": hashlib.sha256(query.encode()).hexdigest()[:16]
+        }
+    ) as span:
+        start_time = time.time()
+        results = call_retrieval_api(index_version, query, top_k)
+        latency_ms = (time.time() - start_time) * 1000
+        
+        span.set_attribute("retrieval.latency_ms", latency_ms)
+        span.set_attribute("retrieval.doc_count", len(results.get("documents", [])))
+        span.set_attribute("retrieval.recall_at_k", results.get("recall_at_k", 0.0))
+        
+        # Record retrieved document IDs
+        doc_ids = [doc.get("id") for doc in results.get("documents", [])]
+        span.set_attribute("retrieval.doc_ids", ",".join(doc_ids[:10]))  # Limit to first 10
+        
+        return results
+
+def instrument_tool_call(
+    tool_name: str,
+    tool_version: str,
+    arguments: Dict[str, Any]
+) -> Dict[str, Any]:
+    """
+    Instrument a tool call with OpenTelemetry tracing.
+    """
+    with tracer.start_as_current_span(
+        f"tool.invoke.{tool_name}",
+        attributes={
+            "tool.name": tool_name,
+            "tool.version": tool_version,
+            "tool.arguments_size": len(str(arguments))
+        }
+    ) as span:
+        start_time = time.time()
+        result = call_tool_api(tool_name, arguments)
+        latency_ms = (time.time() - start_time) * 1000
+        
+        span.set_attribute("tool.latency_ms", latency_ms)
+        span.set_attribute("tool.success", result.get("success", False))
+        
+        if result.get("error"):
+            span.record_exception(Exception(result["error"]))
+            span.set_status(trace.Status(trace.StatusCode.ERROR, result["error"]))
+        
+        return result
+
+# Example usage
+if __name__ == "__main__":
+    # Set conversation context
+    set_baggage("user_id", "user-12345")
+    set_baggage("tenant_id", "tenant-abc")
+    
+    # Instrument LLM call
+    response = instrument_llm_call(
+        model_name="gpt-4-turbo",
+        prompt_template_id="ishtar_event_synthesis",
+        prompt_version="1.3.0",
+        user_query="What happened in Region X?",
+        decoding_params={"temperature": 0.3, "max_tokens": 500},
+        conversation_id="conv-789"
+    )
+    
+    print(f"Response: {response}")
+\end{lstlisting}
+\end{llmlistingbox}
 
 \medskip
 \noindent\textbf{Trace the full evidence path.}
@@ -677,6 +1252,189 @@ Beyond these core principles, effective alerting in LLM systems is \emph{SLO-dri
 \medskip
 \noindent\textbf{Correlation, deduplication, and exemplars.}
 To reduce fatigue, implement \emph{alert correlation and deduplication}. Group pages by an incident fingerprint that includes route, model version, prompt template ID, and primary failing span (e.g., \texttt{retriever.search}). Link alerts directly to OpenTelemetry exemplars so responders can jump from the panel to the representative waterfall trace in one click. Suppression and maintenance windows should be tied to planned operations—index rebuilds, prompt library releases, or model upgrades—so benign transients do not escalate.
+
+Listing~\ref{lst:ch05_alerting_rules} shows Prometheus alerting rules that tie alerts to SLOs and enable automated incident response.
+
+\begin{llmlistingbox}{Prometheus alerting rules for LLM SLOs}
+\label{lst:ch05_alerting_rules}
+\begin{lstlisting}[style=springer]
+# alerting_rules.yml - Prometheus alerting rules for LLM SLOs
+
+groups:
+  - name: llm_latency_alerts
+    interval: 30s
+    rules:
+      # Latency spike alert
+      - alert: LLMLatencySpike
+        expr: |
+          histogram_quantile(0.99, 
+            sum(rate(ishtar_ttft_seconds_bucket[5m])) by (le, service)
+          ) * 1000 > 1000
+        for: 5m
+        labels:
+          severity: critical
+          component: latency
+        annotations:
+          summary: "P99 TTFT exceeds 1000ms"
+          description: |
+            P99 time-to-first-token is {{ $value }}ms for service {{ $labels.service }},
+            exceeding SLO threshold of 1000ms. Check retrieval latency and model
+            inference performance.
+          runbook_url: "https://runbooks.ishtar.ai/latency-spike"
+      
+      # Tokens per second degradation
+      - alert: LLMThroughputDegradation
+        expr: |
+          rate(ishtar_tokens_total[5m]) / rate(ishtar_requests_total[5m]) < 10
+        for: 10m
+        labels:
+          severity: warning
+          component: throughput
+        annotations:
+          summary: "Tokens per second below threshold"
+          description: |
+            Average tokens per second is {{ $value }} for service {{ $labels.service }},
+            below threshold of 10 tokens/s. Investigate GPU utilization and batching.
+  
+  - name: llm_quality_alerts
+    interval: 1m
+    rules:
+      # Groundedness degradation
+      - alert: LLMGroundednessDegradation
+        expr: |
+          avg(ishtar_groundedness_score) by (service) < 0.80
+        for: 30m
+        labels:
+          severity: critical
+          component: quality
+        annotations:
+          summary: "Groundedness score below threshold"
+          description: |
+            Average groundedness score is {{ $value }} for service {{ $labels.service }},
+            below threshold of 0.80. Check retrieval quality and prompt template.
+          mitigation: |
+            1. Reduce topK or switch retriever
+            2. Rebuild index if embedding drift detected
+            3. Rollback prompt version if recent change
+      
+      # Hallucination rate spike
+      - alert: LLMHallucinationSpike
+        expr: |
+          sum(rate(ishtar_hallucination_flags_total[30m])) by (service) /
+          sum(rate(ishtar_requests_total[30m])) by (service) > 0.05
+        for: 15m
+        labels:
+          severity: critical
+          component: safety
+        annotations:
+          summary: "Hallucination rate exceeds 5%"
+          description: |
+            Hallucination rate is {{ $value | humanizePercentage }} for service
+            {{ $labels.service }}, exceeding threshold of 5%. Immediate action required.
+          mitigation: |
+            1. Enable constrained decoding
+            2. Reduce context window
+            3. Switch to safer model route
+            4. Rollback prompt version
+  
+  - name: llm_cost_alerts
+    interval: 5m
+    rules:
+      # Cost anomaly detection
+      - alert: LLMCostAnomaly
+        expr: |
+          (
+            sum(rate(ishtar_cost_usd_total[1h])) by (service) /
+            sum(rate(ishtar_cost_usd_total[1h] offset 24h)) by (service)
+          ) > 2.0
+        for: 1h
+        labels:
+          severity: warning
+          component: cost
+        annotations:
+          summary: "Cost per hour increased 2x"
+          description: |
+            Cost per hour is {{ $value }}x baseline for service {{ $labels.service }}.
+            Check for token usage spikes or inefficient routing.
+          mitigation: |
+            1. Throttle long prompts
+            2. Enable caching
+            3. Review routing decisions
+  
+  - name: retrieval_quality_alerts
+    interval: 1m
+    rules:
+      # Retrieval latency spike
+      - alert: RetrievalLatencySpike
+        expr: |
+          histogram_quantile(0.95,
+            sum(rate(ishtar_retrieval_latency_ms_bucket[5m])) by (le, index_version)
+          ) > 250
+        for: 10m
+        labels:
+          severity: warning
+          component: retrieval
+        annotations:
+          summary: "P95 retrieval latency exceeds 250ms"
+          description: |
+            P95 retrieval latency is {{ $value }}ms for index {{ $labels.index_version }}.
+            Check index health and query complexity.
+      
+      # Recall degradation
+      - alert: RetrievalRecallDegradation
+        expr: |
+          avg(ishtar_recall_at_k{k="10"}) by (index_version) < 0.75
+        for: 1h
+        labels:
+          severity: critical
+          component: retrieval
+        annotations:
+          summary: "Recall@10 below threshold"
+          description: |
+            Recall@10 is {{ $value }} for index {{ $labels.index_version }},
+            below threshold of 0.75. Consider rebuilding index or adjusting
+            embedding model.
+  
+  - name: safety_alerts
+    interval: 1m
+    rules:
+      # Toxicity rate spike
+      - alert: LLMToxicitySpike
+        expr: |
+          sum(rate(ishtar_toxicity_flags_total[1h])) by (service) /
+          sum(rate(ishtar_requests_total[1h])) by (service) > 0.10
+        for: 15m
+        labels:
+          severity: critical
+          component: safety
+        annotations:
+          summary: "Toxicity rate exceeds 10%"
+          description: |
+            Toxicity rate is {{ $value | humanizePercentage }} for service
+            {{ $labels.service }}, exceeding threshold of 10%. Immediate safety
+            action required.
+          mitigation: |
+            1. Enable strict safety filters
+            2. Rollback prompt/model version
+            3. Disable risky tools
+            4. Route to safe-mode model
+      
+      # Refusal rate anomaly
+      - alert: LLMRefusalRateAnomaly
+        expr: |
+          sum(rate(ishtar_refusals_total[1h])) by (service) /
+          sum(rate(ishtar_requests_total[1h])) by (service) > 0.15
+        for: 30m
+        labels:
+          severity: warning
+          component: safety
+        annotations:
+          summary: "Refusal rate exceeds 15%"
+          description: |
+            Refusal rate is {{ $value | humanizePercentage }} for service
+            {{ $labels.service }}, indicating potential prompt or policy issues.
+\end{lstlisting}
+\end{llmlistingbox}
 
 \subsubsection{Operational playbooks (minimal, pre-approved actions).}
 Playbooks should be short, executable checklists with \emph{pre-authorized} mitigations:

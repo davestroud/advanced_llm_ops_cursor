@@ -45,6 +45,33 @@ Throughout, \ishtar{} serves as the reference point for the engineering and deci
 \end{itemize}
 \end{tcolorbox}
 
+% ------------------------------------------------------------
+% Chapter-local numbered boxes for Listings
+% (Defined here to avoid preamble dependencies.)
+% ------------------------------------------------------------
+\makeatletter
+\@ifundefined{c@llmlisting}{%
+  \newcounter{llmlisting}[chapter]
+  \renewcommand{\thellmlisting}{\thechapter.\arabic{llmlisting}}
+}{}
+\@ifundefined{llmlistingbox}{%
+  \newenvironment{llmlistingbox}[1]{%
+    \refstepcounter{llmlisting}%
+    \begin{tcolorbox}[
+      title={\textbf{Listing \thellmlisting: #1}},
+      colback=black!2,
+      colframe=black!50,
+      colbacktitle=black!12,
+      coltitle=black,
+      fonttitle=\bfseries,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=3mm, right=3mm, top=2mm, bottom=2mm
+    ]
+  }{\end{tcolorbox}}%
+}{}
+\makeatother
+
 \section{Introduction}
 \label{sec:ch6-introduction}
 Scaling a Large Language Model deployment is a multifaceted challenge. While traditional applications often scale linearly with additional compute resources, LLM-based systems face unique constraints: massive model sizes, GPU memory limits, high operational costs, and variable demand patterns.
@@ -185,6 +212,261 @@ Whenever a capacity estimate is wrong, the most common failure mode is missing a
 \bottomrule
 \end{tabularx}
 \end{table}
+
+Listing~\ref{lst:ch06_capacity_planning} provides a Python script for capacity planning that implements the SLO-driven approach described in Table~\ref{tab:ch06_capacity_planning}.
+
+\begin{llmlistingbox}{Capacity planning script for LLM deployments}
+\label{lst:ch06_capacity_planning}
+\begin{lstlisting}[language=Python, style=springer]
+#!/usr/bin/env python3
+"""
+Capacity planning script for LLM deployments.
+Implements SLO-driven capacity estimation with validation.
+"""
+
+from dataclasses import dataclass
+from typing import Dict, List, Optional
+import numpy as np
+
+@dataclass
+class SLO:
+    """Service Level Objective"""
+    p95_ttft_ms: float
+    p95_tbt_ms: float
+    context_class: str  # "short" or "long"
+
+@dataclass
+class WorkloadProfile:
+    """Workload characteristics"""
+    arrival_rate_rps: float  # requests per second
+    avg_prompt_tokens: float
+    avg_decode_tokens: float
+    context_class_distribution: Dict[str, float]  # {"short": 0.7, "long": 0.3}
+
+@dataclass
+class GPUConfig:
+    """GPU hardware configuration"""
+    name: str
+    throughput_tokens_per_sec: float
+    memory_gb: int
+    cost_per_hour_usd: float
+
+@dataclass
+class CapacityResult:
+    """Capacity planning result"""
+    required_replicas: int
+    estimated_cost_per_hour_usd: float
+    utilization_percent: float
+    latency_components: Dict[str, float]
+    validation_passed: bool
+
+def estimate_token_demand(workload: WorkloadProfile) -> float:
+    """
+    Estimate token demand per second.
+    
+    Args:
+        workload: Workload profile
+    
+    Returns:
+        Token demand in tokens/second
+    """
+    avg_total_tokens = (
+        workload.avg_prompt_tokens + workload.avg_decode_tokens
+    )
+    return workload.arrival_rate_rps * avg_total_tokens
+
+def calculate_required_replicas(
+    token_demand: float,
+    gpu: GPUConfig,
+    headroom: float = 0.7
+) -> int:
+    """
+    Calculate required number of replicas.
+    
+    Args:
+        token_demand: Token demand in tokens/second
+        gpu: GPU configuration
+        headroom: Utilization headroom (0.7 = 70% max utilization)
+    
+    Returns:
+        Required number of replicas
+    """
+    effective_throughput = gpu.throughput_tokens_per_sec * headroom
+    required_replicas = np.ceil(token_demand / effective_throughput)
+    return int(required_replicas)
+
+def decompose_latency(
+    prompt_tokens: float,
+    decode_tokens: float,
+    gpu: GPUConfig,
+    batch_size: int = 8
+) -> Dict[str, float]:
+    """
+    Decompose end-to-end latency into components.
+    
+    Args:
+        prompt_tokens: Average prompt tokens
+        decode_tokens: Average decode tokens
+        gpu: GPU configuration
+        batch_size: Expected batch size
+    
+    Returns:
+        Dictionary with latency components in milliseconds
+    """
+    # Prefill latency (scales with prompt length)
+    prefill_latency_ms = (prompt_tokens / gpu.throughput_tokens_per_sec) * 1000
+    
+    # Decode latency (scales with decode length, benefits from batching)
+    effective_decode_throughput = gpu.throughput_tokens_per_sec * batch_size
+    decode_latency_ms = (decode_tokens / effective_decode_throughput) * 1000
+    
+    # Queueing latency (estimated based on utilization)
+    utilization = 0.7  # Assume 70% utilization
+    queueing_latency_ms = 50 * utilization  # Simple model
+    
+    total_latency_ms = prefill_latency_ms + decode_latency_ms + queueing_latency_ms
+    
+    return {
+        "prefill_ms": prefill_latency_ms,
+        "decode_ms": decode_latency_ms,
+        "queueing_ms": queueing_latency_ms,
+        "total_ms": total_latency_ms
+    }
+
+def validate_capacity(
+    result: CapacityResult,
+    slo: SLO,
+    latency_components: Dict[str, float]
+) -> bool:
+    """
+    Validate that capacity plan meets SLOs.
+    
+    Args:
+        result: Capacity planning result
+        slo: Service Level Objective
+        latency_components: Latency breakdown
+    
+    Returns:
+        True if validation passes
+    """
+    # Check TTFT (prefill + queueing)
+    ttft_ms = latency_components["prefill_ms"] + latency_components["queueing_ms"]
+    ttft_passed = ttft_ms <= slo.p95_ttft_ms
+    
+    # Check TBT (decode latency)
+    tbt_passed = latency_components["decode_ms"] <= slo.p95_tbt_ms
+    
+    # Check utilization (should be reasonable)
+    utilization_passed = result.utilization_percent <= 0.85
+    
+    return ttft_passed and tbt_passed and utilization_passed
+
+def plan_capacity(
+    workload: WorkloadProfile,
+    gpu: GPUConfig,
+    slo: SLO,
+    headroom: float = 0.7
+) -> CapacityResult:
+    """
+    Perform capacity planning for LLM deployment.
+    
+    Args:
+        workload: Workload profile
+        gpu: GPU configuration
+        slo: Service Level Objective
+        headroom: Utilization headroom
+    
+    Returns:
+        Capacity planning result
+    """
+    # Step 1: Estimate demand
+    token_demand = estimate_token_demand(workload)
+    
+    # Step 2: Calculate required replicas
+    required_replicas = calculate_required_replicas(
+        token_demand, gpu, headroom
+    )
+    
+    # Step 3: Decompose latency
+    latency_components = decompose_latency(
+        workload.avg_prompt_tokens,
+        workload.avg_decode_tokens,
+        gpu
+    )
+    
+    # Step 4: Calculate cost
+    cost_per_hour = required_replicas * gpu.cost_per_hour_usd
+    
+    # Step 5: Calculate utilization
+    effective_throughput = gpu.throughput_tokens_per_sec * headroom
+    utilization = token_demand / (required_replicas * effective_throughput)
+    
+    result = CapacityResult(
+        required_replicas=required_replicas,
+        estimated_cost_per_hour_usd=cost_per_hour,
+        utilization_percent=utilization * 100,
+        latency_components=latency_components,
+        validation_passed=False
+    )
+    
+    # Step 6: Validate
+    result.validation_passed = validate_capacity(
+        result, slo, latency_components
+    )
+    
+    return result
+
+# Example usage
+if __name__ == "__main__":
+    # Define SLOs
+    slo_short = SLO(
+        p95_ttft_ms=300,
+        p95_tbt_ms=50,
+        context_class="short"
+    )
+    
+    # Define workload
+    workload = WorkloadProfile(
+        arrival_rate_rps=50.0,
+        avg_prompt_tokens=500.0,
+        avg_decode_tokens=200.0,
+        context_class_distribution={"short": 0.7, "long": 0.3}
+    )
+    
+    # Define GPU options
+    a100_80gb = GPUConfig(
+        name="A100-80GB",
+        throughput_tokens_per_sec=8000.0,
+        memory_gb=80,
+        cost_per_hour_usd=3.80
+    )
+    
+    h100_80gb = GPUConfig(
+        name="H100-80GB",
+        throughput_tokens_per_sec=12000.0,
+        memory_gb=80,
+        cost_per_hour_usd=5.00
+    )
+    
+    # Plan capacity for both options
+    print("Capacity Planning Results:")
+    print("=" * 60)
+    
+    for gpu in [a100_80gb, h100_80gb]:
+        result = plan_capacity(workload, gpu, slo_short)
+        
+        print(f"\nGPU: {gpu.name}")
+        print(f"  Required Replicas: {result.required_replicas}")
+        print(f"  Cost per Hour: ${result.estimated_cost_per_hour_usd:.2f}")
+        print(f"  Utilization: {result.utilization_percent:.1f}%")
+        print(f"  Latency Breakdown:")
+        print(f"    Prefill: {result.latency_components['prefill_ms']:.1f}ms")
+        print(f"    Decode: {result.latency_components['decode_ms']:.1f}ms")
+        print(f"    Queueing: {result.latency_components['queueing_ms']:.1f}ms")
+        print(f"    Total: {result.latency_components['total_ms']:.1f}ms")
+        print(f"  Validation: {'PASSED' if result.validation_passed else 'FAILED'}")
+\end{lstlisting}
+\end{llmlistingbox}
 
 \section{Scaling Dimensions}
 \label{sec:scaling-dimensions}
@@ -594,6 +876,123 @@ Pipeline parallelism partitions the model into sequential stages (contiguous lay
 
 \subsubsection{Case in \ishtar{}.} In the \ishtar{} deployment of the LLaMA-3.1-70B model, a hybrid of tensor and pipeline parallelism was used. Tensor parallelism accelerated per-layer GEMMs across 8 A100 GPUs via NVLink, while pipeline parallelism split the model into 4 sequential stages. This enabled 32k-token context windows without exceeding memory budgets, sustaining sub-second latency for 90\% of queries during breaking news events:\cite{frugalgpt_2023}.
 
+Listing~\ref{lst:ch06_model_parallelism} shows a configuration for hybrid tensor and pipeline parallelism, matching the \ishtar{} deployment pattern.
+
+\begin{llmlistingbox}{Model parallelism configuration for large models}
+\label{lst:ch06_model_parallelism}
+\begin{lstlisting}[style=springer]
+# Model Parallelism Configuration
+# For LLaMA-3.1-70B deployment with hybrid tensor + pipeline parallelism
+
+model_config:
+  name: "llama-3.1-70b"
+  total_parameters: 70_000_000_000
+  num_layers: 80
+  hidden_size: 8192
+  num_attention_heads: 64
+  vocab_size: 128256
+
+# Tensor Parallelism Configuration
+tensor_parallelism:
+  enabled: true
+  tp_size: 8  # Split attention and FFN across 8 GPUs
+  tp_group:
+    - [0, 1, 2, 3, 4, 5, 6, 7]  # First TP group (NVLink domain)
+  
+  # Communication configuration
+  communication:
+    backend: "nccl"
+    collective_type: "ring_allreduce"
+    enable_async: true
+  
+  # Layer partitioning
+  partition_strategy: "column_parallel"  # Column-parallel for attention
+  attention_partition: "column"
+  ffn_partition: "row"
+
+# Pipeline Parallelism Configuration
+pipeline_parallelism:
+  enabled: true
+  pp_size: 4  # Split model into 4 stages
+  pp_stages:
+    - stage: 0
+      layers: [0, 19]   # Layers 0-19 on GPU group 0
+      gpus: [0, 1]
+    - stage: 1
+      layers: [20, 39]  # Layers 20-39 on GPU group 1
+      gpus: [2, 3]
+    - stage: 2
+      layers: [40, 59]  # Layers 40-59 on GPU group 2
+      gpus: [4, 5]
+    - stage: 3
+      layers: [60, 79]  # Layers 60-79 on GPU group 3
+      gpus: [6, 7]
+  
+  # Microbatch configuration
+  microbatch_size: 4
+  num_microbatches: 8
+  
+  # Pipeline scheduling
+  schedule: "1F1B"  # One Forward One Backward (for training)
+  # For inference: "gpipe" or "interleaved"
+
+# Combined Parallelism (3D Parallelism)
+parallelism_strategy: "hybrid"
+total_gpus: 32  # 8 TP * 4 PP = 32 GPUs total
+
+# Memory Management
+memory:
+  kv_cache_strategy: "paged_attention"
+  max_context_length: 32768
+  kv_cache_memory_gb_per_gpu: 20
+  
+  # Offloading (if needed)
+  cpu_offload: false
+  disk_offload: false
+
+# Communication Topology
+topology:
+  # NVLink connections (within TP group)
+  nvlink_groups:
+    - [0, 1, 2, 3, 4, 5, 6, 7]  # Full mesh via NVSwitch
+  
+  # InfiniBand for cross-node (if multi-node)
+  infiniband_enabled: false
+  
+  # Pipeline stage communication
+  stage_communication:
+    type: "p2p"  # Point-to-point between stages
+    overlap: true  # Overlap communication with computation
+
+# Performance Tuning
+performance:
+  # Batch configuration
+  max_batch_size: 32
+  dynamic_batching: true
+  batching_timeout_ms: 50
+  
+  # Attention optimization
+  attention_implementation: "flash_attention_v2"
+  enable_flash_attention: true
+  
+  # Quantization (if applicable)
+  quantization:
+    enabled: false
+    dtype: "fp16"  # or "int8", "int4"
+  
+  # Compilation
+  enable_torch_compile: true
+  enable_triton_kernels: true
+
+# Monitoring
+monitoring:
+  track_tp_communication_time: true
+  track_pp_bubble_time: true
+  track_memory_usage: true
+  log_latency_breakdown: true
+\end{lstlisting}
+\end{llmlistingbox}
+
 Table~\ref{tab:ch06_distributed_inference} compares common distributed inference techniques and highlights their dominant trade-offs in latency, throughput, and communication cost.
 
 \begin{table}[t]
@@ -764,6 +1163,156 @@ Bin-pack requests by expected prompt+decode tokens onto GPU types (e.g., H100 fo
 
 \subsubsection{Case in \ishtar{}}
 \ishtar{} uses target-tracking autoscaling with $\gamma=0.7$ and predictive pre-warm from newsroom calendars. During major events it scaled from 6 to 28 replicas in $<\!90$\,s while holding p95 TTFT under 300\,ms; scale-in waited for queue-empty and KV-drain signals to avoid churn.
+
+Listing~\ref{lst:ch06_hpa_config} shows a Kubernetes Horizontal Pod Autoscaler configuration that implements LLM-aware autoscaling with custom metrics.
+
+\begin{llmlistingbox}{Kubernetes HPA configuration for LLM autoscaling}
+\label{lst:ch06_hpa_config}
+\begin{lstlisting}[style=springer]
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ishtar-llm-inference-hpa
+  namespace: production
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ishtar-llm-inference
+  
+  minReplicas: 2
+  maxReplicas: 30
+  
+  # Target tracking with multiple metrics
+  metrics:
+  # Primary metric: Token demand rate
+  - type: Pods
+    pods:
+      metric:
+        name: token_demand_rate
+      target:
+        type: AverageValue
+        averageValue: "8000"  # tokens/second per pod
+    
+    # Secondary metric: Queue depth
+  - type: Pods
+    pods:
+      metric:
+        name: request_queue_depth
+      target:
+        type: AverageValue
+        averageValue: "10"  # requests per pod
+  
+  # LLM-specific metrics
+  - type: Pods
+    pods:
+      metric:
+        name: p95_ttft_ms
+      target:
+        type: AverageValue
+        averageValue: "300"  # milliseconds
+  
+  - type: Pods
+    pods:
+      metric:
+        name: gpu_utilization_percent
+      target:
+        type: AverageValue
+        averageValue: "70"  # percent
+  
+  # Behavior configuration
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300  # Wait 5min before scaling down
+      policies:
+      - type: Percent
+        value: 25  # Scale down by max 25% at a time
+        periodSeconds: 60
+      - type: Pods
+        value: 2  # Or scale down by max 2 pods
+        periodSeconds: 60
+      selectPolicy: Min  # Use most conservative policy
+    
+    scaleUp:
+      stabilizationWindowSeconds: 0  # Scale up immediately
+      policies:
+      - type: Percent
+        value: 100  # Can double capacity quickly
+        periodSeconds: 30
+      - type: Pods
+        value: 5  # Or add up to 5 pods
+        periodSeconds: 30
+      selectPolicy: Max  # Use most aggressive policy
+
+---
+# Custom metrics adapter configuration
+apiVersion: v1
+kind: Service
+metadata:
+  name: custom-metrics-api
+  namespace: kube-system
+spec:
+  selector:
+    app: prometheus-adapter
+  ports:
+  - port: 443
+    targetPort: 6443
+
+---
+# Prometheus adapter configuration for custom metrics
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: adapter-config
+  namespace: kube-system
+data:
+  config.yaml: |
+    rules:
+    # Token demand rate metric
+    - seriesQuery: 'ishtar_token_demand_rate{namespace!="",pod!=""}'
+      resources:
+        overrides:
+          namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
+      name:
+        matches: "^ishtar_token_demand_rate"
+        as: "token_demand_rate"
+      metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)'
+    
+    # Queue depth metric
+    - seriesQuery: 'ishtar_request_queue_depth{namespace!="",pod!=""}'
+      resources:
+        overrides:
+          namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
+      name:
+        matches: "^ishtar_request_queue_depth"
+        as: "request_queue_depth"
+      metricsQuery: 'avg(<<.Series>>{<<.LabelMatchers>>}) by (<<.GroupBy>>)'
+    
+    # TTFT metric
+    - seriesQuery: 'ishtar_ttft_ms{namespace!="",pod!=""}'
+      resources:
+        overrides:
+          namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
+      name:
+        matches: "^ishtar_ttft_ms"
+        as: "p95_ttft_ms"
+      metricsQuery: 'histogram_quantile(0.95, sum(rate(<<.Series>>_bucket{<<.LabelMatchers>>}[5m])) by (le, <<.GroupBy>>))'
+    
+    # GPU utilization metric
+    - seriesQuery: 'ishtar_gpu_utilization_percent{namespace!="",pod!=""}'
+      resources:
+        overrides:
+          namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
+      name:
+        matches: "^ishtar_gpu_utilization_percent"
+        as: "gpu_utilization_percent"
+      metricsQuery: 'avg(<<.Series>>{<<.LabelMatchers>>}) by (<<.GroupBy>>)'
+\end{lstlisting}
+\end{llmlistingbox}
 
 \begin{tcolorbox}[
   title={\textbf{Metrics-Based Autoscaling: Practical Recipe}},
@@ -1289,6 +1838,147 @@ Optimize batch size for cost, not just latency: running at maximum throughput (f
 
 \subsubsection{Multi-model serving and routing}
 Often, one can deploy a family of models of different sizes and costs, and route queries intelligently. For example, some requests can be satisfied by a 7B or 13B model, while only a subset truly require a 70B model. A router (possibly a small classifier) predicts which model is sufficient for a given query. By doing so, average cost per query can be brought down significantly, since only a fraction of queries hit the largest model.
+
+Listing~\ref{lst:ch06_routing_config} shows a cost-aware routing configuration that implements hierarchical model selection based on query complexity and cost thresholds.
+
+\begin{llmlistingbox}{Cost-aware routing configuration}
+\label{lst:ch06_routing_config}
+\begin{lstlisting}[style=springer]
+# Cost-Aware Routing Configuration
+routing_version: "1.2.0"
+routing_id: "ishtar_hierarchical_routing"
+
+# Model tiers
+model_tiers:
+  tier_1_lightweight:
+    model_name: "llama-3.1-8b"
+    model_id: "llama-3.1-8b-chat"
+    cost_per_1k_tokens_usd: 0.01
+    latency_p95_ms: 150
+    use_cases:
+      - "simple_classification"
+      - "basic_summarization"
+      - "short_qa"
+    max_context_tokens: 8192
+  
+  tier_2_standard:
+    model_name: "llama-3.1-13b"
+    model_id: "llama-3.1-13b-chat"
+    cost_per_1k_tokens_usd: 0.015
+    latency_p95_ms: 250
+    use_cases:
+      - "complex_qa"
+      - "multi_step_reasoning"
+      - "content_generation"
+    max_context_tokens: 16384
+  
+  tier_3_premium:
+    model_name: "llama-3.1-70b"
+    model_id: "llama-3.1-70b-chat"
+    cost_per_1k_tokens_usd: 0.05
+    latency_p95_ms: 600
+    use_cases:
+      - "critical_fact_checking"
+      - "complex_analysis"
+      - "high_stakes_decisions"
+    max_context_tokens: 32768
+
+# Routing rules
+routing_rules:
+  # Rule 1: Query complexity classifier
+  complexity_based:
+    enabled: true
+    classifier_model: "complexity_classifier_v1.0"
+    features:
+      - "query_length"
+      - "num_questions"
+      - "requires_reasoning"
+      - "domain_complexity"
+    
+    routing_logic:
+      - condition: "complexity_score < 0.3"
+        route_to: "tier_1_lightweight"
+        fallback: "tier_2_standard"
+      
+      - condition: "0.3 <= complexity_score < 0.7"
+        route_to: "tier_2_standard"
+        fallback: "tier_3_premium"
+      
+      - condition: "complexity_score >= 0.7"
+        route_to: "tier_3_premium"
+        fallback: null
+  
+  # Rule 2: Cost budget constraints
+  cost_budget:
+    enabled: true
+    per_request_budget_usd: 0.10
+    per_tenant_daily_budget_usd: 100.0
+    
+    routing_logic:
+      - condition: "estimated_cost > per_request_budget"
+        action: "downgrade_tier"
+        max_downgrades: 2
+  
+  # Rule 3: Latency SLO constraints
+  latency_slo:
+    enabled: true
+    max_latency_ms: 500
+    
+    routing_logic:
+      - condition: "estimated_latency > max_latency_ms"
+        action: "upgrade_tier_if_faster"
+        check_tiers: ["tier_1_lightweight", "tier_2_standard"]
+  
+  # Rule 4: Explicit routing hints
+  explicit_hints:
+    enabled: true
+    hint_field: "routing_hint"
+    
+    routing_map:
+      "critical": "tier_3_premium"
+      "standard": "tier_2_standard"
+      "fast": "tier_1_lightweight"
+      "cost_optimized": "tier_1_lightweight"
+
+# Fallback strategy
+fallback:
+  strategy: "cascade"  # cascade, failover, or reject
+  cascade_order:
+    - "tier_3_premium"
+    - "tier_2_standard"
+    - "tier_1_lightweight"
+  
+  max_retries: 2
+  retry_on_errors:
+    - "timeout"
+    - "rate_limit"
+    - "model_error"
+
+# Cost tracking
+cost_tracking:
+  enabled: true
+  track_per_request: true
+  track_per_tenant: true
+  track_per_model: true
+  
+  alerting:
+    cost_spike_threshold_multiplier: 2.0
+    daily_budget_alert_percent: 0.8
+
+# Monitoring
+monitoring:
+  track_routing_decisions: true
+  track_cost_savings: true
+  track_latency_by_tier: true
+  
+  metrics:
+    - "routing_distribution_by_tier"
+    - "cost_per_request_by_tier"
+    - "latency_p95_by_tier"
+    - "fallback_rate"
+    - "cost_savings_percent"
+\end{lstlisting}
+\end{llmlistingbox}
 
 \subsubsection{Throughput-oriented R\&D}
 Optimize your deployment as if you were optimizing a training job---profile bottlenecks, try quantization, faster kernels, etc. Every 10\% speedup is 10\% cost reduction if you can do the same work with fewer GPU-seconds. Techniques covered in Chapter~\ref{ch:performance} (quantization, pruning, better kernels) directly translate to cost savings when deployed at scale.

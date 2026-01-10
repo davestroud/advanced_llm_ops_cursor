@@ -45,6 +45,33 @@ This chapter develops the infrastructure layer as a first-class component of LLM
 \end{itemize}
 \end{tcolorbox}
 
+% ------------------------------------------------------------
+% Chapter-local numbered boxes for Listings
+% (Defined here to avoid preamble dependencies.)
+% ------------------------------------------------------------
+\makeatletter
+\@ifundefined{c@llmlisting}{%
+  \newcounter{llmlisting}[chapter]
+  \renewcommand{\thellmlisting}{\thechapter.\arabic{llmlisting}}
+}{}
+\@ifundefined{llmlistingbox}{%
+  \newenvironment{llmlistingbox}[1]{%
+    \refstepcounter{llmlisting}%
+    \begin{tcolorbox}[
+      title={\textbf{Listing \thellmlisting: #1}},
+      colback=black!2,
+      colframe=black!50,
+      colbacktitle=black!12,
+      coltitle=black,
+      fonttitle=\bfseries,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=3mm, right=3mm, top=2mm, bottom=2mm
+    ]
+  }{\end{tcolorbox}}%
+}{}
+\makeatother
+
 \section{Introduction}
 \label{sec:ch3-introduction}
 
@@ -188,6 +215,127 @@ From an infrastructure owner's perspective, tracking cost per 1k tokens is very 
 The calculations show that a single A100 at \$3.80/hour generating 8,000 tokens/sec costs about \$0.47 per second, yielding $\sim$\$0.06 per thousand tokens at full utilization. However, if that same A100 only runs at 50\% utilization, the effective cost doubles to $\sim$\$0.12 per thousand tokens. By comparison, a newer H100 at \$5.00/hour generating 12,000 tokens/sec (under optimized settings) costs \$0.416 per second, i.e.\ $\sim$\$0.035 per thousand tokens---nearly half the cost of the underutilized A100~\cite{fabricated-knowledge-costs,lambda-gpt3-cost}. 
 
 This simple math underscores two things: (1) newer hardware can indeed reduce marginal costs if fully utilized, and (2) utilization (keeping devices busy) is critical. Paying for an expensive GPU that is idle half the time is wasteful. Solutions such as auto-scaling and multi-tenancy are aimed precisely at keeping utilization high. Critically, these cost models become \emph{operational constraints} that define the economic boundaries within which the system must operate. These constraints form part of the operational contract: if infrastructure costs exceed budget thresholds, scaling strategies (Chapter~\ref{ch:scaling}) must respond by throttling or cost-aware capacity management.
+
+Listing~\ref{lst:ch03_cost_calculation} provides a Python script for calculating cost per token based on hardware utilization and throughput.
+
+\begin{llmlistingbox}{Cost per token calculation script}
+\label{lst:ch03_cost_calculation}
+\begin{lstlisting}[language=Python, style=springer]
+#!/usr/bin/env python3
+"""
+Calculate cost per token for LLM inference based on GPU utilization
+and throughput metrics.
+"""
+
+from dataclasses import dataclass
+from typing import Optional
+
+@dataclass
+class GPUConfig:
+    """GPU hardware configuration"""
+    name: str
+    hourly_cost_usd: float
+    max_throughput_tokens_per_sec: float
+    memory_gb: int
+
+@dataclass
+class CostResult:
+    """Cost calculation result"""
+    cost_per_1k_tokens_usd: float
+    cost_per_second_usd: float
+    effective_throughput_tokens_per_sec: float
+    utilization_percent: float
+
+def calculate_cost_per_token(
+    gpu: GPUConfig,
+    utilization_percent: float = 100.0,
+    tokens_per_request: Optional[int] = None
+) -> CostResult:
+    """
+    Calculate cost per token based on GPU utilization.
+    
+    Args:
+        gpu: GPU configuration
+        utilization_percent: GPU utilization (0-100)
+        tokens_per_request: Optional average tokens per request
+    
+    Returns:
+        CostResult with cost metrics
+    """
+    if not 0 <= utilization_percent <= 100:
+        raise ValueError("Utilization must be between 0 and 100")
+    
+    # Effective throughput scales with utilization
+    effective_throughput = (
+        gpu.max_throughput_tokens_per_sec * (utilization_percent / 100.0)
+    )
+    
+    # Cost per second
+    cost_per_second = gpu.hourly_cost_usd / 3600.0
+    
+    # Cost per token
+    cost_per_token = cost_per_second / effective_throughput
+    
+    # Cost per 1k tokens
+    cost_per_1k_tokens = cost_per_token * 1000.0
+    
+    return CostResult(
+        cost_per_1k_tokens_usd=cost_per_1k_tokens,
+        cost_per_second_usd=cost_per_second,
+        effective_throughput_tokens_per_sec=effective_throughput,
+        utilization_percent=utilization_percent
+    )
+
+def compare_gpu_options(
+    gpus: list[GPUConfig],
+    utilization_percent: float = 100.0
+) -> dict[str, CostResult]:
+    """
+    Compare cost across multiple GPU options.
+    
+    Args:
+        gpus: List of GPU configurations
+        utilization_percent: Utilization to compare at
+    
+    Returns:
+        Dictionary mapping GPU name to CostResult
+    """
+    results = {}
+    for gpu in gpus:
+        results[gpu.name] = calculate_cost_per_token(
+            gpu, utilization_percent
+        )
+    return results
+
+# Example usage
+if __name__ == "__main__":
+    # Define GPU configurations
+    a100_80gb = GPUConfig(
+        name="A100-80GB",
+        hourly_cost_usd=3.80,
+        max_throughput_tokens_per_sec=8000.0,
+        memory_gb=80
+    )
+    
+    h100_80gb = GPUConfig(
+        name="H100-80GB",
+        hourly_cost_usd=5.00,
+        max_throughput_tokens_per_sec=12000.0,
+        memory_gb=80
+    )
+    
+    # Compare at different utilization levels
+    print("Cost comparison at 100% utilization:")
+    results_100 = compare_gpu_options([a100_80gb, h100_80gb], 100.0)
+    for name, result in results_100.items():
+        print(f"{name}: ${result.cost_per_1k_tokens_usd:.4f} per 1k tokens")
+    
+    print("\nCost comparison at 50% utilization:")
+    results_50 = compare_gpu_options([a100_80gb, h100_80gb], 50.0)
+    for name, result in results_50.items():
+        print(f"{name}: ${result.cost_per_1k_tokens_usd:.4f} per 1k tokens")
+\end{lstlisting}
+\end{llmlistingbox}
 
 \begin{quote}
 \textit{Example.} Google Cloud reports that advanced infrastructure and optimized inference runtimes (e.g., JetStream on TPU v5e) can bring generation costs down to \$0.25–\$0.30 per million tokens, or $\sim$0.00025 per token~\cite{jouppi2023-tpuv4}.
@@ -518,6 +666,154 @@ IaC shines when encapsulating common patterns into reusable modules or templates
 
 By updating a single module (e.g., GPU AMI or IAM role), changes propagate consistently across all environments, reducing error risk and improving compliance.
 
+Listing~\ref{lst:ch03_terraform_module} shows a reusable Terraform module for provisioning GPU-enabled Kubernetes node groups.
+
+\begin{llmlistingbox}{Terraform module for GPU node group}
+\label{lst:ch03_terraform_module}
+\begin{lstlisting}[style=springer]
+# modules/gpu-node-group/main.tf
+# Reusable module for GPU-enabled Kubernetes node groups
+
+variable "cluster_name" {
+  description = "Name of the EKS cluster"
+  type        = string
+}
+
+variable "node_group_name" {
+  description = "Name of the node group"
+  type        = string
+}
+
+variable "instance_type" {
+  description = "EC2 instance type (e.g., g5.2xlarge)"
+  type        = string
+  default     = "g5.2xlarge"
+}
+
+variable "min_size" {
+  description = "Minimum number of nodes"
+  type        = number
+  default     = 1
+}
+
+variable "max_size" {
+  description = "Maximum number of nodes"
+  type        = number
+  default     = 10
+}
+
+variable "desired_size" {
+  description = "Desired number of nodes"
+  type        = number
+  default     = 2
+}
+
+variable "taints" {
+  description = "Kubernetes taints for node isolation"
+  type = list(object({
+    key    = string
+    value  = string
+    effect = string
+  }))
+  default = [{
+    key    = "gpu"
+    value  = "true"
+    effect = "NO_SCHEDULE"
+  }]
+}
+
+variable "labels" {
+  description = "Kubernetes node labels"
+  type        = map(string)
+  default = {
+    nodeType = "gpu"
+    workload = "llm-inference"
+  }
+}
+
+resource "aws_eks_node_group" "gpu_nodes" {
+  cluster_name    = var.cluster_name
+  node_group_name = var.node_group_name
+  node_role_arn   = aws_iam_role.node_group.arn
+  subnet_ids      = var.subnet_ids
+
+  instance_types = [var.instance_type]
+  capacity_type  = "ON_DEMAND"
+
+  scaling_config {
+    desired_size = var.desired_size
+    min_size     = var.min_size
+    max_size     = var.max_size
+  }
+
+  # GPU-specific configuration
+  ami_type       = "AL2_x86_64_GPU"
+  disk_size      = 100
+
+  labels = var.labels
+
+  taint {
+    for_each = { for t in var.taints : t.key => t }
+    key      = each.value.key
+    value    = each.value.value
+    effect   = each.value.effect
+  }
+
+  # Update configuration
+  update_config {
+    max_unavailable = 1
+  }
+
+  # Ensure NVIDIA drivers are installed
+  remote_access {
+    ec2_ssh_key = var.ssh_key_name
+  }
+
+  tags = {
+    Environment = var.environment
+    ManagedBy   = "Terraform"
+    Purpose     = "LLM-Inference"
+  }
+}
+
+# IAM role for node group
+resource "aws_iam_role" "node_group" {
+  name = "${var.node_group_name}-node-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      }
+    }]
+  })
+}
+
+# Attach required policies
+resource "aws_iam_role_policy_attachment" "node_group" {
+  for_each = toset([
+    "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+    "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+  ])
+
+  role       = aws_iam_role.node_group.name
+  policy_arn = each.value
+}
+
+output "node_group_arn" {
+  value = aws_eks_node_group.gpu_nodes.arn
+}
+
+output "node_group_id" {
+  value = aws_eks_node_group.gpu_nodes.id
+}
+\end{lstlisting}
+\end{llmlistingbox}
+
 \subsection{Compliance, Security, and Auditing}
 \label{sec:iac-compliance}
 
@@ -536,6 +832,236 @@ IaC should be integrated into CI/CD pipelines:
   \item \textbf{Multi-Environment Promotion:} Promote changes through dev $\rightarrow$ staging $\rightarrow$ prod with environment-specific inputs and manual approvals for production.
   \item \textbf{Rollback:} Revert to a prior commit and re-apply to restore infrastructure.
 \end{itemize}
+
+Listing~\ref{lst:ch03_iac_pipeline} shows a GitHub Actions workflow that implements CI/CD for Infrastructure-as-Code with validation, security scanning, and multi-environment promotion.
+
+\begin{llmlistingbox}{Infrastructure-as-Code CI/CD pipeline}
+\label{lst:ch03_iac_pipeline}
+\begin{lstlisting}[style=springer]
+# .github/workflows/terraform-infra.yml
+name: Infrastructure CI/CD
+
+on:
+  pull_request:
+    paths:
+      - 'infrastructure/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'infrastructure/**'
+
+env:
+  TF_VERSION: '1.6.0'
+  AWS_REGION: 'us-east-1'
+
+jobs:
+  validate:
+    name: Validate Terraform
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+      
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+      
+      - name: Terraform Init
+        working-directory: ./infrastructure
+        run: terraform init -backend=false
+      
+      - name: Terraform Validate
+        working-directory: ./infrastructure
+        run: terraform validate
+      
+      - name: Run TFLint
+        uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: latest
+      
+      - name: TFLint Check
+        working-directory: ./infrastructure
+        run: tflint --init && tflint
+  
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: ./infrastructure
+          framework: terraform
+          soft_fail: false
+  
+  plan-dev:
+    name: Plan Dev Environment
+    runs-on: ubuntu-latest
+    needs: [validate, security-scan]
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+      
+      - name: Terraform Init
+        working-directory: ./infrastructure
+        run: |
+          terraform init \
+            -backend-config="bucket=ishtar-terraform-state" \
+            -backend-config="key=dev/terraform.tfstate"
+      
+      - name: Terraform Plan
+        working-directory: ./infrastructure
+        run: |
+          terraform plan \
+            -var-file="environments/dev.tfvars" \
+            -out=tfplan \
+            -no-color
+      
+      - name: Upload Plan Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan-dev
+          path: infrastructure/tfplan
+  
+  apply-dev:
+    name: Apply Dev Environment
+    runs-on: ubuntu-latest
+    needs: plan-dev
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: dev
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+      
+      - name: Download Plan Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-plan-dev
+      
+      - name: Terraform Init
+        working-directory: ./infrastructure
+        run: |
+          terraform init \
+            -backend-config="bucket=ishtar-terraform-state" \
+            -backend-config="key=dev/terraform.tfstate"
+      
+      - name: Terraform Apply
+        working-directory: ./infrastructure
+        run: terraform apply -auto-approve tfplan
+  
+  plan-prod:
+    name: Plan Production Environment
+    runs-on: ubuntu-latest
+    needs: apply-dev
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: production
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+      
+      - name: Terraform Init
+        working-directory: ./infrastructure
+        run: |
+          terraform init \
+            -backend-config="bucket=ishtar-terraform-state-prod" \
+            -backend-config="key=prod/terraform.tfstate"
+      
+      - name: Terraform Plan
+        working-directory: ./infrastructure
+        run: |
+          terraform plan \
+            -var-file="environments/prod.tfvars" \
+            -out=tfplan \
+            -no-color
+      
+      - name: Upload Plan Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan-prod
+          path: infrastructure/tfplan
+  
+  apply-prod:
+    name: Apply Production Environment
+    runs-on: ubuntu-latest
+    needs: plan-prod
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: production
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+          aws-region: ${{ env.AWS_REGION }}
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+      
+      - name: Download Plan Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-plan-prod
+      
+      - name: Terraform Init
+        working-directory: ./infrastructure
+        run: |
+          terraform init \
+            -backend-config="bucket=ishtar-terraform-state-prod" \
+            -backend-config="key=prod/terraform.tfstate"
+      
+      - name: Terraform Apply
+        working-directory: ./infrastructure
+        run: terraform apply -auto-approve tfplan
+\end{lstlisting}
+\end{llmlistingbox}
 
 \subsection{Documentation as Code}
 \label{sec:iac-docs}
@@ -604,7 +1130,9 @@ Kubernetes (K8s) has become a popular platform to deploy inference services beca
   Define CPU and memory requests for your LLM pods appropriately, in addition to the GPU count. A single LLM server process might use several CPU cores (for preprocessing, etc.) and a large amount of GPU memory. If these requests are not set, K8s might over-schedule the node with too many pods. For example, if each model server uses 20 GB of GPU memory, you wouldn’t want more than four on an 80 GB GPU. One should enforce a \texttt{nvidia.com/memory} resource if available (some advanced schedulers support this) or at least ensure each pod requests a whole GPU so they don’t share it.
 
   \item \textbf{Liveness/Readiness Probes.}  
-  LLM services should implement health endpoints. A readiness probe can check if the model is loaded and the server is ready to accept traffic; this ensures during rolling updates or autoscaling, new pods only get traffic when they can serve it. A liveness probe might periodically hit a lightweight endpoint to ensure the process hasn’t hung (e.g., due to GPU errors). If the liveness probe fails, Kubernetes will automatically restart the container. This adds resiliency---for example, if an OOM error occurs and the process is unresponsive, the liveness probe triggers a restart rather than hanging indefinitely.
+  LLM services should implement health endpoints. A readiness probe can check if the model is loaded and the server is ready to accept traffic; this ensures during rolling updates or autoscaling, new pods only get traffic when they can serve it. A liveness probe might periodically hit a lightweight endpoint to ensure the process hasn't hung (e.g., due to GPU errors). If the liveness probe fails, Kubernetes will automatically restart the container. This adds resiliency---for example, if an OOM error occurs and the process is unresponsive, the liveness probe triggers a restart rather than hanging indefinitely.
+
+  Listing~\ref{lst:ch03_k8s_deployment} shows a Kubernetes Deployment manifest for an LLM inference service with GPU requirements, health probes, and proper resource constraints.
 
   \item \textbf{Horizontal Pod Autoscaling (HPA).}  
   For inference, one can use K8s autoscalers to add pods based on metrics (like QPS or latency). However, since GPU pods can be expensive, scaling is often managed at the node level instead (cluster autoscaler adding GPU nodes when pods are pending). Either way, Kubernetes can automatically bring up more capacity when load increases. Ensure the cluster-autoscaler is configured to scale the GPU node groups when pods are pending.
@@ -619,6 +1147,136 @@ At minimum, teams should understand the separation between control plane and wor
 When running on partially trusted networks (or exposing inference gateways publicly), hardening guidance around control plane node communication and API-server access becomes operationally relevant~\cite{k8s_control_plane_comm}.
 
 
+
+\begin{llmlistingbox}{Kubernetes Deployment for LLM inference service}
+\label{lst:ch03_k8s_deployment}
+\begin{lstlisting}[style=springer]
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ishtar-llm-inference
+  namespace: production
+  labels:
+    app: ishtar-llm
+    component: inference
+    version: v1.3.0
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ishtar-llm
+      component: inference
+  template:
+    metadata:
+      labels:
+        app: ishtar-llm
+        component: inference
+        version: v1.3.0
+    spec:
+      # Node selection and taints
+      nodeSelector:
+        nodeType: gpu
+        workload: llm-inference
+      tolerations:
+      - key: "gpu"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      
+      # Affinity rules for high availability
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - ishtar-llm
+              topologyKey: kubernetes.io/hostname
+      
+      containers:
+      - name: inference-server
+        image: ishtar/llm-inference:v1.3.0
+        imagePullPolicy: Always
+        
+        # GPU resource requests
+        resources:
+          requests:
+            nvidia.com/gpu: 1
+            memory: "40Gi"
+            cpu: "8"
+          limits:
+            nvidia.com/gpu: 1
+            memory: "45Gi"
+            cpu: "16"
+        
+        # Environment variables
+        env:
+        - name: MODEL_NAME
+          value: "llama-2-13b-chat"
+        - name: MODEL_PATH
+          value: "/models/llama-2-13b"
+        - name: MAX_BATCH_SIZE
+          value: "8"
+        - name: PORT
+          value: "8000"
+        
+        # Health probes
+        livenessProbe:
+          httpGet:
+            path: /health/live
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
+        
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 8000
+          initialDelaySeconds: 120  # Allow model loading time
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        
+        # Volume mounts for model storage
+        volumeMounts:
+        - name: model-storage
+          mountPath: /models
+          readOnly: true
+      
+      volumes:
+      - name: model-storage
+        persistentVolumeClaim:
+          claimName: ishtar-models-pvc
+      
+      # Security context
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ishtar-llm-inference
+  namespace: production
+spec:
+  selector:
+    app: ishtar-llm
+    component: inference
+  ports:
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
+  type: ClusterIP
+\end{lstlisting}
+\end{llmlistingbox}
 
 In summary, Kubernetes provides a powerful abstraction for LLMOps but requires careful tuning of scheduling constraints to effectively use GPU resources. Many distributions (OpenShift, GKE) simplify GPU management further---for example, GKE automatically taints GPU nodes with \texttt{cloud.google.com/gke-nodepool=GPU}, requiring matching tolerations. The key is to integrate Kubernetes with your IaC definitions: define the node groups and taints in IaC, then define your Deployments/StatefulSets with matching tolerations and resource requests.
 

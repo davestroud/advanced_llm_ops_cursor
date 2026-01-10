@@ -182,6 +182,61 @@ In production, it is useful to decompose a ``vector database'' into three respon
 
 Two engineering constraints frequently surprise teams moving from prototypes to production. First, \emph{writes are operationally meaningful}: ingestion often performs high-rate upserts during backfills or news surges, and many ANN structures exhibit different behavior under incremental updates than under bulk builds. Second, \emph{metadata is part of the query plan}: filters can dramatically reduce search work (improving latency), but if filters are applied as post-processing on too-small candidate sets, they can silently reduce recall. Treat index design, metadata schema, and filter behavior as a coupled system and validate them with end-to-end evaluation and tracing.
 
+Listing~\ref{lst:ch08_vector_index_config} shows a production vector index configuration with metadata schema and access control.
+
+\begin{llmlistingbox}{Vector Index Configuration (YAML)}
+\label{lst:ch08_vector_index_config}
+\begin{lstlisting}[style=springer]
+# vector_index_config.yaml
+index_name: "ishtar-news-vector-index"
+description: "Configuration for the primary vector index of news articles."
+
+provider: "pinecone" # Options: "pinecone", "weaviate", "qdrant", "faiss_on_disk"
+environment: "us-east-1-aws"
+dimension: 384 # Matches embedding model output dimension (e.g., MiniLM-L6-v2)
+metric: "cosine" # Similarity metric: "cosine", "euclidean", "dotproduct"
+
+# Pinecone specific configuration
+pinecone_config:
+  cloud: "aws"
+  region: "us-east-1"
+  pod_type: "p1.x1" # Pinecone pod type
+  replicas: 2
+  shards: 1 # Number of shards for the index
+
+# Indexing strategy
+indexing_strategy:
+  batch_size: 100 # Number of vectors to upsert in a single batch
+  update_frequency: "hourly" # How often to update the index
+  rebuild_on_schema_change: true # Rebuild index if metadata schema changes
+
+# Metadata schema for filtering and storage
+metadata_schema:
+  - name: "document_id"
+    type: "string"
+    indexed: true
+  - name: "published_date"
+    type: "datetime"
+    indexed: true
+  - name: "source_outlet"
+    type: "string"
+    indexed: true
+  - name: "category"
+    type: "string"
+    indexed: true
+  - name: "security_clearance"
+    type: "integer"
+    indexed: true
+    default: 0 # Public access
+
+# Access control for retrieval
+access_control:
+  enabled: true
+  default_clearance_level: 0 # Only retrieve public documents by default
+  user_attribute_mapping: "user.security_clearance" # Map user attribute to metadata
+\end{lstlisting}
+\end{llmlistingbox}
+
 \subsection{Retrieval and Candidate Generation}
 Given a query, the retriever produces candidates that may contain answer-bearing evidence. Retrieval can be dense, sparse (BM25), or hybrid, with hybrid systems often improving robustness in heterogeneous enterprise corpora \cite{Thakur2021BEIR,Lin2021SPLADE}. At query time, retrieval frequently includes:
 \begin{itemize}
@@ -239,6 +294,84 @@ These behaviors can be encouraged with prompt instructions and enforced via eval
 \bottomrule
 \end{tabularx}
 \end{table}
+
+Listing~\ref{lst:ch08_rag_pipeline_config} provides a complete end-to-end RAG pipeline configuration integrating all components.
+
+\begin{llmlistingbox}{End-to-End RAG Pipeline Configuration (YAML)}
+\label{lst:ch08_rag_pipeline_config}
+\begin{lstlisting}[style=springer]
+# full_rag_pipeline.yaml
+pipeline_id: "ishtar_e2e_rag_v1"
+description: "Complete RAG pipeline configuration for Ishtar AI."
+
+# 1. Document Ingestion & Preprocessing
+ingestion_config:
+  source_connectors:
+    - name: "news_api_connector"
+      type: "api"
+      endpoint: "https://api.news.com/v1/articles"
+      schedule: "every_15_minutes"
+    - name: "internal_reports_connector"
+      type: "filesystem"
+      path: "/data/internal_reports"
+      schedule: "daily"
+  
+  preprocessing_steps:
+    - name: "html_to_text"
+      processor: "BeautifulSoup"
+    - name: "pii_redaction"
+      processor: "Presidio"
+      config: {entities: ["PERSON", "LOCATION", "PHONE_NUMBER"]}
+    - name: "language_detection"
+      processor: "FastText"
+
+# 2. Chunking
+chunking_config_ref: "lst:ch08_chunking_config" # Reference to Listing 8.1
+
+# 3. Embedding Generation
+embedding_config:
+  model: "sentence-transformers/all-MiniLM-L6-v2"
+  batch_size: 64
+  device: "cuda"
+  cache_enabled: true # Use embedding cache
+
+# 4. Vector Store
+vector_store_config_ref: "lst:ch08_vector_index_config" # Reference to Listing 8.2
+
+# 5. Retrieval
+retrieval_config_ref: "lst:ch08_retrieval_config" # Reference to Listing 8.3
+
+# 6. Context Packing & LLM Generation
+generation_config:
+  llm_model: "llama-3.1-8b-instruct"
+  llm_endpoint: "http://llm-inference-service.llm-namespace.svc.cluster.local:8080"
+  decoding_params:
+    temperature: 0.7
+    top_p: 0.9
+    max_new_tokens: 512
+  
+  prompt_template_id: "news_summary_with_citations_v1"
+  context_window_strategy: "truncate_oldest" # Truncate oldest passages if context too long
+  citation_generation:
+    enabled: true
+    format: "markdown_link" # [1] (Source Title)
+
+# 7. Post-processing & Safety
+post_processing_config:
+  - name: "hallucination_detector"
+    model: "fact_check_classifier_v1"
+    action_on_detect: "flag_for_human_review"
+  - name: "toxicity_filter"
+    model: "perspective_api"
+    action_on_detect: "refuse_response"
+
+# 8. Monitoring & Evaluation
+monitoring_config:
+  telemetry_schema_ref: "lst:ch05_telemetry_schema_json" # Reference to Listing 5.1
+  evaluation_suite_ref: "lst:ch04_eval_harness_config" # Reference to Listing 4.1
+  alerting_config_ref: "lst:ch05_alerting_config" # Reference to Listing 5.4
+\end{lstlisting}
+\end{llmlistingbox}
 
 \section{Architectural Patterns for RAG}
 \label{sec:rag-architectural-patterns-for-rag}
@@ -438,6 +571,56 @@ Token-window chunking with overlap is a common baseline, while structural chunki
 \bottomrule
 \end{tabularx}
 \end{table}
+
+Listing~\ref{lst:ch08_chunking_config} demonstrates a production chunking configuration that supports multiple document types and strategies.
+
+\begin{llmlistingbox}{Chunking Strategy Configuration (YAML)}
+\label{lst:ch08_chunking_config}
+\begin{lstlisting}[style=springer]
+# chunking_config.yaml
+strategy_name: "IshtarNewsChunking"
+description: "Configuration for chunking news articles for RAG."
+
+default_strategy:
+  type: "recursive_text_splitter"
+  chunk_size: 512 # Max tokens per chunk
+  chunk_overlap: 128 # Overlap between consecutive chunks
+  separators: ["\n\n", "\n", ". ", "? ", "! ", "; ", " "] # Prioritized separators
+
+# Specific strategies for different document types
+document_type_strategies:
+  "report":
+    type: "structural_splitter" # Split by sections, headings
+    max_chunk_size: 1024
+    min_chunk_size: 100
+    section_delimiters: ["#", "##", "###"] # Markdown headings
+  "legal_document":
+    type: "sentence_splitter"
+    max_sentences_per_chunk: 5
+    overlap_sentences: 1
+    metadata_to_include: ["case_id", "paragraph_id"]
+  "social_media_post":
+    type: "fixed_size_splitter"
+    chunk_size: 128
+    chunk_overlap: 0
+    add_metadata:
+      source: "social_media"
+      platform: "twitter"
+
+# Global settings
+add_document_metadata:
+  source_system: "IshtarIngestion"
+  processing_date: "{{current_date}}" # Dynamic value
+  embedding_model_version: "sentence-transformers-v1.0"
+
+# Post-chunking filters
+filters:
+  - type: "min_token_length"
+    min_tokens: 50
+  - type: "remove_boilerplate"
+    patterns: ["^Advertisement", "Copyright \\d{4}"]
+\end{lstlisting}
+\end{llmlistingbox}
 
 \subsection{Deduplication and Canonicalization}
 Duplicates waste storage and bias retrieval toward repeated content. Apply:
@@ -696,6 +879,63 @@ Hybrid approaches are widely used in enterprise RAG because user queries mix nat
 
 \subsubsection*{Summary}
 Dense retrieval provides semantic coverage, sparse retrieval provides exact-match precision, and hybrid retrieval improves robustness. Most production systems use hybrid retrieval plus a reranker to construct a small, high-quality evidence set for the generator.
+
+Listing~\ref{lst:ch08_retrieval_config} demonstrates a production hybrid retrieval configuration with query processing and reranking.
+
+\begin{llmlistingbox}{Retrieval Configuration (YAML)}
+\label{lst:ch08_retrieval_config}
+\begin{lstlisting}[style=springer]
+# retrieval_config.yaml
+retrieval_pipeline_id: "ishtar_hybrid_retrieval_v2"
+description: "Configuration for hybrid retrieval in Ishtar AI RAG pipeline."
+
+query_processing:
+  query_expansion:
+    enabled: true
+    method: "llm_rewrite" # Use a small LLM to rewrite/expand query
+    model: "llama-3.1-8b-query-rewriter"
+    num_variants: 3 # Generate 3 variants of the query
+  
+  query_compression:
+    enabled: false # Not enabled by default for initial retrieval
+    method: "hyde" # Hypothetical Document Embedding
+
+retrievers:
+  - name: "dense_vector_search"
+    type: "vector_db"
+    vector_store_index: "ishtar-news-vector-index"
+    top_k: 10 # Retrieve top 10 candidates from vector DB
+    filters:
+      published_date: {gte: "now-30d"} # Only recent documents
+      category: ["politics", "conflict"]
+    weight: 0.7 # Weight in hybrid search
+  
+  - name: "sparse_keyword_search"
+    type: "keyword_search"
+    search_engine: "elasticsearch"
+    index_name: "ishtar-news-keywords"
+    top_k: 20 # Retrieve top 20 candidates from keyword search
+    weight: 0.3 # Weight in hybrid search
+    
+reranker:
+  enabled: true
+  model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  top_n: 5 # Select top 5 after reranking all candidates from retrievers
+  batch_size: 32 # Batch size for reranker inference
+
+post_retrieval_filters:
+  - type: "deduplication"
+    strategy: "embedding_similarity"
+    threshold: 0.95
+  - type: "access_control"
+    policy_engine: "opa" # Open Policy Agent
+    policy_name: "document_access_policy_v1"
+
+monitoring:
+  metrics_enabled: true
+  log_retrieved_documents: true # Log full content of retrieved docs (after redaction)
+\end{lstlisting}
+\end{llmlistingbox}
 
 \begin{table}[t]
 \centering

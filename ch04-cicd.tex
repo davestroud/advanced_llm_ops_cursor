@@ -44,6 +44,33 @@ This chapter treats CI/CD for LLM systems as an end-to-end quality and risk-mana
 \end{itemize}
 \end{tcolorbox}
 
+% ------------------------------------------------------------
+% Chapter-local numbered boxes for Listings
+% (Defined here to avoid preamble dependencies.)
+% ------------------------------------------------------------
+\makeatletter
+\@ifundefined{c@llmlisting}{%
+  \newcounter{llmlisting}[chapter]
+  \renewcommand{\thellmlisting}{\thechapter.\arabic{llmlisting}}
+}{}
+\@ifundefined{llmlistingbox}{%
+  \newenvironment{llmlistingbox}[1]{%
+    \refstepcounter{llmlisting}%
+    \begin{tcolorbox}[
+      title={\textbf{Listing \thellmlisting: #1}},
+      colback=black!2,
+      colframe=black!50,
+      colbacktitle=black!12,
+      coltitle=black,
+      fonttitle=\bfseries,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=3mm, right=3mm, top=2mm, bottom=2mm
+    ]
+  }{\end{tcolorbox}}%
+}{}
+\makeatother
+
 \section{Introduction}
 \label{sec:cicd-intro}
 Continuous Integration and Continuous Deployment (CI/CD) pipelines for Large Language Models (LLMs) inherit traditional DevOps rigor but introduce unique complexities due to non-determinism, model weight size, GPU/TPU requirements, and evolving behavior. This chapter explores cutting-edge practices from research and industry (2023--2025), including novel evaluation, fine-tuning-aware workflows, canary/rollback strategies, observability (LangSmith, LangFuse, LangGraph), structured prompt testing, and CI/CD for multi-agent LLM systems.
@@ -243,6 +270,139 @@ Engineering practices make evaluation sustainable. Data should be versioned and 
 
 Evaluation pipelines benefit from staging. Pre-merge checks should be fast (50--200 samples), deterministic, and include static guards such as prompt injection pattern detectors. Post-merge, medium-scale suites (1--5k examples) should run with rubric-based model judges, retrieval metrics, and safety probes. Nightly or batch jobs can then afford heavy evaluation, including fairness, long-context stress, and adversarial red-teaming. Canary deployments add a final safeguard by evaluating models on a small live-traffic slice with online evaluators such as LangSmith or Phoenix \cite{mlflow_llm_eval,langsmith_eval,phoenix_rag,trulens}.
 
+Listing~\ref{lst:ch04_eval_harness} shows a complete evaluation harness configuration that implements staged evaluation with deterministic inputs and statistical gates.
+
+\begin{llmlistingbox}{Evaluation harness configuration for staged CI/CD}
+\label{lst:ch04_eval_harness}
+\begin{lstlisting}[style=springer]
+# Evaluation Harness Configuration
+eval_version: "2.1.0"
+harness_id: "ishtar_comprehensive_eval"
+
+# Dataset configuration
+datasets:
+  golden_set:
+    path: "datasets/golden/ishtar_v1.0.jsonl"
+    version: "1.0.0"
+    size: 1000
+    slices:
+      - "domain:conflict_reports"
+      - "domain:ngo_bulletins"
+      - "risk_level:high_stakes"
+  
+  regression_set:
+    path: "datasets/regression/ishtar_regression_v2.0.jsonl"
+    version: "2.0.0"
+    size: 5000
+  
+  adversarial_set:
+    path: "datasets/adversarial/red_team_v1.2.jsonl"
+    version: "1.2.0"
+    size: 2000
+
+# Judge configuration
+judges:
+  groundedness_judge:
+    model: "gpt-4"
+    prompt_template: "prompts/judges/groundedness_v1.1.txt"
+    version: "1.1.0"
+    seed: 42
+    temperature: 0.0
+    num_judges: 2
+    tie_breaker: "gpt-4"
+  
+  helpfulness_judge:
+    model: "gpt-4"
+    prompt_template: "prompts/judges/helpfulness_v1.0.txt"
+    version: "1.0.0"
+    seed: 42
+    temperature: 0.0
+  
+  toxicity_detector:
+    model: "perspective_api"
+    version: "v1alpha1"
+    threshold: 0.20
+
+# Metric definitions
+metrics:
+  groundedness:
+    type: "llm_as_judge"
+    judge: "groundedness_judge"
+    aggregation: "mean"
+    threshold: 0.85
+    improvement_threshold: 0.02
+  
+  faithfulness:
+    type: "ragas"
+    metric: "faithfulness"
+    threshold: 0.80
+  
+  citation_coverage:
+    type: "custom"
+    script: "metrics/citation_coverage.py"
+    threshold: 0.90
+  
+  toxicity:
+    type: "detector"
+    detector: "toxicity_detector"
+    aggregation: "max"
+    threshold: 0.20
+    must_not_increase: true
+  
+  latency:
+    type: "system"
+    metric: "p95_ttft_ms"
+    threshold: 600
+
+# Statistical tests
+statistical_tests:
+  groundedness:
+    test: "paired_bootstrap"
+    confidence_level: 0.95
+    min_improvement: 0.5
+    require_ci_excludes_zero: true
+  
+  toxicity:
+    test: "mcnemar"
+    alpha: 0.05
+    require_no_increase: true
+
+# Staging configuration
+stages:
+  pre_merge:
+    datasets: ["golden_set"]
+    sample_size: 200
+    deterministic: true
+    static_guards:
+      - "prompt_injection_patterns"
+      - "pii_detection"
+      - "schema_validation"
+    timeout_minutes: 10
+  
+  post_merge:
+    datasets: ["golden_set", "regression_set"]
+    sample_size: 5000
+    judges: ["groundedness_judge", "helpfulness_judge"]
+    metrics: ["groundedness", "faithfulness", "citation_coverage"]
+    timeout_minutes: 60
+  
+  nightly:
+    datasets: ["golden_set", "regression_set", "adversarial_set"]
+    sample_size: 20000
+    judges: ["groundedness_judge", "helpfulness_judge", "toxicity_detector"]
+    metrics: ["groundedness", "faithfulness", "toxicity", "latency"]
+    timeout_minutes: 240
+
+# Reporting
+reporting:
+  format: "json"
+  include_slices: true
+  include_examples: true
+  publish_to: "s3://ishtar-evals/reports/"
+  artifact_name: "eval_report_{timestamp}.json"
+\end{lstlisting}
+\end{llmlistingbox}
+
 \subsection{Cloud-Native Evaluation Services}
 Recognizing the operational burden, major cloud providers now offer integrated evaluation services. AWS Bedrock includes automatic RAG and model evaluations with human-in-the-loop options; Azure AI Studio provides Prompt Flow Evaluation integrated with monitoring; and Google Cloud offers Vertex AI GenAI Evaluation Service, supporting RAG and agent tool-use evaluation \cite{aws_bedrock_eval,azure_promptflow_eval,vertex_eval}. These services can be incorporated as CI steps or scheduled batch jobs, lowering integration costs for enterprise teams.
 
@@ -251,6 +411,230 @@ Evaluation does not end at deployment. Continuous monitoring is necessary to det
 
 \subsection{Worked Example: CI Gate with Statistical Control}
 A concrete example illustrates how statistical gates work in practice. Suppose a CI system evaluates groundedness on a 1,000-example golden set using two independent model judges and a tie-breaker. A release candidate is accepted if mean groundedness improves by at least 0.5 points and the paired bootstrap 95\% confidence interval excludes zero. In parallel, toxicity must not increase: here, binary toxicity flags are compared with McNemar's test at $\alpha = 0.05$ \cite{mcnemar1947,koehn2004}. If results are borderline, the nightly suite of 5--10k examples is run before release proceeds. These CI gates implement the statistical rigor and evaluation practices detailed in Chapter~\ref{ch:testing}, ensuring that behavioral changes are validated before deployment.
+
+Listing~\ref{lst:ch04_ci_gate} implements the statistical gate logic described above, combining bootstrap confidence intervals and McNemar's test for comprehensive validation.
+
+\begin{llmlistingbox}{CI gate with statistical control}
+\label{lst:ch04_ci_gate}
+\begin{lstlisting}[language=Python, style=springer]
+#!/usr/bin/env python3
+"""
+CI gate implementation with statistical control for LLM evaluation.
+Implements paired bootstrap for continuous metrics and McNemar's test
+for binary safety metrics.
+"""
+
+import numpy as np
+from scipy import stats
+from typing import Tuple, List, Dict
+from dataclasses import dataclass
+
+@dataclass
+class GateResult:
+    """Result of a CI gate check"""
+    passed: bool
+    metric_name: str
+    baseline_mean: float
+    candidate_mean: float
+    improvement: float
+    confidence_interval: Tuple[float, float]
+    p_value: float
+    message: str
+
+def paired_bootstrap_test(
+    baseline_scores: List[float],
+    candidate_scores: List[float],
+    confidence_level: float = 0.95,
+    n_bootstrap: int = 10000,
+    min_improvement: float = 0.5
+) -> GateResult:
+    """
+    Paired bootstrap test for continuous metrics.
+    
+    Args:
+        baseline_scores: Scores from baseline version
+        candidate_scores: Scores from candidate version
+        confidence_level: Confidence level for CI
+        n_bootstrap: Number of bootstrap samples
+        min_improvement: Minimum improvement required
+    
+    Returns:
+        GateResult indicating whether gate passed
+    """
+    if len(baseline_scores) != len(candidate_scores):
+        raise ValueError("Baseline and candidate must have same length")
+    
+    n = len(baseline_scores)
+    differences = np.array(candidate_scores) - np.array(baseline_scores)
+    mean_diff = np.mean(differences)
+    
+    # Bootstrap sampling
+    bootstrap_means = []
+    for _ in range(n_bootstrap):
+        indices = np.random.choice(n, size=n, replace=True)
+        bootstrap_diff = np.mean(differences[indices])
+        bootstrap_means.append(bootstrap_diff)
+    
+    # Calculate confidence interval
+    alpha = 1 - confidence_level
+    lower_bound = np.percentile(bootstrap_means, 100 * alpha / 2)
+    upper_bound = np.percentile(bootstrap_means, 100 * (1 - alpha / 2))
+    
+    # Gate logic: CI must exclude zero AND improvement >= threshold
+    ci_excludes_zero = (lower_bound > 0) or (upper_bound < 0)
+    meets_improvement = mean_diff >= min_improvement
+    
+    passed = ci_excludes_zero and meets_improvement
+    
+    message = (
+        f"Mean improvement: {mean_diff:.3f} "
+        f"(CI: [{lower_bound:.3f}, {upper_bound:.3f}]). "
+        f"Required: {min_improvement:.3f}. "
+        f"CI excludes zero: {ci_excludes_zero}"
+    )
+    
+    return GateResult(
+        passed=passed,
+        metric_name="groundedness",
+        baseline_mean=np.mean(baseline_scores),
+        candidate_mean=np.mean(candidate_scores),
+        improvement=mean_diff,
+        confidence_interval=(lower_bound, upper_bound),
+        p_value=None,  # Bootstrap doesn't provide p-value
+        message=message
+    )
+
+def mcnemar_test(
+    baseline_flags: List[bool],
+    candidate_flags: List[bool],
+    alpha: float = 0.05
+) -> GateResult:
+    """
+    McNemar's test for binary metrics (e.g., toxicity flags).
+    
+    Args:
+        baseline_flags: Binary flags from baseline (True = violation)
+        candidate_flags: Binary flags from candidate
+        alpha: Significance level
+    
+    Returns:
+        GateResult indicating whether gate passed
+    """
+    if len(baseline_flags) != len(candidate_flags):
+        raise ValueError("Baseline and candidate must have same length")
+    
+    # Contingency table
+    both_negative = sum(
+        (not b) and (not c) 
+        for b, c in zip(baseline_flags, candidate_flags)
+    )
+    baseline_positive = sum(
+        b and (not c) 
+        for b, c in zip(baseline_flags, candidate_flags)
+    )
+    candidate_positive = sum(
+        (not b) and c 
+        for b, c in zip(baseline_flags, candidate_flags)
+    )
+    both_positive = sum(
+        b and c 
+        for b, c in zip(baseline_flags, candidate_flags)
+    )
+    
+    # McNemar's test (discordant pairs only)
+    contingency = [[both_negative, baseline_positive],
+                   [candidate_positive, both_positive]]
+    
+    # Calculate statistic
+    b = baseline_positive
+    c = candidate_positive
+    
+    if b + c == 0:
+        # No discordant pairs - no change
+        p_value = 1.0
+        passed = True
+    else:
+        # McNemar's chi-squared statistic
+        chi2 = ((b - c) ** 2) / (b + c)
+        p_value = 1 - stats.chi2.cdf(chi2, df=1)
+        
+        # Gate: must not increase (candidate_positive <= baseline_positive)
+        # AND p-value must be > alpha (not significantly worse)
+        passed = (candidate_positive <= baseline_positive) and (p_value > alpha)
+    
+    baseline_rate = sum(baseline_flags) / len(baseline_flags)
+    candidate_rate = sum(candidate_flags) / len(candidate_flags)
+    
+    message = (
+        f"Baseline violation rate: {baseline_rate:.3f}, "
+        f"Candidate: {candidate_rate:.3f}. "
+        f"McNemar p-value: {p_value:.4f}. "
+        f"Required: no increase (p > {alpha})"
+    )
+    
+    return GateResult(
+        passed=passed,
+        metric_name="toxicity",
+        baseline_mean=baseline_rate,
+        candidate_mean=candidate_rate,
+        improvement=baseline_rate - candidate_rate,
+        confidence_interval=None,
+        p_value=p_value,
+        message=message
+    )
+
+def evaluate_ci_gate(
+    groundedness_baseline: List[float],
+    groundedness_candidate: List[float],
+    toxicity_baseline: List[bool],
+    toxicity_candidate: List[bool]
+) -> Tuple[GateResult, GateResult]:
+    """
+    Evaluate both gates and return results.
+    
+    Returns:
+        Tuple of (groundedness_result, toxicity_result)
+    """
+    groundedness_result = paired_bootstrap_test(
+        groundedness_baseline,
+        groundedness_candidate,
+        min_improvement=0.5
+    )
+    
+    toxicity_result = mcnemar_test(
+        toxicity_baseline,
+        toxicity_candidate
+    )
+    
+    return groundedness_result, toxicity_result
+
+# Example usage
+if __name__ == "__main__":
+    # Simulated evaluation results
+    groundedness_baseline = [0.82, 0.85, 0.79, 0.88, ...]  # 1000 scores
+    groundedness_candidate = [0.87, 0.89, 0.84, 0.91, ...]  # 1000 scores
+    
+    toxicity_baseline = [False, False, True, False, ...]  # 1000 flags
+    toxicity_candidate = [False, False, False, False, ...]  # 1000 flags
+    
+    groundedness_result, toxicity_result = evaluate_ci_gate(
+        groundedness_baseline,
+        groundedness_candidate,
+        toxicity_baseline,
+        toxicity_candidate
+    )
+    
+    print(f"Groundedness gate: {'PASSED' if groundedness_result.passed else 'FAILED'}")
+    print(f"  {groundedness_result.message}")
+    
+    print(f"Toxicity gate: {'PASSED' if toxicity_result.passed else 'FAILED'}")
+    print(f"  {toxicity_result.message}")
+    
+    # Overall gate decision
+    overall_passed = groundedness_result.passed and toxicity_result.passed
+    print(f"\nOverall CI gate: {'PASSED' if overall_passed else 'FAILED'}")
+\end{lstlisting}
+\end{llmlistingbox}
 
 \subsection{Cost Management}
 Evaluation is resource-intensive, and costs must be managed carefully. Retrievals and judge calls should be cached, and pairwise comparisons preferred over absolute scoring. Importance sampling can be used to focus on high-value slices while maintaining statistical power with smaller samples. Heavy evaluation suites are best run nightly or weekly, while pre-merge checks remain small and deterministic.
@@ -308,6 +692,191 @@ Deploying LLMs requires staged risk mitigation:
 \end{table}
 
 This ensures that high-risk LLM behavior can be contained and reversed rapidly \cite{rohan_llmops}.
+
+Listing~\ref{lst:ch04_deployment_strategy} shows an Argo Rollouts configuration implementing canary deployment with LLM-specific analysis gates.
+
+\begin{llmlistingbox}{Canary deployment configuration with LLM analysis gates}
+\label{lst:ch04_deployment_strategy}
+\begin{lstlisting}[style=springer]
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: ishtar-llm-inference
+  namespace: production
+spec:
+  replicas: 5
+  strategy:
+    canary:
+      # Canary traffic percentages
+      steps:
+      - setWeight: 1
+      - pause: {}
+      - setWeight: 5
+      - pause: {duration: 10m}
+      - setWeight: 10
+      - pause: {duration: 15m}
+      - setWeight: 25
+      - pause: {duration: 20m}
+      - setWeight: 50
+      - pause: {duration: 30m}
+      - setWeight: 100
+      
+      # Analysis configuration for LLM-specific metrics
+      analysis:
+        templates:
+        - templateName: llm-quality-analysis
+        args:
+        - name: service-name
+          value: ishtar-llm-inference-canary
+        - name: baseline-name
+          value: ishtar-llm-inference-stable
+        
+        startingStep: 2  # Start analysis at 5% traffic
+        
+        successCondition: |
+          result[0].groundedness.passed == true &&
+          result[0].toxicity.passed == true &&
+          result[0].latency.passed == true
+        
+        failureCondition: |
+          result[0].groundedness.passed == false ||
+          result[0].toxicity.passed == false ||
+          result[0].latency.passed == false
+        
+        metrics:
+        - name: groundedness
+          interval: 5m
+          count: 3
+          successCondition: result[0].mean >= 0.85
+          failureCondition: result[0].mean < 0.80
+          provider:
+            prometheus:
+              address: http://prometheus:9090
+              query: |
+                avg(
+                  ishtar_groundedness_score{
+                    service="ishtar-llm-inference-canary"
+                  }
+                )
+        
+        - name: toxicity
+          interval: 5m
+          count: 3
+          successCondition: result[0].rate <= 0.05
+          failureCondition: result[0].rate > 0.10
+          provider:
+            prometheus:
+              address: http://prometheus:9090
+              query: |
+                sum(
+                  rate(ishtar_toxicity_flags_total{
+                    service="ishtar-llm-inference-canary"
+                  }[5m])
+                ) /
+                sum(
+                  rate(ishtar_requests_total{
+                    service="ishtar-llm-inference-canary"
+                  }[5m])
+                )
+        
+        - name: latency
+          interval: 5m
+          count: 3
+          successCondition: result[0].p95 <= 600
+          failureCondition: result[0].p95 > 1000
+          provider:
+            prometheus:
+              address: http://prometheus:9090
+              query: |
+                histogram_quantile(0.95,
+                  sum(rate(ishtar_ttft_seconds_bucket{
+                    service="ishtar-llm-inference-canary"
+                  }[5m])) by (le)
+                ) * 1000
+  
+  selector:
+    matchLabels:
+      app: ishtar-llm
+      component: inference
+  
+  template:
+    metadata:
+      labels:
+        app: ishtar-llm
+        component: inference
+        version: v1.4.0
+    spec:
+      containers:
+      - name: inference-server
+        image: ishtar/llm-inference:v1.4.0
+        resources:
+          requests:
+            nvidia.com/gpu: 1
+            memory: "40Gi"
+            cpu: "8"
+          limits:
+            nvidia.com/gpu: 1
+            memory: "45Gi"
+            cpu: "16"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: llm-quality-analysis
+  namespace: production
+spec:
+  metrics:
+  - name: groundedness
+    interval: 5m
+    count: 3
+    successCondition: result[0].mean >= 0.85
+    failureCondition: result[0].mean < 0.80
+    provider:
+      prometheus:
+        address: http://prometheus:9090
+        query: |
+          avg(
+            ishtar_groundedness_score{
+              service="{{args.service-name}}"
+            }
+          )
+  
+  - name: toxicity
+    interval: 5m
+    count: 3
+    successCondition: result[0].rate <= 0.05
+    failureCondition: result[0].rate > 0.10
+    provider:
+      prometheus:
+        address: http://prometheus:9090
+        query: |
+          sum(
+            rate(ishtar_toxicity_flags_total{
+              service="{{args.service-name}}"
+            }[5m])
+          ) /
+          sum(
+            rate(ishtar_requests_total{
+              service="{{args.service-name}}"
+            }[5m])
+          )
+  
+  - name: latency
+    interval: 5m
+    count: 3
+    successCondition: result[0].p95 <= 600
+    failureCondition: result[0].p95 > 1000
+    provider:
+      prometheus:
+        address: http://prometheus:9090
+        query: |
+          histogram_quantile(0.95,
+            sum(rate(ishtar_ttft_seconds_bucket{
+              service="{{args.service-name}}"
+            }[5m])) by (le)
+          ) * 1000
+\end{lstlisting}
+\end{llmlistingbox}
 
 \noindent\textbf{From patterns to practice.}
 Shadow testing (\emph{a.k.a.} traffic mirroring or dark launching) provides the lowest-risk starting point: production queries are duplicated to a candidate model, whose outputs are logged but never surfaced to users. For LLMs, shadowing must be \emph{side-effect safe}: tool invocations, database writes, or external API calls should be simulated or routed to sandboxes to avoid unintended actions. Shadow traffic is invaluable for catching domain-specific regressions, style drift, or retrieval mismatches before any user is affected, and it allows calibration of online evaluators (helpfulness, groundedness, safety) against real distributions \cite{mlflow_llm_eval,langsmith_eval,phoenix_rag,trulens}.
@@ -438,6 +1007,161 @@ A practical pattern is \emph{dataset replay as a first-class CI step}. Post--mer
 
 \noindent\textbf{From ``prompting'' to engineered artifacts.}
 As LLM applications mature, free-form prompt crafting gives way to disciplined software practice: prompts are templatized, parameterized, and \emph{versioned} exactly like code. Storing prompts in Git and updating them through pull requests enables code review, diffing, and traceability (who changed which instruction and why). Prompt diffs should be coupled to CI runs that replay representative datasets and report per-slice deltas so reviewers can evaluate impact rather than relying on intuition \cite{promptfoo,openai_evals,lm_harness,langsmith_eval,mlflow_llm_eval}. In this model, a prompt is not merely text but a contract governing structure (schemas), safety (guardrails), and performance (task metrics).
+
+Listing~\ref{lst:ch04_prompt_versioning} demonstrates a versioned prompt template structure with changelog, test suite references, and regression baseline tracking.
+
+\begin{llmlistingbox}{Versioned prompt template with changelog and test references}
+\label{lst:ch04_prompt_versioning}
+\begin{lstlisting}[style=springer]
+{
+  "prompt_id": "ishtar_event_synthesis",
+  "version": "1.4.0",
+  "semantic_version": {
+    "major": 1,
+    "minor": 4,
+    "patch": 0
+  },
+  
+  "metadata": {
+    "created": "2024-01-10T10:00:00Z",
+    "updated": "2024-01-15T14:30:00Z",
+    "author": "ishtar-team",
+    "reviewer": "alice.smith",
+    "pr_number": "1234",
+    "commit_sha": "abc123def456"
+  },
+  
+  "changelog": {
+    "1.4.0": {
+      "date": "2024-01-15",
+      "author": "ishtar-team",
+      "changes": [
+        "Enhanced citation format requirements",
+        "Added explicit neutrality guidelines",
+        "Improved few-shot examples for conflict reporting"
+      ],
+      "breaking": false,
+      "migration_notes": "None - backward compatible"
+    },
+    "1.3.0": {
+      "date": "2024-01-05",
+      "changes": [
+        "Added chain-of-thought structure",
+        "Updated system message tone"
+      ],
+      "breaking": false
+    }
+  },
+  
+  "template": {
+    "system_message": |
+      You are a conflict journalism assistant. Your role is to synthesize
+      information from multiple sources into accurate, neutral summaries.
+      Always cite sources using [Source: ID] format. Maintain journalistic
+      objectivity and avoid speculation. If information conflicts, note the
+      discrepancy and cite all relevant sources.
+    
+    "user_template": |
+      Analyze the following situation step by step:
+      
+      Sources:
+      {retrieved_documents}
+      
+      Question: {user_query}
+      
+      Think through this systematically:
+      1. What are the key facts from the sources?
+      2. What are the different perspectives or claims?
+      3. What are the implications?
+      4. What is the most reliable conclusion based on the evidence?
+    
+    "few_shot_examples": [
+      {
+        "user": "What happened in Region X yesterday?",
+        "assistant": |
+          Let me analyze the available sources:
+          
+          1. **Key facts:**
+             - Official sources [Source: OFF-001] report 2 incidents
+             - NGO sources [Source: NGO-042] report 3 incidents
+             - Both agree on location: northern villages
+          
+          2. **Different perspectives:**
+             - Timeline discrepancy: OFF-001 says 14:00-18:00,
+               NGO-042 says 13:30-19:00
+          
+          3. **Implications:**
+             - Core events confirmed by both sources
+             - Discrepancy suggests possible underreporting
+          
+          4. **Reliable conclusion:**
+             At least 2-3 incidents occurred in northern villages
+             between 13:30-19:00 [Source: OFF-001, Source: NGO-042].
+      }
+    ],
+    
+    "parameters": {
+      "temperature": 0.3,
+      "max_tokens": 800,
+      "top_p": 0.9,
+      "frequency_penalty": 0.1
+    },
+    
+    "output_schema": {
+      "type": "object",
+      "required": ["analysis", "citations"],
+      "properties": {
+        "analysis": {
+          "type": "string",
+          "description": "Synthesized analysis"
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^\\[Source: [A-Z]{3}-\\d{3}\\]$"
+          }
+        }
+      }
+    }
+  },
+  
+  "safety_guardrails": {
+    "refusal_keywords": ["classified", "secret", "confidential"],
+    "citation_required": true,
+    "neutrality_required": true,
+    "max_length_tokens": 1000
+  },
+  
+  "test_suites": {
+    "unit_tests": "tests/prompts/ishtar_event_synthesis_unit_v1.4.yaml",
+    "regression_tests": "tests/prompts/ishtar_event_synthesis_regression_v1.4.yaml",
+    "safety_tests": "tests/prompts/ishtar_event_synthesis_safety_v1.4.yaml",
+    "integration_tests": "tests/prompts/ishtar_event_synthesis_integration_v1.4.yaml"
+  },
+  
+  "regression_baseline": {
+    "version": "1.3.0",
+    "metrics": {
+      "groundedness": 0.87,
+      "citation_coverage": 0.92,
+      "neutrality_score": 0.89
+    },
+    "test_results": "s3://ishtar-evals/baselines/v1.3.0/results.json"
+  },
+  
+  "deployment": {
+    "canary_percentage": 10,
+    "promotion_criteria": {
+      "groundedness": ">= 0.85",
+      "citation_coverage": ">= 0.90",
+      "toxicity_rate": "<= 0.05",
+      "latency_p95_ms": "<= 600"
+    }
+  }
+}
+\end{lstlisting}
+\end{llmlistingbox}
 
 \noindent\textbf{Unit tests for structure and contracts.}
 Before quality metrics, prompts must satisfy structural guarantees. Unit tests check that required placeholders are bound, that role messages are present in the intended order, and that outputs conform to declared schemas (e.g., valid JSON, enumerations, and field types). These tests often combine two layers: (i) \emph{syntactic} checks (template rendering, presence of safety disclaimers, tool-authorization clauses) and (ii) \emph{contract} checks (output validates against a JSON Schema or similar). Contract tests reduce surface for prompt injection and insecure output handling by forcing the model to emit constrained structures that downstream components can safely parse \cite{owasp_llm}. When schemas evolve, backward-compatibility tests protect consuming services and prevent ``silent breaks'' in multi-team environments.
