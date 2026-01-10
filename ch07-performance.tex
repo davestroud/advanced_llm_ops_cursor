@@ -831,7 +831,9 @@ In summary, rigorous performance testing gives confidence that optimizations are
     axis line style={line width=1pt},
     xtick={0,500,1000,1500,2000,2500,3000,3500,4000},
     ytick={0,0.2,0.4,0.5,0.6,0.8,0.95,0.99,1.0},
-    yticklabels={0,0.2,0.4,0.5,0.6,0.8,0.95,0.99,1.0}
+    yticklabels={0,0.2,0.4,0.5,0.6,0.8,0.95,0.99,1.0},
+    yticklabel style={fill=white, inner sep=1pt, text opacity=1.0},
+    xticklabel style={fill=white, inner sep=1pt, text opacity=1.0}
 ]
 % Example CDF (monotone increasing) - enhanced styling
 \addplot+[
@@ -877,11 +879,13 @@ x   y
     color=red!75!black,
     font=\footnotesize\bfseries,
     fill=white,
-    inner sep=2pt,
-    rounded corners=2pt,
+    inner sep=3pt,
+    rounded corners=3pt,
     draw=red!75!black,
-    line width=0.4pt
-] at (axis cs:450,0.52) {p50};
+    line width=0.5pt,
+    anchor=west,
+    align=left
+] at (axis cs:550,0.55) {p50: 420\,ms};
 
 \addplot+[
     domain=0:1,
@@ -902,11 +906,13 @@ x   y
     color=orange!80!black,
     font=\footnotesize\bfseries,
     fill=white,
-    inner sep=2pt,
-    rounded corners=2pt,
+    inner sep=3pt,
+    rounded corners=3pt,
     draw=orange!80!black,
-    line width=0.4pt
-] at (axis cs:2100,0.97) {p95};
+    line width=0.5pt,
+    anchor=west,
+    align=left
+] at (axis cs:2200,0.98) {p95: 2000\,ms};
 
 \addplot+[
     domain=0:1,
@@ -927,11 +933,13 @@ x   y
     color=gray!70!black,
     font=\footnotesize\bfseries,
     fill=white,
-    inner sep=2pt,
-    rounded corners=2pt,
+    inner sep=3pt,
+    rounded corners=3pt,
     draw=gray!70!black,
-    line width=0.4pt
-] at (axis cs:3350,1.01) {p99};
+    line width=0.5pt,
+    anchor=west,
+    align=left
+] at (axis cs:3450,1.02) {p99: 3200\,ms};
 
 \end{axis}
 \end{tikzpicture}
