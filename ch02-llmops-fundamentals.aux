@@ -47,50 +47,50 @@
 \newlabel{sec:ch2-core-components}{{2.3}{60}{Core Components of an LLMOps Pipeline}{section.2.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Throughput vs.\ TTFT trade-off determines batching strategy and capacity planning. Larger batches ($B$) amortize TTFT overhead, improving throughput, but real systems saturate due to kernel/IO limits before reaching theoretical maximums. Understanding this trade-off helps teams optimize batch sizes for their latency requirements. Using Eq.~\ref {eq:throughput} with $N{=}120$ tokens/request and $\tau _1{=}\SI {0.02}{s/token}$ provides planning guidelines, not guarantees.}}{61}{figure.2.4}\protected@file@percent }
 \newlabel{fig:ch02_ttft_throughput}{{2.4}{61}{Throughput vs.\ TTFT trade-off determines batching strategy and capacity planning. Larger batches ($B$) amortize TTFT overhead, improving throughput, but real systems saturate due to kernel/IO limits before reaching theoretical maximums. Understanding this trade-off helps teams optimize batch sizes for their latency requirements. Using Eq.~\ref {eq:throughput} with $N{=}120$ tokens/request and $\tau _1{=}\SI {0.02}{s/token}$ provides planning guidelines, not guarantees}{figure.2.4}{}}
-\newlabel{lst:ch02_pipeline_config}{{2.1}{64}{Core Components of an LLMOps Pipeline}{llmlisting.2.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces LLMOps pipeline stages transform raw data into production-ready LLM systems. Each stage produces specific artifacts and requires distinct operational practices. Understanding these components enables teams to design end-to-end workflows that ensure quality, reliability, and continuous improvement from data acquisition through monitoring and feedback.}}{65}{table.2.2}\protected@file@percent }
-\newlabel{tab:ch02_pipeline_components}{{2.2}{65}{LLMOps pipeline stages transform raw data into production-ready LLM systems. Each stage produces specific artifacts and requires distinct operational practices. Understanding these components enables teams to design end-to-end workflows that ensure quality, reliability, and continuous improvement from data acquisition through monitoring and feedback}{table.2.2}{}}
+\newlabel{lst:ch02_pipeline_config}{{2.1}{63}{Core Components of an LLMOps Pipeline}{llmlisting.2.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Key Concepts in LLMOps}{65}{section.2.4}\protected@file@percent }
 \newlabel{sec:ch2-key-concepts}{{2.4}{65}{Key Concepts in LLMOps}{section.2.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Prompt Engineering}{65}{subsection.2.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces LLMOps pipeline stages transform raw data into production-ready LLM systems. Each stage produces specific artifacts and requires distinct operational practices. Understanding these components enables teams to design end-to-end workflows that ensure quality, reliability, and continuous improvement from data acquisition through monitoring and feedback.}}{66}{table.2.2}\protected@file@percent }
+\newlabel{tab:ch02_pipeline_components}{{2.2}{66}{LLMOps pipeline stages transform raw data into production-ready LLM systems. Each stage produces specific artifacts and requires distinct operational practices. Understanding these components enables teams to design end-to-end workflows that ensure quality, reliability, and continuous improvement from data acquisition through monitoring and feedback}{table.2.2}{}}
 \newlabel{lst:ch02_prompt_cot}{{2.2}{67}{Prompt Engineering}{llmlisting.2.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Retrieval-Augmented Generation (RAG)}{68}{subsection.2.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Tool Calling and Structured Outputs}{68}{subsection.2.4.3}\protected@file@percent }
-\newlabel{sec:ch2-tool-calling}{{2.4.3}{68}{Tool Calling and Structured Outputs}{subsection.2.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Tool Calling and Structured Outputs}{69}{subsection.2.4.3}\protected@file@percent }
+\newlabel{sec:ch2-tool-calling}{{2.4.3}{69}{Tool Calling and Structured Outputs}{subsection.2.4.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3.1}Ops implications}{69}{subsubsection.2.4.3.1}\protected@file@percent }
-\newlabel{lst:ch02_tool_schema}{{2.3}{70}{Ops implications}{llmlisting.2.3}{}}
+\newlabel{lst:ch02_tool_schema}{{2.3}{69}{Ops implications}{llmlisting.2.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Evaluation Metrics}{71}{subsection.2.4.4}\protected@file@percent }
 \newlabel{lst:ch02_evaluation_config}{{2.4}{72}{Evaluation Metrics}{llmlisting.2.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2.3}{\ignorespaces LLM evaluation requires multi-dimensional metrics beyond traditional accuracy. Factual consistency, coherence, safety, and operational metrics each capture different aspects of system quality. Understanding these metric categories enables teams to design comprehensive evaluation frameworks that balance correctness, user experience, safety, and cost efficiency.}}{73}{table.2.3}\protected@file@percent }
-\newlabel{tab:ch02_evaluation_metrics}{{2.3}{73}{LLM evaluation requires multi-dimensional metrics beyond traditional accuracy. Factual consistency, coherence, safety, and operational metrics each capture different aspects of system quality. Understanding these metric categories enables teams to design comprehensive evaluation frameworks that balance correctness, user experience, safety, and cost efficiency}{table.2.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.4.1}Evaluation Frameworks and Tooling}{73}{subsubsection.2.4.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}Human Feedback and Alignment}{74}{subsection.2.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.6}Security, Privacy, and Threat Modeling}{75}{subsection.2.4.6}\protected@file@percent }
-\newlabel{sec:ch2-security}{{2.4.6}{75}{Security, Privacy, and Threat Modeling}{subsection.2.4.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.6.1}Operational controls}{75}{subsubsection.2.4.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Transformer Architecture Foundations for LLMOps}{75}{subsection.2.4.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.1}Self-attention and multi-head attention}{75}{subsubsection.2.4.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.2}Positional encodings}{76}{subsubsection.2.4.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.3}Feed-forward networks (FFN)}{77}{subsubsection.2.4.7.3}\protected@file@percent }
-\newlabel{eq:ffn-formula}{{2.13}{77}{Feed-forward networks (FFN)}{equation.2.13}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.4}Residual connections and LayerNorm}{78}{subsubsection.2.4.7.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.5}Worked example (KV-cache sizing)}{79}{subsubsection.2.4.7.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2.4}{\ignorespaces Parameter memory requirements determine deployment feasibility and hardware selection. Memory scales linearly with parameter count, making large models (70B+) require multi-GPU deployments even with quantization. Understanding these requirements enables teams to plan infrastructure investments and choose appropriate model sizes for their constraints.}}{80}{table.2.4}\protected@file@percent }
-\newlabel{tab:ch02_param_memory}{{2.4}{80}{Parameter memory requirements determine deployment feasibility and hardware selection. Memory scales linearly with parameter count, making large models (70B+) require multi-GPU deployments even with quantization. Understanding these requirements enables teams to plan infrastructure investments and choose appropriate model sizes for their constraints}{table.2.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.6}Rule-of-thumb parameter memory}{80}{subsubsection.2.4.7.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}The LLM Lifecycle}{81}{section.2.5}\protected@file@percent }
-\newlabel{sec:ch2-lifecycle}{{2.5}{81}{The LLM Lifecycle}{section.2.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Governance and Risk Management}{81}{subsection.2.5.1}\protected@file@percent }
-\newlabel{sec:ch2-governance}{{2.5.1}{81}{Governance and Risk Management}{subsection.2.5.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1.1}LLMOps linkage}{81}{subsubsection.2.5.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.6}Tools and Frameworks}{83}{section.2.6}\protected@file@percent }
-\newlabel{sec:ch2-tools}{{2.6}{83}{Tools and Frameworks}{section.2.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.7}Ishtar AI: A Running Example}{84}{section.2.7}\protected@file@percent }
-\newlabel{sec:ch2-ishtar-running-example}{{2.7}{84}{Ishtar AI: A Running Example}{section.2.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.1}A concrete query trace}{84}{subsubsection.2.7.0.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.2}Release gates for reliability}{84}{subsubsection.2.7.0.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.3}{\ignorespaces LLM evaluation requires multi-dimensional metrics beyond traditional accuracy. Factual consistency, coherence, safety, and operational metrics each capture different aspects of system quality. Understanding these metric categories enables teams to design comprehensive evaluation frameworks that balance correctness, user experience, safety, and cost efficiency.}}{74}{table.2.3}\protected@file@percent }
+\newlabel{tab:ch02_evaluation_metrics}{{2.3}{74}{LLM evaluation requires multi-dimensional metrics beyond traditional accuracy. Factual consistency, coherence, safety, and operational metrics each capture different aspects of system quality. Understanding these metric categories enables teams to design comprehensive evaluation frameworks that balance correctness, user experience, safety, and cost efficiency}{table.2.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.4.1}Evaluation Frameworks and Tooling}{74}{subsubsection.2.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}Human Feedback and Alignment}{75}{subsection.2.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.6}Security, Privacy, and Threat Modeling}{76}{subsection.2.4.6}\protected@file@percent }
+\newlabel{sec:ch2-security}{{2.4.6}{76}{Security, Privacy, and Threat Modeling}{subsection.2.4.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.6.1}Operational controls}{76}{subsubsection.2.4.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Transformer Architecture Foundations for LLMOps}{76}{subsection.2.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.1}Self-attention and multi-head attention}{76}{subsubsection.2.4.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.2}Positional encodings}{77}{subsubsection.2.4.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.3}Feed-forward networks (FFN)}{78}{subsubsection.2.4.7.3}\protected@file@percent }
+\newlabel{eq:ffn-formula}{{2.13}{78}{Feed-forward networks (FFN)}{equation.2.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.4}Residual connections and LayerNorm}{79}{subsubsection.2.4.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.5}Worked example (KV-cache sizing)}{80}{subsubsection.2.4.7.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2.4}{\ignorespaces Parameter memory requirements determine deployment feasibility and hardware selection. Memory scales linearly with parameter count, making large models (70B+) require multi-GPU deployments even with quantization. Understanding these requirements enables teams to plan infrastructure investments and choose appropriate model sizes for their constraints.}}{81}{table.2.4}\protected@file@percent }
+\newlabel{tab:ch02_param_memory}{{2.4}{81}{Parameter memory requirements determine deployment feasibility and hardware selection. Memory scales linearly with parameter count, making large models (70B+) require multi-GPU deployments even with quantization. Understanding these requirements enables teams to plan infrastructure investments and choose appropriate model sizes for their constraints}{table.2.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7.6}Rule-of-thumb parameter memory}{81}{subsubsection.2.4.7.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}The LLM Lifecycle}{82}{section.2.5}\protected@file@percent }
+\newlabel{sec:ch2-lifecycle}{{2.5}{82}{The LLM Lifecycle}{section.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Governance and Risk Management}{82}{subsection.2.5.1}\protected@file@percent }
+\newlabel{sec:ch2-governance}{{2.5.1}{82}{Governance and Risk Management}{subsection.2.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1.1}LLMOps linkage}{82}{subsubsection.2.5.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Tools and Frameworks}{84}{section.2.6}\protected@file@percent }
+\newlabel{sec:ch2-tools}{{2.6}{84}{Tools and Frameworks}{section.2.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Ishtar AI: A Running Example}{85}{section.2.7}\protected@file@percent }
+\newlabel{sec:ch2-ishtar-running-example}{{2.7}{85}{Ishtar AI: A Running Example}{section.2.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.1}A concrete query trace}{85}{subsubsection.2.7.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.0.2}Release gates for reliability}{85}{subsubsection.2.7.0.2}\protected@file@percent }
 \@setckpt{ch02-llmops-fundamentals}{
-\setcounter{page}{87}
+\setcounter{page}{88}
 \setcounter{equation}{26}
 \setcounter{enumi}{5}
 \setcounter{enumii}{0}
@@ -145,9 +145,9 @@
 \setcounter{ALG@blocknr}{10}
 \setcounter{ALG@storecount}{0}
 \setcounter{ALG@tmpcounter}{0}
-\setcounter{tcbbreakpart}{1}
+\setcounter{tcbbreakpart}{3}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{13}
+\setcounter{tcolorbox@number}{25}
 \setcounter{tcbrastercolumn}{1}
 \setcounter{tcbrasterrow}{1}
 \setcounter{tcbrasternum}{1}

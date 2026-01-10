@@ -24,7 +24,7 @@
 \@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces LLMOps observability: what to capture beyond traditional monitoring, why it matters, and common failure signals.}}{13}{table.1.1}\protected@file@percent }
 \newlabel{tab:ch01_llm_observability}{{1.1}{13}{LLMOps observability: what to capture beyond traditional monitoring, why it matters, and common failure signals}{table.1.1}{}}
 \newlabel{lst:ch01_observability_schema}{{1.1}{13}{Observability and Debuggability}{llmlisting.1.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.6}Security, Privacy, and New Threat Models}{14}{subsection.1.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.6}Security, Privacy, and New Threat Models}{15}{subsection.1.2.6}\protected@file@percent }
 \newlabel{lst:ch01_tool_schema}{{1.2}{16}{Security, Privacy, and New Threat Models}{llmlisting.1.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Security architecture for tool- and retrieval-augmented LLM systems requires defense-in-depth. Threats (prompt injection, policy bypass, retrieval-based exfiltration, tool misuse, and output leakage) map to concrete controls (input sanitization, instruction hierarchy, retrieval governance, tool sandboxing, and output redaction), with audit-grade tracing as a cross-cutting requirement for incident response and rollback. This threat model guides security architecture decisions and demonstrates why traditional application security is insufficient for LLM systems.}}{18}{figure.1.4}\protected@file@percent }
 \newlabel{fig:ch01_llm_threat_model}{{1.4}{18}{Security architecture\index {security!architecture} for tool- and retrieval-augmented LLM systems requires defense-in-depth\index {defense-in-depth}. Threats (prompt injection, policy bypass\index {policy bypass}, retrieval-based exfiltration\index {data exfiltration}, tool misuse\index {tool misuse}, and output leakage\index {output leakage}) map to concrete controls (input sanitization\index {input sanitization}, instruction hierarchy\index {instruction hierarchy}, retrieval governance\index {retrieval!governance}, tool sandboxing\index {sandboxing}, and output redaction\index {output redaction}), with audit-grade tracing\index {audit trail} as a cross-cutting requirement for incident response and rollback. This threat model guides security architecture decisions and demonstrates why traditional application security is insufficient for LLM systems}{figure.1.4}{}}
@@ -92,20 +92,20 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.1}Design choices}{36}{subsubsection.1.9.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.2}Operational concerns}{36}{subsubsection.1.9.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.3}Example}{36}{subsubsection.1.9.2.3}\protected@file@percent }
-\newlabel{lst:ch01_rag_configuration}{{1.4}{37}{Example}{llmlisting.1.4}{}}
+\newlabel{lst:ch01_rag_configuration}{{1.4}{36}{Example}{llmlisting.1.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.9.3}Deployment and Serving}{38}{subsection.1.9.3}\protected@file@percent }
 \newlabel{subsec:serving}{{1.9.3}{38}{Deployment and Serving}{subsection.1.9.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.1}Serving stack}{38}{subsubsection.1.9.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.2}Release engineering}{38}{subsubsection.1.9.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.3}Example}{38}{subsubsection.1.9.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.4}Evaluation and Testing}{38}{subsection.1.9.4}\protected@file@percent }
-\newlabel{subsec:evaluation}{{1.9.4}{38}{Evaluation and Testing}{subsection.1.9.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.4}Evaluation and Testing}{39}{subsection.1.9.4}\protected@file@percent }
+\newlabel{subsec:evaluation}{{1.9.4}{39}{Evaluation and Testing}{subsection.1.9.4}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.1}Evaluation layers}{39}{subsubsection.1.9.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.2}Regression control}{39}{subsubsection.1.9.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.3}Example}{39}{subsubsection.1.9.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.4}Systems telemetry}{39}{subsubsection.1.9.4.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.5}Model telemetry}{39}{subsubsection.1.9.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.6}Tooling and alerts}{39}{subsubsection.1.9.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.6}Tooling and alerts}{40}{subsubsection.1.9.4.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.7}Example}{40}{subsubsection.1.9.4.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {1.10}LLMOps in Practice: Successes, Failures, and Lessons Learned}{40}{section.1.10}\protected@file@percent }
 \newlabel{sec:llmops-practice}{{1.10}{40}{LLMOps in Practice: Successes, Failures, and Lessons Learned}{section.1.10}{}}
@@ -173,7 +173,7 @@
 \setcounter{ALG@tmpcounter}{0}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
-\setcounter{tcolorbox@number}{7}
+\setcounter{tcolorbox@number}{12}
 \setcounter{tcbrastercolumn}{1}
 \setcounter{tcbrasterrow}{1}
 \setcounter{tcbrasternum}{1}
