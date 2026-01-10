@@ -1138,10 +1138,10 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 \node[router, right=of q] (route) {RAG Router\\(Query parse + features)};
 
 % Row 2: Hot tier + cache
-% Hot Tier Index box
-\node[hot, below=12mm of route] (hotidx) {Hot Tier Index};
+% Hot Tier Index box - increased distance to fit label text
+\node[hot, below=20mm of route] (hotidx) {Hot Tier Index};
 % Hot Tier Index label above the box
-\node[above=3mm of hotidx, font=\footnotesize, text=black!70] (hotlabel) {(in-memory / GPU)};
+\node[above=4mm of hotidx, font=\footnotesize, text=black!70] (hotlabel) {(in-memory / GPU)};
 \node[stor, right=of hotidx, xshift=10mm] (embcache) {Precomputed Embedding Cache\\(hash(content) $\to$ vector)};
 
 % Row 3: Sharded backend
