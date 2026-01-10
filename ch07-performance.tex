@@ -597,6 +597,19 @@ Leveraging FP16/BF16 for faster computation without noticeable accuracy loss.
 
 Mixed precision refers to using lower precision arithmetic (16-bit floats, or even 8-bit in some parts) while preserving enough accuracy. Key considerations include:
 
+\begin{tcolorbox}[
+  title={\textbf{Mixed Precision Considerations}},
+  colback=blue!5,
+  colframe=blue!40!black,
+  colbacktitle=blue!20,
+  coltitle=black,
+  fonttitle=\bfseries,
+  boxrule=0.7pt,
+  arc=4pt,
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  before skip=6pt,
+  after skip=6pt
+]
 \begin{itemize}
 \item \textbf{Hardware support:} Modern GPUs (NVIDIA V100/A100/H100, etc.) have specialized hardware (Tensor Cores) that can multiply matrices in FP16/BF16 very quickly compared to FP32. By default, nearly all LLM inference is done in FP16 these days, as FP32 offers no significant quality benefit for already-trained models but runs slower.
 
@@ -610,6 +623,7 @@ Mixed precision refers to using lower precision arithmetic (16-bit floats, or ev
 
 \item \textbf{\ishtar{} experience:} The model was fine-tuned and served entirely in FP16 from the start, which gave good performance. When we later moved to H100 GPUs, we switched to BF16 (since H100 has better BF16 support) and saw no change in outputs, and it integrated nicely with potential FP8 usage. We also experimented with an \emph{FP8+FP16 mixed} mode on H100 (using FP8 for matrix multiply and FP16 for residual additions, etc.), which further improved speed, though at the time we needed to ensure the model's accuracy remained acceptable. It is likely that production will move toward 8-bit activations in the near future for additional gains.
 \end{itemize}
+\end{tcolorbox}
 
 \subsection{Concurrency Tuning}
 Adjusting thread counts, streams, and batch sizes to match GPU capacity.
