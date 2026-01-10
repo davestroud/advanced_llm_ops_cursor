@@ -1140,8 +1140,6 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 % Row 2: Hot tier + cache
 % Hot Tier Index box - increased distance to fit label text
 \node[hot, below=20mm of route] (hotidx) {Hot Tier Index};
-% Hot Tier Index label above the box
-\node[above=4mm of hotidx, font=\footnotesize, text=black!70] (hotlabel) {(in-memory / GPU)};
 \node[stor, right=of hotidx, xshift=10mm] (embcache) {Precomputed Embedding Cache\\(hash(content) $\to$ vector)};
 
 % Row 3: Sharded backend
@@ -1156,15 +1154,16 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 % Edges: query path
 \draw[arr] (q) -- (route);
 
-% Hot tier lookup
+% Hot tier lookup - labels positioned to the right of the arrow line
 \draw[arr] (route) -- (hotidx);
-% "first lookup" label positioned above the (in-memory / GPU) label
-\node[above=2mm of hotlabel, font=\footnotesize, text=black!70] {first lookup};
+% Labels positioned to the right of the arrow line
+\node[right=3mm of route, font=\footnotesize, text=black!70, anchor=west] (lookuplabel) {first lookup};
+\node[right=3mm of route, font=\footnotesize, text=black!70, anchor=west, below=3mm of lookuplabel] {(in-memory / GPU)};
 
 % Hit path from hot to merge (green for success) - curve around Shard 2 to avoid going through it
 \draw[arrhit] (hotidx) .. controls +(0,-8mm) and +(0,8mm) .. (merge);
-% "hit" label positioned to the right of the arrow line
-\node[right=3mm of sh2, font=\footnotesize\bfseries, text=green!70!black] {hit};
+% "hit" label positioned below Shard 2, to the right of the arrow line
+\node[below=2mm of sh2, right=3mm, font=\footnotesize\bfseries, text=green!70!black] {hit};
 
 % Miss path to shards (red dashed for miss)
 \draw[arrmiss] (hotidx.west) .. controls +(-2.5,0.0) and +(0.0,1.5) .. node[pos=0.3,above,font=\footnotesize\bfseries]{miss} (sh1.north);
