@@ -111,51 +111,68 @@ The following sections explore concrete strategies for optimization across three
 \begin{tikzpicture}[font=\small]
 \begin{axis}[
     width=0.95\linewidth,
-    height=6.5cm,
-    ybar=0.3,
-    bar width=14pt,
+    height=7cm,
+    ybar=0.35,
+    bar width=16pt,
     symbolic x coords={p50,p95,p99},
     xtick=data,
     ymin=0, ymax=3500,
     ylabel={Latency (ms)},
     xlabel={Percentile},
     legend style={
-        at={(0.5,1.02)},
+        at={(0.5,1.03)},
         anchor=south,
         draw=none,
         fill=none,
         font=\small,
         cells={anchor=center},
         legend columns=2,
-        column sep=15pt
+        column sep=20pt,
+        row sep=3pt
     },
     nodes near coords,
     nodes near coords align={vertical},
     nodes near coords style={font=\footnotesize\bfseries},
     grid=major,
-    grid style={gray!25, line width=0.3pt},
-    minor grid style={gray!10, line width=0.2pt},
+    grid style={gray!30, line width=0.4pt},
+    minor grid style={gray!15, line width=0.25pt},
     minor y tick num=4,
     tick align=outside,
     tick pos=left,
-    xlabel style={font=\small\bfseries, yshift=2pt},
-    ylabel style={font=\small\bfseries, xshift=-2pt},
+    xlabel style={font=\small\bfseries, yshift=3pt},
+    ylabel style={font=\small\bfseries, xshift=-3pt},
     ticklabel style={font=\small},
-    axis line style={line width=0.8pt},
-    xticklabel style={font=\small\bfseries}
+    axis line style={line width=1pt},
+    xticklabel style={font=\small\bfseries},
+    ytick={0,500,1000,1500,2000,2500,3000,3500},
+    yticklabels={0,500,1000,1500,2000,2500,3000,3500}
 ]
 \addplot+[
-    fill=red!70!black,
-    draw=red!80!black,
-    line width=0.6pt,
-    every node near coord/.append style={xshift=4pt}
+    fill=red!75!black,
+    draw=red!85!black,
+    line width=0.8pt,
+    every node near coord/.append style={
+        xshift=5pt,
+        fill=white,
+        inner sep=1.5pt,
+        rounded corners=2pt,
+        draw=red!85!black,
+        line width=0.3pt
+    }
 ] coordinates {(p50,780) (p95,1800) (p99,3200)};
 \addlegendentry{Before (baseline)}
 
 \addplot+[
-    fill=blue!70!black,
-    draw=blue!80!black,
-    line width=0.6pt
+    fill=blue!75!black,
+    draw=blue!85!black,
+    line width=0.8pt,
+    every node near coord/.append style={
+        fill=white,
+        inner sep=1.5pt,
+        rounded corners=2pt,
+        draw=blue!85!black,
+        line width=0.3pt
+    }
 ] coordinates {(p50,420) (p95,950) (p99,1800)};
 \addlegendentry{After (batching + KV + quant.)}
 
