@@ -1254,10 +1254,10 @@ Fig.~\ref{fig:ch06_geo_scaling_inset} depicts a typical multi-region serving top
 % Schematic world frame (purely illustrative)
 \node[draw=none, rounded corners, minimum width=100mm, minimum height=45mm, fill=gray!2] (frame) {};
 
-% Regions (left-to-right placement) - with colors, increased spacing
-\node[region, fill=blue!15, anchor=west] (na) at ($(frame.west)+(0.4,0)$) {North America\\(NA cluster)};
+% Regions (left-to-right placement) - with colors, increased spacing for visibility
+\node[region, fill=blue!15, anchor=west] (na) at ($(frame.west)+(0.2,0)$) {North America\\(NA cluster)};
 \node[region, fill=green!15] (eu) at ($(frame.center)+(0,1.0)$) {Europe\\(EU cluster)};
-\node[region, fill=orange!15, anchor=east] (ap) at ($(frame.east)+(-0.4,0)$) {Asia-Pacific\\(APAC cluster)};
+\node[region, fill=orange!15, anchor=east] (ap) at ($(frame.east)+(-0.2,0)$) {Asia-Pacific\\(APAC cluster)};
 
 % Users (example clients) - matching region colors
 \node[user, fill=blue!8, above=of na] (userna) {Users (NA)};
@@ -1269,9 +1269,9 @@ Fig.~\ref{fig:ch06_geo_scaling_inset} depicts a typical multi-region serving top
 \draw[arr] (usereu) -- node[pos=0.5,right]{nearest} (eu.north);
 \draw[arr] (userap) -- node[pos=0.5,right]{nearest} (ap.north);
 
-% Failover paths (between regional clusters) - increased spacing for visibility
-\draw[fail] (na.east) .. controls +(1.5,0.5) and +(-1.5,0.5) .. (eu.west) node[pos=0.52,above,sloped] {\small failover};
-\draw[fail] (eu.east) .. controls +(1.5,-0.5) and +(-1.5,-0.5) .. (ap.west) node[pos=0.52,below,sloped] {\small failover};
+% Failover paths (between regional clusters) - increased spacing for better visibility
+\draw[fail] (na.east) .. controls +(2.0,0.8) and +(-2.0,0.8) .. (eu.west) node[pos=0.52,above,sloped,yshift=2pt] {\small failover};
+\draw[fail] (eu.east) .. controls +(2.0,-0.8) and +(-2.0,-0.8) .. (ap.west) node[pos=0.52,below,sloped,yshift=-2pt] {\small failover};
 \draw[fail] (na.south east) .. controls +(1.4,-1.2) and +(-1.4,-1.2) .. (ap.south west) node[pos=0.5,below,sloped] {\small overflow};
 
 % Compliance / geofencing note - centered below the frame
