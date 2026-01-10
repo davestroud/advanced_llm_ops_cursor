@@ -153,6 +153,40 @@ A production RAG system\index{RAG!system} consists of \emph{offline} components 
 
 The remainder of this section walks through the main building blocks and the operational concerns attached to each.
 
+\begin{table}[t]
+\centering
+\small
+\caption{RAG system components span offline ingestion and online query processing. Understanding component responsibilities and operational concerns enables teams to design robust, scalable RAG pipelines. Each component introduces specific failure modes and optimization opportunities that must be addressed in production deployments.}
+\label{tab:ch08_rag_components}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Component} & \textbf{Offline/Online} & \textbf{Key Responsibilities} & \textbf{Operational Concerns} \\
+\midrule
+\textbf{Document Ingestion} & Offline & Acquisition (file sync, crawlers, APIs); normalization (HTML/PDF extraction); quality gates (deduplication, spam filtering); metadata enrichment (timestamps, ACL tags, reliability scores) & Freshness SLOs; parsing failures; ingestion lag; source reliability tracking \\
+\addlinespace[2pt]
+\textbf{Chunking} & Offline & Preserve semantic coherence; construct passages with sufficient context; structural vs.\ token-window strategies & Chunk size/overlap tuning; versioning alongside embedding model; retrieval quality impact \\
+\addlinespace[2pt]
+\textbf{Embedding Generation} & Offline & Map chunks to vector representations; batch processing for efficiency; maintain model consistency & Embedding model versioning; recomputation on model/chunking changes; batch throughput optimization \\
+\addlinespace[2pt]
+\textbf{Vector Store} & Offline/Online & ANN index (HNSW/IVF); metadata store for filtering; stable identifier layer (doc $\rightarrow$ chunk $\rightarrow$ passage) & Write performance under incremental updates; filter behavior (pre vs.\ post); sharding and replication; identifier stability \\
+\addlinespace[2pt]
+\textbf{Query Processing} & Online & Query preprocessing (spell correction, normalization); query rewriting/expansion; metadata filtering & Latency overhead; query transformation quality; filter selectivity impact \\
+\addlinespace[2pt]
+\textbf{Retrieval} & Online & Dense/sparse/hybrid retrieval; top-$k$ candidate generation; recall optimization & Retrieval latency (p50/p95/p99); recall@K on golden sets; hybrid fusion tuning \\
+\addlinespace[2pt]
+\textbf{Reranking \& Filtering} & Online & Precision optimization; cross-encoder or late-interaction reranking; duplicate removal; access control enforcement & Reranker latency; precision/recall trade-offs; filter impact on recall \\
+\addlinespace[2pt]
+\textbf{Context Packing} & Online & Order passages; deduplicate; add separators and source identifiers; fit token budget & Token efficiency; passage ordering impact on quality; citation link preservation \\
+\addlinespace[2pt]
+\textbf{Generation} & Online & Produce answer conditioned on retrieved context; prioritize faithfulness; cite sources; abstain when evidence missing & Generation latency; faithfulness to retrieved passages; citation accuracy; abstention rate monitoring \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \subsection{Document Ingestion}
 Document ingestion\index{ingestion!document} collects, normalizes, and enriches knowledge sources to populate the retrieval corpus\index{corpus}. In production, ingestion is not a one-time job: it is a continuously running subsystem responsible for freshness\index{freshness}, quality\index{quality}, and provenance\index{provenance} \cite{Pryon2023}. Typical steps include:
 \begin{itemize}
@@ -260,40 +294,6 @@ Finally, the LLM generates an answer conditioned on retrieved context. In eviden
     \item explicitly abstain ("I don't know") when evidence is missing.
 \end{itemize}
 These behaviors can be encouraged with prompt instructions and enforced via evaluation gates (Section~\ref{sec:rag-metrics}).
-
-\begin{table}[t]
-\centering
-\small
-\caption{RAG system components span offline ingestion and online query processing. Understanding component responsibilities and operational concerns enables teams to design robust, scalable RAG pipelines. Each component introduces specific failure modes and optimization opportunities that must be addressed in production deployments.}
-\label{tab:ch08_rag_components}
-\setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.3}
-\rowcolors{2}{gray!5}{white}
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
-\toprule
-\rowcolor{gray!10}
-\textbf{Component} & \textbf{Offline/Online} & \textbf{Key Responsibilities} & \textbf{Operational Concerns} \\
-\midrule
-\textbf{Document Ingestion} & Offline & Acquisition (file sync, crawlers, APIs); normalization (HTML/PDF extraction); quality gates (deduplication, spam filtering); metadata enrichment (timestamps, ACL tags, reliability scores) & Freshness SLOs; parsing failures; ingestion lag; source reliability tracking \\
-\addlinespace[2pt]
-\textbf{Chunking} & Offline & Preserve semantic coherence; construct passages with sufficient context; structural vs.\ token-window strategies & Chunk size/overlap tuning; versioning alongside embedding model; retrieval quality impact \\
-\addlinespace[2pt]
-\textbf{Embedding Generation} & Offline & Map chunks to vector representations; batch processing for efficiency; maintain model consistency & Embedding model versioning; recomputation on model/chunking changes; batch throughput optimization \\
-\addlinespace[2pt]
-\textbf{Vector Store} & Offline/Online & ANN index (HNSW/IVF); metadata store for filtering; stable identifier layer (doc $\rightarrow$ chunk $\rightarrow$ passage) & Write performance under incremental updates; filter behavior (pre vs.\ post); sharding and replication; identifier stability \\
-\addlinespace[2pt]
-\textbf{Query Processing} & Online & Query preprocessing (spell correction, normalization); query rewriting/expansion; metadata filtering & Latency overhead; query transformation quality; filter selectivity impact \\
-\addlinespace[2pt]
-\textbf{Retrieval} & Online & Dense/sparse/hybrid retrieval; top-$k$ candidate generation; recall optimization & Retrieval latency (p50/p95/p99); recall@K on golden sets; hybrid fusion tuning \\
-\addlinespace[2pt]
-\textbf{Reranking \& Filtering} & Online & Precision optimization; cross-encoder or late-interaction reranking; duplicate removal; access control enforcement & Reranker latency; precision/recall trade-offs; filter impact on recall \\
-\addlinespace[2pt]
-\textbf{Context Packing} & Online & Order passages; deduplicate; add separators and source identifiers; fit token budget & Token efficiency; passage ordering impact on quality; citation link preservation \\
-\addlinespace[2pt]
-\textbf{Generation} & Online & Produce answer conditioned on retrieved context; prioritize faithfulness; cite sources; abstain when evidence missing & Generation latency; faithfulness to retrieved passages; citation accuracy; abstention rate monitoring \\
-\bottomrule
-\end{tabularx}
-\end{table}
 
 Listing~\ref{lst:ch08_rag_pipeline_config} provides a complete end-to-end RAG pipeline configuration integrating all components.
 
