@@ -787,11 +787,9 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 
 % ================== (A) CLOUD-NATIVE (Top) ==================
 \node[cloud, label={[lbl, above=10mm]Cloud-Native}] (cloudA) at (0, 80mm) {};
-\node[vpc, minimum width=44mm, minimum height=46mm] (vpcA) at (cloudA.center) {};
-\node[font=\small\bfseries, above=4mm of vpcA.north] {VPC};
+\node[vpc, minimum width=44mm, minimum height=46mm] (vpcA) at (cloudA.center) {VPC};
 \node[lb, align=center] (apigwA) at ($(vpcA.north) + (0, -11mm)$) {API\\Gateway};
-\node[k8s, minimum width=40mm, minimum height=16mm] (k8sA) at ($(vpcA.center) + (0, 2mm)$) {};
-\node[font=\small\bfseries, above=4mm of k8sA.north] {K8s Cluster};
+\node[k8s, minimum width=40mm, minimum height=16mm] (k8sA) at ($(vpcA.center) + (0, 2mm)$) {K8s Cluster};
 \node[gpu] (gpuA1) at ($(k8sA.south) + (-14mm, -14mm)$) {GPU};
 \node[gpu] (gpuA2) at ($(k8sA.south) + (14mm, -14mm)$) {GPU};
 \node[store, align=center] (objA) at ($(vpcA.south) + (0, -16mm)$) {Object\\Store};
@@ -801,18 +799,15 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 
 % ================== (B) HYBRID (Middle) ==================
 \node[onprem, label={[lbl, above=10mm]Hybrid}] (premB) at (-42mm, 0) {};
-\node[k8s, minimum width=40mm, minimum height=16mm] (k8sBprem) at ($(premB.center) + (0, 8mm)$) {};
-\node[font=\small\bfseries, above=4mm of k8sBprem.north] {On-Prem K8s};
+\node[k8s, minimum width=40mm, minimum height=16mm] (k8sBprem) at ($(premB.center) + (0, 8mm)$) {On-Prem K8s};
 \node[gpu] (gpuB1) at ($(k8sBprem.south) + (-14mm, -14mm)$) {GPU};
 \node[gpu] (gpuB2) at ($(k8sBprem.south) + (14mm, -14mm)$) {GPU};
 \node[store, align=center] (vecB) at ($(premB.south) + (0, -16mm)$) {Vector\\DB};
 
 \node[cloud] (cloudB) at (42mm, 0) {};
-\node[vpc, minimum width=44mm, minimum height=46mm] (vpcB) at (cloudB.center) {};
-\node[font=\small\bfseries, above=4mm of vpcB.north] {Cloud VPC};
+\node[vpc, minimum width=44mm, minimum height=46mm] (vpcB) at (cloudB.center) {Cloud VPC};
 \node[lb, align=center] (apigwB) at ($(vpcB.north) + (0, -11mm)$) {API\\Gateway};
-\node[k8s, minimum width=40mm, minimum height=16mm] (k8sBcloud) at ($(vpcB.center) + (0, 2mm)$) {};
-\node[font=\small\bfseries, above=4mm of k8sBcloud.north] {Cloud K8s};
+\node[k8s, minimum width=40mm, minimum height=16mm] (k8sBcloud) at ($(vpcB.center) + (0, 2mm)$) {Cloud K8s};
 \node[gpu] (gpuB3) at ($(k8sBcloud.south) + (-14mm, -14mm)$) {GPU};
 \node[gpu] (gpuB4) at ($(k8sBcloud.south) + (14mm, -14mm)$) {GPU};
 
@@ -829,17 +824,13 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 \node[cloud, label={[lbl, above=10mm]Multi-Cluster / Multi-Region}] (cloudC) at (0, -80mm) {};
 \node[lb, align=center] (glbC) at ($(cloudC.north) + (0, -10mm)$) {Global\\LB/DNS};
 
-\node[vpc, minimum width=40mm, minimum height=46mm] (vpcC1) at ($(cloudC.center) + (-18mm, -5mm)$) {};
-\node[font=\small\bfseries, above=4mm of vpcC1.north] {Region A};
-\node[k8s, minimum width=36mm, minimum height=16mm] (k8sC1) at ($(vpcC1.center) + (0, 8mm)$) {};
-\node[font=\small\bfseries, above=4mm of k8sC1.north] {K8s A};
+\node[vpc, minimum width=40mm, minimum height=46mm] (vpcC1) at ($(cloudC.center) + (-18mm, -5mm)$) {Region A};
+\node[k8s, minimum width=36mm, minimum height=16mm] (k8sC1) at ($(vpcC1.center) + (0, 8mm)$) {K8s A};
 \node[gpu] (gpuC1) at ($(k8sC1.south) + (-14mm, -14mm)$) {GPU};
 \node[gpu] (gpuC2) at ($(k8sC1.south) + (14mm, -14mm)$) {GPU};
 
-\node[vpc, minimum width=40mm, minimum height=46mm] (vpcC2) at ($(cloudC.center) + (18mm, -5mm)$) {};
-\node[font=\small\bfseries, above=4mm of vpcC2.north] {Region B};
-\node[k8s, minimum width=36mm, minimum height=16mm] (k8sC2) at ($(vpcC2.center) + (0, 8mm)$) {};
-\node[font=\small\bfseries, above=4mm of k8sC2.north] {K8s B};
+\node[vpc, minimum width=40mm, minimum height=46mm] (vpcC2) at ($(cloudC.center) + (18mm, -5mm)$) {Region B};
+\node[k8s, minimum width=36mm, minimum height=16mm] (k8sC2) at ($(vpcC2.center) + (0, 8mm)$) {K8s B};
 \node[gpu] (gpuC3) at ($(k8sC2.south) + (-14mm, -14mm)$) {GPU};
 \node[gpu] (gpuC4) at ($(k8sC2.south) + (14mm, -14mm)$) {GPU};
 
