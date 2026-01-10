@@ -144,6 +144,32 @@ Safety refers to preventing harmful, toxic, or misleading outputs. While overlap
 
 In essence, safety is about layered defense: preventive measures (filters, policies, training) combined with responsive measures (incident monitoring, user reporting, rapid iteration). As industry reports emphasize, ensuring safety and compliance is as important as ensuring task proficiency \cite{bcg2023}. Safety gates are integrated into CI/CD pipelines (Chapter~\ref{ch:cicd}), agent security controls are enforced in multi-agent systems (Chapter~\ref{ch:multiagent}), and safety testing is validated through evaluation frameworks (Chapter~\ref{ch:testing}).
 
+\begin{table}[t]
+\centering
+\small
+\caption{Ethical principles translate into concrete operational mechanisms and compliance requirements. Each principle requires specific tools, techniques, and governance structures to be effective in production. Understanding these mappings enables teams to implement responsible LLMOps practices that align with external baselines and regulatory requirements.}
+\label{tab:ch11_ethical_principles}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Principle} & \textbf{Operational Mechanisms} & \textbf{Tools/Techniques} & \textbf{Compliance Requirements} \\
+\midrule
+\textbf{Transparency} & Model cards; data provenance documentation; user disclosure (AI-generated labels); policy publication & Model card templates \cite{mitchell_model_cards}; datasheets for datasets \cite{gebru_datasheets}; citation systems (RAG); content labeling & EU AI Act (transparency obligations); model documentation standards; user notification requirements \\
+\addlinespace[2pt]
+\textbf{Accountability} & Governance structures (AI Ethics Officers, Review Boards); audit trails; incident response protocols; legal compliance frameworks & Audit logging systems; incident tracking; responsibility assignment (RACI); compliance dashboards & EU AI Act (provider/deployer responsibilities) \cite{euai2025,eu_ai_act_policy_page}; accountability frameworks (NIST AI RMF) \cite{nist_ai_rmf_100_1} \\
+\addlinespace[2pt]
+\textbf{Fairness} & Bias audits; fairness evaluation benchmarks; data curation; fine-tuning for fairness; continuous monitoring & Bias detection tools (AI Fairness 360, Responsible AI Toolbox) \cite{holisticai2025}; fairness benchmarks (Winogender, StereoSet, CrowS-Pairs) \cite{aclanthology2023}; subgroup evaluation & Anti-discrimination laws; fairness requirements in EU AI Act; equal opportunity regulations \\
+\addlinespace[2pt]
+\textbf{Privacy} & Data minimization; anonymization/pseudonymization; encryption; access controls; retention policies; user controls (opt-out, deletion) & PII redaction tools; encryption (TLS, AES-256); DLP systems; differential privacy; privacy impact assessments (PIAs/DPIAs) & GDPR \cite{edpb2022}; CCPA; data protection regulations; consent management; right to erasure \\
+\addlinespace[2pt]
+\textbf{Safety} & Content moderation; toxicity detection; harmful advice refusal; prompt injection defenses; red-teaming; human oversight & Moderation classifiers (Perspective API, HateBERT) \cite{arxiv2023}; Constitutional AI \cite{openai2023}; safety filters; red-team testing; human-in-the-loop review & OWASP LLM Top 10 \cite{owasp_llm_top10}; safety standards; content policy compliance \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \subsection{Frameworks, Standards, and Regulatory Baselines}\label{sec:ethics-frameworks}
 Ethical principles become operational only when they are translated into repeatable processes, measurable controls, and
 documented accountability. A pragmatic approach is to map your LLMOps controls to external baselines that are broadly
@@ -223,6 +249,32 @@ Addressing bias requires interventions across the LLMOps pipeline. The following
     
     \item \textbf{Illustrative Example:} In 2023, image-generation models (e.g., DALL-E, Stable Diffusion) were shown to produce biased outputs (e.g., ``CEO'' yielding mostly older white men). Developers introduced diversity weighting and fine-tuned with more representative data. The lesson applies to LLMs: explicit balancing (either in training or prompting) can reduce representational bias.  
 \end{itemize}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Bias sources and mitigation strategies enable systematic fairness management in LLM systems. Each bias source requires targeted mitigation techniques and evaluation methods. Understanding these mappings helps teams design comprehensive bias mitigation pipelines that address root causes rather than symptoms.}
+\label{tab:ch11_bias_mitigation}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Bias Source} & \textbf{Examples} & \textbf{Mitigation Techniques} & \textbf{Evaluation Methods} \\
+\midrule
+\textbf{Training Data Bias} & Skewed demographics (more men than women in tech discussions); Western-dominated corpora; stereotypical associations (``illegal immigrant'' in negative contexts); outdated/historical bias \cite{ar5iv_labs} & Data auditing and curation; rebalancing datasets; removing toxic content; including underrepresented voices; filtering extremist texts and PII \cite{bcg2023} & Representational balance analysis; sentiment analysis; protected-group mention detection; demographic distribution checks \\
+\addlinespace[2pt]
+\textbf{Fine-Tuning \& RLHF Bias} & Annotator preferences encoding cultural/stylistic biases; evaluator framing preferences (e.g., crime explanations); RLHF reward model bias & Ensure annotator diversity; clear evaluation criteria; counterbalancing datasets; bias-aware RLHF; fairness constraints in reward models & Inter-annotator agreement analysis; subgroup evaluation; fairness benchmarks during fine-tuning \\
+\addlinespace[2pt]
+\textbf{Deployment Context Bias} & Feedback-loop bias (one demographic's feedback dominates); system prompt cultural framing; usage pattern bias & Diverse user feedback collection; balanced system prompts; multi-cultural testing; feedback normalization across demographics & User segment analysis; feedback distribution monitoring; A/B testing across user groups \\
+\addlinespace[2pt]
+\textbf{Automation Bias (User)} & Users over-relying on AI outputs; accepting biased statements without scrutiny \cite{euai2025} & Transparency and disclosure; user education; uncertainty indicators; encouraging critical engagement; human oversight & User trust calibration studies; opt-out rates; user feedback on AI-generated content \\
+\addlinespace[2pt]
+\textbf{General Mitigation} & Cross-cutting bias across multiple sources & Fine-tuning on counterbalancing datasets; inference-time system messages; second-pass bias detectors; bias mitigation libraries (AI Fairness 360, Responsible AI Toolbox, Holistic AI) \cite{holisticai2025}; continuous monitoring & Bias benchmarks (Winogender, StereoSet, CrowS-Pairs) \cite{aclanthology2023}; adversarial testing; comparative completions; fairness audits; user-flagged issue tracking \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 Bias mitigation is thus not a one-time fix but an ongoing operational responsibility. It requires proactive dataset management, robust testing, responsive fine-tuning, and continuous oversight. Ultimately, fairness in LLMs extends beyond demographics to inclusivity in language, accessibility, and cultural representation, ensuring these systems serve all users equitably.  
 

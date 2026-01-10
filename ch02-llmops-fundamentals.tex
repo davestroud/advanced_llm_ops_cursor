@@ -76,6 +76,34 @@ Finding this balance is important: a higher temperature or more random sampling 
 \subsubsection{Ethical and reliability risks} Since LLMs are trained on vast, imperfect corpora\index{corpus}, they encode patterns that may reflect societal biases\index{bias}, propagate stereotypes, or produce factually incorrect statements (hallucinations\index{hallucination}). Without mitigations, an LLM might, for example, use biased or insensitive language when asked about certain groups, or it might state a falsehood confidently as if it were true. Embedding operational safeguards—such as pre- and post-processing filters\index{filter}, verification agents\index{agent!verification}, and human-in-the-loop\index{human-in-the-loop} review—into the deployment pipeline is essential to catch and correct such issues. In \ishtar{}, for example, a dedicated verification agent automatically cross-checks all high-stakes outputs against trusted sources before delivery, flagging any claims that cannot be verified. Likewise, content filters\index{content filter} may screen the model's responses for disallowed content (such as hate speech or private personal information) and either block or redact such outputs. These ethical and reliability considerations demand more than just ad hoc fixes; they require a systematic layer of governance and monitoring. LLMOps teams often define clear guidelines and use specialized tools to ensure the model's behavior remains within acceptable and safe bounds. This aspect makes LLMOps not merely a technical discipline but also one that intersects with policy, law, and ethics teams.
 In summary, these characteristics—massive scale, probabilistic behavior, constrained memory, and heightened ethical risk—make LLMOps a distinct operational discipline. It's not just an incremental adaptation of MLOps, but rather an expansion that requires specialized tools, infrastructure, and governance. We need new methods for prompt management, new infrastructure for serving and scaling, and new oversight mechanisms to ensure LLM-driven systems are reliable and aligned with human values.
 
+\begin{table}[t]
+\centering
+\small
+\caption{LLMOps extends MLOps with new operational concerns and practices. While MLOps focuses on deterministic model training and deployment, LLMOps must handle prompt management, non-deterministic outputs, RAG integration, continuous knowledge updates, and resource-intensive inference. Understanding these differences enables teams to adopt appropriate tools and processes for LLM systems.}
+\label{tab:ch02_llmops_vs_mlops}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Aspect} & \textbf{MLOps Approach} & \textbf{LLMOps Approach} \\
+\midrule
+\textbf{Prompt Management} & Fixed input schemas; feature engineering pipelines & Prompts as versioned artifacts; prompt templates, A/B testing, and optimization cycles \parencite{Chowdhery2022palm} \\
+\addlinespace[2pt]
+\textbf{Output Behavior} & Deterministic predictions; reproducible results & Non-deterministic generation; stochastic sampling requiring calibration and variance monitoring \parencite{kamathDeepDive} \\
+\addlinespace[2pt]
+\textbf{Knowledge Integration} & Static training data; periodic retraining & Dynamic retrieval-augmented generation (RAG); continuous knowledge injection without full retraining \parencite{Borzunov2023distributed,Zheng2024sglang} \\
+\addlinespace[2pt]
+\textbf{Resource Requirements} & Standard CPU/GPU; moderate memory needs & Specialized accelerators (A100/H100); massive memory for parameters and KV-cache; context-window constraints \parencite{Zhang2024Coupled,Liu2023Scissorhands} \\
+\addlinespace[2pt]
+\textbf{Evaluation Focus} & Accuracy, precision, recall on fixed test sets & Factuality, coherence, safety, citation fidelity; continuous evaluation on evolving distributions \\
+\addlinespace[2pt]
+\textbf{Deployment Complexity} & Model versioning; A/B testing & Prompt versioning, RAG pipeline versioning, tool schema versioning; multi-agent orchestration \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 % ---------------- Equations Section ----------------
 \subsubsection{Supporting Equations (Capacity, Cost, and Complexity)}
 \label{sec:ch2-supporting-equations}
@@ -396,6 +424,36 @@ An effective LLMOps pipeline consists of interconnected stages, each addressing 
 
 \end{enumerate}
 
+\begin{table}[t]
+\centering
+\small
+\caption{LLMOps pipeline stages transform raw data into production-ready LLM systems. Each stage produces specific artifacts and requires distinct operational practices. Understanding these components enables teams to design end-to-end workflows that ensure quality, reliability, and continuous improvement from data acquisition through monitoring and feedback.}
+\label{tab:ch02_pipeline_components}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Stage} & \textbf{Key Activities} & \textbf{Outputs/Artifacts} \\
+\midrule
+\textbf{Data Acquisition \& Preprocessing} & Curating text/code/multimodal data; cleaning, normalizing, deduplication; filtering sensitive content & Cleaned datasets; preprocessing pipelines; data quality reports \\
+\addlinespace[2pt]
+\textbf{Model Selection} & Evaluating proprietary APIs vs.\ open-source models; assessing performance, cost, customization needs & Selected model; API contracts or self-hosted infrastructure; cost projections \\
+\addlinespace[2pt]
+\textbf{Fine-tuning \& Adaptation} & Supervised fine-tuning (SFT); parameter-efficient tuning (LoRA); RLHF for alignment & Fine-tuned model weights; adapter layers; alignment datasets; evaluation metrics \\
+\addlinespace[2pt]
+\textbf{Prompt \& Chain Development} & Crafting prompts; designing multi-step chains; few-shot examples; chain-of-thought patterns & Versioned prompt templates; chain definitions (LangChain); prompt performance metrics \\
+\addlinespace[2pt]
+\textbf{Evaluation \& Testing} & Automated metrics (perplexity, ROUGE, BLEU); factuality checks; human evaluation; test suites & Evaluation reports; test datasets; baseline performance metrics; quality scores \\
+\addlinespace[2pt]
+\textbf{Deployment \& Serving} & Infrastructure selection (cloud/on-prem, GPU/CPU); containerization; API setup; load balancing; CI/CD & Deployed models; serving APIs; container images; infrastructure-as-code; monitoring dashboards \\
+\addlinespace[2pt]
+\textbf{Monitoring \& Feedback Loops} & Latency/quality/safety tracking; drift detection; user feedback collection; alerting; continuous evaluation & Production metrics; drift signals; feedback datasets; incident reports; improvement recommendations \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \section{Key Concepts in LLMOps}
 \label{sec:ch2-key-concepts}
 \subsection{Prompt Engineering}
@@ -439,8 +497,31 @@ Evaluating LLMs requires looking at multiple metrics, because no single number p
 \item \textbf{Latency and cost per query}: From an operational standpoint, it’s crucial to measure how fast the model returns an answer (latency) and how much compute or money each query costs. A model could be extremely accurate and eloquent, but if it takes 20 seconds to answer or if each answer costs \$1.00 of GPU time, it might be impractical. Monitoring these metrics ensures that the system meets the real-time needs of users and stays within budget. There is often a trade-off here: a larger model might give better answers but with higher latency and cost, so the team might need to optimize or consider distillation (using a smaller model) if these metrics are outside acceptable bounds.
 \end{itemize}
 
-Often, evaluating an LLM system means combining automated metrics (like the above, possibly computed by scripts or additional models) with human evaluations (like user ratings or expert review). For example, one might regularly sample outputs and have people score them for helpfulness or correctness. Over time, these metrics guide the development: if factual consistency is low, that might prompt adding a RAG component; if latency is too high, that might prompt optimizing the model or the hardware. In later chapters, we will explore specific evaluation methodologies and tools, but at the fundamental level it’s important to recognize that LLMOps deals with a vector of metrics rather than a single scalar measure of “accuracy.”
+Often, evaluating an LLM system means combining automated metrics (like the above, possibly computed by scripts or additional models) with human evaluations (like user ratings or expert review). For example, one might regularly sample outputs and have people score them for helpfulness or correctness. Over time, these metrics guide the development: if factual consistency is low, that might prompt adding a RAG component; if latency is too high, that might prompt optimizing the model or the hardware. In later chapters, we will explore specific evaluation methodologies and tools, but at the fundamental level it's important to recognize that LLMOps deals with a vector of metrics rather than a single scalar measure of "accuracy."
 
+\begin{table}[t]
+\centering
+\small
+\caption{LLM evaluation requires multi-dimensional metrics beyond traditional accuracy. Factual consistency, coherence, safety, and operational metrics each capture different aspects of system quality. Understanding these metric categories enables teams to design comprehensive evaluation frameworks that balance correctness, user experience, safety, and cost efficiency.}
+\label{tab:ch02_evaluation_metrics}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Metric Category} & \textbf{Description} & \textbf{Measurement Approach} & \textbf{Operational Impact} \\
+\midrule
+\textbf{Factual Consistency} & Output contains true statements; avoids contradicting known facts or source material & Cross-reference with trusted sources; claim-level verification; RAG faithfulness checks & Low scores indicate need for RAG integration or retrieval improvements \\
+\addlinespace[2pt]
+\textbf{Coherence \& Style} & Output is logically structured; follows required style guidelines or tone; format compliance & Automated coherence scoring; style classifiers; format validation (JSON, structured output) & Poor coherence suggests prompt engineering needs; style issues require fine-tuning or template updates \\
+\addlinespace[2pt]
+\textbf{Safety \& Toxicity} & Avoids harmful, offensive, or disallowed content (hate speech, private data, dangerous instructions) & Toxicity classifiers (Perspective API); bias detectors; content filters; safety-trigger monitoring & High toxicity rates trigger safety filter updates; bias detection informs retraining priorities \\
+\addlinespace[2pt]
+\textbf{Latency \& Cost} & Response time (TTFT, tokens/s) and compute cost per query; token usage (prompt vs.\ completion) & P50/P95/P99 latency histograms; token accounting; cost per request tracking & Exceeds thresholds drive model optimization, hardware upgrades, or routing to cheaper models \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \subsubsection{Evaluation Frameworks and Tooling}
 In addition to custom ``golden sets'' and human review, several evaluation frameworks have emerged to support

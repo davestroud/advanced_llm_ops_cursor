@@ -139,6 +139,30 @@ In production, RAG observability benefits from a layered metric set that separat
 \end{enumerate}
 Frameworks such as RAGAS and ARES formalize groundedness (faithfulness), context relevance, and evidence attribution; annotated corpora like RAGTruth can support supervised detectors. A best practice is to combine model-graded scores (e.g., faithfulness) with retrieval metrics (e.g., MRR/NDCG) and to track attribution fidelity (evidence–answer span overlap) as a first-class signal.
 
+\begin{table}[t]
+\centering
+\small
+\caption{RAG-specific metrics enable systematic quality monitoring and drift detection. Separating retrieval quality from generation faithfulness allows teams to attribute regressions to specific pipeline components. Target values and monitoring frequency should align with SLOs and operational priorities, enabling proactive quality management rather than reactive incident response.}
+\label{tab:ch05_rag_metrics_taxonomy}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Metric Category} & \textbf{Specific Metrics} & \textbf{Target Values} & \textbf{Monitoring Frequency} \\
+\midrule
+\textbf{Retrieval Quality} & Hit rate@K, MRR (Mean Reciprocal Rank), NDCG (Normalized Discounted Cumulative Gain), coverage of supporting evidence & Hit rate@K $\geq$ 85\%; MRR $\geq$ 0.75; NDCG $\geq$ 0.80 on golden queries & Continuous (per-query); aggregated hourly/daily trends \\
+\addlinespace[2pt]
+\textbf{Grounding \& Attribution} & Faithfulness/groundedness score, hallucination rate (unsupported claims), citation fidelity (overlap between cited spans and answer claims) & Median faithfulness $\geq$ 0.85; hallucination rate $\leq$ 2\%; citation precision $\geq$ 0.90 & Per-query scoring; rolling 24-hour aggregates with confidence intervals \\
+\addlinespace[2pt]
+\textbf{Answer Utility} & Answer relevance (addresses user question), correctness against reference (when available), user satisfaction scores & Relevance score $\geq$ 0.80; correctness $\geq$ 0.85 on test sets; user satisfaction $\geq$ 4.0/5.0 & Continuous evaluation on sampled traffic; nightly on golden sets \\
+\addlinespace[2pt]
+\textbf{System Costs/Latency} & Retriever latency (p50/p95/p99), re-ranker latency, overall TTFT, tokens-per-second & P95 retriever latency $\leq$ 100\,ms; P95 TTFT $\leq$ 800\,ms; tokens/s $\geq$ 50 per GPU & Real-time dashboards; alerting on threshold breaches \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \medskip
 \noindent\textbf{Measuring context utilization.}
 Context utilization quantifies how much of the retrieved context the model actually used. Practical estimators include:
@@ -212,6 +236,44 @@ Open-source observability stacks such as Prometheus \cite{prometheus_instrumenta
 \medskip
 \noindent\textbf{Structured, schema-first telemetry.}
 In production, \emph{structured} logs (e.g., JSON) with a stable schema are essential. Each record should include a globally unique \texttt{trace\_id}, a \texttt{span\_id} for step-level correlation, and a \texttt{conversation\_id} for session grouping. Recommended fields include: \texttt{prompt\_template\_id} and \texttt{prompt\_version}; \texttt{retrieval\_metadata} (doc IDs, index version, top-\$k\$, re-ranker scores); \texttt{token\_counts} (prompt, completion, total); \texttt{cost\_estimates}; \texttt{latency\_breakdown} (TTFT, TPOT, tool I/O); and \texttt{safety\_signals} (toxicity flags, jailbreak detectors). A clear \texttt{error\_type} taxonomy (e.g., \texttt{provider\_timeout}, \texttt{rate\_limit}, \texttt{tool\_schema\_mismatch}, \texttt{parser\_failure}) shortens mean time to diagnosis by enabling precise aggregation.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Standardized telemetry schema enables consistent observability across LLM pipeline components. Schema-first design prevents telemetry drift and enables reliable querying, aggregation, and correlation. Required fields ensure traceability, while optional fields provide rich context for debugging and optimization.}
+\label{tab:ch05_telemetry_schema}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{1.8cm}@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Field Name} & \textbf{Type/Format} & \textbf{Description} & \textbf{Required} \\
+\midrule
+\texttt{trace\_id} & UUID (string) & Globally unique identifier for the request trace & Yes \\
+\addlinespace[2pt]
+\texttt{span\_id} & UUID (string) & Step-level correlation identifier within trace & Yes \\
+\addlinespace[2pt]
+\texttt{conversation\_id} & UUID (string) & Session grouping identifier for multi-turn conversations & Yes \\
+\addlinespace[2pt]
+\texttt{prompt\_template\_id} & String & Versioned identifier for prompt template used & Yes \\
+\addlinespace[2pt]
+\texttt{prompt\_version} & Semantic version & Version of prompt template (e.g., v1.2.3) & Yes \\
+\addlinespace[2pt]
+\texttt{retrieval\_metadata} & JSON object & Document IDs, index version, top-$k$, re-ranker scores & Optional \\
+\addlinespace[2pt]
+\texttt{token\_counts} & JSON object & Prompt tokens, completion tokens, total tokens & Yes \\
+\addlinespace[2pt]
+\texttt{cost\_estimates} & Float & Estimated cost in currency units (e.g., USD) & Optional \\
+\addlinespace[2pt]
+\texttt{latency\_breakdown} & JSON object & TTFT, TPOT (time-per-output-token), tool I/O latency & Yes \\
+\addlinespace[2pt]
+\texttt{safety\_signals} & JSON object & Toxicity flags, jailbreak detectors, policy violations & Optional \\
+\addlinespace[2pt]
+\texttt{error\_type} & Enum & Error taxonomy: \texttt{provider\_timeout}, \texttt{rate\_limit}, \texttt{tool\_schema\_mismatch}, \texttt{parser\_failure} & Conditional \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \medskip
 \noindent\textbf{Privacy by design.}
@@ -583,6 +645,34 @@ Incident response playbooks should define rollback strategies (e.g., revert prom
 \medskip
 \noindent\textbf{SLO-aligned, multi-window alerting.}
 Beyond these core principles, effective alerting in LLM systems is \emph{SLO-driven} and \emph{multi-window}. Attach each alert to an explicit SLI with an error budget (e.g., P99 TTFT, unsupported-claim rate, refusal rate), and use burn-rate detectors over short and long windows (e.g., 5\,min and 1\,h) so pages fire quickly for severe regressions while suppressing noise from brief blips. Token/cost anomalies should be normalized by route, tenant, and content type; this prevents high-variance cohorts from drowning out true incidents and surfaces abuse patterns (e.g., prompt amplification) early.
+
+\begin{table}[t]
+\centering
+\small
+\caption{SLO-aligned alerting connects metrics to actionable incident response. Multi-window burn-rate detection balances rapid response to severe regressions with noise suppression. Each alert type maps to specific playbooks, enabling operators to take pre-approved mitigations without escalation delays.}
+\label{tab:ch05_alert_types_thresholds}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Alert Type} & \textbf{SLI/Threshold} & \textbf{Window} & \textbf{Action/Playbook} \\
+\midrule
+\textbf{Latency Regression} & P99 TTFT $\leq$ 800\,ms; P95 tokens/s $\geq$ 50 & 5\,min (fast) + 1\,h (sustained) burn-rate & Reduce context cap by 20\%; lower \texttt{topK}; enable constrained decoding; rollback prompt version \\
+\addlinespace[2pt]
+\textbf{Quality Degradation} & Median groundedness $\geq$ 0.85; unsupported-claim rate $\leq$ 3\% & Two consecutive 15-minute windows below threshold & Increase retriever fan-out; switch re-ranker; rebuild index; rollback embedding model \\
+\addlinespace[2pt]
+\textbf{Cost Anomaly} & Token cost per request exceeds baseline by 2$\times$; cost per tenant exceeds daily budget & 1\,h rolling window; normalized by route/tenant & Cap max context length; reduce \texttt{topK}; route to cheaper model tier; enable passage deduplication \\
+\addlinespace[2pt]
+\textbf{Safety Trigger} & Toxicity rate $\geq$ 5\%; jailbreak detection rate $\geq$ 1\% & 15-minute rolling window & Tighten guardrails; enable safe-mode decoding; route to constrained model; escalate to human review \\
+\addlinespace[2pt]
+\textbf{Retrieval Failure} & Recall@K $\leq$ 70\% on golden set; retriever latency P95 $\geq$ 200\,ms & Sustained over 30\,min & Switch to BM25 fallback; rebuild index; increase candidate fan-out; check index version \\
+\addlinespace[2pt]
+\textbf{Error Rate Spike} & Error rate $\geq$ 5\%; provider timeout rate $\geq$ 2\% & 5\,min fast window; 1\,h sustained & Failover to backup provider; reduce batch size; enable retry with backoff; check provider status \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \medskip
 \noindent\textbf{Correlation, deduplication, and exemplars.}

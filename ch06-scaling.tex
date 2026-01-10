@@ -74,6 +74,36 @@ Beyond baseline resource limits, several operational realities make scaling LLM 
     \item \textbf{Multi-tenancy and fairness:} In shared LLM services, ``noisy neighbor'' effects can starve smaller workloads. Without careful scheduling and prioritization, a few large requests can monopolize the GPU, causing others to queue. Request prioritization (e.g., shortest-job-first scheduling) and tenant-specific quotas are necessary to maintain fairness at scale.
 \end{enumerate}
 
+\begin{table}[t]
+\centering
+\small
+\caption{Operational scaling challenges distinguish LLM deployments from traditional microservices. Each challenge impacts latency, throughput, or cost differently, requiring targeted mitigation strategies. Understanding these challenges enables teams to design scaling architectures that address root causes rather than symptoms.}
+\label{tab:ch06_scaling_challenges}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Challenge} & \textbf{Impact} & \textbf{Mitigation Strategy} \\
+\midrule
+\textbf{Non-linear latency scaling} & Doubling context length quadruples attention computation; latency plateaus or worsens under load \cite{vaswani2017_attention} & Paged attention; local/sliding-window attention; context compression; sequence parallelism \\
+\addlinespace[2pt]
+\textbf{Context window resource pressure} & KV-cache memory multiplies with context length; requires model parallelism for long contexts \cite{vaswani2017_attention,vllm_pagedattention} & Model/tensor parallelism; sequence parallelism; KV-cache quantization; dynamic context trimming \\
+\addlinespace[2pt]
+\textbf{Serving infrastructure fragmentation} & Multiple inference backends (Triton, vLLM, DeepSpeed-MII) with different performance profiles & Unified routing layer; load balancing by workload type; standardized metrics across backends \\
+\addlinespace[2pt]
+\textbf{Data pipeline bottlenecks} & RAG systems shift bottlenecks to embedding generation, vector search, feature stores & Index sharding; caching retrieved results; pre-fetch strategies; embedding batch optimization \\
+\addlinespace[2pt]
+\textbf{Cost–efficiency trade-offs} & Underutilized GPUs are costly; overutilized GPUs degrade latency & Dynamic batching; request coalescing; speculative decoding; model routing by complexity \\
+\addlinespace[2pt]
+\textbf{Elastic scaling complexity} & Cold-start latency for large models exceeds limits; spiky workloads require rapid scaling & Warm pool of replicas; predictive autoscaling; model weight preloading; spot instance strategies \\
+\addlinespace[2pt]
+\textbf{Multi-tenancy fairness} & ``Noisy neighbor'' effects starve smaller workloads; large requests monopolize GPUs & Request prioritization (shortest-job-first); tenant-specific quotas; isolation via MIG or separate pools \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \subsection{The \ishtar{} Case}\label{sec:scaling-ishtar-case}
 \noindent\textit{Note: The performance metrics and scaling numbers cited for \ishtar{} throughout this chapter are based on production measurements from the deployment. Specific values (e.g., latency reductions, throughput improvements, cost savings) reflect observed results under typical workload conditions and may vary with different models, hardware configurations, or traffic patterns. Where applicable, ranges are provided to indicate variability.}
 
@@ -133,6 +163,28 @@ Whenever a capacity estimate is wrong, the most common failure mode is missing a
   \item Plan for cache-miss storms: assume cold caches during deploys or incidents and size the system for degraded (miss-heavy) behavior (Section~\ref{sec:caching}).
   \item Treat scaling policies as code: version, review, and load-test autoscaling rules the same way you test application logic (Section~\ref{sec:autoscaling}).
 \end{itemize}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Capacity planning transforms workload characteristics into infrastructure requirements. Each step produces specific metrics and validation methods that enable teams to size systems accurately and avoid over-provisioning or under-provisioning. Following this structured approach prevents common scaling failures caused by incomplete workload analysis.}
+\label{tab:ch06_capacity_planning}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Step} & \textbf{Activities} & \textbf{Key Metrics} & \textbf{Validation Method} \\
+\midrule
+\textbf{Step 1: Set SLOs} & Define latency targets matching human perception; separate short vs.\ long-context classes & P95 TTFT, P95 TBT; separate targets for context length classes & User experience testing; A/B latency perception studies \\
+\addlinespace[2pt]
+\textbf{Step 2: Convert workload} & Measure arrival rate $\lambda$; estimate prompt/decode lengths; calculate token demand $D = \lambda(\mathbb{E}[\ell_{\text{prompt}}] + \mathbb{E}[\ell_{\text{decode}}])$; compute replica count $N \approx \lceil D/\hat{\Theta} \rceil$ & Arrival rate (requests/s); expected prompt length; expected decode length; effective throughput $\hat{\Theta}$ (tokens/s per replica) & Load testing with representative traffic mix; validate against production telemetry \\
+\addlinespace[2pt]
+\textbf{Step 3: Validate decomposition} & Break end-to-end latency into prefill, decode, queueing components; verify each fits SLO budget; identify dominant latency sources & Prefill latency; decode latency; queueing latency; component-wise P95/P99 breakdowns & Latency decomposition analysis; comparison with TetriInfer benchmarks \cite{tetriinfer2023}; load test validation \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \section{Scaling Dimensions}
 \label{sec:scaling-dimensions}
