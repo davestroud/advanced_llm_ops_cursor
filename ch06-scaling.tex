@@ -1157,7 +1157,9 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 \draw[arr] (q) -- (route);
 
 % Hot tier lookup
-\draw[arr] (route) -- node[pos=0.5,right,sloped,font=\footnotesize]{first lookup} (hotidx);
+\draw[arr] (route) -- (hotidx);
+% "first lookup" label positioned just below the (in-memory / GPU) label
+\node[below=2mm of hotlabel, font=\footnotesize, text=black!70] {first lookup};
 
 % Hit path from hot to merge (green for success) - label moved below Shard 2
 \draw[arrhit] (hotidx) -- (merge);
