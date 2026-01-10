@@ -430,12 +430,13 @@ Table~\ref{tab:ch08_vector_index_comparison_landscape} provides a detailed compa
 
 \begin{table}[t]
 \centering
+\small
 \caption{Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints.}
 \label{tab:ch08_vector_index_comparison_landscape}
 \begin{threeparttable}
-\footnotesize
-\setlength{\tabcolsep}{2pt}
+\setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{%
   >{\raggedright\arraybackslash}p{1.4cm}  % Index Type
   >{\raggedright\arraybackslash}p{1.2cm}  % Recall
@@ -445,6 +446,7 @@ Table~\ref{tab:ch08_vector_index_comparison_landscape} provides a detailed compa
   >{\raggedright\arraybackslash}X  % Notes
 }
 \toprule
+\rowcolor{gray!10}
 \textbf{Index Type} & \textbf{Recall} & \textbf{Latency} & \textbf{Memory} & \textbf{Scale} & \textbf{Notes / Tunables \& Use Cases} \\
 \midrule
 \textbf{Flat (Exact)} &
@@ -639,13 +641,16 @@ Dense retrieval provides semantic coverage, sparse retrieval provides exact-matc
 
 \begin{table}[t]
 \centering
-\begin{threeparttable}
+\small
 \caption{Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements.}
 \label{tab:ch08_retriever_strategies}
-\renewcommand{\arraystretch}{1.15}
-\setlength{\tabcolsep}{4pt}
+\begin{threeparttable}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\textwidth}{p{2.2cm}p{2.4cm}p{2.4cm}p{2.4cm}X}
 \toprule
+\rowcolor{gray!10}
 \textbf{Strategy} & \textbf{Strengths} & \textbf{Limitations} & \textbf{Scalability / Ops} & \textbf{Use Cases \& Notes} \\
 \midrule
 \textbf{Dense Retrieval} 

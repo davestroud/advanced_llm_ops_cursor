@@ -21,10 +21,10 @@
 \newlabel{sec:infra-hardware-gpu}{{3.2.2}{78}{GPU Architectures and Choices}{subsection.3.2.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}TPU Architectures and Considerations}{79}{subsection.3.2.3}\protected@file@percent }
 \newlabel{sec:infra-hardware-tpu}{{3.2.3}{79}{TPU Architectures and Considerations}{subsection.3.2.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Cost Modeling and Economics}{79}{section.3.3}\protected@file@percent }
-\newlabel{sec:infra-cost}{{3.3}{79}{Cost Modeling and Economics}{section.3.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%.}}{80}{table.3.2}\protected@file@percent }
 \newlabel{tab:ch03_cost_per_token}{{3.2}{80}{Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%}{table.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Cost Modeling and Economics}{80}{section.3.3}\protected@file@percent }
+\newlabel{sec:infra-cost}{{3.3}{80}{Cost Modeling and Economics}{section.3.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Token Economics and Cost per Query}{80}{subsection.3.3.1}\protected@file@percent }
 \newlabel{sec:infra-cost-tokens}{{3.3.1}{80}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
 \newlabel{eq:costptok}{{3.3.1}{80}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
@@ -42,14 +42,14 @@
 \newlabel{tab:ch03_costcompare}{{3.3}{85}{Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times $, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing}{table.3.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.4}Infrastructure-as-Code (IaC) for LLMOps}{85}{section.3.4}\protected@file@percent }
 \newlabel{sec:iac}{{3.4}{85}{Infrastructure-as-Code (IaC) for LLMOps}{section.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Why IaC Matters}{85}{subsection.3.4.1}\protected@file@percent }
-\newlabel{sec:iac-why}{{3.4.1}{85}{Why IaC Matters}{subsection.3.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Tooling Comparison}{86}{subsection.3.4.2}\protected@file@percent }
-\newlabel{sec:iac-tools}{{3.4.2}{86}{Tooling Comparison}{subsection.3.4.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements.}}{87}{table.3.4}\protected@file@percent }
-\newlabel{tab:ch03_iaccompare}{{3.4}{87}{Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements}{table.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Reusable Modules and Patterns}{88}{subsection.3.4.3}\protected@file@percent }
-\newlabel{sec:iac-modules}{{3.4.3}{88}{Reusable Modules and Patterns}{subsection.3.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Why IaC Matters}{86}{subsection.3.4.1}\protected@file@percent }
+\newlabel{sec:iac-why}{{3.4.1}{86}{Why IaC Matters}{subsection.3.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Tooling Comparison}{87}{subsection.3.4.2}\protected@file@percent }
+\newlabel{sec:iac-tools}{{3.4.2}{87}{Tooling Comparison}{subsection.3.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Reusable Modules and Patterns}{87}{subsection.3.4.3}\protected@file@percent }
+\newlabel{sec:iac-modules}{{3.4.3}{87}{Reusable Modules and Patterns}{subsection.3.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements.}}{88}{table.3.4}\protected@file@percent }
+\newlabel{tab:ch03_iaccompare}{{3.4}{88}{Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements}{table.3.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Compliance, Security, and Auditing}{88}{subsection.3.4.4}\protected@file@percent }
 \newlabel{sec:iac-compliance}{{3.4.4}{88}{Compliance, Security, and Auditing}{subsection.3.4.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.5}Infrastructure Deployment Pipelines}{88}{subsection.3.4.5}\protected@file@percent }
@@ -140,7 +140,7 @@
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{2}
+\setcounter{footnote}{1}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{1}
 \setcounter{section}{10}
@@ -313,7 +313,7 @@
 \setcounter{bbx:relatedtotal}{0}
 \setcounter{section@level}{3}
 \setcounter{Item}{12}
-\setcounter{Hfootnote}{2}
+\setcounter{Hfootnote}{1}
 \setcounter{bookmark@seq@number}{0}
 \setcounter{lstlisting}{0}
 }

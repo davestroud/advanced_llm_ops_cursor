@@ -246,11 +246,16 @@ Table~\ref{tab:ch05_ishtar_obs_stack} summarizes a minimal-but-extensible stack 
 
 \begin{table}[t]
 \centering
+\small
 \caption{Observability stack design determines debugging speed and incident response capability. \ishtar{}'s stack demonstrates how OpenTelemetry provides shared context (trace IDs, resource attributes) for correlation, while specialized tools deliver operator- and developer-facing views. This layered approach enables both real-time troubleshooting and long-term trend analysis, supporting both reactive incident response and proactive optimization.}
 \label{tab:ch05_ishtar_obs_stack}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabular}{p{0.18\linewidth}p{0.33\linewidth}p{0.42\linewidth}}
 \toprule
-Signal & Tools & Typical questions answered \\
+\rowcolor{gray!10}
+\textbf{Signal} & \textbf{Tools} & \textbf{Typical questions answered} \\
 \midrule
 Metrics & Prometheus/OpenMetrics \cite{prometheus_instrumentation,openmetrics_spec} + Grafana \cite{grafana_dashboards} & What is the impact? (P95 TTFT, request/error rate, tokens per request, cost per tenant) and is it getting worse? (burn-rate, change-point detection) \\
 Traces & OpenTelemetry \cite{otel_spec} + Jaeger \cite{jaeger_tracing} (via OTel Collector \cite{otel_collector}) & Where is time and cost spent across retrieval, reranking, model calls, tools, and post-processing? Which span caused the tail? \\
@@ -478,15 +483,17 @@ In mature deployments, dashboards are explicitly \emph{SLO-driven}: every panel 
 \noindent\textbf{Three-tier layout.}
 A useful organizing principle is a \emph{three-tier} layout:
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
+\small
 \caption{Dashboard layout determines operator effectiveness and incident response speed. The three-tier structure separates real-time alerts (tier 1), detailed analysis (tier 2), and historical trends (tier 3), enabling operators to quickly diagnose issues and identify patterns. This layout supports both reactive troubleshooting and proactive optimization.}
 \label{tab:ch05_three_tier_layout}
-\small
 \setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.4}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4cm}X}
 \toprule
+\rowcolor{gray!10}
 \textbf{Tier} & \textbf{Components \& Purpose} \\
 \midrule
 \textbf{Infra board} & 

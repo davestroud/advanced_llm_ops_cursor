@@ -236,22 +236,21 @@ In modern LLMOps, 8-bit quantization is widely adopted for inference, and resear
 
 \begin{table}[t]
 \centering
-\footnotesize
+\small
 \caption{Quantization scheme selection trades off accuracy, speed, and memory. INT8 provides 2$\times$ speedup with minimal accuracy loss; 4-bit quantization enables 4$\times$ memory reduction but requires calibration; FP8 offers native hardware support on H100. Choose based on model sensitivity, hardware capabilities, and accuracy requirements.}
 \label{tab:ch07_quantization_comparison}
-\renewcommand{\arraystretch}{1.2}
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \resizebox{0.95\linewidth}{!}{%
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.6cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{3.8cm}@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Scheme} & \textbf{Typical Memory Reduction} & \textbf{Speed Gain} & \textbf{Accuracy Impact} & \textbf{Hardware Compatibility} \\
 \midrule
 INT8 & $\sim$50\% vs.\ FP16 & Moderate & Minimal with calibration & Supported on most modern NVIDIA/AMD GPUs; widely available in inference frameworks. \\
-\midrule
 FP8 & $\sim$50\% vs.\ FP16 & Moderate--High (on supported HW) & Minimal--Low & Native support on NVIDIA H100; partial support on Hopper architecture; not supported on A100. \\
-\midrule
 4-bit & $\sim$75\% vs.\ FP16 & High & Low--Moderate, task dependent & Supported via software toolkits (e.g., GPTQ, bitsandbytes) on NVIDIA GPUs; performance varies by architecture. \\
-\midrule
 Mixed Precision & Variable & Variable & Tunable trade-off & Framework-dependent; often combines FP16, FP8, and INT8 in compatible layers. \\
 \bottomrule
 \end{tabular}%
@@ -285,11 +284,12 @@ From a production perspective, parameter-efficient fine-tuning is valuable becau
 
 \begin{table}[t]
 \centering
-\footnotesize
+\small
 \caption{Compression and adaptation techniques enable efficient LLM deployment. Quantization reduces memory and increases speed; distillation transfers knowledge to smaller models; LoRA enables parameter-efficient fine-tuning. Choose based on deployment constraints, accuracy requirements, and update frequency.}
 \label{tab:ch07_compression_summary}
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \resizebox{0.95\linewidth}{!}{%
 \begin{tabular}{@{}>{\raggedright\arraybackslash\bfseries}p{2.3cm}
                   >{\raggedright\arraybackslash}p{2.5cm}
@@ -298,6 +298,7 @@ From a production perspective, parameter-efficient fine-tuning is valuable becau
                   >{\raggedright\arraybackslash}p{1.9cm}
                   >{\raggedright\arraybackslash}p{3.0cm}@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Technique} &
 \textbf{What it changes} &
 \textbf{Typical memory reduction} &
@@ -440,11 +441,12 @@ Pairs well with long contexts and high concurrency; test for degradation on long
 
 \begin{table}[t]
 \centering
-\footnotesize
+\small
 \caption{Precision selection determines memory requirements and deployment feasibility. Lower precision (INT8, 4-bit) dramatically reduces memory, enabling larger models on fixed hardware or higher batch sizes. However, precision reduction may impact accuracy, requiring careful evaluation. Understanding these trade-offs enables teams to optimize memory usage while maintaining quality.}
 \label{tab:ch07_mem_vs_precision}
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \resizebox{0.95\linewidth}{!}{%
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.2cm}
                   >{\raggedleft\arraybackslash}p{1.6cm}
@@ -453,6 +455,7 @@ Pairs well with long contexts and high concurrency; test for degradation on long
                   >{\raggedleft\arraybackslash}p{2.0cm}
                   >{\raggedright\arraybackslash}p{3.5cm}@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Model} & \textbf{Params} & \textbf{FP16 (2\,B/param)} & \textbf{INT8 / FP8 (1\,B/param)} & \textbf{4-bit (0.5\,B/param)} & \textbf{Typical GPU fit (weights-only)} \\
 \midrule
 13B & $1.3\times 10^{10}$ & $\sim$26\,GB & $\sim$13\,GB & $\sim$6.5\,GB &
@@ -515,12 +518,14 @@ In practice, vLLM implements PagedAttention and achieves near-zero waste in KV c
 
 PagedAttention is especially valuable in use cases like \ishtar{} if they need to occasionally handle very large documents or transcripts as input---those rare big inputs will not crowd out the GPU memory for the many short inputs being processed concurrently. Overall, advanced memory management techniques like this are an active area of research and engineering, allowing LLMs to scale in context length more gracefully in production settings.
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
+\small
 \caption{Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints.}
 \label{tab:ch07_engine_bench}
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\textwidth}{@{}l
   >{\raggedleft\arraybackslash}p{2.1cm}
   >{\raggedleft\arraybackslash}p{2.1cm}
@@ -529,6 +534,7 @@ PagedAttention is especially valuable in use cases like \ishtar{} if they need t
   X
 @{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Engine (precision)} &
 \textbf{Tokens/s} &
 \textbf{TTFT (ms)} &
@@ -756,18 +762,21 @@ From a practical standpoint, one usually uses profiling and experimentation to t
 
 In \ishtar{}’s deployment, we configured our GPU workers to use two CUDA streams: one for compute, one for data transfers and minor ops, which gave a small improvement in throughput by overlapping I/O. We also found that setting the OMP (OpenMP) threads for certain BLAS libraries to 1 (to avoid multi-threading on CPU during GPU ops) prevented some interference. In summary, careful tuning of concurrency can squeeze extra performance that generic defaults might miss. It is an exercise of observing the pipeline from request ingress to result egress and ensuring all parts are busy as much as possible without stepping on each other’s toes.
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
+\small
 \caption{Kernel-time profiling identifies optimization opportunities and validates improvements. Comparing breakdowns before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute) reveals which optimizations deliver the largest gains. This profiling guides optimization prioritization and helps teams understand where further improvements are possible. Percentages vary by model, sequence length, and runtime.}
 \label{tab:ch07_profiling_breakdown}
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\textwidth}{@{}l
   >{\raggedleft\arraybackslash}p{2.0cm}
   >{\raggedleft\arraybackslash}p{2.0cm}
   X
 @{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Kernel/Phase} & \textbf{Before (\%)} & \textbf{After (\%)} & \textbf{Notes / Action} \\
 \midrule
 Attention (QKV + softmax + proj.) & 60 & 45 & Fused attention (FlashAttention) and better tensor-core utilization. \\
@@ -1078,12 +1087,14 @@ Overall, this case study underscores that combining model, system, and prompt op
 
 Performance optimization is not a one-time task—it is an ongoing process that must adapt to changing workloads, hardware, and user expectations. For \ishtar{}, the combination of model, system, and prompt optimizations delivers the speed and cost-effectiveness needed for real-time, high-impact journalism.
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
+\small
 \caption{\ishtar{} optimization KPIs demonstrate systematic improvement through targeted techniques. Comparing before vs.\ after metrics (latency, throughput, cost) validates that optimization strategies deliver measurable gains. These KPIs provide benchmarks for similar deployments and illustrate how systematic optimization achieves production goals. Values are representative of the case study scenario and depend on workload and hardware.}
 \label{tab:ch07_ishtar_kpis}
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\textwidth}{@{}l
   >{\raggedleft\arraybackslash}p{2.6cm}
   >{\raggedleft\arraybackslash}p{2.6cm}
@@ -1091,6 +1102,7 @@ Performance optimization is not a one-time task—it is an ongoing process that 
   X
 @{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Metric} & \textbf{Before (baseline)} & \textbf{After (optimized)} & \textbf{Notes} \\
 \midrule
 Median latency (p50)     & 2.3 s  & 1.1 s  & INT8/4-bit + vLLM batching + RAG compression. \\
@@ -1249,14 +1261,17 @@ If optimizations double $\Theta$ to 1000 tokens/s, $\text{Cost}_{1k}$ halves to 
 
 These formulas link low-level engineering decisions (e.g., quantization, batching, runtime choice) to system-wide economics. For example, extending context length from 4k to 8k tokens doubles KV memory via Eq.~\eqref{eq:kv-total}, potentially halving feasible batch. Equation~\eqref{eq:throughput-main} then shows throughput reduction, and Eq.~\eqref{eq:cost-k} makes the resulting dollar impact explicit. This chain of reasoning was central in \ishtar{} capacity planning.
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
+\small
 \caption{Architectural variant selection determines cost, latency, and operational complexity. Different deployment patterns (serverless, containerized, edge) optimize for different scenarios: serverless reduces operational overhead but may increase latency; containerized provides control but requires infrastructure management. Choose based on traffic patterns, latency requirements, and team capabilities.}
 \label{tab:ch07_arch_comparison}
-\renewcommand{\arraystretch}{1.15}
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{p{3.2cm}X X X}
 \toprule
+\rowcolor{gray!10}
 \textbf{Dimension} & \textbf{Encoder-Only (BERT)} & \textbf{Decoder-Only (GPT)} & \textbf{Mixture-of-Experts (MoE)} \\
 \midrule
 \textbf{Latency / Throughput} 
@@ -1283,14 +1298,17 @@ These formulas link low-level engineering decisions (e.g., quantization, batchin
 
 A number of specialized inference engines have been developed to serve LLMs efficiently. Here we compare three widely used runtimes for decoder-based LLM inference in the cloud: vLLM, Hugging Face Text Generation Inference (TGI), and NVIDIA TensorRT-LLM. Each runtime embodies a distinct approach to batching, memory management, and kernel optimization. Table~\ref{tab:ch07_runtimes} provides a qualitative comparison, focused on decoder-only use cases since they remain the most challenging to serve at scale. Table~\ref{tab:ch07_runtimes} provides a qualitative comparison drawn from public documentation and reported benchmarks; validate with your own workloads.
 
-\begin{table}[htbp]
+\begin{table}[t]
   \centering
+  \small
   \caption{Serving runtime selection determines operational complexity and performance characteristics. Different runtimes optimize for different deployment scenarios: some prioritize ease of use, others focus on maximum throughput or lowest latency. Choose based on team expertise, scale requirements, and operational constraints.}
   \label{tab:ch07_runtimes}
-  \renewcommand{\arraystretch}{1.15}
-  \setlength{\tabcolsep}{4pt}
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.3}
+  \rowcolors{2}{gray!5}{white}
   \begin{tabular}{p{3.5cm}p{3.8cm}p{3.6cm}p{3.6cm}}
     \toprule
+    \rowcolor{gray!10}
     & \textbf{vLLM} \cite{Kwon2023vLLM} & \textbf{Hugging Face TGI} \cite{tgi_docs} & \textbf{TensorRT-LLM} \cite{tensorrt_llm_docs} \\
     \midrule
     \textbf{Batching/Scheduling} 

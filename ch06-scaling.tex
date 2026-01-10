@@ -79,23 +79,22 @@ Beyond baseline resource limits, several operational realities make scaling LLM 
 
 In \ishtar{}, these constraints manifested most visibly during breaking news cycles, when concurrent journalist queries could spike $10\times$ above baseline. Our scaling strategy combined:
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
 \small
 \caption{Scaling strategy selection determines cost efficiency and responsiveness. \ishtar{} employs hierarchical routing, hybrid caching, dynamic context trimming, and predictive autoscaling to handle traffic surges while maintaining latency SLOs. These strategies demonstrate how production systems balance throughput, cost, and quality under variable load.}
 \label{tab:ch06_ishtar_scaling_strategies}
+\setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
-\setlength{\tabcolsep}{8pt}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{@{}p{4.2cm}X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Strategy} & \textbf{Description} \\
 \midrule
 \textbf{Hierarchical model routing} & Lightweight distilled models handled simple classification and summarization, reserving full LLaMA-3.1/3.2 inference for complex, high-value prompts \cite{frugalgpt_2023}. \\
-\midrule
 \textbf{Hybrid retrieval caching} & Frequently accessed documents were pre-embedded and cached in GPU memory, reducing vector search latency by up to 65\% (measured via production telemetry comparing cache-hit vs.\ cache-miss retrieval times). \\
-\midrule
 \textbf{Dynamic context trimming} & Automated pruning of low-relevance context reduced KV-cache footprint, increasing the number of concurrent requests that could be batched. \\
-\midrule
 \textbf{Predictive autoscaling} & Instead of purely reactive scaling, we integrated external signals (newsroom publishing calendars and trending topic feeds) to pre-warm GPU nodes before anticipated traffic surges. \\
 \bottomrule
 \end{tabularx}
@@ -305,37 +304,34 @@ The final production architecture of \ishtar{} adopted a hybrid model. We mainta
 \small
 \caption{Scaling approach selection balances cost, latency, and complexity. Vertical scaling upgrades hardware but hits single-node limits; horizontal scaling adds capacity but requires load balancing; hybrid scaling combines tiers for cost efficiency. Choose based on traffic patterns, latency requirements, and operational complexity tolerance.}
 \label{tab:ch06_scaling_matrix}
+\setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
-\setlength{\tabcolsep}{7pt}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Criteria} & \textbf{Vertical Scaling} & \textbf{Horizontal Scaling} & \textbf{Hybrid Scaling} \\
 \midrule
 \textbf{Latency} 
 & Lowest per-instance latency; well-suited for long contexts and large batches 
 & Higher latency due to inter-node communication overhead 
 & Maintains low latency for critical workloads, with flexibility to absorb bursts \\
-\midrule
 \textbf{Throughput} 
 & High per-node throughput; bounded by GPU count per server 
 & Scales nearly linearly with added nodes (until coordination overheads) 
 & Balanced throughput via high-end nodes plus elastic horizontal pools \\
-\midrule
 \textbf{Cost Efficiency} 
 & High fixed cost; inefficient under low utilization 
 & Elastic cost model; scales down during low demand 
 & Optimized by routing workloads to appropriate hardware tiers \\
-\midrule
 \textbf{Operational Complexity} 
 & Simple (single-node); fewer components to manage 
 & Higher complexity due to distributed inference and state synchronization 
 & Highest complexity: heterogeneous hardware, routing logic, multi-level orchestration \\
-\midrule
 \textbf{Scalability Ceiling} 
 & Limited by hardware specs and single-node limits (memory, etc.) 
 & Limited by orchestration constraints and network latency at large scale 
 & Flexible, but bottlenecked by orchestration sophistication and coordination overhead \\
-\midrule
 \textbf{Best Use Cases} 
 & Latency-critical, large-model inference where simplicity matters 
 & Bursty workloads; geo-distributed services; cost-sensitive scaling 
@@ -548,19 +544,21 @@ Pipeline parallelism partitions the model into sequential stages (contiguous lay
 
 Table~\ref{tab:ch06_distributed_inference} compares common distributed inference techniques and highlights their dominant trade-offs in latency, throughput, and communication cost.
 
-\begin{table}[htbp]
+\begin{table}[t]
 \centering
-\footnotesize
+\small
 \caption{Distributed inference technique selection determines memory efficiency and communication overhead. Model parallelism partitions layers across GPUs; tensor parallelism splits matrix operations; pipeline parallelism stages computation. Choose based on model size, hardware topology, and latency requirements.}
 \label{tab:ch06_distributed_inference}
-\renewcommand{\arraystretch}{1.12}
-\setlength{\tabcolsep}{3pt}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{
   >{\raggedright\arraybackslash}p{2.8cm}
   >{\raggedright\arraybackslash}X
   >{\raggedright\arraybackslash}X
   >{\raggedright\arraybackslash}X}
 \toprule
+\rowcolor{gray!10}
 \textbf{Criteria} & \textbf{Model Parallelism} & \textbf{Tensor Parallelism} & \textbf{Pipeline Parallelism} \\
 \midrule
 Definition & Splits layers across GPUs (each device holds different blocks). & Splits a layer’s ops across GPUs; results merged via collectives. & Partitions model into sequential stages executed as a pipeline. \\

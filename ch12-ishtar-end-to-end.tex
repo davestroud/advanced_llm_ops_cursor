@@ -154,13 +154,17 @@ Access control is therefore part of the threat model: the system must assume tha
 An end-to-end system must be engineered against explicit requirements, not informal aspirations.
 Table~\ref{tab:ch12_ishtar_requirements} summarizes representative targets used to guide \ishtar{} design.
 
-\begin{table}[tb]
+\begin{table}[t]
 \centering
 \small
+\caption{End-to-end requirements drive architectural decisions and operational priorities. \ishtar{}'s requirements emphasize latency (sub-second responses), accuracy (verified facts), and scalability (traffic surges). These requirements determine infrastructure choices, evaluation strategies, and monitoring priorities throughout the system design.}
+\label{tab:ch12_ishtar_requirements}
 \setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.2}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\textwidth}{@{}p{32mm}p{55mm}X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Category} & \textbf{Requirement} & \textbf{Target / operationalization} \\
 \midrule
 Freshness & Ingest and index new reports quickly & Poll/stream sources continuously; end-to-end ingest $\rightarrow$ searchable in minutes; backlog alerting if lag grows. \\
@@ -172,8 +176,6 @@ Scalability & Breaking-news bursts & GPU autoscaling; backpressure; priority sch
 Cost control & Predictable unit economics & Track cost/query; scale-to-zero for non-critical workloads; model routing where feasible. \\
 \bottomrule
 \end{tabularx}
-\caption{End-to-end requirements drive architectural decisions and operational priorities. \ishtar{}'s requirements emphasize latency (sub-second responses), accuracy (verified facts), and scalability (traffic surges). These requirements determine infrastructure choices, evaluation strategies, and monitoring priorities throughout the system design.}
-\label{tab:ch12_ishtar_requirements}
 \end{table}
 
 % ---------------------------------------------------------------------
@@ -725,13 +727,17 @@ Representative outcomes in the \ishtar{} deployment include:
 Table~\ref{tab:ch12_ishtar_outcomes} summarizes representative outcomes observed after full operationalization.
 These values are deployment-specific and should be interpreted as \emph{illustrative targets} rather than universal guarantees.
 
-\begin{table}[tb]
+\begin{table}[t]
 \centering
 \small
+\caption{Production metrics validate that \ishtar{} meets its operational requirements. These metrics demonstrate that systematic LLMOps practices (RAG, evaluation gates, autoscaling, monitoring) deliver measurable improvements in latency, cost, reliability, and quality. The observed values provide benchmarks for similar deployments and illustrate the impact of operational discipline.}
+\label{tab:ch12_ishtar_metrics}
 \setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.2}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\textwidth}{@{}p{46mm}p{30mm}X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Metric} & \textbf{Observed} & \textbf{Notes} \\
 \midrule
 Indexed corpus size & $\sim$1.5M & Chunks/documents with versioned snapshots. \\
@@ -745,8 +751,6 @@ Hallucination rate & $\sim$5\% & Post-hoc review; $\sim$40\% lower vs.\ non-RAG 
 Deployment cadence & $\sim$2/week & Evaluation-gated releases; no rollbacks in the measured window. \\
 \bottomrule
 \end{tabularx}
-\caption{Performance outcomes validate architectural decisions and optimization strategies. \ishtar{}'s results demonstrate that systematic optimization (quantization, caching, autoscaling) achieves target latency and cost goals. These outcomes provide benchmarks for similar LLM deployments and validate the end-to-end LLMOps approach.}
-\label{tab:ch12_ishtar_outcomes}
 \end{table}
 
 \subsection{Latency and throughput}

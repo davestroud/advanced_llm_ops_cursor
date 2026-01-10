@@ -160,23 +160,22 @@ Teams should therefore prefer multi-agent designs when there is a clear need for
 
 \begin{table}[t]
 \centering
+\small
 \caption{Architecture choice (monolithic vs.\ multi-agent) determines operational complexity and reliability. Multi-agent systems enable specialization, explicit verification gates, and fault isolation, but introduce coordination overhead. Choose monolithic for simple tasks with low verification needs; choose multi-agent when specialization, safety gates, or tool-augmented workflows justify the added complexity.}
 \label{tab:ch09_monolithic_vs_multiagent}
-\small
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{@{}p{3.3cm}X X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Dimension} & \textbf{Monolithic LLM} & \textbf{Multi-agent system} \\
 \midrule
 Modularity & One prompt/model changes can have system-wide effects; limited isolation. & Components are replaceable; changes can be localized behind stable contracts. \\
-\rowcolor{black!3}
 Verification and safety gates & Hard to enforce sequential checks without bloating prompts. & Natural to insert \emph{verification} and \emph{safety} agents as explicit stages. \\
 Debuggability & Few internal boundaries; errors may be opaque and hard to attribute. & Failures can be attributed to a specific agent step, provided contracts and traces are logged. \\
-\rowcolor{black!3}
 Latency and cost & Fewer hops; may be cheaper for simple tasks. & More coordination overhead; requires budget governance and pruning of unnecessary steps. \\
 Governance & Access control and tool use are implicit in the prompt. & Least-privilege tool assignment and policy enforcement can be scoped per agent. \\
-\rowcolor{black!3}
 Scalability & Scaling is tied to a single inference workload. & Individual agents can scale independently (e.g., retrieval vs.\ verification). \\
 \bottomrule
 \end{tabularx}
@@ -421,20 +420,21 @@ In \ishtar{}, the retrieval agent emits a context pack with citation IDs (e.g., 
 
 \begin{table}[t]
 \centering
+\small
 \caption{Agent contracts enable reliable multi-agent orchestration. By specifying inputs/outputs, invariants, and metrics, contracts allow deterministic validation, error handling, and debugging. This contract-first approach converts non-deterministic agent behavior into testable, auditable production workflows.}
 \label{tab:ch09_ishtar_agent_contracts}
-\small
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{@{}p{2.6cm}p{3.1cm}X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Agent} & \textbf{Input / Output} & \textbf{Contract invariants and key metrics} \\
 \midrule
 Ingestion &
 \textbf{In:} source URIs, schedules \newline
 \textbf{Out:} chunk IDs, embeddings, metadata &
 Idempotent ingestion; provenance recorded (source, timestamp, hash); lag SLOs; parse error rate. \\
-\rowcolor{black!3}
 Retrieval &
 \textbf{In:} query + filters \newline
 \textbf{Out:} context pack (\texttt{S1..Sk}) &
@@ -443,7 +443,6 @@ Synthesis &
 \textbf{In:} query + context pack \newline
 \textbf{Out:} draft answer + cited spans &
 Every major claim linked to one or more \texttt{S\#} sources; abstain when evidence is missing; token budget and tool-call count. \\
-\rowcolor{black!3}
 Verification &
 \textbf{In:} draft + context pack \newline
 \textbf{Out:} verified answer + corrections &
@@ -662,19 +661,20 @@ Frameworks like LangGraph \cite{langchain} provide abstractions that blend these
 
 \begin{table}[t]
 \centering
+\small
 \caption{Communication pattern selection affects system scalability and debuggability. Direct messaging provides predictable latency but tight coupling; message buses enable loose coupling but harder debugging; blackboard architectures support iterative refinement but require coordination. Choose based on system scale, concurrency needs, and operational requirements.}
 \label{tab:ch09_comm_patterns}
-\small
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{@{}p{3.2cm}p{3.4cm}X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Pattern} & \textbf{Strengths} & \textbf{Operational considerations} \\
 \midrule
 Direct messaging &
 Low overhead; predictable latency; straightforward tracing &
 Tight coupling; growth in point-to-point routes; requires careful versioning of agent APIs and strict timeout/retry discipline. \\
-\rowcolor{black!3}
 Message bus (pub/sub) &
 Loose coupling; asynchronous fan-out; smoothing bursts &
 Harder debugging; eventual consistency; requires idempotent consumers and replay semantics; adds infrastructure overhead. \\
@@ -878,26 +878,26 @@ Distinguishing these classes is critical: infrastructure failures warrant retrie
 
 \begin{table}[t]
 \centering
+\small
 \caption{Failure taxonomy enables systematic error handling in multi-agent systems. By categorizing failures (infrastructure, schema, semantic, policy, coordination), orchestrators can apply appropriate responses (retry, re-prompt, escalate, abort). This taxonomy converts ad hoc error handling into a testable, auditable operational policy.}
 \label{tab:ch09_agent_failure_taxonomy}
-\small
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{@{}p{3.3cm}X X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Failure class} & \textbf{Symptoms} & \textbf{Recommended response} \\
 \midrule
 Infrastructure / availability &
 timeouts, 5xx from tools, quota/rate-limit errors &
 Retry with exponential backoff; use circuit breakers; fall back to cached results or degraded mode. \\
-\rowcolor{black!3}
 Schema / parsing &
 non-JSON output when JSON required; missing required fields &
 Re-prompt with stricter formatting; validate with schema; if repeated, route to a more reliable model or escalate. \\
 Semantic / factual &
 claims lack citations; contradictions across agents &
 Invoke verification; request revisions; reduce scope; abstain if evidence is insufficient. \\
-\rowcolor{black!3}
 Policy / safety &
 disallowed tool invocation; sensitive data leakage risk &
 Hard stop; refuse or redact; log policy decision; optionally escalate for human review. \\
@@ -1017,23 +1017,22 @@ where $m$ is the number of model invocations. This makes \emph{budget governance
 
 \begin{table}[t]
 \centering
+\small
 \caption{Performance metrics drive capacity planning and cost governance in agentic systems. End-to-end latency, token usage, tool-call counts, and retry rates reveal bottlenecks and cost drivers. Monitoring these metrics enables proactive scaling, budget enforcement, and optimization decisions.}
 \label{tab:ch09_agent_performance_metrics}
-\small
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{@{}p{3.5cm}X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Metric} & \textbf{Why it matters} \\
 \midrule
 End-to-end latency (p50/p95/p99) & Captures user experience; p95/p99 reveal coordination overhead and retry storms. \\
-\rowcolor{black!3}
 Tokens per request (in/out) & Primary driver of cost; also correlates with long-context failure risk and truncation. \\
 Tool-call count and latency & Indicates whether the agent is overusing tools; highlights slow dependencies (search, DB). \\
-\rowcolor{black!3}
 Retry rate / circuit-breaker opens & Proxy for dependency health and robustness; rising values often precede incidents. \\
 Loop count / replan count & Detects oscillation; helps enforce bounded agent behavior and step budgets. \\
-\rowcolor{black!3}
 Cache hit rate (context packs, tool results) & Key lever for both latency and cost, especially for repeated or trending queries. \\
 Abstention / escalation rate & Measures how often the system fails safely (abstains) versus producing low-quality output. \\
 \bottomrule
@@ -1148,26 +1147,26 @@ Industry guidance such as the OWASP Top 10 for LLM Applications provides a usefu
 
 \begin{table}[t]
 \centering
+\small
 \caption{Threat modeling identifies security risks unique to agentic systems. Prompt injection, tool misuse, and data exfiltration require defense-in-depth controls (input sanitization, least-privilege tool access, output filtering). This threat model guides security architecture decisions and audit requirements.}
 \label{tab:ch09_agentic_threats}
-\small
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{@{}p{3.3cm}X X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Threat} & \textbf{Attack surface} & \textbf{Mitigations} \\
 \midrule
 Prompt injection &
 User inputs override instructions or elicit secrets &
 Instruction hierarchy; input delimiting; refusal policies; prompt leakage tests; red-teaming. \\
-\rowcolor{black!3}
 Indirect prompt injection &
 Retrieved data contains hidden instructions that influence tool use &
 Treat retrieved content as untrusted; sanitize/strip markup; constrain tools; require citations; isolate execution. \\
 Tool misuse / excessive agency &
 Agent calls powerful tools beyond intent (e.g., mass queries, deletion) &
 Least-privilege tool assignment; allowlists; argument validation; rate limits; human approval for high-risk actions. \\
-\rowcolor{black!3}
 Data exfiltration &
 Agent leaks PII or proprietary data through outputs or tool calls &
 Output filtering/redaction; access control at retrieval; egress controls; audit logs; encryption at rest/in transit. \\

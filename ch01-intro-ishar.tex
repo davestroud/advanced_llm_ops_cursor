@@ -256,13 +256,16 @@ A useful mental model is to treat observability as an \emph{evidence ledger} for
 \end{tcolorbox}
 
 \begin{table}[t]
-\centering\small
+\centering
+\small
 \caption{LLMOps observability: what to capture beyond traditional monitoring, why it matters, and common failure signals.}
 \label{tab:ch01_llm_observability}
-\setlength{\tabcolsep}{8pt}
-\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Layer} & \textbf{What to capture} & \textbf{Why it matters} & \textbf{Typical failure signals} \\
 \midrule
 System telemetry &
@@ -431,14 +434,17 @@ LLMOps therefore formalizes the practices required to run these systems with rel
 
 % Requires in preamble (once): \usepackage{tabularx,booktabs,threeparttable}
 \begin{table}[t]
-\centering\small
+\centering
+\small
 \caption{LLMOps extends MLOps in four critical dimensions that require new operational practices. Scale introduces memory\index{memory} and cost constraints; complexity demands semantic observability; variability requires prompt and retrieval testing; risk necessitates safety gates\index{safety gate} and policy enforcement\index{policy enforcement}. Understanding these extensions helps teams anticipate operational challenges and plan infrastructure investments.}
 \label{tab:ch01_llmops_extends_mlops}
-\setlength{\tabcolsep}{8pt}
-\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{threeparttable}
 \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{20mm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Dimension} & \textbf{What changes} & \textbf{Ops implications} \\
 \midrule
 \textbf{Scale} &
@@ -786,14 +792,14 @@ Part~IV addresses rigorous evaluation and responsible deployment, culminating in
 \begin{table}[t]
 \centering
 \small
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.12}
-
 \caption{Chapter organization maps to operational lifecycle stages. Each chapter addresses specific operational challenges (foundations, delivery, optimization, governance), enabling readers to understand both individual practices and their integration into a complete LLMOps system. This organization supports both sequential reading and targeted reference for specific operational needs.}
 \label{tab:ch01_llmops_legend}
-
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
 \begin{tabularx}{\linewidth}{@{}p{52mm}X@{}}
 \toprule
+\rowcolor{gray!10}
 \textbf{Chapter} & \textbf{Operational purpose} \\
 \midrule
 \textbf{Chapter~\ref{ch:llmops-fundamentals}: Fundamentals} &
@@ -1511,11 +1517,12 @@ The key lesson is that operational excellence can substitute for sheer model siz
 
 
 \begin{table}[p] % own page if possible
-\centering\small
+\centering
+\small
 \caption{Early LLM deployments reveal critical operational lessons. Failures (Galactica, Sydney) demonstrate the cost of inadequate safety gates and evaluation; successes (Character.AI) show the value of systematic testing and monitoring. These case studies illustrate why operational discipline is essential for responsible LLM deployment.}
 \label{tab:ch01_early_llmops_cases}
 \setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.25}
+\renewcommand{\arraystretch}{1.3}
 
 % a muted, print-friendly palette
 \definecolor{GalRed}{RGB}{196,72,64}
@@ -1525,10 +1532,10 @@ The key lesson is that operational excellence can substitute for sheer model siz
 \begin{threeparttable}
 
 % subtle alternating row color
-\rowcolors{2}{black!02}{white}
+\rowcolors{2}{gray!5}{white}
 
 \begin{tabularx}{\textwidth}{@{}p{31mm}XXX@{}}
-\rowcolor{black!6}
+\rowcolor{gray!10}
 \textbf{Case} & \textbf{Failure mode (or pressure point)} & \textbf{LLMOps mitigation (what should/was done)} & \textbf{Outcome / lesson} \\
 \midrule
 {\swatch{GalRed}\quad\textbf{Galactica (Meta, 2022)}} 

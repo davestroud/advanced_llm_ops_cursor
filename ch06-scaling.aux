@@ -12,10 +12,10 @@
 \newlabel{sec:scaling-problem}{{6.2}{172}{The Scaling Problem in LLMOps}{section.6.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Operational Realities Beyond Baseline Constraints}{173}{subsection.6.2.1}\protected@file@percent }
 \newlabel{sec:scaling-operational-realities}{{6.2.1}{173}{Operational Realities Beyond Baseline Constraints}{subsection.6.2.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}The \ishtar  {} Case}{174}{subsection.6.2.2}\protected@file@percent }
-\newlabel{sec:scaling-ishtar-case}{{6.2.2}{174}{The \ishtar {} Case}{subsection.6.2.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Scaling strategy selection determines cost efficiency and responsiveness. \ishtar  {} employs hierarchical routing, hybrid caching, dynamic context trimming, and predictive autoscaling to handle traffic surges while maintaining latency SLOs. These strategies demonstrate how production systems balance throughput, cost, and quality under variable load.}}{174}{table.6.1}\protected@file@percent }
 \newlabel{tab:ch06_ishtar_scaling_strategies}{{6.1}{174}{Scaling strategy selection determines cost efficiency and responsiveness. \ishtar {} employs hierarchical routing, hybrid caching, dynamic context trimming, and predictive autoscaling to handle traffic surges while maintaining latency SLOs. These strategies demonstrate how production systems balance throughput, cost, and quality under variable load}{table.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}The \ishtar  {} Case}{174}{subsection.6.2.2}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-case}{{6.2.2}{174}{The \ishtar {} Case}{subsection.6.2.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Broader Perspective}{175}{subsection.6.2.3}\protected@file@percent }
 \newlabel{sec:scaling-broader-perspective}{{6.2.3}{175}{Broader Perspective}{subsection.6.2.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Capacity Planning and SLO Budgets}{175}{subsection.6.2.4}\protected@file@percent }
@@ -52,9 +52,9 @@
 \newlabel{sec:scaling-tensor-parallelism}{{6.4.3}{183}{Tensor Parallelism}{subsection.6.4.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4.4}Pipeline Parallelism}{184}{subsection.6.4.4}\protected@file@percent }
 \newlabel{sec:scaling-pipeline-parallelism}{{6.4.4}{184}{Pipeline Parallelism}{subsection.6.4.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.4.1}Case in \ishtar  {}.}{185}{subsubsection.6.4.4.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Distributed inference technique selection determines memory efficiency and communication overhead. Model parallelism partitions layers across GPUs; tensor parallelism splits matrix operations; pipeline parallelism stages computation. Choose based on model size, hardware topology, and latency requirements.}}{185}{table.6.3}\protected@file@percent }
 \newlabel{tab:ch06_distributed_inference}{{6.3}{185}{Distributed inference technique selection determines memory efficiency and communication overhead. Model parallelism partitions layers across GPUs; tensor parallelism splits matrix operations; pipeline parallelism stages computation. Choose based on model size, hardware topology, and latency requirements}{table.6.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.4.1}Case in \ishtar  {}.}{185}{subsubsection.6.4.4.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Distributed inference methods enable large-model deployment but introduce communication overhead. \textbf  {(a)} Model Parallelism partitions layers across GPUs, minimizing inter-GPU communication but requiring high memory per GPU. \textbf  {(b)} Tensor Parallelism splits matrix operations within layers, requiring frequent all-reduce synchronization. \textbf  {(c)} Pipeline Parallelism stages computation, enabling high throughput but adding pipeline bubbles. Choose based on model size, hardware topology, and latency tolerance.}}{186}{figure.6.2}\protected@file@percent }
 \newlabel{fig:ch06_parallelism}{{6.2}{186}{Distributed inference methods enable large-model deployment but introduce communication overhead. \textbf {(a)} Model Parallelism partitions layers across GPUs, minimizing inter-GPU communication but requiring high memory per GPU. \textbf {(b)} Tensor Parallelism splits matrix operations within layers, requiring frequent all-reduce synchronization. \textbf {(c)} Pipeline Parallelism stages computation, enabling high throughput but adding pipeline bubbles. Choose based on model size, hardware topology, and latency tolerance}{figure.6.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4.5}Speculative Decoding}{186}{subsection.6.4.5}\protected@file@percent }
@@ -346,7 +346,7 @@
 \setcounter{bbx:relatedtotal}{0}
 \setcounter{section@level}{1}
 \setcounter{Item}{50}
-\setcounter{Hfootnote}{2}
+\setcounter{Hfootnote}{1}
 \setcounter{bookmark@seq@number}{0}
 \setcounter{lstlisting}{0}
 }

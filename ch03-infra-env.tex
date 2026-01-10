@@ -104,17 +104,22 @@ NVIDIA GPUs remain the dominant hardware for LLM workloads in 2024–2025. The N
 
 \begin{table}[t]
   \centering
+  \small
   \caption{GPU accelerator selection determines cost, throughput, and deployment feasibility. Different accelerators optimize for different model sizes and workloads: A100 provides balanced performance, H100 offers higher throughput and FP8 support, L4 enables cost-effective smaller models. Choose based on model size, traffic volume, and budget constraints.}
   \label{tab:ch03_gpucompare}
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.3}
+  \rowcolors{2}{gray!5}{white}
   \begin{tabular}{lcccc}
-    \hline
-    Processor & Memory & Tokens/s (13B) & Price/hr (cloud) & Best Use Case \\
-    \hline
+    \toprule
+    \rowcolor{gray!10}
+    \textbf{Processor} & \textbf{Memory} & \textbf{Tokens/s (13B)} & \textbf{Price/hr (cloud)} & \textbf{Best Use Case} \\
+    \midrule
     NVIDIA L4     & 24 GB & $\sim$2{,}000 & \$0.35 & Low-power, low-latency inference; embeddings \\
     NVIDIA A100   & 40 GB & $\sim$6{,}500 & \$2.90 & High-load inference; some training/fine-tuning \\
     NVIDIA A100   & 80 GB & $\sim$8{,}000 & \$3.80 & Larger models; multi-model serving \\
     NVIDIA H100   & 80 GB & $\sim$12{,}000 & \$5.00 & Cutting-edge throughput; FP8 acceleration \\
-    \hline
+    \bottomrule
   \end{tabular}
 \end{table}
 
@@ -152,14 +157,14 @@ From an infrastructure owner's perspective, tracking cost per 1k tokens is very 
 
 \begin{table}[t]
   \centering
+  \small
   \caption{Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%.}
   \label{tab:ch03_cost_per_token}
-  \small
-  \setlength{\tabcolsep}{10pt}
-  \renewcommand{\arraystretch}{1.4}
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.3}
   \begin{tabularx}{\linewidth}{@{}lccX@{}}
     \toprule
-    \rowcolor{blue!15}
+    \rowcolor{gray!10}
     \textbf{GPU Type} & \textbf{Utilization} & \textbf{Cost/hr} & \textbf{Cost per 1k tokens} \\
     \midrule
     \rowcolor{blue!8}
@@ -354,18 +359,29 @@ The effective cost per million tokens is calculated using Equation~\ref{eq:costp
 
 \begin{table}[t]
   \centering
+  \small
   \caption{Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times$, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing.}
   \label{tab:ch03_costcompare}
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.3}
+  \rowcolors{2}{gray!5}{white}
+  \begin{threeparttable}
   \begin{tabular}{lccc}
-    \hline
-    Accelerator & Hourly Price (\$) & Sustained Throughput (tok/s) & Cost per 1M tokens (\$) \\
-    \hline
+    \toprule
+    \rowcolor{gray!10}
+    \textbf{Accelerator} & \textbf{Hourly Price (\$)} & \textbf{Sustained Throughput (tok/s)} & \textbf{Cost per 1M tokens (\$)} \\
+    \midrule
     NVIDIA A100-80GB & 3.80 & 8,000 & $\sim$0.13 \\
     NVIDIA H100-80GB & 5.00 & 12,000 & $\sim$0.09 \\
     Google TPU v4     & 3.00 & 9,000  & $\sim$0.093 \\
-    Google TPU v5e-8  & 8.00\footnote{Eight TPU v5e chips at $\sim$\$1/hr each, deployed as a pod.} & 48,000 & $\sim$0.046 \\
-    \hline
+    Google TPU v5e-8  & 8.00\tnote{a} & 48,000 & $\sim$0.046 \\
+    \bottomrule
   \end{tabular}
+  \begin{tablenotes}
+  \footnotesize
+  \item[a] Eight TPU v5e chips at $\sim$\$1/hr each, deployed as a pod.
+  \end{tablenotes}
+  \end{threeparttable}
 \end{table}
 
 Several insights emerge:
@@ -465,13 +481,15 @@ In practice, LLMOps stacks often combine these tools. For instance, \ishtar{} us
 
 \begin{table}[t]
   \centering
+  \small
   \caption{Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements.}
   \label{tab:ch03_iaccompare}
-  \small
-  \setlength{\tabcolsep}{8pt}
-  \renewcommand{\arraystretch}{1.4}
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.3}
+  \rowcolors{2}{gray!5}{white}
   \begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
     \toprule
+    \rowcolor{gray!10}
     \textbf{Tool} & \textbf{Scope} & \textbf{Strength} & \textbf{Limitation} \\
     \midrule
     \textbf{Terraform} & Multi-cloud, K8s & Mature ecosystem; declarative workflow & DSL limits flexibility \\
@@ -688,15 +706,17 @@ The landscape of LLM serving is rapidly evolving. By combining robust serving fr
 
 \begin{table}[t]
 \centering
+\small
 \caption{Serving framework selection determines throughput, latency, and operational complexity. Different frameworks optimize for different scenarios: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency inference, and TGI balances ease of use with performance. Choose based on traffic patterns, latency requirements, and team expertise.}
 \label{tab:ch03_servingcompare}
-\renewcommand{\arraystretch}{1.25}
 \setlength{\tabcolsep}{6pt}
-\begin{tabular}{>{\columncolor{blue!10}}l p{4.2cm} p{4.2cm}}
-\hline
-\rowcolor{blue!25} 
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabular}{l p{4.2cm} p{4.2cm}}
+\toprule
+\rowcolor{gray!10}
 \textbf{Framework} & \textbf{Strengths} & \textbf{Limitations} \\
-\hline
+\midrule
 \textbf{TGI (Hugging Face)} &
 Easy deployment (Docker), integrates with HF ecosystem, continuous batching, streaming, safety filters. &
 Tied to Hugging Face release cycle; multi-node scaling less mature. \\
@@ -716,7 +736,7 @@ Lower-level toolkit; less polished API; some features (e.g., sliding window) mis
 \textbf{SGLang} &
 Optimized for LLM + multimodal; responsive runtime; efficient concurrent serving. &
 Niche adoption; limited documentation; smaller ecosystem. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 

@@ -37,8 +37,8 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Paged Attention}{226}{subsection.7.4.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {7.4}{\ignorespaces Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints.}}{227}{table.7.4}\protected@file@percent }
 \newlabel{tab:ch07_engine_bench}{{7.4}{227}{Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints}{table.7.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.5}System-Level Optimization}{228}{section.7.5}\protected@file@percent }
-\newlabel{sec:perf-system}{{7.5}{228}{System-Level Optimization}{section.7.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}System-Level Optimization}{227}{section.7.5}\protected@file@percent }
+\newlabel{sec:perf-system}{{7.5}{227}{System-Level Optimization}{section.7.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.5.1}Batching Strategies}{228}{subsection.7.5.1}\protected@file@percent }
 \newlabel{sec:perf-batching}{{7.5.1}{228}{Batching Strategies}{subsection.7.5.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7.5}{\ignorespaces Throughput scaling with batch size reveals optimization opportunities and limits. Throughput rises rapidly at small $B$ as kernel-launch and memory overheads are amortized, then saturates once the accelerator becomes compute- or bandwidth-bound. Understanding this saturation point helps teams optimize batch sizes, but in production, the optimal $B$ is constrained by latency SLOs and KV-cache memory.}}{229}{figure.7.5}\protected@file@percent }
@@ -78,10 +78,10 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.2.4}Asynchronous API and streaming.}{242}{subsubsection.7.9.2.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.9.3}Results}{242}{subsection.7.9.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {7.9.3.1}Alternate configurations considered.}{243}{subsubsection.7.9.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7.10}Best Practices Checklist (Quick)}{244}{section.7.10}\protected@file@percent }
-\newlabel{sec:perf-checklist-quick}{{7.10}{244}{Best Practices Checklist (Quick)}{section.7.10}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7.6}{\ignorespaces \ishtar  {} optimization KPIs demonstrate systematic improvement through targeted techniques. Comparing before vs.\ after metrics (latency, throughput, cost) validates that optimization strategies deliver measurable gains. These KPIs provide benchmarks for similar deployments and illustrate how systematic optimization achieves production goals. Values are representative of the case study scenario and depend on workload and hardware.}}{244}{table.7.6}\protected@file@percent }
 \newlabel{tab:ch07_ishtar_kpis}{{7.6}{244}{\ishtar {} optimization KPIs demonstrate systematic improvement through targeted techniques. Comparing before vs.\ after metrics (latency, throughput, cost) validates that optimization strategies deliver measurable gains. These KPIs provide benchmarks for similar deployments and illustrate how systematic optimization achieves production goals. Values are representative of the case study scenario and depend on workload and hardware}{table.7.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.10}Best Practices Checklist (Quick)}{244}{section.7.10}\protected@file@percent }
+\newlabel{sec:perf-checklist-quick}{{7.10}{244}{Best Practices Checklist (Quick)}{section.7.10}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {7.11}Best Practices Checklist}{245}{section.7.11}\protected@file@percent }
 \newlabel{sec:perf-checklist}{{7.11}{245}{Best Practices Checklist}{section.7.11}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {7.12}Extended Material}{246}{section.7.12}\protected@file@percent }
@@ -317,7 +317,7 @@
 \setcounter{bbx:relatedtotal}{0}
 \setcounter{section@level}{2}
 \setcounter{Item}{54}
-\setcounter{Hfootnote}{2}
+\setcounter{Hfootnote}{1}
 \setcounter{bookmark@seq@number}{0}
 \setcounter{lstlisting}{0}
 }
