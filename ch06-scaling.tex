@@ -857,55 +857,144 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}[font=\normalsize]
+\begin{tikzpicture}[font=\small]
 \begin{axis}[
-    width=0.9\linewidth,
-    height=6cm,
+    width=0.95\linewidth,
+    height=7cm,
     xlabel={Time},
     ylabel={Tokens/s},
     ymin=0, ymax=1200,
     xmin=0, xmax=100,
-    grid=both, grid style={gray!20},
-    legend style={at={(0.5,1.03)},anchor=south,draw=none,fill=none,font=\normalsize},
+    grid=major,
+    grid style={gray!25, line width=0.3pt},
+    minor grid style={gray!10, line width=0.2pt},
+    minor tick num=4,
+    legend style={
+        at={(0.5,1.02)},
+        anchor=south,
+        draw=none,
+        fill=none,
+        font=\small,
+        cells={anchor=west},
+        legend columns=3,
+        column sep=8pt
+    },
     tick align=outside,
-    xlabel style={font=\normalsize},
-    ylabel style={font=\normalsize},
-    ticklabel style={font=\normalsize},
-    legend cell align=left
+    tick pos=left,
+    xlabel style={font=\small\bfseries, yshift=2pt},
+    ylabel style={font=\small\bfseries, xshift=-2pt},
+    ticklabel style={font=\small},
+    axis line style={line width=0.8pt},
+    every axis plot/.append style={line width=1.5pt}
 ]
-% Demand (tokens/s) - thicker line with circular markers
-\addplot+[ultra thick, blue!80!black, mark=*, mark size=2pt, mark options={fill=blue!80!black, draw=white, line width=0.5pt}] coordinates {
+% Demand (tokens/s) - solid blue line with circular markers
+\addplot+[
+    color=blue!75!black,
+    mark=*,
+    mark size=2.5pt,
+    mark options={fill=blue!75!black, draw=white, line width=0.4pt},
+    smooth
+] coordinates {
 (0,300) (10,320) (20,350) (30,600) (40,900) (50,950) (60,700) (70,500) (80,420) (90,350) (100,320)
 };
 \addlegendentry{Demand $D(t)$}
 
-% Event-based capacity: pre-warms BEFORE spike (proactive) - thicker dashed line with square markers
-\addplot+[ultra thick, dashed, green!80!black, mark=square*, mark size=2pt, mark options={fill=green!80!black, draw=white, line width=0.5pt}] coordinates {
+% Event-based capacity: pre-warms BEFORE spike (proactive) - dashed green line with square markers
+\addplot+[
+    color=green!70!black,
+    dashed,
+    dash pattern=on 4pt off 2pt,
+    mark=square*,
+    mark size=2.5pt,
+    mark options={fill=green!70!black, draw=white, line width=0.4pt},
+    smooth
+] coordinates {
 (0,430) (15,430) (20,600) (25,860) (30,860) (40,860) (55,860) (60,860) (70,600) (85,600) (100,430)
 };
-\addlegendentry{Event-based capacity (pre-warmed)}
+\addlegendentry{Event-based (pre-warmed)}
 
-% Metrics-based capacity (reactive, shown for comparison) - thicker dotted line with diamond markers
-\addplot+[ultra thick, dotted, red!80!black, mark=diamond*, mark size=2pt, mark options={fill=red!80!black, draw=white, line width=0.5pt}] coordinates {
+% Metrics-based capacity (reactive, shown for comparison) - dotted red line with diamond markers
+\addplot+[
+    color=red!70!black,
+    dotted,
+    mark=diamond*,
+    mark size=2.5pt,
+    mark options={fill=red!70!black, draw=white, line width=0.4pt},
+    smooth
+] coordinates {
 (0,430) (20,430) (30,430) (40,860) (55,860) (60,860) (70,600) (85,600) (100,430)
 };
-\addlegendentry{Metrics-based (reactive, reference)}
+\addlegendentry{Metrics-based (reactive)}
 
-% Horizontal line for single-replica capacity - more visible, moved further right
-\addplot+[domain=0:100, samples=2, gray!70!black, dashdotted, ultra thick, line width=1.2pt] {430};
-\node[gray!70!black, font=\normalsize] at (axis cs:12,470) {$\gamma\,\hat{C}$ per replica};
+% Horizontal line for single-replica capacity
+\addplot+[
+    domain=0:100,
+    samples=2,
+    color=gray!60!black,
+    dashdotted,
+    dash pattern=on 3pt off 2pt on 0.5pt off 2pt,
+    line width=1pt
+] {430};
+\node[
+    color=gray!60!black,
+    font=\footnotesize,
+    fill=white,
+    inner sep=2pt,
+    rounded corners=2pt
+] at (axis cs:15,470) {$\gamma\,\hat{C}$ per replica};
 
-% Event trigger annotation - moved further left and up to avoid overlap, less bold
-\node[anchor=south west, align=left, font=\normalsize, text=green!80!black] at (axis cs:2,750) {Event trigger\\(calendar/schedule)};
-\draw[->,>=stealth,ultra thick, green!80!black, line width=1.2pt] (axis cs:2,730) -- (axis cs:20,600);
+% Event trigger annotation - improved styling
+\node[
+    anchor=south west,
+    align=left,
+    font=\footnotesize,
+    text=green!70!black,
+    fill=green!10,
+    inner sep=3pt,
+    rounded corners=3pt
+] at (axis cs:3,780) {\textbf{Event trigger}\\(calendar/schedule)};
+\draw[
+    ->,
+    >=stealth,
+    color=green!70!black,
+    line width=1pt,
+    shorten >=2pt
+] (axis cs:3,760) -- (axis cs:20,600);
 
-% Pre-warm annotation - moved further right and up to avoid overlap, less bold
-\node[anchor=east, align=right, font=\normalsize, text=green!80!black] at (axis cs:28,950) {Pre-warm\\ahead of spike};
-\draw[->,>=stealth,ultra thick, green!80!black, line width=1.2pt] (axis cs:28,930) -- (axis cs:25,860);
+% Pre-warm annotation - improved styling
+\node[
+    anchor=east,
+    align=right,
+    font=\footnotesize,
+    text=green!70!black,
+    fill=green!10,
+    inner sep=3pt,
+    rounded corners=3pt
+] at (axis cs:27,980) {\textbf{Pre-warm}\\ahead of spike};
+\draw[
+    ->,
+    >=stealth,
+    color=green!70!black,
+    line width=1pt,
+    shorten >=2pt
+] (axis cs:27,960) -- (axis cs:25,860);
 
-% Spike annotation - moved further right to avoid overlap, less bold
-\node[anchor=west, font=\normalsize, text=blue!80!black] at (axis cs:35,750) {spike};
-\draw[->,>=stealth,ultra thick, blue!80!black, line width=1.2pt] (axis cs:33,720) -- (axis cs:32,600);
+% Spike annotation - improved styling
+\node[
+    anchor=west,
+    font=\footnotesize,
+    text=blue!75!black,
+    fill=blue!10,
+    inner sep=3pt,
+    rounded corners=3pt
+] at (axis cs:37,800) {\textbf{Spike}};
+\draw[
+    ->,
+    >=stealth,
+    color=blue!75!black,
+    line width=1pt,
+    shorten >=2pt
+] (axis cs:35,780) -- (axis cs:32,600);
 
 \end{axis}
 \end{tikzpicture}
