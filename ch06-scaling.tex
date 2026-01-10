@@ -805,47 +805,127 @@ Serverless LLM platforms pay higher cold-start penalties; predictive pre-warming
 \begin{figure}[t]
 \centering
 \begin{llmfigbox}
-\begin{tikzpicture}[font=\normalsize]
+\begin{tikzpicture}[font=\small]
 \begin{axis}[
-    width=0.9\linewidth,
-    height=6cm,
+    width=0.95\linewidth,
+    height=7cm,
     xlabel={Time},
     ylabel={Tokens/s},
     ymin=0, ymax=1200,
     xmin=0, xmax=100,
-    grid=both, grid style={gray!20},
-    legend style={at={(0.5,1.03)},anchor=south,draw=none,fill=none,font=\normalsize},
+    grid=major,
+    grid style={gray!25, line width=0.3pt},
+    minor grid style={gray!10, line width=0.2pt},
+    minor tick num=4,
+    legend style={
+        at={(0.5,1.02)},
+        anchor=south,
+        draw=none,
+        fill=none,
+        font=\small,
+        cells={anchor=west},
+        legend columns=2,
+        column sep=12pt
+    },
     tick align=outside,
-    xlabel style={font=\normalsize},
-    ylabel style={font=\normalsize},
-    ticklabel style={font=\normalsize},
-    legend cell align=left
+    tick pos=left,
+    xlabel style={font=\small\bfseries, yshift=2pt},
+    ylabel style={font=\small\bfseries, xshift=-2pt},
+    ticklabel style={font=\small},
+    axis line style={line width=0.8pt},
+    every axis plot/.append style={line width=1.5pt}
 ]
-% Demand (tokens/s) - thicker line with markers
-\addplot+[ultra thick, blue!80!black, mark=*, mark size=2pt, mark options={fill=blue!80!black, draw=white, line width=0.5pt}] coordinates {
+% Demand (tokens/s) - solid blue line with circular markers
+\addplot+[
+    color=blue!75!black,
+    mark=*,
+    mark size=2.5pt,
+    mark options={fill=blue!75!black, draw=white, line width=0.4pt},
+    smooth
+] coordinates {
 (0,300) (10,320) (20,350) (30,600) (40,900) (50,950) (60,700) (70,500) (80,420) (90,350) (100,320)
 };
 \addlegendentry{Demand $D(t)$}
 
-% Capacity with headroom gamma=0.7 (N changes) - thicker dashed line with square markers
-\addplot+[ultra thick, dashed, red!80!black, mark=square*, mark size=2pt, mark options={fill=red!80!black, draw=white, line width=0.5pt}] coordinates {
+% Capacity with headroom gamma=0.7 (N changes) - dashed red line with square markers
+\addplot+[
+    color=red!70!black,
+    dashed,
+    dash pattern=on 4pt off 2pt,
+    mark=square*,
+    mark size=2.5pt,
+    mark options={fill=red!70!black, draw=white, line width=0.4pt},
+    smooth
+] coordinates {
 (0,430) (20,430) (30,430) (40,860) (55,860) (60,860) (70,600) (85,600) (100,430)
 };
 \addlegendentry{Provisioned capacity $(\gamma\,\hat{C})\cdot N(t)$}
 
-% Horizontal line for single-replica capacity at gamma*C_hat - more visible
-\addplot+[domain=0:100, samples=2, gray!70!black, dashdotted, ultra thick, line width=1.2pt] {430};
-\node[gray!70!black, font=\normalsize] at (axis cs:6,470) {$\gamma\,\hat{C}$ per replica};
+% Horizontal line for single-replica capacity at gamma*C_hat
+\addplot+[
+    domain=0:100,
+    samples=2,
+    color=gray!60!black,
+    dashdotted,
+    dash pattern=on 3pt off 2pt on 0.5pt off 2pt,
+    line width=1pt
+] {430};
+\node[
+    color=gray!60!black,
+    font=\footnotesize,
+    fill=white,
+    inner sep=2pt,
+    rounded corners=2pt
+] at (axis cs:8,470) {$\gamma\,\hat{C}$ per replica};
 
-% Annotations - larger font, better visibility
-\node[anchor=west, font=\normalsize\bfseries, text=blue!80!black] at (axis cs:31,680) {spike};
-\draw[->,>=stealth,ultra thick, blue!80!black, line width=1.2pt] (axis cs:28,650) -- (axis cs:32,600);
+% Annotations - improved styling with background boxes
+\node[
+    anchor=west,
+    font=\footnotesize,
+    text=blue!75!black,
+    fill=blue!10,
+    inner sep=3pt,
+    rounded corners=3pt
+] at (axis cs:33,700) {\textbf{Spike}};
+\draw[
+    ->,
+    >=stealth,
+    color=blue!75!black,
+    line width=1pt,
+    shorten >=2pt
+] (axis cs:30,670) -- (axis cs:32,600);
 
-\node[anchor=west, font=\normalsize\bfseries, text=red!80!black] at (axis cs:42,990) {$N\uparrow$ (scale out)};
-\draw[->,>=stealth,ultra thick, red!80!black, line width=1.2pt] (axis cs:39,940) -- (axis cs:42,860);
+\node[
+    anchor=west,
+    font=\footnotesize,
+    text=red!70!black,
+    fill=red!10,
+    inner sep=3pt,
+    rounded corners=3pt
+] at (axis cs:44,1000) {\textbf{$N\uparrow$} (scale out)};
+\draw[
+    ->,
+    >=stealth,
+    color=red!70!black,
+    line width=1pt,
+    shorten >=2pt
+] (axis cs:41,950) -- (axis cs:42,860);
 
-\node[anchor=east, font=\normalsize\bfseries, text=red!80!black] at (axis cs:84,650) {$N\downarrow$ (scale in)};
-\draw[->,>=stealth,ultra thick, red!80!black, line width=1.2pt] (axis cs:87,600) -- (axis cs:84,600);
+\node[
+    anchor=east,
+    font=\footnotesize,
+    text=red!70!black,
+    fill=red!10,
+    inner sep=3pt,
+    rounded corners=3pt
+] at (axis cs:86,660) {\textbf{$N\downarrow$} (scale in)};
+\draw[
+    ->,
+    >=stealth,
+    color=red!70!black,
+    line width=1pt,
+    shorten >=2pt
+] (axis cs:89,610) -- (axis cs:84,600);
 
 \end{axis}
 \end{tikzpicture}
