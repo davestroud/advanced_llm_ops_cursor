@@ -1163,7 +1163,7 @@ Fig.~\ref{fig:ch06_rag_two_tier} sketches a practical two-tier RAG serving layou
 % Hit path from hot to merge (green for success) - curve around Shard 2 to avoid going through it
 \draw[arrhit] (hotidx) .. controls +(0,-8mm) and +(0,8mm) .. (merge);
 % "hit" label positioned below Shard 2, to the right of the arrow line
-\node[below=8mm of sh2, right=3mm, font=\footnotesize\bfseries, text=green!70!black] {hit};
+\node[below=12mm of sh2, right=3mm, font=\footnotesize\bfseries, text=green!70!black] {hit};
 
 % Miss path to shards (red dashed for miss)
 \draw[arrmiss] (hotidx.west) .. controls +(-2.5,0.0) and +(0.0,1.5) .. node[pos=0.3,above,font=\footnotesize\bfseries]{miss} (sh1.north);
