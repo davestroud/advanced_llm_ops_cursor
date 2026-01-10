@@ -365,19 +365,20 @@ deployment:
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
 \rowcolors{2}{gray!5}{white}
-\resizebox{0.95\linewidth}{!}{%
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.6cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{3.8cm}@{}}
+\begin{tabularx}{0.95\linewidth}{@{}>{\raggedright\arraybackslash}p{1.6cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}X@{}}
 \toprule
 \rowcolor{gray!10}
 \textbf{Scheme} & \textbf{Typical Memory Reduction} & \textbf{Speed Gain} & \textbf{Accuracy Impact} & \textbf{Hardware Compatibility} \\
 \midrule
 INT8 & $\sim$50\% vs.\ FP16 & Moderate & Minimal with calibration & Supported on most modern NVIDIA/AMD GPUs; widely available in inference frameworks. \\
+\addlinespace[2pt]
 FP8 & $\sim$50\% vs.\ FP16 & Moderate--High (on supported HW) & Minimal--Low & Native support on NVIDIA H100; partial support on Hopper architecture; not supported on A100. \\
+\addlinespace[2pt]
 4-bit & $\sim$75\% vs.\ FP16 & High & Low--Moderate, task dependent & Supported via software toolkits (e.g., GPTQ, bitsandbytes) on NVIDIA GPUs; performance varies by architecture. \\
+\addlinespace[2pt]
 Mixed Precision & Variable & Variable & Tunable trade-off & Framework-dependent; often combines FP16, FP8, and INT8 in compatible layers. \\
 \bottomrule
-\end{tabular}%
-}
+\end{tabularx}
 \end{table}
 
 \subsection{Pruning}
@@ -413,13 +414,12 @@ From a production perspective, parameter-efficient fine-tuning is valuable becau
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
 \rowcolors{2}{gray!5}{white}
-\resizebox{0.95\linewidth}{!}{%
-\begin{tabular}{@{}>{\raggedright\arraybackslash\bfseries}p{2.3cm}
-                  >{\raggedright\arraybackslash}p{2.5cm}
-                  >{\raggedright\arraybackslash}p{2.0cm}
+\begin{tabularx}{0.95\linewidth}{@{}>{\raggedright\arraybackslash\bfseries}p{2cm}
+                  >{\raggedright\arraybackslash}X
                   >{\raggedright\arraybackslash}p{1.8cm}
-                  >{\raggedright\arraybackslash}p{1.9cm}
-                  >{\raggedright\arraybackslash}p{3.0cm}@{}}
+                  >{\raggedright\arraybackslash}p{1.6cm}
+                  >{\raggedright\arraybackslash}p{1.6cm}
+                  >{\raggedright\arraybackslash}X@{}}
 \toprule
 \rowcolor{gray!10}
 \textbf{Technique} &
@@ -478,8 +478,7 @@ Lower latency via better batching/longer contexts. &
 Low to moderate; can affect long-context fidelity. &
 Pairs well with long contexts and high concurrency; test for degradation on long-range tasks. \\
 \bottomrule
-\end{tabular}%
-}
+\end{tabularx}
 \end{table}
 
 \begin{figure}[t]
@@ -570,13 +569,12 @@ Pairs well with long contexts and high concurrency; test for degradation on long
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
 \rowcolors{2}{gray!5}{white}
-\resizebox{0.95\linewidth}{!}{%
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.2cm}
+\begin{tabularx}{0.95\linewidth}{@{}>{\raggedright\arraybackslash}p{1.2cm}
                   >{\raggedleft\arraybackslash}p{1.6cm}
-                  >{\raggedleft\arraybackslash}p{2.0cm}
-                  >{\raggedleft\arraybackslash}p{2.0cm}
-                  >{\raggedleft\arraybackslash}p{2.0cm}
-                  >{\raggedright\arraybackslash}p{3.5cm}@{}}
+                  >{\raggedleft\arraybackslash}p{1.8cm}
+                  >{\raggedleft\arraybackslash}p{1.8cm}
+                  >{\raggedleft\arraybackslash}p{1.8cm}
+                  >{\raggedright\arraybackslash}X@{}}
 \toprule
 \rowcolor{gray!10}
 \textbf{Model} & \textbf{Params} & \textbf{FP16 (2\,B/param)} & \textbf{INT8 / FP8 (1\,B/param)} & \textbf{4-bit (0.5\,B/param)} & \textbf{Typical GPU fit (weights-only)} \\
@@ -587,8 +585,7 @@ FP16 fits on A100-40GB/H100-80GB; INT8/FP8 fits broadly (A10/L4); 4-bit fits on 
 70B & $7.0\times 10^{10}$ & $\sim$140\,GB & $\sim$70\,GB & $\sim$35\,GB &
 FP16 requires multi-GPU (tensor/pipeline parallel); INT8/FP8 fits on single H100-80GB only for weights (KV extra); 4-bit can fit weights on a single 48--80\,GB GPU (KV extra). \\
 \bottomrule
-\end{tabular}%
-}
+\end{tabularx}
 
 \medskip
 \footnotesize\emph{Notes}: Values exclude activations, KV cache, and framework overheads. For inference with long contexts or high concurrency, KV memory can exceed weights; see Eq.~\eqref{eq:kv-total} and Section~\ref{sec:perf-attention-kv-cache} for sizing guidelines.
@@ -649,7 +646,7 @@ PagedAttention is especially valuable in use cases like \ishtar{} if they need t
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
 \rowcolors{2}{gray!5}{white}
-\begin{tabularx}{\textwidth}{@{}l
+\begin{tabularx}{0.95\linewidth}{@{}l
   >{\raggedleft\arraybackslash}p{2.1cm}
   >{\raggedleft\arraybackslash}p{2.1cm}
   >{\raggedleft\arraybackslash}p{2.1cm}
@@ -1271,7 +1268,7 @@ if __name__ == "__main__":
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
 \rowcolors{2}{gray!5}{white}
-\begin{tabularx}{\textwidth}{@{}l
+\begin{tabularx}{0.95\linewidth}{@{}l
   >{\raggedleft\arraybackslash}p{2.0cm}
   >{\raggedleft\arraybackslash}p{2.0cm}
   X
@@ -1596,7 +1593,7 @@ Performance optimization is not a one-time task—it is an ongoing process that 
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
 \rowcolors{2}{gray!5}{white}
-\begin{tabularx}{\textwidth}{@{}l
+\begin{tabularx}{0.95\linewidth}{@{}l
   >{\raggedleft\arraybackslash}p{2.6cm}
   >{\raggedleft\arraybackslash}p{2.6cm}
   >{\raggedleft\arraybackslash}p{2.6cm}
@@ -1916,7 +1913,7 @@ logging:
   \setlength{\tabcolsep}{6pt}
   \renewcommand{\arraystretch}{1.3}
   \rowcolors{2}{gray!5}{white}
-  \begin{tabular}{p{3.5cm}p{3.8cm}p{3.6cm}p{3.6cm}}
+  \begin{tabularx}{0.95\linewidth}{@{}>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
     \toprule
     \rowcolor{gray!10}
     & \textbf{vLLM} \cite{Kwon2023vLLM} & \textbf{Hugging Face TGI} \cite{tgi_docs} & \textbf{TensorRT-LLM} \cite{tensorrt_llm_docs} \\
@@ -1951,7 +1948,7 @@ logging:
     & Quick production hardening, ease-of-use, moderate latency needs 
     & Absolute max performance on NVIDIA GPUs under strict SLOs \\
     \bottomrule
-  \end{tabular}
+  \end{tabularx}
 \end{table}
 
 \subsubsection{Practice notes.}  

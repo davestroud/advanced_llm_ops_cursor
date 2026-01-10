@@ -891,7 +891,7 @@ Table~\ref{tab:ch05_ishtar_obs_stack} summarizes a minimal-but-extensible stack 
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
 \rowcolors{2}{gray!5}{white}
-\begin{tabular}{p{0.18\linewidth}p{0.33\linewidth}p{0.42\linewidth}}
+\begin{tabularx}{0.95\linewidth}{>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.33\linewidth}>{\raggedright\arraybackslash}X}
 \toprule
 \rowcolor{gray!10}
 \textbf{Signal} & \textbf{Tools} & \textbf{Typical questions answered} \\
@@ -902,7 +902,7 @@ LLM workflows & LangSmith \cite{langsmith_home} / Langfuse \cite{langfuse_obs_ov
 Quality & Phoenix evaluators \cite{arize_phoenix_docs,phoenix2025} + LLM-as-a-judge \cite{zheng2023judge} & Did quality regress? (faithfulness, groundedness, toxicity/refusal rates) and which cohorts/routes are affected? \\
 Logs & Structured JSON/OTel logs \cite{otel_logs_concepts} + centralized store & What exactly failed? (error taxonomy, tool schema mismatch) and how to reproduce and replay the request? \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 In practice, \ishtar exports traces and evaluator artifacts to an OpenTelemetry Collector, uses exemplars to link Grafana panels to representative Jaeger traces, and curates ``golden replay'' datasets from production traces to feed back into CI/CD gates (Chapter~\ref{ch:cicd}). The result is a single operational loop that spans detection, diagnosis, and regression prevention.
@@ -1130,7 +1130,7 @@ A useful organizing principle is a \emph{three-tier} layout:
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.3}
 \rowcolors{2}{gray!5}{white}
-\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4cm}X}
+\begin{tabularx}{0.95\linewidth}{>{\raggedright\arraybackslash}p{4cm}X}
 \toprule
 \rowcolor{gray!10}
 \textbf{Tier} & \textbf{Components \& Purpose} \\
