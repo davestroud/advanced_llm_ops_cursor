@@ -96,7 +96,7 @@ RAG is essential to LLMOps because it makes knowledge \emph{updatable}, answers 
 \label{sec:rag-core-components-of-a-rag-system}
 A production RAG system\index{RAG!system} consists of \emph{offline} components (ingestion\index{ingestion}, cleaning\index{cleaning}, chunking\index{chunking}, embedding\index{embedding}, indexing\index{indexing}) and \emph{online} components (query processing\index{query processing}, retrieval\index{retrieval}, reranking\index{reranking}, context construction\index{context!construction}, and generation\index{generation}). Fig.~\ref{fig:ch08_rag_querytime} summarizes the online query-time loop.
 
-\begin{figure}[t]
+\begin{figure}[tb]
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
@@ -151,9 +151,9 @@ A production RAG system\index{RAG!system} consists of \emph{offline} components 
 \label{fig:ch08_rag_querytime}
 \end{figure}
 
-The remainder of this section walks through the main building blocks and the operational concerns attached to each.
+The remainder of this section walks through the main building blocks and the operational concerns attached to each. Table~\ref{tab:ch08_rag_components} summarizes the key components and their operational concerns.
 
-\begin{table}[t]
+\begin{table}[tb]
 \centering
 \small
 \caption{RAG system components span offline ingestion and online query processing. Understanding component responsibilities and operational concerns enables teams to design robust, scalable RAG pipelines. Each component introduces specific failure modes and optimization opportunities that must be addressed in production deployments.}
@@ -409,6 +409,7 @@ Agent-enhanced RAG treats retrieval as one tool among many. An agent decides whe
 \subsubsection*{Summary}
 Architectural choice is an LLMOps decision: single-stage RAG is the baseline, multi-stage RAG improves multi-hop coverage, and agentic patterns provide flexibility at the cost of complexity and stricter governance.
 
+\FloatBarrier
 \section{Designing the Ingestion Pipeline}
 \label{sec:rag-designing-the-ingestion-pipeline}
 A robust ingestion pipeline is the foundation of an effective RAG system—\emph{garbage in, garbage out} applies strongly here \cite{Pryon2023}. The ingestion process should be designed as a reliable data product with clear ownership, quality checks, and observability.
@@ -419,7 +420,9 @@ In practice, ingestion is the boundary between data engineering and model infere
 
 \textbf{Stable identifiers and idempotency.} Assign a canonical \texttt{doc\_id} and \texttt{doc\_version}, then derive stable \texttt{chunk\_id}s. Ensure ingestion is idempotent: reprocessing a document should produce the same identifiers (unless the chunking/embedding version changes). This is essential for reliable deletes, deduplication, and audit trails.
 
-\begin{figure}[t]
+Fig.~\ref{fig:ch08_ingestion_pipeline} illustrates the ingestion pipeline stages from data sources to vector store.
+
+\begin{figure}[tb]
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
@@ -548,7 +551,9 @@ Token-window chunking with overlap is a common baseline, while structural chunki
 \end{itemize}
 \end{tcolorbox}
 
-\begin{table}[t]
+Table~\ref{tab:ch08_chunking_strategies} compares different chunking strategies and their trade-offs.
+
+\begin{table}[tb]
 \centering
 \small
 \caption{Chunking strategy selection balances semantic coherence with prompt efficiency. Different strategies suit different document types and use cases. Understanding trade-offs enables teams to optimize retrieval quality while managing token budgets effectively.}
@@ -653,6 +658,7 @@ Ingestion pipelines should be operated like production data systems:
 \subsubsection*{Summary}
 Ingestion quality and freshness determine RAG quality. Treat ingestion as a versioned, observable subsystem with explicit SLAs: "How quickly does new knowledge become retrievable?" is often the most important operational question in production RAG.
 
+\FloatBarrier
 \section{Vector Database Considerations}
 \label{sec:rag-vector-database-considerations}
 The vector database is the retrieval substrate of RAG. Choosing the right index type, scaling strategy, and operational controls determines whether retrieval meets latency and availability requirements \cite{Johnson2019FAISS,Malkov2018HNSW,Jegou2011PQ}.
@@ -669,7 +675,7 @@ The best choice depends on corpus size, memory constraints, and latency SLOs. Al
 
 Table~\ref{tab:ch08_vector_index_comparison_landscape} provides a detailed comparison of index types.
 
-\begin{table}[t]
+\begin{table}[tb]
 \centering
 \small
 \caption{Vector index selection drives RAG latency and cost. Different index types trade off query speed (HNSW fastest), memory footprint (IVF-PQ most compact), and update overhead (flat index simplest but slowest). Choose based on query volume, update frequency, and memory constraints.}
@@ -833,6 +839,7 @@ Two pragmatic additions improve real-world resilience. First, rate limit and ano
 \subsubsection*{Summary}
 Vector DB selection is an engineering trade-off across recall, latency, and operational complexity. For most teams, the practical objective is not perfect nearest-neighbor recall but consistently retrieving answer-bearing evidence under strict latency SLOs.
 
+\FloatBarrier
 \section{Retriever Strategies}
 \label{sec:rag-retriever-strategies}
 Retriever strategy determines the \emph{evidence set} the generator sees, and therefore strongly influences answer quality \cite{Lewis2020RAG,Karpukhin2020DPR,Thakur2021BEIR}. Modern systems typically combine dense, sparse, and hybrid retrieval with reranking.
@@ -937,7 +944,9 @@ monitoring:
 \end{lstlisting}
 \end{llmlistingbox}
 
-\begin{table}[t]
+Table~\ref{tab:ch08_retriever_strategies} compares dense, sparse, and hybrid retrieval approaches.
+
+\begin{table}[tb]
 \centering
 \small
 \caption{Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements.}
@@ -996,6 +1005,7 @@ Query transformations can significantly improve retrieval quality:
 \end{itemize}
 These techniques are particularly valuable when user queries are underspecified or when relevant evidence is scattered across documents.
 
+\FloatBarrier
 \section{Augmenting the Prompt}
 \label{sec:rag-augmenting-the-prompt}
 Retrieval alone does not guarantee grounding. The retrieved evidence must be \emph{packaged} so the generator uses it correctly. Prompt augmentation typically requires decisions about: context budget, ordering, separators, and citation strategy.
@@ -1021,9 +1031,9 @@ Common ordering strategies include:
 
 In practice, two additional heuristics are often helpful. First, prefer a \emph{diverse} evidence set: avoid packing near-duplicate passages by applying deduplication or Maximal Marginal Relevance (MMR) so each chunk contributes distinct facts. Second, place the single most answer-bearing passage either at the beginning or the end of the context, and keep secondary passages nearby; this ``sandwich'' layout often improves robustness on long-context models.
 
-Finally, always separate passages clearly (delimiters, document IDs, and optional ``BEGIN/END SOURCE'' markers) to reduce accidental blending. The generator should be able to unambiguously associate each claim with a specific evidence block, which is a prerequisite for reliable citations.
+Finally, always separate passages clearly (delimiters, document IDs, and optional ``BEGIN/END SOURCE'' markers) to reduce accidental blending. The generator should be able to unambiguously associate each claim with a specific evidence block, which is a prerequisite for reliable citations. Table~\ref{tab:ch08_prompt_patterns} summarizes common prompt augmentation patterns and their use cases.
 
-\begin{table}[t]
+\begin{table}[tb]
 \centering
 \small
 \caption{Prompt augmentation patterns determine how retrieved evidence is presented to the generator. Ordering strategies address positional bias, while implementation patterns ensure reliable citation and evidence utilization. Choosing the right pattern depends on document characteristics, query types, and model behavior.}
@@ -1213,6 +1223,7 @@ For deeper inference optimization (batching policies, KV-cache engineering, spec
 \subsubsection*{Summary}
 Performance optimization in RAG is primarily about (i) efficient retrieval under latency SLOs and (ii) minimizing prompt tokens while preserving answer-bearing evidence.
 
+\FloatBarrier
 \section{Security and Compliance}
 \label{sec:rag-security-and-compliance}
 RAG systems often handle sensitive corpora and must be treated as production data systems with an AI interface. Security controls must cover the ingestion pipeline, the vector store, and the generation layer.
@@ -1236,9 +1247,9 @@ RAG corpora frequently include untrusted text (web pages, emails, social media).
 Log query inputs, retrieved document IDs, and model outputs (with appropriate redaction) to support debugging, compliance audits, and incident response. For \ishtar{}, auditability is essential: it enables editors to trace claims back to sources and to diagnose retrieval failures quickly.
 
 \subsubsection*{Summary}
-Security in RAG is the combination of standard data-system controls (access control, encryption, audit logs) and AI-specific controls (prompt injection defenses, output leakage monitoring, provenance).
+Security in RAG is the combination of standard data-system controls (access control, encryption, audit logs) and AI-specific controls (prompt injection defenses, output leakage monitoring, provenance). Table~\ref{tab:ch08_security_controls} provides a comprehensive overview of security controls across the RAG pipeline.
 
-\begin{table}[t]
+\begin{table}[tb]
 \centering
 \small
 \caption{RAG security controls protect sensitive corpora and prevent AI-specific vulnerabilities. Combining standard data-system controls with AI-specific defenses creates layered protection. Each control area addresses distinct threat vectors, enabling comprehensive security coverage across ingestion, storage, and generation layers.}
@@ -1266,6 +1277,7 @@ Security in RAG is the combination of standard data-system controls (access cont
 \end{tabularx}
 \end{table}
 
+\FloatBarrier
 \section{Case Study: Ishtar AI's RAG Pipeline}
 \label{sec:rag-case-study-ishtar-ai-s-rag-pipeline}
 This section illustrates an evidence-first RAG design for \ishtar{}, a crisis intelligence assistant. The purpose is not to prescribe a single vendor stack, but to show how the architectural decisions discussed earlier become operational controls in a high-stakes setting.
@@ -1282,7 +1294,9 @@ This section illustrates an evidence-first RAG design for \ishtar{}, a crisis in
     \item \textbf{Context packer} assembles a prompt with source identifiers and instructions for grounded answers.
 \end{enumerate}
 
-\begin{figure}[t]
+Fig.~\ref{fig:ch08_ishtar_rag} illustrates the complete \ishtar{} RAG pipeline architecture.
+
+\begin{figure}[tb]
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
