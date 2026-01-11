@@ -1229,6 +1229,7 @@ Compliance and Monitoring & Build compliance checks into agent behaviors (e.g., 
 \end{tabularx}
 \end{table}
 
+\FloatBarrier
 \paragraph*{Authentication and Trust Between Agents}
 When one agent or orchestrator calls another, how do we ensure it's an authorized call and not an impersonator or attacker injection? In microservice deployments, this is typically handled by network security (services running in a protected cluster network) and authentication tokens. Each agent service might require a valid API key or token from the orchestrator. In Kubernetes, one might use mutual TLS with a service mesh to ensure only verified services communicate. Ishtar likely uses an authentication mechanism (like JWT tokens or mTLS) for inter-service calls, especially if agents run in different nodes or need to ensure only the orchestrator can invoke them. For example, the orchestrator includes a token when calling the synthesis agent; the synthesis agent verifies this token before executing. This prevents arbitrary external calls to internal agents.
 
@@ -1481,6 +1482,7 @@ To conclude the case study, consider a scenario where verification finds a serio
 
 Multi-agent architectures bring modularity, scalability, and resilience to LLM applications. For \ishtar{}, orchestration ensures that specialized capabilities—data ingestion, analysis, verification, and communication—work in concert to deliver timely, accurate, and context-rich information.
 
+\FloatBarrier
 \subsection*{Best Practices Checklist}
 Designing and operating a multi-agent LLM system is complex, but following best practices can guide practitioners to success. Table~\ref{tab:ch09_best_practices_checklist} presents a checklist of recommended practices, distilled from the concepts and the Ishtar AI case study:
 
@@ -1510,12 +1512,6 @@ Designing and operating a multi-agent LLM system is complex, but following best 
 \end{table}
 
 By adhering to these practices, one can manage the complexity of multi-agent systems and harness their power effectively. Multi-agent LLM systems, as exemplified by Ishtar AI, combine specialization with orchestration to deliver better results than a monolithic approach. The journey involves careful planning, iterative tuning, and vigilant operation, but the end result is a more powerful and reliable AI application that can tackle sophisticated, real-world tasks in a robust manner.
-\printbibliography[
-  heading=subbibliography,
-  segment=\therefsegment,
-  resetnumbers=true
-]
-
 
 \medskip
 \noindent\textbf{Connecting orchestration to evaluation and governance.}
@@ -1529,6 +1525,13 @@ We introduced core building blocks---agents, orchestrators, memory layers, and t
 We compared communication patterns (direct messaging, message bus, and blackboard), surveyed orchestration strategies (rule-based, dynamic, hierarchical), and presented bounded patterns such as planner--executor and critic--reviser loops.
 Finally, we covered operational requirements for production deployments: error handling, performance/cost governance, security threat modeling, and evaluation/observability practices that enable regression testing and incident debugging.
 In subsequent chapters, these orchestration foundations are integrated with end-to-end LLMOps discipline for testing, deployment, monitoring, and governance.
+
+\FloatBarrier
+\printbibliography[
+  heading=subbibliography,
+  segment=\therefsegment,
+  resetnumbers=true
+]
 
 % =========================================================
 % New citations added in this Chapter 9 revision (BibLaTeX)
