@@ -71,50 +71,50 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.8.2}Architecture Overview}{31}{subsection.1.8.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.1}Data Ingestion}{31}{subsubsection.1.8.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.2}Retrieval-Augmented Generation (RAG)}{31}{subsubsection.1.8.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces \ishtar  {} reference architecture demonstrates production-ready LLMOps patterns. The pipeline integrates data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages. This architecture balances accuracy (via RAG), reliability (via multi-agent verification), and scalability (via GPU inference), serving as a template for similar deployments.}}{32}{figure.1.10}\protected@file@percent }
-\newlabel{fig:ch01_ishtar_arch_main}{{1.10}{32}{\ishtar {} reference architecture demonstrates production-ready LLMOps patterns. The pipeline integrates data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages. This architecture balances accuracy (via RAG), reliability (via multi-agent verification), and scalability (via GPU inference), serving as a template for similar deployments}{figure.1.10}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.3}Multi-Agent Orchestration}{32}{subsubsection.1.8.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.4}Inference Cluster}{33}{subsubsection.1.8.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.5}Observability and Feedback}{33}{subsubsection.1.8.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.3}LLMOps in Practice}{33}{subsection.1.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {1.9}Core Components of LLMOps}{33}{section.1.9}\protected@file@percent }
-\newlabel{sec:core-llmops}{{1.9}{33}{Core Components of LLMOps}{section.1.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Evidence source selection determines RAG quality and trustworthiness. \ishtar  {} curates inputs from news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds, ensuring reliable, authoritative sources. This curation strategy demonstrates how source quality directly impacts answer accuracy and citation fidelity in production RAG systems.}}{34}{figure.1.11}\protected@file@percent }
-\newlabel{fig:ch01_ishtar_inputs_taxonomy}{{1.11}{34}{Evidence source selection determines RAG quality and trustworthiness. \ishtar {} curates inputs from news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds, ensuring reliable, authoritative sources. This curation strategy demonstrates how source quality directly impacts answer accuracy and citation fidelity in production RAG systems}{figure.1.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.1}Prompt Management}{34}{subsection.1.9.1}\protected@file@percent }
-\newlabel{subsec:prompt-mgmt}{{1.9.1}{34}{Prompt Management}{subsection.1.9.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.1}Objectives}{34}{subsubsection.1.9.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.2}Practices}{34}{subsubsection.1.9.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.3}Example}{35}{subsubsection.1.9.1.3}\protected@file@percent }
-\newlabel{lst:ch01_prompt_template}{{1.3}{35}{Example}{llmlisting.1.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.2}Retrieval and RAG Pipelines}{36}{subsection.1.9.2}\protected@file@percent }
-\newlabel{subsec:rag}{{1.9.2}{36}{Retrieval and RAG Pipelines}{subsection.1.9.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.1}Design choices}{36}{subsubsection.1.9.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.2}Operational concerns}{36}{subsubsection.1.9.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.3}Example}{37}{subsubsection.1.9.2.3}\protected@file@percent }
-\newlabel{lst:ch01_rag_configuration}{{1.4}{37}{Example}{llmlisting.1.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.3}Deployment and Serving}{38}{subsection.1.9.3}\protected@file@percent }
-\newlabel{subsec:serving}{{1.9.3}{38}{Deployment and Serving}{subsection.1.9.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.1}Serving stack}{38}{subsubsection.1.9.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.2}Release engineering}{39}{subsubsection.1.9.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.3}Example}{39}{subsubsection.1.9.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.4}Evaluation and Testing}{39}{subsection.1.9.4}\protected@file@percent }
-\newlabel{subsec:evaluation}{{1.9.4}{39}{Evaluation and Testing}{subsection.1.9.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.1}Evaluation layers}{39}{subsubsection.1.9.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.2}Regression control}{39}{subsubsection.1.9.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.3}Example}{40}{subsubsection.1.9.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.4}Systems telemetry}{40}{subsubsection.1.9.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.5}Model telemetry}{40}{subsubsection.1.9.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.6}Tooling and alerts}{40}{subsubsection.1.9.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.7}Example}{40}{subsubsection.1.9.4.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {1.10}LLMOps in Practice: Successes, Failures, and Lessons Learned}{41}{section.1.10}\protected@file@percent }
-\newlabel{sec:llmops-practice}{{1.10}{41}{LLMOps in Practice: Successes, Failures, and Lessons Learned}{section.1.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.4}Inference Cluster}{32}{subsubsection.1.8.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.8.2.5}Observability and Feedback}{32}{subsubsection.1.8.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8.3}LLMOps in Practice}{32}{subsection.1.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.9}Core Components of LLMOps}{32}{section.1.9}\protected@file@percent }
+\newlabel{sec:core-llmops}{{1.9}{32}{Core Components of LLMOps}{section.1.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.1}Prompt Management}{33}{subsection.1.9.1}\protected@file@percent }
+\newlabel{subsec:prompt-mgmt}{{1.9.1}{33}{Prompt Management}{subsection.1.9.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.1}Objectives}{33}{subsubsection.1.9.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.2}Practices}{33}{subsubsection.1.9.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.1.3}Example}{33}{subsubsection.1.9.1.3}\protected@file@percent }
+\newlabel{lst:ch01_prompt_template}{{1.3}{34}{Example}{llmlisting.1.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.2}Retrieval and RAG Pipelines}{35}{subsection.1.9.2}\protected@file@percent }
+\newlabel{subsec:rag}{{1.9.2}{35}{Retrieval and RAG Pipelines}{subsection.1.9.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.1}Design choices}{35}{subsubsection.1.9.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.2}Operational concerns}{35}{subsubsection.1.9.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.2.3}Example}{35}{subsubsection.1.9.2.3}\protected@file@percent }
+\newlabel{lst:ch01_rag_configuration}{{1.4}{35}{Example}{llmlisting.1.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.3}Deployment and Serving}{37}{subsection.1.9.3}\protected@file@percent }
+\newlabel{subsec:serving}{{1.9.3}{37}{Deployment and Serving}{subsection.1.9.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.1}Serving stack}{37}{subsubsection.1.9.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.2}Release engineering}{37}{subsubsection.1.9.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.3.3}Example}{37}{subsubsection.1.9.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9.4}Evaluation and Testing}{38}{subsection.1.9.4}\protected@file@percent }
+\newlabel{subsec:evaluation}{{1.9.4}{38}{Evaluation and Testing}{subsection.1.9.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.1}Evaluation layers}{38}{subsubsection.1.9.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.2}Regression control}{38}{subsubsection.1.9.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.3}Example}{38}{subsubsection.1.9.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.4}Systems telemetry}{38}{subsubsection.1.9.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.5}Model telemetry}{38}{subsubsection.1.9.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.6}Tooling and alerts}{39}{subsubsection.1.9.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.9.4.7}Example}{39}{subsubsection.1.9.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1.10}LLMOps in Practice: Successes, Failures, and Lessons Learned}{39}{section.1.10}\protected@file@percent }
+\newlabel{sec:llmops-practice}{{1.10}{39}{LLMOps in Practice: Successes, Failures, and Lessons Learned}{section.1.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1.4}{\ignorespaces Early LLM deployments reveal critical operational lessons. Failures (Galactica, Sydney) demonstrate the cost of inadequate safety gates and evaluation; successes (Character.AI) show the value of systematic testing and monitoring. These case studies illustrate why operational discipline is essential for responsible LLM deployment.}}{42}{table.1.4}\protected@file@percent }
+\newlabel{tab:ch01_early_llmops_cases}{{1.4}{42}{Early LLM deployments reveal critical operational lessons. Failures (Galactica, Sydney) demonstrate the cost of inadequate safety gates and evaluation; successes (Character.AI) show the value of systematic testing and monitoring. These case studies illustrate why operational discipline is essential for responsible LLM deployment}{table.1.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.11}Preview of Subsequent Chapters}{43}{section.1.11}\protected@file@percent }
 \newlabel{sec:preview}{{1.11}{43}{Preview of Subsequent Chapters}{section.1.11}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1.4}{\ignorespaces Early LLM deployments reveal critical operational lessons. Failures (Galactica, Sydney) demonstrate the cost of inadequate safety gates and evaluation; successes (Character.AI) show the value of systematic testing and monitoring. These case studies illustrate why operational discipline is essential for responsible LLM deployment.}}{44}{table.1.4}\protected@file@percent }
-\newlabel{tab:ch01_early_llmops_cases}{{1.4}{44}{Early LLM deployments reveal critical operational lessons. Failures (Galactica, Sydney) demonstrate the cost of inadequate safety gates and evaluation; successes (Character.AI) show the value of systematic testing and monitoring. These case studies illustrate why operational discipline is essential for responsible LLM deployment}{table.1.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces LLMOps monitoring checklist enables proactive operations. This quick reference highlights key signals (latency, cost, quality, safety) that teams must track to maintain production reliability. Regular monitoring of these signals enables early detection of regressions and supports data-driven optimization decisions.}}{46}{figure.1.12}\protected@file@percent }
-\newlabel{fig:ch01_llmops_quick_checklist}{{1.12}{46}{LLMOps monitoring checklist enables proactive operations. This quick reference highlights key signals (latency, cost, quality, safety) that teams must track to maintain production reliability. Regular monitoring of these signals enables early detection of regressions and supports data-driven optimization decisions}{figure.1.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces \ishtar  {} reference architecture demonstrates production-ready LLMOps patterns. The pipeline integrates data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages. This architecture balances accuracy (via RAG), reliability (via multi-agent verification), and scalability (via GPU inference), serving as a template for similar deployments.}}{48}{figure.1.10}\protected@file@percent }
+\newlabel{fig:ch01_ishtar_arch_main}{{1.10}{48}{\ishtar {} reference architecture demonstrates production-ready LLMOps patterns. The pipeline integrates data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages. This architecture balances accuracy (via RAG), reliability (via multi-agent verification), and scalability (via GPU inference), serving as a template for similar deployments}{figure.1.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Evidence source selection determines RAG quality and trustworthiness. \ishtar  {} curates inputs from news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds, ensuring reliable, authoritative sources. This curation strategy demonstrates how source quality directly impacts answer accuracy and citation fidelity in production RAG systems.}}{49}{figure.1.11}\protected@file@percent }
+\newlabel{fig:ch01_ishtar_inputs_taxonomy}{{1.11}{49}{Evidence source selection determines RAG quality and trustworthiness. \ishtar {} curates inputs from news wires, NGO bulletins, vetted social media, and public health \& infrastructure feeds, ensuring reliable, authoritative sources. This curation strategy demonstrates how source quality directly impacts answer accuracy and citation fidelity in production RAG systems}{figure.1.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces LLMOps monitoring checklist enables proactive operations. This quick reference highlights key signals (latency, cost, quality, safety) that teams must track to maintain production reliability. Regular monitoring of these signals enables early detection of regressions and supports data-driven optimization decisions.}}{49}{figure.1.12}\protected@file@percent }
+\newlabel{fig:ch01_llmops_quick_checklist}{{1.12}{49}{LLMOps monitoring checklist enables proactive operations. This quick reference highlights key signals (latency, cost, quality, safety) that teams must track to maintain production reliability. Regular monitoring of these signals enables early detection of regressions and supports data-driven optimization decisions}{figure.1.12}{}}
 \@setckpt{ch01-intro-ishar}{
 \setcounter{page}{50}
 \setcounter{equation}{0}

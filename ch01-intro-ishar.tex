@@ -1372,8 +1372,8 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \node[ingest, right=of ngo] (ingest2) {Ingestion\\Agent 2};
 \node[ingest, right=of social] (ingest3) {Ingestion\\Agent 3};
 
-% Vector database (below ingestion agents)
-\node[vector, below=20mm of ingest2] (vectordb) {Vector\\Database};
+% Vector database (below ingestion agents, moved left and lower to avoid overlap)
+\node[vector, below=24mm of ingest3, xshift=-4mm] (vectordb) {Vector\\Database};
 
 % ========== CENTER COLUMN: Query, RAG & Orchestration ==========
 % Query input (above RAG, properly spaced)
@@ -1391,12 +1391,12 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \node[agent, below right=14mm and 8mm of orchestrator] (refiner) {Refiner};
 
 % ========== RIGHT COLUMN: GPU & Response ==========
-% GPU inference cluster (to the right of agents, properly aligned)
-\node[gpu, right=of summarizer, yshift=16mm] (gpu1) {GPU\\Node 1};
-\node[gpu, right=of factchecker] (gpu2) {GPU\\Node 2};
+% GPU inference cluster (to the right of orchestrator, properly aligned)
+\node[gpu, right=20mm of orchestrator, yshift=8mm] (gpu1) {GPU\\Node 1};
+\node[gpu, right=20mm of orchestrator, yshift=-8mm] (gpu2) {GPU\\Node 2};
 
-% Response (to the right of GPU)
-\node[response, right=20mm of gpu2] (response) {Response\\+ Citations};
+% Response (to the right of GPU, moved further right)
+\node[response, right=24mm of gpu1] (response) {Response\\+ Citations};
 
 % ========== ARROWS: Data Flow ==========
 % Sources to ingestion (horizontal)
@@ -1423,26 +1423,30 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \draw[arrowthin] (orchestrator.south) -- (factchecker.north);
 \draw[arrowthin] (orchestrator.south east) -- (refiner.north);
 
-% Agents to GPU (horizontal)
-\draw[arrow] (summarizer.east) -- (gpu1.west);
-\draw[arrow] (factchecker.east) -- (gpu2.west);
-\draw[arrow] (refiner.east) .. controls +(4mm,0) and +(0,-4mm) .. (gpu1.south west);
+% Agents to GPU (horizontal, curved to reach GPU nodes positioned right of orchestrator)
+\draw[arrow] (summarizer.east) .. controls +(8mm,0) and +(-6mm,6mm) .. (gpu1.west);
+\draw[arrow] (factchecker.east) .. controls +(8mm,0) and +(-6mm,0) .. (gpu2.west);
+\draw[arrow] (refiner.east) .. controls +(8mm,0) and +(-6mm,-6mm) .. (gpu1.west);
+
+% Orchestrator to GPU (direct connection, dashed)
+\draw[arrowthin, dashed] (orchestrator.east) .. controls +(6mm,0) and +(-6mm,6mm) .. (gpu1.west);
+\draw[arrowthin, dashed] (orchestrator.east) .. controls +(6mm,0) and +(-6mm,-6mm) .. (gpu2.west);
 
 % GPU to response (horizontal)
 \draw[arrow] (gpu1.east) -- (response.west);
-\draw[arrowthin] (gpu2.east) .. controls +(4mm,0) and +(0,4mm) .. (response.south west);
+\draw[arrowthin] (gpu2.east) .. controls +(8mm,0) and +(0,4mm) .. (response.south west);
 
 % ========== OBSERVABILITY LAYER ==========
 % Top observability band - positioned above all components with proper clearance
 \node[rectangle, fill=yellow!8, draw=black!30, dashed, line width=0.8pt, rounded corners=4pt,
-      minimum width=150mm, minimum height=10mm,
+      minimum width=160mm, minimum height=10mm,
       above=14mm of query] (obstop) {};
 \node[font=\small\bfseries, color=black!85, anchor=center] at (obstop.center) {Observability \& Telemetry};
 
 % Bottom observability band - positioned below all components with proper clearance
 \node[rectangle, fill=yellow!8, draw=black!30, dashed, line width=0.8pt, rounded corners=4pt,
-      minimum width=150mm, minimum height=10mm,
-      below=14mm of vectordb] (obsbot) {};
+      minimum width=160mm, minimum height=10mm,
+      below=16mm of vectordb] (obsbot) {};
 \node[font=\small\bfseries, color=black!85, anchor=center] at (obsbot.center) {Traces, Metrics, Logs};
 
 % Observability connections (subtle dotted lines from bands to components)
