@@ -799,7 +799,7 @@ Fig.~\ref{fig:ch10_metrics_dashboard} shows how multiple metrics are visualized 
 \begin{figure}[t]
 \centering
 % Temporarily increase maximum width to allow larger figure
-\renewcommand{\LLMFigMaxWidth}{1.4\linewidth}
+\renewcommand{\LLMFigMaxWidth}{1.6\linewidth}
 \begin{llmfigbox}
 % Color definitions
 \definecolor{dashblue}{RGB}{44,102,146}
@@ -808,74 +808,74 @@ Fig.~\ref{fig:ch10_metrics_dashboard} shows how multiple metrics are visualized 
 \definecolor{dashred}{RGB}{173,63,60}
 \begin{tikzpicture}[font=\small, scale=1.0]
 % Dashboard layout - larger and more spacious
-\draw[fill=gray!5, draw=black!25, line width=1.2pt, rounded corners=6pt] (0,0) rectangle (14,8);
-\node[anchor=north west, font=\normalsize\bfseries, text=black!90] at (0.4,7.6) {Evaluation Metrics Dashboard};
+\draw[fill=gray!5, draw=black!25, line width=1.2pt, rounded corners=6pt] (0,0) rectangle (16,10);
+\node[anchor=north west, font=\normalsize\bfseries, text=black!90] at (0.5,9.5) {Evaluation Metrics Dashboard};
 
-% Top row - Correctness Trend (left)
-\draw[fill=white, draw=dashblue!60!black, line width=1.2pt, rounded corners=4pt] (0.6,5.8) rectangle (6.4,7.2);
-\node[anchor=north west, font=\small\bfseries, text=dashblue!90!black] at (0.8,7.0) {Correctness Trend};
-% Simple upward trend line
-\draw[dashblue!80!black, line width=2pt] (1.0,6.2) -- (1.8,6.4) -- (2.6,6.5) -- (3.4,6.6) -- (4.2,6.7) -- (5.0,6.8) -- (5.8,6.9);
-% Grid lines
-\foreach \x in {1.0,2.0,3.0,4.0,5.0,6.0} {
-  \draw[gray!30, line width=0.3pt] (\x,6.1) -- (\x,6.9);
+% Top row - Correctness Trend (left) - larger box
+\draw[fill=white, draw=dashblue!60!black, line width=1.2pt, rounded corners=4pt] (0.7,7.2) rectangle (7.3,9.0);
+\node[anchor=north west, font=\normalsize\bfseries, text=dashblue!90!black] at (0.9,8.8) {Correctness Trend};
+% Simple upward trend line - adjusted for larger box
+\draw[dashblue!80!black, line width=2.5pt] (1.2,7.6) -- (2.2,7.8) -- (3.2,7.9) -- (4.2,8.0) -- (5.2,8.1) -- (6.2,8.2) -- (7.0,8.3);
+% Grid lines - adjusted for larger box
+\foreach \x in {1.2,2.2,3.2,4.2,5.2,6.2,7.0} {
+  \draw[gray!30, line width=0.3pt] (\x,7.5) -- (\x,8.4);
 }
-\foreach \y in {6.2,6.4,6.6,6.8} {
-  \draw[gray!30, line width=0.3pt] (1.0,\y) -- (5.8,\y);
+\foreach \y in {7.6,7.8,8.0,8.2,8.4} {
+  \draw[gray!30, line width=0.3pt] (1.2,\y) -- (7.0,\y);
 }
-% Value indicator
-\node[anchor=east, font=\footnotesize\bfseries, text=dashblue!90!black] at (6.0,6.5) {0.92 $\uparrow$};
+% Value indicator - larger font
+\node[anchor=east, font=\small\bfseries, text=dashblue!90!black] at (7.0,7.95) {0.92 $\uparrow$};
 
-% Top row - Faithfulness Trend (right)
-\draw[fill=white, draw=dashgreen!60!black, line width=1.2pt, rounded corners=4pt] (7.6,5.8) rectangle (13.4,7.2);
-\node[anchor=north west, font=\small\bfseries, text=dashgreen!90!black] at (7.8,7.0) {Faithfulness Trend};
-% Simple downward trend line
-\draw[dashgreen!80!black, line width=2pt] (8.0,6.8) -- (8.8,6.7) -- (9.6,6.65) -- (10.4,6.6) -- (11.2,6.55) -- (12.0,6.5) -- (12.8,6.45);
-% Grid lines
-\foreach \x in {8.0,9.0,10.0,11.0,12.0,13.0} {
-  \draw[gray!30, line width=0.3pt] (\x,6.1) -- (\x,6.9);
+% Top row - Faithfulness Trend (right) - larger box
+\draw[fill=white, draw=dashgreen!60!black, line width=1.2pt, rounded corners=4pt] (8.7,7.2) rectangle (15.3,9.0);
+\node[anchor=north west, font=\normalsize\bfseries, text=dashgreen!90!black] at (8.9,8.8) {Faithfulness Trend};
+% Simple downward trend line - adjusted for larger box
+\draw[dashgreen!80!black, line width=2.5pt] (9.2,8.3) -- (10.2,8.2) -- (11.2,8.15) -- (12.2,8.1) -- (13.2,8.05) -- (14.2,8.0) -- (15.0,7.95);
+% Grid lines - adjusted for larger box
+\foreach \x in {9.2,10.2,11.2,12.2,13.2,14.2,15.0} {
+  \draw[gray!30, line width=0.3pt] (\x,7.5) -- (\x,8.4);
 }
-\foreach \y in {6.2,6.4,6.6,6.8} {
-  \draw[gray!30, line width=0.3pt] (8.0,\y) -- (12.8,\y);
+\foreach \y in {7.6,7.8,8.0,8.2,8.4} {
+  \draw[gray!30, line width=0.3pt] (9.2,\y) -- (15.0,\y);
 }
-% Value indicator
-\node[anchor=east, font=\footnotesize\bfseries, text=dashgreen!90!black] at (13.0,6.5) {0.88 $\downarrow$};
+% Value indicator - larger font
+\node[anchor=east, font=\small\bfseries, text=dashgreen!90!black] at (15.0,7.95) {0.88 $\downarrow$};
 
-% Bottom row - Latency Trend (left)
-\draw[fill=white, draw=dashorange!60!black, line width=1.2pt, rounded corners=4pt] (0.6,3.8) rectangle (6.4,5.2);
-\node[anchor=north west, font=\small\bfseries, text=dashorange!90!black] at (0.8,5.0) {Latency Trend};
-% Simple upward trend line (improving = lower latency)
-\draw[dashorange!80!black, line width=2pt] (1.0,4.8) -- (1.8,4.7) -- (2.6,4.65) -- (3.4,4.6) -- (4.2,4.55) -- (5.0,4.5) -- (5.8,4.45);
-% Grid lines
-\foreach \x in {1.0,2.0,3.0,4.0,5.0,6.0} {
-  \draw[gray!30, line width=0.3pt] (\x,4.1) -- (\x,4.9);
+% Bottom row - Latency Trend (left) - larger box
+\draw[fill=white, draw=dashorange!60!black, line width=1.2pt, rounded corners=4pt] (0.7,4.2) rectangle (7.3,6.0);
+\node[anchor=north west, font=\normalsize\bfseries, text=dashorange!90!black] at (0.9,5.8) {Latency Trend};
+% Simple upward trend line (improving = lower latency) - adjusted for larger box
+\draw[dashorange!80!black, line width=2.5pt] (1.2,5.6) -- (2.2,5.5) -- (3.2,5.45) -- (4.2,5.4) -- (5.2,5.35) -- (6.2,5.3) -- (7.0,5.25);
+% Grid lines - adjusted for larger box
+\foreach \x in {1.2,2.2,3.2,4.2,5.2,6.2,7.0} {
+  \draw[gray!30, line width=0.3pt] (\x,4.5) -- (\x,5.7);
 }
-\foreach \y in {4.2,4.4,4.6,4.8} {
-  \draw[gray!30, line width=0.3pt] (1.0,\y) -- (5.8,\y);
+\foreach \y in {4.6,4.8,5.0,5.2,5.4,5.6} {
+  \draw[gray!30, line width=0.3pt] (1.2,\y) -- (7.0,\y);
 }
-% Value indicator
-\node[anchor=east, font=\footnotesize\bfseries, text=dashorange!90!black] at (6.0,4.5) {1.1s $\downarrow$};
+% Value indicator - larger font
+\node[anchor=east, font=\small\bfseries, text=dashorange!90!black] at (7.0,5.05) {1.1s $\downarrow$};
 
-% Bottom row - Cost Trend (right)
-\draw[fill=white, draw=dashred!60!black, line width=1.2pt, rounded corners=4pt] (7.6,3.8) rectangle (13.4,5.2);
-\node[anchor=north west, font=\small\bfseries, text=dashred!90!black] at (7.8,5.0) {Cost Trend};
-% Simple downward trend line (improving = lower cost)
-\draw[dashred!80!black, line width=2pt] (8.0,4.8) -- (8.8,4.7) -- (9.6,4.65) -- (10.4,4.6) -- (11.2,4.55) -- (12.0,4.5) -- (12.8,4.45);
-% Grid lines
-\foreach \x in {8.0,9.0,10.0,11.0,12.0,13.0} {
-  \draw[gray!30, line width=0.3pt] (\x,4.1) -- (\x,4.9);
+% Bottom row - Cost Trend (right) - larger box
+\draw[fill=white, draw=dashred!60!black, line width=1.2pt, rounded corners=4pt] (8.7,4.2) rectangle (15.3,6.0);
+\node[anchor=north west, font=\normalsize\bfseries, text=dashred!90!black] at (8.9,5.8) {Cost Trend};
+% Simple downward trend line (improving = lower cost) - adjusted for larger box
+\draw[dashred!80!black, line width=2.5pt] (9.2,5.6) -- (10.2,5.5) -- (11.2,5.45) -- (12.2,5.4) -- (13.2,5.35) -- (14.2,5.3) -- (15.0,5.25);
+% Grid lines - adjusted for larger box
+\foreach \x in {9.2,10.2,11.2,12.2,13.2,14.2,15.0} {
+  \draw[gray!30, line width=0.3pt] (\x,4.5) -- (\x,5.7);
 }
-\foreach \y in {4.2,4.4,4.6,4.8} {
-  \draw[gray!30, line width=0.3pt] (8.0,\y) -- (12.8,\y);
+\foreach \y in {4.6,4.8,5.0,5.2,5.4,5.6} {
+  \draw[gray!30, line width=0.3pt] (9.2,\y) -- (15.0,\y);
 }
-% Value indicator
-\node[anchor=east, font=\footnotesize\bfseries, text=dashred!90!black] at (13.0,4.5) {\$0.04 $\downarrow$};
+% Value indicator - larger font
+\node[anchor=east, font=\small\bfseries, text=dashred!90!black] at (15.0,5.05) {\$0.04 $\downarrow$};
 
-% Time axis labels (bottom of dashboard)
-\node[anchor=center, font=\tiny, text=black!60] at (3.5,5.6) {Time};
-\node[anchor=center, font=\tiny, text=black!60] at (10.5,5.6) {Time};
-\node[anchor=center, font=\tiny, text=black!60] at (3.5,3.6) {Time};
-\node[anchor=center, font=\tiny, text=black!60] at (10.5,3.6) {Time};
+% Time axis labels (bottom of dashboard) - adjusted positions
+\node[anchor=center, font=\small, text=black!60] at (4.0,6.8) {Time};
+\node[anchor=center, font=\small, text=black!60] at (12.0,6.8) {Time};
+\node[anchor=center, font=\small, text=black!60] at (4.0,3.8) {Time};
+\node[anchor=center, font=\small, text=black!60] at (12.0,3.8) {Time};
 
 \end{tikzpicture}
 \end{llmfigbox}
