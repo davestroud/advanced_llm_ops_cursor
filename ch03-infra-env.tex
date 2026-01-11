@@ -1452,16 +1452,16 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 ]
 
 % ================== SECTION HEADERS ==================
-\node[header] (headerA) at (-50mm, 50mm) {Cloud-Native};
-\node[header] (headerB) at (50mm, 50mm) {Hybrid};
-\node[header] (headerC) at (0mm, -20mm) {Multi-Cluster / Multi-Region};
+\node[header] (headerA) at (-50mm, 55mm) {Cloud-Native};
+\node[header] (headerB) at (50mm, 55mm) {Hybrid};
+\node[header] (headerC) at (0mm, -45mm) {Multi-Cluster / Multi-Region};
 
 % ================== VISUAL SEPARATORS ==================
-\draw[draw=black!20, line width=0.8pt, dashed] (0mm, -50mm) -- (0mm, 10mm);
-\draw[draw=black!20, line width=0.8pt, dashed] (-100mm, -5mm) -- (100mm, -5mm);
+\draw[draw=black!20, line width=0.8pt, dashed] (0mm, -70mm) -- (0mm, 15mm);
+\draw[draw=black!20, line width=0.8pt, dashed] (-100mm, -10mm) -- (100mm, -10mm);
 
 % ================== (A) CLOUD-NATIVE (Top Left) ==================
-\node[cloud] (cloudA) at (-50mm, 20mm) {};
+\node[cloud] (cloudA) at (-50mm, 25mm) {};
 \node[vpc, minimum width=46mm, minimum height=48mm] (vpcA) at (cloudA.center) {VPC};
 \node[lb, align=center] (apigwA) at ($(vpcA.north) + (0, -12mm)$) {API\\Gateway};
 \node[k8s, minimum width=42mm, minimum height=18mm] (k8sA) at ($(vpcA.center) + (0, 2mm)$) {K8s Cluster};
@@ -1473,13 +1473,13 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 \draw[arrow, color=gpupurple!90!black] (k8sA) -- (objA);
 
 % ================== (B) HYBRID (Top Right) ==================
-\node[onprem] (premB) at (20mm, 20mm) {};
+\node[onprem] (premB) at (20mm, 25mm) {};
 \node[k8s, minimum width=42mm, minimum height=18mm] (k8sBprem) at ($(premB.center) + (0, 10mm)$) {On-Prem\\K8s};
 \node[gpu] (gpuB1) at ($(k8sBprem.south) + (-15mm, -15mm)$) {GPU};
 \node[gpu] (gpuB2) at ($(k8sBprem.south) + (15mm, -15mm)$) {GPU};
 \node[store, align=center] (vecB) at ($(premB.south) + (0, -18mm)$) {Vector\\DB};
 
-\node[cloud] (cloudB) at (80mm, 20mm) {};
+\node[cloud] (cloudB) at (80mm, 25mm) {};
 \node[vpc, minimum width=46mm, minimum height=48mm] (vpcB) at (cloudB.center) {Cloud VPC};
 \node[lb, align=center] (apigwB) at ($(vpcB.north) + (0, -12mm)$) {API\\Gateway};
 \node[k8s, minimum width=42mm, minimum height=18mm] (k8sBcloud) at ($(vpcB.center) + (0, 2mm)$) {Cloud K8s};
@@ -1496,7 +1496,7 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 \draw[arrow, color=apiorange!90!black] (apigwB) -- (k8sBcloud);
 
 % ================== (C) MULTI-CLUSTER (Bottom Center) ==================
-\node[cloud] (cloudC) at (0mm, -40mm) {};
+\node[cloud] (cloudC) at (0mm, -65mm) {};
 \node[lb, align=center] (glbC) at ($(cloudC.north) + (0, -12mm)$) {Global\\LB/DNS};
 
 \node[vpc, minimum width=42mm, minimum height=48mm] (vpcC1) at ($(cloudC.center) + (-20mm, -5mm)$) {Region A};
@@ -1514,7 +1514,7 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 \draw[arrowDashed, color=gray!70] (k8sC1) -- node[font=\small\bfseries, align=center, midway, above, sloped, text=black!85] {spillover/\\failover} (k8sC2);
 
 % ================== PROFESSIONAL LEGEND (Bottom) ==================
-\node[box, fill=white!99, draw=black!50, rounded corners=6pt, line width=1.2pt, minimum width=180mm, minimum height=24mm, inner sep=8pt] (legend) at (0mm, -80mm) {};
+\node[box, fill=white!99, draw=black!50, rounded corners=6pt, line width=1.2pt, minimum width=180mm, minimum height=24mm, inner sep=8pt] (legend) at (0mm, -105mm) {};
 
 % Row 1
 \node[cloud, minimum width=22mm, minimum height=14mm] (L1) at ($(legend.west) + (22mm, 8mm)$) {};
