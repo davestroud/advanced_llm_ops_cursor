@@ -20,29 +20,29 @@
 \newlabel{sec:cicd-why-continuous-eval}{{4.3}{150}{Why Continuous Evaluation is Non-Negotiable}{section.4.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Staged evaluation enables systematic quality assurance in LLM CI/CD pipelines. Each stage (unit tests, integration tests, canary deployment, shadow mode) runs distinct suites and gates, catching regressions at the earliest possible point. This staged approach reduces risk by validating changes incrementally before full production release. Objectives, metrics, and representative tools at each stage are shown.}}{151}{table.4.2}\protected@file@percent }
 \newlabel{tab:ch04_eval_stages}{{4.2}{151}{Staged evaluation enables systematic quality assurance in LLM CI/CD pipelines. Each stage (unit tests, integration tests, canary deployment, shadow mode) runs distinct suites and gates, catching regressions at the earliest possible point. This staged approach reduces risk by validating changes incrementally before full production release. Objectives, metrics, and representative tools at each stage are shown}{table.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Taxonomy: What to Evaluate and How}{151}{subsection.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Taxonomy: What to Evaluate and How}{152}{subsection.4.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Model-Graded Evaluation (LLM-as-Judge): Strengths, Caveats, Mitigations}{152}{subsection.4.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Evaluating Groundedness and Hallucination in RAG Systems}{152}{subsection.4.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Evaluating Groundedness and Hallucination in RAG Systems}{153}{subsection.4.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Adversarial and Metric-Based Checks in CI}{153}{subsection.4.3.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}Regression and Behavioral Drift Testing}{153}{subsection.4.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.6}Engineering the Eval Pipeline (Best-Practice Blueprint)}{153}{subsection.4.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.6.1}Eval harnesses and registries}{153}{subsubsection.4.3.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.6}Engineering the Eval Pipeline (Best-Practice Blueprint)}{154}{subsection.4.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.6.1}Eval harnesses and registries}{154}{subsubsection.4.3.6.1}\protected@file@percent }
 \newlabel{lst:ch04_eval_harness}{{4.1}{154}{Eval harnesses and registries}{llmlisting.4.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.7}Cloud-Native Evaluation Services}{157}{subsection.4.3.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.8}Operational Monitoring and Drift Response}{157}{subsection.4.3.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.9}Worked Example: CI Gate with Statistical Control}{157}{subsection.4.3.9}\protected@file@percent }
-\newlabel{lst:ch04_ci_gate}{{4.2}{157}{Worked Example: CI Gate with Statistical Control}{llmlisting.4.2}{}}
+\newlabel{lst:ch04_ci_gate}{{4.2}{158}{Worked Example: CI Gate with Statistical Control}{llmlisting.4.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.10}Cost Management}{162}{subsection.4.3.10}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.11}Documentation and Compliance}{162}{subsection.4.3.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.12}Tooling Landscape}{162}{subsection.4.3.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.12}Tooling Landscape}{163}{subsection.4.3.12}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.4}Fine-Tuning-Aware Workflows}{163}{section.4.4}\protected@file@percent }
 \newlabel{sec:cicd-finetune}{{4.4}{163}{Fine-Tuning-Aware Workflows}{section.4.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Model and prompt promotion as first-class releases}{163}{subsection.4.4.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Staged risk mitigation reduces deployment risk through incremental validation. Different stages (pre-commit, pre-deploy, canary, full rollout) apply progressively stronger validation, catching issues before they affect all users. This staged approach enables teams to deploy confidently by validating changes at multiple checkpoints, reducing the blast radius of any regressions.}}{164}{table.4.3}\protected@file@percent }
-\newlabel{tab:ch04_deployment_risk_mitigation}{{4.3}{164}{Staged risk mitigation reduces deployment risk through incremental validation. Different stages (pre-commit, pre-deploy, canary, full rollout) apply progressively stronger validation, catching issues before they affect all users. This staged approach enables teams to deploy confidently by validating changes at multiple checkpoints, reducing the blast radius of any regressions}{table.4.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.5}Deployment Strategies: Canary, Blue-Green, and Rollback}{164}{section.4.5}\protected@file@percent }
 \newlabel{sec:cicd-deploy-strategies}{{4.5}{164}{Deployment Strategies: Canary, Blue-Green, and Rollback}{section.4.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Progressive Delivery Controllers for Kubernetes}{164}{subsection.4.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Staged risk mitigation reduces deployment risk through incremental validation. Different stages (pre-commit, pre-deploy, canary, full rollout) apply progressively stronger validation, catching issues before they affect all users. This staged approach enables teams to deploy confidently by validating changes at multiple checkpoints, reducing the blast radius of any regressions.}}{165}{table.4.3}\protected@file@percent }
+\newlabel{tab:ch04_deployment_risk_mitigation}{{4.3}{165}{Staged risk mitigation reduces deployment risk through incremental validation. Different stages (pre-commit, pre-deploy, canary, full rollout) apply progressively stronger validation, catching issues before they affect all users. This staged approach enables teams to deploy confidently by validating changes at multiple checkpoints, reducing the blast radius of any regressions}{table.4.3}{}}
 \newlabel{lst:ch04_deployment_strategy}{{4.3}{165}{Progressive Delivery Controllers for Kubernetes}{llmlisting.4.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.6}Observability and CI Tooling}{170}{section.4.6}\protected@file@percent }
 \newlabel{sec:cicd-observability-ci}{{4.6}{170}{Observability and CI Tooling}{section.4.6}{}}

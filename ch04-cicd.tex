@@ -169,25 +169,25 @@ The staged evaluation approach creates a continuous loop that feeds production i
 
 \begin{figure}[t]
 \centering
-% Temporarily increase maximum width to allow larger figure
-\renewcommand{\LLMFigMaxWidth}{1.4\linewidth}
+% Temporarily increase maximum width to allow larger figure without scaling
+\renewcommand{\LLMFigMaxWidth}{1.8\linewidth}
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  font=\small,
-  node distance=20mm and 22mm,
+  font=\normalsize,
+  node distance=24mm and 26mm,
   stage/.style={rounded corners=6pt, draw=black!30, line width=0.8pt, align=center, 
-                minimum width=52mm, minimum height=36mm, inner sep=10pt, font=\small},
-  note/.style={align=left, font=\small},
+                minimum width=60mm, minimum height=42mm, inner sep=12pt, font=\normalsize},
+  note/.style={align=left, font=\normalsize},
   callout/.style={rounded corners=5pt, inner sep=8pt, draw=black!20, line width=0.6pt},
   >=Latex
 ]
 
 % Color-coded stages - larger boxes with bigger text and clearer hierarchy
-\node[stage, fill=blue!20] (commit) {\small\bfseries{/commit}\\\small code, prompts, data diffs};
-\node[stage, fill=green!20, right=of commit] (pre) {\small\bfseries{Pre-merge}\\\small \(\sim\)50--200 det. cases\\guards \& format checks};
-\node[stage, fill=orange!20, right=of pre] (post) {\small\bfseries{Post-merge}\\\small 1--5k cases\\stat. gating vs. baseline};
-\node[stage, fill=purple!20, right=of post] (night) {\small\bfseries{Nightly/Batch}\\\small 5k--20k cases\\adv., fairness, long ctx};
-\node[stage, fill=red!20, right=of night] (canary) {\small\bfseries{Canary/Shadow}\\\small live slice\\drift, safety, SLOs};
+\node[stage, fill=blue!20] (commit) {\normalsize\bfseries{/commit}\\\normalsize code, prompts, data diffs};
+\node[stage, fill=green!20, right=of commit] (pre) {\normalsize\bfseries{Pre-merge}\\\normalsize \(\sim\)50--200 det. cases\\guards \& format checks};
+\node[stage, fill=orange!20, right=of pre] (post) {\normalsize\bfseries{Post-merge}\\\normalsize 1--5k cases\\stat. gating vs. baseline};
+\node[stage, fill=purple!20, right=of post] (night) {\normalsize\bfseries{Nightly/Batch}\\\normalsize 5k--20k cases\\adv., fairness, long ctx};
+\node[stage, fill=red!20, right=of night] (canary) {\normalsize\bfseries{Canary/Shadow}\\\normalsize live slice\\drift, safety, SLOs};
 
 % Arrows forward - thicker and more prominent
 \draw[->, very thick, line width=2pt, draw=black!75] (commit) -- (pre);
@@ -197,7 +197,7 @@ The staged evaluation approach creates a continuous loop that feeds production i
 
 % Feedback section - larger and better positioned
 \node[note, right=10mm of canary, fill=yellow!18, callout, 
-      text width=42mm, align=left, anchor=west, font=\small] (feedback) {%
+      text width=50mm, align=left, anchor=west, font=\normalsize] (feedback) {%
     \textbf{Feedback:}\\
     \(\bullet\) failing slices\\
     \(\bullet\) drift signals\\
@@ -212,23 +212,23 @@ The staged evaluation approach creates a continuous loop that feeds production i
   |- (looptop)
   -| (commit.north);
 
-% Baseline/bundle box under pre/post/night - clearer and more visible
-\node[draw=cyan!60, dashed, line width=1pt, fill=cyan!8, rounded corners=6pt, fit=(pre)(post)(night), 
-      inner sep=14pt, label={[note, below=8mm, font=\small]south:\textbf{Artifacts:} versioned datasets, judges \& prompts; metric code; thresholds; HTML/JSON reports}] (bundle) {};
+% Baseline/bundle box under pre/post/night - reduced fill opacity to prevent text obscuring
+\node[draw=cyan!60, dashed, line width=1pt, fill=cyan!3, rounded corners=6pt, fit=(pre)(post)(night), 
+      inner sep=14pt, label={[note, below=8mm, font=\normalsize]south:\textbf{Artifacts:} versioned datasets, judges \& prompts; metric code; thresholds; HTML/JSON reports}] (bundle) {};
 
 % Callouts - larger text, better spacing, and clearer styling
-\node[note, above=10mm of pre, fill=yellow!18, callout, 
-      text width=48mm, align=center, font=\small] {regex PII / inj.; schema};
-\node[note, above=10mm of post, fill=yellow!18, callout,
-      text width=52mm, align=center, font=\small] {helpfulness, groundedness; McNemar, bootstrap};
-\node[note, above=10mm of night, fill=yellow!18, callout,
-      text width=56mm, align=center, font=\small] {red-team, NLI contradictions, fairness slices};
-\node[note, above=10mm of canary, fill=yellow!18, callout,
-      text width=50mm, align=center, font=\small] {online evals; SLO monitors; rollback};
+\node[note, above=12mm of pre, fill=yellow!18, callout, 
+      text width=55mm, align=center, font=\normalsize] {regex PII / inj.; schema};
+\node[note, above=12mm of post, fill=yellow!18, callout,
+      text width=60mm, align=center, font=\normalsize] {helpfulness, groundedness; McNemar, bootstrap};
+\node[note, above=12mm of night, fill=yellow!18, callout,
+      text width=65mm, align=center, font=\normalsize] {red-team, NLI contradictions, fairness slices};
+\node[note, above=12mm of canary, fill=yellow!18, callout,
+      text width=58mm, align=center, font=\normalsize] {online evals; SLO monitors; rollback};
 
 % Legend - larger and better spaced with clearer styling
-\node[stage, fill=gray!18, below=28mm of bundle, minimum width=70mm, minimum height=24mm, draw=black!30, line width=0.8pt] (legend) {\textbf{Legend}};
-\node[note, below=6mm of legend, text width=70mm, font=\small, align=left] {
+\node[stage, fill=gray!18, below=28mm of bundle, minimum width=80mm, minimum height=28mm, draw=black!30, line width=0.8pt] (legend) {\textbf{Legend}};
+\node[note, below=6mm of legend, text width=80mm, font=\normalsize, align=left] {
   \(\triangleright\) Stages run in CI/CD\\
   \(\blacktriangleright\) Metrics \& gates per stage\\
   \(\circlearrowright\) Feedback to repo/baseline
