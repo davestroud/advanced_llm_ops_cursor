@@ -1454,10 +1454,10 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 % ================== SECTION HEADERS ==================
 \node[header] (headerA) at (-70mm, 60mm) {Cloud-Native};
 \node[header] (headerB) at (70mm, 60mm) {Hybrid};
-\node[header] (headerC) at (0mm, -45mm) {Multi-Cluster / Multi-Region};
+\node[header] (headerC) at (0mm, -55mm) {Multi-Cluster / Multi-Region};
 
 % ================== VISUAL SEPARATORS ==================
-\draw[draw=black!20, line width=0.8pt, dashed] (0mm, -70mm) -- (0mm, 20mm);
+\draw[draw=black!20, line width=0.8pt, dashed] (0mm, -80mm) -- (0mm, 20mm);
 \draw[draw=black!20, line width=0.8pt, dashed] (-120mm, -10mm) -- (120mm, -10mm);
 
 % ================== (A) CLOUD-NATIVE (Top Left) ==================
@@ -1496,25 +1496,25 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 \draw[arrow, color=apiorange!90!black] (apigwB) -- (k8sBcloud);
 
 % ================== (C) MULTI-CLUSTER (Bottom Center) ==================
-\node[cloud] (cloudC) at (0mm, -65mm) {};
-\node[lb, align=center] (glbC) at ($(cloudC.north) + (0, -14mm)$) {Global\\LB/DNS};
+\node[cloud] (cloudC) at (0mm, -80mm) {};
+\node[lb, align=center] (glbC) at ($(cloudC.north) + (0, -16mm)$) {Global\\LB/DNS};
 
-\node[vpc, minimum width=46mm, minimum height=52mm] (vpcC1) at ($(cloudC.center) + (-24mm, -6mm)$) {Region A};
-\node[k8s, minimum width=42mm, minimum height=20mm] (k8sC1) at ($(vpcC1.center) + (0, 12mm)$) {K8s A};
-\node[gpu] (gpuC1) at ($(k8sC1.south) + (-17mm, -17mm)$) {GPU};
-\node[gpu] (gpuC2) at ($(k8sC1.south) + (17mm, -17mm)$) {GPU};
+\node[vpc, minimum width=48mm, minimum height=54mm] (vpcC1) at ($(cloudC.center) + (-32mm, -8mm)$) {Region A};
+\node[k8s, minimum width=44mm, minimum height=22mm] (k8sC1) at ($(vpcC1.center) + (0, 14mm)$) {K8s A};
+\node[gpu] (gpuC1) at ($(k8sC1.south) + (-18mm, -19mm)$) {GPU};
+\node[gpu] (gpuC2) at ($(k8sC1.south) + (18mm, -19mm)$) {GPU};
 
-\node[vpc, minimum width=46mm, minimum height=52mm] (vpcC2) at ($(cloudC.center) + (24mm, -6mm)$) {Region B};
-\node[k8s, minimum width=42mm, minimum height=20mm] (k8sC2) at ($(vpcC2.center) + (0, 12mm)$) {K8s B};
-\node[gpu] (gpuC3) at ($(k8sC2.south) + (-17mm, -17mm)$) {GPU};
-\node[gpu] (gpuC4) at ($(k8sC2.south) + (17mm, -17mm)$) {GPU};
+\node[vpc, minimum width=48mm, minimum height=54mm] (vpcC2) at ($(cloudC.center) + (32mm, -8mm)$) {Region B};
+\node[k8s, minimum width=44mm, minimum height=22mm] (k8sC2) at ($(vpcC2.center) + (0, 14mm)$) {K8s B};
+\node[gpu] (gpuC3) at ($(k8sC2.south) + (-18mm, -19mm)$) {GPU};
+\node[gpu] (gpuC4) at ($(k8sC2.south) + (18mm, -19mm)$) {GPU};
 
-\draw[arrow, color=apiorange!90!black] (glbC) -- ($(glbC) + (-24mm, -20mm)$) -- (k8sC1);
-\draw[arrow, color=apiorange!90!black] (glbC) -- ($(glbC) + (24mm, -20mm)$) -- (k8sC2);
+\draw[arrow, color=apiorange!90!black] (glbC) -- ($(glbC) + (-32mm, -22mm)$) -- (k8sC1);
+\draw[arrow, color=apiorange!90!black] (glbC) -- ($(glbC) + (32mm, -22mm)$) -- (k8sC2);
 \draw[arrowDashed, color=gray!70] (k8sC1) -- node[font=\small\bfseries, align=center, midway, above, sloped, text=black!85] {spillover/\\failover} (k8sC2);
 
 % ================== PROFESSIONAL LEGEND (Bottom) ==================
-\node[box, fill=white!99, draw=black!50, rounded corners=6pt, line width=1.2pt, minimum width=180mm, minimum height=24mm, inner sep=8pt] (legend) at (0mm, -105mm) {};
+\node[box, fill=white!99, draw=black!50, rounded corners=6pt, line width=1.2pt, minimum width=180mm, minimum height=24mm, inner sep=8pt] (legend) at (0mm, -120mm) {};
 
 % Row 1
 \node[cloud, minimum width=22mm, minimum height=14mm] (L1) at ($(legend.west) + (22mm, 8mm)$) {};
