@@ -1531,12 +1531,14 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 \label{fig:ch03_deploy_patterns_balanced}
 \end{figure}
 
+\FloatBarrier
 \subsection{Cloud-Native Deployments}
 \label{sec:deploy-cloud}
 
 A \emph{cloud-native deployment} operates entirely within a cloud provider (or multiple clouds), leveraging managed services wherever possible. 
 For LLMOps, this often entails running GPU instances on AWS, Azure, or GCP within Kubernetes clusters, storing artifacts in cloud object stores, and relying on cloud-native networking and IAM for access control. 
 The benefits include elasticity, reduced operational overhead, and access to a rich ecosystem of managed services~\cite{terraform-docs,awscdk-docs}. 
+A representative cloud-native architecture is illustrated in Fig.~\ref{fig:ch03_cloud_native_deployment}.
 Several specific considerations apply:
 
 \begin{itemize}
@@ -1571,7 +1573,8 @@ Several specific considerations apply:
 In summary, cloud-native deployments maximize flexibility and speed of iteration, making them attractive for startups and teams optimizing for time-to-market. 
 The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance on the cloud provider's security and compliance posture.
 
-\begin{figure}[t]
+\FloatBarrier
+\begin{figure}[tb]
   \centering
   % Temporarily increase maximum width to allow larger figure
   \renewcommand{\LLMFigMaxWidth}{1.3\linewidth}
