@@ -1334,7 +1334,7 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
-  node distance=8mm and 12mm,
+  node distance=10mm and 14mm,
   font=\small,
   % Professional component styles with borders and consistent colors
   source/.style={ellipse, fill=blue!15, draw=blue!40, line width=0.6pt,
@@ -1371,76 +1371,76 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \node[ingest, right=of social] (ingest3) {Ingestion\\Agent 3};
 
 % Vector database (below ingestion agents)
-\node[vector, below=12mm of ingest2] (vectordb) {Vector\\Database};
+\node[vector, below=16mm of ingest2] (vectordb) {Vector\\Database};
 
 % ========== CENTER COLUMN: Query, RAG & Orchestration ==========
-% Query input (above RAG)
-\node[source, right=of ingest1, yshift=8mm] (query) {Journalist\\Query};
+% Query input (above RAG, properly spaced)
+\node[source, right=of ingest1, yshift=12mm] (query) {Journalist\\Query};
 
 % RAG retrieval (center)
 \node[rag, right=of ingest2] (retrieval) {RAG\\Retrieval};
 
 % Multi-agent orchestration (below RAG)
-\node[orchestrator, below=of retrieval] (orchestrator) {Orchestrator};
+\node[orchestrator, below=14mm of retrieval] (orchestrator) {Orchestrator};
 
-% Agents (below orchestrator, in a row)
-\node[agent, below left=6mm and 4mm of orchestrator] (summarizer) {Summarizer};
-\node[agent, below=of orchestrator] (factchecker) {Fact-Checker};
-\node[agent, below right=6mm and 4mm of orchestrator] (refiner) {Refiner};
+% Agents (below orchestrator, in a row with proper spacing)
+\node[agent, below left=10mm and 6mm of orchestrator] (summarizer) {Summarizer};
+\node[agent, below=10mm of orchestrator] (factchecker) {Fact-Checker};
+\node[agent, below right=10mm and 6mm of orchestrator] (refiner) {Refiner};
 
 % ========== RIGHT COLUMN: GPU & Response ==========
-% GPU inference cluster (to the right of agents)
-\node[gpu, right=of summarizer, yshift=8mm] (gpu1) {GPU\\Node 1};
+% GPU inference cluster (to the right of agents, properly aligned)
+\node[gpu, right=of summarizer, yshift=12mm] (gpu1) {GPU\\Node 1};
 \node[gpu, right=of factchecker] (gpu2) {GPU\\Node 2};
 
 % Response (to the right of GPU)
-\node[response, right=of gpu2] (response) {Response\\+ Citations};
+\node[response, right=16mm of gpu2] (response) {Response\\+ Citations};
 
 % ========== ARROWS: Data Flow ==========
 % Sources to ingestion (horizontal)
-\draw[arrowthin] (news) -- (ingest1);
-\draw[arrowthin] (ngo) -- (ingest2);
-\draw[arrowthin] (social) -- (ingest3);
+\draw[arrowthin] (news.east) -- (ingest1.west);
+\draw[arrowthin] (ngo.east) -- (ingest2.west);
+\draw[arrowthin] (social.east) -- (ingest3.west);
 
-% Ingestion to vector database (downward)
-\draw[arrowthin] (ingest1) -- (vectordb);
-\draw[arrowthin] (ingest2) -- (vectordb);
-\draw[arrowthin] (ingest3) -- (vectordb);
+% Ingestion to vector database (downward, curved to avoid overlap)
+\draw[arrowthin] (ingest1.south) .. controls +(0,-4mm) and +(-2mm,0) .. (vectordb.north west);
+\draw[arrowthin] (ingest2.south) -- (vectordb.north);
+\draw[arrowthin] (ingest3.south) .. controls +(0,-4mm) and +(2mm,0) .. (vectordb.north east);
 
 % Query to RAG (downward)
-\draw[arrow] (query) -- (retrieval);
+\draw[arrow] (query.south) -- (retrieval.north);
 
-% RAG to vector database (retrieval - horizontal, dashed)
-\draw[arrowthin, dashed] (retrieval) -- (vectordb);
+% RAG to vector database (retrieval - horizontal, dashed, curved)
+\draw[arrowthin, dashed] (retrieval.west) .. controls +(-4mm,0) and +(0,4mm) .. (vectordb.east);
 
 % RAG to orchestrator (downward)
-\draw[arrow] (retrieval) -- (orchestrator);
+\draw[arrow] (retrieval.south) -- (orchestrator.north);
 
-% Orchestrator to agents (downward)
-\draw[arrowthin] (orchestrator) -- (summarizer);
-\draw[arrowthin] (orchestrator) -- (factchecker);
-\draw[arrowthin] (orchestrator) -- (refiner);
+% Orchestrator to agents (downward, angled)
+\draw[arrowthin] (orchestrator.south west) -- (summarizer.north);
+\draw[arrowthin] (orchestrator.south) -- (factchecker.north);
+\draw[arrowthin] (orchestrator.south east) -- (refiner.north);
 
 % Agents to GPU (horizontal)
-\draw[arrow] (summarizer) -- (gpu1);
-\draw[arrow] (factchecker) -- (gpu2);
-\draw[arrow] (refiner) -- (gpu1);
+\draw[arrow] (summarizer.east) -- (gpu1.west);
+\draw[arrow] (factchecker.east) -- (gpu2.west);
+\draw[arrow] (refiner.east) .. controls +(4mm,0) and +(0,-4mm) .. (gpu1.south west);
 
 % GPU to response (horizontal)
-\draw[arrow] (gpu1) -- (response);
-\draw[arrowthin] (gpu2) -- (response);
+\draw[arrow] (gpu1.east) -- (response.west);
+\draw[arrowthin] (gpu2.east) .. controls +(4mm,0) and +(0,4mm) .. (response.south west);
 
 % ========== OBSERVABILITY LAYER ==========
-% Top observability band - positioned above all components
+% Top observability band - positioned above all components with proper clearance
 \node[rectangle, fill=yellow!8, draw=black!30, dashed, line width=0.8pt, rounded corners=4pt,
-      minimum width=120mm, minimum height=8mm,
-      above=6mm of query] (obstop) {};
+      minimum width=130mm, minimum height=9mm,
+      above=10mm of query] (obstop) {};
 \node[font=\small\bfseries, color=black!85, anchor=center] at (obstop.center) {Observability \& Telemetry};
 
-% Bottom observability band - positioned below all components
+% Bottom observability band - positioned below all components with proper clearance
 \node[rectangle, fill=yellow!8, draw=black!30, dashed, line width=0.8pt, rounded corners=4pt,
-      minimum width=120mm, minimum height=8mm,
-      below=6mm of vectordb] (obsbot) {};
+      minimum width=130mm, minimum height=9mm,
+      below=10mm of vectordb] (obsbot) {};
 \node[font=\small\bfseries, color=black!85, anchor=center] at (obsbot.center) {Traces, Metrics, Logs};
 
 % Observability connections (subtle dotted lines from bands to components)
