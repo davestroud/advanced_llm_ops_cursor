@@ -1038,6 +1038,9 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 
 \begin{figure}[t]
 \centering
+% Temporarily increase maximum width for this figure to accommodate larger boxes
+% Figure width is ~285mm, so we need a constraint larger than typical linewidth (~110-120mm)
+\renewcommand{\LLMFigMaxWidth}{2.5\linewidth}
 \begin{llmfigbox}
 % Color definitions for lifecycle phases
 \definecolor{fundblue}{RGB}{44,102,146}
@@ -1137,7 +1140,8 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 
 \end{tikzpicture}
 \end{llmfigbox}
-
+% Restore original maximum width constraint
+\renewcommand{\LLMFigMaxWidth}{1.15\linewidth}
 
 \caption{LLMOps lifecycle demonstrates how operational practices integrate across development stages. The flow progresses from foundations (Part I) through delivery operations (Part II: CI/CD, monitoring, scaling), optimization (Part III: performance, RAG, multi-agent), and governance (Part IV: testing, ethics, case study). A dashed feedback loop connects the case study back to foundational practices, illustrating how real-world experience informs operational improvements.}
 \label{fig:ch01_llmops_lifecycle}
