@@ -1321,6 +1321,7 @@ The goal is to provide fact-checked, context-aware summaries and answers. For ex
 \label{fig:ch01_ishtar_arch_callout}
 \end{figure}
 
+\FloatBarrier
 \subsection{Architecture Overview}
 At a high level, \ishtar{} is composed of modular components working in concert, as illustrated in Fig.~\ref{fig:ch01_ishtar_arch_main}. The pipeline integrates ingestion, retrieval, multi-agent orchestration, inference, and observability.
 
@@ -1329,10 +1330,10 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 % Preamble requirements (once): \usepackage{tikz} and
 % \usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
 % ----------------------------------------------------------------------
-\begin{figure}[t]
+\begin{figure}[tb]
 \centering
 % Increase maximum width to accommodate larger spacing
-\renewcommand{\LLMFigMaxWidth}{1.8\linewidth}
+\renewcommand{\LLMFigMaxWidth}{2.2\linewidth}
 \begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
@@ -1373,7 +1374,7 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \node[ingest, right=of social] (ingest3) {Ingestion\\Agent 3};
 
 % Vector database (below ingestion agents, moved left and lower to avoid overlap)
-\node[vector, below=24mm of ingest3, xshift=-4mm] (vectordb) {Vector\\Database};
+\node[vector, below=24mm of ingest3, xshift=-12mm] (vectordb) {Vector\\Database};
 
 % ========== CENTER COLUMN: Query, RAG & Orchestration ==========
 % Query input (above RAG, properly spaced)
@@ -1396,7 +1397,7 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \node[gpu, right=20mm of orchestrator, yshift=-8mm] (gpu2) {GPU\\Node 2};
 
 % Response (to the right of GPU, moved further right)
-\node[response, right=24mm of gpu1] (response) {Response\\+ Citations};
+\node[response, right=30mm of gpu1] (response) {Response\\+ Citations};
 
 % ========== ARROWS: Data Flow ==========
 % Sources to ingestion (horizontal)
@@ -1439,13 +1440,13 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 % ========== OBSERVABILITY LAYER ==========
 % Top observability band - positioned above all components with proper clearance
 \node[rectangle, fill=yellow!8, draw=black!30, dashed, line width=0.8pt, rounded corners=4pt,
-      minimum width=160mm, minimum height=10mm,
+      minimum width=180mm, minimum height=10mm,
       above=14mm of query] (obstop) {};
 \node[font=\small\bfseries, color=black!85, anchor=center] at (obstop.center) {Observability \& Telemetry};
 
 % Bottom observability band - positioned below all components with proper clearance
 \node[rectangle, fill=yellow!8, draw=black!30, dashed, line width=0.8pt, rounded corners=4pt,
-      minimum width=160mm, minimum height=10mm,
+      minimum width=180mm, minimum height=10mm,
       below=16mm of vectordb] (obsbot) {};
 \node[font=\small\bfseries, color=black!85, anchor=center] at (obsbot.center) {Traces, Metrics, Logs};
 
