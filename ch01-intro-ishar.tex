@@ -1053,37 +1053,46 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 \definecolor{casebrown}{RGB}{139,69,19}
 \begin{tikzpicture}[
   >=Stealth,
-  % --- Enhanced Styles with color coding ---
+  % --- Enhanced Styles with professional appearance ---
   phase/.style={
-    rectangle, rounded corners=5pt,
-    draw=none,
-    text width=26mm,
-    minimum height=10mm, inner sep=4pt,
-    align=center, font=\footnotesize\bfseries
+    rectangle, rounded corners=6pt,
+    draw=black!20, line width=0.8pt,
+    text width=28mm,
+    minimum height=12mm, inner sep=5pt,
+    align=center, font=\small\bfseries
   },
-  arrow/.style={-Stealth, very thick, line width=1.2pt, color=black!70},
-  feedback/.style={-Stealth, dashed, dash pattern=on 4pt off 2pt, very thick, line width=1.2pt, color=black!60},
-  note/.style={font=\small, align=center}
+  arrow/.style={-Stealth, very thick, line width=1.5pt, color=black!75},
+  feedback/.style={-Stealth, dashed, dash pattern=on 5pt off 3pt, very thick, line width=1.3pt, color=black!50},
+  note/.style={font=\small, align=center, color=black!70},
+  partlabel/.style={font=\footnotesize\bfseries, color=black!60, anchor=west}
 ]
 
 % ---- Top row in a matrix (clean alignment) ----
-\matrix (top) [row sep=0mm, column sep=5mm] {
-  \node[phase, fill=fundblue!15] (fund) {LLMOps Fundamentals\\(Ch.~\ref{ch:llmops-fundamentals})}; &
-  \node[phase, fill=infragreen!15] (infra) {Infrastructure \& Environment\\(Ch.~\ref{ch:infra})}; &
-  \node[phase, fill=cicdorange!15] (cicd)  {CI/CD\\(Ch.~\ref{ch:cicd})}; &
-  \node[phase, fill=monpurple!15] (mon)   {Monitoring\\(Ch.~\ref{ch:monitoring})}; &
-  \node[phase, fill=scaleviolet!15] (scale) {Scaling\\(Ch.~\ref{ch:scaling})}; &
-  \node[phase, fill=perfred!15] (perf)  {Performance\\(Ch.~\ref{ch:performance})}; \\
+\matrix (top) [row sep=0mm, column sep=6mm] {
+  \node[phase, fill=fundblue!12, draw=fundblue!40] (fund) {LLMOps Fundamentals\\(Ch.~\ref{ch:llmops-fundamentals})}; &
+  \node[phase, fill=infragreen!12, draw=infragreen!40] (infra) {Infrastructure \& Environment\\(Ch.~\ref{ch:infra})}; &
+  \node[phase, fill=cicdorange!12, draw=cicdorange!40] (cicd)  {CI/CD\\(Ch.~\ref{ch:cicd})}; &
+  \node[phase, fill=monpurple!12, draw=monpurple!40] (mon)   {Monitoring\\(Ch.~\ref{ch:monitoring})}; &
+  \node[phase, fill=scaleviolet!12, draw=scaleviolet!40] (scale) {Scaling\\(Ch.~\ref{ch:scaling})}; &
+  \node[phase, fill=perfred!12, draw=perfred!40] (perf)  {Performance\\(Ch.~\ref{ch:performance})}; \\
 };
 
+% ---- Part labels above top row ----
+\node[partlabel] at ([yshift=8mm]fund.north) {\textbf{Part I: Foundations}};
+\node[partlabel] at ([yshift=8mm]cicd.north) {\textbf{Part II: Delivery Operations}};
+\node[partlabel] at ([yshift=8mm]perf.north) {\textbf{Part III: Optimization}};
+
 % ---- Second row: RAG and Agents ----
-\node[phase, fill=ragteal!15, below=10mm of perf] (rag) {RAG\\(Ch.~\ref{ch:rag})};
-\node[phase, fill=orchcyan!15, right=4mm of rag] (orch) {Multi‑Agent\\(Ch.~\ref{ch:multiagent})};
+\node[phase, fill=ragteal!12, draw=ragteal!40, below=12mm of perf] (rag) {RAG\\(Ch.~\ref{ch:rag})};
+\node[phase, fill=orchcyan!12, draw=orchcyan!40, right=5mm of rag] (orch) {Multi‑Agent\\(Ch.~\ref{ch:multiagent})};
 
 % ---- Bottom row placed relative to second row ----
-\node[phase, fill=testyellow!15, below=10mm of rag]   (test)   {Testing \& Robustness\\(Ch.~\ref{ch:testing})};
-\node[phase, fill=ethicspink!15, right=4mm of test]   (ethics) {Ethics \& Governance\\(Ch.~\ref{ch:ethics})};
-\node[phase, fill=casebrown!15, right=4mm of ethics] (case)   {Case Study\\(Ch.~\ref{ch:case-study})};
+\node[phase, fill=testyellow!12, draw=testyellow!40, below=12mm of rag]   (test)   {Testing \& Robustness\\(Ch.~\ref{ch:testing})};
+\node[phase, fill=ethicspink!12, draw=ethicspink!40, right=5mm of test]   (ethics) {Ethics \& Governance\\(Ch.~\ref{ch:ethics})};
+\node[phase, fill=casebrown!12, draw=casebrown!40, right=5mm of ethics] (case)   {Case Study\\(Ch.~\ref{ch:case-study})};
+
+% ---- Part label for bottom row ----
+\node[partlabel] at ([yshift=8mm]test.north) {\textbf{Part IV: Governance}};
 
 % ---- Top row flow ----
 \draw[arrow] (fund) -- (infra);
@@ -1097,23 +1106,33 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 \draw[arrow] (rag) -- (orch);
 
 % ---- Downward transition ----
-\draw[arrow] (orch.south) |- (test.north);
+\draw[arrow] (rag.south) -- (test.north);
+\draw[arrow] (orch.south) |- (ethics.north);
 
 % ---- Bottom row flow ----
 \draw[arrow] (test) -- (ethics);
 \draw[arrow] (ethics) -- (case);
 
-% ---- Feedback arc (high route) ----
-\path (case.north) ++(0,16mm) coordinate (A);
-\path (fund.north) ++(0,16mm) coordinate (B);
+% ---- Feedback arc from Monitoring (high route) ----
+\path (mon.north) ++(0,20mm) coordinate (M1);
+\path (fund.north) ++(0,20mm) coordinate (M2);
+\draw[feedback] (mon.north)
+  .. controls (M1) and (M2) ..
+  node[note, above, pos=0.5, text width=50mm]
+  {\emph{Feedback: patterns, lessons, new requirements}}
+  (fund.north);
+
+% ---- Feedback arc from Case Study (high route) ----
+\path (case.north) ++(0,18mm) coordinate (C1);
+\path (fund.north) ++(0,18mm) coordinate (C2);
 \draw[feedback] (case.north)
-  .. controls (A) and (B) ..
+  .. controls (C1) and (C2) ..
   node[note, above, pos=0.52, text width=55mm]
   {\emph{Feedback: patterns, lessons, and new requirements}}
   (fund.north);
 
 % ---- Compact lifecycle note ----
-\node[note, anchor=north east] at ($(case.south east)+(0,-5mm)$)
+\node[note, anchor=north east] at ($(case.south east)+(0,-6mm)$)
   {\textbf{Lifecycle:} Design $\rightarrow$ Deploy $\rightarrow$ Operate $\rightarrow$ Improve};
 
 \end{tikzpicture}
