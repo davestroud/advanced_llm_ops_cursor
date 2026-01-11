@@ -1573,117 +1573,12 @@ The trade-offs include cost (cloud GPUs remain expensive at scale) and reliance 
 
 \begin{figure}[t]
   \centering
+  % Temporarily increase maximum width to allow larger figure
+  \renewcommand{\LLMFigMaxWidth}{1.3\linewidth}
   \begin{llmfigbox}
-  \begin{tikzpicture}[
-    font=\small,
-    >=Stealth,
-    node distance=10mm and 15mm,
-    % Color-coded styles for better visual identification
-    cloud/.style={ellipse, draw=none, fill=blue!20,
-      minimum width=42mm, minimum height=22mm, align=center, font=\small\bfseries, inner sep=5pt},
-    az/.style={rectangle, draw=none, fill=cyan!12,
-      rounded corners=5pt, minimum width=48mm, minimum height=60mm},
-    k8s/.style={rectangle, draw=none, fill=purple!20,
-      rounded corners=3pt, minimum width=36mm, minimum height=15mm, align=center, font=\small\bfseries, inner sep=5pt},
-    gpu/.style={rectangle, draw=none, fill=orange!25,
-      rounded corners=3pt, minimum width=22mm, minimum height=11mm, align=center, font=\small, inner sep=4pt},
-    service/.style={rectangle, draw=none, fill=teal!20,
-      rounded corners=3pt, minimum width=26mm, minimum height=11mm, align=center, font=\small, inner sep=4pt},
-    security/.style={rectangle, draw=none, fill=red!18,
-      rounded corners=3pt, minimum width=24mm, minimum height=11mm, align=center, font=\small\bfseries, inner sep=4pt},
-    network/.style={rectangle, draw=none, fill=cyan!20,
-      rounded corners=3pt, minimum width=36mm, minimum height=13mm, align=center, font=\small\bfseries, inner sep=4pt},
-    arrow/.style={-{Latex}, line width=1pt, draw=black!70},
-    dasharrow/.style={-{Latex}, line width=1pt, dashed, draw=black!60}
-  ]
-
-    % Top layers - increased spacing
-    \node[cloud, align=center] (cloud) {Cloud Provider\\(AWS/Azure/GCP)};
-    \node[network, below=15mm of cloud, align=center] (gateway) {API Gateway\\Load Balancer};
-
-    \node[security, left=35mm of gateway]  (iam) {IAM};
-    \node[security, right=35mm of gateway, align=center] (sg)  {Security\\Groups};
-
-    % Availability zones containers - larger and more spaced
-    \node[az, below=22mm of gateway, xshift=-52mm] (az1) {};
-    \node[az, below=22mm of gateway, xshift=52mm] (az2) {};
-
-    \node[font=\small\bfseries, color=cyan!80!black, above=5pt of az1.north] (az1lbl) {AZ-1};
-    \node[font=\small\bfseries, color=cyan!80!black, above=5pt of az2.north] (az2lbl) {AZ-2};
-
-    % K8s clusters - positioned higher in AZ boxes
-    \node[k8s] (k8s1) at ($(az1.center)+(0,12mm)$) {K8s Cluster};
-    \node[k8s] (k8s2) at ($(az2.center)+(0,12mm)$) {K8s Cluster};
-
-    % GPU nodes (AZ-1) - much more spacing to prevent overlap
-    \node[gpu, below=10mm of k8s1.south, xshift=-15mm, align=center] (gpu1a) {GPU\\Node};
-    \node[gpu, below=10mm of k8s1.south, align=center] (gpu1b) {GPU\\Node};
-    \node[gpu, below=10mm of k8s1.south, xshift=15mm, align=center] (gpu1c) {GPU\\Node};
-
-    % Auto-scaling nodes (AZ-1) - positioned below with more spacing
-    \node[gpu, opacity=0.35, below=22mm of k8s1.south, xshift=-8mm, align=center] (gpu1d) {GPU\\Node};
-    \node[gpu, opacity=0.35, below=22mm of k8s1.south, xshift=8mm, align=center] (gpu1e) {GPU\\Node};
-
-    % GPU nodes (AZ-2) - better spacing
-    \node[gpu, below=10mm of k8s2.south, xshift=-12mm, align=center] (gpu2a) {GPU\\Node};
-    \node[gpu, below=10mm of k8s2.south, xshift=12mm, align=center] (gpu2b) {GPU\\Node};
-
-    % Auto-scaling indicator - positioned to avoid overlap
-    \draw[arrow, draw=orange!80!black, line width=1.6pt, <->]
-      ($(gpu1c.east)+(6mm,0)$) -- ($(gpu1d.east)+(6mm,0)$);
-    \node[font=\small\bfseries, color=orange!80!black, right=10mm of gpu1c, align=center] {Auto\\Scale};
-
-    % Managed services stack (right side) - more spacing from AZ
-    \node[service, right=38mm of az2.east, yshift=15mm, align=center] (sqs) {SQS\\Pub/Sub};
-    \node[service, below=8mm of sqs, align=center] (vector) {Vector\\DB};
-    \node[service, below=8mm of vector, align=center] (storage) {Object\\Store};
-    \node[service, below=8mm of storage, align=center] (bedrock) {Bedrock\\OpenAI};
-
-    % Private subnet boundary using fit
-    \node[draw=cyan!70!black, dashed, line width=1.2pt, rounded corners=5pt,
-          fit=(az1)(az2)(az1lbl)(az2lbl), inner sep=12pt] (priv) {};
-    \node[font=\small\bfseries, color=cyan!80!black, below=6pt of priv.south] {Private Subnets};
-
-    % DR region boundary using fit
-    \node[draw=gray!70, dotted, line width=1.4pt, rounded corners=8pt,
-          fit=(sqs)(bedrock), inner sep=12pt] (dr) {};
-    \node[font=\small\bfseries, color=gray!80, right=8mm of dr.east, align=center] {DR Region\\via IaC};
-
-    % Core traffic arrows
-    \draw[arrow] (cloud.south) -- (gateway.north);
-    \draw[arrow] (iam.east) -- (gateway.west);
-    \draw[arrow] (sg.west) -- (gateway.east);
-
-    \draw[arrow] (gateway.south) -- (k8s1.north);
-    \draw[arrow] (gateway.south) -- (k8s2.north);
-
-    % Service integration arrows - cleaner curves with more spacing
-    \draw[dasharrow] (k8s1.east) .. controls +(18mm,10mm) and +(-18mm,10mm) .. (sqs.west);
-    \draw[dasharrow] (k8s2.east) -- (sqs.west);
-
-    \draw[dasharrow] (k8s1.east) .. controls +(18mm,0mm) and +(-18mm,0mm) .. (vector.west);
-    \draw[dasharrow] (k8s2.east) -- (vector.west);
-
-    \draw[dasharrow] (k8s1.east) .. controls +(18mm,-10mm) and +(-18mm,-10mm) .. (storage.west);
-    \draw[dasharrow] (k8s2.east) -- (storage.west);
-
-    \draw[dasharrow] (k8s1.east) .. controls +(18mm,-20mm) and +(-18mm,-20mm) .. (bedrock.west);
-    \draw[dasharrow] (k8s2.east) -- (bedrock.west);
-
-    % Legend - positioned with more space from Private Subnets label
-    \node[font=\small\bfseries, color=black!80, below=14mm of priv.south west, anchor=north west] (legend) {Key Features:};
-
-    \node[gpu, below=6mm of legend.south west, anchor=north west, minimum width=18mm] (leg1) {};
-    \node[font=\small, right=5mm of leg1.east, anchor=west] {GPU Nodes (Auto-scaling)};
-
-    \node[service, below=6mm of leg1.south west, anchor=north west, minimum width=18mm] (leg2) {};
-    \node[font=\small, right=5mm of leg2.east, anchor=west] {Managed Services};
-
-    \node[security, below=6mm of leg2.south west, anchor=north west, minimum width=18mm] (leg3) {};
-    \node[font=\small, right=5mm of leg3.east, anchor=west] {Security \& IAM};
-
-  \end{tikzpicture}
+  \includegraphics[width=1.0\linewidth]{images/Fig_3_3 (1)}
   \end{llmfigbox}
+  \renewcommand{\LLMFigMaxWidth}{1.15\linewidth}
   \caption{Cloud-native deployment architecture enables scalable, resilient LLMOps. Elastic GPU scaling across multiple availability zones ensures availability; integration with managed services (queues, vector databases, object storage) reduces operational overhead; secure networking through API gateways and private subnets protects sensitive data; disaster recovery capabilities ensure business continuity. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls. This architecture pattern balances scalability, security, and operational simplicity.}
   \label{fig:ch03_cloud_native_deployment}
 \end{figure}
