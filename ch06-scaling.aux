@@ -1,181 +1,181 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Scaling Up LLM Deployments}{229}{chapter.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Scaling Up LLM Deployments}{219}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{refsegment:013}{{6}{229}{Scaling Up LLM Deployments}{chapter.6}{}}
-\newlabel{ch:scaling}{{6}{229}{Scaling Up LLM Deployments}{chapter.6}{}}
-\newlabel{refsegment:014}{{6}{229}{Scaling Up LLM Deployments}{chapter.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Introduction}{230}{section.6.1}\protected@file@percent }
-\newlabel{sec:ch6-introduction}{{6.1}{230}{Introduction}{section.6.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}The Scaling Problem in LLMOps}{230}{section.6.2}\protected@file@percent }
-\newlabel{sec:scaling-problem}{{6.2}{230}{The Scaling Problem in LLMOps}{section.6.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Operational Realities Beyond Baseline Constraints}{231}{subsection.6.2.1}\protected@file@percent }
-\newlabel{sec:scaling-operational-realities}{{6.2.1}{231}{Operational Realities Beyond Baseline Constraints}{subsection.6.2.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Operational scaling challenges distinguish LLM deployments from traditional microservices. Each challenge impacts latency, throughput, or cost differently, requiring targeted mitigation strategies. Understanding these challenges enables teams to design scaling architectures that address root causes rather than symptoms.}}{232}{table.6.1}\protected@file@percent }
-\newlabel{tab:ch06_scaling_challenges}{{6.1}{232}{Operational scaling challenges distinguish LLM deployments from traditional microservices. Each challenge impacts latency, throughput, or cost differently, requiring targeted mitigation strategies. Understanding these challenges enables teams to design scaling architectures that address root causes rather than symptoms}{table.6.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}The \ishtar  {} Case}{232}{subsection.6.2.2}\protected@file@percent }
-\newlabel{sec:scaling-ishtar-case}{{6.2.2}{232}{The \ishtar {} Case}{subsection.6.2.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Scaling strategy selection determines cost efficiency and responsiveness. \ishtar  {} employs hierarchical routing, hybrid caching, dynamic context trimming, and predictive autoscaling to handle traffic surges while maintaining latency SLOs. These strategies demonstrate how production systems balance throughput, cost, and quality under variable load.}}{233}{table.6.2}\protected@file@percent }
-\newlabel{tab:ch06_ishtar_scaling_strategies}{{6.2}{233}{Scaling strategy selection determines cost efficiency and responsiveness. \ishtar {} employs hierarchical routing, hybrid caching, dynamic context trimming, and predictive autoscaling to handle traffic surges while maintaining latency SLOs. These strategies demonstrate how production systems balance throughput, cost, and quality under variable load}{table.6.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Broader Perspective}{233}{subsection.6.2.3}\protected@file@percent }
-\newlabel{sec:scaling-broader-perspective}{{6.2.3}{233}{Broader Perspective}{subsection.6.2.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Capacity Planning and SLO Budgets}{234}{subsection.6.2.4}\protected@file@percent }
-\newlabel{sec:scaling-capacity-planning}{{6.2.4}{234}{Capacity Planning and SLO Budgets}{subsection.6.2.4}{}}
-\newlabel{lst:ch06_capacity_planning}{{6.1}{234}{Capacity Planning and SLO Budgets}{llmlisting.6.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Capacity planning transforms workload characteristics into infrastructure requirements. Each step produces specific metrics and validation methods that enable teams to size systems accurately and avoid over-provisioning or under-provisioning. Following this structured approach prevents common scaling failures caused by incomplete workload analysis.}}{235}{table.6.3}\protected@file@percent }
-\newlabel{tab:ch06_capacity_planning}{{6.3}{235}{Capacity planning transforms workload characteristics into infrastructure requirements. Each step produces specific metrics and validation methods that enable teams to size systems accurately and avoid over-provisioning or under-provisioning. Following this structured approach prevents common scaling failures caused by incomplete workload analysis}{table.6.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Scaling Dimensions}{240}{section.6.3}\protected@file@percent }
-\newlabel{sec:scaling-dimensions}{{6.3}{240}{Scaling Dimensions}{section.6.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}GPU Partitioning and Multi-Tenancy}{240}{subsection.6.3.1}\protected@file@percent }
-\newlabel{sec:gpu-partitioning}{{6.3.1}{240}{GPU Partitioning and Multi-Tenancy}{subsection.6.3.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Vertical Scaling}{241}{subsection.6.3.2}\protected@file@percent }
-\newlabel{sec:scaling-vertical}{{6.3.2}{241}{Vertical Scaling}{subsection.6.3.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.1}Characteristics}{241}{subsubsection.6.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.2}When to use}{242}{subsubsection.6.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.3}Case in \ishtar  {}}{242}{subsubsection.6.3.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Horizontal Scaling}{242}{subsection.6.3.3}\protected@file@percent }
-\newlabel{sec:scaling-horizontal}{{6.3.3}{242}{Horizontal Scaling}{subsection.6.3.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3.1}When to use}{243}{subsubsection.6.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3.2}Case in \ishtar  {}}{244}{subsubsection.6.3.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Hybrid Scaling}{244}{subsection.6.3.4}\protected@file@percent }
-\newlabel{sec:scaling-hybrid}{{6.3.4}{244}{Hybrid Scaling}{subsection.6.3.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Scaling dimension selection determines cost efficiency and operational complexity. Vertical scaling upgrades a single node but hits hardware limits; horizontal scaling adds nodes in parallel but requires load balancing; hybrid scaling combines tiers for performance--cost balance but increases management overhead. Choose based on traffic patterns, budget constraints, and operational capabilities.}}{245}{figure.6.1}\protected@file@percent }
-\newlabel{fig:ch06_scaling_dimensions}{{6.1}{245}{Scaling dimension selection determines cost efficiency and operational complexity. Vertical scaling upgrades a single node but hits hardware limits; horizontal scaling adds nodes in parallel but requires load balancing; hybrid scaling combines tiers for performance--cost balance but increases management overhead. Choose based on traffic patterns, budget constraints, and operational capabilities}{figure.6.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4.1}When to use}{245}{subsubsection.6.3.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4.2}Case in \ishtar  {}}{245}{subsubsection.6.3.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4.3}Lessons Learned}{245}{subsubsection.6.3.4.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6.4}{\ignorespaces Scaling approach selection balances cost, latency, and complexity. Vertical scaling upgrades hardware but hits single-node limits; horizontal scaling adds capacity but requires load balancing; hybrid scaling combines tiers for cost efficiency. Choose based on traffic patterns, latency requirements, and operational complexity tolerance.}}{246}{table.6.4}\protected@file@percent }
-\newlabel{tab:ch06_scaling_matrix}{{6.4}{246}{Scaling approach selection balances cost, latency, and complexity. Vertical scaling upgrades hardware but hits single-node limits; horizontal scaling adds capacity but requires load balancing; hybrid scaling combines tiers for cost efficiency. Choose based on traffic patterns, latency requirements, and operational complexity tolerance}{table.6.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Distributed Inference Techniques}{246}{section.6.4}\protected@file@percent }
-\newlabel{sec:distributed-inference}{{6.4}{246}{Distributed Inference Techniques}{section.6.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Serving Runtimes and Kernel Optimizations}{246}{subsection.6.4.1}\protected@file@percent }
-\newlabel{sec:serving-runtimes-scaling}{{6.4.1}{246}{Serving Runtimes and Kernel Optimizations}{subsection.6.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Model Parallelism}{247}{subsection.6.4.2}\protected@file@percent }
-\newlabel{sec:scaling-model-parallelism}{{6.4.2}{247}{Model Parallelism}{subsection.6.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Tensor Parallelism}{248}{subsection.6.4.3}\protected@file@percent }
-\newlabel{sec:scaling-tensor-parallelism}{{6.4.3}{248}{Tensor Parallelism}{subsection.6.4.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.4}Pipeline Parallelism}{249}{subsection.6.4.4}\protected@file@percent }
-\newlabel{sec:scaling-pipeline-parallelism}{{6.4.4}{249}{Pipeline Parallelism}{subsection.6.4.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.4.1}Case in \ishtar  {}.}{249}{subsubsection.6.4.4.1}\protected@file@percent }
-\newlabel{lst:ch06_model_parallelism}{{6.2}{250}{Case in \ishtar {}}{llmlisting.6.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.5}{\ignorespaces Distributed inference technique selection determines memory efficiency and communication overhead. Model parallelism partitions layers across GPUs; tensor parallelism splits matrix operations; pipeline parallelism stages computation. Choose based on model size, hardware topology, and latency requirements.}}{252}{table.6.5}\protected@file@percent }
-\newlabel{tab:ch06_distributed_inference}{{6.5}{252}{Distributed inference technique selection determines memory efficiency and communication overhead. Model parallelism partitions layers across GPUs; tensor parallelism splits matrix operations; pipeline parallelism stages computation. Choose based on model size, hardware topology, and latency requirements}{table.6.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Distributed inference methods enable large-model deployment but introduce communication overhead. \textbf  {(a)} Model Parallelism partitions layers across GPUs, minimizing inter-GPU communication but requiring high memory per GPU. \textbf  {(b)} Tensor Parallelism splits matrix operations within layers, requiring frequent all-reduce synchronization. \textbf  {(c)} Pipeline Parallelism stages computation, enabling high throughput but adding pipeline bubbles. Choose based on model size, hardware topology, and latency tolerance.}}{253}{figure.6.2}\protected@file@percent }
-\newlabel{fig:ch06_parallelism}{{6.2}{253}{Distributed inference methods enable large-model deployment but introduce communication overhead. \textbf {(a)} Model Parallelism partitions layers across GPUs, minimizing inter-GPU communication but requiring high memory per GPU. \textbf {(b)} Tensor Parallelism splits matrix operations within layers, requiring frequent all-reduce synchronization. \textbf {(c)} Pipeline Parallelism stages computation, enabling high throughput but adding pipeline bubbles. Choose based on model size, hardware topology, and latency tolerance}{figure.6.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.5}Speculative Decoding}{253}{subsection.6.4.5}\protected@file@percent }
-\newlabel{sec:scaling-speculative-decoding}{{6.4.5}{253}{Speculative Decoding}{subsection.6.4.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.1}Principle}{253}{subsubsection.6.4.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.2}Baseline Algorithm}{253}{subsubsection.6.4.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.3}Acceptance Intuition}{253}{subsubsection.6.4.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.4}Design Knobs}{253}{subsubsection.6.4.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.5}Case in \ishtar  {}.}{254}{subsubsection.6.4.5.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.6}Summary}{254}{subsubsection.6.4.5.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.5}Batching and Throughput Optimization}{254}{section.6.5}\protected@file@percent }
-\newlabel{sec:batching-throughput}{{6.5}{254}{Batching and Throughput Optimization}{section.6.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.1}Latency decomposition}{254}{subsection.6.5.1}\protected@file@percent }
-\newlabel{sec:latency-decomposition}{{6.5.1}{254}{Latency decomposition}{subsection.6.5.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.2}Static vs.\ dynamic batching}{255}{subsection.6.5.2}\protected@file@percent }
-\newlabel{sec:static-dynamic-batching}{{6.5.2}{255}{Static vs.\ dynamic batching}{subsection.6.5.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.2.1}Choosing the batching window}{255}{subsubsection.6.5.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.3}Scheduling policies and head-of-line blocking}{255}{subsection.6.5.3}\protected@file@percent }
-\newlabel{sec:scheduling-hol}{{6.5.3}{255}{Scheduling policies and head-of-line blocking}{subsection.6.5.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.4}Continuous batching and preemption}{256}{subsection.6.5.4}\protected@file@percent }
-\newlabel{sec:continuous-batching}{{6.5.4}{256}{Continuous batching and preemption}{subsection.6.5.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.5}Heterogeneous batching and length-aware scheduling}{256}{subsection.6.5.5}\protected@file@percent }
-\newlabel{sec:hetero-batching}{{6.5.5}{256}{Heterogeneous batching and length-aware scheduling}{subsection.6.5.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.6}KV-cache management}{256}{subsection.6.5.6}\protected@file@percent }
-\newlabel{sec:kv-cache-mgmt}{{6.5.6}{256}{KV-cache management}{subsection.6.5.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.6.1}Emerging approaches}{256}{subsubsection.6.5.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.7}Other throughput levers}{256}{subsection.6.5.7}\protected@file@percent }
-\newlabel{sec:throughput-levers}{{6.5.7}{256}{Other throughput levers}{subsection.6.5.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.7.1}Case in \ishtar  {}}{257}{subsubsection.6.5.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.6}Autoscaling Strategies}{257}{section.6.6}\protected@file@percent }
-\newlabel{sec:autoscaling}{{6.6}{257}{Autoscaling Strategies}{section.6.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6.1}Metrics-Based Autoscaling}{257}{subsection.6.6.1}\protected@file@percent }
-\newlabel{sec:scaling-metrics-autoscaling}{{6.6.1}{257}{Metrics-Based Autoscaling}{subsection.6.6.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.1}Kubernetes scaling primitives}{257}{subsubsection.6.6.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.2}Control signals}{258}{subsubsection.6.6.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.3}Replica target computation}{258}{subsubsection.6.6.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.4}Trigger guards}{258}{subsubsection.6.6.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.5}Predictive pre-warm (optional but recommended)}{258}{subsubsection.6.6.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.6}Cost-aware placement}{259}{subsubsection.6.6.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.7}Case in \ishtar  {}}{259}{subsubsection.6.6.1.7}\protected@file@percent }
-\newlabel{lst:ch06_hpa_config}{{6.3}{259}{Case in \ishtar {}}{llmlisting.6.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6.2}Event-Based Autoscaling}{262}{subsection.6.6.2}\protected@file@percent }
-\newlabel{sec:scaling-event-autoscaling}{{6.6.2}{262}{Event-Based Autoscaling}{subsection.6.6.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.1}Principle}{262}{subsubsection.6.6.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.2}Design components}{263}{subsubsection.6.6.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.3}Best practices}{263}{subsubsection.6.6.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.4}Case in \ishtar  {}}{263}{subsubsection.6.6.2.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Metrics-based autoscaling reduces over-provisioning while maintaining SLOs. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma $ by adjusting replicas $N(t)$. This reactive approach works well for steady traffic but may lag behind sudden spikes, making it suitable for predictable workloads with moderate variability.}}{264}{figure.6.3}\protected@file@percent }
-\newlabel{fig:ch06_autoscale_target_tracking}{{6.3}{264}{Metrics-based autoscaling reduces over-provisioning while maintaining SLOs. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma $ by adjusting replicas $N(t)$. This reactive approach works well for steady traffic but may lag behind sudden spikes, making it suitable for predictable workloads with moderate variability}{figure.6.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.7}Caching for Scale}{264}{section.6.7}\protected@file@percent }
-\newlabel{sec:caching}{{6.7}{264}{Caching for Scale}{section.6.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.1}Response Caching}{264}{subsection.6.7.1}\protected@file@percent }
-\newlabel{sec:scaling-response-caching}{{6.7.1}{264}{Response Caching}{subsection.6.7.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Event-based autoscaling eliminates cold-start penalties for predictable traffic patterns. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph  {before} demand spikes arrive, leveraging calendar events or scheduled triggers. This approach pays off when cold-start latency exceeds 30 seconds or when traffic spikes are predictable (daily peaks, product launches, news events).}}{265}{figure.6.4}\protected@file@percent }
-\newlabel{fig:ch06_autoscale_event_based}{{6.4}{265}{Event-based autoscaling eliminates cold-start penalties for predictable traffic patterns. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph {before} demand spikes arrive, leveraging calendar events or scheduled triggers. This approach pays off when cold-start latency exceeds 30 seconds or when traffic spikes are predictable (daily peaks, product launches, news events)}{figure.6.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.1}Key considerations}{265}{subsubsection.6.7.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.2}Optimizations}{265}{subsubsection.6.7.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.3}Notes and context}{266}{subsubsection.6.7.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.4}Case in \ishtar  {}}{266}{subsubsection.6.7.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.2}Embedding Caching}{266}{subsection.6.7.2}\protected@file@percent }
-\newlabel{sec:scaling-embedding-caching}{{6.7.2}{266}{Embedding Caching}{subsection.6.7.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.1}Key considerations}{266}{subsubsection.6.7.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.2}Optimizations}{266}{subsubsection.6.7.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Caching strategies reduce latency and cost for repeated content. \textbf  {(a)} Response caching short-circuits identical requests, eliminating inference cost; keys include query, model version, and decoding parameters. \textbf  {(b)} Embedding caching avoids redundant encoder passes for repeated chunks, reducing RAG latency; keys hash content + embedding model identity. Both strategies are essential for cost-effective RAG systems with recurring queries or document reuse.}}{267}{figure.6.5}\protected@file@percent }
-\newlabel{fig:ch06_caching_flow}{{6.5}{267}{Caching strategies reduce latency and cost for repeated content. \textbf {(a)} Response caching short-circuits identical requests, eliminating inference cost; keys include query, model version, and decoding parameters. \textbf {(b)} Embedding caching avoids redundant encoder passes for repeated chunks, reducing RAG latency; keys hash content + embedding model identity. Both strategies are essential for cost-effective RAG systems with recurring queries or document reuse}{figure.6.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.3}Notes and context}{267}{subsubsection.6.7.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.4}Case in \ishtar  {}}{267}{subsubsection.6.7.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.8}Cost-Aware Scaling}{267}{section.6.8}\protected@file@percent }
-\newlabel{sec:cost-aware-scaling}{{6.8}{267}{Cost-Aware Scaling}{section.6.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.1}Mix instance types}{268}{subsubsection.6.8.0.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.2}Spot/preemptible capacity}{268}{subsubsection.6.8.0.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.3}Autoscale down aggressively}{268}{subsubsection.6.8.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.4}Batching for cost}{268}{subsubsection.6.8.0.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.5}Multi-model serving and routing}{269}{subsubsection.6.8.0.5}\protected@file@percent }
-\newlabel{lst:ch06_routing_config}{{6.4}{269}{Multi-model serving and routing}{llmlisting.6.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.6}Throughput-oriented R\&D}{271}{subsubsection.6.8.0.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.7}Case in \ishtar  {}}{272}{subsubsection.6.8.0.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.8}Automated cost planners}{272}{subsubsection.6.8.0.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.9}Scaling Retrieval-Augmented Generation (RAG)}{272}{section.6.9}\protected@file@percent }
-\newlabel{sec:scaling-rag}{{6.9}{272}{Scaling Retrieval-Augmented Generation (RAG)}{section.6.9}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.1}Index sharding}{273}{subsubsection.6.9.0.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.2}Approximate nearest neighbor (ANN) search}{273}{subsubsection.6.9.0.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.3}Hot tiers and in-memory caches}{273}{subsubsection.6.9.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.4}Overlap retrieval with generation}{273}{subsubsection.6.9.0.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.5}Recent directions}{273}{subsubsection.6.9.0.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.6}Case in \ishtar  {}}{274}{subsubsection.6.9.0.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.10}Geographic Scaling}{274}{section.6.10}\protected@file@percent }
-\newlabel{sec:geo-scaling}{{6.10}{274}{Geographic Scaling}{section.6.10}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.1}Latency and compliance benefits}{274}{subsubsection.6.10.0.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces Two-tier RAG scaling optimizes latency and cost for variable query patterns. A router first probes a \emph  {hot} in-memory/GPU tier for low-latency access; on miss, it falls back to a \emph  {distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator. This architecture balances speed (hot tier) with capacity (distributed tier) for production RAG systems.}}{275}{figure.6.6}\protected@file@percent }
-\newlabel{fig:ch06_rag_two_tier}{{6.6}{275}{Two-tier RAG scaling optimizes latency and cost for variable query patterns. A router first probes a \emph {hot} in-memory/GPU tier for low-latency access; on miss, it falls back to a \emph {distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator. This architecture balances speed (hot tier) with capacity (distributed tier) for production RAG systems}{figure.6.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.2}Model placement strategies}{275}{subsubsection.6.10.0.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.3}Consistency, versioning, and caches}{275}{subsubsection.6.10.0.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.4}Traffic routing and failover}{276}{subsubsection.6.10.0.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.5}Data compliance controls}{276}{subsubsection.6.10.0.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.6}Edge acceleration vs.\ full serving}{276}{subsubsection.6.10.0.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.7}Decentralized precedent (Petals)}{276}{subsubsection.6.10.0.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.8}Industrial practice}{276}{subsubsection.6.10.0.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.9}Networking and future directions}{276}{subsubsection.6.10.0.9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Geographic scaling reduces latency and enables data residency compliance. Users are routed to the nearest regional cluster (NA/EU/APAC) for low-latency access and regulatory compliance; dashed links illustrate failover/overflow between regions, ensuring availability during regional outages. This architecture is essential for global deployments with strict latency SLOs or data sovereignty requirements.}}{277}{figure.6.7}\protected@file@percent }
-\newlabel{fig:ch06_geo_scaling_inset}{{6.7}{277}{Geographic scaling reduces latency and enables data residency compliance. Users are routed to the nearest regional cluster (NA/EU/APAC) for low-latency access and regulatory compliance; dashed links illustrate failover/overflow between regions, ensuring availability during regional outages. This architecture is essential for global deployments with strict latency SLOs or data sovereignty requirements}{figure.6.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.11}Case Study: Scaling Ishtar AI}{277}{section.6.11}\protected@file@percent }
-\newlabel{sec:scaling-ishtar-case-study}{{6.11}{277}{Case Study: Scaling Ishtar AI}{section.6.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.1}Initial State}{278}{subsection.6.11.1}\protected@file@percent }
-\newlabel{sec:scaling-ishtar-initial}{{6.11.1}{278}{Initial State}{subsection.6.11.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.2}Intermediate Stage}{278}{subsection.6.11.2}\protected@file@percent }
-\newlabel{sec:scaling-ishtar-intermediate}{{6.11.2}{278}{Intermediate Stage}{subsection.6.11.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.3}Mature Stage}{278}{subsection.6.11.3}\protected@file@percent }
-\newlabel{sec:scaling-ishtar-mature}{{6.11.3}{278}{Mature Stage}{subsection.6.11.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces \ishtar  {} scaling timeline demonstrates incremental optimization strategies. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling. This evolution illustrates how production systems grow complexity incrementally, adding optimizations as traffic and requirements increase.}}{279}{figure.6.8}\protected@file@percent }
-\newlabel{fig:ch06_ishtar_timeline}{{6.8}{279}{\ishtar {} scaling timeline demonstrates incremental optimization strategies. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling. This evolution illustrates how production systems grow complexity incrementally, adding optimizations as traffic and requirements increase}{figure.6.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.12}Best Practices Checklist}{279}{section.6.12}\protected@file@percent }
-\newlabel{sec:scaling-best-practices}{{6.12}{279}{Best Practices Checklist}{section.6.12}{}}
+\newlabel{refsegment:013}{{6}{219}{Scaling Up LLM Deployments}{chapter.6}{}}
+\newlabel{ch:scaling}{{6}{219}{Scaling Up LLM Deployments}{chapter.6}{}}
+\newlabel{refsegment:014}{{6}{219}{Scaling Up LLM Deployments}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Introduction}{220}{section.6.1}\protected@file@percent }
+\newlabel{sec:ch6-introduction}{{6.1}{220}{Introduction}{section.6.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}The Scaling Problem in LLMOps}{220}{section.6.2}\protected@file@percent }
+\newlabel{sec:scaling-problem}{{6.2}{220}{The Scaling Problem in LLMOps}{section.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Operational Realities Beyond Baseline Constraints}{221}{subsection.6.2.1}\protected@file@percent }
+\newlabel{sec:scaling-operational-realities}{{6.2.1}{221}{Operational Realities Beyond Baseline Constraints}{subsection.6.2.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Operational scaling challenges distinguish LLM deployments from traditional microservices. Each challenge impacts latency, throughput, or cost differently, requiring targeted mitigation strategies. Understanding these challenges enables teams to design scaling architectures that address root causes rather than symptoms.}}{222}{table.6.1}\protected@file@percent }
+\newlabel{tab:ch06_scaling_challenges}{{6.1}{222}{Operational scaling challenges distinguish LLM deployments from traditional microservices. Each challenge impacts latency, throughput, or cost differently, requiring targeted mitigation strategies. Understanding these challenges enables teams to design scaling architectures that address root causes rather than symptoms}{table.6.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Scaling strategy selection determines cost efficiency and responsiveness. \ishtar  {} employs hierarchical routing, hybrid caching, dynamic context trimming, and predictive autoscaling to handle traffic surges while maintaining latency SLOs. These strategies demonstrate how production systems balance throughput, cost, and quality under variable load.}}{223}{table.6.2}\protected@file@percent }
+\newlabel{tab:ch06_ishtar_scaling_strategies}{{6.2}{223}{Scaling strategy selection determines cost efficiency and responsiveness. \ishtar {} employs hierarchical routing, hybrid caching, dynamic context trimming, and predictive autoscaling to handle traffic surges while maintaining latency SLOs. These strategies demonstrate how production systems balance throughput, cost, and quality under variable load}{table.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}The \ishtar  {} Case}{223}{subsection.6.2.2}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-case}{{6.2.2}{223}{The \ishtar {} Case}{subsection.6.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Broader Perspective}{223}{subsection.6.2.3}\protected@file@percent }
+\newlabel{sec:scaling-broader-perspective}{{6.2.3}{223}{Broader Perspective}{subsection.6.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Capacity Planning and SLO Budgets}{224}{subsection.6.2.4}\protected@file@percent }
+\newlabel{sec:scaling-capacity-planning}{{6.2.4}{224}{Capacity Planning and SLO Budgets}{subsection.6.2.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Capacity planning transforms workload characteristics into infrastructure requirements. Each step produces specific metrics and validation methods that enable teams to size systems accurately and avoid over-provisioning or under-provisioning. Following this structured approach prevents common scaling failures caused by incomplete workload analysis.}}{225}{table.6.3}\protected@file@percent }
+\newlabel{tab:ch06_capacity_planning}{{6.3}{225}{Capacity planning transforms workload characteristics into infrastructure requirements. Each step produces specific metrics and validation methods that enable teams to size systems accurately and avoid over-provisioning or under-provisioning. Following this structured approach prevents common scaling failures caused by incomplete workload analysis}{table.6.3}{}}
+\newlabel{lst:ch06_capacity_planning}{{6.1}{225}{Capacity Planning and SLO Budgets}{llmlisting.6.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Scaling Dimensions}{230}{section.6.3}\protected@file@percent }
+\newlabel{sec:scaling-dimensions}{{6.3}{230}{Scaling Dimensions}{section.6.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}GPU Partitioning and Multi-Tenancy}{230}{subsection.6.3.1}\protected@file@percent }
+\newlabel{sec:gpu-partitioning}{{6.3.1}{230}{GPU Partitioning and Multi-Tenancy}{subsection.6.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Vertical Scaling}{231}{subsection.6.3.2}\protected@file@percent }
+\newlabel{sec:scaling-vertical}{{6.3.2}{231}{Vertical Scaling}{subsection.6.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.1}Characteristics}{231}{subsubsection.6.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.2}When to use}{232}{subsubsection.6.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.2.3}Case in \ishtar  {}}{232}{subsubsection.6.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Horizontal Scaling}{232}{subsection.6.3.3}\protected@file@percent }
+\newlabel{sec:scaling-horizontal}{{6.3.3}{232}{Horizontal Scaling}{subsection.6.3.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3.1}When to use}{233}{subsubsection.6.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.3.2}Case in \ishtar  {}}{234}{subsubsection.6.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Hybrid Scaling}{234}{subsection.6.3.4}\protected@file@percent }
+\newlabel{sec:scaling-hybrid}{{6.3.4}{234}{Hybrid Scaling}{subsection.6.3.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Scaling dimension selection determines cost efficiency and operational complexity. Vertical scaling upgrades a single node but hits hardware limits; horizontal scaling adds nodes in parallel but requires load balancing; hybrid scaling combines tiers for performance--cost balance but increases management overhead. Choose based on traffic patterns, budget constraints, and operational capabilities.}}{235}{figure.6.1}\protected@file@percent }
+\newlabel{fig:ch06_scaling_dimensions}{{6.1}{235}{Scaling dimension selection determines cost efficiency and operational complexity. Vertical scaling upgrades a single node but hits hardware limits; horizontal scaling adds nodes in parallel but requires load balancing; hybrid scaling combines tiers for performance--cost balance but increases management overhead. Choose based on traffic patterns, budget constraints, and operational capabilities}{figure.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4.1}When to use}{235}{subsubsection.6.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4.2}Case in \ishtar  {}}{235}{subsubsection.6.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.3.4.3}Lessons Learned}{235}{subsubsection.6.3.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.4}{\ignorespaces Scaling approach selection balances cost, latency, and complexity. Vertical scaling upgrades hardware but hits single-node limits; horizontal scaling adds capacity but requires load balancing; hybrid scaling combines tiers for cost efficiency. Choose based on traffic patterns, latency requirements, and operational complexity tolerance.}}{236}{table.6.4}\protected@file@percent }
+\newlabel{tab:ch06_scaling_matrix}{{6.4}{236}{Scaling approach selection balances cost, latency, and complexity. Vertical scaling upgrades hardware but hits single-node limits; horizontal scaling adds capacity but requires load balancing; hybrid scaling combines tiers for cost efficiency. Choose based on traffic patterns, latency requirements, and operational complexity tolerance}{table.6.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Distributed Inference Techniques}{236}{section.6.4}\protected@file@percent }
+\newlabel{sec:distributed-inference}{{6.4}{236}{Distributed Inference Techniques}{section.6.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Serving Runtimes and Kernel Optimizations}{236}{subsection.6.4.1}\protected@file@percent }
+\newlabel{sec:serving-runtimes-scaling}{{6.4.1}{236}{Serving Runtimes and Kernel Optimizations}{subsection.6.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Model Parallelism}{237}{subsection.6.4.2}\protected@file@percent }
+\newlabel{sec:scaling-model-parallelism}{{6.4.2}{237}{Model Parallelism}{subsection.6.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Tensor Parallelism}{238}{subsection.6.4.3}\protected@file@percent }
+\newlabel{sec:scaling-tensor-parallelism}{{6.4.3}{238}{Tensor Parallelism}{subsection.6.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.4}Pipeline Parallelism}{239}{subsection.6.4.4}\protected@file@percent }
+\newlabel{sec:scaling-pipeline-parallelism}{{6.4.4}{239}{Pipeline Parallelism}{subsection.6.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.4.1}Case in \ishtar  {}.}{239}{subsubsection.6.4.4.1}\protected@file@percent }
+\newlabel{lst:ch06_model_parallelism}{{6.2}{240}{Case in \ishtar {}}{llmlisting.6.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.5}{\ignorespaces Distributed inference technique selection determines memory efficiency and communication overhead. Model parallelism partitions layers across GPUs; tensor parallelism splits matrix operations; pipeline parallelism stages computation. Choose based on model size, hardware topology, and latency requirements.}}{242}{table.6.5}\protected@file@percent }
+\newlabel{tab:ch06_distributed_inference}{{6.5}{242}{Distributed inference technique selection determines memory efficiency and communication overhead. Model parallelism partitions layers across GPUs; tensor parallelism splits matrix operations; pipeline parallelism stages computation. Choose based on model size, hardware topology, and latency requirements}{table.6.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Distributed inference methods enable large-model deployment but introduce communication overhead. \textbf  {(a)} Model Parallelism partitions layers across GPUs, minimizing inter-GPU communication but requiring high memory per GPU. \textbf  {(b)} Tensor Parallelism splits matrix operations within layers, requiring frequent all-reduce synchronization. \textbf  {(c)} Pipeline Parallelism stages computation, enabling high throughput but adding pipeline bubbles. Choose based on model size, hardware topology, and latency tolerance.}}{243}{figure.6.2}\protected@file@percent }
+\newlabel{fig:ch06_parallelism}{{6.2}{243}{Distributed inference methods enable large-model deployment but introduce communication overhead. \textbf {(a)} Model Parallelism partitions layers across GPUs, minimizing inter-GPU communication but requiring high memory per GPU. \textbf {(b)} Tensor Parallelism splits matrix operations within layers, requiring frequent all-reduce synchronization. \textbf {(c)} Pipeline Parallelism stages computation, enabling high throughput but adding pipeline bubbles. Choose based on model size, hardware topology, and latency tolerance}{figure.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.5}Speculative Decoding}{243}{subsection.6.4.5}\protected@file@percent }
+\newlabel{sec:scaling-speculative-decoding}{{6.4.5}{243}{Speculative Decoding}{subsection.6.4.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.1}Principle}{243}{subsubsection.6.4.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.2}Baseline Algorithm}{243}{subsubsection.6.4.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.3}Acceptance Intuition}{243}{subsubsection.6.4.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.4}Design Knobs}{243}{subsubsection.6.4.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.5}Case in \ishtar  {}.}{244}{subsubsection.6.4.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.4.5.6}Summary}{244}{subsubsection.6.4.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}Batching and Throughput Optimization}{244}{section.6.5}\protected@file@percent }
+\newlabel{sec:batching-throughput}{{6.5}{244}{Batching and Throughput Optimization}{section.6.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.1}Latency decomposition}{244}{subsection.6.5.1}\protected@file@percent }
+\newlabel{sec:latency-decomposition}{{6.5.1}{244}{Latency decomposition}{subsection.6.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.2}Static vs.\ dynamic batching}{245}{subsection.6.5.2}\protected@file@percent }
+\newlabel{sec:static-dynamic-batching}{{6.5.2}{245}{Static vs.\ dynamic batching}{subsection.6.5.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.2.1}Choosing the batching window}{245}{subsubsection.6.5.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.3}Scheduling policies and head-of-line blocking}{245}{subsection.6.5.3}\protected@file@percent }
+\newlabel{sec:scheduling-hol}{{6.5.3}{245}{Scheduling policies and head-of-line blocking}{subsection.6.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.4}Continuous batching and preemption}{246}{subsection.6.5.4}\protected@file@percent }
+\newlabel{sec:continuous-batching}{{6.5.4}{246}{Continuous batching and preemption}{subsection.6.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.5}Heterogeneous batching and length-aware scheduling}{246}{subsection.6.5.5}\protected@file@percent }
+\newlabel{sec:hetero-batching}{{6.5.5}{246}{Heterogeneous batching and length-aware scheduling}{subsection.6.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.6}KV-cache management}{246}{subsection.6.5.6}\protected@file@percent }
+\newlabel{sec:kv-cache-mgmt}{{6.5.6}{246}{KV-cache management}{subsection.6.5.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.6.1}Emerging approaches}{246}{subsubsection.6.5.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.7}Other throughput levers}{247}{subsection.6.5.7}\protected@file@percent }
+\newlabel{sec:throughput-levers}{{6.5.7}{247}{Other throughput levers}{subsection.6.5.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.5.7.1}Case in \ishtar  {}}{247}{subsubsection.6.5.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.6}Autoscaling Strategies}{247}{section.6.6}\protected@file@percent }
+\newlabel{sec:autoscaling}{{6.6}{247}{Autoscaling Strategies}{section.6.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6.1}Metrics-Based Autoscaling}{247}{subsection.6.6.1}\protected@file@percent }
+\newlabel{sec:scaling-metrics-autoscaling}{{6.6.1}{247}{Metrics-Based Autoscaling}{subsection.6.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.1}Kubernetes scaling primitives}{248}{subsubsection.6.6.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.2}Control signals}{248}{subsubsection.6.6.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.3}Replica target computation}{248}{subsubsection.6.6.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.4}Trigger guards}{248}{subsubsection.6.6.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.5}Predictive pre-warm (optional but recommended)}{249}{subsubsection.6.6.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.6}Cost-aware placement}{249}{subsubsection.6.6.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.1.7}Case in \ishtar  {}}{249}{subsubsection.6.6.1.7}\protected@file@percent }
+\newlabel{lst:ch06_hpa_config}{{6.3}{249}{Case in \ishtar {}}{llmlisting.6.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6.2}Event-Based Autoscaling}{253}{subsection.6.6.2}\protected@file@percent }
+\newlabel{sec:scaling-event-autoscaling}{{6.6.2}{253}{Event-Based Autoscaling}{subsection.6.6.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.1}Principle}{253}{subsubsection.6.6.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.2}Design components}{253}{subsubsection.6.6.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.3}Best practices}{253}{subsubsection.6.6.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.6.2.4}Case in \ishtar  {}}{253}{subsubsection.6.6.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.7}Caching for Scale}{254}{section.6.7}\protected@file@percent }
+\newlabel{sec:caching}{{6.7}{254}{Caching for Scale}{section.6.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.1}Response Caching}{254}{subsection.6.7.1}\protected@file@percent }
+\newlabel{sec:scaling-response-caching}{{6.7.1}{254}{Response Caching}{subsection.6.7.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Metrics-based autoscaling reduces over-provisioning while maintaining SLOs. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma $ by adjusting replicas $N(t)$. This reactive approach works well for steady traffic but may lag behind sudden spikes, making it suitable for predictable workloads with moderate variability.}}{255}{figure.6.3}\protected@file@percent }
+\newlabel{fig:ch06_autoscale_target_tracking}{{6.3}{255}{Metrics-based autoscaling reduces over-provisioning while maintaining SLOs. The autoscaler tracks demand $D(t)$, maintaining capacity above $D(t)$ using headroom $\gamma $ by adjusting replicas $N(t)$. This reactive approach works well for steady traffic but may lag behind sudden spikes, making it suitable for predictable workloads with moderate variability}{figure.6.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.1}Key considerations}{255}{subsubsection.6.7.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.2}Optimizations}{255}{subsubsection.6.7.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Event-based autoscaling eliminates cold-start penalties for predictable traffic patterns. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph  {before} demand spikes arrive, leveraging calendar events or scheduled triggers. This approach pays off when cold-start latency exceeds 30 seconds or when traffic spikes are predictable (daily peaks, product launches, news events).}}{256}{figure.6.4}\protected@file@percent }
+\newlabel{fig:ch06_autoscale_event_based}{{6.4}{256}{Event-based autoscaling eliminates cold-start penalties for predictable traffic patterns. Unlike reactive metrics-based scaling (dotted reference line), event-based scaling provisions capacity \emph {before} demand spikes arrive, leveraging calendar events or scheduled triggers. This approach pays off when cold-start latency exceeds 30 seconds or when traffic spikes are predictable (daily peaks, product launches, news events)}{figure.6.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.3}Notes and context}{256}{subsubsection.6.7.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.1.4}Case in \ishtar  {}}{256}{subsubsection.6.7.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7.2}Embedding Caching}{257}{subsection.6.7.2}\protected@file@percent }
+\newlabel{sec:scaling-embedding-caching}{{6.7.2}{257}{Embedding Caching}{subsection.6.7.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.1}Key considerations}{257}{subsubsection.6.7.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.2}Optimizations}{257}{subsubsection.6.7.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.3}Notes and context}{257}{subsubsection.6.7.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.7.2.4}Case in \ishtar  {}}{257}{subsubsection.6.7.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Caching strategies reduce latency and cost for repeated content. \textbf  {(a)} Response caching short-circuits identical requests, eliminating inference cost; keys include query, model version, and decoding parameters. \textbf  {(b)} Embedding caching avoids redundant encoder passes for repeated chunks, reducing RAG latency; keys hash content + embedding model identity. Both strategies are essential for cost-effective RAG systems with recurring queries or document reuse.}}{258}{figure.6.5}\protected@file@percent }
+\newlabel{fig:ch06_caching_flow}{{6.5}{258}{Caching strategies reduce latency and cost for repeated content. \textbf {(a)} Response caching short-circuits identical requests, eliminating inference cost; keys include query, model version, and decoding parameters. \textbf {(b)} Embedding caching avoids redundant encoder passes for repeated chunks, reducing RAG latency; keys hash content + embedding model identity. Both strategies are essential for cost-effective RAG systems with recurring queries or document reuse}{figure.6.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.8}Cost-Aware Scaling}{258}{section.6.8}\protected@file@percent }
+\newlabel{sec:cost-aware-scaling}{{6.8}{258}{Cost-Aware Scaling}{section.6.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.1}Mix instance types}{258}{subsubsection.6.8.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.2}Spot/preemptible capacity}{258}{subsubsection.6.8.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.3}Autoscale down aggressively}{259}{subsubsection.6.8.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.4}Batching for cost}{259}{subsubsection.6.8.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.5}Multi-model serving and routing}{259}{subsubsection.6.8.0.5}\protected@file@percent }
+\newlabel{lst:ch06_routing_config}{{6.4}{259}{Multi-model serving and routing}{llmlisting.6.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.6}Throughput-oriented R\&D}{262}{subsubsection.6.8.0.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.7}Case in \ishtar  {}}{262}{subsubsection.6.8.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.0.8}Automated cost planners}{263}{subsubsection.6.8.0.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.9}Scaling Retrieval-Augmented Generation (RAG)}{263}{section.6.9}\protected@file@percent }
+\newlabel{sec:scaling-rag}{{6.9}{263}{Scaling Retrieval-Augmented Generation (RAG)}{section.6.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.1}Index sharding}{263}{subsubsection.6.9.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.2}Approximate nearest neighbor (ANN) search}{263}{subsubsection.6.9.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.3}Hot tiers and in-memory caches}{264}{subsubsection.6.9.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.4}Overlap retrieval with generation}{264}{subsubsection.6.9.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.5}Recent directions}{264}{subsubsection.6.9.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.9.0.6}Case in \ishtar  {}}{264}{subsubsection.6.9.0.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces Two-tier RAG scaling optimizes latency and cost for variable query patterns. A router first probes a \emph  {hot} in-memory/GPU tier for low-latency access; on miss, it falls back to a \emph  {distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator. This architecture balances speed (hot tier) with capacity (distributed tier) for production RAG systems.}}{265}{figure.6.6}\protected@file@percent }
+\newlabel{fig:ch06_rag_two_tier}{{6.6}{265}{Two-tier RAG scaling optimizes latency and cost for variable query patterns. A router first probes a \emph {hot} in-memory/GPU tier for low-latency access; on miss, it falls back to a \emph {distributed} (sharded) ANN index in parallel. Precomputed embedding cache avoids redundant encoding. Results are merged/re-ranked, then fed to the generator. This architecture balances speed (hot tier) with capacity (distributed tier) for production RAG systems}{figure.6.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.10}Geographic Scaling}{265}{section.6.10}\protected@file@percent }
+\newlabel{sec:geo-scaling}{{6.10}{265}{Geographic Scaling}{section.6.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.1}Latency and compliance benefits}{266}{subsubsection.6.10.0.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.2}Model placement strategies}{266}{subsubsection.6.10.0.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.3}Consistency, versioning, and caches}{266}{subsubsection.6.10.0.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.4}Traffic routing and failover}{266}{subsubsection.6.10.0.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.5}Data compliance controls}{266}{subsubsection.6.10.0.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.6}Edge acceleration vs.\ full serving}{266}{subsubsection.6.10.0.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.7}Decentralized precedent (Petals)}{267}{subsubsection.6.10.0.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.8}Industrial practice}{267}{subsubsection.6.10.0.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.10.0.9}Networking and future directions}{267}{subsubsection.6.10.0.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.11}Case Study: Scaling Ishtar AI}{267}{section.6.11}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-case-study}{{6.11}{267}{Case Study: Scaling Ishtar AI}{section.6.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Geographic scaling reduces latency and enables data residency compliance. Users are routed to the nearest regional cluster (NA/EU/APAC) for low-latency access and regulatory compliance; dashed links illustrate failover/overflow between regions, ensuring availability during regional outages. This architecture is essential for global deployments with strict latency SLOs or data sovereignty requirements.}}{268}{figure.6.7}\protected@file@percent }
+\newlabel{fig:ch06_geo_scaling_inset}{{6.7}{268}{Geographic scaling reduces latency and enables data residency compliance. Users are routed to the nearest regional cluster (NA/EU/APAC) for low-latency access and regulatory compliance; dashed links illustrate failover/overflow between regions, ensuring availability during regional outages. This architecture is essential for global deployments with strict latency SLOs or data sovereignty requirements}{figure.6.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.1}Initial State}{268}{subsection.6.11.1}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-initial}{{6.11.1}{268}{Initial State}{subsection.6.11.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.2}Intermediate Stage}{268}{subsection.6.11.2}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-intermediate}{{6.11.2}{268}{Intermediate Stage}{subsection.6.11.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.11.3}Mature Stage}{269}{subsection.6.11.3}\protected@file@percent }
+\newlabel{sec:scaling-ishtar-mature}{{6.11.3}{269}{Mature Stage}{subsection.6.11.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces \ishtar  {} scaling timeline demonstrates incremental optimization strategies. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling. This evolution illustrates how production systems grow complexity incrementally, adding optimizations as traffic and requirements increase.}}{270}{figure.6.8}\protected@file@percent }
+\newlabel{fig:ch06_ishtar_timeline}{{6.8}{270}{\ishtar {} scaling timeline demonstrates incremental optimization strategies. The system evolved from a single-GPU prototype to a multi-region, multi-tier deployment with advanced batching, caching, speculative decoding, and predictive autoscaling. This evolution illustrates how production systems grow complexity incrementally, adding optimizations as traffic and requirements increase}{figure.6.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.12}Best Practices Checklist}{270}{section.6.12}\protected@file@percent }
+\newlabel{sec:scaling-best-practices}{{6.12}{270}{Best Practices Checklist}{section.6.12}{}}
 \@setckpt{ch06-scaling}{
-\setcounter{page}{283}
+\setcounter{page}{273}
 \setcounter{equation}{0}
 \setcounter{enumi}{7}
 \setcounter{enumii}{0}
@@ -247,7 +247,7 @@
 \setcounter{citetotal}{0}
 \setcounter{multicitecount}{0}
 \setcounter{multicitetotal}{0}
-\setcounter{instcount}{641}
+\setcounter{instcount}{0}
 \setcounter{maxnames}{3}
 \setcounter{minnames}{1}
 \setcounter{maxitems}{3}
@@ -261,7 +261,7 @@
 \setcounter{refsegment}{14}
 \setcounter{maxextratitle}{0}
 \setcounter{maxextratitleyear}{0}
-\setcounter{maxextraname}{9}
+\setcounter{maxextraname}{0}
 \setcounter{maxextradate}{0}
 \setcounter{maxextraalpha}{0}
 \setcounter{abbrvpenalty}{50}

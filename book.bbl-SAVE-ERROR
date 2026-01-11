@@ -4415,8 +4415,8 @@
       \strng{authorfullhash}{1f00829248befc424651b3df3d7c0c8d}
       \strng{authorfullhashraw}{1f00829248befc424651b3df3d7c0c8d}
       \field{extraname}{4}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{arXiv preprint arXiv:2309.06180}
@@ -4460,8 +4460,8 @@
       \strng{authornamehash}{8b3c2b2b185248740d5a9d106250800f}
       \strng{authorfullhash}{4e4d58d1752090a8ca2da05c4bf9b72b}
       \strng{authorfullhashraw}{4e4d58d1752090a8ca2da05c4bf9b72b}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{Google Research Blog}
@@ -4531,8 +4531,8 @@
       \strng{authorfullhash}{2c27acbcd2852c70e7247e70cc009b6d}
       \strng{authorfullhashraw}{2c27acbcd2852c70e7247e70cc009b6d}
       \field{extraname}{5}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprinttype}{arxiv}
@@ -4601,8 +4601,8 @@
       \strng{authorfullhash}{f82970bbd2bdd7a002d2af62b743d5cc}
       \strng{authorfullhashraw}{f82970bbd2bdd7a002d2af62b743d5cc}
       \field{extraname}{2}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprinttype}{arxiv}
@@ -5798,8 +5798,8 @@
       \strng{authornamehash}{ad8e2e2a80d28ade21e86852b804fc9b}
       \strng{authorfullhash}{e8bccd48302a14eeba57d9dce2f49ef4}
       \strng{authorfullhashraw}{e8bccd48302a14eeba57d9dce2f49ef4}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{arXiv preprint arXiv:1810.04805}
@@ -5827,8 +5827,8 @@
       \strng{authornamehash}{a69d47ee10ec2e0d653bec7b99ab45e0}
       \strng{authorfullhash}{a69d47ee10ec2e0d653bec7b99ab45e0}
       \strng{authorfullhashraw}{a69d47ee10ec2e0d653bec7b99ab45e0}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{arXiv preprint arXiv:1902.04094}
@@ -5852,8 +5852,8 @@
       \strng{authorfullhash}{1318a946c3fffa54cec1130748f21c17}
       \strng{authorfullhashraw}{1318a946c3fffa54cec1130748f21c17}
       \field{extraname}{1}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal Name}
@@ -5878,8 +5878,8 @@
       \strng{authorfullhash}{1318a946c3fffa54cec1130748f21c17}
       \strng{authorfullhashraw}{1318a946c3fffa54cec1130748f21c17}
       \field{extraname}{2}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Add full details here}
@@ -5903,8 +5903,8 @@
       \strng{authorfullhash}{1318a946c3fffa54cec1130748f21c17}
       \strng{authorfullhashraw}{1318a946c3fffa54cec1130748f21c17}
       \field{extraname}{3}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Add full details here}
@@ -5928,8 +5928,8 @@
       \strng{authorfullhash}{1318a946c3fffa54cec1130748f21c17}
       \strng{authorfullhashraw}{1318a946c3fffa54cec1130748f21c17}
       \field{extraname}{4}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{URL: https://github.com/Dao-AILab/flash-attention}
@@ -5952,8 +5952,8 @@
       \strng{authornamehash}{a9f10d7654c3e4ae11d7c68773b47fee}
       \strng{authorfullhash}{a9f10d7654c3e4ae11d7c68773b47fee}
       \strng{authorfullhashraw}{a9f10d7654c3e4ae11d7c68773b47fee}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Accessed: 2024-06-01}
@@ -5977,8 +5977,8 @@
       \strng{authorfullhash}{a9de2eae1452f3682658946a129ce64d}
       \strng{authorfullhashraw}{a9de2eae1452f3682658946a129ce64d}
       \field{extraname}{1}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Placeholder entry for missing citation}
@@ -6002,8 +6002,8 @@
       \strng{authorfullhash}{1318a946c3fffa54cec1130748f21c17}
       \strng{authorfullhashraw}{1318a946c3fffa54cec1130748f21c17}
       \field{extraname}{5}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Add correct details for kv-quant}
@@ -6027,8 +6027,8 @@
       \strng{authorfullhash}{adb4692ea1b02fb50482e2ccd9c7a307}
       \strng{authorfullhashraw}{adb4692ea1b02fb50482e2ccd9c7a307}
       \field{extraname}{1}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal Placeholder}
@@ -7222,8 +7222,8 @@
       \strng{authornamehash}{33afec8508fadcedb9fb8ffe8cfd4bfa}
       \strng{authorfullhash}{882134cd1496497b3e6749897990dbdc}
       \strng{authorfullhashraw}{882134cd1496497b3e6749897990dbdc}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}
@@ -7287,8 +7287,8 @@
       \strng{authorfullhash}{e4450a4375cd8e49440f9bc559fef906}
       \strng{authorfullhashraw}{e4450a4375cd8e49440f9bc559fef906}
       \field{extraname}{3}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Transactions of the Association for Computational Linguistics}
@@ -7316,8 +7316,8 @@
       \strng{authorfullhash}{8de59538e5206b848891f2b0e1898dfb}
       \strng{authorfullhashraw}{8de59538e5206b848891f2b0e1898dfb}
       \field{extraname}{4}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Communication in Multi-Agent Workflows}
@@ -7344,8 +7344,8 @@
       \strng{authorfullhash}{140864078aeca1c7c35b4beb33c53c34}
       \strng{authorfullhashraw}{140864078aeca1c7c35b4beb33c53c34}
       \field{extraname}{2}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Introduction to Multi-Agent Systems}
@@ -8990,8 +8990,8 @@
       \strng{authornamehash}{62dda78fe1497685b6e2c1e1adb1ed32}
       \strng{authorfullhash}{c1e03f44c4152099f003fec502fb762f}
       \strng{authorfullhashraw}{c1e03f44c4152099f003fec502fb762f}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL)}
@@ -9023,8 +9023,8 @@
       \strng{authornamehash}{a8493ee428e7921a966198a6e265a2d9}
       \strng{authorfullhash}{a8493ee428e7921a966198a6e265a2d9}
       \strng{authorfullhashraw}{a8493ee428e7921a966198a6e265a2d9}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Deterministic Testing in Retrieval-Augmented Generation}
@@ -9051,8 +9051,8 @@
       \strng{authorfullhash}{6e8df9cc56c98960e81b27d608533ef4}
       \strng{authorfullhashraw}{6e8df9cc56c98960e81b27d608533ef4}
       \field{extraname}{1}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Promptfoo: Testing and Evaluating LLM Applications}
@@ -9079,8 +9079,8 @@
       \strng{authorfullhash}{6e8df9cc56c98960e81b27d608533ef4}
       \strng{authorfullhashraw}{6e8df9cc56c98960e81b27d608533ef4}
       \field{extraname}{2}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Unit and End-to-End Testing for Prompts and Chains}
@@ -9107,8 +9107,8 @@
       \strng{authorfullhash}{8de59538e5206b848891f2b0e1898dfb}
       \strng{authorfullhashraw}{8de59538e5206b848891f2b0e1898dfb}
       \field{extraname}{7}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Testing Utilities in LangChain for Prompt and Chain Validation}
@@ -9135,8 +9135,8 @@
       \strng{authorfullhash}{8de59538e5206b848891f2b0e1898dfb}
       \strng{authorfullhashraw}{8de59538e5206b848891f2b0e1898dfb}
       \field{extraname}{8}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{LangSmith: Evaluation and Tracing for LLM Applications}
@@ -9163,8 +9163,8 @@
       \strng{authorfullhash}{8de59538e5206b848891f2b0e1898dfb}
       \strng{authorfullhashraw}{8de59538e5206b848891f2b0e1898dfb}
       \field{extraname}{9}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Using LangSmith for End-to-End Testing of Multi-Agent Systems}
@@ -9194,8 +9194,8 @@
       \strng{authornamehash}{66e3cbc8da852cbd5af165a4caa167e1}
       \strng{authorfullhash}{66e3cbc8da852cbd5af165a4caa167e1}
       \strng{authorfullhashraw}{66e3cbc8da852cbd5af165a4caa167e1}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{PromptBench: Adversarial Prompt Benchmarking for LLM Robustness}
@@ -9228,8 +9228,8 @@
       \strng{authornamehash}{63eb59c9175e0a68b08f258c32e88a31}
       \strng{authorfullhash}{63eb59c9175e0a68b08f258c32e88a31}
       \strng{authorfullhashraw}{63eb59c9175e0a68b08f258c32e88a31}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the 5th ACM SIGPLAN International Conference on Functional Programming (ICFP)}
@@ -9275,8 +9275,8 @@
       \strng{authornamehash}{41f3fa0ebe794537079790f608e166ac}
       \strng{authorfullhash}{41f3fa0ebe794537079790f608e166ac}
       \strng{authorfullhashraw}{41f3fa0ebe794537079790f608e166ac}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{number}{HKUST-CS98-01}
@@ -9306,8 +9306,8 @@
       \strng{authornamehash}{a1d47e602c683f3203cfb2e4d6f80700}
       \strng{authorfullhash}{a1d47e602c683f3203cfb2e4d6f80700}
       \strng{authorfullhashraw}{a1d47e602c683f3203cfb2e4d6f80700}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Evaluation Metrics for Large Language Models}
@@ -9418,8 +9418,8 @@
       \strng{authorfullhash}{44c5e2b7b94abaa6f0cdfad67fb2b89b}
       \strng{authorfullhashraw}{44c5e2b7b94abaa6f0cdfad67fb2b89b}
       \field{extraname}{2}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{arXiv preprint arXiv:2211.09110}
@@ -9450,8 +9450,8 @@
       \strng{authornamehash}{da8f78de464cc77674fd96aafc3a7838}
       \strng{authorfullhash}{da8f78de464cc77674fd96aafc3a7838}
       \strng{authorfullhashraw}{da8f78de464cc77674fd96aafc3a7838}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{The Holistic Evaluation of Language Models (HELM)}
@@ -9484,8 +9484,8 @@
       \strng{authorfullhash}{67af12978f85e3451d20fad914a449cb}
       \strng{authorfullhashraw}{67af12978f85e3451d20fad914a449cb}
       \field{extraname}{2}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Throughput and Load Testing for LLM Systems}
@@ -9511,8 +9511,8 @@
       \strng{authornamehash}{4c13a5caf9f58811ba349b2a7bd715e1}
       \strng{authorfullhash}{4c13a5caf9f58811ba349b2a7bd715e1}
       \strng{authorfullhashraw}{4c13a5caf9f58811ba349b2a7bd715e1}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Load Testing for APIs and AI Workloads}
@@ -10659,8 +10659,8 @@
       \strng{authornamehash}{34db10ec1d3e63a2b3ee8b938dd6ce18}
       \strng{authorfullhash}{34db10ec1d3e63a2b3ee8b938dd6ce18}
       \strng{authorfullhashraw}{34db10ec1d3e63a2b3ee8b938dd6ce18}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://iapp.org}}
@@ -10682,8 +10682,8 @@
       \strng{authornamehash}{040d682b4acb17429f2c4d44f7947e5a}
       \strng{authorfullhash}{040d682b4acb17429f2c4d44f7947e5a}
       \strng{authorfullhashraw}{040d682b4acb17429f2c4d44f7947e5a}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://www.niemanlab.org}}
@@ -10706,8 +10706,8 @@
       \strng{authorfullhash}{0523b13262b12c215d8009938f5c14f1}
       \strng{authorfullhashraw}{0523b13262b12c215d8009938f5c14f1}
       \field{extraname}{3}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://platform.openai.com}}
@@ -10729,8 +10729,8 @@
       \strng{authornamehash}{525026e354b210c86a272f93199f3995}
       \strng{authorfullhash}{525026e354b210c86a272f93199f3995}
       \strng{authorfullhashraw}{525026e354b210c86a272f93199f3995}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://apnews.com/hub/ap-fact-checking}}
@@ -10753,8 +10753,8 @@
       \strng{authorfullhash}{a1b813a6e85874b4c945aec2cdbea74c}
       \strng{authorfullhashraw}{a1b813a6e85874b4c945aec2cdbea74c}
       \field{extraname}{1}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://artificialintelligenceact.eu}}
@@ -10777,8 +10777,8 @@
       \strng{authorfullhash}{a1b813a6e85874b4c945aec2cdbea74c}
       \strng{authorfullhashraw}{a1b813a6e85874b4c945aec2cdbea74c}
       \field{extraname}{2}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{AI Act: Regulatory Framework on Artificial Intelligence}
@@ -10807,8 +10807,8 @@
       \strng{authornamehash}{11fcc997c4f4d9851bdcbaaeff2b3bcd}
       \strng{authorfullhash}{11fcc997c4f4d9851bdcbaaeff2b3bcd}
       \strng{authorfullhashraw}{11fcc997c4f4d9851bdcbaaeff2b3bcd}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://aclanthology.org}}
@@ -10830,8 +10830,8 @@
       \strng{authornamehash}{3699a8e3b8c62fa1903eadf16b833343}
       \strng{authorfullhash}{3699a8e3b8c62fa1903eadf16b833343}
       \strng{authorfullhashraw}{3699a8e3b8c62fa1903eadf16b833343}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://perspectiveapi.com}}
@@ -11321,8 +11321,8 @@
       \strng{authornamehash}{732ea6aa215314443b9e14319496f586}
       \strng{authorfullhash}{732ea6aa215314443b9e14319496f586}
       \strng{authorfullhashraw}{732ea6aa215314443b9e14319496f586}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://www.nature.com/articles/d41586-023-00947-9}}
@@ -11344,8 +11344,8 @@
       \strng{authornamehash}{d1d02a84cba9a9deff0b92ddb2a82c68}
       \strng{authorfullhash}{d1d02a84cba9a9deff0b92ddb2a82c68}
       \strng{authorfullhashraw}{d1d02a84cba9a9deff0b92ddb2a82c68}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Accessed: 2025-08-21}
@@ -11372,8 +11372,8 @@
       \strng{authornamehash}{74d1e10fcee75ce98ed9bd00812ec2fb}
       \strng{authorfullhash}{74d1e10fcee75ce98ed9bd00812ec2fb}
       \strng{authorfullhashraw}{74d1e10fcee75ce98ed9bd00812ec2fb}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Accessed: 2025-08-21}
@@ -11401,8 +11401,8 @@
       \strng{authorfullhash}{a1b813a6e85874b4c945aec2cdbea74c}
       \strng{authorfullhashraw}{a1b813a6e85874b4c945aec2cdbea74c}
       \field{extraname}{3}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Accessed: 2025-08-21}
@@ -11449,8 +11449,8 @@
       \strng{authornamehash}{7adcc0b86b2ec4686bf4f0bde98e69bc}
       \strng{authorfullhash}{ed04206ab3580b2a933da66f81c930f9}
       \strng{authorfullhashraw}{ed04206ab3580b2a933da66f81c930f9}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics}
@@ -11502,8 +11502,8 @@
       \strng{authorfullhash}{65cde1916f94013b520957fab6b43d32}
       \strng{authorfullhashraw}{65cde1916f94013b520957fab6b43d32}
       \field{extraname}{2}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{arXiv preprint arXiv:2009.11462}
@@ -11531,8 +11531,8 @@
       \strng{authorfullhash}{0523b13262b12c215d8009938f5c14f1}
       \strng{authorfullhashraw}{0523b13262b12c215d8009938f5c14f1}
       \field{extraname}{4}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Accessed: 2025-08-21}
@@ -11575,8 +11575,8 @@
       \strng{authorfullhash}{56312ad5556c436281266d9cb1d0863a}
       \strng{authorfullhashraw}{56312ad5556c436281266d9cb1d0863a}
       \field{extraname}{2}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{IEEE Transactions on Big Data}
