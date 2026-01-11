@@ -1469,7 +1469,7 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 The architecture is organized into the following stages.
 
 \subsubsection{Data Ingestion}
-A set of ingestion agents\index{agent!ingestion} continuously pull data streams. One monitors news wires and battlefield reports, another ingests NGO bulletins via feeds or email, and another collects signals from curated social media accounts. Each agent normalizes incoming data into semantically meaningful chunks (including metadata such as source, timestamp, geography, and confidence) and embeds them into a vector database\index{vector database} (e.g., Pinecone\index{Pinecone}, Weaviate\index{Weaviate}). This forms the evidence store used by downstream retrieval.
+A set of ingestion agents\index{agent!ingestion} continuously pull data streams. One monitors news wires and battlefield reports, another ingests NGO bulletins via feeds or email, and another collects signals from curated social media accounts. Each agent normalizes incoming data into semantically meaningful chunks (including metadata such as source, timestamp, geography, and confidence) and embeds them into a vector database\index{vector database} (e.g., Pinecone\index{Pinecone}, Weaviate\index{Weaviate}). This forms the evidence store used by downstream retrieval. The curated input sources are illustrated in Fig.~\ref{fig:ch01_ishtar_inputs_taxonomy}.
 
 \subsubsection{Retrieval-Augmented Generation (RAG)}
 When a query arrives, \ishtar{} embeds the question and retrieves relevant evidence from the vector database. A reranking\index{reranking} step prioritizes high-quality sources, and the top results are injected into the generation prompt \cite{mdpi}. This grounds outputs in retrieved evidence, reduces hallucination risk, and enables citation\index{citation} (e.g., ``according to an observer report published this morning \ldots'').
@@ -1489,6 +1489,7 @@ Serving is supported by a GPU-backed cluster running optimized inference engines
 \subsubsection{Observability and Feedback}
 Telemetry is captured at each stage, including retrieved sources, agent decisions, and final outputs. Metrics include latency, tool failure rates, citation coverage, safety-trigger counts, and user feedback. When confidence is low (e.g., weak evidence coverage), the system can escalate to human review or provide calibrated uncertainty. Observability supports traceability, debugging, and continuous improvement.
 
+\FloatBarrier
 \subsection{LLMOps in Practice}
 This architecture illustrates core LLMOps principles: prompt and policy management, retrieval integration, distributed serving, monitoring, and safety controls. Throughout the book, we return to \ishtar{} as a running case study to show how these principles translate into concrete operational practices for mission-critical applications.
 
@@ -1497,7 +1498,8 @@ This architecture illustrates core LLMOps principles: prompt and policy manageme
 % Preamble requirements (once): \usepackage{tikz,adjustbox} and
 % \usetikzlibrary{arrows.meta,positioning,fit,calc}
 % ----------------------------------------------------------------------
-\begin{figure}[t]
+\FloatBarrier
+\begin{figure}[tb]
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
