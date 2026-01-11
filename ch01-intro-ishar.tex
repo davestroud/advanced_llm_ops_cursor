@@ -1330,7 +1330,12 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 % ----------------------------------------------------------------------
 \begin{figure}[tb]
 \centering
-\includegraphics[width=0.95\linewidth]{images/Fig_1_10_Ishtar_AI_Reference_Architecture}
+% Temporarily increase maximum width to allow larger figure
+\renewcommand{\LLMFigMaxWidth}{1.3\linewidth}
+\begin{llmfigbox}
+\includegraphics[width=1.0\linewidth]{images/Fig_1_10_Ishtar_AI_Reference_Architecture}
+\end{llmfigbox}
+\renewcommand{\LLMFigMaxWidth}{1.15\linewidth}
 \caption{\ishtar{} reference architecture demonstrates production-ready LLMOps patterns. The pipeline integrates data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages. This architecture balances accuracy (via RAG), reliability (via multi-agent verification), and scalability (via GPU inference), serving as a template for similar deployments.}
 \label{fig:ch01_ishtar_arch_main}
 \end{figure}
