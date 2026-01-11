@@ -8,39 +8,39 @@
 \newlabel{refsegment:08}{{3}{85}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Introduction}{86}{section.3.1}\protected@file@percent }
 \newlabel{sec:ch3-introduction}{{3.1}{86}{Introduction}{section.3.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Hardware Selection for LLM Workloads}{87}{section.3.2}\protected@file@percent }
-\newlabel{sec:infra-hardware-bench}{{3.2}{87}{Hardware Selection for LLM Workloads}{section.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Hardware Selection for LLM Workloads}{86}{section.3.2}\protected@file@percent }
+\newlabel{sec:infra-hardware-bench}{{3.2}{86}{Hardware Selection for LLM Workloads}{section.3.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Compute Profiles and Workload Types}{87}{subsection.3.2.1}\protected@file@percent }
 \newlabel{sec:infra-hardware-profiles}{{3.2.1}{87}{Compute Profiles and Workload Types}{subsection.3.2.1}{}}
 \newlabel{eq:latency-infra}{{3.1}{87}{Compute Profiles and Workload Types}{equation.3.1}{}}
 \newlabel{eq:throughput-env}{{3.2}{87}{Compute Profiles and Workload Types}{equation.3.2}{}}
+\newlabel{eq:kv-memory}{{3.3}{87}{Compute Profiles and Workload Types}{equation.3.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces GPU accelerator selection determines cost, throughput, and deployment feasibility. Different accelerators optimize for different model sizes and workloads: A100 provides balanced performance, H100 offers higher throughput and FP8 support, L4 enables cost-effective smaller models. Choose based on model size, traffic volume, and budget constraints.}}{88}{table.3.1}\protected@file@percent }
 \newlabel{tab:ch03_gpucompare}{{3.1}{88}{GPU accelerator selection determines cost, throughput, and deployment feasibility. Different accelerators optimize for different model sizes and workloads: A100 provides balanced performance, H100 offers higher throughput and FP8 support, L4 enables cost-effective smaller models. Choose based on model size, traffic volume, and budget constraints}{table.3.1}{}}
-\newlabel{eq:kv-memory}{{3.3}{88}{Compute Profiles and Workload Types}{equation.3.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}GPU Architectures and Choices}{88}{subsection.3.2.2}\protected@file@percent }
 \newlabel{sec:infra-hardware-gpu}{{3.2.2}{88}{GPU Architectures and Choices}{subsection.3.2.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}TPU Architectures and Considerations}{89}{subsection.3.2.3}\protected@file@percent }
 \newlabel{sec:infra-hardware-tpu}{{3.2.3}{89}{TPU Architectures and Considerations}{subsection.3.2.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Cost Modeling and Economics}{90}{section.3.3}\protected@file@percent }
-\newlabel{sec:infra-cost}{{3.3}{90}{Cost Modeling and Economics}{section.3.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Cost Modeling and Economics}{89}{section.3.3}\protected@file@percent }
+\newlabel{sec:infra-cost}{{3.3}{89}{Cost Modeling and Economics}{section.3.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%.}}{90}{table.3.2}\protected@file@percent }
+\newlabel{tab:ch03_cost_per_token}{{3.2}{90}{Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%}{table.3.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Token Economics and Cost per Query}{90}{subsection.3.3.1}\protected@file@percent }
 \newlabel{sec:infra-cost-tokens}{{3.3.1}{90}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
 \newlabel{eq:costptok}{{3.3.1}{90}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%.}}{91}{table.3.2}\protected@file@percent }
-\newlabel{tab:ch03_cost_per_token}{{3.2}{91}{Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%}{table.3.2}{}}
 \newlabel{lst:ch03_cost_calculation}{{3.1}{91}{Token Economics and Cost per Query}{llmlisting.3.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Batch Size vs Throughput Trade-offs}{94}{subsection.3.3.2}\protected@file@percent }
 \newlabel{sec:infra-cost-batch}{{3.3.2}{94}{Batch Size vs Throughput Trade-offs}{subsection.3.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Throughput vs.\ batch size trade-off determines capacity planning and latency SLOs. Increasing batch size initially yields large throughput gains (e.g., 3$\times $ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck. Understanding this saturation point helps teams optimize batch sizes for their latency requirements and hardware constraints.}}{95}{figure.3.1}\protected@file@percent }
+\newlabel{fig:ch03_batchtradeoff}{{3.1}{95}{Throughput vs.\ batch size trade-off determines capacity planning and latency SLOs. Increasing batch size initially yields large throughput gains (e.g., 3$\times $ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck. Understanding this saturation point helps teams optimize batch sizes for their latency requirements and hardware constraints}{figure.3.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Caching and Quantization Effects}{95}{subsection.3.3.3}\protected@file@percent }
 \newlabel{sec:infra-cost-quant}{{3.3.3}{95}{Caching and Quantization Effects}{subsection.3.3.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.1}KV Cache and Prompt Caching}{95}{subsubsection.3.3.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Throughput vs.\ batch size trade-off determines capacity planning and latency SLOs. Increasing batch size initially yields large throughput gains (e.g., 3$\times $ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck. Understanding this saturation point helps teams optimize batch sizes for their latency requirements and hardware constraints.}}{96}{figure.3.1}\protected@file@percent }
-\newlabel{fig:ch03_batchtradeoff}{{3.1}{96}{Throughput vs.\ batch size trade-off determines capacity planning and latency SLOs. Increasing batch size initially yields large throughput gains (e.g., 3$\times $ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck. Understanding this saturation point helps teams optimize batch sizes for their latency requirements and hardware constraints}{figure.3.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.2}Quantization}{96}{subsubsection.3.3.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.3}Ishtar Case}{97}{subsubsection.3.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.3}Ishtar Case}{96}{subsubsection.3.3.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times $, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing.}}{97}{table.3.3}\protected@file@percent }
+\newlabel{tab:ch03_costcompare}{{3.3}{97}{Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times $, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing}{table.3.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Worked Example: Cost per Million Tokens Across Accelerators}{97}{subsection.3.3.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times $, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing.}}{98}{table.3.3}\protected@file@percent }
-\newlabel{tab:ch03_costcompare}{{3.3}{98}{Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times $, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing}{table.3.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.4}Infrastructure-as-Code (IaC) for LLMOps}{98}{section.3.4}\protected@file@percent }
 \newlabel{sec:iac}{{3.4}{98}{Infrastructure-as-Code (IaC) for LLMOps}{section.3.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Why IaC Matters}{98}{subsection.3.4.1}\protected@file@percent }
@@ -51,14 +51,14 @@
 \newlabel{tab:ch03_iaccompare}{{3.4}{100}{Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements}{table.3.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Reusable Modules and Patterns}{100}{subsection.3.4.3}\protected@file@percent }
 \newlabel{sec:iac-modules}{{3.4.3}{100}{Reusable Modules and Patterns}{subsection.3.4.3}{}}
-\newlabel{lst:ch03_terraform_module}{{3.2}{101}{Reusable Modules and Patterns}{llmlisting.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Compliance, Security, and Auditing}{104}{subsection.3.4.4}\protected@file@percent }
-\newlabel{sec:iac-compliance}{{3.4.4}{104}{Compliance, Security, and Auditing}{subsection.3.4.4}{}}
+\newlabel{lst:ch03_terraform_module}{{3.2}{100}{Reusable Modules and Patterns}{llmlisting.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Compliance, Security, and Auditing}{103}{subsection.3.4.4}\protected@file@percent }
+\newlabel{sec:iac-compliance}{{3.4.4}{103}{Compliance, Security, and Auditing}{subsection.3.4.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.5}Infrastructure Deployment Pipelines}{104}{subsection.3.4.5}\protected@file@percent }
 \newlabel{sec:iac-pipelines}{{3.4.5}{104}{Infrastructure Deployment Pipelines}{subsection.3.4.5}{}}
 \newlabel{lst:ch03_iac_pipeline}{{3.3}{104}{Infrastructure Deployment Pipelines}{llmlisting.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.6}Documentation as Code}{109}{subsection.3.4.6}\protected@file@percent }
-\newlabel{sec:iac-docs}{{3.4.6}{109}{Documentation as Code}{subsection.3.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.6}Documentation as Code}{108}{subsection.3.4.6}\protected@file@percent }
+\newlabel{sec:iac-docs}{{3.4.6}{108}{Documentation as Code}{subsection.3.4.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.7}Checklist: Best Practices for IaC in LLMOps}{109}{subsection.3.4.7}\protected@file@percent }
 \newlabel{sec:iac-checklist}{{3.4.7}{109}{Checklist: Best Practices for IaC in LLMOps}{subsection.3.4.7}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.5}Containerization and Orchestration}{111}{section.3.5}\protected@file@percent }

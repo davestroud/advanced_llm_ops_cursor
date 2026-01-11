@@ -21,7 +21,8 @@
   fonttitle=\bfseries,
   boxrule=0.7pt,
   arc=4pt,
-  left=5mm, right=5mm, top=4mm, bottom=4mm
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
+  breakable
 ]
 \noindent\textbf{Chapter roadmap.}
 This chapter develops the infrastructure layer as a first-class component of LLMOps:
@@ -354,7 +355,8 @@ if __name__ == "__main__":
   arc=4pt,
   left=5mm, right=5mm, top=4mm, bottom=4mm,
   before skip=6pt,
-  after skip=6pt
+  after skip=6pt,
+  breakable
 ]
 In practice, cost modeling often involves simulating different deployment scenarios. For example, if you expect \textbf{100 requests per second} each generating \textbf{200 tokens}, that is \textbf{20k tokens/sec throughput} needed. How many GPUs of type X are required to sustain that?
 
