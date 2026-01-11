@@ -1,144 +1,144 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Infrastructure and Environment for LLMOps}{91}{chapter.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Infrastructure and Environment for LLMOps}{89}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{refsegment:07}{{3}{91}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
-\newlabel{ch:infra}{{3}{91}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
-\newlabel{refsegment:08}{{3}{91}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Introduction}{92}{section.3.1}\protected@file@percent }
-\newlabel{sec:ch3-introduction}{{3.1}{92}{Introduction}{section.3.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Hardware Selection for LLM Workloads}{93}{section.3.2}\protected@file@percent }
-\newlabel{sec:infra-hardware-bench}{{3.2}{93}{Hardware Selection for LLM Workloads}{section.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Compute Profiles and Workload Types}{93}{subsection.3.2.1}\protected@file@percent }
-\newlabel{sec:infra-hardware-profiles}{{3.2.1}{93}{Compute Profiles and Workload Types}{subsection.3.2.1}{}}
-\newlabel{eq:latency-infra}{{3.1}{93}{Compute Profiles and Workload Types}{equation.3.1}{}}
-\newlabel{eq:throughput-env}{{3.2}{93}{Compute Profiles and Workload Types}{equation.3.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces GPU accelerator selection determines cost, throughput, and deployment feasibility. Different accelerators optimize for different model sizes and workloads: A100 provides balanced performance, H100 offers higher throughput and FP8 support, L4 enables cost-effective smaller models. Choose based on model size, traffic volume, and budget constraints.}}{94}{table.3.1}\protected@file@percent }
-\newlabel{tab:ch03_gpucompare}{{3.1}{94}{GPU accelerator selection determines cost, throughput, and deployment feasibility. Different accelerators optimize for different model sizes and workloads: A100 provides balanced performance, H100 offers higher throughput and FP8 support, L4 enables cost-effective smaller models. Choose based on model size, traffic volume, and budget constraints}{table.3.1}{}}
-\newlabel{eq:kv-memory}{{3.3}{94}{Compute Profiles and Workload Types}{equation.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}GPU Architectures and Choices}{94}{subsection.3.2.2}\protected@file@percent }
-\newlabel{sec:infra-hardware-gpu}{{3.2.2}{94}{GPU Architectures and Choices}{subsection.3.2.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}TPU Architectures and Considerations}{95}{subsection.3.2.3}\protected@file@percent }
-\newlabel{sec:infra-hardware-tpu}{{3.2.3}{95}{TPU Architectures and Considerations}{subsection.3.2.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%.}}{96}{table.3.2}\protected@file@percent }
-\newlabel{tab:ch03_cost_per_token}{{3.2}{96}{Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%}{table.3.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Cost Modeling and Economics}{96}{section.3.3}\protected@file@percent }
-\newlabel{sec:infra-cost}{{3.3}{96}{Cost Modeling and Economics}{section.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Token Economics and Cost per Query}{96}{subsection.3.3.1}\protected@file@percent }
-\newlabel{sec:infra-cost-tokens}{{3.3.1}{96}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
-\newlabel{eq:costptok}{{3.3.1}{96}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
-\newlabel{lst:ch03_cost_calculation}{{3.1}{97}{Token Economics and Cost per Query}{llmlisting.3.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Batch Size vs Throughput Trade-offs}{100}{subsection.3.3.2}\protected@file@percent }
-\newlabel{sec:infra-cost-batch}{{3.3.2}{100}{Batch Size vs Throughput Trade-offs}{subsection.3.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Caching and Quantization Effects}{101}{subsection.3.3.3}\protected@file@percent }
-\newlabel{sec:infra-cost-quant}{{3.3.3}{101}{Caching and Quantization Effects}{subsection.3.3.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.1}KV Cache and Prompt Caching}{101}{subsubsection.3.3.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Throughput vs.\ batch size trade-off determines capacity planning and latency SLOs. Increasing batch size initially yields large throughput gains (e.g., 3$\times $ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck. Understanding this saturation point helps teams optimize batch sizes for their latency requirements and hardware constraints.}}{102}{figure.3.1}\protected@file@percent }
-\newlabel{fig:ch03_batchtradeoff}{{3.1}{102}{Throughput vs.\ batch size trade-off determines capacity planning and latency SLOs. Increasing batch size initially yields large throughput gains (e.g., 3$\times $ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck. Understanding this saturation point helps teams optimize batch sizes for their latency requirements and hardware constraints}{figure.3.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.2}Quantization}{102}{subsubsection.3.3.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.3}Ishtar Case}{103}{subsubsection.3.3.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Worked Example: Cost per Million Tokens Across Accelerators}{103}{subsection.3.3.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times $, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing.}}{104}{table.3.3}\protected@file@percent }
-\newlabel{tab:ch03_costcompare}{{3.3}{104}{Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times $, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing}{table.3.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Infrastructure-as-Code (IaC) for LLMOps}{104}{section.3.4}\protected@file@percent }
-\newlabel{sec:iac}{{3.4}{104}{Infrastructure-as-Code (IaC) for LLMOps}{section.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Why IaC Matters}{104}{subsection.3.4.1}\protected@file@percent }
-\newlabel{sec:iac-why}{{3.4.1}{104}{Why IaC Matters}{subsection.3.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Tooling Comparison}{105}{subsection.3.4.2}\protected@file@percent }
-\newlabel{sec:iac-tools}{{3.4.2}{105}{Tooling Comparison}{subsection.3.4.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements.}}{106}{table.3.4}\protected@file@percent }
-\newlabel{tab:ch03_iaccompare}{{3.4}{106}{Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements}{table.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Reusable Modules and Patterns}{106}{subsection.3.4.3}\protected@file@percent }
-\newlabel{sec:iac-modules}{{3.4.3}{106}{Reusable Modules and Patterns}{subsection.3.4.3}{}}
-\newlabel{lst:ch03_terraform_module}{{3.2}{107}{Reusable Modules and Patterns}{llmlisting.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Compliance, Security, and Auditing}{110}{subsection.3.4.4}\protected@file@percent }
-\newlabel{sec:iac-compliance}{{3.4.4}{110}{Compliance, Security, and Auditing}{subsection.3.4.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.5}Infrastructure Deployment Pipelines}{110}{subsection.3.4.5}\protected@file@percent }
-\newlabel{sec:iac-pipelines}{{3.4.5}{110}{Infrastructure Deployment Pipelines}{subsection.3.4.5}{}}
-\newlabel{lst:ch03_iac_pipeline}{{3.3}{110}{Infrastructure Deployment Pipelines}{llmlisting.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.6}Documentation as Code}{115}{subsection.3.4.6}\protected@file@percent }
-\newlabel{sec:iac-docs}{{3.4.6}{115}{Documentation as Code}{subsection.3.4.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.7}Checklist: Best Practices for IaC in LLMOps}{115}{subsection.3.4.7}\protected@file@percent }
-\newlabel{sec:iac-checklist}{{3.4.7}{115}{Checklist: Best Practices for IaC in LLMOps}{subsection.3.4.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Containerization and Orchestration}{117}{section.3.5}\protected@file@percent }
-\newlabel{sec:orchestration}{{3.5}{117}{Containerization and Orchestration}{section.3.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Kubernetes for LLMs}{117}{subsection.3.5.1}\protected@file@percent }
-\newlabel{sec:orchestration-k8s}{{3.5.1}{117}{Kubernetes for LLMs}{subsection.3.5.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1.1}Cluster Architecture, Networking, and Hardening}{118}{subsubsection.3.5.1.1}\protected@file@percent }
-\newlabel{sec:k8s-arch-hardening}{{3.5.1.1}{118}{Cluster Architecture, Networking, and Hardening}{subsubsection.3.5.1.1}{}}
-\newlabel{lst:ch03_k8s_deployment}{{3.4}{118}{Cluster Architecture, Networking, and Hardening}{llmlisting.3.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Advanced Scheduling Strategies}{121}{subsection.3.5.2}\protected@file@percent }
-\newlabel{sec:orchestration-advanced}{{3.5.2}{121}{Advanced Scheduling Strategies}{subsection.3.5.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Model Serving Infrastructure}{122}{section.3.6}\protected@file@percent }
-\newlabel{sec:serving}{{3.6}{122}{Model Serving Infrastructure}{section.3.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Serving Frameworks and Engines}{122}{subsection.3.6.1}\protected@file@percent }
-\newlabel{sec:serving-fw}{{3.6.1}{122}{Serving Frameworks and Engines}{subsection.3.6.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.1}Hugging Face Text Generation Inference (TGI)}{122}{subsubsection.3.6.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.2}vLLM}{123}{subsubsection.3.6.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.3}NVIDIA TensorRT-LLM (with Triton)}{123}{subsubsection.3.6.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.4}LMDeploy}{123}{subsubsection.3.6.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.5}SGLang}{124}{subsubsection.3.6.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.6}Other frameworks}{124}{subsubsection.3.6.1.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Novel Methods for Serving Efficiency}{124}{subsection.3.6.2}\protected@file@percent }
-\newlabel{sec:serving-novel}{{3.6.2}{124}{Novel Methods for Serving Efficiency}{subsection.3.6.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.1}Smoothie Routing (Ensemble Routing)}{124}{subsubsection.3.6.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.2}KV Cache Compression and Offloading}{124}{subsubsection.3.6.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.3}Speculative Decoding}{125}{subsubsection.3.6.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.4}Beyond Beam Search}{125}{subsubsection.3.6.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.5}Augmented Retrieval Integration}{125}{subsubsection.3.6.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.6}Distributed Serving for Ultra-Large Models}{125}{subsubsection.3.6.2.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces Serving framework selection determines throughput, latency, and operational complexity. Different frameworks optimize for different scenarios: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency inference, and TGI balances ease of use with performance. Choose based on traffic patterns, latency requirements, and team expertise.}}{126}{table.3.5}\protected@file@percent }
-\newlabel{tab:ch03_servingcompare}{{3.5}{126}{Serving framework selection determines throughput, latency, and operational complexity. Different frameworks optimize for different scenarios: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency inference, and TGI balances ease of use with performance. Choose based on traffic patterns, latency requirements, and team expertise}{table.3.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Summary}{126}{subsection.3.6.3}\protected@file@percent }
-\newlabel{sec:serving-summary}{{3.6.3}{126}{Summary}{subsection.3.6.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3.1}Inference Runtimes as Managed Artifacts}{126}{subsubsection.3.6.3.1}\protected@file@percent }
-\newlabel{sec:serving-runtimes}{{3.6.3.1}{126}{Inference Runtimes as Managed Artifacts}{subsubsection.3.6.3.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Deployment Patterns}{127}{section.3.7}\protected@file@percent }
-\newlabel{sec:deploy}{{3.7}{127}{Deployment Patterns}{section.3.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Cloud-Native Deployments}{127}{subsection.3.7.1}\protected@file@percent }
-\newlabel{sec:deploy-cloud}{{3.7.1}{127}{Cloud-Native Deployments}{subsection.3.7.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Hybrid Deployments}{128}{subsection.3.7.2}\protected@file@percent }
-\newlabel{sec:deploy-hybrid}{{3.7.2}{128}{Hybrid Deployments}{subsection.3.7.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Multi-Cluster and Multi-Region Topologies}{129}{subsection.3.7.3}\protected@file@percent }
-\newlabel{sec:deploy-multicluster}{{3.7.3}{129}{Multi-Cluster and Multi-Region Topologies}{subsection.3.7.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.4}Summary}{129}{subsection.3.7.4}\protected@file@percent }
-\newlabel{sec:deploy-summary}{{3.7.4}{129}{Summary}{subsection.3.7.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.8}Case Study: Ishtar AI Infrastructure}{130}{section.3.8}\protected@file@percent }
-\newlabel{sec:ishtar-case}{{3.8}{130}{Case Study: Ishtar AI Infrastructure}{section.3.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}Hardware Mix}{130}{subsection.3.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}IaC and Automation}{130}{subsection.3.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.3}Kubernetes Configuration}{131}{subsection.3.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.4}Serving Stack}{131}{subsection.3.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.5}Cost and Performance}{131}{subsection.3.8.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.6}Hybrid Integration}{131}{subsection.3.8.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.7}Lessons Learned}{132}{subsection.3.8.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.9}Best Practices and Checklists}{132}{section.3.9}\protected@file@percent }
-\newlabel{sec:bestpractices}{{3.9}{132}{Best Practices and Checklists}{section.3.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.1}Hardware \& Performance Checklist}{133}{subsection.3.9.1}\protected@file@percent }
-\newlabel{sec:bp-hw}{{3.9.1}{133}{Hardware \& Performance Checklist}{subsection.3.9.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.2}IaC \& DevOps Checklist}{134}{subsection.3.9.2}\protected@file@percent }
-\newlabel{sec:bp-iac}{{3.9.2}{134}{IaC \& DevOps Checklist}{subsection.3.9.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.3}Serving \& Scaling Checklist}{135}{subsection.3.9.3}\protected@file@percent }
-\newlabel{sec:bp-serving}{{3.9.3}{135}{Serving \& Scaling Checklist}{subsection.3.9.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.4}Summary}{135}{subsection.3.9.4}\protected@file@percent }
-\newlabel{sec:checklists-summary}{{3.9.4}{135}{Summary}{subsection.3.9.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.10}Conclusion}{136}{section.3.10}\protected@file@percent }
-\newlabel{sec:infra-conclusion}{{3.10}{136}{Conclusion}{section.3.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.1}Bridging to Part II: Infrastructure as Operational Contracts}{137}{subsection.3.10.1}\protected@file@percent }
-\newlabel{sec:infra-part2-bridge}{{3.10.1}{137}{Bridging to Part II: Infrastructure as Operational Contracts}{subsection.3.10.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.1}Infrastructure Choices Define Operational Contracts}{137}{subsubsection.3.10.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.2}How Infrastructure Contracts Constrain CI/CD}{138}{subsubsection.3.10.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.3}How Infrastructure Choices Affect Observability}{138}{subsubsection.3.10.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.4}How Infrastructure Decisions Impact Scaling}{138}{subsubsection.3.10.1.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Deployment pattern selection determines operational complexity and cost structure. \textbf  {Cloud-Native} (top) maximizes elasticity and reduces operational overhead but may increase costs at scale. \textbf  {Hybrid} (middle) balances on-premise control with cloud flexibility, optimizing for cost and compliance. \textbf  {Multi-Cluster} (bottom) enables geographic distribution and failover but increases management complexity. Choose based on scale, compliance requirements, and operational capabilities.}}{142}{figure.3.2}\protected@file@percent }
-\newlabel{fig:ch03_deploy_patterns_balanced}{{3.2}{142}{Deployment pattern selection determines operational complexity and cost structure. \textbf {Cloud-Native} (top) maximizes elasticity and reduces operational overhead but may increase costs at scale. \textbf {Hybrid} (middle) balances on-premise control with cloud flexibility, optimizing for cost and compliance. \textbf {Multi-Cluster} (bottom) enables geographic distribution and failover but increases management complexity. Choose based on scale, compliance requirements, and operational capabilities}{figure.3.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Cloud-native deployment architecture enables scalable, resilient LLMOps. Elastic GPU scaling across multiple availability zones ensures availability; integration with managed services (queues, vector databases, object storage) reduces operational overhead; secure networking through API gateways and private subnets protects sensitive data; disaster recovery capabilities ensure business continuity. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls. This architecture pattern balances scalability, security, and operational simplicity.}}{143}{figure.3.3}\protected@file@percent }
-\newlabel{fig:ch03_cloud_native_deployment}{{3.3}{143}{Cloud-native deployment architecture enables scalable, resilient LLMOps. Elastic GPU scaling across multiple availability zones ensures availability; integration with managed services (queues, vector databases, object storage) reduces operational overhead; secure networking through API gateways and private subnets protects sensitive data; disaster recovery capabilities ensure business continuity. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls. This architecture pattern balances scalability, security, and operational simplicity}{figure.3.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Hybrid infrastructure enables cost optimization and operational flexibility for \ishtar  {}. On-prem L4 GPUs handle embeddings and preprocessing, reducing cloud costs for predictable workloads; AWS EKS hosts baseline A100s and autoscaling H100s for summarization, providing elasticity for variable traffic. Terraform, ArgoCD, and Kubernetes manage deployments and scaling, demonstrating how infrastructure-as-code and GitOps enable reliable hybrid operations.}}{144}{figure.3.4}\protected@file@percent }
-\newlabel{fig:ch03_ishtar_infra}{{3.4}{144}{Hybrid infrastructure enables cost optimization and operational flexibility for \ishtar {}. On-prem L4 GPUs handle embeddings and preprocessing, reducing cloud costs for predictable workloads; AWS EKS hosts baseline A100s and autoscaling H100s for summarization, providing elasticity for variable traffic. Terraform, ArgoCD, and Kubernetes manage deployments and scaling, demonstrating how infrastructure-as-code and GitOps enable reliable hybrid operations}{figure.3.4}{}}
+\newlabel{refsegment:07}{{3}{89}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
+\newlabel{ch:infra}{{3}{89}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
+\newlabel{refsegment:08}{{3}{89}{Infrastructure and Environment for LLMOps}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Introduction}{90}{section.3.1}\protected@file@percent }
+\newlabel{sec:ch3-introduction}{{3.1}{90}{Introduction}{section.3.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Hardware Selection for LLM Workloads}{91}{section.3.2}\protected@file@percent }
+\newlabel{sec:infra-hardware-bench}{{3.2}{91}{Hardware Selection for LLM Workloads}{section.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Compute Profiles and Workload Types}{91}{subsection.3.2.1}\protected@file@percent }
+\newlabel{sec:infra-hardware-profiles}{{3.2.1}{91}{Compute Profiles and Workload Types}{subsection.3.2.1}{}}
+\newlabel{eq:latency-infra}{{3.1}{91}{Compute Profiles and Workload Types}{equation.3.1}{}}
+\newlabel{eq:throughput-env}{{3.2}{91}{Compute Profiles and Workload Types}{equation.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces GPU accelerator selection determines cost, throughput, and deployment feasibility. Different accelerators optimize for different model sizes and workloads: A100 provides balanced performance, H100 offers higher throughput and FP8 support, L4 enables cost-effective smaller models. Choose based on model size, traffic volume, and budget constraints.}}{92}{table.3.1}\protected@file@percent }
+\newlabel{tab:ch03_gpucompare}{{3.1}{92}{GPU accelerator selection determines cost, throughput, and deployment feasibility. Different accelerators optimize for different model sizes and workloads: A100 provides balanced performance, H100 offers higher throughput and FP8 support, L4 enables cost-effective smaller models. Choose based on model size, traffic volume, and budget constraints}{table.3.1}{}}
+\newlabel{eq:kv-memory}{{3.3}{92}{Compute Profiles and Workload Types}{equation.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}GPU Architectures and Choices}{92}{subsection.3.2.2}\protected@file@percent }
+\newlabel{sec:infra-hardware-gpu}{{3.2.2}{92}{GPU Architectures and Choices}{subsection.3.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}TPU Architectures and Considerations}{93}{subsection.3.2.3}\protected@file@percent }
+\newlabel{sec:infra-hardware-tpu}{{3.2.3}{93}{TPU Architectures and Considerations}{subsection.3.2.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%.}}{94}{table.3.2}\protected@file@percent }
+\newlabel{tab:ch03_cost_per_token}{{3.2}{94}{Cost per token varies significantly with utilization and hardware choice. Higher utilization amortizes fixed costs, making H100 cost-effective at scale despite higher hourly rates. Choose A100 for variable workloads with low average utilization; choose H100 for sustained high-throughput deployments where utilization exceeds 60\%}{table.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Cost Modeling and Economics}{94}{section.3.3}\protected@file@percent }
+\newlabel{sec:infra-cost}{{3.3}{94}{Cost Modeling and Economics}{section.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Token Economics and Cost per Query}{94}{subsection.3.3.1}\protected@file@percent }
+\newlabel{sec:infra-cost-tokens}{{3.3.1}{94}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
+\newlabel{eq:costptok}{{3.3.1}{94}{Token Economics and Cost per Query}{subsection.3.3.1}{}}
+\newlabel{lst:ch03_cost_calculation}{{3.1}{95}{Token Economics and Cost per Query}{llmlisting.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Batch Size vs Throughput Trade-offs}{98}{subsection.3.3.2}\protected@file@percent }
+\newlabel{sec:infra-cost-batch}{{3.3.2}{98}{Batch Size vs Throughput Trade-offs}{subsection.3.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Caching and Quantization Effects}{99}{subsection.3.3.3}\protected@file@percent }
+\newlabel{sec:infra-cost-quant}{{3.3.3}{99}{Caching and Quantization Effects}{subsection.3.3.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.1}KV Cache and Prompt Caching}{99}{subsubsection.3.3.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Throughput vs.\ batch size trade-off determines capacity planning and latency SLOs. Increasing batch size initially yields large throughput gains (e.g., 3$\times $ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck. Understanding this saturation point helps teams optimize batch sizes for their latency requirements and hardware constraints.}}{100}{figure.3.1}\protected@file@percent }
+\newlabel{fig:ch03_batchtradeoff}{{3.1}{100}{Throughput vs.\ batch size trade-off determines capacity planning and latency SLOs. Increasing batch size initially yields large throughput gains (e.g., 3$\times $ improvement from batch 1 to 4), but returns diminish beyond batch size 32. Eventually throughput saturates (batch 64 and 128 achieve similar tokens/sec) as memory or kernel launch overhead becomes the bottleneck. Understanding this saturation point helps teams optimize batch sizes for their latency requirements and hardware constraints}{figure.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.2}Quantization}{100}{subsubsection.3.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3.3}Ishtar Case}{101}{subsubsection.3.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Worked Example: Cost per Million Tokens Across Accelerators}{101}{subsection.3.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times $, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing.}}{102}{table.3.3}\protected@file@percent }
+\newlabel{tab:ch03_costcompare}{{3.3}{102}{Cost per token varies significantly across accelerators and utilization levels. Lower-cost accelerators (L4) become cost-effective for smaller models or variable workloads, while high-end accelerators (H100) justify their premium at high utilization with large models. When cost differences exceed 2$\times $, hardware choice becomes a primary cost optimization lever. Assumes typical sustained throughput for a 13B--70B model and on-demand cloud pricing}{table.3.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Infrastructure-as-Code (IaC) for LLMOps}{102}{section.3.4}\protected@file@percent }
+\newlabel{sec:iac}{{3.4}{102}{Infrastructure-as-Code (IaC) for LLMOps}{section.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Why IaC Matters}{102}{subsection.3.4.1}\protected@file@percent }
+\newlabel{sec:iac-why}{{3.4.1}{102}{Why IaC Matters}{subsection.3.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Tooling Comparison}{103}{subsection.3.4.2}\protected@file@percent }
+\newlabel{sec:iac-tools}{{3.4.2}{103}{Tooling Comparison}{subsection.3.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements.}}{104}{table.3.4}\protected@file@percent }
+\newlabel{tab:ch03_iaccompare}{{3.4}{104}{Infrastructure-as-Code tool selection determines deployment reproducibility and operational overhead. Terraform provides declarative multi-cloud support, Pulumi enables programmatic infrastructure with familiar languages, and Ansible offers agentless configuration management. Choose based on cloud provider mix, team expertise, and complexity requirements}{table.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Reusable Modules and Patterns}{104}{subsection.3.4.3}\protected@file@percent }
+\newlabel{sec:iac-modules}{{3.4.3}{104}{Reusable Modules and Patterns}{subsection.3.4.3}{}}
+\newlabel{lst:ch03_terraform_module}{{3.2}{105}{Reusable Modules and Patterns}{llmlisting.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Compliance, Security, and Auditing}{108}{subsection.3.4.4}\protected@file@percent }
+\newlabel{sec:iac-compliance}{{3.4.4}{108}{Compliance, Security, and Auditing}{subsection.3.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.5}Infrastructure Deployment Pipelines}{108}{subsection.3.4.5}\protected@file@percent }
+\newlabel{sec:iac-pipelines}{{3.4.5}{108}{Infrastructure Deployment Pipelines}{subsection.3.4.5}{}}
+\newlabel{lst:ch03_iac_pipeline}{{3.3}{108}{Infrastructure Deployment Pipelines}{llmlisting.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.6}Documentation as Code}{113}{subsection.3.4.6}\protected@file@percent }
+\newlabel{sec:iac-docs}{{3.4.6}{113}{Documentation as Code}{subsection.3.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.7}Checklist: Best Practices for IaC in LLMOps}{113}{subsection.3.4.7}\protected@file@percent }
+\newlabel{sec:iac-checklist}{{3.4.7}{113}{Checklist: Best Practices for IaC in LLMOps}{subsection.3.4.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Containerization and Orchestration}{115}{section.3.5}\protected@file@percent }
+\newlabel{sec:orchestration}{{3.5}{115}{Containerization and Orchestration}{section.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Kubernetes for LLMs}{115}{subsection.3.5.1}\protected@file@percent }
+\newlabel{sec:orchestration-k8s}{{3.5.1}{115}{Kubernetes for LLMs}{subsection.3.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1.1}Cluster Architecture, Networking, and Hardening}{116}{subsubsection.3.5.1.1}\protected@file@percent }
+\newlabel{sec:k8s-arch-hardening}{{3.5.1.1}{116}{Cluster Architecture, Networking, and Hardening}{subsubsection.3.5.1.1}{}}
+\newlabel{lst:ch03_k8s_deployment}{{3.4}{116}{Cluster Architecture, Networking, and Hardening}{llmlisting.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Advanced Scheduling Strategies}{119}{subsection.3.5.2}\protected@file@percent }
+\newlabel{sec:orchestration-advanced}{{3.5.2}{119}{Advanced Scheduling Strategies}{subsection.3.5.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Model Serving Infrastructure}{120}{section.3.6}\protected@file@percent }
+\newlabel{sec:serving}{{3.6}{120}{Model Serving Infrastructure}{section.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Serving Frameworks and Engines}{120}{subsection.3.6.1}\protected@file@percent }
+\newlabel{sec:serving-fw}{{3.6.1}{120}{Serving Frameworks and Engines}{subsection.3.6.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.1}Hugging Face Text Generation Inference (TGI)}{120}{subsubsection.3.6.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.2}vLLM}{121}{subsubsection.3.6.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.3}NVIDIA TensorRT-LLM (with Triton)}{121}{subsubsection.3.6.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.4}LMDeploy}{121}{subsubsection.3.6.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.5}SGLang}{122}{subsubsection.3.6.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1.6}Other frameworks}{122}{subsubsection.3.6.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Novel Methods for Serving Efficiency}{122}{subsection.3.6.2}\protected@file@percent }
+\newlabel{sec:serving-novel}{{3.6.2}{122}{Novel Methods for Serving Efficiency}{subsection.3.6.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.1}Smoothie Routing (Ensemble Routing)}{122}{subsubsection.3.6.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.2}KV Cache Compression and Offloading}{122}{subsubsection.3.6.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.3}Speculative Decoding}{123}{subsubsection.3.6.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.4}Beyond Beam Search}{123}{subsubsection.3.6.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.5}Augmented Retrieval Integration}{123}{subsubsection.3.6.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2.6}Distributed Serving for Ultra-Large Models}{123}{subsubsection.3.6.2.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces Serving framework selection determines throughput, latency, and operational complexity. Different frameworks optimize for different scenarios: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency inference, and TGI balances ease of use with performance. Choose based on traffic patterns, latency requirements, and team expertise.}}{124}{table.3.5}\protected@file@percent }
+\newlabel{tab:ch03_servingcompare}{{3.5}{124}{Serving framework selection determines throughput, latency, and operational complexity. Different frameworks optimize for different scenarios: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency inference, and TGI balances ease of use with performance. Choose based on traffic patterns, latency requirements, and team expertise}{table.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Summary}{124}{subsection.3.6.3}\protected@file@percent }
+\newlabel{sec:serving-summary}{{3.6.3}{124}{Summary}{subsection.3.6.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3.1}Inference Runtimes as Managed Artifacts}{124}{subsubsection.3.6.3.1}\protected@file@percent }
+\newlabel{sec:serving-runtimes}{{3.6.3.1}{124}{Inference Runtimes as Managed Artifacts}{subsubsection.3.6.3.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Deployment Patterns}{125}{section.3.7}\protected@file@percent }
+\newlabel{sec:deploy}{{3.7}{125}{Deployment Patterns}{section.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Cloud-Native Deployments}{125}{subsection.3.7.1}\protected@file@percent }
+\newlabel{sec:deploy-cloud}{{3.7.1}{125}{Cloud-Native Deployments}{subsection.3.7.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Hybrid Deployments}{126}{subsection.3.7.2}\protected@file@percent }
+\newlabel{sec:deploy-hybrid}{{3.7.2}{126}{Hybrid Deployments}{subsection.3.7.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Multi-Cluster and Multi-Region Topologies}{127}{subsection.3.7.3}\protected@file@percent }
+\newlabel{sec:deploy-multicluster}{{3.7.3}{127}{Multi-Cluster and Multi-Region Topologies}{subsection.3.7.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.4}Summary}{127}{subsection.3.7.4}\protected@file@percent }
+\newlabel{sec:deploy-summary}{{3.7.4}{127}{Summary}{subsection.3.7.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.8}Case Study: Ishtar AI Infrastructure}{128}{section.3.8}\protected@file@percent }
+\newlabel{sec:ishtar-case}{{3.8}{128}{Case Study: Ishtar AI Infrastructure}{section.3.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}Hardware Mix}{128}{subsection.3.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}IaC and Automation}{128}{subsection.3.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.3}Kubernetes Configuration}{129}{subsection.3.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.4}Serving Stack}{129}{subsection.3.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.5}Cost and Performance}{129}{subsection.3.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.6}Hybrid Integration}{129}{subsection.3.8.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.7}Lessons Learned}{130}{subsection.3.8.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.9}Best Practices and Checklists}{130}{section.3.9}\protected@file@percent }
+\newlabel{sec:bestpractices}{{3.9}{130}{Best Practices and Checklists}{section.3.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.1}Hardware \& Performance Checklist}{131}{subsection.3.9.1}\protected@file@percent }
+\newlabel{sec:bp-hw}{{3.9.1}{131}{Hardware \& Performance Checklist}{subsection.3.9.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.2}IaC \& DevOps Checklist}{132}{subsection.3.9.2}\protected@file@percent }
+\newlabel{sec:bp-iac}{{3.9.2}{132}{IaC \& DevOps Checklist}{subsection.3.9.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.3}Serving \& Scaling Checklist}{133}{subsection.3.9.3}\protected@file@percent }
+\newlabel{sec:bp-serving}{{3.9.3}{133}{Serving \& Scaling Checklist}{subsection.3.9.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.4}Summary}{133}{subsection.3.9.4}\protected@file@percent }
+\newlabel{sec:checklists-summary}{{3.9.4}{133}{Summary}{subsection.3.9.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.10}Conclusion}{134}{section.3.10}\protected@file@percent }
+\newlabel{sec:infra-conclusion}{{3.10}{134}{Conclusion}{section.3.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.10.1}Bridging to Part II: Infrastructure as Operational Contracts}{135}{subsection.3.10.1}\protected@file@percent }
+\newlabel{sec:infra-part2-bridge}{{3.10.1}{135}{Bridging to Part II: Infrastructure as Operational Contracts}{subsection.3.10.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.1}Infrastructure Choices Define Operational Contracts}{135}{subsubsection.3.10.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.2}How Infrastructure Contracts Constrain CI/CD}{136}{subsubsection.3.10.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.3}How Infrastructure Choices Affect Observability}{136}{subsubsection.3.10.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.10.1.4}How Infrastructure Decisions Impact Scaling}{136}{subsubsection.3.10.1.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Deployment pattern selection determines operational complexity and cost structure. \textbf  {Cloud-Native} (top) maximizes elasticity and reduces operational overhead but may increase costs at scale. \textbf  {Hybrid} (middle) balances on-premise control with cloud flexibility, optimizing for cost and compliance. \textbf  {Multi-Cluster} (bottom) enables geographic distribution and failover but increases management complexity. Choose based on scale, compliance requirements, and operational capabilities.}}{140}{figure.3.2}\protected@file@percent }
+\newlabel{fig:ch03_deploy_patterns_balanced}{{3.2}{140}{Deployment pattern selection determines operational complexity and cost structure. \textbf {Cloud-Native} (top) maximizes elasticity and reduces operational overhead but may increase costs at scale. \textbf {Hybrid} (middle) balances on-premise control with cloud flexibility, optimizing for cost and compliance. \textbf {Multi-Cluster} (bottom) enables geographic distribution and failover but increases management complexity. Choose based on scale, compliance requirements, and operational capabilities}{figure.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Cloud-native deployment architecture enables scalable, resilient LLMOps. Elastic GPU scaling across multiple availability zones ensures availability; integration with managed services (queues, vector databases, object storage) reduces operational overhead; secure networking through API gateways and private subnets protects sensitive data; disaster recovery capabilities ensure business continuity. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls. This architecture pattern balances scalability, security, and operational simplicity.}}{141}{figure.3.3}\protected@file@percent }
+\newlabel{fig:ch03_cloud_native_deployment}{{3.3}{141}{Cloud-native deployment architecture enables scalable, resilient LLMOps. Elastic GPU scaling across multiple availability zones ensures availability; integration with managed services (queues, vector databases, object storage) reduces operational overhead; secure networking through API gateways and private subnets protects sensitive data; disaster recovery capabilities ensure business continuity. GPU nodes auto-scale based on demand, while IAM and security groups enforce access controls. This architecture pattern balances scalability, security, and operational simplicity}{figure.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Hybrid infrastructure enables cost optimization and operational flexibility for \ishtar  {}. On-prem L4 GPUs handle embeddings and preprocessing, reducing cloud costs for predictable workloads; AWS EKS hosts baseline A100s and autoscaling H100s for summarization, providing elasticity for variable traffic. Terraform, ArgoCD, and Kubernetes manage deployments and scaling, demonstrating how infrastructure-as-code and GitOps enable reliable hybrid operations.}}{142}{figure.3.4}\protected@file@percent }
+\newlabel{fig:ch03_ishtar_infra}{{3.4}{142}{Hybrid infrastructure enables cost optimization and operational flexibility for \ishtar {}. On-prem L4 GPUs handle embeddings and preprocessing, reducing cloud costs for predictable workloads; AWS EKS hosts baseline A100s and autoscaling H100s for summarization, providing elasticity for variable traffic. Terraform, ArgoCD, and Kubernetes manage deployments and scaling, demonstrating how infrastructure-as-code and GitOps enable reliable hybrid operations}{figure.3.4}{}}
 \@setckpt{ch03-infra-env}{
-\setcounter{page}{145}
+\setcounter{page}{143}
 \setcounter{equation}{3}
 \setcounter{enumi}{5}
 \setcounter{enumii}{0}
