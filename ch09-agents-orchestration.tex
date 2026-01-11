@@ -1260,37 +1260,39 @@ To ground the concepts above, let's walk through the orchestration pipeline of I
 \definecolor{delivergreen}{RGB}{34,139,96}
 \definecolor{orchteal}{RGB}{0,128,128}
 \begin{tikzpicture}[
-  node distance=12mm and 16mm,
+  node distance=18mm and 20mm,
   every node/.style={font=\small},
-  box/.style={draw=none, rounded corners=5pt, align=center, inner sep=5pt, font=\small\bfseries},
-  arrow/.style={-{Latex}, line width=1.2pt, color=black!70},
-  arrowDashed/.style={-{Latex}, dashed, dash pattern=on 3pt off 2pt, line width=1pt, color=black!60}
+  box/.style={draw=black!30, line width=0.8pt, rounded corners=6pt, align=center, inner sep=8pt, font=\small\bfseries},
+  arrow/.style={-{Latex}, line width=1.5pt, color=black!75},
+  arrowDashed/.style={-{Latex}, dashed, dash pattern=on 4pt off 3pt, line width=1.2pt, color=black!60}
 ]
-% Top row
-\node[box, fill=ingestblue!15, minimum width=26mm, minimum height=10mm] (ingest) {Ingestion};
-\node[box, fill=retrorange!15, minimum width=26mm, minimum height=10mm, right=of ingest] (retr) {Retrieval};
-\node[box, fill=synthpurple!15, minimum width=26mm, minimum height=10mm, right=of retr] (synth) {Synthesis};
+% Top row - increased spacing
+\node[box, fill=ingestblue!15, minimum width=32mm, minimum height=12mm] (ingest) {Ingestion};
+\node[box, fill=retrorange!15, minimum width=32mm, minimum height=12mm, right=of ingest] (retr) {Retrieval};
+\node[box, fill=synthpurple!15, minimum width=32mm, minimum height=12mm, right=of retr] (synth) {Synthesis};
 
-% Bottom row
-\node[box, fill=verviolet!15, minimum width=26mm, minimum height=10mm, below=of synth] (verify) {Verification};
-\node[box, fill=safered!15, minimum width=26mm, minimum height=10mm, left=of verify] (safety) {Safety};
-\node[box, fill=delivergreen!15, minimum width=26mm, minimum height=10mm, left=of safety] (deliver) {Delivery};
+% Bottom row - increased spacing
+\node[box, fill=verviolet!15, minimum width=32mm, minimum height=12mm, below=of synth] (verify) {Verification};
+\node[box, fill=safered!15, minimum width=32mm, minimum height=12mm, left=of verify] (safety) {Safety};
 
-% Orchestrator
-\node[box, fill=orchteal!15, minimum width=30mm, minimum height=11mm, below=of retr, xshift=-34mm] (orch) {Orchestrator\\(router + budgets)};
+% Orchestrator - positioned bottom-left, well clear of other nodes
+\node[box, fill=orchteal!15, minimum width=36mm, minimum height=14mm, below=of ingest, yshift=-12mm] (orch) {Orchestrator\\(router + budgets)};
 
-% Arrows with artifacts
-\draw[arrow] (ingest) -- node[above, font=\footnotesize]{chunks + metadata} (retr);
-\draw[arrow] (retr) -- node[above, font=\footnotesize]{context pack} (synth);
-\draw[arrow] (synth) -- node[right, font=\footnotesize]{draft + citations} (verify);
-\draw[arrow] (verify) -- node[below, font=\footnotesize]{verified answer} (safety);
-\draw[arrow] (safety) -- node[below, font=\footnotesize]{user response} (deliver);
+% Delivery node - positioned to receive from Safety, aligned with bottom row
+\node[box, fill=delivergreen!15, minimum width=32mm, minimum height=12mm, below=of safety, yshift=-8mm] (deliver) {Delivery};
 
-% Orchestrator control edges (dashed)
-\draw[arrowDashed] (orch) -- (retr);
-\draw[arrowDashed] (orch) -- (synth);
-\draw[arrowDashed] (orch) -- (verify);
-\draw[arrowDashed] (orch) -- (safety);
+% Main flow arrows with labels
+\draw[arrow] (ingest) -- node[above, font=\footnotesize, midway]{chunks + metadata} (retr);
+\draw[arrow] (retr) -- node[above, font=\footnotesize, midway]{context pack} (synth);
+\draw[arrow] (synth) -- node[right, font=\footnotesize, midway, xshift=2mm]{draft + citations} (verify);
+\draw[arrow] (verify) -- node[below, font=\footnotesize, midway]{verified answer} (safety);
+\draw[arrow] (safety) -- node[right, font=\footnotesize, midway, xshift=2mm]{response} (deliver);
+
+% Orchestrator control edges (dashed) - routed to avoid overlaps
+\draw[arrowDashed] (orch.north east) .. controls +(8mm,8mm) and +(-8mm,0) .. (retr.south west);
+\draw[arrowDashed] (orch.north east) .. controls +(12mm,12mm) and +(-8mm,0) .. (synth.south west);
+\draw[arrowDashed] (orch.east) .. controls +(12mm,0) and +(-8mm,-8mm) .. (verify.south west);
+\draw[arrowDashed] (orch.east) .. controls +(8mm,0) and +(-8mm,-8mm) .. (safety.south west);
 \end{tikzpicture}
 \end{llmfigbox}
 \caption{\ishtar{} multi-agent pipeline demonstrates production-ready orchestration patterns. The orchestrator enforces workflow order, budgets, and policy gates, ensuring reliable execution; retrieval produces a context pack that is preserved through synthesis and verification to support auditable citations. This pipeline structure enables traceability, error handling, and quality assurance by making each handoff explicit and verifiable.}
