@@ -1460,9 +1460,9 @@ Designing and operating a multi-agent LLM system is complex, but following best 
 
 \ChecklistBox[Best Practices Checklist]{
 \small
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}p{3.4cm}X@{}}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
 \textbf{Define Agent Roles and Boundaries} & Each agent should have a single well-defined purpose and scope of responsibility. Avoid overlapping duties that could cause confusion or duplicated work. For example, only the verification agent should fact-check; the synthesis agent should not try to verify its own output beyond basic sanity. This clarity makes the system easier to maintain and extend. \\
@@ -1474,6 +1474,7 @@ Designing and operating a multi-agent LLM system is complex, but following best 
 \textbf{Continuous Testing} & Test each agent in isolation (unit tests with synthetic inputs and checking outputs). Then test the whole pipeline (integration tests) with various scenarios: normal queries, edge cases, failure injection (e.g., make the analysis agent return an empty result and see if verification handles it). Include dynamic behavior in tests: if using an LLM orchestrator, test its decision-making deterministically if possible (maybe fix a random seed or use stubbed responses). Having a suite of regression tests (like the canary prompts in Ishtar) helps catch when a model update or prompt tweak breaks part of the chain. \\
 \textbf{Logging and Transparency} & Maintain detailed logs of agent actions and decisions. Not only is this critical for debugging, but in an academic or enterprise context it provides traceability (why was a particular answer given?). Tools like LangChain's tracing \cite{blogLangChain}, OpenTelemetry, or custom logs with unique IDs for each query can tie together the multi-agent steps. Transparency is also a selling point: for instance, Ishtar could show the journalist which sources were used (coming from the multi-agent process) to build trust. \\
 \textbf{Iterate with Human Feedback} & Use feedback from users to refine the system. If journalists often correct or ask follow-ups on certain details, analyze whether the analysis agent could be improved or if a new agent role is needed (e.g., a "Clarification Agent"). Multi-agent setups offer modular points for improvement – maybe the verification prompt needs adjusting if it misses certain errors, or the conversation agent needs to be more concise if users often ask for summaries. Continuous improvement can be done agent by agent without disrupting the whole system, which is a boon of the modular design. \\
+\bottomrule
 \end{tabularx}
 }
 
