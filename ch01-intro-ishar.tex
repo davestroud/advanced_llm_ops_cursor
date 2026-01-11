@@ -1055,20 +1055,20 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
   >=Stealth,
   % --- Enhanced Styles with professional appearance ---
   phase/.style={
-    rectangle, rounded corners=6pt,
-    draw=black!20, line width=0.8pt,
-    text width=34mm,
-    minimum height=16mm, inner sep=6pt,
-    align=center, font=\small\bfseries
+    rectangle, rounded corners=8pt,
+    draw=black!25, line width=1pt,
+    text width=40mm,
+    minimum height=20mm, inner sep=8pt,
+    align=center, font=\normalsize\bfseries
   },
-  arrow/.style={-Stealth, very thick, line width=1.5pt, color=black!75},
-  feedback/.style={-Stealth, dashed, dash pattern=on 5pt off 3pt, very thick, line width=1.3pt, color=black!50},
-  note/.style={font=\small, align=center, color=black!70},
-  partlabel/.style={font=\footnotesize\bfseries, color=black!60, anchor=west}
+  arrow/.style={-Stealth, very thick, line width=2pt, color=black!80},
+  feedback/.style={-Stealth, dashed, dash pattern=on 6pt off 4pt, very thick, line width=1.8pt, color=black!55},
+  note/.style={font=\normalsize, align=center, color=black!75},
+  partlabel/.style={font=\small\bfseries, color=black!70, anchor=west}
 ]
 
 % ---- Top row in a matrix (clean alignment) ----
-\matrix (top) [row sep=0mm, column sep=7mm] {
+\matrix (top) [row sep=0mm, column sep=9mm] {
   \node[phase, fill=fundblue!12, draw=fundblue!40] (fund) {LLMOps Fundamentals\\(Ch.~\ref{ch:llmops-fundamentals})}; &
   \node[phase, fill=infragreen!12, draw=infragreen!40] (infra) {Infrastructure \& Environment\\(Ch.~\ref{ch:infra})}; &
   \node[phase, fill=cicdorange!12, draw=cicdorange!40] (cicd)  {CI/CD\\(Ch.~\ref{ch:cicd})}; &
@@ -1078,21 +1078,21 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 };
 
 % ---- Part labels above top row ----
-\node[partlabel] at ([yshift=10mm]fund.north) {\textbf{Part I: Foundations}};
-\node[partlabel] at ([yshift=10mm]cicd.north) {\textbf{Part II: Delivery Operations}};
-\node[partlabel] at ([yshift=10mm]perf.north) {\textbf{Part III: Optimization}};
+\node[partlabel] at ([yshift=12mm]fund.north) {\textbf{Part I: Foundations}};
+\node[partlabel] at ([yshift=12mm]cicd.north) {\textbf{Part II: Delivery Operations}};
+\node[partlabel] at ([yshift=12mm]perf.north) {\textbf{Part III: Optimization}};
 
 % ---- Second row: RAG and Agents ----
-\node[phase, fill=ragteal!12, draw=ragteal!40, below=14mm of perf] (rag) {RAG\\(Ch.~\ref{ch:rag})};
-\node[phase, fill=orchcyan!12, draw=orchcyan!40, right=6mm of rag] (orch) {Multi‑Agent\\(Ch.~\ref{ch:multiagent})};
+\node[phase, fill=ragteal!12, draw=ragteal!40, below=16mm of perf] (rag) {RAG\\(Ch.~\ref{ch:rag})};
+\node[phase, fill=orchcyan!12, draw=orchcyan!40, right=8mm of rag] (orch) {Multi‑Agent\\(Ch.~\ref{ch:multiagent})};
 
 % ---- Bottom row placed relative to second row ----
-\node[phase, fill=testyellow!12, draw=testyellow!40, below=14mm of rag]   (test)   {Testing \& Robustness\\(Ch.~\ref{ch:testing})};
-\node[phase, fill=ethicspink!12, draw=ethicspink!40, right=6mm of test]   (ethics) {Ethics \& Governance\\(Ch.~\ref{ch:ethics})};
-\node[phase, fill=casebrown!12, draw=casebrown!40, right=6mm of ethics] (case)   {Case Study\\(Ch.~\ref{ch:case-study})};
+\node[phase, fill=testyellow!12, draw=testyellow!40, below=16mm of rag]   (test)   {Testing \& Robustness\\(Ch.~\ref{ch:testing})};
+\node[phase, fill=ethicspink!12, draw=ethicspink!40, right=8mm of test]   (ethics) {Ethics \& Governance\\(Ch.~\ref{ch:ethics})};
+\node[phase, fill=casebrown!12, draw=casebrown!40, right=8mm of ethics] (case)   {Case Study\\(Ch.~\ref{ch:case-study})};
 
 % ---- Part label for bottom row ----
-\node[partlabel] at ([yshift=10mm]test.north) {\textbf{Part IV: Governance}};
+\node[partlabel] at ([yshift=12mm]test.north) {\textbf{Part IV: Governance}};
 
 % ---- Top row flow ----
 \draw[arrow] (fund) -- (infra);
@@ -1114,25 +1114,25 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 \draw[arrow] (ethics) -- (case);
 
 % ---- Feedback arc from Monitoring (high route) ----
-\path (mon.north) ++(0,22mm) coordinate (M1);
-\path (fund.north) ++(0,22mm) coordinate (M2);
+\path (mon.north) ++(0,26mm) coordinate (M1);
+\path (fund.north) ++(0,26mm) coordinate (M2);
 \draw[feedback] (mon.north)
   .. controls (M1) and (M2) ..
-  node[note, above, pos=0.5, text width=50mm]
+  node[note, above, pos=0.5, text width=60mm]
   {\emph{Feedback: patterns, lessons, new requirements}}
   (fund.north);
 
 % ---- Feedback arc from Case Study (high route) ----
-\path (case.north) ++(0,20mm) coordinate (C1);
-\path (fund.north) ++(0,20mm) coordinate (C2);
+\path (case.north) ++(0,24mm) coordinate (C1);
+\path (fund.north) ++(0,24mm) coordinate (C2);
 \draw[feedback] (case.north)
   .. controls (C1) and (C2) ..
-  node[note, above, pos=0.52, text width=55mm]
+  node[note, above, pos=0.52, text width=65mm]
   {\emph{Feedback: patterns, lessons, and new requirements}}
   (fund.north);
 
 % ---- Compact lifecycle note ----
-\node[note, anchor=north east] at ($(case.south east)+(0,-6mm)$)
+\node[note, anchor=north east] at ($(case.south east)+(0,-8mm)$)
   {\textbf{Lifecycle:} Design $\rightarrow$ Deploy $\rightarrow$ Operate $\rightarrow$ Improve};
 
 \end{tikzpicture}
