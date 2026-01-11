@@ -67,50 +67,50 @@
 \newlabel{lst:ch08_retrieval_config}{{8.4}{360}{Summary}{llmlisting.8.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.7.4}Modern Retrieval Patterns: Fusion, Late Interaction, and HyDE}{361}{subsection.8.7.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.7.5}Query Rewriting and Expansion}{361}{subsection.8.7.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8.4}{\ignorespaces Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements.}}{363}{table.8.4}\protected@file@percent }
-\newlabel{tab:ch08_retriever_strategies}{{8.4}{363}{Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements}{table.8.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.8}Augmenting the Prompt}{364}{section.8.8}\protected@file@percent }
-\newlabel{sec:rag-augmenting-the-prompt}{{8.8}{364}{Augmenting the Prompt}{section.8.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.1}Context Budgeting and Selection}{364}{subsection.8.8.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.2}Ordering, Grouping, and Separators}{364}{subsection.8.8.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8.5}{\ignorespaces Prompt augmentation patterns determine how retrieved evidence is presented to the generator. Ordering strategies address positional bias, while implementation patterns ensure reliable citation and evidence utilization. Choosing the right pattern depends on document characteristics, query types, and model behavior.}}{365}{table.8.5}\protected@file@percent }
-\newlabel{tab:ch08_prompt_patterns}{{8.5}{365}{Prompt augmentation patterns determine how retrieved evidence is presented to the generator. Ordering strategies address positional bias, while implementation patterns ensure reliable citation and evidence utilization. Choosing the right pattern depends on document characteristics, query types, and model behavior}{table.8.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.3}Prompt Instructions and Abstention}{365}{subsection.8.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.4}Citations and Attribution}{366}{subsection.8.8.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.5}Multi-Turn Conversations}{366}{subsection.8.8.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.6}A Practical Prompt Template}{366}{subsection.8.8.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.9}Evaluation of RAG Pipelines}{367}{section.8.9}\protected@file@percent }
-\newlabel{sec:rag-metrics}{{8.9}{367}{Evaluation of RAG Pipelines}{section.8.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.1}Retrieval Quality}{367}{subsection.8.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.2}Generation Faithfulness and Answer Relevance}{368}{subsection.8.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.3}Citation Accuracy and Attribution}{368}{subsection.8.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.4}Latency, Throughput, and Cost}{368}{subsection.8.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.5}Failure Modes and Regression Testing}{369}{subsection.8.9.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.10}Performance Optimization in RAG}{369}{section.8.10}\protected@file@percent }
-\newlabel{sec:rag-performance-optimization-in-rag}{{8.10}{369}{Performance Optimization in RAG}{section.8.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.1}Decompose and Measure}{369}{subsection.8.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.2}Retrieval-Side Optimizations}{370}{subsection.8.10.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.3}Prompt and Context Optimizations}{370}{subsection.8.10.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.4}Generation-Side Optimizations}{371}{subsection.8.10.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8.11}Security and Compliance}{371}{section.8.11}\protected@file@percent }
-\newlabel{sec:rag-security-and-compliance}{{8.11}{371}{Security and Compliance}{section.8.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.1}Access Control and Tenant Isolation}{371}{subsection.8.11.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.2}Data Protection: Encryption, Retention, and Deletion}{372}{subsection.8.11.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.3}Prompt Injection and Untrusted Content}{372}{subsection.8.11.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.4}Auditability and Monitoring}{372}{subsection.8.11.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8.6}{\ignorespaces RAG security controls protect sensitive corpora and prevent AI-specific vulnerabilities. Combining standard data-system controls with AI-specific defenses creates layered protection. Each control area addresses distinct threat vectors, enabling comprehensive security coverage across ingestion, storage, and generation layers.}}{373}{table.8.6}\protected@file@percent }
-\newlabel{tab:ch08_security_controls}{{8.6}{373}{RAG security controls protect sensitive corpora and prevent AI-specific vulnerabilities. Combining standard data-system controls with AI-specific defenses creates layered protection. Each control area addresses distinct threat vectors, enabling comprehensive security coverage across ingestion, storage, and generation layers}{table.8.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.12}Case Study: Ishtar AI's RAG Pipeline}{373}{section.8.12}\protected@file@percent }
-\newlabel{sec:rag-case-study-ishtar-ai-s-rag-pipeline}{{8.12}{373}{Case Study: Ishtar AI's RAG Pipeline}{section.8.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.1}Overview}{374}{subsection.8.12.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.2}Architecture}{374}{subsection.8.12.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.3}Operational Outcomes}{374}{subsection.8.12.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces \ishtar  {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users.}}{375}{figure.8.3}\protected@file@percent }
-\newlabel{fig:ch08_ishtar_rag}{{8.3}{375}{\ishtar {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users}{figure.8.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.13}Best Practices Checklist}{375}{section.8.13}\protected@file@percent }
-\newlabel{sec:rag-best-practices-checklist}{{8.13}{375}{Best Practices Checklist}{section.8.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.4}{\ignorespaces Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements.}}{362}{table.8.4}\protected@file@percent }
+\newlabel{tab:ch08_retriever_strategies}{{8.4}{362}{Retriever strategy selection determines RAG recall and latency. Dense retrieval captures semantic similarity, sparse retrieval provides exact-match precision, and hybrid approaches combine both for robustness. Choose based on query characteristics, corpus structure, and latency requirements}{table.8.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.8}Augmenting the Prompt}{363}{section.8.8}\protected@file@percent }
+\newlabel{sec:rag-augmenting-the-prompt}{{8.8}{363}{Augmenting the Prompt}{section.8.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.1}Context Budgeting and Selection}{363}{subsection.8.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.2}Ordering, Grouping, and Separators}{363}{subsection.8.8.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8.5}{\ignorespaces Prompt augmentation patterns determine how retrieved evidence is presented to the generator. Ordering strategies address positional bias, while implementation patterns ensure reliable citation and evidence utilization. Choosing the right pattern depends on document characteristics, query types, and model behavior.}}{364}{table.8.5}\protected@file@percent }
+\newlabel{tab:ch08_prompt_patterns}{{8.5}{364}{Prompt augmentation patterns determine how retrieved evidence is presented to the generator. Ordering strategies address positional bias, while implementation patterns ensure reliable citation and evidence utilization. Choosing the right pattern depends on document characteristics, query types, and model behavior}{table.8.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.3}Prompt Instructions and Abstention}{364}{subsection.8.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.4}Citations and Attribution}{365}{subsection.8.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.5}Multi-Turn Conversations}{365}{subsection.8.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8.6}A Practical Prompt Template}{365}{subsection.8.8.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.9}Evaluation of RAG Pipelines}{366}{section.8.9}\protected@file@percent }
+\newlabel{sec:rag-metrics}{{8.9}{366}{Evaluation of RAG Pipelines}{section.8.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.1}Retrieval Quality}{366}{subsection.8.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.2}Generation Faithfulness and Answer Relevance}{367}{subsection.8.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.3}Citation Accuracy and Attribution}{367}{subsection.8.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.4}Latency, Throughput, and Cost}{367}{subsection.8.9.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9.5}Failure Modes and Regression Testing}{368}{subsection.8.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.10}Performance Optimization in RAG}{368}{section.8.10}\protected@file@percent }
+\newlabel{sec:rag-performance-optimization-in-rag}{{8.10}{368}{Performance Optimization in RAG}{section.8.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.1}Decompose and Measure}{368}{subsection.8.10.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.2}Retrieval-Side Optimizations}{369}{subsection.8.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.3}Prompt and Context Optimizations}{369}{subsection.8.10.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.10.4}Generation-Side Optimizations}{370}{subsection.8.10.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8.11}Security and Compliance}{370}{section.8.11}\protected@file@percent }
+\newlabel{sec:rag-security-and-compliance}{{8.11}{370}{Security and Compliance}{section.8.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.1}Access Control and Tenant Isolation}{370}{subsection.8.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.2}Data Protection: Encryption, Retention, and Deletion}{371}{subsection.8.11.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.3}Prompt Injection and Untrusted Content}{371}{subsection.8.11.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.11.4}Auditability and Monitoring}{371}{subsection.8.11.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8.6}{\ignorespaces RAG security controls protect sensitive corpora and prevent AI-specific vulnerabilities. Combining standard data-system controls with AI-specific defenses creates layered protection. Each control area addresses distinct threat vectors, enabling comprehensive security coverage across ingestion, storage, and generation layers.}}{372}{table.8.6}\protected@file@percent }
+\newlabel{tab:ch08_security_controls}{{8.6}{372}{RAG security controls protect sensitive corpora and prevent AI-specific vulnerabilities. Combining standard data-system controls with AI-specific defenses creates layered protection. Each control area addresses distinct threat vectors, enabling comprehensive security coverage across ingestion, storage, and generation layers}{table.8.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.12}Case Study: Ishtar AI's RAG Pipeline}{372}{section.8.12}\protected@file@percent }
+\newlabel{sec:rag-case-study-ishtar-ai-s-rag-pipeline}{{8.12}{372}{Case Study: Ishtar AI's RAG Pipeline}{section.8.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.1}Overview}{373}{subsection.8.12.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.2}Architecture}{373}{subsection.8.12.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.12.3}Operational Outcomes}{373}{subsection.8.12.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces \ishtar  {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users.}}{374}{figure.8.3}\protected@file@percent }
+\newlabel{fig:ch08_ishtar_rag}{{8.3}{374}{\ishtar {} RAG pipeline demonstrates production-ready observability and versioning practices. Each stage is observable and versioned: changes to ingestion, embeddings, retrieval, or prompting are evaluated via regression tests before release. This approach enables reliable iteration by ensuring that modifications are validated before affecting production users}{figure.8.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.13}Best Practices Checklist}{374}{section.8.13}\protected@file@percent }
+\newlabel{sec:rag-best-practices-checklist}{{8.13}{374}{Best Practices Checklist}{section.8.13}{}}
 \@setckpt{ch08-rag}{
-\setcounter{page}{378}
+\setcounter{page}{377}
 \setcounter{equation}{0}
 \setcounter{enumi}{5}
 \setcounter{enumii}{0}
