@@ -1331,10 +1331,12 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 % ----------------------------------------------------------------------
 \begin{figure}[t]
 \centering
+% Increase maximum width to accommodate larger spacing
+\renewcommand{\LLMFigMaxWidth}{1.8\linewidth}
 \begin{llmfigbox}
 \begin{tikzpicture}[
   >=Stealth,
-  node distance=10mm and 14mm,
+  node distance=12mm and 18mm,
   font=\small,
   % Professional component styles with borders and consistent colors
   source/.style={ellipse, fill=blue!15, draw=blue!40, line width=0.6pt,
@@ -1371,30 +1373,30 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \node[ingest, right=of social] (ingest3) {Ingestion\\Agent 3};
 
 % Vector database (below ingestion agents)
-\node[vector, below=16mm of ingest2] (vectordb) {Vector\\Database};
+\node[vector, below=20mm of ingest2] (vectordb) {Vector\\Database};
 
 % ========== CENTER COLUMN: Query, RAG & Orchestration ==========
 % Query input (above RAG, properly spaced)
-\node[source, right=of ingest1, yshift=12mm] (query) {Journalist\\Query};
+\node[source, right=of ingest1, yshift=16mm] (query) {Journalist\\Query};
 
 % RAG retrieval (center)
 \node[rag, right=of ingest2] (retrieval) {RAG\\Retrieval};
 
 % Multi-agent orchestration (below RAG)
-\node[orchestrator, below=14mm of retrieval] (orchestrator) {Orchestrator};
+\node[orchestrator, below=18mm of retrieval] (orchestrator) {Orchestrator};
 
 % Agents (below orchestrator, in a row with proper spacing)
-\node[agent, below left=10mm and 6mm of orchestrator] (summarizer) {Summarizer};
-\node[agent, below=10mm of orchestrator] (factchecker) {Fact-Checker};
-\node[agent, below right=10mm and 6mm of orchestrator] (refiner) {Refiner};
+\node[agent, below left=14mm and 8mm of orchestrator] (summarizer) {Summarizer};
+\node[agent, below=14mm of orchestrator] (factchecker) {Fact-Checker};
+\node[agent, below right=14mm and 8mm of orchestrator] (refiner) {Refiner};
 
 % ========== RIGHT COLUMN: GPU & Response ==========
 % GPU inference cluster (to the right of agents, properly aligned)
-\node[gpu, right=of summarizer, yshift=12mm] (gpu1) {GPU\\Node 1};
+\node[gpu, right=of summarizer, yshift=16mm] (gpu1) {GPU\\Node 1};
 \node[gpu, right=of factchecker] (gpu2) {GPU\\Node 2};
 
 % Response (to the right of GPU)
-\node[response, right=16mm of gpu2] (response) {Response\\+ Citations};
+\node[response, right=20mm of gpu2] (response) {Response\\+ Citations};
 
 % ========== ARROWS: Data Flow ==========
 % Sources to ingestion (horizontal)
@@ -1433,14 +1435,14 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 % ========== OBSERVABILITY LAYER ==========
 % Top observability band - positioned above all components with proper clearance
 \node[rectangle, fill=yellow!8, draw=black!30, dashed, line width=0.8pt, rounded corners=4pt,
-      minimum width=130mm, minimum height=9mm,
-      above=10mm of query] (obstop) {};
+      minimum width=150mm, minimum height=10mm,
+      above=14mm of query] (obstop) {};
 \node[font=\small\bfseries, color=black!85, anchor=center] at (obstop.center) {Observability \& Telemetry};
 
 % Bottom observability band - positioned below all components with proper clearance
 \node[rectangle, fill=yellow!8, draw=black!30, dashed, line width=0.8pt, rounded corners=4pt,
-      minimum width=130mm, minimum height=9mm,
-      below=10mm of vectordb] (obsbot) {};
+      minimum width=150mm, minimum height=10mm,
+      below=14mm of vectordb] (obsbot) {};
 \node[font=\small\bfseries, color=black!85, anchor=center] at (obsbot.center) {Traces, Metrics, Logs};
 
 % Observability connections (subtle dotted lines from bands to components)
@@ -1453,6 +1455,8 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 
 \end{tikzpicture}
 \end{llmfigbox}
+% Restore original maximum width constraint
+\renewcommand{\LLMFigMaxWidth}{1.15\linewidth}
 \caption{\ishtar{} reference architecture demonstrates production-ready LLMOps patterns. The pipeline integrates data ingestion, retrieval-augmented generation, multi-agent orchestration, and GPU-backed inference, with observability spanning all stages. This architecture balances accuracy (via RAG), reliability (via multi-agent verification), and scalability (via GPU inference), serving as a template for similar deployments.}
 \label{fig:ch01_ishtar_arch_main}
 \end{figure}
