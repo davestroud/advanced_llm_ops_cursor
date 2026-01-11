@@ -1456,13 +1456,16 @@ To conclude the case study, consider a scenario where verification finds a serio
 Multi-agent architectures bring modularity, scalability, and resilience to LLM applications. For \ishtar{}, orchestration ensures that specialized capabilities—data ingestion, analysis, verification, and communication—work in concert to deliver timely, accurate, and context-rich information.
 
 \subsection*{Best Practices Checklist}
-Designing and operating a multi-agent LLM system is complex, but following best practices can guide practitioners to success. Below is a checklist of recommended practices, distilled from the concepts and the Ishtar AI case study:
+Designing and operating a multi-agent LLM system is complex, but following best practices can guide practitioners to success. Table~\ref{tab:ch09_best_practices_checklist} presents a checklist of recommended practices, distilled from the concepts and the Ishtar AI case study:
 
-\ChecklistBox[Best Practices Checklist]{
+\begin{table}[t]
+\centering
 \small
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{0.92\linewidth}{@{}>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}X@{}}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.95\linewidth}{@{}>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X@{}}
+\toprule
+\rowcolor{gray!10}
 \textbf{Checklist Item} & \textbf{Description} \\
 \midrule
 \textbf{Define Agent Roles and Boundaries} & Each agent should have a single well-defined purpose and scope of responsibility. Avoid overlapping duties that could cause confusion or duplicated work. For example, only the verification agent should fact-check; the synthesis agent should not try to verify its own output beyond basic sanity. This clarity makes the system easier to maintain and extend. \\
@@ -1474,8 +1477,11 @@ Designing and operating a multi-agent LLM system is complex, but following best 
 \textbf{Continuous Testing} & Test each agent in isolation (unit tests with synthetic inputs and checking outputs). Then test the whole pipeline (integration tests) with various scenarios: normal queries, edge cases, failure injection (e.g., make the analysis agent return an empty result and see if verification handles it). Include dynamic behavior in tests: if using an LLM orchestrator, test its decision-making deterministically if possible (maybe fix a random seed or use stubbed responses). Having a suite of regression tests (like the canary prompts in Ishtar) helps catch when a model update or prompt tweak breaks part of the chain. \\
 \textbf{Logging and Transparency} & Maintain detailed logs of agent actions and decisions. Not only is this critical for debugging, but in an academic or enterprise context it provides traceability (why was a particular answer given?). Tools like LangChain's tracing \cite{blogLangChain}, OpenTelemetry, or custom logs with unique IDs for each query can tie together the multi-agent steps. Transparency is also a selling point: for instance, Ishtar could show the journalist which sources were used (coming from the multi-agent process) to build trust. \\
 \textbf{Iterate with Human Feedback} & Use feedback from users to refine the system. If journalists often correct or ask follow-ups on certain details, analyze whether the analysis agent could be improved or if a new agent role is needed (e.g., a "Clarification Agent"). Multi-agent setups offer modular points for improvement – maybe the verification prompt needs adjusting if it misses certain errors, or the conversation agent needs to be more concise if users often ask for summaries. Continuous improvement can be done agent by agent without disrupting the whole system, which is a boon of the modular design. \\
+\bottomrule
 \end{tabularx}
-}
+\caption{Best practices checklist for multi-agent LLM systems guides practitioners in designing and operating reliable agentic workflows. These practices, distilled from production deployments and the Ishtar AI case study, address role definition, communication patterns, error handling, performance optimization, security, testing, logging, and continuous improvement. Following these practices enables teams to manage complexity while harnessing the power of specialized, coordinated agents.}
+\label{tab:ch09_best_practices_checklist}
+\end{table}
 
 By adhering to these practices, one can manage the complexity of multi-agent systems and harness their power effectively. Multi-agent LLM systems, as exemplified by Ishtar AI, combine specialization with orchestration to deliver better results than a monolithic approach. The journey involves careful planning, iterative tuning, and vigilant operation, but the end result is a more powerful and reliable AI application that can tackle sophisticated, real-world tasks in a robust manner.
 \printbibliography[
