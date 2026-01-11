@@ -158,30 +158,30 @@ The remainder of this section walks through the main building blocks and the ope
 \small
 \caption{RAG system components span offline ingestion and online query processing. Understanding component responsibilities and operational concerns enables teams to design robust, scalable RAG pipelines. Each component introduces specific failure modes and optimization opportunities that must be addressed in production deployments.}
 \label{tab:ch08_rag_components}
-\setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.2}
 \rowcolors{2}{gray!5}{white}
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{0.95\linewidth}{@{}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
 \toprule
 \rowcolor{gray!10}
 \textbf{Component} & \textbf{Offline/Online} & \textbf{Key Responsibilities} & \textbf{Operational Concerns} \\
 \midrule
 \textbf{Document Ingestion} & Offline & Acquisition (file sync, crawlers, APIs); normalization (HTML/PDF extraction); quality gates (deduplication, spam filtering); metadata enrichment (timestamps, ACL tags, reliability scores) & Freshness SLOs; parsing failures; ingestion lag; source reliability tracking \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Chunking} & Offline & Preserve semantic coherence; construct passages with sufficient context; structural vs.\ token-window strategies & Chunk size/overlap tuning; versioning alongside embedding model; retrieval quality impact \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Embedding Generation} & Offline & Map chunks to vector representations; batch processing for efficiency; maintain model consistency & Embedding model versioning; recomputation on model/chunking changes; batch throughput optimization \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Vector Store} & Offline/Online & ANN index (HNSW/IVF); metadata store for filtering; stable identifier layer (doc $\rightarrow$ chunk $\rightarrow$ passage) & Write performance under incremental updates; filter behavior (pre vs.\ post); sharding and replication; identifier stability \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Query Processing} & Online & Query preprocessing (spell correction, normalization); query rewriting/expansion; metadata filtering & Latency overhead; query transformation quality; filter selectivity impact \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Retrieval} & Online & Dense/sparse/hybrid retrieval; top-$k$ candidate generation; recall optimization & Retrieval latency (p50/p95/p99); recall@K on golden sets; hybrid fusion tuning \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Reranking \& Filtering} & Online & Precision optimization; cross-encoder or late-interaction reranking; duplicate removal; access control enforcement & Reranker latency; precision/recall trade-offs; filter impact on recall \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Context Packing} & Online & Order passages; deduplicate; add separators and source identifiers; fit token budget & Token efficiency; passage ordering impact on quality; citation link preservation \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Generation} & Online & Produce answer conditioned on retrieved context; prioritize faithfulness; cite sources; abstain when evidence missing & Generation latency; faithfulness to retrieved passages; citation accuracy; abstention rate monitoring \\
 \bottomrule
 \end{tabularx}
@@ -567,11 +567,11 @@ Table~\ref{tab:ch08_chunking_strategies} compares different chunking strategies 
 \textbf{Strategy} & \textbf{Chunk Size} & \textbf{Overlap} & \textbf{Use Cases} & \textbf{Trade-offs} \\
 \midrule
 \textbf{Token-window} & 200--400 tokens (general text); larger for structured docs & 10--20\% overlap to avoid splitting facts & General-purpose text; documents without clear structure; baseline approach & Simple to implement; may split semantic units; requires overlap tuning \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Structural} & Variable (by headings/sections) & Minimal (only at section boundaries) & Documents with clear hierarchy (manuals, academic papers, technical docs) & Preserves semantic coherence; improves citation quality; requires structure detection \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Hybrid} & 200--400 tokens with structure awareness & 10--20\% within sections; respect section boundaries & Mixed document types; when both structure and size matter & Best of both worlds; more complex implementation; requires structure parsing \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Specialized} & Variable (row groups for tables; function-level for code) & Context-dependent & Tables, code, structured data; domain-specific formats & Preserves formatting/structure; requires custom parsers; may not generalize \\
 \bottomrule
 \end{tabularx}
@@ -1047,15 +1047,15 @@ Finally, always separate passages clearly (delimiters, document IDs, and optiona
 \textbf{Pattern} & \textbf{Ordering Strategy} & \textbf{Use Case} & \textbf{Implementation Notes} \\
 \midrule
 \textbf{Relevance-first} & Highest-ranked passages first (default ordering) & General-purpose queries; when retrieval quality is high & Simple to implement; may suffer from positional bias on long contexts; works well with reranking \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Recency-first} & Most recent passages first within topic/query match & Time-sensitive queries (crisis updates, news, real-time data) & Requires timestamp metadata; combine with relevance filtering; prioritize freshness over pure relevance \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Grouped by source} & Group passages by source/document; order groups by relevance & When comparing sources is valuable (official vs.\ social reports, multiple perspectives) & Enables source comparison; requires source metadata; may increase token usage \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Diverse evidence (MMR)} & Apply Maximal Marginal Relevance to avoid near-duplicates; each chunk contributes distinct facts & When retrieved set has high redundancy; to maximize information density & Requires similarity computation; reduces redundancy; improves token efficiency \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Sandwich layout} & Place most answer-bearing passage at beginning or end; secondary passages nearby & Long-context models; when single passage dominates answer & Addresses ``lost in the middle'' effect \cite{Liu2024LostInTheMiddle}; requires passage ranking confidence \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Clear separators} & Use delimiters, document IDs, ``BEGIN/END SOURCE'' markers & All RAG systems; critical for citation accuracy & Prevents accidental blending; enables unambiguous citation links; standard format: \texttt{[1] <source> <passage>} \\
 \bottomrule
 \end{tabularx}
@@ -1263,15 +1263,15 @@ Security in RAG is the combination of standard data-system controls (access cont
 \textbf{Control Area} & \textbf{Mechanism} & \textbf{Implementation} & \textbf{Compliance Alignment} \\
 \midrule
 \textbf{Access Control \& Tenant Isolation} & ACL metadata per chunk; user identity/entitlement filtering; separate indexes or strict metadata filters for multi-tenant systems & Attach ACL tags during ingestion; filter retrieval results at query time; enforce isolation via routing or separate indexes & GDPR (data minimization); SOC 2 (access controls); multi-tenant data residency requirements \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Encryption} & TLS 1.2/1.3 in transit; AES-256 at rest; secure key management (cloud KMS) & Encrypt all API endpoints; encrypt vector store and metadata; rotate encryption keys regularly & GDPR (data protection); PCI DSS (if handling payment data); HIPAA (if handling health data) \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Data Retention \& Deletion} & Retention policies for raw documents and embeddings; ``un-ingestion'' capability for deletion requests & Automated retention enforcement; delete both raw text and derived vectors; version tracking for audit trails & GDPR (right to erasure); CCPA (deletion requests); data minimization principles \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Prompt Injection Defense} & Strict system instructions treating retrieved text as data; sanitization during ingestion; low-trust source filtering; DLP scanning & System prompt hierarchy; content sanitization pipelines; source trust scoring; output pattern detection & OWASP LLM Top 10 \cite{owasp_llm_top10}; security best practices for AI systems \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Auditability \& Monitoring} & Log query inputs, retrieved document IDs, model outputs (with redaction); trace claims to sources & Structured logging with PII redaction; correlation IDs; audit trail retention; query access logging & GDPR (audit requirements); SOC 2 (monitoring); compliance audit support \\
-\addlinespace[2pt]
+\addlinespace[1pt]
 \textbf{Provenance Tracking} & Source identifiers, timestamps, version tracking for documents and embeddings & Metadata enrichment during ingestion; versioned chunk IDs; citation links in outputs & Transparency requirements; source verification (critical for journalism/legal) \\
 \bottomrule
 \end{tabularx}
