@@ -1201,7 +1201,33 @@ global:
 \end{llmlistingbox}
 
 \subsection*{Security and Governance in Multi-Agent Systems}
-Security in multi-agent LLM systems spans authentication, authorization, and auditing of agent interactions, as well as safeguarding data and compliance with policies. With multiple components communicating, the attack surface can increase, so we must design with a defense-in-depth mindset. Key aspects include:
+Security in multi-agent LLM systems spans authentication, authorization, and auditing of agent interactions, as well as safeguarding data and compliance with policies. With multiple components communicating, the attack surface can increase, so we must design with a defense-in-depth mindset. Table~\ref{tab:ch09_security_governance_controls} summarizes the key security and governance controls that should be implemented. Key aspects include:
+
+\begin{table}[t]
+\centering
+\small
+\caption{Security and governance controls for multi-agent systems establish defense-in-depth protection across authentication, authorization, communication, and compliance. These controls ensure agents operate within defined boundaries, maintain auditability, and protect sensitive data throughout the workflow. Implementing these practices converts ad hoc security measures into systematic, testable operational policies.}
+\label{tab:ch09_security_governance_controls}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{gray!5}{white}
+\begin{tabularx}{\linewidth}{@{}p{3.2cm}X@{}}
+\toprule
+\rowcolor{gray!10}
+\textbf{Control Category} & \textbf{Implementation Practices} \\
+\midrule
+Authentication and Trust & Use mutual TLS (mTLS) with service mesh for inter-agent communication; require API keys or JWT tokens for orchestrator-to-agent calls; verify agent identity before accepting requests; implement network security policies to restrict inter-service communication to authorized paths. \\
+Authorization and Scoped Permissions & Assign least-privilege access per agent role; scope API credentials and service accounts to only required tools and data; enforce tool allowlists at orchestrator level; sandbox agents in isolated containers with minimal system privileges; block unauthorized tool calls via policy enforcement. \\
+Secure Communication Channels & Encrypt all inter-agent communication with TLS/HTTPS; encrypt data at rest in vector databases and shared memory; use secure channels for external API calls; implement network policies to restrict egress (e.g., only verification agent can call web search). \\
+Input Validation and Prompt Injection Defense & Implement content filters on user inputs and agent outputs at each stage; use verification and safety agents as guards against prompt injection; apply prompt shields and predefined safe prompts; detect and remove malicious instructions; sanitize retrieved content before processing. \\
+Observability and Audit Logging & Log all agent actions, tool calls, and critical decisions; maintain audit trails for debugging and security investigations; use distributed tracing (e.g., LangSmith, LangFuse, OpenTelemetry) to visualize workflows; monitor for anomalies (unusual API calls, spikes in failures); redact sensitive content in logs where necessary. \\
+Privacy and Data Governance & Minimize data distribution across agents (pass only necessary data); implement data retention policies for ephemeral data; anonymize or aggregate sensitive information; ensure compliance with data regulations; require human approval for sensitive data processing; mask PII in logs and outputs. \\
+Role-Based Access Control (RBAC) & Enforce user context and access policies at orchestrator level; restrict retrieval agent to user-authorized documents; implement clearance levels for different user groups; tailor agent outputs based on user role (internal vs.\ external detail levels); scope agent actions to user permissions. \\
+Secure Deployment & Secure Kubernetes cluster configuration; limit network ingress/egress with network policies; restrict pod-to-pod communication; keep container images updated with security patches; implement security scanning for dependencies and models; use secrets management for API keys and credentials. \\
+Compliance and Monitoring & Build compliance checks into agent behaviors (e.g., automatic redaction of confidential informants); monitor outputs for bias and sensitive terms; conduct regular audits of AI outputs; implement responsible AI practices with human review workflows; track compliance metrics and violations. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \paragraph*{Authentication and Trust Between Agents}
 When one agent or orchestrator calls another, how do we ensure it's an authorized call and not an impersonator or attacker injection? In microservice deployments, this is typically handled by network security (services running in a protected cluster network) and authentication tokens. Each agent service might require a valid API key or token from the orchestrator. In Kubernetes, one might use mutual TLS with a service mesh to ensure only verified services communicate. Ishtar likely uses an authentication mechanism (like JWT tokens or mTLS) for inter-service calls, especially if agents run in different nodes or need to ensure only the orchestrator can invoke them. For example, the orchestrator includes a token when calling the synthesis agent; the synthesis agent verifies this token before executing. This prevents arbitrary external calls to internal agents.
