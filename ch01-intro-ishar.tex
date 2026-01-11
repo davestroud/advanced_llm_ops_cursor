@@ -1333,119 +1333,123 @@ At a high level, \ishtar{} is composed of modular components working in concert,
 \centering
 \begin{llmfigbox}
 \begin{tikzpicture}[
+  >=Stealth,
+  node distance=8mm and 12mm,
   font=\small,
-  % Color styles for different components
-  source/.style={ellipse, fill=blue!20, draw=none, 
-                 minimum width=17mm, minimum height=8mm, align=center, inner sep=2pt},
-  ingest/.style={rectangle, fill=cyan!20, draw=none, rounded corners=4pt,
-                 minimum width=19mm, minimum height=9mm, align=center, inner sep=2pt},
-  vector/.style={cylinder, fill=teal!20, draw=none,
-                 shape aspect=0.3, minimum width=19mm, minimum height=13mm, align=center, inner sep=2pt},
-  rag/.style={rectangle, fill=purple!20, draw=none, rounded corners=4pt,
-              minimum width=22mm, minimum height=11mm, align=center, inner sep=2pt},
-  agent/.style={rectangle, fill=green!20, draw=none, rounded corners=4pt,
-                minimum width=17mm, minimum height=8mm, align=center, inner sep=2pt},
-  orchestrator/.style={rectangle, fill=orange!20, draw=none, rounded corners=4pt,
-                       minimum width=24mm, minimum height=10mm, align=center, inner sep=2pt, font=\small\bfseries},
-  gpu/.style={rectangle, fill=red!20, draw=none, rounded corners=4pt,
-              minimum width=20mm, minimum height=11mm, align=center, inner sep=2pt},
-  response/.style={ellipse, fill=gray!20, draw=none,
-                  minimum width=19mm, minimum height=8mm, align=center, inner sep=2pt},
-  obs/.style={rectangle, fill=yellow!8, draw=none, rounded corners=3pt, dashed,
-              inner sep=2pt, font=\footnotesize},
-  arrow/.style={-{Stealth[length=2.2mm,width=1.8mm]}, line width=0.7pt, color=black!75},
-  arrowthin/.style={-{Stealth[length=1.8mm,width=1.4mm]}, line width=0.5pt, color=black!60}
+  % Professional component styles with borders and consistent colors
+  source/.style={ellipse, fill=blue!15, draw=blue!40, line width=0.6pt,
+                 minimum width=20mm, minimum height=9mm, align=center, inner sep=3pt, font=\small},
+  ingest/.style={rectangle, fill=cyan!15, draw=cyan!40, line width=0.6pt, rounded corners=5pt,
+                 minimum width=22mm, minimum height=10mm, align=center, inner sep=3pt, font=\small},
+  vector/.style={cylinder, fill=teal!15, draw=teal!40, line width=0.6pt,
+                 shape aspect=0.3, minimum width=22mm, minimum height=14mm, align=center, inner sep=3pt, font=\small},
+  rag/.style={rectangle, fill=purple!15, draw=purple!40, line width=0.6pt, rounded corners=5pt,
+              minimum width=24mm, minimum height=12mm, align=center, inner sep=3pt, font=\small\bfseries},
+  agent/.style={rectangle, fill=green!15, draw=green!40, line width=0.6pt, rounded corners=5pt,
+                minimum width=20mm, minimum height=9mm, align=center, inner sep=3pt, font=\footnotesize},
+  orchestrator/.style={rectangle, fill=orange!15, draw=orange!50, line width=0.8pt, rounded corners=5pt,
+                       minimum width=26mm, minimum height=11mm, align=center, inner sep=4pt, font=\small\bfseries},
+  gpu/.style={rectangle, fill=red!15, draw=red!40, line width=0.6pt, rounded corners=5pt,
+              minimum width=22mm, minimum height=12mm, align=center, inner sep=3pt, font=\small},
+  response/.style={ellipse, fill=gray!15, draw=gray!40, line width=0.6pt,
+                  minimum width=22mm, minimum height=9mm, align=center, inner sep=3pt, font=\small\bfseries},
+  % Arrow styles
+  arrow/.style={-Stealth, very thick, line width=1.2pt, color=black!75},
+  arrowthin/.style={-Stealth, line width=0.8pt, color=black!60},
+  arrowobs/.style={-Stealth, dashed, dash pattern=on 3pt off 2pt, line width=0.5pt, color=black!40}
 ]
 
-% Use explicit coordinates - compact layout centered around origin
 % ========== LEFT COLUMN: Data Sources & Ingestion ==========
-% Data sources (stacked vertically, left side)
-\node[source] (news) at (-25mm, 12mm) {News wires\\\& reports};
-\node[source] (ngo) at (-25mm, 0mm) {NGO\\bulletins};
-\node[source] (social) at (-25mm, -12mm) {Social media\\(vetted)};
+% Data sources (stacked vertically)
+\node[source] (news) {News wires\\\& reports};
+\node[source, below=of news] (ngo) {NGO\\bulletins};
+\node[source, below=of ngo] (social) {Social media\\(vetted)};
 
-% Ingestion agents (middle-left)
-\node[ingest] (ingest1) at (-8mm, 12mm) {Ingestion\\Agent 1};
-\node[ingest] (ingest2) at (-8mm, 0mm) {Ingestion\\Agent 2};
-\node[ingest] (ingest3) at (-8mm, -12mm) {Ingestion\\Agent 3};
+% Ingestion agents (to the right of sources)
+\node[ingest, right=of news] (ingest1) {Ingestion\\Agent 1};
+\node[ingest, right=of ngo] (ingest2) {Ingestion\\Agent 2};
+\node[ingest, right=of social] (ingest3) {Ingestion\\Agent 3};
 
-% Vector database (center-left, below)
-\node[vector] (vectordb) at (-8mm, -26mm) {Vector\\Database};
+% Vector database (below ingestion agents)
+\node[vector, below=12mm of ingest2] (vectordb) {Vector\\Database};
 
 % ========== CENTER COLUMN: Query, RAG & Orchestration ==========
-% Query input (top center)
-\node[source] (query) at (12mm, 16mm) {Journalist\\Query};
+% Query input (above RAG)
+\node[source, right=of ingest1, yshift=8mm] (query) {Journalist\\Query};
 
 % RAG retrieval (center)
-\node[rag] (retrieval) at (12mm, 0mm) {RAG\\Retrieval};
+\node[rag, right=of ingest2] (retrieval) {RAG\\Retrieval};
 
 % Multi-agent orchestration (below RAG)
-\node[orchestrator] (orchestrator) at (12mm, -16mm) {Orchestrator};
+\node[orchestrator, below=of retrieval] (orchestrator) {Orchestrator};
 
-% Agents (below orchestrator, compact row)
-\node[agent] (summarizer) at (4mm, -28mm) {Summarizer};
-\node[agent] (factchecker) at (12mm, -28mm) {Fact-Checker};
-\node[agent] (refiner) at (20mm, -28mm) {Refiner};
+% Agents (below orchestrator, in a row)
+\node[agent, below left=6mm and 4mm of orchestrator] (summarizer) {Summarizer};
+\node[agent, below=of orchestrator] (factchecker) {Fact-Checker};
+\node[agent, below right=6mm and 4mm of orchestrator] (refiner) {Refiner};
 
 % ========== RIGHT COLUMN: GPU & Response ==========
-% GPU inference cluster
-\node[gpu] (gpu1) at (38mm, -8mm) {GPU\\Node 1};
-\node[gpu] (gpu2) at (38mm, -24mm) {GPU\\Node 2};
+% GPU inference cluster (to the right of agents)
+\node[gpu, right=of summarizer, yshift=8mm] (gpu1) {GPU\\Node 1};
+\node[gpu, right=of factchecker] (gpu2) {GPU\\Node 2};
 
-% Response (right of GPU)
-\node[response] (response) at (55mm, -16mm) {Response\\+ Citations};
+% Response (to the right of GPU)
+\node[response, right=of gpu2] (response) {Response\\+ Citations};
 
 % ========== ARROWS: Data Flow ==========
 % Sources to ingestion (horizontal)
-\draw[arrowthin] (news.east) -- (ingest1.west);
-\draw[arrowthin] (ngo.east) -- (ingest2.west);
-\draw[arrowthin] (social.east) -- (ingest3.west);
+\draw[arrowthin] (news) -- (ingest1);
+\draw[arrowthin] (ngo) -- (ingest2);
+\draw[arrowthin] (social) -- (ingest3);
 
 % Ingestion to vector database (downward)
-\draw[arrowthin] (ingest1.south) -- (vectordb.north);
-\draw[arrowthin] (ingest2.south) -- (vectordb.north);
-\draw[arrowthin] (ingest3.south) -- (vectordb.north);
+\draw[arrowthin] (ingest1) -- (vectordb);
+\draw[arrowthin] (ingest2) -- (vectordb);
+\draw[arrowthin] (ingest3) -- (vectordb);
 
 % Query to RAG (downward)
-\draw[arrow] (query.south) -- (retrieval.north);
+\draw[arrow] (query) -- (retrieval);
 
-% RAG to vector database (retrieval - horizontal)
-\draw[arrowthin, dashed] (retrieval.west) -- (vectordb.east);
+% RAG to vector database (retrieval - horizontal, dashed)
+\draw[arrowthin, dashed] (retrieval) -- (vectordb);
 
 % RAG to orchestrator (downward)
-\draw[arrow] (retrieval.south) -- (orchestrator.north);
+\draw[arrow] (retrieval) -- (orchestrator);
 
 % Orchestrator to agents (downward)
-\draw[arrowthin] (orchestrator.south west) -- (summarizer.north);
-\draw[arrowthin] (orchestrator.south) -- (factchecker.north);
-\draw[arrowthin] (orchestrator.south east) -- (refiner.north);
+\draw[arrowthin] (orchestrator) -- (summarizer);
+\draw[arrowthin] (orchestrator) -- (factchecker);
+\draw[arrowthin] (orchestrator) -- (refiner);
 
 % Agents to GPU (horizontal)
-\draw[arrow] (summarizer.east) -- (gpu1.west);
-\draw[arrow] (factchecker.east) -- (gpu2.west);
-\draw[arrow] (refiner.east) -- (gpu1.west);
+\draw[arrow] (summarizer) -- (gpu1);
+\draw[arrow] (factchecker) -- (gpu2);
+\draw[arrow] (refiner) -- (gpu1);
 
 % GPU to response (horizontal)
-\draw[arrow] (gpu1.east) -- (response.west);
-\draw[arrowthin] (gpu2.east) -- (response.west);
+\draw[arrow] (gpu1) -- (response);
+\draw[arrowthin] (gpu2) -- (response);
 
 % ========== OBSERVABILITY LAYER ==========
-% Top observability band - positioned after all nodes are defined, tighter spacing
-\node[obs, fit=(news) (social) (ingest1) (ingest3) (vectordb) (query) (retrieval) (orchestrator) (summarizer) (refiner) (gpu1) (gpu2) (response),
-      inner xsep=2mm, inner ysep=1.5mm, yshift=18mm,
-      label={[anchor=center, font=\small\bfseries, text=black!80]center:Observability \& Telemetry}] (obstop) {};
+% Top observability band - positioned above all components
+\node[rectangle, fill=yellow!8, draw=black!30, dashed, line width=0.8pt, rounded corners=4pt,
+      minimum width=120mm, minimum height=8mm,
+      above=6mm of query] (obstop) {};
+\node[font=\small\bfseries, color=black!85, anchor=center] at (obstop.center) {Observability \& Telemetry};
 
-% Bottom observability band - tighter spacing
-\node[obs, fit=(news) (social) (ingest1) (ingest3) (vectordb) (query) (retrieval) (orchestrator) (summarizer) (refiner) (gpu1) (gpu2) (response),
-      inner xsep=2mm, inner ysep=1.5mm, yshift=-26mm,
-      label={[anchor=center, font=\small\bfseries, text=black!80]center:Traces, Metrics, Logs}] (obsbot) {};
+% Bottom observability band - positioned below all components
+\node[rectangle, fill=yellow!8, draw=black!30, dashed, line width=0.8pt, rounded corners=4pt,
+      minimum width=120mm, minimum height=8mm,
+      below=6mm of vectordb] (obsbot) {};
+\node[font=\small\bfseries, color=black!85, anchor=center] at (obsbot.center) {Traces, Metrics, Logs};
 
-% Observability connections (subtle dotted lines)
-\draw[arrowthin, dotted, color=black!35] ([xshift=-2mm]obstop.south) -- ([xshift=-2mm]vectordb.north);
-\draw[arrowthin, dotted, color=black!35] (obstop.south) -- (retrieval.north);
-\draw[arrowthin, dotted, color=black!35] ([xshift=2mm]obstop.south) -- ([xshift=2mm]orchestrator.north);
-\draw[arrowthin, dotted, color=black!35] ([xshift=-2mm]obsbot.north) -- ([xshift=-2mm]orchestrator.south);
-\draw[arrowthin, dotted, color=black!35] (obsbot.north) -- (gpu1.south);
+% Observability connections (subtle dotted lines from bands to components)
+\draw[arrowobs] ([xshift=-10mm]obstop.south) -- ([xshift=-2mm]vectordb.north);
+\draw[arrowobs] (obstop.south) -- (retrieval.north);
+\draw[arrowobs] ([xshift=10mm]obstop.south) -- ([xshift=2mm]orchestrator.north);
+\draw[arrowobs] ([xshift=-10mm]obsbot.north) -- ([xshift=-2mm]orchestrator.south);
+\draw[arrowobs] (obsbot.north) -- (gpu1.south);
+\draw[arrowobs] ([xshift=10mm]obsbot.north) -- (gpu2.south);
 
 \end{tikzpicture}
 \end{llmfigbox}
