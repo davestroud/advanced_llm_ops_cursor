@@ -406,7 +406,9 @@ A prime example is LoRA (Low-Rank Adaptation) \cite{Hu2022LoRA}, which freezes t
 
 From a production perspective, parameter-efficient fine-tuning is valuable because it allows one to deploy a single large pre-trained model and quickly specialize it to multiple tasks or domains by swapping in small adapter weights. For instance, if \ishtar{} needs to adapt its LLM for finance news vs.\ sports news, it could train separate LoRA adapters for each domain and load the appropriate adapter at inference based on context. The base model remains common (and quantized for speed), while the adapters are lightweight (often just a few tens of megabytes). This modular approach avoids duplicating full model instances, saving memory and deployment cost when serving multiple use-cases. The trade-off is a slight increase in code complexity (to manage adapters) and a potential slight reduction in absolute accuracy compared to fine-tuning the whole model, but in practice the efficiency gains are well worth it. Studies show LoRA fine-tuned models reach within one or two points of full fine-tuning on many benchmarks \cite{Hu2022LoRA}, making them very attractive for real-world use.
 
-\begin{table}[t]
+Table~\ref{tab:ch07_compression_summary} summarizes the compression and adaptation techniques discussed, comparing their memory reduction, speed impact, quality impact, and hardware requirements.
+
+\begin{table}[tb]
 \centering
 \small
 \caption{Compression and adaptation techniques enable efficient LLM deployment. Quantization reduces memory and increases speed; distillation transfers knowledge to smaller models; LoRA enables parameter-efficient fine-tuning. Choose based on deployment constraints, accuracy requirements, and update frequency.}
@@ -561,7 +563,9 @@ Pairs well with long contexts and high concurrency; test for degradation on long
 \label{fig:ch07_quant_throughput_bars}
 \end{figure}
 
-\begin{table}[t]
+Table~\ref{tab:ch07_mem_vs_precision} shows how precision selection affects memory requirements and deployment feasibility for different model sizes.
+
+\begin{table}[tb]
 \centering
 \small
 \caption{Precision selection determines memory requirements and deployment feasibility. Lower precision (INT8, 4-bit) dramatically reduces memory, enabling larger models on fixed hardware or higher batch sizes. However, precision reduction may impact accuracy, requiring careful evaluation. Understanding these trade-offs enables teams to optimize memory usage while maintaining quality.}
@@ -609,6 +613,7 @@ FP16 requires multi-GPU (tensor/pipeline parallel); INT8/FP8 fits on single H100
 \label{fig:ch07_memory_cheatsheet}
 \end{figure}
 
+\FloatBarrier
 \section{Inference Engine Optimization}\index{inference engine!optimization}
 \label{sec:perf-engine}
 While model-level methods make the model inherently lighter or faster, inference engine optimizations focus on \emph{how} the model is executed at runtime. This includes using specialized software and libraries to maximize throughput on given hardware, fusing operations to reduce overhead, and managing memory more intelligently during inference.
@@ -638,7 +643,9 @@ In practice, vLLM implements PagedAttention and achieves near-zero waste in KV c
 
 PagedAttention is especially valuable in use cases like \ishtar{} if they need to occasionally handle very large documents or transcripts as input---those rare big inputs will not crowd out the GPU memory for the many short inputs being processed concurrently. Overall, advanced memory management techniques like this are an active area of research and engineering, allowing LLMs to scale in context length more gracefully in production settings.
 
-\begin{table}[t]
+Table~\ref{tab:ch07_engine_bench} compares inference engine performance characteristics, helping teams select the appropriate runtime for their workload patterns.
+
+\begin{table}[tb]
 \centering
 \small
 \caption{Inference engine selection significantly impacts throughput and latency. Different engines optimize for different workloads: vLLM excels at high-throughput batching, TensorRT-LLM provides low-latency single-request performance, and TGI balances both. Choose based on traffic patterns, latency requirements, and hardware constraints.}
@@ -672,6 +679,7 @@ TensorRT-LLM (INT8/FP8)  & 420  & 410 & 18  & Fused ops; Tensor Cores; engine bu
 \footnotesize\emph{Setup}: 30B model, context 4k, batch window 10\,ms. A100-80GB (left), H100-80GB (right) showed $\sim$1.3--1.8$\times$ speedup for TensorRT-LLM vs.\ FP16; vLLM excelled on long contexts due to PagedAttention \cite{Kwon2023vLLM,NVIDIA2023Hopper}.
 \end{table}
 
+\FloatBarrier
 \section{System-Level Optimization}
 \label{sec:perf-system}
 System-level optimizations improve the overall throughput and latency of the serving system by better handling how requests are scheduled and executed on the available hardware. These techniques treat the model as a black box and focus on orchestrating multiple inference calls efficiently. Key methods include batching, asynchronous request handling, and caching of results.
@@ -891,6 +899,7 @@ monitoring:
 \noindent \textbf{Engineering Sidebar: Cache Invalidation.}
 One of the hardest parts of caching is invalidation---deciding when a cached entry should be discarded or refreshed. In LLMOps, this could mean invalidating when the model is updated (since a new model might produce a different answer), when the knowledge sources have changed (for instance, new articles have come in), or after a certain time to ensure freshness. A practical strategy is to include a version tag in the cache key that incorporates the model ID or data timestamp. For example, key by \verb|model_v3::[prompt hash]|. When you deploy model v4, it automatically does not hit v3’s cache. Another strategy is time-based: e.g., any summary older than 24 hours for a ``latest news'' query is probably stale. Ultimately, imperfect invalidation is tolerated; it might occasionally serve an answer that is a bit outdated, but in exchange for large performance gains. System designers should monitor for cache accuracy and have a mechanism (like a feature flag or admin API) to flush caches if a problem is discovered.
 
+\FloatBarrier
 \section{Prompt Optimization}
 \label{sec:perf-prompt}
 The content and format of prompts directly affect the amount of computation the model performs. By optimizing prompts, we can reduce unnecessary work per query. These are “software” optimizations that do not change the model or system, but rather how we use the model.
@@ -947,6 +956,7 @@ Speculative decoding reduces end-to-end latency by generating multiple \emph{dra
 
 Operationally, speculative decoding introduces new controls and failure modes. Teams must select a draft model that remains well-aligned with the target model (to preserve acceptance), monitor acceptance-rate drift as prompts and traffic evolve, and ensure graceful fallback when acceptance collapses (e.g., revert to standard decoding). As with other runtime changes, speculative decoding should be gated by regression evals and monitored in production using the same core SLOs (TTFT, tokens/s, p95/p99 latency) alongside task-level quality metrics.
 
+\FloatBarrier
 \section{Hardware Utilization Tuning}
 \label{sec:perf-hw}
 The performance of LLM inference is heavily influenced by how well we utilize the underlying hardware (GPUs, TPUs, etc.). Beyond model and code optimizations, there are a number of low-level tuning practices that can ensure we get maximum throughput from the hardware.
@@ -1260,7 +1270,9 @@ if __name__ == "__main__":
 \end{lstlisting}
 \end{llmlistingbox}
 
-\begin{table}[t]
+Table~\ref{tab:ch07_profiling_breakdown} illustrates a typical kernel-time breakdown before and after optimization, showing where improvements deliver the largest gains.
+
+\begin{table}[tb]
 \centering
 \small
 \caption{Kernel-time profiling identifies optimization opportunities and validates improvements. Comparing breakdowns before vs.\ after hardware utilization tuning (e.g., kernel fusion, mixed precision, and overlap of I/O with compute) reveals which optimizations deliver the largest gains. This profiling guides optimization prioritization and helps teams understand where further improvements are possible. Percentages vary by model, sequence length, and runtime.}
@@ -1287,6 +1299,7 @@ Gaps / launch overhead             &  8 &  3 & Larger dynamic batches; async sch
 \end{tabularx}
 \end{table}
 
+\FloatBarrier
 \section{Performance Testing and Benchmarking}
 \label{sec:perf-benchmark}
 Establishing baselines and continuously monitoring performance metrics is vital. Before and after any optimization, you should measure:
@@ -1509,6 +1522,7 @@ x   y
 \label{fig:ch07_cost_per_1k_by_engine}
 \end{figure}
 
+\FloatBarrier
 \section{Case Study: Optimizing Ishtar AI}
 \label{sec:perf-ishtar-case}
 To illustrate the above techniques in practice, we consider the performance optimization journey for the \ishtar{} application. Initially, \ishtar{} was running a 13B parameter Transformer model in a straightforward deployment. Through iterative optimizations, we managed to dramatically improve its latency and throughput while cutting costs.
@@ -1583,9 +1597,9 @@ Overall, this case study underscores that combining model, system, and prompt op
 \end{tabularx}
 }
 
-Performance optimization is not a one-time task—it is an ongoing process that must adapt to changing workloads, hardware, and user expectations. For \ishtar{}, the combination of model, system, and prompt optimizations delivers the speed and cost-effectiveness needed for real-time, high-impact journalism.
+Performance optimization is not a one-time task—it is an ongoing process that must adapt to changing workloads, hardware, and user expectations. For \ishtar{}, the combination of model, system, and prompt optimizations delivers the speed and cost-effectiveness needed for real-time, high-impact journalism. Table~\ref{tab:ch07_ishtar_kpis} summarizes the measurable improvements achieved through systematic optimization.
 
-\begin{table}[t]
+\begin{table}[tb]
 \centering
 \small
 \caption{\ishtar{} optimization KPIs demonstrate systematic improvement through targeted techniques. Comparing before vs.\ after metrics (latency, throughput, cost) validates that optimization strategies deliver measurable gains. These KPIs provide benchmarks for similar deployments and illustrate how systematic optimization achieves production goals. Values are representative of the case study scenario and depend on workload and hardware.}
@@ -1637,6 +1651,7 @@ Performance optimization must adapt to changing workloads, hardware, and user ex
 
 % ----------- APPENDED MATERIAL FOR CHAPTER 7 (SEAMLESS CONTINUATION) -----------
 
+\FloatBarrier
 \section{Extended Material}\label{sec:perf-extended}
 
 \subsection{Architectural Variants and Cloud Deployment Trade-offs}\label{sec:perf-variants}
@@ -1757,9 +1772,9 @@ Suppose a GPU costs \$2.50/hour and yields $\Theta=500$ tokens/s. Then:
 \]
 If optimizations double $\Theta$ to 1000 tokens/s, $\text{Cost}_{1k}$ halves to \$0.000694. Moreover, optimizations that enable switching to cheaper GPUs compound savings: $\Theta$ increases while $C_{\text{GPU}}$ decreases, giving multiplicative benefits \cite{cloud-economics}.
 
-These formulas link low-level engineering decisions (e.g., quantization, batching, runtime choice) to system-wide economics. For example, extending context length from 4k to 8k tokens doubles KV memory via Eq.~\eqref{eq:kv-total}, potentially halving feasible batch. Equation~\eqref{eq:throughput-main} then shows throughput reduction, and Eq.~\eqref{eq:cost-k} makes the resulting dollar impact explicit. This chain of reasoning was central in \ishtar{} capacity planning.
+These formulas link low-level engineering decisions (e.g., quantization, batching, runtime choice) to system-wide economics. For example, extending context length from 4k to 8k tokens doubles KV memory via Eq.~\eqref{eq:kv-total}, potentially halving feasible batch. Equation~\eqref{eq:throughput-main} then shows throughput reduction, and Eq.~\eqref{eq:cost-k} makes the resulting dollar impact explicit. This chain of reasoning was central in \ishtar{} capacity planning. Table~\ref{tab:ch07_arch_comparison} compares architectural variants across key dimensions to guide deployment decisions.
 
-\begin{table}[t]
+\begin{table}[tb]
 \centering
 \small
 \caption{Architectural variant selection determines cost, latency, and operational complexity. Different deployment patterns (serverless, containerized, edge) optimize for different scenarios: serverless reduces operational overhead but may increase latency; containerized provides control but requires infrastructure management. Choose based on traffic patterns, latency requirements, and team capabilities.}
@@ -1905,7 +1920,7 @@ logging:
 \end{lstlisting}
 \end{llmlistingbox}
 
-\begin{table}[t]
+\begin{table}[tb]
   \centering
   \small
   \caption{Serving runtime selection determines operational complexity and performance characteristics. Different runtimes optimize for different deployment scenarios: some prioritize ease of use, others focus on maximum throughput or lowest latency. Choose based on team expertise, scale requirements, and operational constraints.}
