@@ -798,37 +798,88 @@ Fig.~\ref{fig:ch10_metrics_dashboard} shows how multiple metrics are visualized 
 
 \begin{figure}[t]
 \centering
+% Temporarily increase maximum width to allow larger figure
+\renewcommand{\LLMFigMaxWidth}{1.4\linewidth}
 \begin{llmfigbox}
 % Color definitions
 \definecolor{dashblue}{RGB}{44,102,146}
 \definecolor{dashgreen}{RGB}{34,139,96}
 \definecolor{dashorange}{RGB}{201,111,29}
 \definecolor{dashred}{RGB}{173,63,60}
-\begin{tikzpicture}[font=\small]
-% Dashboard layout
-\draw[fill=gray!8, draw=black!20, line width=1pt, rounded corners=5pt] (0,0) rectangle (10,6);
-\node[anchor=north west, font=\normalsize\bfseries] at (0.3,5.7) {Evaluation Metrics Dashboard};
+\begin{tikzpicture}[font=\small, scale=1.0]
+% Dashboard layout - larger and more spacious
+\draw[fill=gray!5, draw=black!25, line width=1.2pt, rounded corners=6pt] (0,0) rectangle (14,8);
+\node[anchor=north west, font=\normalsize\bfseries, text=black!90] at (0.4,7.6) {Evaluation Metrics Dashboard};
 
-% Time series plots (simplified)
-\draw[fill=white, draw=dashblue!50!black, line width=1pt, rounded corners=3pt] (0.5,4.5) rectangle (4.5,5.5);
-\node[anchor=center, font=\small\bfseries] at (2.5,5.0) {Correctness Trend};
+% Top row - Correctness Trend (left)
+\draw[fill=white, draw=dashblue!60!black, line width=1.2pt, rounded corners=4pt] (0.6,5.8) rectangle (6.4,7.2);
+\node[anchor=north west, font=\small\bfseries, text=dashblue!90!black] at (0.8,7.0) {Correctness Trend};
+% Simple upward trend line
+\draw[dashblue!80!black, line width=2pt] (1.0,6.2) -- (1.8,6.4) -- (2.6,6.5) -- (3.4,6.6) -- (4.2,6.7) -- (5.0,6.8) -- (5.8,6.9);
+% Grid lines
+\foreach \x in {1.0,2.0,3.0,4.0,5.0,6.0} {
+  \draw[gray!30, line width=0.3pt] (\x,6.1) -- (\x,6.9);
+}
+\foreach \y in {6.2,6.4,6.6,6.8} {
+  \draw[gray!30, line width=0.3pt] (1.0,\y) -- (5.8,\y);
+}
+% Value indicator
+\node[anchor=east, font=\footnotesize\bfseries, text=dashblue!90!black] at (6.0,6.5) {0.92 $\uparrow$};
 
-\draw[fill=white, draw=dashgreen!50!black, line width=1pt, rounded corners=3pt] (5.5,4.5) rectangle (9.5,5.5);
-\node[anchor=center, font=\small\bfseries] at (7.5,5.0) {Faithfulness Trend};
+% Top row - Faithfulness Trend (right)
+\draw[fill=white, draw=dashgreen!60!black, line width=1.2pt, rounded corners=4pt] (7.6,5.8) rectangle (13.4,7.2);
+\node[anchor=north west, font=\small\bfseries, text=dashgreen!90!black] at (7.8,7.0) {Faithfulness Trend};
+% Simple downward trend line
+\draw[dashgreen!80!black, line width=2pt] (8.0,6.8) -- (8.8,6.7) -- (9.6,6.65) -- (10.4,6.6) -- (11.2,6.55) -- (12.0,6.5) -- (12.8,6.45);
+% Grid lines
+\foreach \x in {8.0,9.0,10.0,11.0,12.0,13.0} {
+  \draw[gray!30, line width=0.3pt] (\x,6.1) -- (\x,6.9);
+}
+\foreach \y in {6.2,6.4,6.6,6.8} {
+  \draw[gray!30, line width=0.3pt] (8.0,\y) -- (12.8,\y);
+}
+% Value indicator
+\node[anchor=east, font=\footnotesize\bfseries, text=dashgreen!90!black] at (13.0,6.5) {0.88 $\downarrow$};
 
-\draw[fill=white, draw=dashorange!50!black, line width=1pt, rounded corners=3pt] (0.5,2.5) rectangle (4.5,3.5);
-\node[anchor=center, font=\small\bfseries] at (2.5,3.0) {Latency Trend};
+% Bottom row - Latency Trend (left)
+\draw[fill=white, draw=dashorange!60!black, line width=1.2pt, rounded corners=4pt] (0.6,3.8) rectangle (6.4,5.2);
+\node[anchor=north west, font=\small\bfseries, text=dashorange!90!black] at (0.8,5.0) {Latency Trend};
+% Simple upward trend line (improving = lower latency)
+\draw[dashorange!80!black, line width=2pt] (1.0,4.8) -- (1.8,4.7) -- (2.6,4.65) -- (3.4,4.6) -- (4.2,4.55) -- (5.0,4.5) -- (5.8,4.45);
+% Grid lines
+\foreach \x in {1.0,2.0,3.0,4.0,5.0,6.0} {
+  \draw[gray!30, line width=0.3pt] (\x,4.1) -- (\x,4.9);
+}
+\foreach \y in {4.2,4.4,4.6,4.8} {
+  \draw[gray!30, line width=0.3pt] (1.0,\y) -- (5.8,\y);
+}
+% Value indicator
+\node[anchor=east, font=\footnotesize\bfseries, text=dashorange!90!black] at (6.0,4.5) {1.1s $\downarrow$};
 
-\draw[fill=white, draw=dashred!50!black, line width=1pt, rounded corners=3pt] (5.5,2.5) rectangle (9.5,3.5);
-\node[anchor=center, font=\small\bfseries] at (7.5,3.0) {Cost Trend};
+% Bottom row - Cost Trend (right)
+\draw[fill=white, draw=dashred!60!black, line width=1.2pt, rounded corners=4pt] (7.6,3.8) rectangle (13.4,5.2);
+\node[anchor=north west, font=\small\bfseries, text=dashred!90!black] at (7.8,5.0) {Cost Trend};
+% Simple downward trend line (improving = lower cost)
+\draw[dashred!80!black, line width=2pt] (8.0,4.8) -- (8.8,4.7) -- (9.6,4.65) -- (10.4,4.6) -- (11.2,4.55) -- (12.0,4.5) -- (12.8,4.45);
+% Grid lines
+\foreach \x in {8.0,9.0,10.0,11.0,12.0,13.0} {
+  \draw[gray!30, line width=0.3pt] (\x,4.1) -- (\x,4.9);
+}
+\foreach \y in {4.2,4.4,4.6,4.8} {
+  \draw[gray!30, line width=0.3pt] (8.0,\y) -- (12.8,\y);
+}
+% Value indicator
+\node[anchor=east, font=\footnotesize\bfseries, text=dashred!90!black] at (13.0,4.5) {\$0.04 $\downarrow$};
 
-% Trend indicators
-\node[font=\Large\bfseries, color=dashgreen!80!black] at (4.2,5.0) {$\uparrow$};
-\node[font=\Large\bfseries, color=dashred!80!black] at (9.2,5.0) {$\downarrow$};
-\node[font=\Large\bfseries, color=dashgreen!80!black] at (4.2,3.0) {$\uparrow$};
-\node[font=\Large\bfseries, color=dashgreen!80!black] at (9.2,3.0) {$\downarrow$};
+% Time axis labels (bottom of dashboard)
+\node[anchor=center, font=\tiny, text=black!60] at (3.5,5.6) {Time};
+\node[anchor=center, font=\tiny, text=black!60] at (10.5,5.6) {Time};
+\node[anchor=center, font=\tiny, text=black!60] at (3.5,3.6) {Time};
+\node[anchor=center, font=\tiny, text=black!60] at (10.5,3.6) {Time};
+
 \end{tikzpicture}
 \end{llmfigbox}
+\renewcommand{\LLMFigMaxWidth}{1.15\linewidth}
 \caption{Evaluation metrics dashboard provides operational visibility into system quality trends. Time-series visualizations track correctness, faithfulness, latency, and cost over time, enabling teams to detect regressions, validate improvements, and make data-driven release decisions. Such dashboards are essential for continuous quality monitoring and help teams identify trends before they become critical issues.}
 \label{fig:ch10_metrics_dashboard}
 \end{figure}
