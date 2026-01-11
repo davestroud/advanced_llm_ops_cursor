@@ -335,7 +335,7 @@ Fig.~\ref{fig:ch10_test_coverage_matrix} visualizes this coverage matrix approac
 \pgfmathsetmacro{\testlabelyrowzero}{\starty+0*(\cellheight+\cellsep)+\cellheight/2}
 \pgfmathsetmacro{\axislabelx}{\startx+1*(\cellwidth+\cellsep)+\cellwidth/2}
 \pgfmathsetmacro{\axislabely}{\starty+3*(\cellheight+\cellsep)+0.8}
-\pgfmathsetmacro{\axislabelxleft}{\startx-0.8}
+\pgfmathsetmacro{\axislabelxleft}{\startx-1.2}
 
 % Capability labels (top row)
 \node[anchor=center, font=\normalsize\bfseries, text=black!90] at (\labelxcolzero, \labely) {Vocabulary};
@@ -351,13 +351,21 @@ Fig.~\ref{fig:ch10_test_coverage_matrix} visualizes this coverage matrix approac
 \node[anchor=center, font=\large\bfseries, text=black!95] at (\axislabelx, \axislabely) {Linguistic Capability};
 \node[anchor=center, rotate=90, font=\large\bfseries, text=black!95] at (\axislabelxleft, \testlabelyrowone) {Test Type};
 
-% Legend box
-\draw[fill=white, draw=black!30, line width=0.8pt, rounded corners=4pt] (9.2, 0.2) rectangle (11.5, 2.8);
-\node[anchor=west, font=\normalsize\bfseries, text=black!90] at (9.4, 2.4) {Coverage Status:};
-\draw[fill=coverageblue!70, draw=coverageblue!90!black, line width=1.2pt, rounded corners=3pt] (9.4, 1.7) rectangle (9.9, 2.1);
-\node[anchor=west, font=\normalsize] at (10.1, 1.9) {Tested};
-\draw[fill=gridgray!50, draw=black!20, line width=0.8pt, rounded corners=3pt] (9.4, 1.0) rectangle (9.9, 1.4);
-\node[anchor=west, font=\normalsize] at (10.1, 1.2) {Not tested};
+% Legend box - moved to the right and centered
+\pgfmathsetmacro{\legendxstart}{9.8}
+\pgfmathsetmacro{\legendxend}{11.8}
+\pgfmathsetmacro{\legendxcenter}{(\legendxstart+\legendxend)/2}
+\pgfmathsetmacro{\legendystart}{0.2}
+\pgfmathsetmacro{\legendyend}{2.8}
+\pgfmathsetmacro{\legendycenter}{(\legendystart+\legendyend)/2}
+\draw[fill=white, draw=black!30, line width=0.8pt, rounded corners=4pt] (\legendxstart, \legendystart) rectangle (\legendxend, \legendyend);
+\node[anchor=center, font=\normalsize\bfseries, text=black!90] at (\legendxcenter, 2.4) {Coverage Status:};
+\pgfmathsetmacro{\legendboxxstart}{\legendxcenter-0.25}
+\pgfmathsetmacro{\legendboxxend}{\legendxcenter+0.25}
+\draw[fill=coverageblue!70, draw=coverageblue!90!black, line width=1.2pt, rounded corners=3pt] (\legendboxxstart, 1.7) rectangle (\legendboxxend, 2.1);
+\node[anchor=center, font=\normalsize] at (\legendxcenter, 1.9) {Tested};
+\draw[fill=gridgray!50, draw=black!20, line width=0.8pt, rounded corners=3pt] (\legendboxxstart, 1.0) rectangle (\legendboxxend, 1.4);
+\node[anchor=center, font=\normalsize] at (\legendxcenter, 1.2) {Not tested};
 
 \end{tikzpicture}
 \end{llmfigbox}
