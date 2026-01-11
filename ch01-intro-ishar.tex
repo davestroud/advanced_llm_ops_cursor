@@ -1067,7 +1067,7 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
   arrow/.style={-Stealth, very thick, line width=1.5pt, color=black!75},
   feedback/.style={-Stealth, dashed, dash pattern=on 5pt off 3pt, very thick, line width=1.5pt, color=black!50},
   note/.style={font=\small, align=center, color=black!70},
-  partlabel/.style={font=\footnotesize\bfseries, color=black!65, anchor=west}
+  partlabel/.style={font=\normalsize\bfseries, color=black!85, anchor=west}
 ]
 
 % ---- Top row in a matrix (clean alignment) ----
@@ -1081,9 +1081,9 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 };
 
 % ---- Part labels above top row ----
-\node[partlabel] at ([yshift=9mm]fund.north) {\textbf{Part I: Foundations}};
-\node[partlabel] at ([yshift=9mm]cicd.north) {\textbf{Part II: Delivery Operations}};
-\node[partlabel] at ([yshift=9mm]perf.north) {\textbf{Part III: Optimization}};
+\node[partlabel] at ([yshift=10mm]fund.north) {\textbf{Part I: Foundations}};
+\node[partlabel] at ([yshift=10mm]cicd.north) {\textbf{Part II: Delivery Operations}};
+\node[partlabel] at ([yshift=10mm]perf.north) {\textbf{Part III: Optimization}};
 
 % ---- Second row: RAG and Agents ----
 \node[phase, fill=ragteal!12, draw=ragteal!40, below=12mm of perf] (rag) {RAG\\(Ch.~\ref{ch:rag})};
@@ -1095,7 +1095,7 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 \node[phase, fill=casebrown!12, draw=casebrown!40, right=6mm of ethics] (case)   {Case Study\\(Ch.~\ref{ch:case-study})};
 
 % ---- Part label for bottom row ----
-\node[partlabel] at ([yshift=9mm]test.north) {\textbf{Part IV: Governance}};
+\node[partlabel] at ([yshift=10mm]test.north) {\textbf{Part IV: Governance}};
 
 % ---- Top row flow ----
 \draw[arrow] (fund) -- (infra);
@@ -1116,23 +1116,23 @@ All readers will benefit from following the \ishtar{} case study throughout, as 
 \draw[arrow] (test) -- (ethics);
 \draw[arrow] (ethics) -- (case);
 
-% ---- Feedback arc from Monitoring (high route) ----
-\path (mon.north) ++(0,20mm) coordinate (M1);
-\path (fund.north) ++(0,20mm) coordinate (M2);
-\draw[feedback] (mon.north)
+% ---- Feedback arc from Monitoring (low route, below boxes) ----
+\path (mon.south) ++(0,-10mm) coordinate (M1);
+\path (fund.south) ++(0,-10mm) coordinate (M2);
+\draw[feedback] (mon.south)
   .. controls (M1) and (M2) ..
-  node[note, above, pos=0.5, text width=50mm]
-  {\emph{Feedback: patterns, lessons, new requirements}}
-  (fund.north);
+  (fund.south);
 
-% ---- Feedback arc from Case Study (high route) ----
-\path (case.north) ++(0,18mm) coordinate (C1);
-\path (fund.north) ++(0,18mm) coordinate (C2);
-\draw[feedback] (case.north)
+% ---- Feedback arc from Case Study (low route, below boxes) ----
+\path (case.south) ++(0,-8mm) coordinate (C1);
+\path (fund.south) ++(0,-8mm) coordinate (C2);
+\draw[feedback] (case.south)
   .. controls (C1) and (C2) ..
-  node[note, above, pos=0.52, text width=55mm]
-  {\emph{Feedback: patterns, lessons, and new requirements}}
-  (fund.north);
+  (fund.south);
+
+% Place feedback text below the bottom row of boxes
+\node[note, below=10mm of test.south, text width=60mm, anchor=north, align=center] 
+  {\emph{Feedback: patterns, lessons, and new requirements}};
 
 % ---- Compact lifecycle note ----
 \node[note, anchor=north east] at ($(case.south east)+(0,-6mm)$)
