@@ -169,32 +169,35 @@ The staged evaluation approach creates a continuous loop that feeds production i
 
 \begin{figure}[t]
 \centering
+% Temporarily increase maximum width to allow larger figure
+\renewcommand{\LLMFigMaxWidth}{1.4\linewidth}
 \begin{llmfigbox}
 \begin{tikzpicture}[
-  font=\normalsize,
-  node distance=16mm and 18mm,
-  stage/.style={rounded corners=5pt, draw=none, align=center, 
-                minimum width=40mm, minimum height=28mm, inner sep=7pt, font=\normalsize},
-  note/.style={align=left, font=\normalsize},
+  font=\small,
+  node distance=20mm and 22mm,
+  stage/.style={rounded corners=6pt, draw=black!30, line width=0.8pt, align=center, 
+                minimum width=52mm, minimum height=36mm, inner sep=10pt, font=\small},
+  note/.style={align=left, font=\small},
+  callout/.style={rounded corners=5pt, inner sep=8pt, draw=black!20, line width=0.6pt},
   >=Latex
 ]
 
-% Color-coded stages - larger boxes with bigger text
-\node[stage, fill=blue!20] (commit) {/commit\\\normalsize code, prompts, data diffs};
-\node[stage, fill=green!20, right=of commit] (pre) {Pre-merge\\\normalsize \(\sim\)50--200 det. cases\\guards \& format checks};
-\node[stage, fill=orange!20, right=of pre] (post) {Post-merge\\\normalsize 1--5k cases\\stat. gating vs. baseline};
-\node[stage, fill=purple!20, right=of post] (night) {Nightly/Batch\\\normalsize 5k--20k cases\\adv., fairness, long ctx};
-\node[stage, fill=red!20, right=of night] (canary) {Canary/Shadow\\\normalsize live slice\\drift, safety, SLOs};
+% Color-coded stages - larger boxes with bigger text and clearer hierarchy
+\node[stage, fill=blue!20] (commit) {\small\bfseries{/commit}\\\small code, prompts, data diffs};
+\node[stage, fill=green!20, right=of commit] (pre) {\small\bfseries{Pre-merge}\\\small \(\sim\)50--200 det. cases\\guards \& format checks};
+\node[stage, fill=orange!20, right=of pre] (post) {\small\bfseries{Post-merge}\\\small 1--5k cases\\stat. gating vs. baseline};
+\node[stage, fill=purple!20, right=of post] (night) {\small\bfseries{Nightly/Batch}\\\small 5k--20k cases\\adv., fairness, long ctx};
+\node[stage, fill=red!20, right=of night] (canary) {\small\bfseries{Canary/Shadow}\\\small live slice\\drift, safety, SLOs};
 
-% Arrows forward - thicker
-\draw[->, very thick, line width=1.5pt, draw=black!70] (commit) -- (pre);
-\draw[->, very thick, line width=1.5pt, draw=black!70] (pre) -- (post);
-\draw[->, very thick, line width=1.5pt, draw=black!70] (post) -- (night);
-\draw[->, very thick, line width=1.5pt, draw=black!70] (night) -- (canary);
+% Arrows forward - thicker and more prominent
+\draw[->, very thick, line width=2pt, draw=black!75] (commit) -- (pre);
+\draw[->, very thick, line width=2pt, draw=black!75] (pre) -- (post);
+\draw[->, very thick, line width=2pt, draw=black!75] (post) -- (night);
+\draw[->, very thick, line width=2pt, draw=black!75] (night) -- (canary);
 
-% Feedback section - positioned on the right side of canary
-\node[note, right=8mm of canary, fill=yellow!15, rounded corners=4pt, inner sep=6pt, draw=none, 
-      text width=38mm, align=left, anchor=west] (feedback) {%
+% Feedback section - larger and better positioned
+\node[note, right=10mm of canary, fill=yellow!18, callout, 
+      text width=42mm, align=left, anchor=west, font=\small] (feedback) {%
     \textbf{Feedback:}\\
     \(\bullet\) failing slices\\
     \(\bullet\) drift signals\\
@@ -202,30 +205,30 @@ The staged evaluation approach creates a continuous loop that feeds production i
     \(\bullet\) latency/cost outliers};
 
 % Feedback loop - connects from canary to commit, passing near feedback
-\coordinate (looptop) at ($(canary.north)+(0,30mm)$);
+\coordinate (looptop) at ($(canary.north)+(0,35mm)$);
 
-\draw[->, very thick, line width=1.5pt, draw=teal!70!black, dashed]
-  (canary.east) -- ++(8mm,0)
+\draw[->, very thick, line width=2pt, draw=teal!70!black, dashed, dash pattern=on 4pt off 3pt]
+  (canary.east) -- ++(10mm,0)
   |- (looptop)
   -| (commit.north);
 
-% Baseline/bundle box under pre/post/night - very light and dashed so it doesn't cover text
-\node[draw=none, dashed, fill=cyan!5, rounded corners=5pt, fit=(pre)(post)(night), 
-      inner sep=12pt, label={[note, below=6mm]south:\textbf{Artifacts:} versioned datasets, judges \& prompts; metric code; thresholds; HTML/JSON reports}, opacity=0.5] (bundle) {};
+% Baseline/bundle box under pre/post/night - clearer and more visible
+\node[draw=cyan!60, dashed, line width=1pt, fill=cyan!8, rounded corners=6pt, fit=(pre)(post)(night), 
+      inner sep=14pt, label={[note, below=8mm, font=\small]south:\textbf{Artifacts:} versioned datasets, judges \& prompts; metric code; thresholds; HTML/JSON reports}] (bundle) {};
 
-% Callouts - larger text and better spacing
-\node[note, above=8mm of pre, fill=yellow!15, rounded corners=4pt, inner sep=5pt, draw=none, 
-      text width=40mm, align=center, font=\normalsize] {regex PII / inj.; schema};
-\node[note, above=8mm of post, fill=yellow!15, rounded corners=4pt, inner sep=5pt, draw=none,
-      text width=44mm, align=center, font=\normalsize] {helpfulness, groundedness; McNemar, bootstrap};
-\node[note, above=8mm of night, fill=yellow!15, rounded corners=4pt, inner sep=5pt, draw=none,
-      text width=46mm, align=center, font=\normalsize] {red-team, NLI contradictions, fairness slices};
-\node[note, above=8mm of canary, fill=yellow!15, rounded corners=4pt, inner sep=5pt, draw=none,
-      text width=42mm, align=center, font=\normalsize] {online evals; SLO monitors; rollback};
+% Callouts - larger text, better spacing, and clearer styling
+\node[note, above=10mm of pre, fill=yellow!18, callout, 
+      text width=48mm, align=center, font=\small] {regex PII / inj.; schema};
+\node[note, above=10mm of post, fill=yellow!18, callout,
+      text width=52mm, align=center, font=\small] {helpfulness, groundedness; McNemar, bootstrap};
+\node[note, above=10mm of night, fill=yellow!18, callout,
+      text width=56mm, align=center, font=\small] {red-team, NLI contradictions, fairness slices};
+\node[note, above=10mm of canary, fill=yellow!18, callout,
+      text width=50mm, align=center, font=\small] {online evals; SLO monitors; rollback};
 
-% Legend - larger and better spaced
-\node[stage, fill=gray!15, below=24mm of bundle, minimum width=60mm, minimum height=20mm] (legend) {\textbf{Legend}};
-\node[note, below=4mm of legend, text width=60mm, font=\normalsize] {
+% Legend - larger and better spaced with clearer styling
+\node[stage, fill=gray!18, below=28mm of bundle, minimum width=70mm, minimum height=24mm, draw=black!30, line width=0.8pt] (legend) {\textbf{Legend}};
+\node[note, below=6mm of legend, text width=70mm, font=\small, align=left] {
   \(\triangleright\) Stages run in CI/CD\\
   \(\blacktriangleright\) Metrics \& gates per stage\\
   \(\circlearrowright\) Feedback to repo/baseline
@@ -233,6 +236,7 @@ The staged evaluation approach creates a continuous loop that feeds production i
 
 \end{tikzpicture}
 \end{llmfigbox}
+\renewcommand{\LLMFigMaxWidth}{1.15\linewidth}
 \caption{Continuous evaluation creates a feedback loop that improves system quality over time. Each stage runs distinct suites and gates, validating changes incrementally; canary/shadow monitoring closes the loop by feeding drift, safety, and SLO signals back into the repository and baseline. This closed-loop approach converts production observations into regression tests, ensuring that failures become learning opportunities rather than recurring incidents.}
 \label{fig:ch04_eval_stages_pipeline}
 \end{figure}
