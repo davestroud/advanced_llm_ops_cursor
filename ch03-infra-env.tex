@@ -1427,6 +1427,7 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 \definecolor{vpnteal}{RGB}{0,150,136}
 \definecolor{gpupurple}{RGB}{156,39,176}
 \definecolor{storeyellow}{RGB}{255,193,7}
+\resizebox{\linewidth}{!}{%
 \begin{tikzpicture}[
   font=\small,
   >=Stealth,
@@ -1525,7 +1526,8 @@ This section surveys the most common deployment architectures in LLMOps, analyzi
 \node[store, minimum width=20mm, minimum height=13mm] (L7) at ($(L3) + (0, -14mm)$) {};
 \node[font=\small\bfseries, right=7mm of L7.east, anchor=west, text=black!90] {Object/Vector Store};
 
-\end{tikzpicture}
+\end{tikzpicture}%
+}
 \end{llmfigbox}
 \caption{Deployment pattern selection determines operational complexity and cost structure. \textbf{Cloud-Native} (top) maximizes elasticity and reduces operational overhead but may increase costs at scale. \textbf{Hybrid} (middle) balances on-premise control with cloud flexibility, optimizing for cost and compliance. \textbf{Multi-Cluster} (bottom) enables geographic distribution and failover but increases management complexity. Choose based on scale, compliance requirements, and operational capabilities.}
 \label{fig:ch03_deploy_patterns_balanced}
