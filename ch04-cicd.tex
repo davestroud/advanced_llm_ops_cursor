@@ -212,8 +212,8 @@ The staged evaluation approach creates a continuous loop that feeds production i
   |- (looptop)
   -| (commit.north);
 
-% Baseline/bundle box under pre/post/night - reduced fill opacity to prevent text obscuring
-\node[draw=cyan!60, dashed, line width=1pt, fill=cyan!3, rounded corners=6pt, fit=(pre)(post)(night), 
+% Baseline/bundle box under pre/post/night - no fill to ensure text visibility
+\node[draw=cyan!60, dashed, line width=1pt, fill=none, rounded corners=6pt, fit=(pre)(post)(night), 
       inner sep=14pt, label={[note, below=8mm, font=\normalsize]south:\textbf{Artifacts:} versioned datasets, judges \& prompts; metric code; thresholds; HTML/JSON reports}] (bundle) {};
 
 % Callouts - larger text, better spacing, and clearer styling
